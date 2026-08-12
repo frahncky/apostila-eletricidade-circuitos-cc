@@ -1,0 +1,2353 @@
+% =====================================================================
+%  Banco complementar --- Lei de Lenz e Inducao Eletromagnetica
+%  REVISADO. Substitui a versao gerada por template (8 clones em N1,
+%  11 em N2, 13 em N3 e 9 questoes conceituais marcadas como N4).
+%  O cap11 ja cobre: enunciado da lei de Lenz (MC), Phi(t)=0,02t,
+%  campo crescendo linearmente de 0 a 0,5 T, bobina de 100 espiras com
+%  B(t), IMA APROXIMADO COM O POLO NORTE (N2), transformador ideal com
+%  dPhi/dt dado, fluxo senoidal, corrente induzida senoidal e -- como
+%  N4 -- a BARRA DESLIZANDO SOBRE TRILHOS. As duas ultimas motivaram a
+%  remocao de duas N4 do banco antigo, que as duplicavam.
+%  Este banco explora: CARGA induzida (que independe do tempo), freio
+%  por correntes parasitas, laminacao de nucleos, velocidade-limite,
+%  inducao mutua com convencao dos pontos, projeto de bobina e de
+%  experimento, e a razao pela qual transformadores nao operam em CC.
+%  Distribuicao mantida: 8 N1 + 11 N2 + 13 N3 + 9 N4 = 41
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Lei de Lenz e indução eletromagnética}
+
+\begin{atencao}[Organização do banco]
+A lei de Faraday é $\varepsilon=-N\dfrac{\mathrm{d}\Phi}{\mathrm{d}t}$: o que
+induz f.e.m. é a \textbf{variação} do fluxo, não seu valor. O sinal negativo é a
+lei de Lenz, e ela não é um detalhe --- é a conservação da energia em forma
+elétrica. O N3 trata de velocidade-limite, carga induzida, correntes parasitas e
+indução mútua; o N4 exige demonstrações, projeto e a análise de por que
+transformadores exigem corrente alternada.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Uma bobina de $200$ espiras sofre variação de fluxo de
+$\SI{2}{\milli\weber}$ por espira em $\SI{5}{\milli\second}$. Determine a
+f.e.m. média induzida.
+\resposta{$\varepsilon=\SI{80}{\volt}$}
+\resolucao{
+\[
+|\varepsilon|=N\frac{\Delta\Phi}{\Delta t}
+=200\,\frac{\pot{2}{-3}}{\pot{5}{-3}}=\SI{80}{\volt}.
+\]
+\textbf{Note o papel de $N$:} cada espira contribui com a mesma f.e.m., e elas
+estão em série. Duzentas espiras multiplicam por duzentos --- é assim que se
+obtêm tensões altas a partir de variações de fluxo modestas.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma barra de $\SI{30}{\centi\meter}$ move-se a $\SI{4}{\meter\per\second}$
+perpendicularmente a um campo de $\SI{0.5}{\tesla}$. Determine a f.e.m.
+induzida.
+\resposta{$\varepsilon=\SI{0.6}{\volt}$}
+\resolucao{
+\[
+\varepsilon=B\ell v=(0{,}5)(0{,}30)(4)=\SI{0.6}{\volt}.
+\]
+\textbf{Origem da fórmula:} os portadores da barra movem-se com ela e sofrem
+força magnética $qvB$ ao longo do comprimento. Eles se acumulam nas
+extremidades até que o campo elétrico resultante equilibre a força magnética ---
+e a diferença de potencial daí resultante é $B\ell v$.\\
+\textbf{Equivalência com Faraday:} se a barra fizer parte de um circuito, a área
+varia à taxa $\ell v$ e $\mathrm{d}\Phi/\mathrm{d}t=B\ell v$ --- o mesmo
+resultado.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o número de espiras necessário para obter $\SI{12}{\volt}$ com
+variação de fluxo de $\SI{0.04}{\weber\per\second}$.
+\resposta{$N=300$}
+\resolucao{
+\[
+N=\frac{\varepsilon}{\mathrm{d}\Phi/\mathrm{d}t}=\frac{12}{0{,}04}=300.
+\]
+\textbf{Compromisso de projeto:} mais espiras dão mais tensão, mas aumentam a
+resistência do enrolamento (mais perdas) e o volume. Aumentar
+$\mathrm{d}\Phi/\mathrm{d}t$ --- por campo mais intenso ou variação mais rápida
+--- costuma ser preferível quando possível.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma bobina de $100$ espiras deve gerar $\SI{50}{\volt}$ com variação de fluxo
+de $\SI{5}{\milli\weber}$. Determine o tempo em que essa variação deve ocorrer.
+\resposta{$\Delta t=\SI{10}{\milli\second}$}
+\resolucao{
+\[
+\Delta t=\frac{N\,\Delta\Phi}{\varepsilon}
+=\frac{100(\pot{5}{-3})}{50}=\pot{1}{-2}\,\si{\second}.
+\]
+\textbf{Leitura:} a f.e.m. é inversamente proporcional ao tempo. A \emph{mesma}
+variação de fluxo, feita dez vezes mais rápido, produz dez vezes mais tensão ---
+princípio de funcionamento das bobinas de ignição e dos geradores de alta
+tensão por interrupção de corrente.}
+\end{questao}
+
+\begin{questao}[1]{}
+O sinal negativo na lei de Faraday expressa:
+\begin{alternativas}[2]
+\item a lei de Lenz e a conservação da energia
+\item que a f.e.m. é sempre negativa
+\item um erro de convenção
+\item que a corrente é sempre horária
+\end{alternativas}
+\resposta{(a)}
+\resolucao{O sinal indica que a corrente induzida circula no sentido de
+\textbf{opor-se} à variação de fluxo que a produziu.\\
+\textbf{Por que precisa ser assim:} se a corrente induzida \emph{reforçasse} a
+variação, ela aumentaria o fluxo, que induziria mais corrente, e assim por
+diante --- energia surgiria do nada. A lei de Lenz é a garantia de que isso não
+ocorre.\\
+\textbf{Consequência prática:} qualquer variação de fluxo encontra
+\emph{resistência}. Aproximar um ímã de uma espira fechada exige força; girar
+um gerador sob carga exige torque. É de onde vem a energia elétrica.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma espira está imersa em campo magnético uniforme e \textbf{constante}, e é
+deslocada rapidamente dentro da região. Determine a f.e.m. induzida.
+\resposta{$\varepsilon=0$}
+\resolucao{O fluxo é $\Phi=BA$, com $B$ e $A$ constantes --- ele \textbf{não
+varia}, e portanto
+\[
+\varepsilon=-\frac{\mathrm{d}\Phi}{\mathrm{d}t}=0.
+\]
+\textbf{Ponto conceitual central:} \emph{movimento não induz f.e.m.}; variação
+de fluxo é que induz. Uma espira pode mover-se a grande velocidade sem gerar
+nada, desde que o fluxo através dela permaneça o mesmo.\\
+\textbf{Onde há f.e.m.:} apenas ao \emph{atravessar a fronteira} da região de
+campo, quando a área imersa muda.}
+\end{questao}
+
+\begin{questao}[1]{}
+Mostre que $\si{\weber\per\second}$ equivale a volt.
+\resposta{$\si{\weber}=\si{\volt\second}$}
+\resolucao{Da lei de Faraday, $\varepsilon=\mathrm{d}\Phi/\mathrm{d}t$, logo
+\[
+[\si{\volt}]=\frac{[\si{\weber}]}{[\si{\second}]}
+\;\Longrightarrow\;
+\si{\weber}=\si{\volt}\cdot\si{\second}.
+\]
+\textbf{Leitura útil:} o weber é um "volt-segundo". Isso torna imediato o
+resultado de que a \emph{integral} da f.e.m. no tempo é a variação de fluxo ---
+base do fluxímetro e do método de medição por integração.}
+\end{questao}
+
+\begin{questao}[1]{}
+Segundo a lei de Lenz, quando o fluxo através de uma espira \textbf{aumenta},
+a corrente induzida cria um campo próprio que:
+\begin{alternativas}[2]
+\item reforça o campo externo
+\item opõe-se ao campo externo
+\item é perpendicular ao campo externo
+\item é nulo
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A corrente induzida produz campo que se \emph{opõe ao aumento} --- ou
+seja, no sentido contrário ao campo externo dentro da espira.\\
+\textbf{Se o fluxo diminuísse}, a corrente inverteria, criando campo no
+\emph{mesmo} sentido do externo, para tentar sustentá-lo.\\
+\textbf{Regra prática:} a espira "não gosta de mudanças". Ela sempre reage no
+sentido de manter o fluxo como estava --- nunca no de acelerar a mudança.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma barra de $\SI{50}{\centi\meter}$ desliza a $\SI{3}{\meter\per\second}$
+sobre trilhos em campo de $\SI{0.4}{\tesla}$, com resistência total de
+$\SI{2}{\ohm}$.
+\begin{itensq}
+\item Determine a f.e.m. e a corrente.
+\item Determine a força necessária para manter a velocidade.
+\item Verifique o balanço de potência.
+\end{itensq}
+\resposta{$\varepsilon=\SI{0.6}{\volt}$; $I=\SI{0.3}{\ampere}$;
+$F=\SI{60}{\milli\newton}$; $P=\SI{0.18}{\watt}$ pelos dois caminhos}
+\resolucao{(a)
+\[
+\varepsilon=B\ell v=(0{,}4)(0{,}5)(3)=\SI{0.6}{\volt};
+\qquad
+I=\frac{0{,}6}{2}=\SI{0.3}{\ampere}.
+\]
+(b) A corrente induzida na barra, imersa no campo, sofre força magnética
+\emph{oposta} ao movimento (lei de Lenz):
+\[
+F=BI\ell=(0{,}4)(0{,}3)(0{,}5)=\SI{0.06}{\newton}.
+\]
+Para manter a velocidade constante, o agente externo deve aplicar força igual e
+contrária.\\
+(c) \textbf{Balanço.}
+\[
+P_{mecânica}=Fv=(0{,}06)(3)=\SI{0.18}{\watt};
+\qquad
+P_{elétrica}=\frac{\varepsilon^{2}}{R}=\frac{0{,}36}{2}=\SI{0.18}{\watt}.
+\]
+\textbf{Coincidem exatamente} --- toda a energia mecânica fornecida vira calor no
+resistor. É a lei de Lenz em forma quantitativa: a força de oposição é
+precisamente a necessária para que a conta feche.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bobina de $100$ espiras e área $\SI{200}{\centi\meter\squared}$ gira a
+$\SI{377}{\radian\per\second}$ em campo de $\SI{0.5}{\tesla}$.
+\begin{itensq}
+\item Determine a f.e.m. máxima.
+\item Determine a f.e.m. eficaz.
+\end{itensq}
+\resposta{$\varepsilon_{\max}=\SI{377}{\volt}$;
+$\varepsilon_{ef}=\SI{267}{\volt}$}
+\resolucao{(a) Com $\Phi=BA\cos\omega t$:
+\[
+\varepsilon=-N\frac{\mathrm{d}\Phi}{\mathrm{d}t}=NBA\omega\sin\omega t
+\;\Longrightarrow\;
+\varepsilon_{\max}=NBA\omega.
+\]
+\[
+\varepsilon_{\max}=100(0{,}5)(\pot{2}{-2})(377)=\SI{377}{\volt}.
+\]
+(b) Para forma senoidal,
+\[
+\varepsilon_{ef}=\frac{\varepsilon_{\max}}{\sqrt2}=\SI{267}{\volt}.
+\]
+\textbf{Note:} $\omega=\SI{377}{\radian\per\second}$ corresponde a
+$\SI{60}{\hertz}$ --- é o valor $2\pi(60)$, e aparece constantemente em
+eletrotécnica.\\
+\textbf{Compromisso do gerador:} $\varepsilon\propto\omega$, mas a frequência é
+fixada pela rede. Resta aumentar $N$, $B$ ou $A$ --- e é por isso que geradores
+de grande porte têm núcleos volumosos e campos próximos da saturação.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas bobinas têm indutância mútua $M=\SI{50}{\milli\henry}$. A corrente na
+primeira varia à taxa de $\SI{200}{\ampere\per\second}$. Determine a f.e.m.
+induzida na segunda.
+\resposta{$\varepsilon_2=\SI{10}{\volt}$}
+\resolucao{
+\[
+\varepsilon_2=M\frac{\mathrm{d}i_1}{\mathrm{d}t}=(0{,}05)(200)=\SI{10}{\volt}.
+\]
+\textbf{Simetria da indução mútua:} $M_{12}=M_{21}$ sempre, mesmo que as bobinas
+sejam muito diferentes. Uma corrente variando na bobina pequena induz na grande
+exatamente a mesma f.e.m. que o inverso produziria --- resultado de
+reciprocidade, análogo ao que vale em redes resistivas.\\
+\textbf{Aplicação:} é este o princípio do transformador, e também da
+interferência indesejada entre circuitos vizinhos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um transformador ideal tem $1000$ espiras no primário e $100$ no secundário,
+com $\SI{220}{\volt}$ na entrada.
+\begin{itensq}
+\item Determine a tensão de saída.
+\item Determine a corrente de entrada para carga que exige
+      $\SI{5}{\ampere}$.
+\end{itensq}
+\resposta{$V_2=\SI{22}{\volt}$; $I_1=\SI{0.5}{\ampere}$}
+\resolucao{(a) Como o \emph{mesmo} fluxo atravessa os dois enrolamentos,
+\[
+\frac{V_2}{V_1}=\frac{N_2}{N_1}
+\;\Longrightarrow\;
+V_2=220\left(\frac{100}{1000}\right)=\SI{22}{\volt}.
+\]
+(b) No transformador ideal não há perdas, e a potência se conserva:
+\[
+V_1I_1=V_2I_2
+\;\Longrightarrow\;
+I_1=\frac{22(5)}{220}=\SI{0.5}{\ampere}.
+\]
+\textbf{Relação inversa:} a corrente transforma-se na razão \emph{oposta} à da
+tensão. Abaixar tensão dez vezes eleva a corrente dez vezes.\\
+\textbf{Consequência para os enrolamentos:} o secundário precisa de fio dez
+vezes mais grosso, embora tenha dez vezes menos espiras. O volume de cobre acaba
+sendo comparável nos dois lados.}
+\end{questao}
+
+\begin{questao}[2]{}
+O fluxo em uma espira varia segundo $\Phi(t)=0{,}05\,t^{2}$ (weber, com $t$ em
+segundos). Determine a f.e.m. em $t=\SI{2}{\second}$ e a f.e.m. média nos dois
+primeiros segundos.
+\resposta{$\varepsilon(2)=\SI{0.2}{\volt}$; média de $\SI{0.1}{\volt}$}
+\resolucao{\textbf{Instantânea:}
+\[
+\varepsilon=-\frac{\mathrm{d}\Phi}{\mathrm{d}t}=-0{,}10\,t
+\;\Longrightarrow\;
+|\varepsilon(2)|=\SI{0.2}{\volt}.
+\]
+\textbf{Média:}
+\[
+|\bar\varepsilon|=\frac{\Delta\Phi}{\Delta t}
+=\frac{0{,}05(4)-0}{2}=\SI{0.1}{\volt}.
+\]
+\textbf{As duas diferem por um fator $2$} --- e ambas estão corretas, para
+perguntas diferentes.\\
+\textbf{Quando coincidem:} apenas se o fluxo variar \emph{linearmente}. Aqui a
+variação é quadrática, e a f.e.m. cresce ao longo do intervalo, partindo de zero
+e chegando a $\SI{0.2}{\volt}$ --- a média é o valor intermediário.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira de resistência $\SI{10}{\ohm}$ e $50$ espiras sofre variação de
+fluxo de $\SI{4}{\milli\weber}$. Determine a \textbf{carga} total que circula.
+\resposta{$q=\SI{20}{\milli\coulomb}$}
+\resolucao{Integrando a corrente induzida:
+\[
+q=\int i\,\mathrm{d}t=\int\frac{|\varepsilon|}{R}\,\mathrm{d}t
+=\frac{N}{R}\int\left|\frac{\mathrm{d}\Phi}{\mathrm{d}t}\right|\mathrm{d}t
+=\frac{N\,\Delta\Phi}{R}.
+\]
+\[
+q=\frac{50(\pot{4}{-3})}{10}=\pot{2}{-2}\,\si{\coulomb}.
+\]
+\textbf{Resultado notável: a carga \emph{não depende do tempo}.} Rápida ou
+lenta, a mesma variação de fluxo faz circular a mesma carga --- porque
+f.e.m. e duração variam inversamente e o produto se conserva.\\
+\textbf{É o princípio do fluxímetro balístico:} integrando a corrente com um
+galvanômetro de bobina móvel, mede-se $\Delta\Phi$ sem controlar a velocidade do
+movimento.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira quadrada de lado $\SI{10}{\centi\meter}$ entra com velocidade
+constante de $\SI{2}{\meter\per\second}$ em uma região de campo de
+$\SI{0.6}{\tesla}$.
+\begin{itensq}
+\item Determine a f.e.m. durante a entrada.
+\item Determine a f.e.m. quando totalmente dentro.
+\end{itensq}
+\resposta{$\SI{0.12}{\volt}$ durante a entrada; zero depois}
+\resolucao{(a) Enquanto atravessa a fronteira, apenas o lado dianteiro está no
+campo e funciona como barra móvel:
+\[
+\varepsilon=B\ell v=(0{,}6)(0{,}10)(2)=\SI{0.12}{\volt}.
+\]
+\emph{(Equivalentemente: a área imersa cresce a $\ell v$, e
+$\mathrm{d}\Phi/\mathrm{d}t=B\ell v$.)}\\
+(b) \textbf{Totalmente dentro}, os lados dianteiro e traseiro estão ambos no
+campo e suas f.e.m. se \emph{cancelam}. O fluxo é constante e
+\[
+\varepsilon=0.
+\]
+\textbf{Perfil completo:} pulso retangular de $\SI{0.12}{\volt}$ durante a
+entrada, zero no percurso interno, e pulso de \emph{polaridade invertida}
+durante a saída. Cada pulso dura $\ell/v=\SI{50}{\milli\second}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um disco metálico gira entre os polos de um ímã. Explique o efeito observado
+sobre seu movimento.
+\resposta{Ele freia --- correntes de Foucault opõem-se ao movimento}
+\resolucao{O disco, ao girar, tem diferentes regiões atravessadas por fluxos
+variáveis. Isso induz \textbf{correntes de Foucault} (ou parasitas) --- redemoinhos
+de corrente no próprio material.\\
+Pela lei de Lenz, essas correntes produzem forças que se \textbf{opõem ao
+movimento}: o disco desacelera, e a energia cinética vira calor.\\
+\textbf{Duas leituras.}
+\begin{itemize}
+\item \textbf{Como recurso:} é o \emph{freio magnético}, usado em trens, em
+esteiras ergométricas e no disco do antigo medidor de energia. Não há contato,
+portanto não há desgaste.
+\item \textbf{Como problema:} em núcleos de transformadores e motores, as
+mesmas correntes representam perda pura. Combate-se \textbf{laminando} o núcleo
+--- assunto retomado no bloco de desafio.
+\end{itemize}
+\textbf{Propriedade importante:} a força de frenagem é proporcional à
+\emph{velocidade}. O freio é forte em alta velocidade e desaparece no repouso ---
+por isso ele nunca segura um veículo parado.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bobina com núcleo de ferro tem $\SI{500}{}$ espiras. O fluxo varia de
+$\SI{0}{}$ a $\SI{1.2}{\milli\weber}$ em $\SI{8}{\milli\second}$. Determine a
+f.e.m. média.
+\resposta{$\varepsilon=\SI{75}{\volt}$}
+\resolucao{
+\[
+|\varepsilon|=N\frac{\Delta\Phi}{\Delta t}
+=500\,\frac{\pot{1.2}{-3}}{\pot{8}{-3}}=\SI{75}{\volt}.
+\]
+\textbf{Papel do núcleo:} sem ele, o mesmo enrolamento e a mesma corrente
+produziriam fluxo centenas de vezes menor --- e f.e.m. proporcionalmente menor.
+O ferro é o que torna a indução tecnologicamente útil.\\
+\textbf{Ressalva:} se o fluxo variar a partir de um valor já próximo da
+saturação, a relação deixa de ser linear e a f.e.m. real fica abaixo da
+prevista.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira é conectada a um resistor e um ímã é afastado dela. Determine o
+sentido da força que a espira exerce sobre o ímã.
+\resposta{Atrativa --- ela tenta impedir o afastamento}
+\resolucao{Ao afastar o ímã, o fluxo através da espira \textbf{diminui}. Pela lei
+de Lenz, a corrente induzida circula no sentido de \emph{sustentar} o fluxo ---
+criando campo no mesmo sentido do original.\\
+A espira comporta-se então como um ímã com o polo oposto voltado ao ímã que se
+afasta, e portanto o \textbf{atrai}.\\
+\textbf{Pela terceira lei de Newton}, o ímã atrai a espira com força igual e
+contrária.\\
+\textbf{Conclusão geral:} a espira sempre \emph{resiste} ao que se está fazendo.
+Aproximar exige empurrar contra repulsão; afastar exige puxar contra atração.
+Em ambos os casos, o trabalho realizado é o que aparece como energia elétrica
+--- e o resistor aquece.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bobina de $200$ espiras, área $\SI{100}{\centi\meter\squared}$ e
+resistência $\SI{40}{\ohm}$ está em campo de $\SI{0.8}{\tesla}$
+perpendicular. O campo é desligado em $\SI{20}{\milli\second}$.
+\begin{itensq}
+\item Determine a f.e.m. e a corrente induzidas.
+\item Determine o sentido da corrente em relação ao campo original.
+\item Determine a carga total.
+\end{itensq}
+\resposta{$\varepsilon=\SI{80}{\volt}$; $I=\SI{2}{\ampere}$;
+$q=\SI{40}{\milli\coulomb}$}
+\resolucao{(a)
+\[
+|\varepsilon|=N\frac{\Delta\Phi}{\Delta t}
+=200\,\frac{(0{,}8)(\pot{1}{-2})}{\pot{2}{-2}}=\SI{80}{\volt};
+\qquad
+I=\frac{80}{40}=\SI{2}{\ampere}.
+\]
+(b) O fluxo \textbf{diminui}, logo a corrente induzida circula no sentido de
+\emph{sustentá-lo} --- criando campo próprio no \textbf{mesmo} sentido do campo
+original.\\
+\emph{(Se o campo estivesse sendo ligado, a corrente circularia ao contrário.)}\\
+(c)
+\[
+q=\frac{N\,\Delta\Phi}{R}=\frac{200(\pot{8}{-3})}{40}
+=\pot{4}{-2}\,\si{\coulomb}.
+\]
+\textbf{Observação de segurança:} $\SI{80}{\volt}$ surgem em uma bobina que
+antes não tinha tensão alguma. Desligar bruscamente eletroímãs de grande porte
+produz tensões muito superiores --- razão pela qual eles exigem circuitos de
+desmagnetização controlada.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma barra de $\SI{100}{\gram}$ e $\SI{40}{\centi\meter}$ desliza sem atrito em
+trilhos \textbf{verticais}, em campo horizontal de $\SI{0.5}{\tesla}$, com
+resistência total de $\SI{0.5}{\ohm}$. Ela é solta do repouso.
+\begin{itensq}
+\item Escreva a equação do movimento.
+\item Determine a velocidade-limite.
+\item Determine a potência dissipada nesse regime.
+\end{itensq}
+\dados{$g=\SI{9.8}{\meter\per\second\squared}$}
+\resposta{$v_{lim}=\SI{12.25}{\meter\per\second}$; $P=\SI{12}{\watt}$}
+\resolucao{(a) A barra sofre o peso e a força magnética de oposição:
+\[
+m\frac{\mathrm{d}v}{\mathrm{d}t}=mg-\frac{B^{2}\ell^{2}v}{R},
+\]
+pois $F=BI\ell$ com $I=B\ell v/R$.\\
+\textbf{Estrutura da equação:} é idêntica à de um corpo em queda com arrasto
+\emph{linear} --- a força de oposição é proporcional à velocidade.\\
+(b) Na velocidade-limite, a aceleração se anula:
+\[
+v_{lim}=\frac{mgR}{B^{2}\ell^{2}}
+=\frac{(0{,}1)(9{,}8)(0{,}5)}{(0{,}25)(0{,}16)}
+=\frac{0{,}49}{0{,}04}=\SI{12.25}{\meter\per\second}.
+\]
+(c)
+\[
+P=mgv_{lim}=(0{,}1)(9{,}8)(12{,}25)=\SI{12}{\watt},
+\]
+que é exatamente $\dfrac{(B\ell v_{lim})^{2}}{R}$ \checkmark.\\
+\textbf{Interpretação:} em regime, toda a energia potencial gravitacional
+perdida vira calor no resistor. A barra não ganha mais energia cinética.\\
+\textbf{Efeito de $R$:} reduzir $R$ \emph{diminui} a velocidade-limite --- o
+freio fica mais forte. Com $R\to0$ (trilhos supercondutores), a barra mal se
+moveria.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma bobina de $N$ espiras e resistência $R$ é retirada de um campo. Demonstre
+que a carga induzida independe da velocidade do movimento.
+\begin{itensq}
+\item Deduza a expressão.
+\item Explique fisicamente.
+\item Indique a aplicação em instrumentação.
+\end{itensq}
+\resposta{$q=\dfrac{N\Delta\Phi}{R}$ --- independe de $\Delta t$}
+\resolucao{(a)
+\[
+q=\int i\,\mathrm{d}t
+=\int\frac{N}{R}\frac{\mathrm{d}\Phi}{\mathrm{d}t}\,\mathrm{d}t
+=\frac{N}{R}\int\mathrm{d}\Phi
+=\frac{N\,\Delta\Phi}{R}.
+\]
+O tempo \textbf{cancela} na integração.\\
+(b) \textbf{Explicação física.} Retirar a bobina depressa produz f.e.m. alta
+durante pouco tempo; devagar, f.e.m. baixa durante muito tempo. O
+\emph{produto} --- que é a carga --- permanece o mesmo.\\
+Algebricamente: $\varepsilon\propto1/\Delta t$ e a duração é
+$\Delta t$; o produto não depende dela.\\
+(c) \textbf{Aplicação: fluxímetro balístico.} Um galvanômetro balístico responde
+à \emph{carga} total, não à corrente instantânea. Conectado à bobina, sua
+deflexão máxima é proporcional a $\Delta\Phi$ --- e o operador não precisa
+controlar a velocidade com que retira a bobina.\\
+\textbf{Robustez notável:} nem a velocidade, nem a suavidade, nem a trajetória
+influenciam o resultado. É uma das medições mais tolerantes a erro de
+procedimento em todo o eletromagnetismo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um núcleo de transformador maciço de $\SI{10}{\milli\meter}$ de espessura é
+substituído por $20$ lâminas isoladas de $\SI{0.5}{\milli\meter}$.
+\begin{itensq}
+\item Determine a redução das perdas por correntes parasitas.
+\item Explique o mecanismo.
+\item Indique a limitação prática.
+\end{itensq}
+\resposta{Redução de $400$ vezes}
+\resolucao{(a) As perdas por correntes de Foucault em lâminas obedecem a
+\[
+P\propto\frac{B_{\max}^{2}f^{2}t^{2}}{\rho},
+\]
+com $t$ a espessura da lâmina. Reduzindo $t$ de $10$ para
+$\SI{0.5}{\milli\meter}$:
+\[
+\frac{P'}{P}=\left(\frac{0{,}5}{10}\right)^{2}=\frac{1}{400}.
+\]
+(b) \textbf{Mecanismo.} As correntes parasitas circulam em laços
+\emph{perpendiculares} ao fluxo. Laços maiores encerram mais fluxo (mais f.e.m.)
+e encontram menos resistência (caminho mais largo) --- e por isso a perda cresce
+com o \emph{quadrado} da dimensão.\\
+Isolar as lâminas quebra os laços grandes em muitos laços pequenos, cada um com
+f.e.m. menor e resistência maior.\\
+\textbf{Importante:} as lâminas devem ser paralelas ao fluxo e isoladas
+\emph{entre si} --- um verniz de poucos micrômetros basta. Se houver rebarba
+metálica unindo-as, o efeito se perde.\\
+(c) \textbf{Limitações.}
+\begin{itemize}
+\item \textbf{Fator de empilhamento:} o isolamento ocupa espaço, e a seção
+magnética efetiva cai para $95$ a $97\%$ da geométrica.
+\item \textbf{Custo:} lâminas mais finas são mais caras de produzir e montar.
+\item \textbf{Frequência:} como $P\propto f^{2}t^{2}$, em alta frequência nem
+lâminas finíssimas bastam --- daí o uso de \textbf{ferrites}, que são cerâmicas
+de altíssima resistividade e praticamente não conduzem correntes parasitas.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[3]{}
+Um solenoide longo de $n_1$ espiras por metro e seção $A$ tem, em torno de si,
+uma bobina de $N_2$ espiras.
+\begin{itensq}
+\item Deduza a indutância mútua.
+\item Avalie para $n_1=\SI{2000}{\per\meter}$, $A=\SI{5}{\centi\meter\squared}$
+      e $N_2=100$.
+\item Explique por que $M$ não depende do raio da bobina externa.
+\end{itensq}
+\resposta{$M=\mu_0n_1N_2A$; $M=\SI{1.26}{\milli\henry}$}
+\resolucao{(a) A corrente $i_1$ no solenoide cria $B=\mu_0n_1i_1$ em seu
+interior, e fluxo $\Phi=BA$ por espira da bobina externa. O fluxo concatenado
+nela é
+\[
+\lambda_2=N_2\mu_0n_1i_1A
+\;\Longrightarrow\;
+M=\frac{\lambda_2}{i_1}=\mu_0n_1N_2A.
+\]
+(b)
+\[
+M=(4\pi\times10^{-7})(2000)(100)(\pot{5}{-4})
+=\pot{1.26}{-4}\,\si{\henry}=\SI{0.126}{\milli\henry}.
+\]
+(c) \textbf{Por que o raio externo não importa.} O campo do solenoide longo é
+praticamente nulo do lado de fora. Toda a contribuição ao fluxo vem da região
+\emph{interna} ao solenoide, cuja área é $A$ --- não a área da bobina
+externa.\\
+Enrolar a bobina justa ou folgada dá o \emph{mesmo} $M$.\\
+\textbf{Consequência de projeto:} para aumentar o acoplamento, aumente a seção
+do solenoide, não o diâmetro do enrolamento secundário. E note que
+$M=M_{21}=M_{12}$ --- calcular pelo caminho fácil (do solenoide para a bobina) dá
+o mesmo resultado que o caminho difícil.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma espira retangular está próxima a um fio retilíneo cuja corrente varia
+segundo $i(t)=I_0\sin\omega t$.
+\begin{itensq}
+\item Escreva o fluxo através da espira.
+\item Determine a f.e.m. induzida.
+\item Explique por que essa interferência é difícil de eliminar.
+\end{itensq}
+\resposta{$\varepsilon=-M\omega I_0\cos\omega t$, com
+$M=\dfrac{\mu_0a}{2\pi}\ln\dfrac{d+b}{d}$}
+\resolucao{(a) Do resultado já obtido para o fluxo de um fio através de espira
+retangular:
+\[
+\Phi(t)=\frac{\mu_0\,i(t)\,a}{2\pi}\ln\!\left(\frac{d+b}{d}\right)
+=M\,i(t),
+\]
+com $M$ a indutância mútua entre fio e espira.\\
+(b)
+\[
+\varepsilon=-\frac{\mathrm{d}\Phi}{\mathrm{d}t}
+=-M\,\frac{\mathrm{d}i}{\mathrm{d}t}
+=-M\omega I_0\cos\omega t.
+\]
+A amplitude é $M\omega I_0$ --- \textbf{proporcional à frequência}.\\
+(c) \textbf{Por que é difícil eliminar.}
+\begin{itemize}
+\item $M$ depende do \textbf{logaritmo} da razão de distâncias. Afastar a espira
+reduz a interferência muito devagar --- dobrar $d$ e $b$ juntos não muda
+\emph{nada}.
+\item A amplitude cresce com $\omega$: transitórios rápidos e harmônicos de alta
+ordem acoplam-se muito mais que a fundamental.
+\item Blindagem magnética é cara e pouco eficaz em baixa frequência, ao
+contrário da blindagem elétrica.
+\end{itemize}
+\textbf{O que realmente funciona:} reduzir a \emph{área} da espira receptora
+(cabos trançados, roteamento junto ao retorno) e reduzir a área da fonte (par
+trançado no lado do fio). Atacar a geometria, não a distância.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma bobina de $\SI{200}{\milli\henry}$ conduz corrente que varia de
+$\SI{2}{\ampere}$ a zero em $\SI{5}{\milli\second}$.
+\begin{itensq}
+\item Determine a f.e.m. autoinduzida.
+\item Determine a energia envolvida.
+\item Explique o risco associado.
+\end{itensq}
+\resposta{$\varepsilon=\SI{80}{\volt}$; $W=\SI{0.4}{\joule}$}
+\resolucao{(a)
+\[
+|\varepsilon|=L\left|\frac{\Delta i}{\Delta t}\right|
+=0{,}200\,\frac{2}{\pot{5}{-3}}=\SI{80}{\volt}.
+\]
+(b) $W=\frac12Li^{2}=\frac12(0{,}2)(4)=\SI{0.4}{\joule}$.\\
+(c) \textbf{Risco.} A f.e.m. autoinduzida opõe-se à \emph{redução} da corrente
+--- ela tenta mantê-la circulando. Se a interrupção for mais rápida, a tensão
+sobe proporcionalmente: interromper em $\SI{5}{\micro\second}$ produziria
+$\SI{80}{\kilo\volt}$.\\
+Na prática, o ar rompe muito antes e forma-se \textbf{arco elétrico} nos
+contatos, que os corrói e gera interferência.\\
+\textbf{Proteção:} diodo de roda livre em antiparalelo, que oferece caminho à
+corrente e limita a tensão. Os $\SI{0.4}{\joule}$ então se dissipam na
+resistência do próprio circuito, sem arco.\\
+\textbf{Ponto conceitual:} a autoindução é indução mútua da bobina
+\emph{consigo mesma} --- a mesma lei de Faraday, aplicada ao próprio fluxo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um gerador fornece $\SI{500}{\watt}$ a uma carga. Analise o torque necessário
+para acioná-lo e sua relação com a lei de Lenz.
+\begin{itensq}
+\item Determine o torque a $\SI{1800}{rpm}$, supondo rendimento de
+      $\SI{90}{\percent}$.
+\item Explique o que acontece se a carga for desligada.
+\end{itensq}
+\resposta{$\tau=\SI{2.95}{\newton\meter}$; sem carga, o torque cai quase a
+zero}
+\resolucao{(a) A potência mecânica de entrada é
+\[
+P_{mec}=\frac{500}{0{,}90}=\SI{556}{\watt};
+\qquad
+\omega=\frac{1800(2\pi)}{60}=\SI{188.5}{\radian\per\second};
+\]
+\[
+\tau=\frac{P_{mec}}{\omega}=\frac{556}{188{,}5}=\SI{2.95}{\newton\meter}.
+\]
+(b) \textbf{Sem carga}, não circula corrente no enrolamento. Sem corrente, não
+há força magnética de oposição --- e o torque necessário cai a praticamente
+zero (resta apenas o atrito e as perdas em vazio).\\
+\textbf{É a lei de Lenz em ação.} O torque resistente \emph{surge} porque a
+corrente induzida cria campo que se opõe ao movimento. Mais carga significa mais
+corrente, mais oposição, mais torque exigido.\\
+\textbf{Experiência reveladora:} girar um gerador manualmente com os terminais
+abertos é fácil; curto-circuitá-los torna a rotação quase impossível. A energia
+elétrica não vem "do campo" --- vem do braço de quem gira.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um anel condutor é colocado sobre o núcleo de um solenoide alimentado por
+corrente alternada. Observa-se que ele é \textbf{arremessado} para cima.
+\begin{itensq}
+\item Explique o fenômeno.
+\item Determine o que muda se o anel for cortado.
+\item Determine o que muda com corrente contínua em regime.
+\end{itensq}
+\resposta{Repulsão por corrente induzida; anel cortado não salta; em CC de
+regime, nada acontece}
+\resolucao{(a) \textbf{Explicação.} A corrente alternada no solenoide produz
+fluxo variável através do anel, induzindo nele corrente. Pela lei de Lenz, essa
+corrente cria campo que se \emph{opõe} ao do solenoide --- e dois campos opostos
+se \textbf{repelem}.\\
+Como a repulsão persiste em ambos os semiciclos (a corrente induzida inverte
+junto com a indutora), a força média é sempre para cima.\\
+\emph{(É o experimento clássico do "anel saltante" de Elihu Thomson.)}\\
+(b) \textbf{Anel cortado:} não há caminho fechado, logo não circula corrente. Sem
+corrente, não há campo induzido nem força. \textbf{O anel não salta} --- embora a
+f.e.m. continue sendo induzida em seus terminais.\\
+Este é o teste decisivo: mostra que a força depende da \emph{corrente}, não da
+f.e.m.\\
+(c) \textbf{Corrente contínua em regime:} o fluxo é constante, não há indução,
+não há força. \textbf{Nada acontece.}\\
+\emph{Mas no instante em que a corrente CC é \textbf{ligada}, há um transitório
+de fluxo --- e o anel dá um salto único.} Isso reforça o ponto: é a
+\emph{variação} que induz, não o campo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma espira de área $\SI{50}{\centi\meter\squared}$ está em campo que varia
+segundo $B(t)=0{,}4\sin(100\pi t)$ tesla, e \emph{simultaneamente} sua área
+diminui a $\SI{10}{\centi\meter\squared\per\second}$.
+\begin{itensq}
+\item Escreva a expressão geral da f.e.m.
+\item Identifique as duas contribuições.
+\end{itensq}
+\resposta{$\varepsilon=-\left(A\dfrac{\mathrm{d}B}{\mathrm{d}t}
++B\dfrac{\mathrm{d}A}{\mathrm{d}t}\right)$}
+\resolucao{(a) Como $\Phi=BA$ com \emph{ambos} variáveis, aplica-se a regra do
+produto:
+\[
+\varepsilon=-\frac{\mathrm{d}}{\mathrm{d}t}(BA)
+=-\left(A\frac{\mathrm{d}B}{\mathrm{d}t}+B\frac{\mathrm{d}A}{\mathrm{d}t}\right).
+\]
+(b) \textbf{Duas contribuições de naturezas diferentes.}
+\begin{itemize}
+\item \textbf{Termo $A\,\mathrm{d}B/\mathrm{d}t$:} f.e.m. induzida por
+\emph{campo variável} --- o mecanismo do transformador. Aqui,
+$\mathrm{d}B/\mathrm{d}t=40\pi\cos(100\pi t)$, com amplitude
+$\SI{125.7}{\tesla\per\second}$, dando até
+$\SI{0.63}{\volt}$.
+\item \textbf{Termo $B\,\mathrm{d}A/\mathrm{d}t$:} f.e.m. por \emph{movimento}
+--- o mecanismo do gerador. Com
+$\mathrm{d}A/\mathrm{d}t=\SI{-1e-3}{\meter\squared\per\second}$, contribui com
+até $\SI{0.4}{\milli\volt}$.
+\end{itemize}
+\textbf{Neste caso o primeiro termo domina} por três ordens de grandeza.\\
+\textbf{Ponto conceitual:} os dois mecanismos são fisicamente distintos --- um
+envolve campo elétrico induzido, o outro força magnética sobre portadores --- mas
+a lei de Faraday os unifica em uma única expressão. Essa unificação é uma das
+observações que levaram Einstein à relatividade restrita.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma bobina de $500$ espiras, área $\SI{20}{\centi\meter\squared}$ e resistência
+$\SI{25}{\ohm}$ é girada de $\ang{180}$ em campo de $\SI{0.3}{\tesla}$.
+\begin{itensq}
+\item Determine a variação de fluxo por espira.
+\item Determine a carga total induzida.
+\end{itensq}
+\resposta{$\Delta\Phi=\SI{1.2}{\milli\weber}$; $q=\SI{24}{\milli\coulomb}$}
+\resolucao{(a) Girar $\ang{180}$ inverte o sinal do fluxo:
+\[
+\Phi_i=BA=(0{,}3)(\pot{2}{-3})=\SI{0.6}{\milli\weber};
+\qquad
+\Phi_f=-\SI{0.6}{\milli\weber};
+\]
+\[
+|\Delta\Phi|=\SI{1.2}{\milli\weber}\quad\text{--- o \textbf{dobro} de }
+\Phi_i.
+\]
+(b)
+\[
+q=\frac{N|\Delta\Phi|}{R}=\frac{500(\pot{1.2}{-3})}{25}
+=\pot{2.4}{-2}\,\si{\coulomb}.
+\]
+\textbf{Erro comum:} usar $\Delta\Phi=BA$ em vez de $2BA$. A inversão completa
+faz o fluxo passar de $+\Phi$ a $-\Phi$, e a variação é o dobro do valor
+inicial.\\
+\textbf{Vantagem prática do giro de $\ang{180}$:} ele dobra o sinal em relação a
+simplesmente retirar a bobina do campo --- técnica padrão em medições com
+fluxímetro.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um transformador com $k=0{,}95$ e $L_1=\SI{100}{\milli\henry}$,
+$L_2=\SI{25}{\milli\henry}$.
+\begin{itensq}
+\item Determine a indutância mútua.
+\item Determine a f.e.m. no secundário para
+      $\mathrm{d}i_1/\mathrm{d}t=\SI{50}{\ampere\per\second}$.
+\item Determine a fração de fluxo que não se acopla.
+\end{itensq}
+\resposta{$M=\SI{47.5}{\milli\henry}$; $\varepsilon_2=\SI{2.38}{\volt}$;
+$5\%$ de dispersão}
+\resolucao{(a)
+\[
+M=k\sqrt{L_1L_2}=0{,}95\sqrt{(0{,}100)(0{,}025)}
+=0{,}95(0{,}05)=\SI{47.5}{\milli\henry}.
+\]
+(b)
+\[
+\varepsilon_2=M\frac{\mathrm{d}i_1}{\mathrm{d}t}=(0{,}0475)(50)
+=\SI{2.38}{\volt}.
+\]
+(c) A fração acoplada é $k=95\%$; portanto \textbf{$5\%$ do fluxo se
+dispersa}, não atravessando o secundário.\\
+\textbf{Efeito da dispersão:} ela aparece como indutância em série
+(\emph{indutância de dispersão}) e provoca queda de tensão sob carga. Um
+transformador com $k=0{,}95$ tem regulação bem pior que um com
+$k=0{,}999$.\\
+\textbf{Comparação de topologias:} núcleos toroidais fechados atingem
+$k>0{,}99$; núcleos em E com entreferro parasita ficam em torno de $0{,}95$;
+transformadores com enrolamentos lado a lado, bem menos.}
+\end{questao}
+
+\begin{questao}[3]{}
+Analise o perfil de f.e.m. produzido por um fluxo que cresce linearmente por
+$\SI{2}{\second}$, permanece constante por $\SI{3}{\second}$ e decresce
+linearmente por $\SI{1}{\second}$, com amplitude de $\SI{6}{\milli\weber}$ e
+$N=100$.
+\begin{itensq}
+\item Determine a f.e.m. em cada trecho.
+\item Verifique a área total sob a curva de f.e.m.
+\end{itensq}
+\resposta{$+0{,}3$; $0$; $\SI{-0.6}{\volt}$; área líquida nula}
+\resolucao{(a)
+\begin{center}
+\begin{tabular}{lccc}
+\hline
+Trecho & $\mathrm{d}\Phi/\mathrm{d}t$ & $\varepsilon$ & Duração\\
+\hline
+Subida & $\SI{3}{\milli\weber\per\second}$ & $\SI{-0.3}{\volt}$
+ & $\SI{2}{\second}$\\
+Platô & $0$ & $0$ & $\SI{3}{\second}$\\
+Descida & $\SI{-6}{\milli\weber\per\second}$ & $\SI{+0.6}{\volt}$
+ & $\SI{1}{\second}$\\
+\hline
+\end{tabular}
+\end{center}
+(Os sinais decorrem de $\varepsilon=-N\,\mathrm{d}\Phi/\mathrm{d}t$.)\\
+\textbf{Observe:} a descida é duas vezes mais rápida, e a f.e.m. é o
+\emph{dobro} em módulo.\\
+(b) \textbf{Área sob a curva:}
+\[
+(-0{,}3)(2)+(0)(3)+(0{,}6)(1)=-0{,}6+0{,}6=0.
+\]
+\textbf{Isso não é coincidência.} A área é $\int\varepsilon\,\mathrm{d}t
+=-N\Delta\Phi_{total}$, e o fluxo terminou onde começou. \textbf{Sempre que o
+fluxo retorna ao valor inicial, a integral da f.e.m. é nula.}\\
+\textbf{Consequência prática:} em regime periódico, a tensão média sobre um
+indutor é sempre zero --- princípio do \emph{balanço volt-segundo}, base do
+projeto de conversores chaveados.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um freio magnético produz força proporcional à velocidade, $F=bv$, com
+$b=\SI{20}{\newton\second\per\meter}$, atuando sobre um corpo de
+$\SI{5}{\kilogram}$ inicialmente a $\SI{10}{\meter\per\second}$.
+\begin{itensq}
+\item Escreva a equação do movimento e resolva.
+\item Determine a constante de tempo e a distância percorrida.
+\item Explique por que o freio não para o corpo.
+\end{itensq}
+\resposta{$v=v_0e^{-t/\tau}$ com $\tau=\SI{0.25}{\second}$;
+$d=\SI{2.5}{\meter}$}
+\resolucao{(a)
+\[
+m\frac{\mathrm{d}v}{\mathrm{d}t}=-bv
+\;\Longrightarrow\;
+v(t)=v_0e^{-bt/m}.
+\]
+(b) $\tau=m/b=5/20=\SI{0.25}{\second}$.\\
+A distância total é
+\[
+d=\int_0^{\infty}v_0e^{-t/\tau}\mathrm{d}t=v_0\tau=10(0{,}25)=\SI{2.5}{\meter}.
+\]
+\textbf{Mesma estrutura} da descarga exponencial de um capacitor --- e a mesma
+propriedade: a "área" (distância) equivale à velocidade inicial mantida por
+$\tau$.\\
+(c) \textbf{Por que não para.} A força é proporcional a $v$: quando a velocidade
+tende a zero, a força também tende a zero. Matematicamente, o corpo leva tempo
+\emph{infinito} para parar --- ele apenas se aproxima assintoticamente do
+repouso.\\
+\textbf{Consequência prática decisiva:} freios magnéticos são excelentes para
+\emph{desacelerar} e péssimos para \emph{segurar}. Trens de alta velocidade os
+usam na faixa alta e completam a parada com freios de atrito --- que funcionam
+justamente onde o magnético falha.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Lenz e conservação da energia.)} Demonstre que a lei de Lenz é uma
+consequência necessária da conservação da energia.
+\begin{itensq}
+\item Suponha o contrário e derive a contradição.
+\item Quantifique com o exemplo da barra em trilhos.
+\item Discuta o que a lei de Lenz \emph{não} determina.
+\end{itensq}
+\resposta{Sinal oposto levaria a crescimento ilimitado de energia}
+\resolucao{(a) \textbf{Demonstração por absurdo.} Suponha que a corrente
+induzida \emph{reforçasse} a variação de fluxo. Ao aproximar um ímã de uma
+espira, ela o \textbf{atrairia} --- acelerando a aproximação, o que aumentaria
+$\mathrm{d}\Phi/\mathrm{d}t$, que aumentaria a corrente, que aumentaria a
+atração.\\
+O sistema entraria em fuga: energia cinética \emph{e} energia elétrica cresceriam
+simultaneamente, sem fonte. \textbf{Contradição} com a conservação da energia.\\
+Portanto a corrente deve \emph{opor-se} --- e o sinal negativo não é convenção,
+é necessidade.\\
+(b) \textbf{Quantificação.} Na barra em trilhos:
+\[
+P_{mec}=Fv=\left(\frac{B^{2}\ell^{2}v}{R}\right)v
+=\frac{B^{2}\ell^{2}v^{2}}{R};
+\qquad
+P_{el}=\frac{(B\ell v)^{2}}{R}=\frac{B^{2}\ell^{2}v^{2}}{R}.
+\]
+\textbf{Idênticas, termo a termo.} A força de oposição tem exatamente o módulo
+necessário para que a potência mecânica iguale a elétrica --- nem mais, nem
+menos.\\
+\textbf{Se a força fosse maior}, sobraria energia mecânica sem destino; se fosse
+menor, apareceria energia elétrica do nada.\\
+(c) \textbf{O que a lei de Lenz não determina.} Ela fixa apenas o \emph{sentido}
+da corrente. O \textbf{módulo} vem da lei de Faraday combinada com a
+resistência do circuito.\\
+E ela não diz nada sobre \emph{quanta} energia é convertida --- isso depende da
+carga. Uma espira aberta induz f.e.m. mas não corrente, e não há oposição
+alguma: aproximar um ímã de uma espira cortada não exige força.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de bobina sensora.)} Projete uma bobina que gere
+$\SI{5}{\volt}$ médios quando o fluxo variar $\SI{0.2}{\milli\weber}$ em
+$\SI{4}{\milli\second}$.
+\begin{itensq}
+\item Determine o número de espiras.
+\item Determine a resistência admissível para corrente de saída inferior a
+      $\SI{1}{\milli\ampere}$ em carga de $\SI{10}{\kilo\ohm}$.
+\item Avalie a resposta em frequência.
+\end{itensq}
+\resposta{$N=100$ espiras}
+\resolucao{(a)
+\[
+N=\frac{\varepsilon\,\Delta t}{\Delta\Phi}
+=\frac{5(\pot{4}{-3})}{\pot{2}{-4}}=100\ \text{espiras}.
+\]
+(b) Com carga de $\SI{10}{\kilo\ohm}$ e $\SI{5}{\volt}$, a corrente é
+$\SI{0.5}{\milli\ampere}$ --- já abaixo do limite. A queda na resistência
+interna deve ser pequena:
+\[
+\frac{R_{bobina}}{R_{bobina}+10\,\mathrm{k}}\le1\%
+\;\Longrightarrow\;
+R_{bobina}\le\SI{100}{\ohm}.
+\]
+Com $100$ espiras, isso é facilmente atingível --- fio de $\SI{0.2}{\milli\meter}$
+e alguns metros de comprimento dão poucos ohms.\\
+(c) \textbf{Resposta em frequência.} A bobina é um derivador: sua saída é
+proporcional a $\mathrm{d}\Phi/\mathrm{d}t$, logo a sensibilidade
+\textbf{cresce com a frequência}.
+\begin{itemize}
+\item \textbf{Vantagem:} excelente para detectar transitórios rápidos e
+descargas.
+\item \textbf{Limitação inferior:} ela \emph{não} detecta campo estático ---
+para isso é preciso sensor Hall ou fluxgate.
+\item \textbf{Limitação superior:} a indutância própria da bobina, associada à
+capacitância entre espiras, forma um ressonador. Acima da frequência de
+autorressonância a resposta deixa de ser proporcional a
+$\mathrm{d}\Phi/\mathrm{d}t$.
+\end{itemize}
+\textbf{Para recuperar $\Phi$ (e não sua derivada):} acrescente um integrador na
+saída --- é assim que funciona a bobina de Rogowski para medição de corrente.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Freio por correntes parasitas.)} Modele quantitativamente um freio
+magnético de disco.
+\begin{itensq}
+\item Estabeleça a dependência da força com os parâmetros.
+\item Determine por que a força é proporcional à velocidade.
+\item Analise o comportamento em velocidades muito altas.
+\end{itensq}
+\resposta{$F\propto\sigma B^{2}tv$; proporcionalidade a $v$ decorre de
+$\varepsilon\propto v$ e $i\propto\varepsilon$}
+\resolucao{(a) \textbf{Dependência.} A f.e.m. induzida localmente é
+proporcional a $Bv$; a corrente parasita, a $\sigma Bv$ (com $\sigma$ a
+condutividade); e a força, ao produto da corrente pelo campo:
+\[
+F\propto\sigma\,B^{2}\,t\,v\,A,
+\]
+com $t$ a espessura e $A$ a área sob o polo.\\
+\textbf{Note a dependência quadrática em $B$} --- dobrar o campo quadruplica a
+frenagem, o que torna ímãs de neodímio muito mais eficazes que ferrites.\\
+(b) \textbf{Por que $F\propto v$.} Dois fatores lineares se combinam:
+\[
+\varepsilon\propto v
+\;\Longrightarrow\;
+i\propto v
+\;\Longrightarrow\;
+F=Bi\ell\propto v.
+\]
+É o mesmo mecanismo do arrasto viscoso --- e leva à mesma equação diferencial,
+com decaimento exponencial da velocidade.\\
+(c) \textbf{Velocidades muito altas.} A proporcionalidade \emph{deixa de valer}
+por dois motivos:
+\begin{itemize}
+\item \textbf{Reação de armadura:} as correntes parasitas tornam-se intensas o
+bastante para criar campo próprio comparável ao aplicado, distorcendo-o. A força
+satura e chega a \emph{diminuir}.
+\item \textbf{Efeito pelicular:} em alta frequência efetiva, as correntes se
+concentram na superfície do disco, reduzindo a espessura útil $t$.
+\end{itemize}
+\textbf{Existe, portanto, uma velocidade de força máxima}, acima da qual o freio
+perde eficácia --- comportamento oposto ao do freio de atrito e que precisa ser
+levado em conta no dimensionamento.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Convenção dos pontos na indução mútua.)} Explique o significado físico
+da convenção dos pontos e sua determinação experimental.
+\begin{itensq}
+\item Enuncie a convenção.
+\item Determine o sinal de $M$ nas equações de malha.
+\item Descreva o procedimento experimental.
+\end{itensq}
+\resposta{Pontos marcam terminais magneticamente correspondentes; o sinal de
+$M$ depende de as correntes entrarem ou não pelos pontos}
+\resolucao{(a) \textbf{Convenção.} Correntes que entram pelos terminais
+\emph{pontuados} produzem fluxos que se \textbf{reforçam} no núcleo comum.\\
+Isso é informação \emph{física} (sentido de enrolamento), que o desenho
+esquemático não transmite --- daí a necessidade da marcação.\\
+(b) \textbf{Sinal nas equações.} Para duas bobinas acopladas:
+\[
+v_1=L_1\frac{\mathrm{d}i_1}{\mathrm{d}t}
+\pm M\frac{\mathrm{d}i_2}{\mathrm{d}t};
+\qquad
+v_2=L_2\frac{\mathrm{d}i_2}{\mathrm{d}t}
+\pm M\frac{\mathrm{d}i_1}{\mathrm{d}t}.
+\]
+Usa-se $+M$ se \emph{ambas} as correntes entram pelos pontos (ou ambas saem), e
+$-M$ caso contrário.\\
+\textbf{Em série}, isso dá $L_{eq}=L_1+L_2\pm2M$ --- resultado já obtido no banco
+de indutores.\\
+(c) \textbf{Procedimento experimental.} Meça $L_{eq}$ com as bobinas ligadas em
+série nas \emph{duas} formas possíveis:
+\[
+M=\frac{L_{aditivo}-L_{subtrativo}}{4}.
+\]
+A ligação de \emph{maior} indutância identifica o acoplamento aditivo --- e
+portanto os terminais correspondentes.\\
+\textbf{Método alternativo, mais direto:} aplique um pulso de tensão a uma
+bobina e observe a polaridade do pulso induzido na outra com osciloscópio. Se
+ambas as pontas positivas estiverem nos terminais correspondentes, os sinais têm
+a mesma polaridade.\\
+\textbf{Por que isso importa na prática:} inverter a marcação de um
+transformador em um conversor inverte a fase da saída --- e pode transformar
+realimentação negativa em positiva, destruindo o circuito.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Verificação experimental da lei de Faraday.)} Projete um experimento
+para verificar $\varepsilon\propto N$ e $\varepsilon\propto v$.
+\begin{itensq}
+\item Descreva o arranjo e o procedimento.
+\item Estabeleça o critério de validação.
+\item Aponte as principais fontes de erro.
+\end{itensq}
+\resposta{Ímã caindo por tubo com bobinas de $N$ variável; verificar
+linearidade em $N$ e em $v$}
+\resolucao{(a) \textbf{Arranjo.} Um ímã permanente cai por dentro de um tubo
+isolante vertical, atravessando bobinas montadas ao longo dele. Um osciloscópio
+registra a f.e.m. de cada bobina.
+\begin{enumerate}
+\item \textbf{Variar $N$:} bobinas de $50$, $100$, $200$ e $400$ espiras, todas
+com a mesma área e posição relativa. Compare os picos de f.e.m.
+\item \textbf{Variar $v$:} use \emph{a mesma} bobina em alturas diferentes. Como
+$v=\sqrt{2gh}$, a velocidade é conhecida a partir da altura de queda.
+\end{enumerate}
+(b) \textbf{Critério de validação.}
+\begin{itemize}
+\item Gráfico de $\varepsilon_{pico}$ contra $N$: deve ser uma \textbf{reta pela
+origem}. Ajuste linear com $R^{2}>0{,}99$ e intercepto compatível com zero.
+\item Gráfico de $\varepsilon_{pico}$ contra $\sqrt{h}$: também reta pela
+origem.
+\item \textbf{Teste mais forte:} a \emph{área} sob cada pulso de f.e.m. deve ser
+$N\Delta\Phi$ --- \emph{independente} da velocidade. Verificar isso confirma
+simultaneamente a lei e a independência da carga induzida.
+\end{itemize}
+(c) \textbf{Fontes de erro.}
+\begin{itemize}
+\item \textbf{Frenagem do próprio ímã} pelas correntes induzidas: se as bobinas
+estiverem em curto ou a carga for baixa, o ímã desacelera e $v$ deixa de ser
+$\sqrt{2gh}$. \emph{Solução:} medir em circuito aberto (osciloscópio de alta
+impedância).
+\item \textbf{Tubo condutor:} um tubo de alumínio ou cobre freia
+drasticamente o ímã. Use acrílico ou vidro.
+\item \textbf{Posição de disparo do osciloscópio} e largura de banda
+insuficiente, que arredondam o pico.
+\item \textbf{Orientação do ímã} variando durante a queda --- use guia.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Transformador em corrente contínua.)} Explique por que um
+transformador não transfere potência em regime de corrente contínua.
+\begin{itensq}
+\item Analise o regime permanente.
+\item Analise o transitório de ligação.
+\item Determine o que ocorre com o enrolamento primário.
+\end{itensq}
+\resposta{Fluxo constante $\Rightarrow$ $\mathrm{d}\Phi/\mathrm{d}t=0
+\Rightarrow$ nenhuma f.e.m. no secundário}
+\resolucao{(a) \textbf{Regime permanente.} Com corrente contínua constante, o
+fluxo no núcleo é constante:
+\[
+\frac{\mathrm{d}\Phi}{\mathrm{d}t}=0
+\;\Longrightarrow\;
+\varepsilon_2=0.
+\]
+\textbf{Nenhuma tensão no secundário}, por maior que seja a corrente no
+primário. A indução exige \emph{variação}.\\
+(b) \textbf{Transitório de ligação.} No instante em que a fonte CC é ligada, o
+fluxo sobe de zero ao valor final --- e \emph{há} f.e.m. no secundário durante
+esse intervalo. Aparece um pulso, cuja integral é $N_2\Delta\Phi$.\\
+O mesmo ocorre, com polaridade invertida, ao desligar.\\
+\textbf{É esse pulso que se explora na bobina de ignição} de motores: uma
+corrente contínua é interrompida abruptamente, e o pulso resultante atinge
+dezenas de quilovolts.\\
+(c) \textbf{O que ocorre com o primário --- e é o ponto crítico.} Em regime CC, a
+única coisa que limita a corrente é a \textbf{resistência ôhmica} do
+enrolamento, que é propositalmente pequena (poucos ohms).\\
+Um primário projetado para $\SI{220}{\volt}$ em $\SI{60}{\hertz}$ tem sua
+corrente limitada pela \emph{reatância} $\omega L$, tipicamente centenas de
+ohms. Em CC, $\omega=0$ e essa limitação \textbf{desaparece}:
+\[
+I_{CC}=\frac{220}{R_{enrolamento}}\gg I_{CA}.
+\]
+\textbf{Resultado:} corrente dezenas de vezes maior que a nominal, saturação
+imediata do núcleo e queima do enrolamento em segundos.\\
+\textbf{Conclusão:} não é apenas que o transformador "não funciona" em CC --- ele
+se \emph{destrói}.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Espira entrando em campo.)} Deduza a f.e.m. durante a entrada de uma
+espira retangular em uma região de campo uniforme, com velocidade constante.
+\begin{itensq}
+\item Deduza pela variação de área e pela força sobre portadores.
+\item Determine a força necessária para manter a velocidade.
+\item Analise o balanço de energia.
+\end{itensq}
+\resposta{$\varepsilon=B\ell v$ pelos dois caminhos;
+$F=\dfrac{B^{2}\ell^{2}v}{R}$}
+\resolucao{(a) \textbf{Pela variação de área.} Com o lado dianteiro a uma
+profundidade $x$ dentro do campo, $A_{imersa}=\ell x$ e
+\[
+\Phi=B\ell x
+\;\Longrightarrow\;
+\varepsilon=-\frac{\mathrm{d}\Phi}{\mathrm{d}t}=-B\ell\frac{\mathrm{d}x}{\mathrm{d}t}
+=-B\ell v.
+\]
+\textbf{Pela força sobre portadores.} Os portadores do lado dianteiro movem-se
+com velocidade $v$ e sofrem força $qvB$ ao longo do lado. O trabalho por unidade
+de carga ao percorrer o comprimento $\ell$ é
+\[
+\varepsilon=\frac{W}{q}=vB\ell.
+\]
+\textbf{Os dois caminhos coincidem} --- e essa coincidência não é trivial: um
+usa a lei de Faraday (variação de fluxo), o outro a força de Lorentz. Sua
+equivalência é uma das simetrias mais notáveis do eletromagnetismo.\\
+(b) \textbf{Força necessária.} A corrente $i=B\ell v/R$ percorre o lado
+dianteiro, imerso no campo, sofrendo
+\[
+F=Bi\ell=\frac{B^{2}\ell^{2}v}{R},
+\]
+oposta ao movimento. É essa força que o agente externo deve equilibrar.\\
+\textbf{Note:} os lados laterais também estão parcialmente no campo, mas suas
+forças são opostas entre si e se cancelam.\\
+(c) \textbf{Balanço.}
+\[
+P_{mec}=Fv=\frac{B^{2}\ell^{2}v^{2}}{R}
+=\frac{(B\ell v)^{2}}{R}=\frac{\varepsilon^{2}}{R}=P_{el}.
+\]
+\textbf{Fecha exatamente.} E note o que acontece quando a espira fica
+\emph{totalmente dentro}: os dois lados no campo geram f.e.m. opostas, a
+corrente cessa, a força desaparece --- e a espira desliza livremente. A oposição
+existe apenas enquanto o fluxo varia.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Balanço volt-segundo.)} Demonstre que, em regime periódico, a tensão
+média sobre um indutor é nula, e explore as consequências.
+\begin{itensq}
+\item Demonstre.
+\item Aplique a um conversor com dois patamares de tensão.
+\item Explique o que ocorre se o balanço não for respeitado.
+\end{itensq}
+\resposta{$\bar v_L=0$; daí $V_1t_1=V_2t_2$ em regime}
+\resolucao{(a) \textbf{Demonstração.} Em regime periódico de período $T$, a
+corrente retorna ao mesmo valor a cada ciclo: $i(T)=i(0)$. Como
+$v_L=L\,\mathrm{d}i/\mathrm{d}t$,
+\[
+\int_0^{T}v_L\,\mathrm{d}t=L\int_{i(0)}^{i(T)}\mathrm{d}i=L\left[i(T)-i(0)\right]=0.
+\]
+Logo $\bar v_L=0$. Equivalentemente, o \textbf{produto volt-segundo} aplicado
+em um sentido deve igualar o aplicado no outro.\\
+(b) \textbf{Aplicação a conversor.} Se o indutor recebe $+V_1$ durante
+$t_1$ e $-V_2$ durante $t_2$:
+\[
+V_1t_1=V_2t_2.
+\]
+\textbf{Exemplo (conversor abaixador):} com entrada $\SI{12}{\volt}$, saída
+$\SI{5}{\volt}$ e razão cíclica $D$, o indutor vê $(12-5)$ durante $DT$ e
+$-5$ durante $(1-D)T$:
+\[
+7D=5(1-D)
+\;\Longrightarrow\;
+D=\frac{5}{12}=0{,}417.
+\]
+\textbf{O balanço volt-segundo produziu a relação de conversão} $V_o=DV_i$ sem
+nenhuma análise de circuito --- é o método padrão de projeto.\\
+(c) \textbf{Se o balanço não for respeitado.} A corrente do indutor não retorna
+ao valor inicial: ela cresce (ou decresce) a cada ciclo, acumulando
+indefinidamente.\\
+Em um transformador, isso significa \textbf{saturação progressiva} do núcleo até
+o colapso da indutância e a destruição do interruptor --- o fenômeno conhecido
+como \emph{staircase saturation}.\\
+\textbf{É por isso que conversores em ponte exigem simetria rigorosa} entre os
+semiciclos, e por que se acrescenta capacitor de bloqueio em série com o
+primário: ele impede qualquer componente contínua de tensão, garantindo o
+balanço por construção.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Correntes parasitas em condutores.)} Analise por que condutores
+maciços de grande seção apresentam perdas superiores às previstas em corrente
+alternada.
+\begin{itensq}
+\item Explique o efeito pelicular.
+\item Determine a profundidade de penetração e avalie para cobre a
+      $\SI{60}{\hertz}$.
+\item Indique as soluções empregadas.
+\end{itensq}
+\resposta{$\delta=\sqrt{\dfrac{2\rho}{\omega\mu}}\approx\SI{8.5}{\milli\meter}$
+para cobre a $\SI{60}{\hertz}$}
+\resolucao{(a) \textbf{Efeito pelicular.} A corrente alternada em um condutor
+cria fluxo variável \emph{dentro dele}. Esse fluxo induz correntes parasitas
+que, pela lei de Lenz, se opõem à corrente no centro e a reforçam na periferia.\\
+Resultado: a corrente concentra-se junto à superfície, a seção efetiva diminui e
+a \textbf{resistência aumenta}.\\
+(b) \textbf{Profundidade de penetração.}
+\[
+\delta=\sqrt{\frac{2\rho}{\omega\mu}}.
+\]
+Para cobre ($\rho=\pot{1.7}{-8}$, $\mu\approx\mu_0$) a
+$\SI{60}{\hertz}$:
+\[
+\delta=\sqrt{\frac{2(\pot{1.7}{-8})}{2\pi(60)(4\pi\times10^{-7})}}
+\approx\SI{8.5}{\milli\meter}.
+\]
+\textbf{Interpretação:} condutores com raio muito menor que
+$\SI{8.5}{\milli\meter}$ praticamente não sofrem o efeito em
+$\SI{60}{\hertz}$. Já um barramento de $\SI{50}{\milli\meter}$ tem seu centro
+essencialmente inútil.\\
+\textbf{Dependência com a frequência:} $\delta\propto1/\sqrt{f}$. A
+$\SI{1}{\mega\hertz}$, $\delta$ cai para cerca de
+$\SI{66}{\micro\meter}$.\\
+(c) \textbf{Soluções.}
+\begin{itemize}
+\item \textbf{Condutores tubulares} ou perfis chatos, que aproveitam melhor a
+periferia --- comuns em barramentos de subestação.
+\item \textbf{Fio Litz:} muitos fios finos isolados e \emph{transpostos}, de modo
+que cada um ocupe alternadamente centro e periferia. Usado em enrolamentos de
+alta frequência.
+\item \textbf{Vários condutores em paralelo}, transpostos ao longo do percurso.
+\end{itemize}
+\textbf{Observação:} apenas colocar fios em paralelo \emph{sem} transposição não
+resolve --- os externos conduziriam mais que os internos, pelo mesmo mecanismo.
+É a transposição que equaliza.}
+\end{questao}
+
+
+
+\begin{questao}[4]{}
+ Um feixe de prótons atravessa inicialmente uma região onde atuam simultaneamente um campo elétrico uniforme de intensidade
+\[
+E = 70\,\mathrm{kV/m}
+\]
+e um campo magnético uniforme de intensidade
+\[
+B = 50\,\mathrm{mT},
+\]
+perpendiculares entre si e também à direção de movimento das partículas. Os campos são ajustados de modo que apenas os prótons que atravessam essa região sem sofrer desvio alcancem uma segunda região, na qual existe apenas o campo magnético de mesma intensidade, conforme ilustrado na figura.
+
+Desprezando os efeitos gravitacionais e considerando
+\[
+m_p = 1{,}67\times10^{-27}\,\mathrm{kg},
+\qquad
+q_p = 1{,}60\times10^{-19}\,\mathrm{C},
+\]
+determine:
+
+\begin{itensq}
+    \item a velocidade dos prótons que atravessam o seletor sem sofrer desvio;
+    \item o raio \(r\) da trajetória circular descrita pelos prótons na região onde atua apenas o campo magnético;
+    \item a distância \(2r\) entre o ponto de entrada na região magnética e o ponto em que os prótons atingem a placa detectora.
+\end{itensq}
+
+
+
+ \begin{tikzpicture}[
+    >=Latex,
+    line cap=round,
+    line join=round,
+    font=\sffamily
+]
+
+% ==================================================
+% PARÂMETROS
+% ==================================================
+\def\r{2.35}
+\def\xleft{0.0}
+\def\xfilter{3.4}
+\def\xslit{6.45}
+\pgfmathsetmacro{\xfield}{\xslit-0.35}
+\def\ybeam{0.0}
+\def\ybottom{-4.7}
+
+% Centro do arco semicircular
+\coordinate (C) at (\xfield,\ybottom/2);
+\coordinate (TopArc) at ($(C)+(90:\r)$);
+\coordinate (BotArc) at ($(C)+(-90:\r)$);
+
+% ==================================================
+% PRÓTON INICIAL
+% ==================================================
+\draw[thick] (-1.05,0) circle (0.23);
+\node at (-1.05,0) {\large $+$};
+
+% Feixe horizontal
+\draw[thick,dashed] (-0.75,0) -- (\xfield,0);
+
+% ==================================================
+% FENDA DE ENTRADA
+% ==================================================
+\draw[line width=3.6pt] (0.12,0.32) -- (0.12,0.82);
+\draw[line width=3.6pt] (0.12,-0.32) -- (0.12,-0.82);
+
+% ==================================================
+% SELETOR DE VELOCIDADES
+% ==================================================
+% Placas
+\draw[line width=2.2pt] (2.15,0.78) -- (4.65,0.78);
+\draw[line width=2.2pt] (2.15,-0.78) -- (4.65,-0.78);
+
+% Terminais das placas
+\draw[line width=1.8pt] (3.40,0.78) -- (3.40,1.62);
+\draw[line width=1.8pt] (3.40,-0.78) -- (3.40,-1.62);
+
+% Polaridade
+\node[font=\Large] at (2.75,1.15) {$-$};
+\node[font=\Large] at (2.75,-1.15) {$+$};
+
+% Campo elétrico (setas para cima)
+\foreach \x in {2.45,2.95,3.45,3.95,4.45}{
+    \draw[myE,line width=1.5pt,-{Latex[length=3mm,width=2mm]}]
+        (\x,-0.62) -- (\x,0.62);
+}
+
+% Pontos de B no seletor
+\foreach \x in {2.55,3.25,3.95,4.35}{
+    \foreach \y in {-0.42,0,0.42}{
+        \fill[myB] (\x,\y) circle (2.3pt);
+    }
+}
+
+% Rótulos vetoriais
+\node[myE,above] at (4.95,0.25) {$\vec E$};
+\node[myB,right] at (4.55,0.0) {$\vec B$};
+
+% Velocidade
+\draw[thick,-{Latex[length=3mm,width=2mm]}] (1.05,0.28) -- (1.95,0.28);
+\node[above] at (1.5,0.28) {$\vec v$};
+
+% ==================================================
+% FENDA DE SAÍDA
+% ==================================================
+\draw[line width=3.6pt] (\xslit-0.35,0.32) -- (\xslit-0.35,0.82);
+\draw[line width=3.6pt] (\xslit-0.35,-0.32) -- (\xslit-0.35,-0.82);
+
+% ==================================================
+% REGIÃO COM CAMPO MAGNÉTICO
+% ==================================================
+\foreach \x in {6.7,7.4,8.1,8.8,9.5}{
+    \foreach \y in {0.45,-0.15,-0.85,-1.55,-2.25,-2.95,-3.65,-4.35, -5}{
+        \fill[myB] (\x,\y) circle (2.5pt);
+    }
+}
+\foreach \x/\y in {
+    7.05/-0.50,7.75/-1.20,8.45/-0.50,9.15/-1.20,
+    7.05/-1.90,7.75/-2.60,8.45/-1.90,9.15/-2.60,
+    7.05/-3.30,7.75/-4.00,8.45/-3.30,9.15/-4.00
+}{
+    \fill[myB] (\x,\y) circle (2.5pt);
+}
+
+\node[myB] at (9.75,-0.25) {$\vec B$};
+
+% ==================================================
+% TRAJETÓRIA SEMICIRCULAR
+% ==================================================
+\draw[thick,dashed,-{Latex[length=3mm,width=2mm]}]
+    (TopArc) arc[start angle=90,end angle=-90,radius=\r];
+
+% ==================================================
+% MEDIDA 2r
+% ==================================================
+\draw[thick,{Latex[length=2.8mm]}-{Latex[length=2.8mm]}]
+    (5.65,-0.02) -- (5.65,\ybottom+0.02);
+
+\draw[thin] (5.42,0) -- (5.90,0);
+\draw[thin] (5.42,\ybottom) -- (5.90,\ybottom);
+
+\node[fill=white,inner sep=1.5pt,font=\Large] at (5.65,-2.35) {$2r$};
+
+% ==================================================
+% PLACA DETECTORA
+% ==================================================
+\draw[line width=4pt] (\xslit-0.35,\ybottom+0.55) -- (\xslit-0.35,\ybottom-0.55);
+\draw[line width=1.7pt] (\xslit-0.35,\ybottom) -- (\xslit+0.15,\ybottom);
+
+\node[align=center,font=\Large] at (3.95,-4.55) {Detector\\plate};
+
+% ==================================================
+% TEXTOS DOS CAMPOS
+% ==================================================
+\node[anchor=west,text=myE,font=\bfseries\Large] at (-0.55,-2.05)
+    {$E = 70\ \mathrm{kV/m}$};
+
+\node[anchor=west,text=myB,font=\bfseries\Large] at (-0.55,-2.85)
+    {$B = 50\ \mathrm{mT}$};
+
+\end{tikzpicture}
+
+\resposta{$v=\dfrac{E}{B}=\SI{1.4e6}{\meter\per\second}$,
+\quad
+$r=\dfrac{m_pv}{q_pB}\approx\SI{0.292}{\meter}$,
+\quad
+$2r\approx\SI{0.585}{\meter}$}
+
+\resolucao{%
+(a) \textbf{Velocidade dos prótons no seletor.}
+Para que o próton atravesse a região de campos cruzados sem sofrer desvio,
+a força elétrica e a força magnética devem possuir o mesmo módulo e sentidos
+opostos:
+\[
+F_E=F_B.
+\]
+Como
+\[
+F_E=qE
+\qquad\text{e}\qquad
+F_B=qvB,
+\]
+tem-se
+\[
+qE=qvB.
+\]
+Cancelando a carga $q$:
+\[
+v=\frac{E}{B}.
+\]
+Substituindo
+\[
+E=\SI{70}{\kilo\volt\per\meter}
+\qquad\text{e}\qquad
+B=\SI{50}{\milli\tesla}=\SI{0.050}{\tesla},
+\]
+resulta
+\[
+v=
+\frac{70\times10^{3}}{0.050}
+=
+\boxed{\SI{1.4e6}{\meter\per\second}}.
+\]
+
+\textbf{Interpretação:} somente os prótons com essa velocidade atravessam o
+seletor em linha reta. Prótons mais rápidos ou mais lentos sofrem uma força
+resultante e são desviados.\\
+
+(b) \textbf{Raio da trajetória na região magnética.}
+Após deixar o seletor, o próton entra em uma região onde atua apenas o campo
+magnético. Como a força magnética é sempre perpendicular à velocidade, ela não
+altera o módulo da velocidade, mas muda continuamente sua direção, atuando como
+força centrípeta:
+\[
+F_B=F_c.
+\]
+Portanto,
+\[
+q_pvB=\frac{m_pv^2}{r}.
+\]
+Isolando o raio:
+\[
+r=\frac{m_pv}{q_pB}.
+\]
+Para
+\[
+m_p=\SI{1.67e-27}{\kilogram},
+\qquad
+q_p=\SI{1.60e-19}{\coulomb},
+\]
+tem-se
+\[
+r=
+\frac{
+(\pot{1.67}{-27})(\pot{1.4}{6})
+}{
+(\pot{1.60}{-19})(0.050)
+}
+\approx
+\boxed{\SI{0.292}{\meter}}.
+\]
+Assim,
+\[
+r\approx\SI{29.2}{\centi\meter}.
+\]
+
+(c) \textbf{Distância até a placa detectora.}
+A trajetória mostrada corresponde a uma semicircunferência. Dessa forma, a
+distância vertical entre o ponto de entrada na região magnética e o ponto de
+impacto na placa detectora corresponde ao diâmetro da trajetória:
+\[
+d=2r.
+\]
+Logo,
+\[
+d=2(0.292)
+\approx
+\boxed{\SI{0.585}{\meter}}
+\]
+ou, equivalentemente,
+\[
+\boxed{d\approx\SI{58.5}{\centi\meter}}.
+\]
+
+\textbf{Observação:} o seletor de velocidades utiliza a compensação entre as
+forças elétrica e magnética para selecionar partículas com uma velocidade
+específica. Na segunda região, a presença apenas do campo magnético permite
+determinar a razão entre momento linear e carga da partícula a partir da
+curvatura de sua trajetória.
+}
+\end{questao}
+
+
+
+% ============================================================
+% QUESTÃO 5 — PARTÍCULA ACELERADA E ANALISADOR MAGNÉTICO
+% ============================================================
+
+\begin{questao}[4]{}
+
+Um elétron parte praticamente do repouso e é acelerado por uma diferença de
+potencial de
+\[
+\Delta V=\SI{1.8}{\kilo\volt}.
+\]
+Após atravessar uma pequena abertura, ele penetra perpendicularmente em uma
+região onde existe um campo magnético uniforme de intensidade
+\[
+B=\SI{25}{\milli\tesla},
+\]
+perpendicular ao plano da figura.
+
+Considere
+\[
+m_e=\SI{9.11e-31}{\kilogram},
+\qquad
+|q_e|=\SI{1.60e-19}{\coulomb},
+\]
+e despreze efeitos relativísticos.
+
+Determine:
+
+\begin{itensq}
+    \item a velocidade do elétron ao deixar a região de aceleração;
+    \item o raio da trajetória circular no campo magnético;
+    \item o período do movimento circular;
+    \item o tempo necessário para o elétron percorrer um quarto de circunferência.
+\end{itensq}
+
+\begin{center}
+\begin{tikzpicture}[
+    >=Latex,
+    line cap=round,
+    line join=round,
+    scale=0.95,
+    font=\sffamily
+]
+
+% --------------------------------------------------
+% Região de aceleração
+% --------------------------------------------------
+
+\node at (-4.6,0) {\Large $e^-$};
+
+\draw[thick,-{Latex[length=3mm]}]
+    (-4.25,0) -- (-3.65,0)
+    node[midway,above] {$\vec v$};
+
+% Placas aceleradoras
+\draw[line width=2.5pt] (-3.3,-1.1) -- (-3.3,1.1);
+\draw[line width=2.5pt] (-1.3,-1.1) -- (-1.3,1.1);
+
+\node[font=\Large] at (-3.65,0.65) {$-$};
+\node[font=\Large] at (-0.95,0.65) {$+$};
+
+% Campo elétrico
+\foreach \y in {-0.7,-0.35,0,0.35,0.7}{
+    \draw[myE,thick,-{Latex[length=2.5mm]}]
+        (-1.55,\y) -- (-3.05,\y);
+}
+
+\node[myE] at (-2.3,1.45) {$\Delta V=\SI{1.8}{\kilo\volt}$};
+
+% Fenda
+\draw[line width=3pt] (-0.65,0.28) -- (-0.65,1.0);
+\draw[line width=3pt] (-0.65,-0.28) -- (-0.65,-1.0);
+
+% Feixe após aceleração
+\draw[thick,dashed,-{Latex[length=3mm]}]
+    (-0.6,0) -- (0.6,0);
+
+% --------------------------------------------------
+% Região magnética
+% --------------------------------------------------
+
+\foreach \x in {0.8,1.5,2.2,2.9,3.6}{
+    \foreach \y in {-2.1,-1.4,-0.7,0,0.7,1.4,2.1}{
+        \draw[myB,thick] (\x-0.08,\y-0.08) -- (\x+0.08,\y+0.08);
+        \draw[myB,thick] (\x-0.08,\y+0.08) -- (\x+0.08,\y-0.08);
+    }
+}
+
+\node[myB] at (3.65,2.55)
+    {$\vec B$ entrando no plano};
+
+% Trajetória
+\draw[very thick,dashed,-{Latex[length=3mm]}]
+    (0.6,0)
+    arc[start angle=90,end angle=0,radius=2.0];
+
+% Centro
+\fill (2.6,-2.0) circle (1.5pt);
+
+\draw[thin,dashed]
+    (2.6,-2.0) -- (0.6,0);
+
+\node at (1.55,-1.05) {$r$};
+
+\end{tikzpicture}
+\end{center}
+
+\resposta{$v\approx\SI{2.52e7}{\meter\per\second}$,
+\quad
+$r\approx\SI{5.72}{\milli\meter}$,
+\quad
+$T\approx\SI{1.43}{\nano\second}$,
+\quad
+$t_{1/4}\approx\SI{0.357}{\nano\second}$}
+
+\resolucao{%
+(a) \textbf{Velocidade após a aceleração.}
+A energia potencial elétrica adquirida pelo elétron transforma-se em energia
+cinética:
+\[
+|q_e|\Delta V=\frac{1}{2}m_ev^2.
+\]
+Portanto,
+\[
+v=\sqrt{\frac{2|q_e|\Delta V}{m_e}}.
+\]
+Substituindo os valores:
+\[
+v=
+\sqrt{
+\frac{
+2(1.60\times10^{-19})(1.8\times10^3)
+}{
+9.11\times10^{-31}
+}}
+\approx
+\boxed{\SI{2.52e7}{\meter\per\second}}.
+\]
+
+(b) \textbf{Raio da trajetória.}
+Como $\vec v\perp\vec B$, a força magnética atua como força centrípeta:
+\[
+|q_e|vB=\frac{m_ev^2}{r}.
+\]
+Assim,
+\[
+r=\frac{m_ev}{|q_e|B}.
+\]
+Logo,
+\[
+r=
+\frac{(9.11\times10^{-31})(2.52\times10^7)}
+{(1.60\times10^{-19})(25\times10^{-3})}
+\approx
+\boxed{\SI{5.72}{\milli\meter}}.
+\]
+
+(c) \textbf{Período do movimento.}
+\[
+T=\frac{2\pi m_e}{|q_e|B}.
+\]
+Portanto,
+\[
+T\approx
+\boxed{\SI{1.43e-9}{\second}}
+=
+\boxed{\SI{1.43}{\nano\second}}.
+\]
+
+(d) Para um quarto de circunferência:
+\[
+t_{1/4}=\frac{T}{4}.
+\]
+Assim,
+\[
+t_{1/4}\approx
+\boxed{\SI{3.57e-10}{\second}}
+=
+\boxed{\SI{0.357}{\nano\second}}.
+\]
+
+\textbf{Interpretação:} a diferença de potencial determina a energia cinética
+da partícula, enquanto o campo magnético modifica apenas a direção da
+velocidade, produzindo uma trajetória circular.
+}
+
+\end{questao}
+
+
+% ============================================================
+% QUESTÃO 6 — ESPECTRÔMETRO DE MASSAS COM DOIS ISÓTOPOS
+% ============================================================
+
+\begin{questao}[4]{}
+
+Um espectrômetro de massas é utilizado para separar dois isótopos de neônio,
+$^{20}\mathrm{Ne}^{+}$ e $^{22}\mathrm{Ne}^{+}$. Inicialmente, os íons
+atravessam um seletor de velocidades constituído por campos elétrico e
+magnético perpendiculares, de intensidades
+\[
+E=\SI{30}{\kilo\volt\per\meter},
+\qquad
+B_s=\SI{20}{\milli\tesla}.
+\]
+
+Os íons selecionados entram em seguida em uma região contendo apenas um campo
+magnético uniforme de intensidade
+\[
+B_a=\SI{0.35}{\tesla}.
+\]
+
+Considere
+\[
+u=\SI{1.66e-27}{\kilogram},
+\qquad
+q=+e=\SI{1.60e-19}{\coulomb}.
+\]
+
+Determine:
+
+\begin{itensq}
+    \item a velocidade dos íons que atravessam o seletor sem desvio;
+    \item os raios das trajetórias dos dois isótopos;
+    \item a distância entre os pontos de impacto na placa detectora;
+    \item qual isótopo atinge a região mais distante do ponto de entrada.
+\end{itensq}
+
+\begin{center}
+\begin{tikzpicture}[
+    >=Latex,
+    line cap=round,
+    line join=round,
+    scale=0.88,
+    font=\sffamily
+]
+
+% Fonte de íons
+\draw[thick] (-4.7,0) circle (0.3);
+\node at (-4.7,0) {$+$};
+
+\draw[thick,-{Latex[length=3mm]}]
+    (-4.35,0) -- (-3.65,0);
+
+% Seletor
+\draw[line width=2pt] (-3.2,0.8) -- (-1.0,0.8);
+\draw[line width=2pt] (-3.2,-0.8) -- (-1.0,-0.8);
+
+\node at (-2.85,1.12) {$-$};
+\node at (-2.85,-1.12) {$+$};
+
+\foreach \x in {-2.9,-2.4,-1.9,-1.4}{
+    \draw[myE,thick,-{Latex[length=2.5mm]}]
+        (\x,-0.6) -- (\x,0.6);
+}
+
+\foreach \x in {-2.7,-2.0,-1.3}{
+    \foreach \y in {-0.4,0,0.4}{
+        \fill[myB] (\x,\y) circle (2pt);
+    }
+}
+
+\node at (-2.1,1.55) {Seletor de velocidades};
+
+% Fenda
+\draw[line width=3pt] (-0.45,0.3) -- (-0.45,1);
+\draw[line width=3pt] (-0.45,-0.3) -- (-0.45,-1);
+
+% Região analisadora
+\foreach \x in {0.2,0.9,1.6,2.3,3.0,3.7}{
+    \foreach \y in {-4.1,-3.4,-2.7,-2.0,-1.3,-0.6,0.1}{
+        \fill[myB] (\x,\y) circle (2.3pt);
+    }
+}
+
+\node[myB] at (3.5,0.7) {$\vec B_a$};
+
+% Trajetória 20
+\draw[very thick,dashed]
+    (-0.35,0)
+    arc[start angle=90,end angle=-90,radius=1.8];
+
+\node at (1.25,-1.1) {$^{20}\mathrm{Ne}^{+}$};
+
+% Trajetória 22
+\draw[very thick,dash dot]
+    (-0.35,0)
+    arc[start angle=90,end angle=-90,radius=2.15];
+
+\node at (2.65,-2.2) {$^{22}\mathrm{Ne}^{+}$};
+
+% Detector
+\draw[line width=4pt] (-0.45,-3.2) -- (-0.45,-4.8);
+
+\node[rotate=90] at (-0.85,-4.0) {Detector};
+
+% Marcas de impacto
+\fill (-0.35,-3.6) circle (2.2pt);
+\fill (-0.35,-4.3) circle (2.2pt);
+
+\draw[<->,thick]
+    (-1.25,-3.6) -- (-1.25,-4.3)
+    node[midway,left] {$\Delta d$};
+
+\end{tikzpicture}
+\end{center}
+
+\resposta{$v=\SI{1.50e6}{\meter\per\second}$,
+\quad
+$r_{20}\approx\SI{0.889}{\meter}$,
+\quad
+$r_{22}\approx\SI{0.977}{\meter}$,
+\quad
+$\Delta d\approx\SI{0.178}{\meter}$}
+
+\resolucao{%
+(a) \textbf{Velocidade selecionada.}
+No seletor:
+\[
+qE=qvB_s.
+\]
+Logo,
+\[
+v=\frac{E}{B_s}.
+\]
+Assim,
+\[
+v=
+\frac{30\times10^3}{20\times10^{-3}}
+=
+\boxed{\SI{1.50e6}{\meter\per\second}}.
+\]
+
+(b) \textbf{Raios das trajetórias.}
+Para um íon de massa $m$:
+\[
+r=\frac{mv}{qB_a}.
+\]
+
+Para o $^{20}\mathrm{Ne}^{+}$:
+\[
+m_{20}=20u=20(1.66\times10^{-27}),
+\]
+resultando em
+\[
+r_{20}\approx
+\boxed{\SI{0.889}{\meter}}.
+\]
+
+Para o $^{22}\mathrm{Ne}^{+}$:
+\[
+m_{22}=22u,
+\]
+e
+\[
+r_{22}\approx
+\boxed{\SI{0.977}{\meter}}.
+\]
+
+(c) Como cada partícula descreve uma semicircunferência, a posição de impacto
+é determinada pelo diâmetro:
+\[
+d=2r.
+\]
+A separação entre os impactos é
+\[
+\Delta d=2(r_{22}-r_{20}).
+\]
+Logo,
+\[
+\Delta d
+=
+2(0.977-0.889)
+\approx
+\boxed{\SI{0.178}{\meter}}.
+\]
+
+(d) Como
+\[
+r=\frac{mv}{qB},
+\]
+mantidos $v$, $q$ e $B$, o raio é diretamente proporcional à massa. Portanto,
+o isótopo
+\[
+\boxed{^{22}\mathrm{Ne}^{+}}
+\]
+atinge a região mais distante.
+
+\textbf{Interpretação:} o espectrômetro converte diferenças de massa em
+diferenças geométricas mensuráveis na posição de impacto das partículas.
+}
+
+\end{questao}
+
+
+% ============================================================
+% QUESTÃO 7 — TRAJETÓRIA HELICOIDAL
+% ============================================================
+
+\begin{questao}[4]{}
+
+Uma partícula alfa entra em uma região onde existe um campo magnético uniforme
+de intensidade
+\[
+B=\SI{0.18}{\tesla}.
+\]
+A velocidade inicial da partícula possui módulo
+\[
+v=\SI{7.0e5}{\meter\per\second}
+\]
+e forma um ângulo de
+\[
+\theta=40^\circ
+\]
+com a direção do campo magnético.
+
+Considere
+\[
+m_\alpha=\SI{6.64e-27}{\kilogram},
+\qquad
+q_\alpha=\SI{3.20e-19}{\coulomb}.
+\]
+
+Determine:
+
+\begin{itensq}
+    \item as componentes $v_{\parallel}$ e $v_{\perp}$ da velocidade;
+    \item o raio da trajetória helicoidal;
+    \item o período de uma volta;
+    \item o passo $p$ da hélice;
+    \item o que aconteceria com a trajetória se $\theta=90^\circ$.
+\end{itensq}
+
+\begin{center}
+\begin{tikzpicture}[
+    >=Latex,
+    line cap=round,
+    line join=round,
+    scale=1.0,
+    font=\sffamily
+]
+
+% Eixo do campo
+\draw[myB,line width=1.3pt,-{Latex[length=3mm]}]
+    (-4,0) -- (4.7,0)
+    node[right] {$\vec B$};
+
+% Linhas paralelas de campo
+\foreach \y in {-1.4,-0.7,0.7,1.4}{
+    \draw[myB!70,thin,-{Latex[length=2mm]}]
+        (-3.8,\y) -- (4.3,\y);
+}
+
+% Hélice estilizada
+\draw[very thick]
+plot[
+    domain=0:720,
+    samples=150,
+    smooth
+]
+({-3.3+0.010*\x},{0.60*sin(\x)});
+
+% Partícula
+\fill (-3.3,0) circle (2.8pt);
+\node[above left] at (-3.3,0) {$\alpha$};
+
+% Vetor velocidade
+\draw[thick,-{Latex[length=3mm]}]
+    (-3.3,0) -- (-2.35,0.8)
+    node[above] {$\vec v$};
+
+% Componente paralela
+\draw[dashed,thick,-{Latex[length=2.5mm]}]
+    (-3.3,-0.15) -- (-2.0,-0.15)
+    node[midway,below] {$v_{\parallel}$};
+
+% Componente perpendicular
+\draw[dashed,thick,-{Latex[length=2.5mm]}]
+    (-3.3,0) -- (-3.3,0.85)
+    node[left] {$v_{\perp}$};
+
+% Ângulo
+\draw (-2.75,0)
+    arc[start angle=0,end angle=40,radius=0.55];
+
+\node at (-2.55,0.25) {$\theta$};
+
+% Passo
+\draw[<->,thick]
+    (0.3,-1.15) -- (3.9,-1.15)
+    node[midway,fill=white,inner sep=2pt] {$p$};
+
+\node at (0,-2.0)
+    {Trajetória helicoidal};
+
+\end{tikzpicture}
+\end{center}
+
+\resposta{$v_{\parallel}\approx\SI{5.36e5}{\meter\per\second}$,
+\quad
+$v_{\perp}\approx\SI{4.50e5}{\meter\per\second}$,
+\quad
+$r\approx\SI{5.18}{\centi\meter}$,
+\quad
+$T\approx\SI{0.724}{\micro\second}$,
+\quad
+$p\approx\SI{0.388}{\meter}$}
+
+\resolucao{%
+(a) \textbf{Decomposição da velocidade.}
+A componente paralela ao campo é
+\[
+v_{\parallel}=v\cos\theta,
+\]
+e a componente perpendicular:
+\[
+v_{\perp}=v\sin\theta.
+\]
+
+Logo,
+\[
+v_{\parallel}
+=
+(7.0\times10^5)\cos40^\circ
+\approx
+\boxed{\SI{5.36e5}{\meter\per\second}},
+\]
+e
+\[
+v_{\perp}
+=
+(7.0\times10^5)\sin40^\circ
+\approx
+\boxed{\SI{4.50e5}{\meter\per\second}}.
+\]
+
+(b) \textbf{Raio da hélice.}
+Somente $v_{\perp}$ produz movimento circular:
+\[
+q_\alpha v_{\perp}B
+=
+\frac{m_\alpha v_{\perp}^2}{r}.
+\]
+Portanto,
+\[
+r=
+\frac{m_\alpha v_{\perp}}{q_\alpha B}.
+\]
+Substituindo:
+\[
+r\approx
+\boxed{\SI{5.18}{\centi\meter}}.
+\]
+
+(c) \textbf{Período.}
+\[
+T=
+\frac{2\pi m_\alpha}{q_\alpha B}.
+\]
+Assim,
+\[
+T\approx
+\boxed{\SI{7.24e-7}{\second}}
+=
+\boxed{\SI{0.724}{\micro\second}}.
+\]
+
+(d) \textbf{Passo da hélice.}
+Durante uma volta, o deslocamento paralelo ao campo é
+\[
+p=v_{\parallel}T.
+\]
+Logo,
+\[
+p=
+(5.36\times10^5)(7.24\times10^{-7})
+\approx
+\boxed{\SI{0.388}{\meter}}.
+\]
+
+(e) Para $\theta=90^\circ$:
+\[
+v_{\parallel}=0.
+\]
+Consequentemente, desaparece o avanço longitudinal da hélice e a trajetória
+passa a ser
+\[
+\boxed{\text{circular}}.
+\]
+
+\textbf{Interpretação:} o movimento helicoidal resulta da superposição de um
+movimento retilíneo uniforme paralelo ao campo com um movimento circular
+uniforme perpendicular ao campo.
+}
+
+\end{questao}
+
+
+% ============================================================
+% QUESTÃO 8 — CÍCLOTRON
+% ============================================================
+
+\begin{questao}[4]{}
+
+Um cíclotron é utilizado para acelerar prótons em uma região de campo magnético
+uniforme de intensidade
+\[
+B=\SI{0.80}{\tesla}.
+\]
+Os prótons descrevem órbitas de raio progressivamente maior até atingirem o
+raio máximo
+\[
+R=\SI{25}{\centi\meter}.
+\]
+
+Considere
+\[
+m_p=\SI{1.67e-27}{\kilogram},
+\qquad
+q_p=\SI{1.60e-19}{\coulomb},
+\]
+e despreze correções relativísticas.
+
+Determine:
+
+\begin{itensq}
+    \item a frequência que deve ser aplicada entre os eletrodos do cíclotron;
+    \item o período do movimento dos prótons;
+    \item a velocidade do próton ao atingir o raio máximo;
+    \item a energia cinética máxima do próton, em joules e em elétron-volts.
+\end{itensq}
+
+\begin{center}
+\begin{tikzpicture}[
+    >=Latex,
+    line cap=round,
+    line join=round,
+    scale=0.95,
+    font=\sffamily
+]
+
+% Região magnética
+\foreach \x in {-3,-2.25,-1.5,-0.75,0.75,1.5,2.25,3}{
+    \foreach \y in {-2.2,-1.5,-0.8,0,0.8,1.5,2.2}{
+        \fill[myB!75] (\x,\y) circle (1.8pt);
+    }
+}
+
+% Dees
+\draw[line width=2pt]
+    (0.18,2.55)
+    arc[start angle=90,end angle=270,radius=2.55];
+
+\draw[line width=2pt]
+    (-0.18,-2.55)
+    arc[start angle=-90,end angle=90,radius=2.55];
+
+% Fenda central
+\draw[line width=2pt] (-0.18,-2.55) -- (-0.18,2.55);
+\draw[line width=2pt] (0.18,-2.55) -- (0.18,2.55);
+
+\node at (-1.45,0) {\Large D};
+\node at (1.45,0) {\Large D};
+
+% Campo elétrico alternado na fenda
+\draw[myE,very thick,<->]
+    (-0.13,0.75) -- (0.13,0.75);
+
+\node[myE,right] at (0.25,0.75) {$\vec E(t)$};
+
+% Espiral
+\draw[very thick,-{Latex[length=3mm]}]
+plot[
+    domain=0:900,
+    samples=250,
+    smooth
+]
+({0.0027*\x*cos(\x)},
+ {0.0027*\x*sin(\x)});
+
+% Centro
+\fill (0,0) circle (2.5pt);
+
+% Raio final
+\draw[dashed,thick]
+    (0,0) -- (2.43,0);
+
+\node[below] at (1.25,0) {$R$};
+
+% Campo
+\node[myB] at (3.7,2.0)
+    {$\vec B$};
+
+% Saída
+\draw[thick,-{Latex[length=3mm]}]
+    (2.45,-0.35) -- (3.65,-0.7);
+
+\node[right] at (3.65,-0.7)
+    {feixe};
+
+\end{tikzpicture}
+\end{center}
+
+\resposta{$f\approx\SI{12.2}{\mega\hertz}$,
+\quad
+$T\approx\SI{82.0}{\nano\second}$,
+\quad
+$v_{\max}\approx\SI{1.92e7}{\meter\per\second}$,
+\quad
+$K_{\max}\approx\SI{3.07e-13}{\joule}
+\approx\SI{1.92}{\mega\electronvolt}$}
+
+\resolucao{%
+(a) \textbf{Frequência ciclotrônica.}
+A força magnética fornece a força centrípeta:
+\[
+q_pvB=\frac{m_pv^2}{r}.
+\]
+Como
+\[
+v=\omega r,
+\]
+obtém-se
+\[
+\omega=\frac{q_pB}{m_p}.
+\]
+Portanto,
+\[
+f=\frac{\omega}{2\pi}
+=
+\frac{q_pB}{2\pi m_p}.
+\]
+Substituindo:
+\[
+f=
+\frac{
+(1.60\times10^{-19})(0.80)
+}{
+2\pi(1.67\times10^{-27})
+}
+\approx
+\boxed{\SI{12.2}{\mega\hertz}}.
+\]
+
+(b) \textbf{Período.}
+\[
+T=\frac{1}{f}.
+\]
+Logo,
+\[
+T\approx
+\boxed{\SI{82.0}{\nano\second}}.
+\]
+
+(c) \textbf{Velocidade máxima.}
+Da condição de movimento circular:
+\[
+r=\frac{m_pv}{q_pB}.
+\]
+Para $r=R$:
+\[
+v_{\max}=
+\frac{q_pBR}{m_p}.
+\]
+Assim,
+\[
+v_{\max}
+=
+\frac{
+(1.60\times10^{-19})(0.80)(0.25)
+}{
+1.67\times10^{-27}
+}
+\approx
+\boxed{\SI{1.92e7}{\meter\per\second}}.
+\]
+
+(d) \textbf{Energia cinética máxima.}
+\[
+K_{\max}
+=
+\frac{1}{2}m_pv_{\max}^2.
+\]
+Substituindo:
+\[
+K_{\max}
+\approx
+\boxed{\SI{3.07e-13}{\joule}}.
+\]
+
+Como
+\[
+\SI{1}{\electronvolt}
+=
+\SI{1.60e-19}{\joule},
+\]
+tem-se
+\[
+K_{\max}
+=
+\frac{3.07\times10^{-13}}
+{1.60\times10^{-19}}
+\approx
+1.92\times10^6\,\mathrm{eV}.
+\]
+Portanto,
+\[
+\boxed{K_{\max}\approx\SI{1.92}{\mega\electronvolt}}.
+\]
+
+\textbf{Interpretação:} a frequência ciclotrônica permanece aproximadamente
+constante enquanto os efeitos relativísticos forem desprezíveis. A cada
+passagem pela região entre os eletrodos, o campo elétrico fornece energia à
+partícula, aumentando sua velocidade e, consequentemente, o raio da órbita.
+}
+
+\end{questao}

@@ -1,0 +1,290 @@
+% =====================================================================
+%  CAPITULO 7 - ANALISE NODAL
+% =====================================================================
+\section{Análise Nodal}
+
+\begin{conceito}[Antes de começar]
+A análise nodal usa a \textbf{lei dos nós} de Kirchhoff para achar os potenciais
+dos nós. Roteiro:
+\begin{enumerate}[leftmargin=1.7em,itemsep=1pt,topsep=2pt]
+\item Escolha um nó como \textbf{referência} (terra, $V=0$).
+\item Nomeie os potenciais dos demais nós ($V_1, V_2, \dots$).
+\item Em cada nó, escreva que a soma das correntes que \emph{saem} é nula. A
+      corrente por um resistor entre os nós $a$ e $b$ é
+      $\dfrac{V_a - V_b}{R}$.
+\item Resolva o sistema.
+\end{enumerate}
+Uma fonte de corrente que injeta $I$ no nó entra como termo independente; uma
+fonte de tensão entre dois nós cria uma relação direta entre eles.
+\end{conceito}
+
+\legendaniveis
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Na análise nodal, o nó de referência (terra) é escolhido para:
+\begin{alternativas}
+\item ter o maior potencial do circuito.
+\item servir como ponto de potencial zero, ao qual os demais são comparados.
+\item ser sempre o nó com a fonte de maior tensão.
+\item eliminar as fontes de corrente.
+\item garantir que todas as correntes sejam positivas.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{O terra é uma referência arbitrária de potencial nulo; os potenciais
+dos outros nós são medidos em relação a ele. A escolha não altera as
+\emph{diferenças} de potencial nem as correntes --- apenas simplifica as
+equações.}
+\end{questao}
+
+\begin{questao}[1]{}
+No circuito da figura, uma fonte de corrente de $\SI{9}{\ampere}$ alimenta dois
+resistores em paralelo ligados ao terra. Determine o potencial do nó $V$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ \draw (0,0) to[isource,l={$\SI{9}{\ampere}$}] (0,2.6)
+       -- (1.5,2.6) coordinate(n);
+ \node[above,Vcol] at (1.5,2.75) {$V$};
+ \draw (n) to[R,l={$\SI{6}{\ohm}$}] (1.5,0) -- (0,0);
+ \draw (n) -- (3.5,2.6) to[R,l={$\SI{3}{\ohm}$}] (3.5,0) -- (1.5,0);
+ \node[ground] at (0,0){};
+\end{circuitikz}}
+
+\resposta{$V = \SI{18}{\volt}$}
+\resolucao{A fonte injeta \SI{9}{\ampere} no nó, que escoam pelos dois resistores
+em paralelo:
+\[
+9 = \frac{V}{6}+\frac{V}{3}=\frac{V+2V}{6}=\frac{3V}{6}=\frac{V}{2}
+\ \Rightarrow\ V = \SI{18}{\volt}.
+\]
+Equivale a $V = I\cdot(6\parallel3) = 9\cdot2 = \SI{18}{\volt}$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Determine os potenciais nodais $V_1$ e $V_2$ do circuito da figura.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ \draw (0,0) to[isource,l={$\SI{6}{\ampere}$}] (0,2.8) -- (1.5,2.8) coordinate(a);
+ \node[above,Vcol] at (1.5,2.95) {$V_1$};
+ \draw (a) to[R,l={$\SI{2}{\ohm}$}] (1.5,0) coordinate(g);
+ \draw (a) to[R,l={$\SI{3}{\ohm}$}] (4.5,2.8) coordinate(b);
+ \node[above,Vcol] at (4.5,2.95) {$V_2$};
+ \draw (b) to[R,l={$\SI{6}{\ohm}$}] (4.5,0) -- (g) -- (0,0);
+ \node[ground] at (1.5,0){};
+\end{circuitikz}}
+
+\resposta{$V_1 \approx \SI{9.82}{\volt}$; $V_2 \approx \SI{6.55}{\volt}$}
+\resolucao{Com o terra na base, escrevemos a lei dos nós em cada nó.\\
+\textbf{Nó $V_1$} (a fonte injeta \SI{6}{\ampere}):
+\[
+6=\frac{V_1}{2}+\frac{V_1-V_2}{3}.
+\]
+\textbf{Nó $V_2$:}
+\[
+\frac{V_1-V_2}{3}=\frac{V_2}{6}.
+\]
+Da segunda equação, $2(V_1-V_2)=V_2 \Rightarrow V_1 = \dfrac{3V_2}{2}$.
+Substituindo na primeira e resolvendo:
+\[
+V_1=\frac{108}{11}\approx\SI{9.82}{\volt},
+\qquad
+V_2=\frac{72}{11}\approx\SI{6.55}{\volt}.
+\]
+\textbf{Verificação:} corrente da fonte $= \dfrac{V_1}{2}+\dfrac{V_1-V_2}{3}
+= \dfrac{108}{22}+\dfrac{36}{33}\approx 4{,}91+1{,}09 = \SI{6}{\ampere}$. Confere.}
+\end{questao}
+
+\begin{questao}[2]{}
+No nó da figura, uma fonte injeta $\SI{3}{\ampere}$ e outra retira
+$\SI{1}{\ampere}$; dois resistores de $\SI{6}{\ohm}$ e $\SI{3}{\ohm}$ ligam o nó ao
+terra. Determine o potencial $V$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ \draw (0,0) to[isource,l={$\SI{3}{\ampere}$}] (0,2.6) -- (1.5,2.6) coordinate(n);
+ \node[above,Vcol] at (1.5,2.75){$V$};
+ \draw (n) to[R,l={$\SI{6}{\ohm}$}] (1.5,0) -- (0,0);
+ \draw (n) -- (3.5,2.6) to[R,l={$\SI{3}{\ohm}$}] (3.5,0) -- (1.5,0);
+ \draw (n) -- (5,2.6) to[isource,l={$\SI{1}{\ampere}$},invert] (5,0) -- (3.5,0);
+ \node[ground] at (1.5,0){};
+\end{circuitikz}}
+
+\resposta{$V = \SI{4}{\volt}$}
+\resolucao{A corrente líquida injetada no nó é $3 - 1 = \SI{2}{\ampere}$, que
+escoa pelos dois resistores em paralelo:
+\[
+V = I_{\text{líq}}\cdot(6\parallel3) = 2\cdot2 = \SI{4}{\volt}.
+\]
+Conferindo pela lei dos nós: $\dfrac{V}{6}+\dfrac{V}{3} = \dfrac{4}{6}+\dfrac{4}{3}
+= 0{,}67 + 1{,}33 = \SI{2}{\ampere}$, igual à corrente líquida injetada.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+No circuito da figura, há uma fonte de tensão e uma de corrente. Usando análise
+nodal, determine o potencial $V_A$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ \draw (0,0) to[battery1,l_={$\SI{12}{\volt}$}] (0,3) -- (1.5,3)
+       to[R,l={$\SI{4}{\ohm}$}] (3.5,3) coordinate(a);
+ \node[above,Vcol] at (3.5,3.15) {$V_A$};
+ \draw (a) to[R,l={$\SI{6}{\ohm}$}] (3.5,0) coordinate(g) -- (0,0);
+ \draw (a) -- (5.5,3);
+ \draw (5.5,3) to[isource,l={$\SI{2}{\ampere}$}] (5.5,0) -- (g);
+ \node[ground] at (3.5,0){};
+\end{circuitikz}}
+
+\resposta{$V_A = \SI{12}{\volt}$}
+\resolucao{Chamando de $V_A$ o potencial do nó central e notando que o terminal
+superior da fonte de tensão está fixo em \SI{12}{\volt}, a lei dos nós em $A$
+(correntes saindo $=0$; a fonte de corrente injeta \SI{2}{\ampere} \emph{no} nó):
+\[
+\frac{V_A-12}{4}+\frac{V_A}{6}-2=0.
+\]
+Multiplicando por 12: $3(V_A-12)+2V_A-24=0 \Rightarrow 5V_A = 60
+\Rightarrow V_A = \SI{12}{\volt}$.\\
+\textbf{Interpretação:} nesse ponto, a corrente que a fonte de tensão empurraria
+pelo resistor de \SI{4}{\ohm} é nula ($V_A = \SI{12}{\volt}$ iguala os dois lados),
+e toda a corrente de \SI{2}{\ampere} da fonte de corrente escoa pelo resistor de
+\SI{6}{\ohm}: $2 = 12/6$. Consistente.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine os potenciais nodais $V_1$, $V_2$ e $V_3$ do circuito da figura,
+montando e resolvendo o sistema de equações.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) to[\fonteV,l={$\SI{12}{\volt}$}] (0,3) -- (1.4,3)
+       to[R,l={$\SI{2}{\ohm}$}] (3.2,3) coordinate(n1);
+ \node[above,Vcol] at (3.2,3.2){$V_1$}; \fill (n1) circle (0.07);
+ \draw (n1) to[R,l={$\SI{4}{\ohm}$}] (6,3) coordinate(n2);
+ \node[above,Vcol] at (6,3.2){$V_2$}; \fill (n2) circle (0.07);
+ \draw (n1) to[R,l_={$\SI{4}{\ohm}$}] (3.2,0) coordinate(n3);
+ \node[below,Vcol] at (3.2,-0.25){$V_3$}; \fill (n3) circle (0.07);
+ \draw (n2) to[R,l={$\SI{8}{\ohm}$}] (6,1.5) coordinate(m) -- (6,0) coordinate(b2);
+ \draw (n3) to[R,l_={$\SI{4}{\ohm}$}] (0,0);
+ \draw (n3) -- (b2);
+ \draw (m) -- (7.6,1.5) to[R,l={$\SI{8}{\ohm}$}] (7.6,-1.2) -- (3.2,-1.2) -- (n3);
+ \node[ground] at (3.2,-1.2){};
+\end{circuitikz}}
+
+\resposta{$V_1 = \dfrac{76}{9}\approx\SI{8.44}{\volt}$,
+$V_2=\dfrac{16}{3}\approx\SI{5.33}{\volt}$,
+$V_3=\dfrac{40}{9}\approx\SI{4.44}{\volt}$}
+\resolucao{\textbf{Montagem.} Com o terra na base e aplicando a lei dos nós
+(soma das correntes que \emph{saem} igual a zero) em cada nó:
+\[
+\text{Nó 1: }\ \frac{V_1-12}{2}+\frac{V_1-V_2}{4}+\frac{V_1-V_3}{4}=0,
+\]
+\[
+\text{Nó 2: }\ \frac{V_2-V_1}{4}+\frac{V_2}{8}+\frac{V_2-V_3}{8}=0,
+\]
+\[
+\text{Nó 3: }\ \frac{V_3-V_1}{4}+\frac{V_3-V_2}{8}+\frac{V_3}{4}=0.
+\]
+\textbf{Forma matricial} (multiplicando para eliminar denominadores e agrupando
+as condutâncias):
+\[
+\begin{bmatrix}
+1{,}0 & -0{,}25 & -0{,}25\\
+-0{,}25 & 0{,}5 & -0{,}125\\
+-0{,}25 & -0{,}125 & 0{,}625
+\end{bmatrix}
+\begin{bmatrix}V_1\\V_2\\V_3\end{bmatrix}
+=
+\begin{bmatrix}6\\0\\0\end{bmatrix}
+\]
+Note a \textbf{simetria} da matriz de condutâncias --- verificação de que a
+montagem está correta.
+
+\textbf{Solução:}
+\[
+V_1=\frac{76}{9}\approx\SI{8.44}{\volt},\quad
+V_2=\frac{16}{3}\approx\SI{5.33}{\volt},\quad
+V_3=\frac{40}{9}\approx\SI{4.44}{\volt}.
+\]
+\textbf{Verificação no nó 2:}
+$\dfrac{5{,}33-8{,}44}{4}+\dfrac{5{,}33}{8}+\dfrac{5{,}33-4{,}44}{8}
+= -0{,}778+0{,}667+0{,}111 = 0$. \checkmark\\
+\textbf{Observação estrutural:} a matriz nodal é o \emph{dual} da matriz de
+malhas --- diagonal com a soma das condutâncias do nó, fora da diagonal o negativo
+da condutância compartilhada.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito da figura, uma fonte de $\SI{6}{\volt}$ está \emph{flutuante} entre os
+nós 1 e 2 (nenhum deles é o terra). Uma fonte de corrente de $\SI{2}{\ampere}$
+injeta corrente no nó 1. Determine $V_1$ e $V_2$ pelo método do \textbf{supernó}.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ % fonte de corrente
+ \draw (0,0) to[isource,l={$\SI{2}{\ampere}$}] (0,3) -- (1.6,3) coordinate(n1);
+ \node[above,Vcol] at (1.6,3.2){$V_1$};
+ \fill (n1) circle (0.07);
+ % R1 do no1 ao terra
+ \draw (n1) to[R,l={$R_1=\SI{6}{\ohm}$}] (1.6,0) coordinate(g);
+ % fonte flutuante entre no1 e no2
+ \draw (n1) to[battery1,l={$\SI{6}{\volt}$}] (4.6,3) coordinate(n2);
+ \node[above,Vcol] at (4.6,3.2){$V_2$};
+ \fill (n2) circle (0.07);
+ % R2 do no2 ao terra
+ \draw (n2) to[R,l={$R_2=\SI{3}{\ohm}$}] (4.6,0) -- (g) -- (0,0);
+ % marcacao do superno
+ \draw[dashed,laranja,line width=1pt,rounded corners=8pt]
+       (1.1,2.4) rectangle (5.1,3.75);
+ \node[laranja,font=\footnotesize\sffamily,right] at (5.2,3.05) {supernó};
+ \node[ground] at (1.6,0){};
+\end{circuitikz}}
+
+\resposta{$V_1 = \SI{8}{\volt}$; $V_2 = \SI{2}{\volt}$}
+\resolucao{\textbf{Por que o método normal falha:} a corrente que atravessa a
+fonte de \SI{6}{\volt} é desconhecida, então não se pode escrever a lei dos nós
+isoladamente em 1 ou em 2.
+
+\medskip
+\textbf{Equação 1 --- lei dos nós no supernó.} Traçamos uma superfície fechada
+englobando os nós 1 e 2 (tracejado laranja). Tudo o que \emph{entra} deve
+\emph{sair}. Entra \SI{2}{\ampere} da fonte de corrente; saem as correntes por
+$R_1$ e $R_2$:
+\[
+\frac{V_1}{R_1}+\frac{V_2}{R_2} = 2
+\quad\Longrightarrow\quad
+\frac{V_1}{6}+\frac{V_2}{3} = 2.
+\]
+Note que a corrente \emph{interna} à fonte não aparece --- ela entra e sai da
+mesma superfície, cancelando-se. \textbf{Este é o truque do método.}
+
+\medskip
+\textbf{Equação 2 --- restrição da fonte.} A fonte impõe diretamente:
+\[
+V_1 - V_2 = 6.
+\]
+
+\medskip
+\textbf{Resolvendo.} Da segunda, $V_2 = V_1 - 6$. Substituindo na primeira e
+multiplicando por 6:
+\[
+V_1 + 2(V_1-6) = 12
+\;\Rightarrow\;
+3V_1 = 24
+\;\Rightarrow\;
+V_1 = \SI{8}{\volt},\quad V_2 = \SI{2}{\volt}.
+\]
+\textbf{Verificação:} $\dfrac{8}{6}+\dfrac{2}{3} = 1{,}33+0{,}67 =
+\SI{2}{\ampere}$. Confere com a fonte de corrente.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Análise Nodal
+\input{bancos/banco-analise-nodal.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[Capítulo 7 --- Análise Nodal]

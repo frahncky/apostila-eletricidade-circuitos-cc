@@ -1,0 +1,537 @@
+% =====================================================================
+%  CAPITULO 4 - DIVISOR DE TENSAO E CORRENTE
+%  (versao revisada e ampliada: 2 -> 16 questoes)
+% =====================================================================
+\section{Divisor de Tensão e de Corrente}
+
+\begin{conceito}[Antes de começar]
+\textbf{Divisor de tensão} (resistores em \emph{série}): a tensão total se
+reparte na proporção direta das resistências.
+\[
+U_k = U_{\text{total}}\;\frac{R_k}{R_1+R_2+\dots+R_n}.
+\]
+\textbf{Divisor de corrente} (resistores em \emph{paralelo}): a corrente total se
+reparte na proporção \emph{inversa} das resistências.
+\[
+I_k = I_{\text{total}}\;\frac{G_k}{G_1+\dots+G_n}
+     = I_{\text{total}}\;\frac{1/R_k}{1/R_1+\dots+1/R_n}.
+\]
+\textbf{Caso de dois resistores} (o mais usado):
+\[
+U_1 = U\,\frac{R_1}{R_1+R_2}, \qquad
+I_1 = I\,\frac{R_2}{R_1+R_2}\quad(\text{note o índice \emph{trocado}}).
+\]
+\end{conceito}
+
+\begin{atencao}[O erro clássico]
+No divisor de \textbf{corrente} de dois resistores, o ramo $R_1$ recebe a
+corrente proporcional a $R_2$ (o \emph{outro} resistor). Trocar os índices faz a
+maior corrente ir para o maior resistor --- o oposto do correto. Regra de ouro:
+\emph{a maior corrente sempre passa pelo menor resistor}.
+\end{atencao}
+
+\legendaniveis
+
+% =====================================================================
+\subsection{Divisor de tensão}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Em um divisor de tensão formado por dois resistores em série, a maior parcela de
+tensão aparece:
+\begin{alternativas}
+\item sobre o menor resistor.
+\item sobre o maior resistor.
+\item igualmente sobre os dois, sempre.
+\item sobre o resistor mais próximo do terminal positivo.
+\item sobre nenhum: a tensão fica toda na fonte.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Como a corrente é a mesma nos dois ($U = R\,I$), a tensão é
+proporcional à resistência: o maior resistor fica com a maior tensão. A posição
+em relação ao terminal positivo (alternativa d) é irrelevante.}
+\end{questao}
+
+\begin{questao}[1]{}
+No circuito, três resistores em série de $\SI{3}{\ohm}$, $\SI{4}{\ohm}$ e
+$\SI{5}{\ohm}$ estão ligados a uma fonte de $\SI{120}{\volt}$. Calcule a tensão
+sobre cada resistor.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{120}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{3}{\ohm}$}] (3.2,3)
+       to[R,l={$R_2=\SI{4}{\ohm}$}] (3.2,0)
+       to[R,l={$R_3=\SI{5}{\ohm}$}] (0,0);
+ \draw[->,Icol,line width=1pt] (0.7,3.4)--(1.7,3.4)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+
+\resposta{$U_1=\SI{30}{\volt}$, $U_2=\SI{40}{\volt}$, $U_3=\SI{50}{\volt}$}
+\resolucao{A corrente é $I = \dfrac{120}{3+4+5} = \dfrac{120}{12} = \SI{10}{\ampere}$.
+Aplicando o divisor (ou simplesmente $U_k = R_k I$):
+\[
+U_1 = 3\cdot10 = \SI{30}{\volt},\quad
+U_2 = 4\cdot10 = \SI{40}{\volt},\quad
+U_3 = 5\cdot10 = \SI{50}{\volt}.
+\]
+\textbf{Verificação:} $30+40+50 = \SI{120}{\volt}$, igual à fonte.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte de $\SI{100}{\volt}$ alimenta dois resistores em série,
+$R_1=\SI{60}{\ohm}$ e $R_2=\SI{40}{\ohm}$. A tensão de saída, tomada sobre $R_2$,
+vale:
+\begin{alternativas}[3]
+\item \SI{20}{\volt}
+\item \SI{40}{\volt}
+\item \SI{50}{\volt}
+\item \SI{60}{\volt}
+\item \SI{100}{\volt}
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Direto pela fórmula do divisor:
+\[
+U_2 = E\,\frac{R_2}{R_1+R_2} = 100\cdot\frac{40}{100} = \SI{40}{\volt}.
+\]}
+\end{questao}
+
+\begin{questao}[1]{}
+Três resistores iguais estão em série sob $\SI{60}{\volt}$. A tensão sobre cada um
+vale:
+\begin{alternativas}[3]
+\item \SI{10}{\volt}
+\item \SI{15}{\volt}
+\item \SI{20}{\volt}
+\item \SI{30}{\volt}
+\item \SI{60}{\volt}
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Resistores iguais dividem a tensão igualmente:
+$U = \dfrac{60}{3} = \SI{20}{\volt}$ em cada um. É o divisor de tensão mais
+simples --- a base dos potenciômetros de precisão.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Deseja-se obter $\SI{5}{\volt}$ a partir de uma fonte de $\SI{15}{\volt}$ usando
+um divisor de dois resistores. Sabendo que $R_1 = \SI{2}{\kilo\ohm}$ (ligado ao
+terminal positivo), determine $R_2$ (a saída é tomada sobre $R_2$).
+\resposta{$R_2 = \SI{1}{\kilo\ohm}$}
+\resolucao{Da relação do divisor,
+\[
+\frac{U_{\text{out}}}{E}=\frac{R_2}{R_1+R_2}
+\ \Rightarrow\
+\frac{5}{15}=\frac{R_2}{2000+R_2}
+\ \Rightarrow\
+2000+R_2 = 3R_2
+\ \Rightarrow\
+R_2 = \SI{1}{\kilo\ohm}.
+\]
+Repare que só importa a \emph{razão} $R_1{:}R_2 = 2{:}1$; qualquer par nessa
+proporção daria \SI{5}{\volt} em vazio.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito da figura, calcule a tensão de saída $U_{\text{out}}$ (a) em vazio e
+(b) quando uma carga $R_L = \SI{1}{\kilo\ohm}$ é ligada aos terminais de saída.
+Comente o resultado.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{12}{\volt}$}] (0,3.4)
+       to[R,l={$R_1=\SI{1}{\kilo\ohm}$}] (3.4,3.4) coordinate(a);
+ \draw (a) to[R,l={$R_2=\SI{1}{\kilo\ohm}$}] (3.4,0) coordinate(b) -- (0,0);
+ \draw (a) to[short,-o] (5,3.4) node[right]{$+$};
+ \draw (b) to[short,-o] (5,0) node[right]{$-$};
+ \draw[->] (5.3,3.0) -- (5.3,0.4) node[midway,right,font=\footnotesize]{$U_{\text{out}}$};
+\end{circuitikz}}
+
+\resposta{(a) \SI{6}{\volt}; (b) \SI{4}{\volt}}
+\resolucao{(a) \textbf{Em vazio}, nenhuma corrente sai pelos terminais, e os dois
+resistores iguais dividem a tensão ao meio:
+$U_{\text{out}} = 12\cdot\dfrac{1}{2} = \SI{6}{\volt}$.\\
+(b) \textbf{Com carga}, $R_L$ fica em paralelo com $R_2$:
+\[
+R_2 \parallel R_L = 1\text{k}\parallel 1\text{k} = \SI{0.5}{\kilo\ohm}
+\ \Rightarrow\
+U_{\text{out}} = 12\cdot\frac{0{,}5}{1+0{,}5} = \SI{4}{\volt}.
+\]
+\textbf{Conclusão:} a carga "puxa" a tensão para baixo. Divisores resistivos só
+mantêm a saída se $R_L \gg R_2$; por isso não servem como fonte de alimentação
+para cargas variáveis --- para isso usa-se um regulador de tensão.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um potenciômetro de $\SI{10}{\kilo\ohm}$ é ligado como divisor de tensão a uma
+fonte de $\SI{9}{\volt}$. Quando o cursor está a $\SI{30}{\percent}$ do curso (a
+partir do terminal de referência), qual a tensão de saída em vazio?
+\resposta{\SI{2.7}{\volt}}
+\resolucao{O cursor divide a resistência total na proporção do curso. A \SI{30}{\percent},
+a saída corresponde a $\SI{30}{\percent}$ da tensão total:
+\[
+U_{\text{out}} = 9\cdot 0{,}30 = \SI{2.7}{\volt}.
+\]
+O valor da resistência total (\SI{10}{\kilo\ohm}) não entra na conta em vazio ---
+apenas a \emph{fração} do curso importa. É exatamente assim que um controle de
+volume ajusta o sinal.}
+\end{questao}
+
+\begin{questao}[2]{}
+Para o circuito da figura (malha única com cinco resistores), calcule a corrente
+e a tensão sobre o resistor de $\SI{8}{\ohm}$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{100}{\volt}$},invert] (0,3)
+       to[R,l={$\SI{10}{\ohm}$}] (3,3)
+       to[R,l={$\SI{6}{\ohm}$}] (6,3)
+       to[R,l={$\SI{8}{\ohm}$}] (6,0)
+       to[R,l={$\SI{12}{\ohm}$}] (3,0)
+       to[R,l={$\SI{6}{\ohm}$}] (0,0);
+ \draw[->,Icol,line width=1pt] (0.7,3.4)--(1.7,3.4)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+
+\resposta{$I = \SI{2.38}{\ampere}$ (aprox.); $U_{8} \approx \SI{19}{\volt}$}
+\resolucao{Todos os resistores estão em série:
+$\Req = 10+6+8+12+6 = \SI{42}{\ohm}$.
+\[
+I=\frac{100}{42}\approx\SI{2.38}{\ampere},
+\qquad
+U_8 = 8\cdot I = \frac{800}{42}\approx\SI{19.0}{\volt}.
+\]
+Pelo divisor: $U_8 = 100\cdot\dfrac{8}{42}\approx\SI{19.0}{\volt}$, o mesmo
+resultado.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um divisor de tensão deve fornecer $\SI{5}{\volt}$ a uma carga que consome
+$\SI{10}{\milli\ampere}$, a partir de uma fonte de $\SI{15}{\volt}$. Como regra
+de projeto, adota-se a \emph{corrente de sangria} (a que circula pelo divisor sem
+passar pela carga) igual a $\SI{10}{\milli\ampere}$. Determine $R_1$ e $R_2$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{15}{\volt}$}] (0,3.4)
+       to[R,l={$R_1$},i={$I_1$}] (3.4,3.4) coordinate(a);
+ \draw (a) to[R,l={$R_2$},i={$I_2$}] (3.4,0) coordinate(b) -- (0,0);
+ \draw (a) to[short,-o] (5.2,3.4) coordinate(o1);
+ \draw (b) to[short,-o] (5.2,0) coordinate(o2);
+ \draw (o1) to[R,l={carga},i={$\SI{10}{\milli\ampere}$}] (o2);
+\end{circuitikz}}
+
+\resposta{$R_2 = \SI{500}{\ohm}$; $R_1 = \SI{500}{\ohm}$}
+\resolucao{\textbf{Ramo de $R_2$ (sangria):} $R_2$ está em paralelo com a carga e
+sob \SI{5}{\volt}. Com corrente de sangria $I_2 = \SI{10}{\milli\ampere}$:
+\[
+R_2 = \frac{U_2}{I_2}=\frac{5}{\pot{10}{-3}}=\SI{500}{\ohm}.
+\]
+\textbf{Ramo de $R_1$:} por ele passa a soma da corrente de sangria com a da carga,
+$I_1 = 10+10 = \SI{20}{\milli\ampere}$, sob a tensão restante
+$15-5 = \SI{10}{\volt}$:
+\[
+R_1=\frac{U_1}{I_1}=\frac{10}{\pot{20}{-3}}=\SI{500}{\ohm}.
+\]
+\textbf{Por que a sangria?} Se $R_2$ conduzisse muito pouco, a tensão de saída
+variaria fortemente com a carga. Uma sangria comparável à corrente da carga
+estabiliza a saída, ao custo de mais potência dissipada --- o compromisso típico
+de projeto.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor de tensão com $R_1 = \SI{4}{\kilo\ohm}$ e $R_2 = \SI{2}{\kilo\ohm}$ é
+alimentado por $\SI{12}{\volt}$; a saída é tomada sobre $R_2$. Determine a faixa
+de valores da carga $R_L$ para que a tensão de saída não caia mais que
+$\SI{10}{\percent}$ em relação ao valor em vazio.
+\resposta{$R_L \gtrsim \SI{12}{\kilo\ohm}$}
+\resolucao{Em vazio, $U_0 = 12\cdot\dfrac{2}{6} = \SI{4}{\volt}$. Queremos
+$U \geq 0{,}9\cdot U_0 = \SI{3.6}{\volt}$. Com carga, $R_2$ é substituído por
+$R_2' = R_2\parallel R_L$:
+\[
+U = 12\cdot\frac{R_2'}{R_1+R_2'}\geq 3{,}6.
+\]
+Isolando, $\dfrac{R_2'}{4000+R_2'}\geq 0{,}3 \Rightarrow R_2'\geq \SI{1714}{\ohm}$
+(aprox.). De $R_2' = \dfrac{2000\,R_L}{2000+R_L}\geq 1714$ resulta
+$R_L \geq \SI{12}{\kilo\ohm}$ (aproximadamente). Ou seja, a carga precisa ser cerca
+de \textbf{6 vezes maior} que $R_2$ para "não pesar" no divisor. Confirma a regra
+prática: divisores resistivos só servem para cargas de alta impedância, como a
+entrada de um amplificador.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um sistema de alimentação deve entregar $\SI{5}{\volt}$ a uma carga de
+$\SI{100}{\ohm}$, a partir de uma fonte de $\SI{15}{\volt}$, usando um divisor
+resistivo. Especifica-se que a tensão na carga não deve cair mais de
+$\SI{2}{\percent}$ se a carga variar de $\SI{100}{\ohm}$ a $\SI{200}{\ohm}$.
+\begin{itensq}
+\item Explique por que um divisor puramente resistivo tem dificuldade em atender
+      a essa especificação.
+\item Determine a ordem de grandeza que $R_2$ (resistor em paralelo com a carga)
+      deveria ter e discuta o custo dessa escolha.
+\end{itensq}
+\resposta{Ver análise; $R_2 \ll R_L$, com alto consumo}
+\resolucao{(a) A tensão de saída de um divisor \emph{depende da carga}, pois
+$R_L$ entra em paralelo com $R_2$. Quando $R_L$ varia, o paralelo
+$R_2 \parallel R_L$ varia, e a saída varia junto. A regulação só é boa quando
+$R_2 \parallel R_L \approx R_2$, isto é, quando $R_2 \ll R_L$.\\
+(b) Quantificando: para que a variação de $R_L$ (de \SI{100}{} para
+\SI{200}{\ohm}) altere o paralelo em menos de \SI{2}{\percent}, precisamos de
+\[
+R_2 \parallel 100 \approx R_2 \parallel 200
+\quad\Longrightarrow\quad
+R_2 \lesssim \SI{4}{\ohm} \ (\text{ordem de } R_L/25).
+\]
+Com $R_2 = \SI{4}{\ohm}$ e a razão do divisor exigindo
+$R_1 = 2R_2 = \SI{8}{\ohm}$, a corrente do divisor seria
+$I \approx \dfrac{15}{12} = \SI{1.25}{\ampere}$, dissipando cerca de
+$\SI{19}{\watt}$ --- para entregar apenas $\dfrac{5^2}{100} = \SI{0.25}{\watt}$
+à carga!\\
+\textbf{Conclusão de projeto:} o rendimento seria de aproximadamente
+\SI{1}{\percent}. Isso demonstra por que divisores resistivos servem apenas como
+\emph{referência de tensão} para entradas de alta impedância, e por que fontes
+reais usam \textbf{reguladores} (série ou chaveados), que mantêm a saída
+independentemente da carga sem desperdiçar potência.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Divisor de tensão
+\input{bancos/banco-divisor-de-tensao.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[4.1 Divisor de tensão]
+
+% =====================================================================
+\subsection{Divisor de corrente}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Em um divisor de corrente de dois resistores em paralelo, a maior corrente
+circula:
+\begin{alternativas}
+\item pelo maior resistor.
+\item pelo menor resistor.
+\item igualmente pelos dois, sempre.
+\item pelo resistor mais próximo da fonte.
+\item por nenhum: toda a corrente retorna à fonte.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Ambos os ramos têm a mesma tensão; por $I = U/R$, o menor resistor
+conduz a maior corrente. A corrente se reparte de forma \emph{inversamente}
+proporcional às resistências.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma corrente de $\SI{10}{\ampere}$ chega a um nó e se divide entre
+$R_1=\SI{2}{\ohm}$ e $R_2=\SI{3}{\ohm}$ em paralelo. Calcule $i_1$ e $i_2$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ \draw (0,0) to[isource,l={$\SI{10}{\ampere}$}] (0,2.6)
+       to[short,-*,i={$I_t$}] (2,2.6)
+       to[R,l={$R_1=\SI{2}{\ohm}$},i>_={$i_1$}] (2,0) -- (0,0);
+ \draw (2,2.6) -- (4,2.6)
+       to[R,l={$R_2=\SI{3}{\ohm}$},i>_={$i_2$}] (4,0) to[short,-*] (2,0);
+\end{circuitikz}}
+
+\resposta{$i_1 = \SI{6}{\ampere}$; $i_2 = \SI{4}{\ampere}$}
+\resolucao{Pelo divisor de corrente (índices \emph{trocados}):
+\[
+i_1 = I_t\,\frac{R_2}{R_1+R_2}=10\cdot\frac{3}{5}=\SI{6}{\ampere},
+\qquad
+i_2 = I_t\,\frac{R_1}{R_1+R_2}=10\cdot\frac{2}{5}=\SI{4}{\ampere}.
+\]
+\textbf{Verificação:} $6+4 = \SI{10}{\ampere}$; e o menor resistor
+(\SI{2}{\ohm}) ficou com a maior corrente.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma corrente de $\SI{15}{\ampere}$ divide-se entre dois resistores em paralelo,
+$\SI{3}{\ohm}$ e $\SI{6}{\ohm}$. As correntes valem, respectivamente:
+\begin{alternativas}[2]
+\item \SI{5}{\ampere} e \SI{10}{\ampere}
+\item \SI{10}{\ampere} e \SI{5}{\ampere}
+\item \SI{7.5}{\ampere} e \SI{7.5}{\ampere}
+\item \SI{9}{\ampere} e \SI{6}{\ampere}
+\item \SI{6}{\ampere} e \SI{9}{\ampere}
+\end{alternativas}
+\resposta{(b)}
+\resolucao{$i_{3\Omega} = 15\cdot\dfrac{6}{9} = \SI{10}{\ampere}$ e
+$i_{6\Omega} = 15\cdot\dfrac{3}{9} = \SI{5}{\ampere}$. O resistor de \SI{3}{\ohm},
+por ser menor, conduz o dobro do de \SI{6}{\ohm}.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+No circuito, uma fonte de corrente de $\SI{30}{\ampere}$ alimenta três resistores
+em paralelo. Calcule a corrente em cada um.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ \draw (0,0) to[isource,l={$\SI{30}{\ampere}$}] (0,2.6)
+       to[short,-*,i={$I_t$}] (2,2.6)
+       to[R,l={$\SI{2}{\ohm}$},i>_={$i_1$}] (2,0) -- (0,0);
+ \draw (2,2.6) -- (4,2.6)
+       to[R,l={$\SI{3}{\ohm}$},i>_={$i_2$}] (4,0) to[short,-*] (2,0);
+ \draw (4,2.6) -- (6,2.6)
+       to[R,l={$\SI{6}{\ohm}$},i>_={$i_3$}] (6,0) to[short,-*] (4,0);
+\end{circuitikz}}
+
+\resposta{$i_1=\SI{15}{\ampere}$, $i_2=\SI{10}{\ampere}$, $i_3=\SI{5}{\ampere}$}
+\resolucao{Com três ou mais ramos, o mais prático é achar a tensão comum.
+$\Req = 2\parallel3\parallel6$: como
+$\dfrac{1}{2}+\dfrac{1}{3}+\dfrac{1}{6}=\dfrac{3+2+1}{6}=1$, temos
+$\Req=\SI{1}{\ohm}$ e $U = 30\cdot1 = \SI{30}{\volt}$. Então:
+\[
+i_1=\frac{30}{2}=\SI{15}{\ampere},\quad
+i_2=\frac{30}{3}=\SI{10}{\ampere},\quad
+i_3=\frac{30}{6}=\SI{5}{\ampere}.
+\]
+\textbf{Verificação:} $15+10+5 = \SI{30}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+No divisor da figura, com três ramos, determine a corrente em cada resistor.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ \draw (0,0) to[isource,l={$\SI{25}{\ampere}$}] (0,2.6)
+       to[short,-*,i={$I_t$}] (2,2.6)
+       to[R,l={$\SI{12}{\ohm}$},i>_={$i_1$}] (2,0) -- (0,0);
+ \draw (2,2.6) -- (4,2.6)
+       to[R,l={$\SI{3}{\ohm}$},i>_={$i_2$}] (4,0) to[short,-*] (2,0);
+ \draw (4,2.6) -- (6,2.6)
+       to[R,l={$\SI{12}{\ohm}$},i>_={$i_3$}] (6,0) to[short,-*] (4,0);
+\end{circuitikz}}
+
+\resposta{$i_1=i_3\approx\SI{4.17}{\ampere}$; $i_2\approx\SI{16.7}{\ampere}$}
+\resolucao{$\dfrac{1}{\Req}=\dfrac{1}{12}+\dfrac{1}{3}+\dfrac{1}{12}
+=\dfrac{1+4+1}{12}=\dfrac{6}{12}$, logo $\Req=\SI{2}{\ohm}$ e
+$U = 25\cdot2 = \SI{50}{\volt}$.
+\[
+i_1=i_3=\frac{50}{12}\approx\SI{4.17}{\ampere},
+\qquad
+i_2=\frac{50}{3}\approx\SI{16.7}{\ampere}.
+\]
+Os dois ramos de \SI{12}{\ohm} conduzem o mesmo (por simetria); o ramo de
+\SI{3}{\ohm}, quatro vezes menor, conduz quatro vezes mais.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma corrente de $\SI{35}{\ampere}$ alimenta três resistores em paralelo,
+$\SI{5}{\ohm}$, $\SI{10}{\ohm}$ e $\SI{20}{\ohm}$.
+\begin{itensq}
+\item Calcule a corrente em cada ramo.
+\item Verifique que a soma das potências dissipadas nos ramos é igual à potência
+      entregue pela fonte.
+\end{itensq}
+\resposta{(a) \SI{20}{\ampere}, \SI{10}{\ampere}, \SI{5}{\ampere};
+(b) \SI{3500}{\watt} nos dois lados}
+\resolucao{(a) $\dfrac{1}{\Req}=\dfrac{1}{5}+\dfrac{1}{10}+\dfrac{1}{20}
+=\dfrac{4+2+1}{20}=\dfrac{7}{20}$, então $\Req = \dfrac{20}{7}\,\si{\ohm}$ e
+$U = 35\cdot\dfrac{20}{7} = \SI{100}{\volt}$. As correntes:
+\[
+i_5=\frac{100}{5}=\SI{20}{\ampere},\quad
+i_{10}=\frac{100}{10}=\SI{10}{\ampere},\quad
+i_{20}=\frac{100}{20}=\SI{5}{\ampere}.
+\]
+(b) Potência em cada ramo ($P = U\,i$, com $U=\SI{100}{\volt}$):
+\[
+100\cdot20 + 100\cdot10 + 100\cdot5 = 2000+1000+500 = \SI{3500}{\watt}.
+\]
+Potência da fonte: $P = U\,I_t = 100\cdot35 = \SI{3500}{\watt}$ --- confere com a
+conservação de energia.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um miliamperímetro tem fundo de escala de $\SI{1}{\milli\ampere}$ e resistência
+interna $R_g = \SI{50}{\ohm}$. Para medir correntes de até $\SI{1}{\ampere}$,
+liga-se em paralelo com ele um resistor \emph{shunt} $R_s$, que desvia o excesso
+de corrente. Determine $R_s$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt,american]
+ \draw (0,1.4) to[short,i={$I=\SI{1}{\ampere}$},-*] (2,1.4) coordinate(n1);
+ \draw (n1) to[R,l={$R_g=\SI{50}{\ohm}$},i={$\SI{1}{\milli\ampere}$}] (5,1.4) coordinate(n2);
+ \node[above,font=\footnotesize] at (3.5,1.75) {galvanômetro};
+ \draw (n1) to[short] (2,0) to[R,l_={$R_s$},i_={$i_s$}] (5,0) to[short,-*] (n2);
+ \draw (n2) to[short] (7,1.4);
+\end{circuitikz}}
+
+\resposta{$R_s \approx \SI{0.05}{\ohm}$}
+\resolucao{O galvanômetro e o shunt estão em paralelo, logo têm a \emph{mesma
+tensão}. No fundo de escala, o medidor conduz $\SI{1}{\milli\ampere}$ e o shunt
+deve desviar o restante:
+\[
+i_s = 1 - 0{,}001 = \SI{0.999}{\ampere}.
+\]
+Igualando as tensões nos dois ramos ($R_g\,i_g = R_s\,i_s$):
+\[
+R_s = \frac{R_g\,i_g}{i_s} = \frac{50\cdot0{,}001}{0{,}999}\approx\SI{0.05}{\ohm}.
+\]
+\textbf{Ideia central:} o shunt é um divisor de corrente que amplia a faixa do
+instrumento por um fator $\dfrac{I}{i_g} = \dfrac{1}{0{,}001} = 1000$. É assim que
+um mesmo galvanômetro vira amperímetro de várias escalas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um galvanômetro tem fundo de escala $i_g = \SI{1}{\milli\ampere}$ e resistência
+interna $R_g = \SI{50}{\ohm}$. Deseja-se convertê-lo em um amperímetro de
+\textbf{três escalas}: \SI{100}{\milli\ampere}, \SI{1}{\ampere} e
+\SI{10}{\ampere}, usando shunts comutáveis.
+\begin{itensq}
+\item Deduza a expressão geral do shunt para uma escala $I_{\max}$.
+\item Calcule os três shunts.
+\item Explique por que a resistência do amperímetro \emph{diminui} conforme se
+      aumenta a escala, e por que isso é desejável.
+\end{itensq}
+\resposta{(a) $R_s = \dfrac{R_g\,i_g}{I_{\max}-i_g}$;
+(b) \SI{0.505}{\ohm}, \SI{50.05}{\milli\ohm}, \SI{5.0}{\milli\ohm}; (c) ver comentário}
+\resolucao{\textbf{(a)} O shunt está em paralelo com o galvanômetro, logo ambos
+têm a mesma tensão. No fundo de escala, o galvanômetro conduz $i_g$ e o shunt
+desvia o restante, $I_{\max}-i_g$:
+\[
+R_g\,i_g = R_s\,(I_{\max}-i_g)
+\;\Longrightarrow\;
+\boxed{\,R_s=\frac{R_g\,i_g}{I_{\max}-i_g}\,}
+\]
+\textbf{(b)} Aplicando com $R_g i_g = 50\cdot\pot{1}{-3}=\SI{0.05}{\volt}$:
+\begin{center}\small\sffamily
+\begin{tabular}{@{}c c c@{}}
+\toprule
+\textbf{Escala} & \textbf{$R_s$} & \textbf{Fator de multiplicação}\\
+\midrule
+\SI{100}{\milli\ampere} & $\dfrac{0{,}05}{0{,}099}\approx\SI{0.505}{\ohm}$ & 100$\times$\\
+\SI{1}{\ampere}   & $\dfrac{0{,}05}{0{,}999}\approx\SI{50.05}{\milli\ohm}$ & 1000$\times$\\
+\SI{10}{\ampere}  & $\dfrac{0{,}05}{9{,}999}\approx\SI{5.0}{\milli\ohm}$ & 10\,000$\times$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{(c)} A resistência total do instrumento é $R_g \parallel R_s$. Como $R_s$
+diminui a cada escala maior, o paralelo também diminui --- na escala de
+\SI{10}{\ampere}, o amperímetro apresenta apenas $\approx\SI{5}{\milli\ohm}$.\\
+\textbf{Por que isso é desejável:} o amperímetro é ligado \emph{em série} com o
+circuito, então sua resistência se soma à do circuito e \emph{altera} a corrente
+que se pretende medir --- o chamado \textbf{erro de inserção}. Quanto menor a
+resistência do instrumento, menor a perturbação. O amperímetro ideal teria
+resistência nula (e o voltímetro ideal, resistência infinita).\\
+\textbf{Estimativa do erro:} medindo \SI{10}{\ampere} em um circuito de
+$\SI{1}{\ohm}$, o erro relativo seria $\dfrac{0{,}005}{1}=\SI{0.5}{\percent}$ ---
+aceitável. Mas em um circuito de $\SI{0.05}{\ohm}$, o erro subiria para
+\SI{10}{\percent}, tornando a medida inútil.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Divisor de corrente
+\input{bancos/banco-divisor-de-corrente.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[4.2 Divisor de corrente]

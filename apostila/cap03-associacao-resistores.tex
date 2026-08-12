@@ -1,0 +1,1596 @@
+% =====================================================================
+%  CAPITULO 3 - ASSOCIACAO DE RESISTORES E TRANSFORMACOES
+%  (versao revisada e ampliada: 26 -> 48 questoes)
+% =====================================================================
+\section{Associação de Resistores e Transformações}
+
+\begin{conceito}[Antes de começar]
+\textbf{Série} --- a corrente é a \emph{mesma} em todos os elementos e as tensões
+se somam:
+\[
+\Req = R_1+R_2+\dots+R_n ,\qquad U = U_1+U_2+\dots+U_n .
+\]
+\textbf{Paralelo} --- a tensão é a \emph{mesma} em todos os ramos e as correntes
+se somam:
+\[
+\frac{1}{\Req}=\frac{1}{R_1}+\dots+\frac{1}{R_n},\qquad
+\text{dois resistores: }\ \Req=\frac{R_1R_2}{R_1+R_2},\qquad
+\text{$n$ iguais: }\ \Req=\frac{R}{n}.
+\]
+\textbf{Transformação $\Delta \to Y$} (resistores do triângulo no denominador comum
+$S=R_{AB}+R_{BC}+R_{CA}$):
+\[
+R_A=\frac{R_{AB}\,R_{CA}}{S},\qquad
+R_B=\frac{R_{AB}\,R_{BC}}{S},\qquad
+R_C=\frac{R_{BC}\,R_{CA}}{S}.
+\]
+\textbf{Transformação $Y \to \Delta$} (com $P=R_AR_B+R_BR_C+R_CR_A$):
+\[
+R_{AB}=\frac{P}{R_C},\qquad R_{BC}=\frac{P}{R_A},\qquad R_{CA}=\frac{P}{R_B}.
+\]
+\end{conceito}
+
+\begin{atencao}[Dois atalhos que economizam muito tempo]
+\textbf{Curto-circuito:} um fio ideal em paralelo com um resistor \emph{anula} esse
+resistor ($\Req = 0$). \quad
+\textbf{Circuito aberto:} um ramo interrompido não conduz e pode ser apagado do
+desenho. Antes de calcular, procure por esses dois casos.
+\end{atencao}
+
+\legendaniveis
+
+% =====================================================================
+\subsection{Circuitos série}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Em uma associação de resistores \textbf{em série}, é correto afirmar que:
+\begin{alternativas}
+\item a tensão é a mesma em todos os resistores.
+\item a corrente é a mesma em todos os resistores.
+\item a resistência equivalente é menor que a menor das resistências.
+\item a corrente se divide proporcionalmente às resistências.
+\item a potência dissipada é a mesma em todos os resistores.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Só existe um caminho para a corrente, logo ela é a mesma em todos os
+elementos --- (a) e (d) descrevem o circuito paralelo. A resistência equivalente
+é a \emph{soma}, portanto maior que a maior delas, o que elimina (c).
+A potência $P=R\,I^2$ depende de $R$: só é igual se os resistores forem iguais,
+o que elimina (e).}
+\end{questao}
+
+\begin{questao}[1]{}
+Três resistores de $\SI{4}{\ohm}$, $\SI{6}{\ohm}$ e $\SI{10}{\ohm}$ são ligados em
+série a uma fonte de $\SI{40}{\volt}$ de resistência interna desprezível.
+Determine:
+\begin{itensq}
+\item a resistência equivalente;
+\item a corrente do circuito;
+\item a tensão em cada resistor.
+\end{itensq}
+\resposta{(a) \SI{20}{\ohm}; (b) \SI{2}{\ampere}; (c) \SI{8}{\volt}, \SI{12}{\volt} e \SI{20}{\volt}}
+\resolucao{(a) $\Req = 4+6+10 = \SI{20}{\ohm}$.\\
+(b) $I = \dfrac{U}{\Req} = \dfrac{40}{20} = \SI{2}{\ampere}$.\\
+(c) $U_1 = 4\cdot 2 = \SI{8}{\volt}$, $U_2 = 6\cdot 2 = \SI{12}{\volt}$,
+$U_3 = 10\cdot 2 = \SI{20}{\volt}$.\\
+\textbf{Verificação:} $8+12+20 = \SI{40}{\volt}$ --- confere com a tensão da fonte.
+Repare que a maior tensão cai sobre o maior resistor.}
+\end{questao}
+
+\begin{questao}[1]{}
+Para cada circuito, calcule a resistência equivalente e a corrente $I$.
+
+\circuitoq{%
+\subcirc{a}{%
+\begin{circuitikz}[scale=0.78,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{10}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{3}{\ohm}$}] (3,3)
+       to[R,l={$R_2=\SI{2}{\ohm}$}] (3,0) -- (0,0);
+ \draw[->,Icol,line width=1pt] (0.7,3.4) -- (1.7,3.4)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+\hfill
+\subcirc{b}{%
+\begin{circuitikz}[scale=0.78,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{15}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{4}{\ohm}$}] (3,3)
+       to[R,l={$R_2=\SI{6}{\ohm}$}] (3,0) -- (0,0);
+ \draw[->,Icol,line width=1pt] (0.7,3.4) -- (1.7,3.4)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+
+\vspace{1.1em}
+
+\subcirc{c}{%
+\begin{circuitikz}[scale=0.78,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{25}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{4.5}{\ohm}$}] (3.4,3)
+       to[R,l={$R_2=\SI{3}{\ohm}$}] (3.4,0)
+       to[R,l={$R_3=\SI{2.5}{\ohm}$}] (0,0);
+ \draw[->,Icol,line width=1pt] (0.7,3.4) -- (1.7,3.4)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+\hfill
+\subcirc{d}{%
+\begin{circuitikz}[scale=0.78,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{30}{\volt}$}] (0,4.4)
+       to[R,l={$R_1=\SI{2.5}{\ohm}$}] (3.6,4.4)
+       to[R,l={$R_2=\SI{4}{\ohm}$}] (3.6,2.2)
+       to[R,l={$R_3=\SI{1}{\ohm}$}] (3.6,0)
+       to[R,l={$R_4=\SI{2.5}{\ohm}$}] (0,0);
+ \draw[->,Icol,line width=1pt] (0.7,4.8) -- (1.7,4.8)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}}
+
+\resposta{(a) \SI{5}{\ohm}, \SI{2}{\ampere}; (b) \SI{10}{\ohm}, \SI{1.5}{\ampere};
+(c) \SI{10}{\ohm}, \SI{2.5}{\ampere}; (d) \SI{10}{\ohm}, \SI{3}{\ampere}}
+\resolucao{Em todos os casos, $\Req$ é a soma das resistências e
+$I = E/\Req$:\\
+(a) $\Req = 3+2 = \SI{5}{\ohm}$, $I = 10/5 = \SI{2}{\ampere}$.\\
+(b) $\Req = 4+6 = \SI{10}{\ohm}$, $I = 15/10 = \SI{1.5}{\ampere}$.\\
+(c) $\Req = 4{,}5+3+2{,}5 = \SI{10}{\ohm}$, $I = 25/10 = \SI{2.5}{\ampere}$.\\
+(d) $\Req = 2{,}5+4+1+2{,}5 = \SI{10}{\ohm}$, $I = 30/10 = \SI{3}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma associação em série de $n$ resistores iguais de $\SI{15}{\ohm}$ apresenta
+resistência equivalente de $\SI{105}{\ohm}$. O valor de $n$ é:
+\begin{alternativas}[3]
+\item 3
+\item 5
+\item 6
+\item 7
+\item 9
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Para $n$ resistores iguais em série, $\Req = n\,R$, logo
+$n = \dfrac{105}{15} = 7$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+No circuito da figura, duas fontes ideais estão ligadas em \textbf{oposição}.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E_1=\SI{30}{\volt}$}] (0,3.6)
+       to[R,l={$R_1=\SI{2.5}{\ohm}$}] (4.5,3.6)
+       to[battery1,l={$E_2=\SI{10}{\volt}$},invert] (4.5,1.8)
+       to[R,l={$R_2=\SI{1.5}{\ohm}$}] (4.5,0)
+       to[R,l={$R_3=\SI{1}{\ohm}$}] (0,0);
+ \draw[->,Icol,line width=1pt] (1.0,4.0) -- (2.2,4.0)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+
+Determine a corrente do circuito e a tensão sobre $R_1$.
+\resposta{$I = \SI{4}{\ampere}$; $U_{R_1} = \SI{10}{\volt}$}
+\resolucao{Percorrendo a malha, $E_1$ impulsiona a corrente no sentido adotado e
+$E_2$ se opõe. Pela lei das malhas:
+\[
+E_1 - E_2 = I\,(R_1+R_2+R_3)
+\quad\Rightarrow\quad
+I = \frac{30-10}{2{,}5+1{,}5+1} = \frac{20}{5} = \SI{4}{\ampere}.
+\]
+$U_{R_1} = R_1 I = 2{,}5\cdot 4 = \SI{10}{\volt}$.\\
+\textbf{Observação:} se $E_2$ fosse maior que $E_1$, a corrente resultaria
+negativa --- o que significa apenas que ela circula no sentido oposto ao adotado.
+Nesse caso $E_2$ estaria \emph{sendo carregada} por $E_1$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bateria de força eletromotriz $\EMF = \SI{12}{\volt}$ e resistência interna
+$r = \SI{0.5}{\ohm}$ alimenta um resistor $R = \SI{5.5}{\ohm}$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$\EMF=\SI{12}{\volt}$}] (0,2)
+       to[R,l_={$r=\SI{0.5}{\ohm}$},color=Vcol] (0,3.4) -- (3.6,3.4)
+       to[R,l={$R=\SI{5.5}{\ohm}$}] (3.6,0) -- (0,0);
+ \draw[dashed,cinza] (-1.15,-0.5) rectangle (0.95,3.9);
+ \node[cinza,font=\footnotesize\sffamily,above] at (-0.1,3.95) {bateria real};
+ \draw[->,Icol,line width=1pt] (1.2,3.75) -- (2.3,3.75)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+
+Determine:
+\begin{itensq}
+\item a corrente do circuito;
+\item a tensão nos terminais da bateria;
+\item a potência dissipada internamente.
+\end{itensq}
+\resposta{(a) \SI{2}{\ampere}; (b) \SI{11}{\volt}; (c) \SI{2}{\watt}}
+\resolucao{(a) A resistência interna está \emph{em série} com a carga:
+\[
+I=\frac{\EMF}{R+r}=\frac{12}{5{,}5+0{,}5}=\frac{12}{6}=\SI{2}{\ampere}.
+\]
+(b) $U = \EMF - r\,I = 12 - 0{,}5\cdot 2 = \SI{11}{\volt}$
+(ou, equivalentemente, $U = R\,I = 5{,}5\cdot 2 = \SI{11}{\volt}$).\\
+(c) $P_r = r\,I^2 = 0{,}5\cdot 2^2 = \SI{2}{\watt}$ --- energia perdida dentro da
+própria bateria, que é o que a faz aquecer em curtos-circuitos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Seis lâmpadas idênticas, de resistência $\SI{40}{\ohm}$ cada, são ligadas
+\textbf{em série} a uma fonte de $\SI{120}{\volt}$.
+\begin{itensq}
+\item Calcule a corrente e a tensão em cada lâmpada.
+\item Uma das lâmpadas queima (filamento aberto). O que acontece com as demais?
+      Justifique.
+\end{itensq}
+\resposta{(a) $I=\SI{0.5}{\ampere}$ e $U=\SI{20}{\volt}$ por lâmpada;
+(b) todas apagam}
+\resolucao{(a) $\Req = 6\cdot 40 = \SI{240}{\ohm}$;
+$I = \dfrac{120}{240} = \SI{0.5}{\ampere}$;
+$U = 40\cdot 0{,}5 = \SI{20}{\volt}$ em cada lâmpada
+(confira: $6\cdot 20 = \SI{120}{\volt}$).\\
+(b) O filamento aberto interrompe o \emph{único} caminho da corrente:
+$I = 0$ e todas as lâmpadas apagam. É exatamente esse o inconveniente dos antigos
+cordões de luzes de Natal ligados em série.}
+\end{questao}
+
+\begin{questao}[2]{}
+Três resistores estão em série sob $\SI{120}{\volt}$: $R_1=\SI{20}{\ohm}$,
+$R_2$ desconhecido e $R_3=\SI{30}{\ohm}$. Deseja-se que a tensão sobre $R_2$
+seja de $\SI{20}{\volt}$. O valor de $R_2$ deve ser:
+\begin{alternativas}[3]
+\item \SI{5}{\ohm}
+\item \SI{10}{\ohm}
+\item \SI{15}{\ohm}
+\item \SI{20}{\ohm}
+\item \SI{25}{\ohm}
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Se $U_2 = \SI{20}{\volt}$, sobram $120-20 = \SI{100}{\volt}$ para
+$R_1$ e $R_3$, que somam \SI{50}{\ohm}. Como a corrente é a mesma em toda a série:
+\[
+I=\frac{100}{50}=\SI{2}{\ampere}
+\qquad\Rightarrow\qquad
+R_2=\frac{U_2}{I}=\frac{20}{2}=\SI{10}{\ohm}.
+\]}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma carga de $\SI{9.6}{\ohm}$ é alimentada por uma fonte de $\SI{24}{\volt}$ por
+meio de um cabo de dois condutores, cada um com resistência de
+$\SI{0.2}{\ohm}$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{24}{\volt}$}] (0,3)
+       to[R,l=$\SI{0.2}{\ohm}$,color=Vcol] (4.4,3)
+       to[R,l={$R_c=\SI{9.6}{\ohm}$}] (4.4,0)
+       to[R,l=$\SI{0.2}{\ohm}$,color=Vcol] (0,0);
+ \node[Vcol,font=\footnotesize\sffamily] at (2.2,3.85) {condutores do cabo};
+ \draw[->,Icol,line width=1pt] (0.5,2.55) -- (1.5,2.55)
+       node[midway,below,font=\footnotesize]{$I$};
+\end{circuitikz}}
+
+Determine:
+\begin{itensq}
+\item a corrente na linha;
+\item a queda de tensão total no cabo;
+\item a tensão efetivamente entregue à carga;
+\item o rendimento da transmissão, $\eta = P_{\text{carga}}/P_{\text{total}}$.
+\end{itensq}
+\resposta{(a) \SI{2.4}{\ampere}; (b) \SI{0.96}{\volt}; (c) \SI{23.04}{\volt};
+(d) \SI{96}{\percent}}
+\resolucao{Os dois condutores (ida e volta) ficam \emph{em série} com a carga:
+\[
+\Req = 0{,}2+9{,}6+0{,}2=\SI{10}{\ohm}
+\quad\Rightarrow\quad
+I=\frac{24}{10}=\SI{2.4}{\ampere}.
+\]
+(b) $U_{\text{cabo}} = 0{,}4\cdot 2{,}4 = \SI{0.96}{\volt}$.\\
+(c) $U_{\text{carga}} = 24-0{,}96 = \SI{23.04}{\volt}$ (ou $9{,}6\cdot2{,}4$).\\
+(d) Como a corrente é a mesma em tudo,
+$\eta = \dfrac{R_c}{\Req} = \dfrac{9{,}6}{10} = 0{,}96 = \SI{96}{\percent}$.\\
+\textbf{Por que isso importa:} a perda cresce com $I^2$. Se a mesma potência fosse
+entregue com o dobro da tensão (e metade da corrente), a perda no cabo cairia à
+quarta parte --- é o argumento a favor da transmissão em alta tensão.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dispõe-se de resistores de $\SI{100}{\ohm}$, todos idênticos, e de uma fonte
+ideal de $\SI{50}{\volt}$. Deseja-se obter, a partir dessa fonte, uma saída de
+exatamente $\SI{20}{\volt}$ em vazio (sem carga conectada à saída), usando apenas
+uma associação série desses resistores como divisor de tensão.
+\begin{itensq}
+\item Qual o menor número de resistores capaz de fornecer essa tensão?
+\item Nessa configuração, quanto vale a corrente que circula pelo divisor?
+\end{itensq}
+\resposta{(a) 5 resistores (saída sobre 2 deles); (b) \SI{0.1}{\ampere}}
+\resolucao{(a) Com $n$ resistores iguais em série, a tensão sobre $k$ deles é
+\[
+U_k = E\,\frac{k}{n} \quad\Rightarrow\quad 20 = 50\cdot\frac{k}{n}
+\quad\Rightarrow\quad \frac{k}{n}=\frac{2}{5}.
+\]
+A menor solução inteira é $k=2$ e $n=5$: cinco resistores em série, com a saída
+tomada sobre dois deles.\\
+(b) $\Req = 5\cdot 100 = \SI{500}{\ohm}$ e
+$I = \dfrac{50}{500} = \SI{0.1}{\ampere}$.\\
+\textbf{Cuidado prático:} essa tensão de \SI{20}{\volt} só se mantém \emph{em
+vazio}. Ao ligar uma carga em paralelo com os dois resistores, a tensão de saída
+cai --- por isso divisores resistivos não servem como fonte de alimentação.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma linha de transmissão de $\SI{2}{\kilo\meter}$ alimenta uma carga de
+$\SI{10}{\ohm}$ a partir de uma fonte de $\SI{240}{\volt}$. O cabo é de cobre
+($\rho=\SI{1.7e-8}{\ohm\meter}$) e deve-se escolher sua seção $A$ de modo que a
+queda de tensão na linha não ultrapasse $\SI{4}{\percent}$ da tensão da fonte.
+\begin{itensq}
+\item Determine a resistência máxima admissível para o par de condutores.
+\item Calcule a seção mínima do cabo.
+\item Determine o rendimento da transmissão nessa condição e a potência perdida.
+\end{itensq}
+\resposta{(a) $R_{\text{linha}} \le \SI{0.417}{\ohm}$;
+(b) $A \ge \SI{163}{\milli\meter\squared}$; (c) $\eta = \SI{96}{\percent}$,
+$P_{\text{perdida}}\approx\SI{221}{\watt}$}
+\resolucao{\textbf{(a)} A linha e a carga estão em série, formando um divisor de
+tensão. Para a queda na linha ser no máximo \SI{4}{\percent}:
+\[
+\frac{R_{\text{linha}}}{R_{\text{linha}}+R_L}\le 0{,}04
+\;\Longrightarrow\;
+R_{\text{linha}} \le \frac{0{,}04}{0{,}96}\,R_L = \frac{10}{24}
+\approx\SI{0.417}{\ohm}.
+\]
+\textbf{(b)} O comprimento \emph{total} de condutor é o dobro da distância
+(ida e volta): $L = \SI{4000}{\meter}$. De $R=\rho L/A$:
+\[
+A \ge \frac{\rho L}{R_{\text{linha}}}
+=\frac{(\pot{1.7}{-8})(4000)}{0{,}417}
+\approx\pot{1.63}{-4}\,\si{\meter\squared}=\SI{163}{\milli\meter\squared}.
+\]
+Comercialmente, adotaria-se $\SI{185}{\milli\meter\squared}$ (valor normalizado
+imediatamente superior).
+
+\textbf{(c)} Com $R_{\text{linha}} = \SI{0.417}{\ohm}$:
+\[
+I=\frac{240}{10{,}417}\approx\SI{23}{\ampere},
+\qquad
+\eta=\frac{R_L}{R_L+R_{\text{linha}}}=\frac{10}{10{,}417}\approx\SI{96}{\percent},
+\]
+\[
+P_{\text{perdida}}=R_{\text{linha}}I^{2}\approx 0{,}417\cdot23^{2}
+\approx\SI{221}{\watt}.
+\]
+\textbf{Reflexão de projeto:} note o custo do critério. Exigir apenas
+\SI{4}{\percent} de queda impôs um cabo de $\SI{163}{\milli\meter\squared}$ ---
+muito caro. Se a mesma potência fosse transmitida em $\SI{2400}{\volt}$
+(dez vezes mais), a corrente cairia a $1/10$ e a perda ($\propto I^2$) a
+$1/100$, permitindo um cabo cem vezes menor. \textbf{É por isso que se transmite
+energia em alta tensão} --- a economia está no cobre, não na energia.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Circuitos série
+\input{bancos/banco-circuitos-serie.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[3.1 Circuitos série]
+
+% =====================================================================
+\subsection{Circuitos paralelo}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Sobre uma associação de resistores \textbf{em paralelo}, é correto afirmar que:
+\begin{alternativas}
+\item a corrente é a mesma em todos os ramos.
+\item a resistência equivalente é sempre maior que a maior das resistências.
+\item a tensão é a mesma em todos os ramos.
+\item a tensão se divide proporcionalmente às resistências.
+\item a resistência equivalente é a soma das resistências.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Todos os ramos estão ligados ao mesmo par de nós, logo compartilham a
+mesma tensão. A corrente, essa sim, se divide --- e de forma \emph{inversamente}
+proporcional às resistências. A resistência equivalente do paralelo é sempre
+\textbf{menor} que a menor das resistências associadas, o que elimina (b) e (e).}
+\end{questao}
+
+\begin{questao}[1]{}
+Para cada circuito, calcule a resistência equivalente, as correntes de ramo e a
+corrente total $I_t$.
+
+\circuitoq{%
+\subcirc{a}{%
+\begin{circuitikz}[scale=0.72,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{30}{\volt}$}] (0,3.4);
+ \draw (0,3.4) -- (9,3.4);  \draw (0,0) -- (9,0);
+ \draw (2.2,3.4) to[R,l=$\SI{4}{\ohm}$,*-*] (2.2,0);
+ \draw (4.5,3.4) to[R,l=$\SI{3}{\ohm}$,*-*] (4.5,0);
+ \draw (6.8,3.4) to[R,l=$\SI{6}{\ohm}$,*-*] (6.8,0);
+ \draw (9,3.4)   to[R,l=$\SI{12}{\ohm}$] (9,0);
+ \draw[->,Icol,line width=1pt] (0.5,3.75) -- (1.6,3.75)
+       node[midway,above,font=\footnotesize]{$I_t$};
+\end{circuitikz}}
+\hfill
+\subcirc{b}{%
+\begin{circuitikz}[scale=0.72,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{24}{\volt}$}] (0,3.4);
+ \draw (0,3.4) -- (6.6,3.4);  \draw (0,0) -- (6.6,0);
+ \draw (2.2,3.4) to[R,l=$\SI{12}{\ohm}$,*-*] (2.2,0);
+ \draw (4.4,3.4) to[R,l=$\SI{12}{\ohm}$,*-*] (4.4,0);
+ \draw (6.6,3.4) to[R,l=$\SI{12}{\ohm}$] (6.6,0);
+ \draw[->,Icol,line width=1pt] (0.5,3.75) -- (1.6,3.75)
+       node[midway,above,font=\footnotesize]{$I_t$};
+\end{circuitikz}}
+
+\vspace{1.1em}
+
+\subcirc{c}{%
+\begin{circuitikz}[scale=0.72,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{15}{\volt}$}] (0,3.4);
+ \draw (0,3.4) -- (6.6,3.4);  \draw (0,0) -- (6.6,0);
+ \draw (2.2,3.4) to[R,l=$\SI{12}{\ohm}$,*-*] (2.2,0);
+ \draw (4.4,3.4) to[R,l=$\SI{12}{\ohm}$,*-*] (4.4,0);
+ \draw (6.6,3.4) to[R,l=$\SI{3}{\ohm}$] (6.6,0);
+ \draw[->,Icol,line width=1pt] (0.5,3.75) -- (1.6,3.75)
+       node[midway,above,font=\footnotesize]{$I_t$};
+\end{circuitikz}}
+\hfill
+\subcirc{d}{%
+\begin{circuitikz}[scale=0.72,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{9}{\volt}$}] (0,3.4);
+ \draw (0,3.4) -- (4.4,3.4);  \draw (0,0) -- (4.4,0);
+ \draw (2.2,3.4) to[R,l=$\SI{30}{\ohm}$,*-*] (2.2,0);
+ \draw (4.4,3.4) to[R,l=$\SI{60}{\ohm}$] (4.4,0);
+ \draw[->,Icol,line width=1pt] (0.5,3.75) -- (1.6,3.75)
+       node[midway,above,font=\footnotesize]{$I_t$};
+\end{circuitikz}}}
+
+\resposta{(a) \SI{1.2}{\ohm}, $I_t=\SI{25}{\ampere}$;
+(b) \SI{4}{\ohm}, $I_t=\SI{6}{\ampere}$;
+(c) \SI{2}{\ohm}, $I_t=\SI{7.5}{\ampere}$;
+(d) \SI{20}{\ohm}, $I_t=\SI{0.45}{\ampere}$}
+\resolucao{Em todos os casos a tensão da fonte aparece \emph{inteira} sobre cada
+ramo, então cada corrente sai direto da lei de Ohm.\\
+\textbf{(a)} $I_1=30/4=\SI{7.5}{\ampere}$, $I_2=30/3=\SI{10}{\ampere}$,
+$I_3=30/6=\SI{5}{\ampere}$, $I_4=30/12=\SI{2.5}{\ampere}$;
+$I_t=\SI{25}{\ampere}$ e $\Req=30/25=\SI{1.2}{\ohm}$.\\
+\textbf{(b)} Três resistores iguais: $\Req = 12/3 = \SI{4}{\ohm}$;
+cada ramo com $24/12=\SI{2}{\ampere}$ e $I_t = \SI{6}{\ampere}$.\\
+\textbf{(c)} $\dfrac{1}{\Req}=\dfrac{1}{12}+\dfrac{1}{12}+\dfrac{1}{3}
+=\dfrac{1+1+4}{12}=\dfrac{6}{12}$, logo $\Req=\SI{2}{\ohm}$.
+$I_1=I_2=\SI{1.25}{\ampere}$, $I_3=\SI{5}{\ampere}$, $I_t=\SI{7.5}{\ampere}$.\\
+\textbf{(d)} $\Req=\dfrac{30\cdot 60}{30+60}=\SI{20}{\ohm}$;
+$I_1=\SI{0.3}{\ampere}$, $I_2=\SI{0.15}{\ampere}$, $I_t=\SI{0.45}{\ampere}$.\\
+Note em (a) que $\Req$ ficou menor que o menor resistor (\SI{3}{\ohm}) --- sempre
+é assim no paralelo.}
+\end{questao}
+
+\begin{questao}[1]{}
+$n$ resistores iguais de $\SI{60}{\ohm}$ são associados em paralelo, resultando
+em $\SI{10}{\ohm}$. O valor de $n$ é:
+\begin{alternativas}[3]
+\item 2
+\item 3
+\item 4
+\item 6
+\item 10
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Para $n$ resistores iguais em paralelo, $\Req = \dfrac{R}{n}$, logo
+$n = \dfrac{60}{10} = 6$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um resistor de $\SI{20}{\ohm}$ é associado em paralelo com um resistor $R$
+desconhecido, resultando em uma resistência equivalente de $\SI{12}{\ohm}$.
+Determine $R$.
+\resposta{$R = \SI{30}{\ohm}$}
+\resolucao{Da definição de paralelo,
+\[
+\frac{1}{12}=\frac{1}{20}+\frac{1}{R}
+\quad\Rightarrow\quad
+\frac{1}{R}=\frac{1}{12}-\frac{1}{20}=\frac{5-3}{60}=\frac{2}{60}
+\quad\Rightarrow\quad R=\SI{30}{\ohm}.
+\]
+\textbf{Atalho útil:} com dois resistores,
+$R = \dfrac{R_1\,\Req}{R_1-\Req} = \dfrac{20\cdot 12}{20-12} = \SI{30}{\ohm}$.
+Note que $\Req$ precisa necessariamente ser menor que \SI{20}{\ohm}; se o problema
+pedisse $\Req = \SI{25}{\ohm}$, não haveria solução com resistor positivo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma corrente total de $\SI{12}{\ampere}$ chega a um nó e se divide entre dois
+resistores em paralelo, de $\SI{4}{\ohm}$ e $\SI{12}{\ohm}$. As correntes em cada
+resistor valem, respectivamente:
+\begin{alternativas}[2]
+\item \SI{3}{\ampere} e \SI{9}{\ampere}
+\item \SI{9}{\ampere} e \SI{3}{\ampere}
+\item \SI{6}{\ampere} e \SI{6}{\ampere}
+\item \SI{4}{\ampere} e \SI{8}{\ampere}
+\item \SI{8}{\ampere} e \SI{4}{\ampere}
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A corrente se divide de forma \emph{inversamente} proporcional às
+resistências: o menor resistor recebe a maior corrente. Pelo divisor de corrente,
+\[
+I_1 = I_t\,\frac{R_2}{R_1+R_2}=12\cdot\frac{12}{16}=\SI{9}{\ampere},
+\qquad
+I_2 = 12-9 = \SI{3}{\ampere}.
+\]
+\textbf{Verificação alternativa:} $\Req = \dfrac{4\cdot12}{16}=\SI{3}{\ohm}$ e
+$U = 3\cdot 12 = \SI{36}{\volt}$; daí $I_1 = 36/4 = \SI{9}{\ampere}$ e
+$I_2 = 36/12 = \SI{3}{\ampere}$. A armadilha da alternativa (a) é aplicar a
+proporção direta, como se fosse divisor de tensão.}
+\end{questao}
+
+\begin{questao}[2]{}
+Três lâmpadas incandescentes de $\SI{60}{\watt}$/$\SI{120}{\volt}$ são ligadas
+\textbf{em paralelo} à rede de $\SI{120}{\volt}$.
+\begin{itensq}
+\item Calcule a resistência de cada lâmpada e a resistência equivalente.
+\item Determine a corrente total fornecida pela rede.
+\item Se uma das lâmpadas queimar, o que acontece com o brilho das outras duas?
+\end{itensq}
+\resposta{(a) \SI{240}{\ohm} cada, $\Req=\SI{80}{\ohm}$;
+(b) \SI{1.5}{\ampere}; (c) nada muda}
+\resolucao{(a) De $P = \dfrac{U^2}{R}$:
+$R = \dfrac{120^2}{60} = \SI{240}{\ohm}$ por lâmpada.
+Três iguais em paralelo: $\Req = \dfrac{240}{3} = \SI{80}{\ohm}$.\\
+(b) $I_t = \dfrac{120}{80} = \SI{1.5}{\ampere}$
+(ou $3\times\SI{0.5}{\ampere}$ por lâmpada).\\
+(c) As demais continuam com os mesmos \SI{120}{\volt} nos seus terminais, logo o
+brilho \emph{não muda}: cada ramo é independente. É por isso que as instalações
+residenciais são feitas em paralelo, e não em série.}
+\end{questao}
+
+\begin{questao}[2]{}
+No trecho da figura, um fio ideal (sem resistência) é ligado em paralelo com o
+resistor $R_2$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{20}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{10}{\ohm}$}] (3,3)
+       to[R,l={$R_2=\SI{20}{\ohm}$}] (6,3) -- (6,0) -- (0,0);
+ \draw[Vcol,line width=1.1pt] (3,3) -- (3,4.2) -- (6,4.2) -- (6,3);
+ \node[Vcol,font=\footnotesize\sffamily,above] at (4.5,4.25) {fio ideal};
+ \fill (3,3) circle (0.06); \fill (6,3) circle (0.06);
+\end{circuitikz}}
+
+A corrente fornecida pela fonte vale:
+\begin{alternativas}[3]
+\item \SI{0.67}{\ampere}
+\item \SI{1}{\ampere}
+\item \SI{1.5}{\ampere}
+\item \SI{2}{\ampere}
+\item \SI{3}{\ampere}
+\end{alternativas}
+\resposta{(d)}
+\resolucao{O fio ideal curto-circuita $R_2$: os dois terminais de $R_2$ ficam no
+\emph{mesmo potencial}, logo $U_{R_2} = 0$ e nenhuma corrente passa por ele.
+Formalmente, $R_2 \parallel 0 = 0$. Resta apenas $R_1$:
+\[
+I=\frac{20}{10}=\SI{2}{\ampere}.
+\]
+\textbf{Erro comum:} calcular $10 + 20 = \SI{30}{\ohm}$ e responder
+\SI{0.67}{\ampere}, ignorando o curto.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um resistor de $\SI{100}{\ohm}$ suporta no máximo $\SI{2}{\watt}$ de dissipação.
+Deseja-se construir, com resistores desse mesmo tipo, uma associação
+\textbf{em paralelo} de $\SI{25}{\ohm}$.
+\begin{itensq}
+\item Quantos resistores são necessários?
+\item Qual a máxima tensão que pode ser aplicada à associação?
+\item Qual a potência máxima que a associação suporta?
+\end{itensq}
+\resposta{(a) 4 resistores; (b) $\approx\SI{14.1}{\volt}$;
+(c) \SI{8}{\watt}}
+\resolucao{(a) $\Req = R/n \Rightarrow n = 100/25 = 4$ resistores.\\
+(b) Todos ficam sob a \emph{mesma} tensão, então basta respeitar o limite de um
+deles:
+\[
+P_{\max}=\frac{U^2}{R}\ \Rightarrow\ U_{\max}=\sqrt{P_{\max}R}=\sqrt{2\cdot100}
+=\sqrt{200}\approx\SI{14.1}{\volt}.
+\]
+(c) Como os 4 resistores trabalham no limite simultaneamente,
+$P_{\text{total}} = 4\cdot 2 = \SI{8}{\watt}$ --- que também pode ser conferido
+por $P = U^2/\Req = 200/25 = \SI{8}{\watt}$.\\
+\textbf{Ideia geral:} associar resistores iguais em paralelo (ou em série)
+multiplica por $n$ a capacidade de dissipação do conjunto.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine a resistência equivalente entre os terminais A e B do circuito da
+figura, no qual dois trechos são interligados por fios ideais.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.85,transform shape,line width=0.8pt]
+ \draw (0,0) node[left,font=\bfseries] {A}
+       to[R,l=$\SI{15}{\ohm}$,o-*] (3,0)
+       to[R,l=$\SI{30}{\ohm}$,-*] (6,0)
+       to[R,l=$\SI{30}{\ohm}$,-o] (9,0)
+       node[right,font=\bfseries] {B};
+ \draw[Vcol,line width=1.1pt] (3,0) -- (3,1.8) -- (6,1.8) -- (6,0);
+ \node[Vcol,font=\footnotesize\sffamily,above] at (4.5,1.85) {fio ideal};
+\end{circuitikz}}
+
+\resposta{$R_{AB} = \SI{45}{\ohm}$}
+\resolucao{O fio ideal liga os dois terminais do resistor de \SI{30}{\ohm}
+central, curto-circuitando-o. Ele deixa de conduzir e some do circuito. Sobram
+apenas os resistores de \SI{15}{\ohm} e \SI{30}{\ohm} em série:
+\[
+R_{AB}=15+30=\SI{45}{\ohm}.
+\]
+\textbf{Método seguro:} antes de calcular, redesenhe o circuito nomeando os nós.
+Dois pontos ligados por fio ideal são \emph{o mesmo nó} --- qualquer componente
+entre eles está curto-circuitado.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+$n$ resistores \emph{diferentes} $R_1, R_2, \dots, R_n$ são associados em
+paralelo.
+\begin{itensq}
+\item Demonstre que a resistência equivalente é sempre \textbf{menor} que a menor
+      das resistências.
+\item Mostre que, se um dos resistores tende a zero, $\Req \to 0$, e interprete
+      fisicamente.
+\item Dois resistores em paralelo dão $\SI{6}{\ohm}$; em série, dariam
+      $\SI{25}{\ohm}$. Determine seus valores.
+\end{itensq}
+\resposta{(a) e (b) demonstrações; (c) $\SI{10}{\ohm}$ e $\SI{15}{\ohm}$}
+\resolucao{\textbf{(a)} Seja $R_{\min}$ a menor das resistências. Da definição,
+\[
+\frac{1}{\Req}=\frac{1}{R_1}+\dots+\frac{1}{R_n}
+> \frac{1}{R_{\min}},
+\]
+pois a soma inclui o termo $\dfrac{1}{R_{\min}}$ \emph{mais} outras parcelas
+positivas. Invertendo a desigualdade (ambos os lados positivos):
+$\Req < R_{\min}$. \checkmark\\
+Interpretação: acrescentar um caminho \emph{sempre} facilita a passagem de
+corrente.
+
+\textbf{(b)} Se $R_k \to 0$, então $\dfrac{1}{R_k}\to\infty$, e a soma das
+condutâncias diverge, levando $\Req \to 0$. Fisicamente, esse ramo é um
+\textbf{curto-circuito}: ele desvia toda a corrente e anula a tensão sobre o
+conjunto, tornando irrelevantes os demais resistores.
+
+\textbf{(c)} Temos o sistema
+\[
+\begin{cases}
+R_1+R_2 = 25\\[2pt]
+\dfrac{R_1R_2}{R_1+R_2}=6 \;\Rightarrow\; R_1R_2 = 6\cdot25 = 150.
+\end{cases}
+\]
+Soma e produto conhecidos: $R_1$ e $R_2$ são as raízes de
+$x^2-25x+150=0$, isto é,
+\[
+x=\frac{25\pm\sqrt{625-600}}{2}=\frac{25\pm5}{2}
+\;\Longrightarrow\;
+R_1=\SI{15}{\ohm},\quad R_2=\SI{10}{\ohm}.
+\]
+\textbf{Verificação:} $15+10=25$ \checkmark\ e
+$\dfrac{15\cdot10}{25}=\SI{6}{\ohm}$ \checkmark\\
+\textbf{Observação:} o problema só tem solução real se
+$(R_s)^2 \ge 4R_sR_p$, ou seja, $R_s \ge 4R_p$. Aqui, $25 \ge 24$ --- passou
+raspando! Se o enunciado pedisse $\Req=\SI{7}{\ohm}$ em paralelo com a mesma soma
+$\SI{25}{\ohm}$, não existiriam resistores reais que satisfizessem.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Circuitos paralelo
+\input{bancos/banco-circuitos-paralelo.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[3.2 Circuitos paralelo]
+
+% =====================================================================
+\subsection{Circuitos mistos}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+A estratégia geral para reduzir um circuito misto é:
+\begin{alternativas}
+\item somar todas as resistências, independentemente da ligação.
+\item resolver primeiro as associações série mais internas, depois os paralelos.
+\item identificar os trechos em série e em paralelo e reduzi-los, dos mais internos
+      para os mais externos, um de cada vez.
+\item aplicar sempre a transformação estrela-triângulo.
+\item calcular a corrente antes de reduzir o circuito.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Reduz-se o circuito por etapas, sempre pelo trecho onde a ligação
+(série ou paralelo) é inequívoca --- em geral o mais interno ---, substituindo-o
+por um resistor equivalente e redesenhando. Repete-se até restar um único
+resistor. A transformação estrela-triângulo (alternativa d) só é necessária
+quando \emph{nenhum} trecho é puramente série ou paralelo, como nas pontes.}
+\end{questao}
+
+\begin{questao}[1]{}
+Para cada circuito, calcule a resistência equivalente vista pela fonte e a
+corrente total.
+
+\circuitoq{%
+\subcirc{a}{%
+\begin{circuitikz}[scale=0.8,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_=$\SI{24}{\volt}$] (0,3)
+       to[R,l=$\SI{6}{\ohm}$] (2.6,3) coordinate(n);
+ \draw (n) to[R,l=$\SI{6}{\ohm}$] (2.6,0) -- (0,0);
+ \draw (n) -- (4.6,3) to[R,l=$\SI{3}{\ohm}$] (4.6,0) -- (2.6,0);
+ \draw[->,Icol,line width=1pt] (0.6,3.4)--(1.5,3.4) node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+\hfill
+\subcirc{b}{%
+\begin{circuitikz}[scale=0.8,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_=$\SI{20}{\volt}$] (0,3) coordinate(t);
+ \draw (t) -- (2,3) to[R,l=$\SI{4}{\ohm}$] (2,0) coordinate(b);
+ \draw (2,3) -- (4,3) to[R,l=$\SI{4}{\ohm}$] (4,0) -- (2,0);
+ \draw (4,3) to[R,l=$\SI{8}{\ohm}$] (6,3) -- (6,0) -- (b) -- (0,0);
+ \draw[->,Icol,line width=1pt] (0.5,3.4)--(1.4,3.4) node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}}
+
+\resposta{(a) \SI{8}{\ohm}, \SI{3}{\ampere}; (b) \SI{10}{\ohm}, \SI{2}{\ampere}}
+\resolucao{\textbf{(a)} Os resistores de \SI{6}{\ohm} e \SI{3}{\ohm} da direita
+estão em paralelo: $6\parallel 3 = \SI{2}{\ohm}$. Esse resultado fica em série com
+o \SI{6}{\ohm} de entrada: $\Req = 6+2 = \SI{8}{\ohm}$;
+$I = 24/8 = \SI{3}{\ampere}$.\\
+\textbf{(b)} Os dois \SI{4}{\ohm} em paralelo dão \SI{2}{\ohm}, em série com o
+\SI{8}{\ohm}: $\Req = 2+8 = \SI{10}{\ohm}$; $I = 20/10 = \SI{2}{\ampere}$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+No circuito da figura, determine a resistência equivalente vista pela fonte, a
+corrente total e a corrente em cada resistor de \SI{20}{\ohm}.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E=\SI{40}{\volt}$}] (0,3)
+       to[R,l=$\SI{10}{\ohm}$] (3,3) coordinate(n);
+ \draw (n) to[R,l=$\SI{20}{\ohm}$] (3,0);
+ \draw (n) -- (5.5,3) to[R,l=$\SI{20}{\ohm}$] (5.5,0) -- (3,0) -- (0,0);
+ \draw[->,Icol,line width=1pt] (0.6,3.4)--(1.6,3.4) node[midway,above,font=\footnotesize]{$I_t$};
+\end{circuitikz}}
+
+\resposta{$\Req=\SI{20}{\ohm}$; $I_t=\SI{2}{\ampere}$; \SI{1}{\ampere} em cada \SI{20}{\ohm}}
+\resolucao{Os dois \SI{20}{\ohm} em paralelo equivalem a $20/2 = \SI{10}{\ohm}$,
+em série com o \SI{10}{\ohm} de entrada:
+$\Req = 10+10 = \SI{20}{\ohm}$; $I_t = 40/20 = \SI{2}{\ampere}$.
+Como os ramos são iguais, a corrente total se divide igualmente:
+\SI{1}{\ampere} em cada resistor de \SI{20}{\ohm}.\\
+\textbf{Confira as tensões:} sobre o \SI{10}{\ohm} caem $10\cdot 2 = \SI{20}{\volt}$;
+sobram \SI{20}{\volt} no bloco paralelo, e $20/20 = \SI{1}{\ampere}$ em cada ramo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Calcule a resistência equivalente entre A e B.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,0) node[left,font=\bfseries]{A} to[short,o-*] (1.2,0) coordinate(a);
+ % bloco 1: R=2 em serie
+ \draw (a) to[R,l=$\SI{2}{\ohm}$] (3.2,0) coordinate(b);
+ % bloco 2: 6 || 3
+ \draw (b) to[R,l=$\SI{6}{\ohm}$] (5.4,0) coordinate(c);
+ \draw (b) ++(0,1.4) coordinate(b2) to[R,l=$\SI{3}{\ohm}$] ($(c)+(0,1.4)$) coordinate(c2);
+ \draw (b) -- (b2);  \draw (c) -- (c2);
+ % bloco 3: 10 || 15
+ \draw (c) to[R,l=$\SI{10}{\ohm}$] (7.6,0) coordinate(d);
+ \draw (c) ++(0,1.4) coordinate(c3) to[R,l=$\SI{15}{\ohm}$] ($(d)+(0,1.4)$) coordinate(d2);
+ \draw (c) -- (c3);  \draw (d) -- (d2);
+ \draw (d) to[short,-o] (8.8,0) node[right,font=\bfseries]{B};
+\end{circuitikz}}
+
+\resposta{$R_{AB} = \SI{10}{\ohm}$}
+\resolucao{Há dois blocos em paralelo, separados por um resistor em série:
+\[
+6\parallel 3=\frac{6\cdot3}{9}=\SI{2}{\ohm},
+\qquad
+10\parallel 15=\frac{10\cdot15}{25}=\SI{6}{\ohm}.
+\]
+Os três trechos estão em série (o \SI{2}{\ohm} de entrada, o primeiro bloco e o
+segundo bloco):
+\[
+R_{AB}=2+2+6=\SI{10}{\ohm}.
+\]}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Determine a resistência equivalente entre A e B da rede em escada da figura.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,2) node[left,font=\bfseries]{A} to[short,o-*] (1,2) coordinate(a);
+ \draw (a) to[R,l=$\SI{12}{\ohm}$] (1,0) coordinate(b);
+ \draw (a) to[R,l=$\SI{4}{\ohm}$] (4,2) coordinate(c);
+ \draw (c) to[R,l=$\SI{6}{\ohm}$] (4,0) coordinate(d);
+ \draw (c) to[R,l=$\SI{3}{\ohm}$] (6.5,2) coordinate(e);
+ \draw (e) -- (6.5,0) -- (d) -- (b);
+ \draw (b) to[short,*-o] (0,0) node[left,font=\bfseries]{B};
+ \draw (e) -- (7,2) node[right]{};
+\end{circuitikz}}
+
+\resposta{$R_{AB} = \SI{4}{\ohm}$}
+\resolucao{Resolve-se do trecho mais distante para o mais próximo da entrada:
+\begin{align*}
+6 \parallel 3 &= \SI{2}{\ohm} && \text{(último ramo)}\\
+4 + 2 &= \SI{6}{\ohm} && \text{(em série com o } \SI{4}{\ohm}\text{)}\\
+12 \parallel 6 &= \SI{4}{\ohm} && \text{(em paralelo com o } \SI{12}{\ohm}\text{ de entrada)}.
+\end{align*}
+Logo $R_{AB} = \SI{4}{\ohm}$. O nome "escada" vem justamente desse padrão de
+reduzir degrau a degrau.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito da figura, um fio ideal curto-circuita parte da rede. Determine a
+resistência equivalente entre A e B.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,1.5) node[left,font=\bfseries]{A} to[short,o-*] (1.5,1.5) coordinate(a);
+ \draw (a) to[R,l=$\SI{10}{\ohm}$] (1.5,3.2) -- (5,3.2) coordinate(top);
+ \draw (a) to[R,l=$\SI{20}{\ohm}$] (5,1.5) coordinate(m);
+ \draw (top) -- (m);
+ \draw[Vcol,line width=1.1pt] (a) -- (1.5,0) -- (5,0) -- (m);
+ \node[Vcol,font=\footnotesize\sffamily,below] at (3.25,0) {fio ideal};
+ \draw (m) to[R,l=$\SI{10}{\ohm}$] (7,1.5) to[short,-o] (7.8,1.5)
+       node[right,font=\bfseries]{B};
+\end{circuitikz}}
+
+\resposta{$R_{AB} = \SI{10}{\ohm}$}
+\resolucao{O fio ideal liga diretamente o nó A ao nó central: eles passam a ser
+\emph{o mesmo nó}. Com isso, os resistores de \SI{10}{\ohm} e \SI{20}{\ohm} do topo
+ficam ambos ligados entre A e o nó central --- que agora coincidem ---, ou seja,
+têm os dois terminais no mesmo ponto e ficam curto-circuitados. Sobra apenas o
+resistor de \SI{10}{\ohm} até B:
+\[
+R_{AB} = \SI{10}{\ohm}.
+\]
+\textbf{Lição:} identificar nós em curto \emph{antes} de somar resistências evita
+contas longas e erradas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Doze resistores iguais de $\SI{6}{\ohm}$ são soldados formando as arestas de um
+\textbf{cubo}. Determine a resistência equivalente entre dois vértices ligados por
+uma \emph{aresta} (A e B na figura).
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt]
+ \def\a{2}
+ % vertices do cubo em perspectiva
+ \coordinate (A) at (0,0);
+ \coordinate (B) at (\a,0);
+ \coordinate (C) at (\a,\a);
+ \coordinate (D) at (0,\a);
+ \coordinate (E) at (0.7,0.6);
+ \coordinate (F) at (\a+0.7,0.6);
+ \coordinate (G) at (\a+0.7,\a+0.6);
+ \coordinate (H) at (0.7,\a+0.6);
+ \draw[Rcol] (A)--(B)--(C)--(D)--cycle;
+ \draw[Rcol] (E)--(F)--(G)--(H)--cycle;
+ \draw[Rcol] (A)--(E); \draw[Rcol] (B)--(F);
+ \draw[Rcol] (C)--(G); \draw[Rcol] (D)--(H);
+ \fill[Vcol] (A) circle (0.09) node[below left,font=\bfseries]{A};
+ \fill[Vcol] (B) circle (0.09) node[below right,font=\bfseries]{B};
+ \node[Rcol,font=\footnotesize] at (\a/2,-0.3){$\SI{6}{\ohm}$ (cada aresta)};
+\end{tikzpicture}}{Cubo de resistores.}
+
+\resposta{$R_{AB} = \SI{5}{\ohm}$}
+\resolucao{Explorando a \emph{simetria} do cubo, injeta-se corrente $I$ em A e
+retira-se em B. Por simetria, a corrente se distribui de forma previsível:
+o resultado clássico para a resistência entre vértices de uma \emph{aresta} é
+\[
+R_{AB} = \frac{7}{12}\,R.
+\]
+Com $R = \SI{6}{\ohm}$: $R_{AB} = \dfrac{7}{12}\cdot6 = \SI{3.5}{\ohm}$.\\
+(Observação: os três casos clássicos do cubo são $\tfrac{7}{12}R$ pela aresta,
+$\tfrac{3}{4}R$ pela diagonal de face e $\tfrac{5}{6}R$ pela diagonal principal.
+Com $R=6$: \SI{3.5}{}, \SI{4.5}{} e \SI{5}{\ohm}, respectivamente.) A técnica-chave
+é usar a simetria para agrupar nós de mesmo potencial antes de calcular.}
+\end{questao}
+
+\begin{questao}[3]{}
+Doze resistores iguais de $\SI{12}{\ohm}$ formam as arestas de um cubo.
+Determine a resistência equivalente entre:
+\begin{itensq}
+\item dois vértices de uma mesma \emph{aresta};
+\item dois vértices opostos de uma mesma \emph{face} (diagonal de face);
+\item dois vértices \emph{diametralmente opostos} (diagonal principal).
+\end{itensq}
+\resposta{(a) \SI{7}{\ohm}; (b) \SI{9}{\ohm}; (c) \SI{10}{\ohm}}
+\resolucao{A chave é explorar a \textbf{simetria} para identificar nós de mesmo
+potencial, que podem ser unidos sem alterar o circuito.
+
+\textbf{(c) Diagonal principal --- o caso mais simétrico.} Injetando corrente $I$
+em A, ela se divide igualmente pelas 3 arestas que saem de A ($I/3$ em cada). Em
+seguida, cada uma se divide em duas ($I/6$ nas 6 arestas intermediárias) e,
+finalmente, recombina-se em 3 arestas ($I/3$) chegando em B. Somando as quedas ao
+longo de um caminho:
+\[
+U = \frac{I}{3}R+\frac{I}{6}R+\frac{I}{3}R
+= IR\left(\frac13+\frac16+\frac13\right)=\frac{5}{6}IR,
+\]
+logo $R_{AB}=\dfrac{5R}{6}=\dfrac{5\cdot12}{6}=\SI{10}{\ohm}$.
+
+\textbf{(b) Diagonal de face:} por raciocínio análogo,
+$R = \dfrac{3R}{4}=\dfrac{3\cdot12}{4}=\SI{9}{\ohm}$.
+
+\textbf{(a) Aresta:} $R = \dfrac{7R}{12}=\dfrac{7\cdot12}{12}=\SI{7}{\ohm}$.
+
+\medskip
+\begin{center}\small\sffamily
+\begin{tabular}{@{}l c c@{}}
+\toprule
+\textbf{Par de vértices} & \textbf{Fórmula} & \textbf{Valor ($R=\SI{12}{\ohm}$)}\\
+\midrule
+Aresta            & $\tfrac{7}{12}R$ & \SI{7}{\ohm}\\
+Diagonal de face  & $\tfrac{3}{4}R$  & \SI{9}{\ohm}\\
+Diagonal principal& $\tfrac{5}{6}R$  & \SI{10}{\ohm}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Note a ordenação:} quanto mais "distantes" os vértices, maior a
+resistência --- mas a diferença é modesta (7 a 10 $\Omega$), porque há sempre
+muitos caminhos paralelos. \emph{A simetria é a ferramenta central: sem ela,
+seria preciso resolver um sistema de 7 equações nodais.}}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito da figura, todos os resistores valem $\SI{6}{\ohm}$, exceto o
+resistor central da ponte, de $\SI{5}{\ohm}$. Determine $R_{AB}$ e justifique por
+que o valor do resistor central é irrelevante.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) node[left,font=\bfseries]{A} coordinate (A);
+ \draw (5,0) node[right,font=\bfseries]{B} coordinate (B);
+ \coordinate (C) at (2.5,1.6); \coordinate (D) at (2.5,-1.6);
+ \draw (A) to[R,l={$\SI{4}{\ohm}$}] (C);
+ \draw (C) to[R,l={$\SI{8}{\ohm}$}] (B);
+ \draw (A) to[R,l_={$\SI{4}{\ohm}$}] (D);
+ \draw (D) to[R,l_={$\SI{8}{\ohm}$}] (B);
+ \draw (C) to[R,l={$\SI{5}{\ohm}$},color=Vcol] (D);
+\end{circuitikz}}
+
+\resposta{$R_{AB}=\SI{6}{\ohm}$; a ponte está equilibrada}
+\resolucao{\textbf{Teste de equilíbrio:} os braços opostos satisfazem
+\[
+\frac{R_{AC}}{R_{CB}}=\frac{4}{8}=\frac12,
+\qquad
+\frac{R_{AD}}{R_{DB}}=\frac{4}{8}=\frac12.
+\]
+As razões são \emph{iguais}, logo a ponte está \textbf{equilibrada}: os nós C e D
+estão no \emph{mesmo potencial}. Sem diferença de potencial, não circula corrente
+pelo resistor central --- ele pode ser \emph{removido} (ou substituído por
+qualquer valor, inclusive um curto ou um circuito aberto) sem alterar nada.
+
+Restam dois ramos em série, associados em paralelo:
+\[
+R_{AB}=(4+8)\parallel(4+8)=\frac{12}{2}=\SI{6}{\ohm}.
+\]
+\textbf{Consequência prática --- a ponte como instrumento:} é exatamente essa
+insensibilidade que torna a ponte de Wheatstone tão precisa. No equilíbrio, o
+detector central indica zero \emph{independentemente} de sua própria resistência
+e da tensão da fonte. A medição depende apenas das \emph{razões} entre
+resistores conhecidos.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dispõe-se de um número ilimitado de resistores de $\SI{10}{\ohm}$. Projete
+associações que resultem em (a) $\SI{15}{\ohm}$; (b) $\SI{25}{\ohm}$;
+(c) $\SI{4}{\ohm}$, usando o \textbf{menor número possível} de resistores em cada
+caso.
+\resposta{(a) 3 resistores; (b) 4 resistores; (c) 4 resistores}
+\resolucao{A estratégia é decompor o valor-alvo em somas de múltiplos
+($nR$: série) e submúltiplos ($R/n$: paralelo) de $R = \SI{10}{\ohm}$.
+
+\medskip
+\textbf{(a) \SI{15}{\ohm} --- 3 resistores.}
+\[
+15 = 10 + 5 = R + \frac{R}{2}.
+\]
+Um resistor em série com dois em paralelo:
+$10 + \dfrac{10\cdot10}{20} = 10+5 = \SI{15}{\ohm}$.
+
+\medskip
+\textbf{(b) \SI{25}{\ohm} --- 4 resistores.}
+\[
+25 = 20 + 5 = 2R + \frac{R}{2}.
+\]
+Dois em série ($\SI{20}{\ohm}$) somados a dois em paralelo ($\SI{5}{\ohm}$).
+
+\medskip
+\textbf{(c) \SI{4}{\ohm} --- 4 resistores.} Aqui a soma direta não funciona; é
+preciso um \emph{paralelo de dois grupos}:
+\[
+\SI{4}{\ohm} = 20 \parallel 5 = \frac{20\cdot5}{25},
+\]
+ou seja, \textbf{dois em série} ($\SI{20}{\ohm}$) em paralelo com \textbf{dois em
+paralelo} ($\SI{5}{\ohm}$). Verificando:
+$\dfrac{20\cdot5}{20+5} = \dfrac{100}{25} = \SI{4}{\ohm}$.
+
+\medskip
+\textbf{Método geral.} Uma busca exaustiva sobre todas as combinações série e
+paralelo confirma que 3, 4 e 4 são de fato os mínimos. O raciocínio de projeto é:
+\begin{enumerate}[leftmargin=1.7em,itemsep=1pt,topsep=2pt]
+\item se o alvo for \emph{maior} que $R$, comece somando (série);
+\item se for \emph{menor} que $R$, comece dividindo (paralelo);
+\item se não fechar, combine \emph{grupos} em paralelo --- como no item (c), onde
+      $4 < 10$ exigiu paralelo de blocos, e não de resistores individuais.
+\end{enumerate}
+Essa habilidade é usada na prática quando um valor comercial não existe e precisa
+ser sintetizado com os valores disponíveis na série E12/E24.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+A figura mostra uma rede em escada \textbf{infinita}, em que todos os resistores
+valem $R$. Determine a resistência equivalente $\Req$ entre os terminais A e B.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,2) node[left,font=\bfseries]{A} to[short,o-] (0.8,2);
+ \draw (0.8,2) to[R,l=$R$] (2.8,2) coordinate(a1);
+ \draw (a1) to[R,l=$R$] (2.8,0) coordinate(b1);
+ \draw (a1) to[R,l=$R$] (4.8,2) coordinate(a2);
+ \draw (a2) to[R,l=$R$] (4.8,0) coordinate(b2);
+ \draw (a2) to[R,l=$R$] (6.8,2) coordinate(a3);
+ \draw (a3) to[R,l=$R$] (6.8,0) coordinate(b3);
+ \draw[dotted,line width=1.2pt] (6.9,2) -- (8.0,2);
+ \draw[dotted,line width=1.2pt] (6.9,0) -- (8.0,0);
+ \node[font=\footnotesize] at (8.4,1) {$\cdots\infty$};
+ \draw (0.8,0) to[short,o-] (0,0) node[left,font=\bfseries]{B};
+ \draw (0.8,2)--(0.8,2); \draw (0.8,0)--(2.8,0);
+ \draw (2.8,0)--(4.8,0); \draw (4.8,0)--(6.8,0);
+\end{circuitikz}}
+
+\resposta{$\Req = \dfrac{R(1+\sqrt5)}{2} \approx 1{,}618\,R$}
+\resolucao{\textbf{Passo 1 --- explorar a autossimilaridade.} Se a rede é
+infinita, retirar a primeira célula (um $R$ em série e um $R$ em paralelo) deixa
+\emph{exatamente a mesma rede}. Logo, o bloco à direita do primeiro par também
+vale $\Req$:
+\[
+\Req = R + \big(R \parallel \Req\big) = R + \frac{R\,\Req}{R+\Req}.
+\]
+\textbf{Passo 2 --- resolver a equação.} Multiplicando por $(R+\Req)$:
+\[
+\Req(R+\Req) = R(R+\Req) + R\,\Req
+\;\Rightarrow\;
+\Req^{\,2} - R\,\Req - R^{2} = 0.
+\]
+\textbf{Passo 3 --- raiz positiva.} Pela fórmula quadrática,
+\[
+\Req = \frac{R \pm \sqrt{R^2+4R^2}}{2} = \frac{R(1\pm\sqrt5)}{2}.
+\]
+Descarta-se a raiz negativa (resistência é positiva):
+\[
+\boxed{\ \Req = \frac{R(1+\sqrt5)}{2} \approx 1{,}618\,R\ }
+\]
+\textbf{Observação notável:} o fator $\dfrac{1+\sqrt5}{2}$ é a \textbf{razão
+áurea} $\varphi$ --- a mesma constante da sequência de Fibonacci e da geometria
+clássica. Ela aparece aqui porque a recorrência do circuito tem a mesma forma
+algébrica $x = 1 + 1/x$.}
+\end{questao}
+
+\begin{questao}[4]{}
+Quantas seções da escada da questão anterior são necessárias para que a
+resistência de entrada difira do valor infinito em menos de
+$\SI{0.1}{\percent}$? Considere $R = \SI{1}{\ohm}$ e use a recorrência
+$\Req^{(n)} = R + \big(R \parallel \Req^{(n-1)}\big)$, com
+$\Req^{(1)} = R$.
+
+\begin{table}[H]
+\centering\small\sffamily
+\begin{tabular}{@{}c c c@{}}
+\toprule
+\textbf{$n$ (seções)} & \textbf{$\Req$ ($\Omega$)} & \textbf{erro relativo}\\
+\midrule
+1  & 1,000000 & \SI{38}{\percent}\\
+2  & 1,500000 & \SI{7.3}{\percent}\\
+3  & 1,600000 & \SI{1.1}{\percent}\\
+5  & 1,617647 & \SI{0.024}{\percent}\\
+10 & 1,618034 & $<\SI{0.001}{\percent}$\\
+\bottomrule
+\end{tabular}
+\caption{Convergência da escada finita para o valor infinito.}
+\end{table}
+
+\resposta{$n = 5$ seções já bastam}
+\resolucao{Aplicando a recorrência iterativamente com $R=\SI{1}{\ohm}$:
+\[
+\Req^{(1)}=1,\quad
+\Req^{(2)}=1+\frac{1\cdot1}{2}=1{,}5,\quad
+\Req^{(3)}=1+\frac{1{,}5}{2{,}5}=1{,}6,\ \dots
+\]
+Comparando com o limite $\varphi \approx 1{,}618034$, o erro cai
+\emph{geometricamente}: já em $n=5$ o desvio é de \SI{0.024}{\percent}, abaixo do
+critério de \SI{0.1}{\percent}.\\
+\textbf{Lição de engenharia:} redes "infinitas" são uma \emph{idealização útil}.
+Na prática, meia dúzia de seções já reproduz o comportamento assintótico dentro
+da tolerância dos componentes reais (resistores comerciais têm
+\SI{1}{\percent} a \SI{5}{\percent} de tolerância). É por isso que atenuadores e
+conversores R-2R usam poucos estágios.}
+\end{questao}
+
+\begin{questao}[4]{}
+Considere agora uma escada infinita em que os resistores \emph{em série} valem $R$
+e os \emph{em paralelo} valem $2R$ --- a chamada rede \textbf{R-2R}, usada em
+conversores digital-analógico (DAC).
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.9,transform shape,line width=0.8pt]
+ \draw (0,2) node[left,font=\bfseries]{A} to[short,o-] (0.8,2);
+ \draw (0.8,2) to[R,l=$R$] (2.8,2) coordinate(a1);
+ \draw (a1) to[R,l=$2R$,color=Rcol] (2.8,0);
+ \draw (a1) to[R,l=$R$] (4.8,2) coordinate(a2);
+ \draw (a2) to[R,l=$2R$,color=Rcol] (4.8,0);
+ \draw (a2) to[R,l=$R$] (6.8,2) coordinate(a3);
+ \draw (a3) to[R,l=$2R$,color=Rcol] (6.8,0);
+ \draw[dotted,line width=1.2pt] (6.9,2) -- (8.0,2);
+ \draw[dotted,line width=1.2pt] (6.9,0) -- (8.0,0);
+ \node[font=\footnotesize] at (8.4,1) {$\cdots\infty$};
+ \draw (0.8,0) to[short,o-] (0,0) node[left,font=\bfseries]{B};
+ \draw (0.8,0)--(6.8,0);
+\end{circuitikz}}
+
+\begin{itensq}
+\item Determine $\Req$ entre A e B.
+\item Explique por que esse resultado torna a rede R-2R especialmente útil.
+\end{itensq}
+\resposta{(a) $\Req = 2R$ (exato); (b) ver comentário}
+\resolucao{(a) Pela autossimilaridade,
+\[
+\Req = R + \big(2R \parallel \Req\big) = R + \frac{2R\,\Req}{2R+\Req}.
+\]
+Multiplicando por $(2R+\Req)$:
+\[
+\Req(2R+\Req) = R(2R+\Req) + 2R\,\Req
+\;\Rightarrow\;
+\Req^{\,2} - R\,\Req - 2R^{2}=0.
+\]
+Fatorando: $(\Req - 2R)(\Req + R) = 0$, cuja raiz positiva é
+\[
+\boxed{\ \Req = 2R\ }
+\]
+--- um valor \textbf{exato e inteiro}, sem irracionais.\\
+(b) Essa é a propriedade notável da rede R-2R: a impedância vista de qualquer
+ponto da escada é sempre $2R$, o que a torna \emph{perfeitamente casada} em todos
+os estágios. Consequência: a corrente se divide exatamente ao meio a cada nó,
+gerando os pesos binários $\tfrac12, \tfrac14, \tfrac18,\dots$ --- exatamente o
+que um \textbf{conversor D/A} precisa. Além disso, o circuito usa apenas dois
+valores de resistor, o que é decisivo para a precisão em circuitos integrados
+(é muito mais fácil casar razões de resistores iguais do que valores absolutos).}
+\end{questao}
+
+\begin{questao}[4]{}
+Generalize: para uma escada infinita com resistores $R_s$ em série e $R_p$ em
+paralelo, obtenha a expressão de $\Req$ e determine a condição sobre
+$R_p$ para que $\Req$ seja um múltiplo \emph{racional} de $R_s$.
+\resposta{$\Req = \dfrac{R_s + \sqrt{R_s^2+4R_sR_p}}{2}$; racional se
+$R_s^2+4R_sR_p$ for quadrado perfeito}
+\resolucao{Da recorrência $\Req = R_s + \dfrac{R_p\Req}{R_p+\Req}$, multiplicando
+e reorganizando:
+\[
+\Req^{\,2} - R_s\,\Req - R_s R_p = 0
+\quad\Rightarrow\quad
+\Req = \frac{R_s + \sqrt{R_s^{2}+4R_sR_p}}{2}.
+\]
+O resultado é racional quando o discriminante $\Delta = R_s^2+4R_sR_p$ é um
+\emph{quadrado perfeito}. Casos particulares:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item $R_p = R_s$: $\Delta = 5R_s^2 \Rightarrow \Req = \varphi R_s$ (irracional);
+\item $R_p = 2R_s$: $\Delta = 9R_s^2 \Rightarrow \Req = 2R_s$ (racional);
+\item $R_p = 6R_s$: $\Delta = 25R_s^2 \Rightarrow \Req = 3R_s$ (racional).
+\end{itemize}
+De modo geral, $R_p = \dfrac{k(k-1)}{1}\,R_s$ com $k$ inteiro fornece
+$\Req = k\,R_s$. Verifique para $k=2$: $R_p = 2R_s \Rightarrow \Req = 2R_s$.
+\textbf{Este é o tipo de raciocínio que separa o técnico do projetista}: em vez de
+calcular um caso, obtém-se a \emph{família} de soluções e escolhe-se a que atende
+ao requisito.}
+\end{questao}
+
+\begin{questao}[4]{}
+A figura mostra uma rede \textbf{infinita} em que cada estágio $n$ é formado por
+$(n+1)$ resistores \emph{em paralelo}, ligados entre dois barramentos
+consecutivos. Os valores seguem o padrão do \textbf{triângulo de Pascal}: no
+estágio $n$, os resistores valem $\dfrac{1}{\binom{n}{k}}\,\si{\ohm}$, com
+$k = 0,1,\dots,n$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.82,transform shape,line width=0.75pt,font=\footnotesize]
+ % barramentos verticais
+ \foreach \x/\h in {0/0.6, 2.4/1.2, 4.8/1.8, 7.2/2.4}
+   \draw[cinza] (\x,-\h) -- (\x,\h);
+ \draw[cinza] (9.6,-3.0) -- (9.6,3.0);
+ \node[left,font=\bfseries\normalsize] at (-0.35,0) {A};
+ \draw (-0.35,0)--(0,0);
+ % estagio 1: 2 resistores (1,1)
+ \foreach \y in {-0.55,0.55}
+   \draw (0,\y) to[R,l={$1$}] (2.4,\y);
+ % estagio 2: 3 resistores (1, 1/2, 1)
+ \foreach \y/\lab in {-1.1/{$1$}, 0/{$\frac12$}, 1.1/{$1$}}
+   \draw (2.4,\y) to[R,l={\lab}] (4.8,\y);
+ % estagio 3: 4 resistores (1, 1/3, 1/3, 1)
+ \foreach \y/\lab in {-1.65/{$1$}, -0.55/{$\frac13$}, 0.55/{$\frac13$}, 1.65/{$1$}}
+   \draw (4.8,\y) to[R,l={\lab}] (7.2,\y);
+ % estagio 4: 5 resistores (1, 1/4, 1/6, 1/4, 1)
+ \foreach \y/\lab in {-2.2/{$1$}, -1.1/{$\frac14$}, 0/{$\frac16$}, 1.1/{$\frac14$}, 2.2/{$1$}}
+   \draw (7.2,\y) to[R,l={\lab}] (9.6,\y);
+ % reticencias
+ \foreach \y in {-2.6,-1.3,0,1.3,2.6}
+   \draw[dotted,line width=1pt] (9.7,\y) -- (10.9,\y);
+ \node[font=\normalsize] at (11.4,0) {$\infty$};
+ \node[cinza,font=\scriptsize] at (1.2,-1.7) {estágio 1};
+ \node[cinza,font=\scriptsize] at (3.6,-2.2) {2};
+ \node[cinza,font=\scriptsize] at (6.0,-2.6) {3};
+ \node[cinza,font=\scriptsize] at (8.4,-3.0) {4};
+\end{circuitikz}}
+
+Determine a resistência equivalente $R_{A\infty}$ vista do terminal A.
+\resposta{$R_{A\infty} = \SI{1}{\ohm}$ (exatamente)}
+\resolucao{\textbf{Passo 1 --- reconhecer a estrutura.} Cada estágio é um
+conjunto de resistores \emph{em paralelo} entre dois barramentos. Estágios
+consecutivos ficam \emph{em série}. Logo:
+\[
+R_{A\infty}=\sum_{n=1}^{\infty} R_n,
+\qquad\text{onde } R_n \text{ é o paralelo do estágio } n.
+\]
+
+\textbf{Passo 2 --- calcular cada estágio pela condutância.} Em paralelo, somam-se
+as \emph{condutâncias}. Como o resistor $k$ do estágio $n$ vale
+$\dfrac{1}{\binom{n}{k}}$, sua condutância é exatamente $\binom{n}{k}$:
+\[
+G_n=\sum_{k=0}^{n}\binom{n}{k}.
+\]
+
+\textbf{Passo 3 --- a identidade decisiva.} A soma de uma linha inteira do
+triângulo de Pascal é uma potência de dois:
+\[
+\sum_{k=0}^{n}\binom{n}{k}=2^{\,n}
+\]
+(consequência do binômio de Newton com $x=y=1$: $(1+1)^n = 2^n$). Portanto
+\[
+G_n = 2^{\,n}
+\qquad\Longrightarrow\qquad
+R_n=\frac{1}{2^{\,n}}\ \si{\ohm}.
+\]
+Conferindo os primeiros estágios:
+\begin{center}\small\sffamily
+\begin{tabular}{@{}c l c c@{}}
+\toprule
+$n$ & \textbf{Condutâncias} & $G_n$ & $R_n$ ($\Omega$)\\
+\midrule
+1 & $1,1$              & $2$  & $1/2$\\
+2 & $1,2,1$            & $4$  & $1/4$\\
+3 & $1,3,3,1$          & $8$  & $1/8$\\
+4 & $1,4,6,4,1$        & $16$ & $1/16$\\
+5 & $1,5,10,10,5,1$    & $32$ & $1/32$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Passo 4 --- somar a série.} Os estágios estão em série, então basta somar:
+\[
+R_{A\infty}=\sum_{n=1}^{\infty}\frac{1}{2^{\,n}}
+=\frac12+\frac14+\frac18+\frac{1}{16}+\cdots
+\]
+É uma \textbf{série geométrica} de razão $q=\tfrac12$ e primeiro termo
+$a_1=\tfrac12$:
+\[
+R_{A\infty}=\frac{a_1}{1-q}=\frac{1/2}{1-1/2}=1.
+\]
+\[
+\boxed{\;R_{A\infty}=\SI{1}{\ohm}\;}
+\]
+
+\textbf{Convergência.} Somando apenas os primeiros estágios:
+\[
+0{,}5 \to 0{,}75 \to 0{,}875 \to 0{,}9375 \to 0{,}96875 \to \cdots \to 1.
+\]
+Com 8 estágios já se atinge $\SI{99.6}{\percent}$ do valor final --- o erro cai
+pela metade a cada estágio acrescentado.
+
+\medskip
+\textbf{Por que esta questão é notável.} Ela reúne, em um único problema:
+\begin{itemize}[leftmargin=1.7em,itemsep=1pt,topsep=2pt]
+\item associação \emph{paralelo} (soma de condutâncias) e \emph{série}
+      (soma de resistências), nas duas direções do circuito;
+\item uma identidade combinatória (soma da linha do triângulo de Pascal $=2^n$);
+\item a convergência de uma série geométrica infinita.
+\end{itemize}
+Um circuito de complexidade infinita colapsa em uma resposta \textbf{exata e
+unitária} --- resultado que só se enxerga reconhecendo o padrão, jamais
+calculando estágio a estágio.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Circuitos mistos
+\input{bancos/banco-circuitos-mistos.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[3.3 Circuitos mistos]
+
+% =====================================================================
+\subsection{Transformação estrela-triângulo}
+% =====================================================================
+
+\begin{conceito}[Quando usar]
+Use a transformação $\Delta\leftrightarrow Y$ quando o circuito \textbf{não}
+puder ser reduzido apenas por série e paralelo --- o caso típico é a
+\emph{ponte de Wheatstone} desequilibrada. Converta um dos triângulos (ou uma das
+estrelas) para "abrir" o circuito e revelar novas associações série/paralelo.
+\end{conceito}
+
+\legendaniveis
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Considere uma configuração \textbf{estrela} com $R_1=\SI{3}{\ohm}$,
+$R_2=\SI{6}{\ohm}$ e $R_3=\SI{9}{\ohm}$. Determine os resistores da configuração
+\textbf{triângulo} equivalente.
+\resposta{$R_{AB}=\SI{11}{\ohm}$, $R_{BC}=\SI{33}{\ohm}$, $R_{CA}=\SI{16.5}{\ohm}$}
+\resolucao{Com $P = R_1R_2+R_2R_3+R_3R_1 = 18+54+27 = \SI{99}{\ohm\squared}$, cada
+resistor do triângulo é $P$ dividido pelo resistor \emph{oposto} da estrela:
+\[
+R_{AB}=\frac{P}{R_3}=\frac{99}{9}=\SI{11}{\ohm},\quad
+R_{BC}=\frac{P}{R_1}=\frac{99}{3}=\SI{33}{\ohm},\quad
+R_{CA}=\frac{P}{R_2}=\frac{99}{6}=\SI{16.5}{\ohm}.
+\]}
+\end{questao}
+
+\begin{questao}[1]{}
+Um circuito \textbf{triângulo} possui $R_{AB}=\SI{10}{\ohm}$,
+$R_{BC}=\SI{5}{\ohm}$ e $R_{CA}=\SI{15}{\ohm}$. Calcule os resistores da
+\textbf{estrela} equivalente.
+\resposta{$R_A=\SI{5}{\ohm}$, $R_B=\SI{1.67}{\ohm}$, $R_C=\SI{2.5}{\ohm}$}
+\resolucao{Com $S = R_{AB}+R_{BC}+R_{CA} = 10+5+15 = \SI{30}{\ohm}$, cada resistor
+da estrela é o produto dos dois lados \emph{adjacentes} ao seu vértice, dividido
+por $S$:
+\[
+R_A=\frac{R_{AB}R_{CA}}{S}=\frac{10\cdot15}{30}=\SI{5}{\ohm},\quad
+R_B=\frac{R_{AB}R_{BC}}{S}=\frac{10\cdot5}{30}\approx\SI{1.67}{\ohm},\quad
+R_C=\frac{R_{BC}R_{CA}}{S}=\frac{5\cdot15}{30}=\SI{2.5}{\ohm}.
+\]}
+\end{questao}
+
+\begin{questao}[1]{}
+Explique, com suas palavras, por que a transformação estrela-triângulo é útil e
+cite um exemplo prático de circuito em que ela é necessária.
+\resposta{Resposta dissertativa --- ver comentário}
+\resolucao{Ela permite substituir um agrupamento de três resistores em triângulo
+por três em estrela (ou vice-versa) \emph{sem alterar} o comportamento elétrico
+visto pelos três terminais externos. Isso "desmancha" configurações que não são
+nem série nem paralelo, revelando novas associações simples. O exemplo clássico é
+a \textbf{ponte de Wheatstone desequilibrada}: convertendo um dos triângulos em
+estrela, os ramos passam a ficar em série/paralelo e o circuito se resolve sem
+precisar montar um sistema de equações. Outra aplicação é a análise de redes
+trifásicas, onde cargas ligadas em $\Delta$ e em $Y$ são convertidas entre si.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+No triângulo da figura, com $R_{AB}=\SI{9}{\ohm}$ (lado direto entre A e B),
+$R_{AC}=\SI{6}{\ohm}$ e $R_{CB}=\SI{3}{\ohm}$, determine a resistência
+equivalente entre A e B.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) node[below left,font=\bfseries]{A} coordinate(A)
+       to[R,l=$\SI{6}{\ohm}$] (2,2.4) node[above,font=\bfseries]{C} coordinate(C)
+       to[R,l=$\SI{3}{\ohm}$] (4,0) node[below right,font=\bfseries]{B} coordinate(B);
+ \draw (A) to[R,l_=$\SI{9}{\ohm}$] (B);
+\end{circuitikz}}
+
+\resposta{$R_{AB} = \SI{4.5}{\ohm}$}
+\resolucao{O caminho superior A--C--B está em \emph{série}:
+$6+3 = \SI{9}{\ohm}$. Esse ramo está em \emph{paralelo} com o lado direto
+$R_{AB} = \SI{9}{\ohm}$:
+\[
+R_{AB}=9\parallel 9=\frac{9}{2}=\SI{4.5}{\ohm}.
+\]
+Aqui a redução série/paralelo bastou. Guarde a transformação $\Delta$-$Y$ para
+quando há um resistor \emph{atravessando} o triângulo (a ponte), como nas
+questões seguintes.}
+\end{questao}
+
+\begin{questao}[2]{}
+Três resistores iguais de $\SI{2}{\ohm}$ estão ligados em \textbf{estrela}.
+Convertendo-os em \textbf{triângulo} e aplicando uma fonte de $\SI{12}{\volt}$
+entre dois dos terminais (A e B), determine a corrente total fornecida pela fonte.
+\resposta{$I = \SI{3}{\ampere}$}
+\resolucao{A estrela de três resistores iguais $R$ vira um triângulo de
+resistores $3R = \SI{6}{\ohm}$ cada. Entre A e B temos o lado direto de
+\SI{6}{\ohm} em paralelo com o caminho A--C--B ($6+6 = \SI{12}{\ohm}$):
+\[
+R_{AB}=6\parallel 12=\frac{6\cdot12}{18}=\SI{4}{\ohm}
+\quad\Rightarrow\quad
+I=\frac{12}{4}=\SI{3}{\ampere}.
+\]
+\textbf{Confira:} entre A e B, a estrela original também dá o mesmo resultado ---
+$R_A + (R_B \parallel$ com o caminho por C$)$ ---, como esperado, já que as duas
+representações são equivalentes vistas dos terminais.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um triângulo entre A, B e C tem $R_{AB}=\SI{12}{\ohm}$, $R_{BC}=\SI{6}{\ohm}$ e
+$R_{CA}=\SI{6}{\ohm}$.
+\begin{itensq}
+\item Converta para estrela.
+\item Calcule a resistência equivalente entre A e B após a conversão.
+\end{itensq}
+\resposta{(a) $R_A=\SI{3}{\ohm}$, $R_B=\SI{3}{\ohm}$, $R_C=\SI{1.5}{\ohm}$;
+(b) $R_{AB}=\SI{6}{\ohm}$}
+\resolucao{(a) $S = 12+6+6 = \SI{24}{\ohm}$:
+\[
+R_A=\frac{R_{AB}R_{CA}}{S}=\frac{12\cdot6}{24}=\SI{3}{\ohm},\quad
+R_B=\frac{R_{AB}R_{BC}}{S}=\frac{12\cdot6}{24}=\SI{3}{\ohm},\quad
+R_C=\frac{R_{BC}R_{CA}}{S}=\frac{6\cdot6}{24}=\SI{1.5}{\ohm}.
+\]
+(b) Na estrela, entre A e B a corrente percorre $R_A$ e $R_B$ em série (o braço
+$R_C$ fica em aberto, pois C não é terminal):
+$R_{AB} = R_A + R_B = 3+3 = \SI{6}{\ohm}$.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+A figura mostra uma \textbf{ponte de Wheatstone}. Verifique se ela está
+equilibrada e, caso esteja, determine a resistência equivalente entre A e B.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) node[left,font=\bfseries]{A} coordinate(A);
+ \draw (5,0) node[right,font=\bfseries]{B} coordinate(B);
+ \coordinate (C) at (2.5,1.7);
+ \coordinate (D) at (2.5,-1.7);
+ \draw (A) to[R,l=$\SI{10}{\ohm}$] (C);
+ \draw (C) to[R,l=$\SI{20}{\ohm}$] (B);
+ \draw (A) to[R,l_=$\SI{15}{\ohm}$] (D);
+ \draw (D) to[R,l_=$\SI{30}{\ohm}$] (B);
+ \draw (C) to[R,l=$\SI{8}{\ohm}$] (D);
+ \node[font=\footnotesize] at (3.1,-0.27) {galv.};
+\end{circuitikz}}
+
+\resposta{Equilibrada; $R_{AB} = \SI{18}{\ohm}$}
+\resolucao{A ponte está \textbf{equilibrada} quando os produtos dos braços opostos
+são iguais:
+\[
+\frac{R_{AC}}{R_{CB}}=\frac{10}{20}=\frac12,
+\qquad
+\frac{R_{AD}}{R_{DB}}=\frac{15}{30}=\frac12.
+\]
+As razões são iguais, logo C e D estão no \emph{mesmo potencial}: o resistor
+central de \SI{8}{\ohm} não conduz e pode ser removido. Restam dois ramos em série,
+associados em paralelo:
+\[
+R_{AB}=(10+20)\parallel(15+30)=30\parallel45=\frac{30\cdot45}{75}=\SI{18}{\ohm}.
+\]}
+\end{questao}
+
+\begin{questao}[3]{}
+Na ponte da figura, $R_{AC}=\SI{6}{\ohm}$, $R_{CB}=\SI{18}{\ohm}$,
+$R_{AD}=\SI{18}{\ohm}$, $R_{DB}=\SI{6}{\ohm}$ e o resistor central (ponte) vale
+$R_{CD}=\SI{6}{\ohm}$. Determine a resistência equivalente entre A e B.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) node[left,font=\bfseries]{A} coordinate(A);
+ \draw (5,0) node[right,font=\bfseries]{B} coordinate(B);
+ \coordinate (C) at (2.5,1.7);
+ \coordinate (D) at (2.5,-1.7);
+ \draw (A) to[R,l=$\SI{6}{\ohm}$] (C);
+ \draw (C) to[R,l=$\SI{18}{\ohm}$] (B);
+ \draw (A) to[R,l_=$\SI{18}{\ohm}$] (D);
+ \draw (D) to[R,l_=$\SI{6}{\ohm}$] (B);
+ \draw (C) to[R,l=$\SI{6}{\ohm}$] (D);
+\end{circuitikz}}
+
+\resposta{$R_{AB} = \SI{10}{\ohm}$}
+\resolucao{Como $\dfrac{6}{18}\neq\dfrac{18}{6}$, a ponte está
+\textbf{desequilibrada} e o resistor central conduz: não dá para reduzir só por
+série/paralelo. Convertemos o triângulo superior A--C--D
+($R_{AC}=6$, $R_{CD}=6$, $R_{AD}=18$) em estrela, com $S = 6+6+18 = \SI{30}{\ohm}$:
+\[
+R_{A}=\frac{6\cdot18}{30}=\SI{3.6}{\ohm},\quad
+R_{C}=\frac{6\cdot6}{30}=\SI{1.2}{\ohm},\quad
+R_{D}=\frac{6\cdot18}{30}=\SI{3.6}{\ohm}.
+\]
+Chamando de N o centro da estrela, os caminhos até B ficam:
+$N$--$C$--$B = 1{,}2+18 = \SI{19.2}{\ohm}$ e
+$N$--$D$--$B = 3{,}6+6 = \SI{9.6}{\ohm}$, em paralelo:
+\[
+19{,}2\parallel 9{,}6 = \frac{19{,}2\cdot9{,}6}{28{,}8}=\SI{6.4}{\ohm}.
+\]
+Somando o braço $R_A$ que liga A ao centro:
+\[
+R_{AB}=3{,}6+6{,}4=\SI{10}{\ohm}.
+\]}
+\end{questao}
+
+\begin{questao}[3]{}
+Três resistores formam um triângulo entre os nós X, Y e Z, com
+$R_{XY}=\SI{9}{\ohm}$, $R_{YZ}=\SI{12}{\ohm}$ e $R_{ZX}=\SI{15}{\ohm}$. Além
+disso, cada nó é ligado ao terra por um resistor de $\SI{6}{\ohm}$. Descreva o
+procedimento para obter a resistência entre o nó X e o terra e monte a expressão
+final (sem exigir o valor numérico fechado).
+\resposta{Ver roteiro comentado}
+\resolucao{\textbf{Passo 1.} Converta o triângulo XYZ em estrela, com centro N e
+$S = 9+12+15 = \SI{36}{\ohm}$:
+\[
+R_X=\frac{R_{XY}R_{ZX}}{S}=\frac{9\cdot15}{36}=\SI{3.75}{\ohm},\quad
+R_Y=\frac{R_{XY}R_{YZ}}{S}=\frac{9\cdot12}{36}=\SI{3}{\ohm},\quad
+R_Z=\frac{R_{YZ}R_{ZX}}{S}=\frac{12\cdot15}{36}=\SI{5}{\ohm}.
+\]
+\textbf{Passo 2.} Agora cada terminal externo Y e Z leva ao terra por
+$R_Y+6$ e $R_Z+6$, ambos em paralelo (pois se encontram no terra):
+$(3+6)\parallel(5+6) = 9\parallel 11$. \textbf{Passo 3.} Esse resultado fica em
+série com $R_X$, e todo o conjunto em paralelo com o resistor de \SI{6}{\ohm} que
+liga X diretamente ao terra:
+\[
+R_{X\to\text{terra}}
+=\Big[\,R_X+\big(9\parallel11\big)\Big]\ \big\|\ 6
+=\Big[\,3{,}75+\tfrac{99}{20}\Big]\ \big\|\ 6 .
+\]
+O que se pretende com esta questão é o \emph{método}: transformar o triângulo em
+estrela desmonta o emaranhado e transforma tudo em série/paralelo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma ponte de Wheatstone é usada para medir uma resistência desconhecida $R_x$.
+Os braços conhecidos são $R_1 = \SI{100}{\ohm}$, $R_2 = \SI{200}{\ohm}$ e
+$R_3$ é uma década ajustável. O equilíbrio é obtido com
+$R_3 = \SI{347}{\ohm}$.
+\begin{itensq}
+\item Determine $R_x$.
+\item Se $R_1$ e $R_2$ têm tolerância de $\SI{0.1}{\percent}$ cada e $R_3$ de
+      $\SI{0.05}{\percent}$, estime a incerteza relativa de $R_x$.
+\item Por que a ponte é mais precisa que medir $R_x$ com um ohmímetro comum?
+\end{itensq}
+\resposta{(a) $R_x = \SI{694}{\ohm}$; (b) $\approx\SI{0.25}{\percent}$;
+(c) ver comentário}
+\resolucao{(a) No equilíbrio, os produtos cruzados se igualam:
+\[
+\frac{R_1}{R_2}=\frac{R_3}{R_x}
+\;\Rightarrow\;
+R_x = R_3\,\frac{R_2}{R_1} = 347\cdot\frac{200}{100} = \SI{694}{\ohm}.
+\]
+(b) Para um produto/quociente, as incertezas \emph{relativas} se somam (no pior
+caso):
+\[
+\frac{\delta R_x}{R_x} = \frac{\delta R_3}{R_3}+\frac{\delta R_2}{R_2}
++\frac{\delta R_1}{R_1} = 0{,}05\% + 0{,}1\% + 0{,}1\% = \SI{0.25}{\percent},
+\]
+ou seja, $R_x = \SI{694}{\ohm} \pm \SI{1.7}{\ohm}$.
+(Somando em quadratura, para erros independentes, obtém-se
+$\sqrt{0{,}05^2+0{,}1^2+0{,}1^2}\approx\SI{0.15}{\percent}$ --- estimativa mais
+realista.)\\
+(c) Porque a ponte é um método de \textbf{zero} (ou de detecção nula): no
+equilíbrio, o galvanômetro indica \emph{zero}, e a medida não depende da precisão
+do próprio galvanômetro nem da tensão da fonte --- depende apenas das
+\emph{razões} entre resistores conhecidos. Um ohmímetro comum, ao contrário,
+depende da estabilidade da sua fonte interna e da calibração do seu indicador.
+\textbf{Este é um princípio geral da metrologia:} comparar contra um padrão é
+sempre mais preciso do que medir em escala absoluta.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Transformação estrela-triângulo
+\input{bancos/banco-transformacao-estrela-triangulo.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[3.4 Transformação estrela-triângulo]

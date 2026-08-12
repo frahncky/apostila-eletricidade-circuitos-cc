@@ -1,0 +1,921 @@
+% =====================================================================
+%  CAPITULO 1 - ELETROSTATICA
+%  Subsecao 1.1 - Cargas eletricas  (versao revisada)
+% =====================================================================
+\section{Eletrostática}
+
+\begin{conceito}[Antes de começar]
+\textbf{Quantização da carga:} $Q = n\,e$, com $e = \SI{1.6e-19}{\coulomb}$.\par
+\textbf{Conservação da carga:} em um sistema isolado, a soma algébrica das cargas é constante.\par
+\textbf{Contato entre esferas idênticas:} a carga total se divide igualmente,
+$Q'_1 = Q'_2 = \dfrac{Q_1+Q_2}{2}$. Para esferas de raios diferentes, a divisão é
+proporcional ao raio: $\dfrac{Q'_1}{R_1} = \dfrac{Q'_2}{R_2}$.\par
+\textbf{Indução:} a aproximação de um corpo eletrizado separa cargas no condutor
+neutro, que continua com carga total nula até ser aterrado.
+\end{conceito}
+
+\legendaniveis
+
+\subsection{Cargas elétricas}
+
+% ---------------------------------------------------------------
+% NIVEL 1 - FIXACAO
+% ---------------------------------------------------------------
+
+\blocofixacao
+
+\begin{questao}[1]{}
+O princípio da conservação da carga elétrica estabelece que:
+\begin{alternativas}
+\item as cargas elétricas de mesmo sinal se repelem.
+\item cargas elétricas de sinais opostos se atraem.
+\item a soma algébrica das cargas elétricas é constante em um sistema eletricamente isolado.
+\item a soma das cargas positivas e negativas é diferente de zero em um sistema neutro.
+\item os elétrons livres se atraem.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{A conservação da carga afirma que, em um sistema isolado, cargas podem
+ser transferidas de um corpo para outro, mas a soma algébrica permanece a mesma.
+As alternativas (a) e (b) descrevem a \emph{lei de atração e repulsão}, e não a
+conservação; (d) e (e) são falsas.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois corpos de materiais diferentes, inicialmente neutros, são atritados entre si,
+de forma isolada do meio. É correto afirmar que:
+\begin{alternativas}
+\item um fica eletrizado positivamente e o outro, negativamente.
+\item um fica eletrizado negativamente e o outro permanece neutro.
+\item um fica eletrizado positivamente e o outro permanece neutro.
+\item ambos ficam eletrizados negativamente.
+\item ambos ficam eletrizados positivamente.
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Na eletrização por atrito há apenas \emph{transferência} de elétrons de
+um corpo para o outro. Pela conservação da carga, o que um perde o outro ganha:
+as cargas finais têm o mesmo módulo e sinais opostos.}
+\end{questao}
+
+\begin{questao}[1]{}
+Atrita-se um bastão de vidro com um pano de lã, ambos inicialmente neutros.
+Pode-se afirmar que:
+\begin{alternativas}
+\item só a lã fica eletrizada.
+\item só o bastão fica eletrizado.
+\item o bastão e a lã se eletrizam com cargas de mesmo sinal.
+\item o bastão e a lã se eletrizam com cargas de mesmo valor absoluto e sinais opostos.
+\item nenhuma das anteriores.
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Mesma justificativa da questão anterior. Na série triboelétrica o vidro
+cede elétrons à lã: o vidro fica positivo e a lã, negativa.}
+\end{questao}
+
+\begin{questao}[1]{}
+A tabela apresenta parte de uma \textbf{série triboelétrica}: ao serem atritados,
+o material que aparece \emph{mais acima} tende a ceder elétrons ao que aparece
+mais abaixo.
+\begin{table}[H]
+\centering
+\small\sffamily
+\setlength{\arrayrulewidth}{0.5pt}
+\begin{tabular}{@{}c l@{}}
+\toprule
+\textbf{Ordem} & \textbf{Material}\\
+\midrule
+1 & Pele de coelho\\
+2 & Vidro\\
+3 & Lã\\
+4 & Seda\\
+5 & Plástico (PVC)\\
+6 & Teflon\\
+\bottomrule
+\end{tabular}
+\caption{Série triboelétrica simplificada.}
+\end{table}
+Atritando-se um bastão de \textbf{PVC} com um pedaço de \textbf{lã}, os sinais das
+cargas adquiridas pelo PVC e pela lã são, respectivamente:
+\begin{alternativas}[2]
+\item positivo e positivo.
+\item positivo e negativo.
+\item negativo e positivo.
+\item negativo e negativo.
+\item nulo e nulo.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{A lã (posição 3) está acima do PVC (posição 5), logo cede elétrons ao PVC.
+O PVC \emph{ganha} elétrons (fica negativo) e a lã \emph{perde} elétrons (fica positiva).}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas cargas elétricas $Q_1$ e $Q_2$ atraem-se quando colocadas próximas uma da outra.
+\begin{itensq}
+\item O que se pode afirmar sobre os sinais de $Q_1$ e $Q_2$?
+\item Sabe-se que $Q_1$ é repelida por uma terceira carga $Q_3$, positiva.
+      Qual é o sinal de $Q_2$?
+\end{itensq}
+\resposta{(a) sinais opostos; (b) negativo}
+\resolucao{(a) A atração ocorre entre cargas de sinais contrários (ou entre corpo
+eletrizado e corpo neutro; como o enunciado fala em \emph{cargas}, os sinais são
+opostos).\\
+(b) $Q_1$ é repelida por $Q_3>0$, logo $Q_1>0$. Como $Q_1$ e $Q_2$ se atraem,
+$Q_2<0$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Com relação à eletrização de um corpo, assinale \textbf{todas} as afirmativas corretas:
+\begin{alternativas}
+\item Um corpo eletricamente neutro que perde elétrons fica eletrizado positivamente.
+\item Um corpo eletricamente neutro não possui cargas elétricas.
+\item Um dos processos de eletrização consiste em retirar prótons do corpo.
+\item Um corpo eletricamente neutro não pode ser atraído por um corpo eletrizado.
+\item Friccionando-se dois corpos constituídos do mesmo material, um se eletriza
+      positivamente e o outro, negativamente.
+\end{alternativas}
+\resposta{Apenas (a)}
+\resolucao{(a) Correta. (b) Errada: o corpo neutro possui igual número de prótons
+e elétrons, não ausência de cargas. (c) Errada: prótons estão presos ao núcleo;
+nos sólidos só os elétrons se movem. (d) Errada: por indução, um corpo neutro é
+atraído por um corpo eletrizado. (e) Errada: materiais iguais têm a mesma
+tendência de ceder ou receber elétrons, e o atrito não produz eletrização
+apreciável.}
+\end{questao}
+
+\begin{questao}[1]{}
+Em uma cabine de \textbf{pintura eletrostática}, as gotículas de tinta são
+eletrizadas negativamente e a peça metálica a ser pintada é ligada ao terminal
+positivo da fonte. Esse arranjo é usado porque:
+\begin{alternativas}
+\item as gotículas se repelem entre si e são atraídas pela peça, reduzindo o desperdício.
+\item as gotículas se atraem entre si, formando gotas maiores.
+\item a tinta se torna condutora e adere melhor.
+\item o processo elimina a necessidade de secagem.
+\item a peça precisa estar eletrizada com o mesmo sinal da tinta.
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Gotículas de mesmo sinal se repelem, o que espalha o jato e evita
+acúmulos; simultaneamente, todas são atraídas pela peça de sinal oposto,
+inclusive contornando-a (efeito \emph{wrap-around}). O aproveitamento da tinta
+passa de cerca de \SI{50}{\percent} para mais de \SI{90}{\percent}.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um corpo, inicialmente neutro, é eletrizado com carga $Q = \SI{48}{\micro\coulomb}$.
+\dados{carga elementar $e = \SI{1.6e-19}{\coulomb}$.}
+\begin{itensq}
+\item O corpo ficou com falta ou com excesso de elétrons?
+\item Qual é o número de elétrons retirado do corpo ou a ele fornecido?
+\end{itensq}
+\resposta{(a) falta de elétrons; (b) $n = \pot{3.0}{14}$ elétrons}
+\resolucao{(a) A carga final é positiva, logo o corpo \emph{perdeu} elétrons
+(ficou com falta).\\
+(b) Da quantização da carga, $Q = n\,e$:
+\[
+n=\frac{Q}{e}=\frac{\SI{48e-6}{\coulomb}}{\SI{1.6e-19}{\coulomb}}
+ = \pot{3.0}{14}\ \text{elétrons}.
+\]}
+\end{questao}
+
+\begin{questao}[1]{}
+Um bastão carregado positivamente atrai um objeto isolado, suspenso por um fio.
+Sobre esse objeto, é correto afirmar que:
+\begin{alternativas}
+\item necessariamente possui elétrons em excesso.
+\item é obrigatoriamente condutor.
+\item trata-se de um isolante.
+\item está carregado positivamente.
+\item pode estar neutro.
+\end{alternativas}
+\resposta{(e)}
+\resolucao{A atração é compatível com duas situações: objeto negativo, ou objeto
+\emph{neutro} polarizado por indução. Como não há informação adicional, a única
+afirmação segura é que ele \emph{pode} estar neutro --- por isso (a) e (d) estão
+erradas. A polarização ocorre tanto em condutores quanto em isolantes, o que
+elimina (b) e (c).}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma barra eletrizada negativamente é aproximada de um corpo metálico AB,
+inicialmente neutro e apoiado sobre suportes isolantes, conforme a figura.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1,>=Stealth]
+  % barra eletrizada
+  \draw[fill=laranja!15,draw=laranja,thick,rounded corners=2pt]
+        (-4.3,-0.3) rectangle (-2.6,0.3);
+  \foreach \x in {-4.1,-3.7,-3.3,-2.9}
+     \node[laranja,font=\bfseries\small] at (\x,0) {$-$};
+  \node[below,font=\footnotesize\sffamily] at (-3.45,-0.45) {barra eletrizada};
+  % corpo metalico
+  \shade[left color=cinza!35,right color=cinza!15,draw=cinza,thick,rounded corners=6pt]
+        (-1.9,-0.45) rectangle (2.4,0.45);
+  \node[font=\bfseries] at (-1.55,0) {A};
+  \node[font=\bfseries] at ( 2.05,0) {B};
+  % suportes isolantes
+  \foreach \x in {-1.2,1.7}{
+    \draw[fill=cinza!25,draw=cinza] (\x-0.18,-1.1) rectangle (\x+0.18,-0.45);
+    \draw[fill=cinza!45,draw=cinza] (\x-0.45,-1.25) rectangle (\x+0.45,-1.1);}
+  \node[font=\footnotesize\sffamily,cinza] at (0.25,-1.5) {suportes isolantes};
+  % linha de base
+  \draw[cinza!60] (-2.6,-1.25) -- (2.9,-1.25);
+\end{tikzpicture}
+\caption{Barra negativa aproximada do condutor neutro AB.}
+\label{fig:inducao-ab}
+\end{figure}
+
+Podemos afirmar que:
+\begin{alternativas}
+\item não haverá movimento de elétrons livres no corpo AB.
+\item os elétrons livres do corpo AB deslocam-se para a extremidade A.
+\item o sinal da carga que aparece em B é positivo.
+\item ocorre no corpo metálico o fenômeno da indução eletrostática.
+\item após a separação de cargas, a carga total do corpo é não nula.
+\end{alternativas}
+\resposta{(d)}
+\resolucao{A barra negativa \emph{repele} os elétrons livres do metal, que migram
+para a extremidade \emph{mais distante}, B. Logo B fica negativa e A, positiva
+--- o que elimina (a), (b) e (c). Como não houve aterramento nem contato, a carga
+total de AB continua nula, eliminando (e). O fenômeno descrito é exatamente a
+indução eletrostática.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um corpo eletrizado \textbf{positivamente} é aproximado de um corpo metálico
+neutro, cujas extremidades são X (mais próxima) e Y (mais afastada).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1,>=Stealth]
+  \draw[fill=Vcol!12,draw=Vcol,thick,rounded corners=2pt] (-4.2,-0.3) rectangle (-2.7,0.3);
+  \foreach \x in {-4.0,-3.6,-3.2,-2.9} \node[Vcol,font=\bfseries\small] at (\x,0) {$+$};
+  \node[below,font=\footnotesize\sffamily] at (-3.45,-0.45) {corpo eletrizado};
+  \shade[left color=cinza!35,right color=cinza!15,draw=cinza,thick,rounded corners=6pt]
+        (-2.0,-0.45) rectangle (2.3,0.45);
+  \node[font=\bfseries] at (-1.65,0) {X};
+  \node[font=\bfseries] at ( 1.95,0) {Y};
+  \foreach \x in {-1.3,1.6}{
+    \draw[fill=cinza!25,draw=cinza] (\x-0.18,-1.1) rectangle (\x+0.18,-0.45);
+    \draw[fill=cinza!45,draw=cinza] (\x-0.45,-1.25) rectangle (\x+0.45,-1.1);}
+  \draw[cinza!60] (-2.7,-1.25) -- (2.8,-1.25);
+\end{tikzpicture}
+\caption{Indução eletrostática em um condutor neutro.}
+\label{fig:inducao-xy}
+\end{figure}
+
+Podemos afirmar que:
+\begin{alternativas}
+\item não haverá movimentação de cargas negativas no corpo neutro.
+\item a carga que aparece em X é positiva.
+\item a carga que aparece em Y é negativa.
+\item haverá força de interação elétrica entre os dois corpos.
+\item todas as afirmativas acima estão erradas.
+\end{alternativas}
+\resposta{(d)}
+\resolucao{O corpo positivo \emph{atrai} os elétrons livres: X fica negativa e Y,
+positiva --- o que torna (a), (b) e (c) falsas. Como a extremidade negativa X está
+\emph{mais próxima} da barra do que a positiva Y, a atração supera a repulsão e
+existe força resultante de atração entre os corpos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas esferas condutoras descarregadas, $x$ e $y$, colocadas sobre suportes
+isolantes, estão inicialmente em contato. Um bastão carregado positivamente é
+aproximado da esfera $x$, como mostra a figura.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+  \draw[fill=Vcol!12,draw=Vcol,thick,rounded corners=2pt] (-4.6,-0.25) rectangle (-3.2,0.25);
+  \foreach \x in {-4.4,-4.0,-3.6,-3.35} \node[Vcol,font=\bfseries\small] at (\x,0) {$+$};
+  % esferas
+  \shade[ball color=cinza!30] (-1.9,0) circle (0.75);
+  \shade[ball color=cinza!30] ( 0.1,0) circle (0.75);
+  \draw[cinza,thick] (-1.9,0) circle (0.75);
+  \draw[cinza,thick] ( 0.1,0) circle (0.75);
+  \node at (-1.9,0) {\bfseries $x$};
+  \node at ( 0.1,0) {\bfseries $y$};
+  % contato
+  \draw[line width=2pt,cinza] (-1.15,0) -- (-0.65,0);
+  % suportes
+  \foreach \x in {-1.9,0.1}{
+    \draw[fill=cinza!25,draw=cinza] (\x-0.12,-1.55) rectangle (\x+0.12,-0.75);
+    \draw[fill=cinza!45,draw=cinza] (\x-0.42,-1.7) rectangle (\x+0.42,-1.55);}
+  \draw[cinza!60] (-3.0,-1.7) -- (1.1,-1.7);
+\end{tikzpicture}
+\caption{Eletrização por indução com separação das esferas.}
+\label{fig:inducao-xy2}
+\end{figure}
+
+Em seguida, a esfera $y$ é afastada de $x$, \textbf{mantendo-se o bastão em sua
+posição}. Ao final, as cargas de $x$ e $y$ são, respectivamente:
+\begin{alternativas}[2]
+\item nula e positiva.
+\item negativa e positiva.
+\item nula e nula.
+\item negativa e nula.
+\item positiva e negativa.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Com as esferas em contato, elas formam um único condutor: o bastão
+positivo atrai os elétrons para $x$ e deixa $y$ com falta de elétrons.
+\textbf{Separando as esferas com o bastão ainda presente}, essa separação de
+cargas fica "aprisionada": $x$ permanece negativa e $y$, positiva.
+(Se o bastão fosse afastado \emph{antes} da separação, ambas voltariam a ser
+neutras.)}
+\end{questao}
+
+\begin{questao}[2]{}
+A figura mostra um eletroscópio de folhas, inicialmente neutro. Um bastão
+eletrizado negativamente é aproximado do disco, \textbf{sem tocá-lo}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+  % bastao
+  \draw[fill=laranja!15,draw=laranja,thick,rounded corners=2pt] (-2.9,1.9) rectangle (-1.3,2.3);
+  \foreach \x in {-2.7,-2.35,-2.0,-1.6} \node[laranja,font=\bfseries\small] at (\x,2.1) {$-$};
+  % disco
+  \draw[fill=cinza!30,draw=cinza,thick] (-0.9,2.0) rectangle (0.9,2.2);
+  % haste
+  \draw[line width=1.6pt,cinza] (0,2.0) -- (0,0.55);
+  % frasco de vidro
+  \draw[azulprof!35,thick,fill=azulclaro!35]
+        (-1.05,-1.5) -- (-1.05,1.35) .. controls (-1.05,1.65) and (-0.6,1.7) ..
+        (-0.45,1.7) -- (0.45,1.7) .. controls (0.6,1.7) and (1.05,1.65) ..
+        (1.05,1.35) -- (1.05,-1.5) -- cycle;
+  \draw[fill=cinza!45,draw=cinza] (-1.25,-1.65) rectangle (1.25,-1.5);
+  % folhas
+  \draw[line width=1.1pt,laranja] (0,0.55) -- (-0.42,-0.75);
+  \draw[line width=1.1pt,laranja] (0,0.55) -- ( 0.42,-0.75);
+  \node[font=\footnotesize\sffamily,cinza,right] at (1.35,-0.2) {folhas metálicas};
+  \node[font=\footnotesize\sffamily,cinza,right] at (1.35,2.1) {disco};
+\end{tikzpicture}
+\caption{Eletroscópio de folhas sob indução.}
+\label{fig:eletroscopio}
+\end{figure}
+
+Sobre a situação descrita, é correto afirmar que:
+\begin{alternativas}
+\item as folhas permanecem fechadas, pois o eletroscópio continua neutro.
+\item as folhas se abrem e o disco fica com carga positiva.
+\item as folhas se abrem e o disco fica com carga negativa.
+\item as folhas se abrem porque o eletroscópio adquiriu carga negativa total.
+\item as folhas se fecham ainda mais.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{O bastão negativo repele os elétrons livres do disco, que descem para
+as folhas. O disco fica \emph{positivo} e as folhas ficam \emph{negativas}; como
+ambas têm o mesmo sinal, elas se repelem e se abrem. A carga total do
+eletroscópio, porém, continua nula --- o que elimina (a) e (d).}
+\end{questao}
+
+\begin{questao}[2]{}
+Três bolas metálicas podem ser carregadas eletricamente. Observa-se que cada uma
+das três bolas \textbf{atrai uma e repele outra}. Considere as hipóteses:
+
+\smallskip
+\begin{tabular}{@{}ll@{}}
+I   & Apenas uma das bolas está carregada.\\
+II  & Duas das bolas estão carregadas.\\
+III & As três bolas estão carregadas.\\
+\end{tabular}
+\smallskip
+
+O fenômeno pode ser explicado:
+\begin{alternativas}
+\item somente pelas hipóteses II ou III.
+\item somente pela hipótese I.
+\item somente pela hipótese III.
+\item somente pela hipótese II.
+\item somente pelas hipóteses I ou II.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{A \emph{repulsão} só ocorre entre corpos eletrizados de mesmo sinal.
+Como cada bola repele alguma outra, cada uma das três precisa estar eletrizada:
+apenas a hipótese III explica o fenômeno. Um arranjo possível é $(+,+,-)$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Três esferas metálicas podem ser carregadas eletricamente. Aproximando-as duas a
+duas, observa-se que \textbf{em todos os casos ocorre atração}. Considere:
+
+\smallskip
+\begin{tabular}{@{}ll@{}}
+I   & Somente uma das esferas está carregada.\\
+II  & Duas esferas estão carregadas.\\
+III & As três esferas estão carregadas.\\
+\end{tabular}
+\smallskip
+
+Quais hipóteses explicam o fenômeno descrito?
+\begin{alternativas}
+\item Apenas a hipótese I.
+\item Apenas a hipótese II.
+\item Apenas a hipótese III.
+\item Apenas as hipóteses I e II.
+\item Nenhuma das três hipóteses.
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Se as três estivessem carregadas, haveria pelo menos um par de mesmo
+sinal (princípio da casa dos pombos com dois sinais e três esferas), gerando
+repulsão --- III fica descartada. Com apenas uma carregada (I), ela atrai as duas
+neutras por indução e as neutras se atraem mutuamente por polarização mútua.
+Com duas carregadas de sinais opostos (II), elas se atraem entre si e cada uma
+atrai a neutra. Logo I e II são possíveis.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma estudante colocou sobre uma mesa horizontal três pêndulos eletrostáticos
+idênticos, equidistantes entre si, como se cada um ocupasse o vértice de um
+triângulo equilátero. As esferas metálicas dos pêndulos atraíram-se mutuamente.
+A estudante pode concluir corretamente que:
+\begin{alternativas}
+\item as três esferas estavam eletrizadas com cargas de mesmo sinal.
+\item duas esferas estavam eletrizadas com cargas de mesmo sinal e uma com sinal oposto.
+\item duas esferas estavam eletrizadas com cargas de mesmo sinal e uma neutra.
+\item duas esferas estavam eletrizadas com cargas de sinais opostos e uma neutra.
+\item uma esfera estava eletrizada e duas, neutras.
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Cargas de mesmo sinal se repeliriam, o que elimina (a) e (c).
+Em (b), as duas de mesmo sinal se repeliriam. Em (e), as duas esferas neutras
+não interagiriam apreciavelmente entre si. Resta (d): as duas eletrizadas se
+atraem por terem sinais opostos, e cada uma atrai a neutra por indução.}
+\end{questao}
+
+\begin{questao}[2]{}
+Eletriza-se por atrito um bastão de plástico com um pedaço de papel. Em seguida,
+o bastão é aproximado de um pêndulo eletrostático já eletrizado e observa-se
+\textbf{repulsão}. Em qual alternativa a carga de cada elemento corresponde a
+essa descrição?
+
+\begin{table}[H]
+\centering
+\small\sffamily
+\setlength{\arraystretch}{1.25}
+\begin{tabular}{@{}c c c c@{}}
+\toprule
+ & \textbf{Papel} & \textbf{Bastão} & \textbf{Pêndulo}\\
+\midrule
+a) & positiva & positiva & positiva\\
+b) & negativa & positiva & negativa\\
+c) & negativa & negativa & positiva\\
+d) & positiva & positiva & negativa\\
+e) & positiva & negativa & negativa\\
+\bottomrule
+\end{tabular}
+\caption{Alternativas da questão.}
+\end{table}
+\resposta{(e)}
+\resolucao{Duas condições devem ser satisfeitas simultaneamente:
+\textbf{(i)} bastão e papel, eletrizados por atrito, têm sinais \emph{opostos};
+\textbf{(ii)} bastão e pêndulo se repelem, logo têm sinais \emph{iguais}.
+Somente a alternativa (e) satisfaz ambas (papel $+$, bastão $-$, pêndulo $-$).
+Em (a) o par bastão/papel tem sinais iguais; em (b) e (d) o bastão e o pêndulo
+têm sinais opostos; em (c) o par bastão/papel tem sinais iguais.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas esferas condutoras de dimensões iguais, A e B, estão eletrizadas com
+$Q_A = \SI{+5}{\coulomb}$ e $Q_B = \SI{-1}{\coulomb}$, e são ligadas por um fio
+condutor com uma chave C, inicialmente aberta.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+  \shade[ball color=Vcol!25] (-2.6,0) circle (0.8);
+  \shade[ball color=Icol!25] ( 2.6,0) circle (0.8);
+  \draw[Vcol,thick] (-2.6,0) circle (0.8);
+  \draw[Icol,thick] ( 2.6,0) circle (0.8);
+  \node[font=\bfseries] at (-2.6,0.18) {A};
+  \node[font=\small] at (-2.6,-0.28) {$+\SI{5}{\coulomb}$};
+  \node[font=\bfseries] at ( 2.6,0.18) {B};
+  \node[font=\small] at ( 2.6,-0.28) {$-\SI{1}{\coulomb}$};
+  % fio com chave
+  \draw[line width=1.1pt,cinza] (-1.8,0) -- (-0.55,0);
+  \draw[line width=1.1pt,cinza] ( 0.55,0) -- ( 1.8,0);
+  \fill[cinza] (-0.55,0) circle (0.06);
+  \fill[cinza] ( 0.55,0) circle (0.06);
+  \draw[line width=1.1pt,cinza] (-0.55,0) -- (0.42,0.52);
+  \node[font=\footnotesize\sffamily,cinza,above] at (0,0.62) {C (aberta)};
+  % suportes
+  \foreach \x in {-2.6,2.6}{
+    \draw[fill=cinza!25,draw=cinza] (\x-0.12,-1.6) rectangle (\x+0.12,-0.8);
+    \draw[fill=cinza!45,draw=cinza] (\x-0.42,-1.75) rectangle (\x+0.42,-1.6);}
+  \draw[cinza!60] (-3.6,-1.75) -- (3.6,-1.75);
+\end{tikzpicture}
+\caption{Esferas idênticas ligadas por fio condutor com chave.}
+\label{fig:esferas-chave-ab}
+\end{figure}
+
+Quando a chave é fechada, passam elétrons:
+\begin{alternativas}
+\item de A para B, e a nova carga de A é $\SI{+2}{\coulomb}$.
+\item de A para B, e a nova carga de B é $\SI{-1}{\coulomb}$.
+\item de B para A, e a nova carga de A é $\SI{+1}{\coulomb}$.
+\item de B para A, e a nova carga de B é $\SI{-1}{\coulomb}$.
+\item de B para A, e a nova carga de A é $\SI{+2}{\coulomb}$.
+\end{alternativas}
+\resposta{(e)}
+\resolucao{As esferas são idênticas, então a carga total se divide igualmente:
+\[
+Q'_A=Q'_B=\frac{Q_A+Q_B}{2}=\frac{(+5)+(-1)}{2}=\SI{+2}{\coulomb}.
+\]
+A esfera A passou de $+5$ para $+2$: ela \emph{ganhou} \SI{3}{\coulomb} em
+elétrons. Como os elétrons são negativos, eles se deslocam \emph{para} o corpo de
+maior potencial, ou seja, de B para A.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas esferas condutoras idênticas, K e L, com cargas
+$Q_K = \SI{+3}{\micro\coulomb}$ e $Q_L = \SI{+1}{\micro\coulomb}$, são ligadas por
+um fio condutor com uma chave C, inicialmente aberta.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+  \shade[ball color=Vcol!25] (-2.6,0) circle (0.8);
+  \shade[ball color=Vcol!12] ( 2.6,0) circle (0.8);
+  \draw[Vcol,thick] (-2.6,0) circle (0.8);
+  \draw[Vcol,thick] ( 2.6,0) circle (0.8);
+  \node[font=\bfseries] at (-2.6,0.18) {K};
+  \node[font=\small] at (-2.6,-0.30) {$+\SI{3}{\micro\coulomb}$};
+  \node[font=\bfseries] at ( 2.6,0.18) {L};
+  \node[font=\small] at ( 2.6,-0.30) {$+\SI{1}{\micro\coulomb}$};
+  \draw[line width=1.1pt,cinza] (-1.8,0) -- (-0.55,0);
+  \draw[line width=1.1pt,cinza] ( 0.55,0) -- ( 1.8,0);
+  \fill[cinza] (-0.55,0) circle (0.06);
+  \fill[cinza] ( 0.55,0) circle (0.06);
+  \draw[line width=1.1pt,cinza] (-0.55,0) -- (0.42,0.52);
+  \node[font=\footnotesize\sffamily,cinza,above] at (0,0.62) {C (aberta)};
+  \foreach \x in {-2.6,2.6}{
+    \draw[fill=cinza!25,draw=cinza] (\x-0.12,-1.6) rectangle (\x+0.12,-0.8);
+    \draw[fill=cinza!45,draw=cinza] (\x-0.42,-1.75) rectangle (\x+0.42,-1.6);}
+  \draw[cinza!60] (-3.6,-1.75) -- (3.6,-1.75);
+\end{tikzpicture}
+\caption{Esferas idênticas com cargas de mesmo sinal.}
+\label{fig:esferas-chave-kl}
+\end{figure}
+
+Quando a chave é fechada:
+\begin{alternativas}
+\item não ocorre fluxo de elétrons, pois ambas estão com cargas positivas.
+\item passam elétrons de L para K, transportando carga de $\SI{+2}{\micro\coulomb}$.
+\item passam elétrons de L para K, transportando carga de $\SI{-1}{\micro\coulomb}$.
+\item passam elétrons de K para L, transportando carga de $\SI{+1}{\micro\coulomb}$.
+\item passam elétrons de K para L, transportando carga de $\SI{-1}{\micro\coulomb}$.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Carga final de cada esfera:
+$Q' = \dfrac{3+1}{2} = \SI{+2}{\micro\coulomb}$.
+A esfera K passou de $+3$ para $+2\,\si{\micro\coulomb}$: recebeu
+$\SI{-1}{\micro\coulomb}$ (isto é, elétrons). Portanto os elétrons vão de L para K
+transportando $\SI{-1}{\micro\coulomb}$. O que impulsiona o fluxo é a diferença de
+\emph{potencial}, e não o sinal das cargas --- por isso (a) é falsa.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas esferas metálicas idênticas estão carregadas com $5Q$ e $-3Q$.
+Encostando-se uma na outra e separando-as em seguida, cada esfera ficará com
+carga elétrica igual a:
+\begin{alternativas}[3]
+\item $8Q$
+\item $5Q$
+\item $3Q$
+\item $2Q$
+\item $Q$
+\end{alternativas}
+\resposta{(e)}
+\resolucao{$Q' = \dfrac{5Q + (-3Q)}{2} = \dfrac{2Q}{2} = Q$ em cada esfera.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma pequena esfera metálica está eletrizada com carga $\pot{8.0}{-8}\,\si{\coulomb}$.
+Colocando-a em contato com outra idêntica, porém neutra, o número de elétrons que
+passa de uma esfera para a outra é:
+\dados{$e = \SI{1.6e-19}{\coulomb}$.}
+\begin{alternativas}[3]
+\item $\pot{4.0}{12}$
+\item $\pot{4.0}{11}$
+\item $\pot{4.0}{10}$
+\item $\pot{2.5}{12}$
+\item $\pot{2.5}{11}$
+\end{alternativas}
+\resposta{(e)}
+\resolucao{Após o contato, cada esfera fica com
+$Q' = \dfrac{\pot{8.0}{-8}+0}{2} = \pot{4.0}{-8}\,\si{\coulomb}$.
+A carga transferida tem módulo $\Delta Q = \pot{4.0}{-8}\,\si{\coulomb}$, logo
+\[
+n=\frac{\Delta Q}{e}=\frac{\pot{4.0}{-8}}{\pot{1.6}{-19}}=\pot{2.5}{11}
+\ \text{elétrons}.
+\]
+Note que a esfera eletrizada é positiva: os elétrons vão da esfera neutra para ela.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um estudante afirma ter medido, em um pequeno corpo eletrizado, a carga
+$Q = \pot{2.4}{-19}\,\si{\coulomb}$. Sabendo que $e = \SI{1.6e-19}{\coulomb}$,
+esse resultado é possível? Justifique.
+\resposta{Não: a carga não é múltipla inteira de $e$.}
+\resolucao{Pela quantização, toda carga deve satisfazer $Q=n\,e$ com $n$ inteiro.
+Aqui,
+\[
+n=\frac{\pot{2.4}{-19}}{\pot{1.6}{-19}}=1{,}5,
+\]
+que não é inteiro. Não existe carga livre igual a $1{,}5\,e$, logo a medida está
+incorreta (erro experimental ou de cálculo).}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Três esferas metálicas A, B e C, idênticas e no vácuo, encontram-se inicialmente
+com A carregada com $+Q$ e B e C neutras. A esfera A é colocada em contato com B
+e, posteriormente, com C. Os valores finais das cargas de A, B e C são,
+respectivamente:
+\begin{alternativas}[2]
+\item $\dfrac{Q}{3},\ \dfrac{Q}{3},\ \dfrac{Q}{3}$
+\item $\dfrac{Q}{2},\ \dfrac{Q}{2},\ \dfrac{Q}{2}$
+\item $\dfrac{Q}{4},\ \dfrac{Q}{4},\ \dfrac{Q}{4}$
+\item $\dfrac{Q}{4},\ \dfrac{Q}{2},\ \dfrac{Q}{4}$
+\item $\dfrac{Q}{2},\ \dfrac{Q}{2},\ \dfrac{Q}{4}$
+\end{alternativas}
+\resposta{(d)}
+\resolucao{\textbf{1\textsuperscript{o} contato (A--B):}
+$Q_A = Q_B = \dfrac{Q+0}{2} = \dfrac{Q}{2}$.\\
+\textbf{2\textsuperscript{o} contato (A--C):}
+$Q_A = Q_C = \dfrac{Q/2+0}{2} = \dfrac{Q}{4}$.\\
+Situação final: $A=\dfrac{Q}{4}$, $B=\dfrac{Q}{2}$, $C=\dfrac{Q}{4}$.
+O erro mais comum é esquecer que B \emph{conserva} a carga obtida no primeiro
+contato.}
+\end{questao}
+
+\begin{questao}[3]{}
+Quatro esferas metálicas idênticas estão isoladas entre si. As esferas A, B e C
+estão neutras e a esfera D está eletrizada com carga $Q$. A esfera D é colocada
+em contato sucessivamente com A, depois com B e, por fim, com C.
+Ao final do processo, as cargas de C e D são, respectivamente:
+\begin{alternativas}[2]
+\item $\dfrac{Q}{8}$ e $\dfrac{Q}{8}$
+\item $\dfrac{Q}{8}$ e $\dfrac{Q}{4}$
+\item $\dfrac{Q}{4}$ e $\dfrac{Q}{8}$
+\item $\dfrac{Q}{2}$ e $\dfrac{Q}{2}$
+\item $Q$ e $-Q$
+\end{alternativas}
+\resposta{(a)}
+\resolucao{A cada contato com uma esfera \emph{neutra} e idêntica, a carga de D
+é dividida por 2:
+\[
+Q \xrightarrow{\text{A}} \frac{Q}{2}
+  \xrightarrow{\text{B}} \frac{Q}{4}
+  \xrightarrow{\text{C}} \frac{Q}{8}.
+\]
+No último contato, C fica com o mesmo valor de D: ambas com $\dfrac{Q}{8}$.
+De modo geral, após $n$ contatos com esferas neutras idênticas,
+$Q_D = \dfrac{Q}{2^{\,n}}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Considere três esferas metálicas X, Y e Z, de diâmetros iguais. Y e Z estão fixas
+e suficientemente afastadas para que efeitos de indução sejam desprezíveis. A
+situação inicial é: X neutra, Y com carga $+Q$ e Z com carga $-Q$. As esferas não
+trocam cargas com o ambiente. Fazendo-se X tocar \textbf{primeiro} Y e
+\textbf{depois} Z, a carga final de X será:
+\begin{alternativas}[2]
+\item zero
+\item $\dfrac{2Q}{3}$
+\item $-\dfrac{Q}{2}$
+\item $\dfrac{Q}{8}$
+\item $-\dfrac{Q}{4}$
+\end{alternativas}
+\resposta{(e)}
+\resolucao{\textbf{Contato X--Y:} $Q_X = Q_Y = \dfrac{0+Q}{2} = \dfrac{Q}{2}$.\\
+\textbf{Contato X--Z:} agora X tem $+\dfrac{Q}{2}$ e Z tem $-Q$:
+\[
+Q_X=\frac{\dfrac{Q}{2}+(-Q)}{2}=\frac{-\dfrac{Q}{2}}{2}=-\frac{Q}{4}.
+\]
+Observe a inversão de sinal: X termina \emph{negativa}. A alternativa (a) é a
+armadilha típica de quem soma as cargas iniciais de Y e Z.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas esferas metálicas idênticas, A e B, estão carregadas com
+$\SI{16}{\micro\coulomb}$ e $\SI{4}{\micro\coulomb}$, respectivamente. Uma terceira
+esfera C, idêntica às anteriores, está inicialmente descarregada. Coloca-se C em
+contato com A; desfeito o contato, C é colocada em contato com B. Supondo que não
+haja troca de cargas com o exterior, a carga final de C é:
+\begin{alternativas}[3]
+\item $\SI{8}{\micro\coulomb}$
+\item $\SI{6}{\micro\coulomb}$
+\item $\SI{4}{\micro\coulomb}$
+\item $\SI{3}{\micro\coulomb}$
+\item nula
+\end{alternativas}
+\resposta{(b)}
+\resolucao{\textbf{Contato C--A:}
+$Q_C = Q_A = \dfrac{0+16}{2} = \SI{8}{\micro\coulomb}$.\\
+\textbf{Contato C--B:}
+$Q_C = Q_B = \dfrac{8+4}{2} = \SI{6}{\micro\coulomb}$.\\
+Situação final: $A=\SI{8}{\micro\coulomb}$, $B=Q_C=\SI{6}{\micro\coulomb}$.
+Confira a conservação: $16+4+0 = 8+6+6 = \SI{20}{\micro\coulomb}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Três esferas condutoras A, B e C têm o mesmo diâmetro. A esfera A está
+inicialmente neutra, e as outras duas estão carregadas com
+$q_B = \SI{6}{\micro\coulomb}$ e $q_C = \SI{7}{\micro\coulomb}$. Com a esfera A,
+toca-se primeiro B e depois C. As cargas de A, B e C após os contatos são,
+respectivamente:
+\begin{alternativas}
+\item zero, zero e $\SI{13}{\micro\coulomb}$
+\item $\SI{7}{\micro\coulomb}$, $\SI{3}{\micro\coulomb}$ e $\SI{5}{\micro\coulomb}$
+\item $\SI{5}{\micro\coulomb}$, $\SI{3}{\micro\coulomb}$ e $\SI{5}{\micro\coulomb}$
+\item $\SI{6}{\micro\coulomb}$, $\SI{7}{\micro\coulomb}$ e zero
+\item todas iguais a $\SI{4.3}{\micro\coulomb}$
+\end{alternativas}
+\resposta{(c)}
+\resolucao{\textbf{Contato A--B:}
+$q_A = q_B = \dfrac{0+6}{2} = \SI{3}{\micro\coulomb}$.\\
+\textbf{Contato A--C:}
+$q_A = q_C = \dfrac{3+7}{2} = \SI{5}{\micro\coulomb}$.\\
+Final: $A=\SI{5}{\micro\coulomb}$, $B=\SI{3}{\micro\coulomb}$,
+$C=\SI{5}{\micro\coulomb}$.
+Verificação: $0+6+7 = 5+3+5 = \SI{13}{\micro\coulomb}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Na eletrização por contato entre duas esferas condutoras de raios $R$ e $2R$,
+sabe-se que, após o contato, a razão entre a carga adquirida por cada esfera e o
+seu respectivo raio é constante. Se, inicialmente, a esfera de raio $R$ possui
+carga $3Q$ e a de raio $2R$ possui $2Q$, calcule a carga final de cada esfera.
+\resposta{$Q_1 = \dfrac{5Q}{3}$ (raio $R$) e $Q_2 = \dfrac{10Q}{3}$ (raio $2R$)}
+\resolucao{Sejam $Q_1$ e $Q_2$ as cargas finais. Aplicando as duas condições:
+\[
+\textbf{(i) conservação: } Q_1+Q_2 = 3Q+2Q = 5Q,
+\qquad
+\textbf{(ii) proporcionalidade: } \frac{Q_1}{R}=\frac{Q_2}{2R}
+\ \Rightarrow\ Q_2 = 2Q_1 .
+\]
+Substituindo (ii) em (i): $Q_1 + 2Q_1 = 5Q \Rightarrow Q_1 = \dfrac{5Q}{3}$ e
+$Q_2 = \dfrac{10Q}{3}$.
+Fisicamente, a proporcionalidade decorre de as esferas ficarem com o \emph{mesmo
+potencial} após o contato: $V = \dfrac{\ke Q}{R}$ igual para ambas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma esfera metálica isolada possui carga inicial $Q_0$. Ela é colocada em contato,
+uma única vez e sucessivamente, com $n$ esferas idênticas a ela e inicialmente
+neutras.
+\begin{itensq}
+\item Obtenha a expressão da carga final da esfera original em função de $Q_0$ e $n$.
+\item A partir de quantos contatos a carga da esfera original cai abaixo de
+      \SI{1}{\percent} de $Q_0$?
+\end{itensq}
+\resposta{(a) $Q_n = Q_0/2^{\,n}$; \quad (b) $n = 7$}
+\resolucao{(a) Cada contato com uma esfera idêntica e neutra reparte a carga em
+duas partes iguais, logo $Q_1 = Q_0/2$, $Q_2 = Q_0/4$ e, por indução,
+\[
+\boxed{\,Q_n = \frac{Q_0}{2^{\,n}}\,}.
+\]
+(b) Queremos $\dfrac{1}{2^{\,n}} < 0{,}01 \Rightarrow 2^{\,n} > 100$. Como
+$2^6 = 64$ e $2^7 = 128$, são necessários $n = 7$ contatos.
+Repare que a carga nunca se anula: ela apenas tende a zero, o que ilustra por
+que o aterramento (contato com um condutor "infinito") é a forma prática de
+descarregar um corpo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um gerador de Van de Graaff transporta carga para sua cúpula a uma taxa
+constante de $\SI{1}{\micro\ampere}$.
+\begin{itensq}
+\item Que carga é acumulada em $\SI{10}{\second}$?
+\item Quantos elétrons isso representa?
+\item Se a cúpula é uma esfera de raio $\SI{25}{\centi\meter}$, qual o potencial
+      atingido? O ar rompe a cerca de $\SI{3}{\mega\volt\per\meter}$ --- haverá
+      descarga?
+\end{itensq}
+\dados{$e=\SI{1.6e-19}{\coulomb}$; $\ke=\SI{9e9}{\newton\meter\squared\per\coulomb\squared}$.}
+\resposta{(a) \SI{10}{\micro\coulomb}; (b) $\pot{6.25}{13}$;
+(c) $V=\SI{360}{\kilo\volt}$, $E=\SI{1.44}{\mega\volt\per\meter}$ --- sem descarga}
+\resolucao{(a) $Q = I\,t = \pot{1}{-6}\cdot10 = \SI{10}{\micro\coulomb}$.\\
+(b) $n = \dfrac{Q}{e} = \dfrac{\pot{1}{-5}}{\pot{1.6}{-19}} = \pot{6.25}{13}$
+elétrons --- \emph{removidos} da cúpula (que fica positiva).\\
+(c) Para uma esfera condutora,
+\[
+V=\frac{\ke Q}{R}=\frac{9\cdot10^9\cdot\pot{1}{-5}}{0{,}25}=\SI{360}{\kilo\volt},
+\qquad
+E_{\text{sup}}=\frac{\ke Q}{R^{2}}=\frac{V}{R}=\frac{\pot{3.6}{5}}{0{,}25}
+=\SI{1.44}{\mega\volt\per\meter}.
+\]
+Como $\SI{1.44}{} < \SI{3}{\mega\volt\per\meter}$, \textbf{não há ruptura} --- a
+carga continua se acumulando.\\
+\textbf{Limite do gerador:} a descarga ocorreria quando
+$E_{\text{sup}} = \SI{3}{\mega\volt\per\meter}$, ou seja
+$V_{\max}=E\,R = 3\cdot10^6\cdot0{,}25=\SI{750}{\kilo\volt}$.
+\textbf{Consequência de projeto:} como $V_{\max} \propto R$, cúpulas
+\emph{maiores} sustentam tensões maiores --- por isso os geradores de demonstração
+têm esferas polidas e volumosas, sem pontas (onde $E$ dispararia).}
+\end{questao}
+
+\begin{questao}[3]{}
+Um fio de cobre tem massa $\SI{1}{\gram}$. Sabendo que cada átomo de cobre
+contribui com \emph{um} elétron livre:
+\begin{itensq}
+\item Calcule o número de elétrons livres no fio.
+\item Determine a carga total desses elétrons.
+\item Compare com a carga típica obtida por atrito ($\sim\SI{1}{\micro\coulomb}$)
+      e interprete o resultado.
+\end{itensq}
+\dados{$N_A=\SI{6.02e23}{\per\mole}$; $M_{\text{Cu}}=\SI{63.5}{\gram\per\mole}$;
+$e=\SI{1.6e-19}{\coulomb}$.}
+\resposta{(a) $\approx\pot{9.5}{21}$; (b) $\approx\SI{1517}{\coulomb}$;
+(c) razão $\sim10^9$}
+\resolucao{(a) O número de mols é $n=\dfrac{1}{63{,}5}$ mol, logo
+\[
+N=\frac{1}{63{,}5}\cdot\pot{6.02}{23}\approx\pot{9.5}{21}\ \text{elétrons livres}.
+\]
+(b) $|Q| = N\,e = \pot{9.5}{21}\cdot\pot{1.6}{-19}\approx\SI{1517}{\coulomb}$.\\
+(c) A razão entre essa carga e a obtida por atrito é
+\[
+\frac{1517}{\pot{1}{-6}}\approx\pot{1.5}{9},
+\]
+ou seja, cerca de \textbf{um bilhão e meio de vezes} maior.
+
+\textbf{Interpretação --- por que isso importa.} Eletrizar um corpo por atrito
+remove ou acrescenta uma fração absolutamente ínfima dos elétrons disponíveis
+(da ordem de $10^{-9}$). O material permanece, para todos os efeitos,
+\emph{eletricamente neutro em sua estrutura}; a "carga" que percebemos é apenas
+um desequilíbrio superficial minúsculo.\\
+Isso explica dois fatos:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item por que um condutor pode fornecer corrente indefinidamente sem "acabar" os
+      elétrons;
+\item por que forças elétricas macroscópicas são tão intensas --- se
+      conseguíssemos separar \emph{toda} a carga de $\SI{1}{\gram}$ de cobre e
+      colocá-la a $\SI{1}{\meter}$ de distância de outra igual, a força seria da
+      ordem de $10^{16}$\,N, milhões de vezes o peso de um transatlântico.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[3]{}
+Três esferas condutoras isoladas têm raios $R$, $2R$ e $3R$. A primeira está
+carregada com $Q$ e as demais estão neutras. Sabe-se que, ao se tocarem, duas
+esferas de raios diferentes repartem a carga de modo que o \emph{potencial} de
+ambas fique igual, o que implica $\dfrac{Q_1}{R_1}=\dfrac{Q_2}{R_2}$.
+
+Encosta-se a esfera $A$ (raio $R$) na esfera $B$ (raio $2R$); separa-se; em
+seguida, encosta-se $A$ na esfera $C$ (raio $3R$).
+\begin{itensq}
+\item Determine a carga final de cada esfera.
+\item Verifique a conservação da carga total.
+\item Generalize: qual a carga final de $A$ após tocar sucessivamente esferas de
+      raios $2R, 3R, \dots, nR$?
+\end{itensq}
+\resposta{(a) $Q_A=\dfrac{Q}{12}$, $Q_B=\dfrac{2Q}{3}$, $Q_C=\dfrac{Q}{4}$;
+(b) soma $=Q$; (c) $Q_A^{(n)}=Q\displaystyle\prod_{j=2}^{n}\frac{1}{j+1}$}
+\resolucao{\textbf{Contato A--B.} A carga total $Q$ se reparte proporcionalmente
+aos raios ($R$ e $2R$), ou seja, na razão $1:2$:
+\[
+Q_A=\frac{R}{R+2R}\,Q=\frac{Q}{3},
+\qquad
+Q_B=\frac{2R}{3R}\,Q=\frac{2Q}{3}.
+\]
+\textbf{Contato A--C.} Agora $A$ traz $\dfrac{Q}{3}$ e encontra $C$ (raio $3R$,
+neutra). A repartição é na razão $R:3R = 1:3$:
+\[
+Q_A=\frac{1}{4}\cdot\frac{Q}{3}=\frac{Q}{12},
+\qquad
+Q_C=\frac{3}{4}\cdot\frac{Q}{3}=\frac{Q}{4}.
+\]
+\textbf{(b) Conservação:}
+$\dfrac{Q}{12}+\dfrac{2Q}{3}+\dfrac{Q}{4}
+=\dfrac{Q+8Q+3Q}{12}=\dfrac{12Q}{12}=Q$. \checkmark
+
+\textbf{(c) Generalização.} Ao tocar uma esfera de raio $jR$, a esfera $A$ retém a
+fração $\dfrac{R}{R+jR}=\dfrac{1}{1+j}$ da carga que possuía. Logo, após a
+sequência $2R, 3R, \dots, nR$:
+\[
+Q_A^{(n)} = Q\prod_{j=2}^{n}\frac{1}{1+j}
+= Q\cdot\frac{1}{3}\cdot\frac{1}{4}\cdots\frac{1}{n+1}
+= \frac{2\,Q}{(n+1)!}.
+\]
+Confira para $n=3$: $\dfrac{2Q}{4!}=\dfrac{2Q}{24}=\dfrac{Q}{12}$. \checkmark\\
+\textbf{Por que isso importa:} a carga de $A$ decai \emph{fatorialmente} --- muito
+mais rápido que o decaimento $2^{-n}$ das esferas idênticas. É o princípio do
+\emph{gerador de Van de Graaff}: transferir carga para um condutor de raio muito
+maior esvazia quase completamente o menor.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Cargas elétricas
+\input{bancos/banco-cargas-eletricas.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[1.1 Cargas elétricas]
+
+% ---------------------------------------------------------------
+% Subsecoes seguintes do Capitulo 1
+\input{cap01b-coulomb-campo}
+\input{cap01c-potencial}

@@ -1,0 +1,1178 @@
+% =====================================================================
+%  CAPITULO 1 - continuacao
+%  1.2 Lei de Coulomb  |  1.3 Campo eletrico
+% =====================================================================
+
+% =====================================================================
+\subsection{Lei de Coulomb}
+% =====================================================================
+
+\begin{conceito}[Antes de começar]
+\textbf{Lei de Coulomb} --- o módulo da força entre duas cargas puntiformes é
+\[
+F = \ke\,\frac{|q_1||q_2|}{d^2},\qquad
+\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}\ \text{(no vácuo)}.
+\]
+A força é \emph{atrativa} para cargas de sinais opostos e \emph{repulsiva} para
+sinais iguais, sempre na direção da reta que une as cargas.\par
+\textbf{Princípio da superposição:} a força resultante sobre uma carga é a
+\emph{soma vetorial} das forças que cada uma das demais exerce sobre ela.\par
+\textbf{Dependências úteis:} $F \propto \dfrac{1}{d^2}$ (dobrar a distância divide
+a força por 4) e $F \propto q_1 q_2$.
+\end{conceito}
+
+\legendaniveis
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Duas cargas $q_1 = \SI{+2}{\micro\coulomb}$ e $q_2 = \SI{-3}{\micro\coulomb}$
+estão separadas por $\SI{4}{\centi\meter}$ no vácuo. Determine o módulo e o tipo
+(atração ou repulsão) da força entre elas.
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$.}
+\resposta{$F = \SI{33.75}{\newton}$, atrativa}
+\resolucao{Com $d = \SI{4}{\centi\meter} = \SI{0.04}{\meter}$:
+\[
+F=\ke\frac{|q_1||q_2|}{d^2}
+=9\cdot10^9\cdot\frac{(\pot{2}{-6})(\pot{3}{-6})}{(0{,}04)^2}
+=\SI{33.75}{\newton}.
+\]
+Como as cargas têm sinais opostos, a força é \textbf{atrativa}.}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas cargas $q_1 = q_2 = \SI{+5}{\micro\coulomb}$ estão a
+$\SI{2}{\centi\meter}$ no vácuo. Determine o módulo e o tipo da força.
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$.}
+\resposta{$F = \SI{562.5}{\newton}$, repulsiva}
+\resolucao{$F = 9\cdot10^9\cdot\dfrac{(\pot{5}{-6})^2}{(0{,}02)^2}
+=\SI{562.5}{\newton}$, \textbf{repulsiva} (sinais iguais).}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas cargas puntiformes se repelem com força de intensidade
+$\pot{42}{-5}\,\si{\newton}$. Reduzindo-se a distância entre elas à
+\textbf{metade}, a nova força de repulsão será:
+\begin{alternativas}[2]
+\item $\pot{10.5}{-5}\,\si{\newton}$
+\item $\pot{21}{-5}\,\si{\newton}$
+\item $\pot{84}{-5}\,\si{\newton}$
+\item $\pot{168}{-5}\,\si{\newton}$
+\item inalterada
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Como $F \propto \dfrac{1}{d^2}$, reduzir $d$ à metade \emph{multiplica}
+a força por 4:
+\[
+F' = 4F = 4\cdot\pot{42}{-5} = \pot{168}{-5}\,\si{\newton}.
+\]}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+A força elétrica entre duas partículas de cargas $q$ e $q/2$, separadas por uma
+distância $d$ no vácuo, é $F$. A força entre duas partículas de cargas $q$ e $2q$,
+separadas por $d/2$, também no vácuo, é:
+\begin{alternativas}[3]
+\item $F$
+\item $2F$
+\item $4F$
+\item $8F$
+\item $16F$
+\end{alternativas}
+\resposta{(e)}
+\resolucao{Situação inicial: $F = \ke\dfrac{q\cdot(q/2)}{d^2} = \dfrac{\ke q^2}{2d^2}$.\\
+Situação nova: $F' = \ke\dfrac{q\cdot 2q}{(d/2)^2} = \dfrac{2\ke q^2}{d^2/4}
+= \dfrac{8\ke q^2}{d^2}$.\\
+Dividindo: $\dfrac{F'}{F} = \dfrac{8\ke q^2/d^2}{\ke q^2/(2d^2)} = 16$, logo
+$F' = 16F$. O produto das cargas quadruplicou e a distância caiu à metade
+(fator 4 na força): $4\times4 = 16$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Se a força entre dois objetos carregados se mantém \emph{constante} mesmo quando a
+carga de cada um é reduzida à metade, então a distância entre eles:
+\begin{alternativas}
+\item foi quadruplicada.
+\item foi duplicada.
+\item foi reduzida à quarta parte.
+\item foi reduzida à metade.
+\item permaneceu constante.
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Reduzir cada carga à metade divide o produto $q_1 q_2$ por 4, o que
+sozinho reduziria $F$ a $1/4$. Para $F$ permanecer constante, o fator $1/d^2$
+precisa \emph{quadruplicar}, ou seja, $d^2$ deve cair a $1/4$, o que significa $d$
+reduzido à \textbf{metade}:
+\[
+F=\ke\frac{(q_1/2)(q_2/2)}{d'^2}=\ke\frac{q_1q_2}{4d'^2}
+\stackrel{!}{=}\ke\frac{q_1q_2}{d^2}
+\ \Rightarrow\ d'^2=\frac{d^2}{4}\ \Rightarrow\ d'=\frac{d}{2}.
+\]}
+\end{questao}
+
+\begin{questao}[2]{}
+Três cargas iguais de $\SI{+1}{\micro\coulomb}$ ocupam os vértices de um triângulo
+equilátero de lado $\SI{5}{\centi\meter}$. Determine o módulo da força resultante
+sobre uma delas.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ \coordinate (A) at (0,0);
+ \coordinate (B) at (3,0);
+ \coordinate (C) at (1.5,2.6);
+ \foreach \p/\n in {A/A,B/B,C/C}{
+   \shade[ball color=Vcol!25] (\p) circle (0.28);
+   \draw[Vcol] (\p) circle (0.28);
+   \node at (\p) {\footnotesize$+q$};}
+ \draw[dashed,cinza] (A)--(B)--(C)--cycle;
+ \node[below] at (1.5,-0.35) {$\SI{5}{\centi\meter}$};
+\end{tikzpicture}}{Três cargas iguais nos vértices de um triângulo equilátero.}
+
+\resposta{$F_R \approx \SI{6.24}{\newton}$}
+\resolucao{Cada par de cargas exerce uma força de módulo
+\[
+F=\ke\frac{q^2}{d^2}=9\cdot10^9\cdot\frac{(\pot{1}{-6})^2}{(0{,}05)^2}
+=\SI{3.6}{\newton}.
+\]
+Sobre a carga escolhida atuam \emph{duas} forças iguais de \SI{3.6}{\newton}, com
+$\SI{60}{\degree}$ entre elas (geometria do equilátero). A resultante é
+\[
+F_R = \sqrt{F^2+F^2+2F^2\cos 60^\circ}=F\sqrt{3}
+=3{,}6\sqrt{3}\approx\SI{6.24}{\newton},
+\]
+dirigida para fora do triângulo, ao longo da bissetriz do vértice.}
+\end{questao}
+
+\begin{questao}[2]{}
+Quatro cargas positivas iguais de $\SI{1}{\micro\coulomb}$ ocupam os vértices de
+um quadrado de lado $\SI{10}{\centi\meter}$. Determine o módulo da força
+resultante sobre uma delas.
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$; $\sqrt2\approx1{,}41$.}
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ \foreach \p in {(0,0),(2.4,0),(2.4,2.4),(0,2.4)}{
+   \shade[ball color=Vcol!25] \p circle (0.22);}
+ \node at (0,0){\footnotesize$+q$};\node at (2.4,0){\footnotesize$+q$};
+ \node at (2.4,2.4){\footnotesize$+q$};\node at (0,2.4){\footnotesize$+q$};
+ \draw[dashed,cinza] (0,0)--(2.4,0)--(2.4,2.4)--(0,2.4)--cycle;
+ \draw[dashed,cinza] (0,0)--(2.4,2.4);
+ \node[below] at (1.2,-0.3){$\SI{10}{\centi\meter}$};
+\end{tikzpicture}}{Quatro cargas iguais nos vértices de um quadrado.}
+
+\resposta{$F_R \approx \SI{1.72}{\newton}$}
+\resolucao{Sobre a carga de um vértice atuam três forças repulsivas:
+duas dos vértices \emph{adjacentes} (ao longo dos lados, perpendiculares entre si)
+e uma do vértice \emph{oposto} (ao longo da diagonal).\\
+\textbf{Força de um lado} ($d = \SI{10}{\centi\meter}$):
+$F_L = \ke\dfrac{q^2}{d^2} = 9\cdot10^9\dfrac{(\pot{1}{-6})^2}{(0{,}1)^2}
+= \SI{0.9}{\newton}$.\\
+\textbf{Força da diagonal} ($d' = d\sqrt2$):
+$F_D = \ke\dfrac{q^2}{(d\sqrt2)^2} = \dfrac{F_L}{2} = \SI{0.45}{\newton}$.\\
+As duas forças de lado, perpendiculares, têm resultante
+$F_L\sqrt2 \approx \SI{1.27}{\newton}$, na direção da diagonal --- \emph{mesma}
+direção de $F_D$. Somando:
+\[
+F_R = F_L\sqrt2 + F_D \approx 1{,}27 + 0{,}45 = \SI{1.72}{\newton}.
+\]}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma pequena esfera de massa $\SI{2}{\gram}$, eletrizada com carga $q$, permanece
+em equilíbrio, suspensa, sob a ação combinada do peso e de um campo elétrico
+uniforme vertical de intensidade $\SI{e5}{\newton\per\coulomb}$, dirigido para
+cima. Determine a carga $q$.
+\dados{$g = \SI{10}{\meter\per\second\squared}$.}
+\resposta{$q = \SI{0.2}{\micro\coulomb}$}
+\resolucao{No equilíbrio, a força elétrica (para cima) equilibra o peso (para
+baixo): $qE = mg$, logo
+\[
+q=\frac{mg}{E}=\frac{\pot{2}{-3}\cdot10}{\pot{1}{5}}
+=\pot{2}{-7}\,\si{\coulomb}=\SI{0.2}{\micro\coulomb}.
+\]
+Para a força ser para cima (mesmo sentido de $E$), a carga deve ser
+\emph{positiva}. É o princípio do experimento de Millikan, que mediu a carga do
+elétron equilibrando gotas de óleo.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Duas cargas $Q_1$ e $Q_2 = 4Q_1$ (ambas positivas) estão fixas nos pontos A e B,
+distantes $\SI{30}{\centi\meter}$. Em que posição $x$, medida a partir de A sobre
+a reta AB, deve-se colocar uma carga $Q_3$ para que ela fique em equilíbrio sob
+ação apenas de forças elétricas?
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt]
+ \draw[cinza] (0,0)--(6,0);
+ \shade[ball color=Vcol!25] (0,0) circle (0.25);
+ \shade[ball color=Vcol!25] (6,0) circle (0.25);
+ \node at (0,0) {\footnotesize$Q_1$}; \node at (6,0) {\footnotesize$Q_2$};
+ \node[below] at (0,-0.35) {A}; \node[below] at (6,-0.35) {B};
+ \fill[laranja] (2,0) circle (0.09);
+ \node[above,laranja] at (2,0.15) {$Q_3$};
+ \draw[<->,cinza] (0,-0.9)--(2,-0.9) node[midway,below]{$x$};
+ \draw[<->,cinza] (0,-1.5)--(6,-1.5) node[midway,below]{$\SI{30}{\centi\meter}$};
+\end{tikzpicture}}{Posição de equilíbrio entre duas cargas.}
+
+\resposta{$x = \SI{10}{\centi\meter}$ a partir de A}
+\resolucao{No equilíbrio, as forças que $Q_1$ e $Q_2$ exercem sobre $Q_3$ têm
+mesmo módulo e sentidos opostos (o que só é possível \emph{entre} as cargas, já
+que ambas são positivas). Igualando os módulos, com $d = \SI{30}{\centi\meter}$:
+\[
+\ke\frac{Q_1 Q_3}{x^2}=\ke\frac{4Q_1\,Q_3}{(d-x)^2}
+\ \Rightarrow\
+\frac{1}{x^2}=\frac{4}{(d-x)^2}
+\ \Rightarrow\
+\frac{d-x}{x}=2.
+\]
+Logo $d - x = 2x \Rightarrow x = \dfrac{d}{3} = \SI{10}{\centi\meter}$. O ponto de
+equilíbrio fica \emph{mais próximo} da carga menor ($Q_1$), como esperado.
+Note que o valor de $Q_3$ e seu sinal não influenciam a posição.}
+\end{questao}
+
+\begin{questao}[3]{}
+Quatro cargas ocupam os vértices de um quadrado: duas delas são $+Q$ e $-Q$ (mesmo
+módulo), e as outras duas, $q_1$ e $q_2$, são desconhecidas. Coloca-se uma carga
+de prova positiva no centro e observa-se que a força resultante sobre ela aponta
+na direção da diagonal, \emph{do vértice $-Q$ para o vértice $+Q$}. Sobre $q_1$ e
+$q_2$ (nos outros dois vértices), pode-se afirmar que, para que essa força
+resultante fique exatamente sobre a diagonal $-Q\,$--$\,+Q$:
+\begin{alternativas}
+\item devem ser iguais em módulo e de mesmo sinal entre si.
+\item devem ser iguais em módulo e de sinais opostos.
+\item devem ser ambas nulas.
+\item devem ser ambas positivas e diferentes.
+\item nada se pode afirmar.
+\end{alternativas}
+\resposta{(a)}
+\resolucao{A força devida ao par $+Q$/$-Q$ já está sobre a diagonal
+$-Q\,$--$\,+Q$. Para que a resultante \emph{total} continue sobre essa mesma
+diagonal, a contribuição do par $q_1$/$q_2$ (na outra diagonal) não pode ter
+componente perpendicular a ela: as forças de $q_1$ e $q_2$ sobre a carga central
+devem se \emph{cancelar} nessa direção transversal. Isso ocorre quando $q_1$ e
+$q_2$ têm o mesmo módulo e o mesmo sinal (por simetria em relação à diagonal
+principal), produzindo forças opostas sobre a carga de prova que se anulam.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas cargas fixas, $q_1 = \SI{+9}{\micro\coulomb}$ em $x=0$ e
+$q_2 = \SI{+4}{\micro\coulomb}$ em $x = \SI{10}{\centi\meter}$, estão sobre o eixo
+$x$. Uma terceira carga $q_3$ é colocada sobre esse eixo.
+\begin{itensq}
+\item Determine a posição em que $q_3$ fica em equilíbrio.
+\item Mostre que existe uma \emph{segunda} raiz matemática e explique por que ela
+      deve ser descartada.
+\item O equilíbrio encontrado é \emph{estável} ou \emph{instável}? Analise para
+      $q_3$ positiva e negativa.
+\end{itensq}
+\resposta{(a) $x = \SI{6}{\centi\meter}$; (b) $x=\SI{30}{\centi\meter}$ (fora do
+segmento); (c) estável para $q_3<0$, instável para $q_3>0$}
+\resolucao{(a) Igualando os módulos das forças (a carga $q_3$ cancela-se):
+\[
+\frac{\ke\,9}{x^{2}}=\frac{\ke\,4}{(10-x)^{2}}
+\;\Longrightarrow\;
+\frac{3}{x}=\frac{2}{10-x}
+\;\Longrightarrow\;
+30-3x=2x
+\;\Longrightarrow\;
+x=\SI{6}{\centi\meter}.
+\]
+(b) Ao elevar ao quadrado, a equação admite também $\dfrac{3}{x}=-\dfrac{2}{10-x}$,
+que fornece $x = \SI{30}{\centi\meter}$. Nesse ponto, \emph{fora} do segmento,
+as duas forças apontam no \textbf{mesmo sentido} (ambas as cargas são positivas e
+empurram $q_3$ para longe) --- elas se somam e nunca se cancelam. A raiz é
+espúria, introduzida pela elevação ao quadrado.
+
+(c) \textbf{Análise de estabilidade.} Suponha $q_3$ deslocada ligeiramente para a
+direita (aproximando-se de $q_2$):
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item Se $q_3 > 0$: a repulsão de $q_2$ (agora mais próxima) supera a de $q_1$, e
+      $q_3$ é empurrada \emph{ainda mais} para longe do ponto de equilíbrio ---
+      \textbf{instável}.
+\item Se $q_3 < 0$: a atração por $q_2$ cresce, puxando $q_3$ \emph{de volta}?
+      Não --- a atração por $q_2$ a puxa para longe de $x=6$. Nesse eixo,
+      portanto, também é instável.
+\end{itemize}
+\textbf{Análise completa:} para $q_3<0$, o equilíbrio é estável na direção
+\emph{transversal} ao eixo (qualquer deslocamento lateral gera força restauradora),
+mas instável ao longo do eixo. Para $q_3>0$, ocorre o oposto.\\
+\textbf{Conclusão profunda --- teorema de Earnshaw:} \emph{nenhuma} configuração
+de cargas estáticas produz equilíbrio estável em \textbf{todas} as direções. Sempre
+há ao menos uma direção instável. É por isso que não se consegue levitar um objeto
+apenas com cargas fixas --- são necessários campos variáveis (armadilhas de Paul)
+ou diamagnetismo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare a força elétrica e a força gravitacional entre dois elétrons.
+\begin{itensq}
+\item Mostre que a razão $F_e/F_g$ \emph{independe} da distância.
+\item Calcule seu valor numérico.
+\item Que conclusão isso permite sobre a estrutura da matéria e sobre a
+      astronomia?
+\end{itensq}
+\dados{$\ke=\SI{9e9}{}$; $G=\SI{6.67e-11}{}$; $e=\SI{1.6e-19}{\coulomb}$;
+$m_e=\SI{9.11e-31}{\kilogram}$ (SI).}
+\resposta{(a) demonstração; (b) $\approx\pot{4.2}{42}$; (c) ver comentário}
+\resolucao{(a) Ambas as forças seguem a lei do inverso do quadrado:
+\[
+F_e=\ke\frac{e^{2}}{d^{2}},
+\qquad
+F_g=G\frac{m_e^{2}}{d^{2}}
+\;\Longrightarrow\;
+\frac{F_e}{F_g}=\frac{\ke\,e^{2}}{G\,m_e^{2}}.
+\]
+O fator $d^{2}$ \textbf{cancela-se}: a razão é uma constante universal.\\
+(b) Numericamente:
+\[
+\frac{F_e}{F_g}=\frac{(9\cdot10^{9})(\pot{1.6}{-19})^{2}}
+{(\pot{6.67}{-11})(\pot{9.11}{-31})^{2}}\approx\pot{4.2}{42}.
+\]
+(c) \textbf{Duas conclusões profundas:}
+\begin{itemize}[leftmargin=1.6em,itemsep=2pt,topsep=3pt]
+\item \textbf{Na escala atômica, a gravidade é irrelevante.} A força elétrica é
+      $10^{42}$ vezes maior --- por isso a estrutura de átomos, moléculas,
+      cristais e de toda a química é governada \emph{exclusivamente} por forças
+      eletromagnéticas. Nenhum modelo atômico precisa incluir gravidade.
+\item \textbf{Na escala astronômica, ocorre o oposto.} Corpos celestes são
+      eletricamente \emph{neutros} (as cargas positivas e negativas se cancelam
+      quase perfeitamente), então a força elétrica resultante é praticamente
+      nula. Já a massa só se \emph{acumula} --- não existe "massa negativa". Por
+      isso a gravidade, apesar de absurdamente mais fraca, domina o cosmos.
+\end{itemize}
+\emph{A natureza usa a força fraca para construir galáxias e a força forte para
+construir átomos --- precisamente porque uma se cancela e a outra não.}}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas pequenas esferas idênticas, de massa $\SI{0.5}{\gram}$ cada, são suspensas
+do mesmo ponto por fios isolantes de $\SI{20}{\centi\meter}$. Ao receberem cargas
+iguais $q$, elas se afastam até que cada fio forme $\SI{10}{\degree}$ com a
+vertical.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ \draw[cinza!60,line width=2pt] (-1.6,3)--(1.6,3);
+ \coordinate (O) at (0,3);
+ \coordinate (P1) at ({-2.4*sin(10)},{3-2.4*cos(10)});
+ \coordinate (P2) at ({ 2.4*sin(10)},{3-2.4*cos(10)});
+ \draw[cinza,thick] (O)--(P1); \draw[cinza,thick] (O)--(P2);
+ \draw[dashed,cinza!70] (O)--(0,0.3);
+ \shade[ball color=Vcol!30] (P1) circle (0.2);
+ \shade[ball color=Vcol!30] (P2) circle (0.2);
+ \node[font=\footnotesize] at (0.34,2.55) {$10^\circ$};
+ \node[left,font=\footnotesize] at ($(P1)+(-0.25,0)$) {$q$};
+ \node[right,font=\footnotesize] at ($(P2)+(0.25,0)$) {$q$};
+ \draw[<->,cinza] ($(P1)+(0,-0.45)$)--($(P2)+(0,-0.45)$)
+       node[midway,below,font=\footnotesize]{$d$};
+ \node[right,font=\footnotesize,cinza] at (0.9,1.9) {$L=\SI{20}{\centi\meter}$};
+\end{tikzpicture}}{Pêndulos eletrostáticos idênticos.}
+
+\begin{itensq}
+\item Determine a separação $d$ entre as esferas.
+\item Calcule a força elétrica entre elas.
+\item Determine a carga $q$ de cada esfera.
+\end{itensq}
+\dados{$g=\SI{10}{\meter\per\second\squared}$; $\sin10^\circ=0{,}174$;
+$\tan10^\circ=0{,}176$; $\ke=\SI{9e9}{}$.}
+\resposta{(a) $d\approx\SI{6.9}{\centi\meter}$; (b) $F\approx\SI{0.88}{\milli\newton}$;
+(c) $q\approx\SI{22}{\nano\coulomb}$}
+\resolucao{(a) Cada esfera se afasta $L\sin\theta$ da vertical, logo
+\[
+d=2L\sin\theta=2(0{,}20)(0{,}174)\approx\SI{0.069}{\meter}=\SI{6.9}{\centi\meter}.
+\]
+(b) No equilíbrio de cada esfera (tração, peso e força elétrica),
+a decomposição fornece $\tan\theta = \dfrac{F_e}{mg}$:
+\[
+F_e = mg\tan\theta=(\pot{0.5}{-3})(10)(0{,}176)
+\approx\pot{8.8}{-4}\,\si{\newton}=\SI{0.88}{\milli\newton}.
+\]
+(c) Da lei de Coulomb, com as duas cargas iguais:
+\[
+F_e=\ke\frac{q^{2}}{d^{2}}
+\;\Longrightarrow\;
+q=d\sqrt{\frac{F_e}{\ke}}
+=0{,}069\sqrt{\frac{\pot{8.8}{-4}}{9\cdot10^{9}}}
+\approx\pot{2.2}{-8}\,\si{\coulomb}=\SI{22}{\nano\coulomb}.
+\]
+\textbf{Ordem de grandeza:} apenas $\sim\pot{1.4}{11}$ elétrons em excesso ---
+uma quantidade ínfima --- já produz um afastamento visível. \emph{Isso mostra
+quão intensa é a força elétrica em escala macroscópica.}}
+\end{questao}
+
+\begin{questao}[3]{}
+Quatro cargas de mesmo módulo $q=\SI{1}{\micro\coulomb}$ ocupam os vértices de um
+quadrado de lado $a=\SI{10}{\centi\meter}$, \textbf{alternando os sinais}
+($+,-,+,-$ ao percorrer o perímetro). Determine o módulo e a direção da força
+resultante sobre uma das cargas positivas.
+\dados{$\ke=\SI{9e9}{}$; $\sqrt2\approx1{,}41$.}
+\resposta{$F_R \approx \SI{0.82}{\newton}$, dirigida ao centro do quadrado}
+\resolucao{\textbf{Forças envolvidas.} Sobre a carga positiva escolhida atuam:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item duas forças dos vizinhos \emph{adjacentes} (que são \textbf{negativos}):
+      são de \textbf{atração}, ao longo dos lados;
+\item uma força da carga da \emph{diagonal} (que é \textbf{positiva}):
+      \textbf{repulsão}, ao longo da diagonal.
+\end{itemize}
+\textbf{Módulos:}
+\[
+F_L=\ke\frac{q^{2}}{a^{2}}=9\cdot10^{9}\frac{(\pot{1}{-6})^{2}}{(0{,}1)^{2}}
+=\SI{0.9}{\newton},
+\qquad
+F_D=\ke\frac{q^{2}}{(a\sqrt2)^{2}}=\frac{F_L}{2}=\SI{0.45}{\newton}.
+\]
+\textbf{Composição.} As duas atrações, perpendiculares entre si, têm resultante
+$F_L\sqrt2 \approx \SI{1.27}{\newton}$ apontando \emph{para o centro} do quadrado
+(ao longo da diagonal). A repulsão da diagonal aponta \emph{para fora}, na mesma
+reta. Logo elas se \textbf{subtraem}:
+\[
+F_R=F_L\sqrt2-F_D = 1{,}27-0{,}45\approx\SI{0.82}{\newton},
+\]
+dirigida \textbf{para o centro} do quadrado.\\
+\textbf{Contraste com o caso de cargas iguais} (visto anteriormente): lá as três
+forças eram repulsivas e se \emph{somavam} ($F_R=F_L\sqrt2+F_D=\SI{1.72}{\newton}$),
+apontando para fora. Aqui, alternar os sinais inverte o sentido e reduz o módulo
+para menos da metade. \emph{A geometria é a mesma; a configuração de sinais muda
+tudo.}}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas cargas fixas, $q_1=+q$ e $q_2=+4q$, estão separadas por $d$. Deseja-se
+colocar uma terceira carga $q_3$ de modo que \textbf{as três} fiquem em
+equilíbrio simultaneamente.
+\begin{itensq}
+\item Determine a posição de $q_3$.
+\item Determine o valor e o sinal de $q_3$.
+\item Esse equilíbrio é estável?
+\end{itensq}
+\resposta{(a) a $d/3$ de $q_1$; (b) $q_3=-\dfrac{4q}{9}$; (c) instável}
+\resolucao{(a) Para $q_3$ estar em equilíbrio, ela deve ficar onde os campos de
+$q_1$ e $q_2$ se cancelam (calculado anteriormente):
+\[
+\frac{q}{x^{2}}=\frac{4q}{(d-x)^{2}}
+\;\Rightarrow\;
+\frac{d-x}{x}=2
+\;\Rightarrow\;
+x=\frac{d}{3}.
+\]
+(b) Mas isso garante apenas o equilíbrio de $q_3$. Para que \emph{$q_1$} também
+esteja equilibrada, a repulsão de $q_2$ sobre ela deve ser cancelada pela atração
+de $q_3$:
+\[
+\underbrace{\ke\frac{q\cdot 4q}{d^{2}}}_{\text{repulsão de }q_2}
+=\underbrace{\ke\frac{q\,|q_3|}{(d/3)^{2}}}_{\text{atração de }q_3}
+\;\Longrightarrow\;
+\frac{4q}{d^{2}}=\frac{9|q_3|}{d^{2}}
+\;\Longrightarrow\;
+|q_3|=\frac{4q}{9}.
+\]
+O sinal deve ser \textbf{negativo} (para atrair), logo
+$q_3 = -\dfrac{4q}{9}$.\\
+\textbf{Verificação em $q_2$:} a repulsão de $q_1$ sobre $q_2$ é
+$\ke\dfrac{4q^2}{d^2}$; a atração de $q_3$ (à distância $2d/3$) é
+$\ke\dfrac{4q\cdot(4q/9)}{(2d/3)^{2}}=\ke\dfrac{(16q^2/9)}{(4d^2/9)}
+=\ke\dfrac{4q^{2}}{d^{2}}$. \checkmark\ São iguais --- as três estão em
+equilíbrio.\\
+(c) \textbf{Instável}, pelo teorema de Earnshaw: qualquer deslocamento infinitesimal
+de qualquer das cargas destrói o equilíbrio, e as forças resultantes \emph{afastam}
+ainda mais o sistema da configuração original. Não existe arranjo eletrostático
+puro que seja estável.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma pequena esfera de massa $m = \SI{10}{\gram}$, eletrizada com carga $q$, é
+suspensa por um fio isolante de massa desprezível em uma região de campo elétrico
+\emph{horizontal} e uniforme, de intensidade $E = \SI{e4}{\newton\per\coulomb}$.
+No equilíbrio, o fio forma $\SI{30}{\degree}$ com a vertical.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ \draw[cinza!60,line width=2pt] (-2,2.6)--(2,2.6);
+ \coordinate (O) at (0,2.6);
+ \coordinate (P) at ({2.2*sin(30)},{2.6-2.2*cos(30)});
+ \draw[cinza,thick] (O)--(P);
+ \draw[dashed,cinza!70] (O)--(0,0.2);
+ \shade[ball color=Vcol!30] (P) circle (0.22);
+ \node[right,font=\footnotesize] at ($(P)+(0.28,0)$) {$m,\,q$};
+ \draw[->,Vcol,thick] (P)--($(P)+(1.0,0)$) node[right,font=\footnotesize]{$\vec F_e$};
+ \draw[->,cinza,thick] (P)--($(P)+(0,-0.9)$) node[below,font=\footnotesize]{$\vec P$};
+ \node[font=\footnotesize] at (0.42,1.9) {$30^\circ$};
+ \foreach \y in {0.4,1.0,1.6} \draw[->,Vcol!45] (-1.9,\y)--(-1.2,\y);
+ \node[Vcol,font=\footnotesize] at (-1.55,2.05) {$\vec E$};
+\end{tikzpicture}}{Pêndulo eletrostático em campo horizontal.}
+
+\begin{itensq}
+\item Determine a carga $q$ da esfera.
+\item Calcule a tração no fio.
+\item Se o campo dobrasse, o ângulo dobraria? Justifique quantitativamente.
+\end{itensq}
+\dados{$g = \SI{10}{\meter\per\second\squared}$; $\tan30^\circ\approx0{,}577$.}
+\resposta{(a) $q \approx \SI{5.8}{\micro\coulomb}$; (b) $T\approx\SI{0.115}{\newton}$;
+(c) não --- o ângulo cresce menos que proporcionalmente}
+\resolucao{\textbf{(a)} No equilíbrio, decompondo a tração:
+\[
+T\sin\theta = F_e = qE,
+\qquad
+T\cos\theta = P = mg
+\quad\Longrightarrow\quad
+\tan\theta=\frac{qE}{mg}.
+\]
+Isolando $q$:
+\[
+q=\frac{mg\tan\theta}{E}
+=\frac{(\pot{10}{-3})(10)(0{,}577)}{\pot{1}{4}}
+\approx\pot{5.8}{-6}\,\si{\coulomb}=\SI{5.8}{\micro\coulomb}.
+\]
+\textbf{(b)} $T = \dfrac{mg}{\cos\theta} = \dfrac{0{,}1}{0{,}866}
+\approx\SI{0.115}{\newton}$.\\
+\textbf{(c)} \textbf{Não.} A relação é $\tan\theta \propto E$, e \emph{não}
+$\theta \propto E$. Dobrando o campo:
+\[
+\tan\theta' = 2\tan30^\circ = 1{,}155
+\;\Rightarrow\;
+\theta' = \arctan(1{,}155)\approx 49{,}1^\circ,
+\]
+que é \emph{menos} que $2\times30^\circ = 60^\circ$. A função tangente cresce mais
+rápido que o ângulo, então o ângulo responde de forma \emph{sublinear}. No limite
+$E\to\infty$, $\theta\to90^\circ$ mas nunca o atinge --- o fio jamais fica
+horizontal.}
+\end{questao}
+
+\begin{questao}[3]{}
+Três cargas puntiformes estão sobre uma reta: $+Q$ na origem, $-2Q$ em $x=a$ e
+$+Q$ em $x=2a$ (um \emph{quadrupolo linear}).
+\begin{itensq}
+\item Determine a força resultante sobre a carga central.
+\item Determine a força resultante sobre a carga da extremidade em $x=0$.
+\item Explique por que o sistema, embora tenha carga total nula, ainda exerce
+      força sobre uma carga externa distante.
+\end{itensq}
+\resposta{(a) nula, por simetria; (b) $F=\dfrac{7\ke Q^{2}}{4a^{2}}$ dirigida para
+$+x$; (c) ver comentário}
+\resolucao{(a) A carga central $-2Q$ está \emph{equidistante} das duas cargas
+$+Q$, que são iguais. As duas atrações têm mesmo módulo e sentidos opostos: a
+resultante é \textbf{nula} por simetria.\\
+(b) Sobre a carga em $x=0$ atuam:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item atração de $-2Q$ (distância $a$):
+      $F_1=\ke\dfrac{Q\cdot2Q}{a^{2}}=\dfrac{2\ke Q^{2}}{a^{2}}$, para $+x$;
+\item repulsão de $+Q$ (distância $2a$):
+      $F_2=\ke\dfrac{Q^{2}}{4a^{2}}$, para $-x$.
+\end{itemize}
+Resultante:
+\[
+F=F_1-F_2=\frac{2\ke Q^{2}}{a^{2}}-\frac{\ke Q^{2}}{4a^{2}}
+=\frac{\ke Q^{2}}{a^{2}}\left(2-\frac14\right)
+=\frac{7\ke Q^{2}}{4a^{2}},
+\]
+dirigida para $+x$ (para dentro do conjunto).\\
+(c) \textbf{Por que a carga total nula não implica campo nulo.} A carga total é
+$Q-2Q+Q=0$, então \emph{a longas distâncias} o campo decai muito mais rápido que
+o de uma carga isolada. Mas ele não é nulo: as cargas ocupam \emph{posições
+diferentes}, e essa separação espacial cria momentos de ordem superior.\\
+\textbf{Hierarquia dos decaimentos:}
+\begin{center}\small\sffamily
+\begin{tabular}{@{}l c c@{}}
+\toprule
+\textbf{Configuração} & \textbf{Carga total} & \textbf{Campo distante}\\
+\midrule
+Monopolo (carga isolada) & $\neq0$ & $\propto 1/r^{2}$\\
+Dipolo ($+q,-q$)         & $0$     & $\propto 1/r^{3}$\\
+Quadrupolo (este caso)   & $0$     & $\propto 1/r^{4}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\emph{Cada cancelamento sucessivo acelera o decaimento --- é o princípio da
+expansão multipolar, base da análise de antenas e de moléculas polares.}}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+Uma carga $Q$ é dividida em duas partes, $q$ e $(Q-q)$, que são então colocadas a
+uma distância fixa $d$ uma da outra.
+\begin{itensq}
+\item Obtenha a expressão da força entre elas em função de $q$.
+\item Determine o valor de $q$ que \textbf{maximiza} essa força.
+\item Qual é a força máxima?
+\end{itensq}
+\resposta{(a) $F=\dfrac{\ke\,q(Q-q)}{d^{2}}$; (b) $q=Q/2$;
+(c) $F_{\max}=\dfrac{\ke Q^{2}}{4d^{2}}$}
+\resolucao{(a) Pela lei de Coulomb,
+\[
+F(q)=\ke\,\frac{q\,(Q-q)}{d^{2}}=\frac{\ke}{d^{2}}\left(Qq-q^{2}\right).
+\]
+(b) É uma \textbf{parábola} com concavidade para baixo em função de $q$. O máximo
+ocorre no vértice. Derivando:
+\[
+\frac{\mathrm{d}F}{\mathrm{d}q}=\frac{\ke}{d^{2}}\left(Q-2q\right)=0
+\;\Longrightarrow\;
+\boxed{\,q=\frac{Q}{2}\,}
+\]
+(Sem cálculo: o vértice de $Qq-q^2$ está em $q = -\dfrac{b}{2a}=\dfrac{Q}{2}$.)\\
+(c) Substituindo:
+\[
+F_{\max}=\frac{\ke}{d^{2}}\cdot\frac{Q}{2}\cdot\frac{Q}{2}
+=\frac{\ke\,Q^{2}}{4d^{2}}.
+\]
+\textbf{Interpretação.} A força é máxima quando a carga é dividida
+\emph{igualmente}. Isso decorre da desigualdade entre médias: para soma fixa
+($q+(Q-q)=Q$), o produto é máximo quando as parcelas são iguais.\\
+\textbf{Casos-limite:} se $q\to0$ ou $q\to Q$, uma das partes fica sem carga e
+$F\to0$ --- coerente. \emph{Este é um problema de otimização disfarçado de
+eletrostática: reconhecer a estrutura matemática vale mais que decorar a
+fórmula.}}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Lei de Coulomb
+\input{bancos/banco-lei-de-coulomb.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[1.2 Lei de Coulomb]
+
+% =====================================================================
+\subsection{Campo elétrico}
+% =====================================================================
+
+\begin{conceito}[Antes de começar]
+\textbf{Campo de uma carga puntiforme:}
+\[
+E = \ke\,\frac{|q|}{d^2}\quad(\si{\newton\per\coulomb}\ \text{ou}\ \si{\volt\per\meter}).
+\]
+O campo \emph{aponta para fora} de cargas positivas e \emph{para dentro} de cargas
+negativas.\par
+\textbf{Força sobre uma carga no campo:} $F = qE$ (mesmo sentido de $E$ se $q>0$;
+oposto se $q<0$).\par
+\textbf{Superposição:} o campo resultante é a \emph{soma vetorial} dos campos
+individuais.\par
+\textbf{Ponto de campo nulo} entre duas cargas de mesmo sinal: onde os módulos se
+igualam, $\dfrac{|q_1|}{d_1^2} = \dfrac{|q_2|}{d_2^2}$.
+\end{conceito}
+
+\legendaniveis
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Qual a intensidade do campo elétrico gerado por uma carga de
+$\SI{-15}{\micro\coulomb}$, a $\SI{10}{\milli\meter}$ dela, em um meio de constante
+$\ke = \SI{8e9}{\newton\meter\squared\per\coulomb\squared}$?
+\resposta{$E = \pot{1.2}{9}\,\si{\newton\per\coulomb}$}
+\resolucao{Com $d = \SI{10}{\milli\meter} = \SI{0.01}{\meter}$:
+\[
+E=\ke\frac{|q|}{d^2}
+=8\cdot10^9\cdot\frac{\pot{15}{-6}}{(0{,}01)^2}=\pot{1.2}{9}\,\si{\newton\per\coulomb}.
+\]
+O campo aponta \emph{para} a carga, por ela ser negativa.}
+\end{questao}
+
+\begin{questao}[1]{}
+O módulo do campo elétrico de uma carga puntiforme $q$, em um ponto P a uma dada
+distância, vale $E$. Afastando-se a carga de modo que a distância a P
+\textbf{dobre}, o campo em P passa a ser:
+\begin{alternativas}[3]
+\item $E$
+\item $E/2$
+\item $E/4$
+\item $2E$
+\item $4E$
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Como $E \propto \dfrac{1}{d^2}$, dobrar a distância divide o campo por
+$2^2 = 4$: o novo valor é $E/4$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma carga de prova de $\SI{e-9}{\coulomb}$, colocada em um ponto P de um campo
+elétrico, fica sujeita a uma força de $\SI{e-2}{\newton}$, vertical e para baixo.
+Determine:
+\begin{itensq}
+\item a intensidade, direção e sentido do campo em P;
+\item a força que atuaria sobre uma carga de $\SI{3}{\milli\coulomb}$ colocada em P.
+\end{itensq}
+\resposta{(a) $E=\pot{1.0}{7}\,\si{\newton\per\coulomb}$, vertical para baixo;
+(b) $F = \pot{3}{4}\,\si{\newton}$}
+\resolucao{(a) $E = \dfrac{F}{q} = \dfrac{\pot{1}{-2}}{\pot{1}{-9}}
+= \pot{1.0}{7}\,\si{\newton\per\coulomb}$. Como a carga de prova é positiva, o
+campo tem o \emph{mesmo} sentido da força: vertical, para baixo.\\
+(b) $F = qE = \pot{3}{-3}\cdot\pot{1}{7} = \pot{3}{4}\,\si{\newton}$,
+também vertical para baixo (carga positiva).}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma carga positiva $Q = \SI{4.0}{\micro\coulomb}$ está no ar. Determine a
+intensidade, a direção e o sentido do campo elétrico em um ponto M, a
+$\SI{20}{\centi\meter}$ da carga.
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$.}
+\resposta{$E = \pot{9.0}{5}\,\si{\newton\per\coulomb}$, radial, afastando-se de $Q$}
+\resolucao{$E = \ke\dfrac{Q}{d^2}
+= 9\cdot10^9\cdot\dfrac{\pot{4}{-6}}{(0{,}2)^2} = \pot{9.0}{5}\,\si{\newton\per\coulomb}$.
+A direção é a da reta que une $Q$ a M, e o sentido é \emph{para fora} de $Q$
+(carga positiva).}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas cargas puntiformes, $Q$ e $4Q$ (de mesmo sinal), estão fixas no vácuo. O
+módulo do campo elétrico resultante é \textbf{nulo} em um ponto sobre a reta que
+as une. Esse ponto está tal que sua distância à carga menor, $d_1$, e à carga
+maior, $d_2$, satisfazem:
+\begin{alternativas}[2]
+\item $d_2 = d_1$
+\item $d_2 = 2d_1$
+\item $d_2 = 4d_1$
+\item $d_1 = 2d_2$
+\item $d_1 = 4d_2$
+\end{alternativas}
+\resposta{(b)}
+\resolucao{O campo se anula \emph{entre} as cargas, onde os módulos se igualam:
+\[
+\ke\frac{Q}{d_1^2}=\ke\frac{4Q}{d_2^2}
+\ \Rightarrow\
+\frac{d_2^2}{d_1^2}=4
+\ \Rightarrow\
+d_2 = 2d_1.
+\]
+O ponto de campo nulo fica \emph{mais próximo} da carga menor.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas cargas de mesmo módulo $Q$ estão fixas, separadas por $\SI{20}{\centi\meter}$.
+Analise o campo elétrico resultante no ponto médio M do segmento que as une, em
+dois casos:
+
+\circuitoq{%
+\begin{tikzpicture}[scale=0.9,line width=0.8pt,>=Stealth]
+ % caso 1: +Q e -Q
+ \begin{scope}
+   \shade[ball color=Vcol!25] (-1.6,0) circle (0.25); \node at (-1.6,0){\footnotesize$+$};
+   \shade[ball color=Icol!25] (1.6,0) circle (0.25);   \node at (1.6,0){\footnotesize$-$};
+   \fill[laranja] (0,0) circle (0.06); \node[above,font=\footnotesize] at (0,0.12){M};
+   \draw[Vcol,->,thick] (0,-0.5)--(1.1,-0.5); \node[Vcol,font=\footnotesize] at (0.55,-0.8){$\vec E_1$};
+   \draw[Vcol,->,thick] (0,-1.1)--(1.1,-1.1); \node[Vcol,font=\footnotesize] at (0.55,-1.4){$\vec E_2$};
+   \node[font=\footnotesize] at (0,1.0){Caso I: $+Q$ e $-Q$};
+ \end{scope}
+\end{tikzpicture}}{Campo no ponto médio entre duas cargas.}
+
+No \textbf{Caso I} ($+Q$ e $-Q$) e no \textbf{Caso II} (ambas $+Q$), o campo
+resultante em M é, respectivamente:
+\begin{alternativas}
+\item nulo em I e nulo em II.
+\item não-nulo em I e nulo em II.
+\item nulo em I e não-nulo em II.
+\item não-nulo em ambos.
+\item nulo em ambos.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Em M, cada carga produz um campo de mesmo módulo (mesma distância,
+mesmo $|Q|$).\\
+\textbf{Caso I ($+Q$, $-Q$):} os dois campos apontam no \emph{mesmo} sentido (para
+longe da positiva e em direção à negativa), então se \textbf{somam}: campo
+resultante \emph{não-nulo}, $E = 2\cdot\dfrac{\ke Q}{d^2}$.\\
+\textbf{Caso II ($+Q$, $+Q$):} os campos apontam em sentidos \emph{opostos} e se
+\textbf{cancelam}: campo resultante \emph{nulo}.\\
+Cuidado: para o \emph{potencial} a conclusão se inverte (nulo no caso I, não-nulo
+no caso II), porque potencial é escalar e campo é vetorial.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+As cargas $q_1 = \SI{20}{\coulomb}$ e $q_2 = \SI{64}{\coulomb}$ estão fixas no
+vácuo nos pontos A e B, separados por $\SI{9}{\meter}$. Determine a posição, sobre
+o segmento AB, onde o campo elétrico resultante é nulo.
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$.}
+\resposta{A $\SI{4}{\meter}$ de A (e $\SI{5}{\meter}$ de B)}
+\resolucao{Como as cargas têm o mesmo sinal, o campo se anula entre elas. Seja $x$
+a distância a partir de A; a distância a B é $9 - x$. Igualando os módulos:
+\[
+\ke\frac{q_1}{x^2}=\ke\frac{q_2}{(9-x)^2}
+\ \Rightarrow\
+\frac{20}{x^2}=\frac{64}{(9-x)^2}.
+\]
+Extraindo a raiz (grandezas positivas):
+$\dfrac{9-x}{x}=\sqrt{\dfrac{64}{20}}=\dfrac{8}{\sqrt{20}}=\dfrac{8}{2\sqrt5}
+=\dfrac{4}{\sqrt5}$. Resolvendo,
+$9 - x = \dfrac{4}{\sqrt5}x \Rightarrow x = \dfrac{9}{1+4/\sqrt5}\approx\SI{4}{\meter}$.
+O ponto neutro fica a cerca de \SI{4}{\meter} de A e \SI{5}{\meter} de B --- mais
+perto da carga menor, como sempre ocorre.}
+\end{questao}
+
+\begin{questao}[3]{}
+A intensidade do campo elétrico de uma carga puntiforme positiva, em função da
+distância $d$, obedece ao gráfico $E \times d$ abaixo (curva do tipo $E = c/d^2$).
+Sabendo que a $\SI{3}{\meter}$ o campo vale $\SI{80}{\newton\per\coulomb}$,
+determine o campo a $\SI{6}{\meter}$.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=9cm,height=5cm,xlabel={$d$ (m)},ylabel={$E$ (N/C)},
+   xmin=0,xmax=8,ymin=0,ymax=90,xtick={0,2,3,4,6,8},ytick={0,20,40,60,80},
+   grid=both,axis lines=left,domain=1.6:8,samples=100]
+   \addplot[Vcol,very thick] {720/(x^2)};
+   \addplot[only marks,mark=*,Vcol] coordinates {(3,80)(6,20)};
+   \node[Vcol,anchor=south west,font=\footnotesize] at (axis cs:3,80) {$(3,\,80)$};
+   \node[Vcol,anchor=south west,font=\footnotesize] at (axis cs:6,20) {$(6,\,20)$};
+ \end{axis}
+\end{tikzpicture}}{Campo elétrico em função da distância ($E \propto 1/d^2$).}
+
+\resposta{$E = \SI{20}{\newton\per\coulomb}$}
+\resolucao{Como $E \propto \dfrac{1}{d^2}$, dobrar a distância (de \SI{3}{} para
+\SI{6}{\meter}) divide o campo por 4:
+\[
+E(6)=\frac{E(3)}{4}=\frac{80}{4}=\SI{20}{\newton\per\coulomb}.
+\]
+Formalmente, $E(3)\cdot3^2 = E(6)\cdot6^2$, ou seja,
+$80\cdot9 = E(6)\cdot36 \Rightarrow E(6) = \SI{20}{\newton\per\coulomb}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas cargas $q_1 = \SI{+9}{\micro\coulomb}$ e $q_2 = \SI{+4}{\micro\coulomb}$
+estão fixas e separadas por $\SI{10}{\centi\meter}$. Determine a que distância da
+carga $q_1$, sobre a reta que as une, o campo elétrico resultante é nulo.
+\resposta{A $\SI{6}{\centi\meter}$ de $q_1$}
+\resolucao{Cargas de mesmo sinal: o campo se anula \emph{entre} elas. Seja $x$ a
+distância a $q_1$; a distância a $q_2$ é $(10 - x)$. Igualando os módulos dos
+campos:
+\[
+\frac{\ke q_1}{x^2}=\frac{\ke q_2}{(10-x)^2}
+\ \Rightarrow\
+\frac{9}{x^2}=\frac{4}{(10-x)^2}.
+\]
+Extraindo a raiz: $\dfrac{3}{x}=\dfrac{2}{10-x} \Rightarrow 3(10-x)=2x
+\Rightarrow 30 = 5x \Rightarrow x = \SI{6}{\centi\meter}$.
+O ponto neutro fica mais perto da carga \emph{menor} ($q_2$), a
+\SI{4}{\centi\meter} dela.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas cargas puntiformes, $+4Q$ e $-Q$, estão fixas no vácuo, separadas por uma
+distância $d$.
+\begin{itensq}
+\item Mostre que existe um ponto sobre a reta que as une onde o campo elétrico
+      resultante é \textbf{nulo}, e determine sua posição.
+\item Explique por que esse ponto está \emph{fora} do segmento que une as cargas,
+      e do lado da carga de \emph{menor} módulo.
+\item Nesse mesmo ponto, o potencial elétrico é nulo? Justifique.
+\end{itensq}
+\resposta{(a) a $2d$ da carga $+4Q$ (isto é, a $d$ além de $-Q$);
+(b) e (c) ver comentário}
+\resolucao{\textbf{(a)} Seja $x$ a distância medida a partir de $+4Q$, com o ponto
+além de $-Q$ (logo a distância a $-Q$ é $x-d$). Igualando os módulos:
+\[
+\frac{\ke\,4Q}{x^{2}}=\frac{\ke\,Q}{(x-d)^{2}}
+\;\Longrightarrow\;
+4(x-d)^2 = x^2
+\;\Longrightarrow\;
+2(x-d)=\pm x.
+\]
+A raiz fisicamente válida é $2x-2d = x \Rightarrow \boxed{x = 2d}$, ou seja, a
+$2d$ da carga maior e a $d$ além da carga menor.
+(A outra raiz, $x = \tfrac{2d}{3}$, cai \emph{entre} as cargas, onde os campos
+apontam no \emph{mesmo} sentido e portanto não podem se cancelar --- deve ser
+descartada.)
+
+\textbf{(b)} Entre cargas de sinais \emph{opostos}, os dois vetores campo apontam
+no mesmo sentido (saindo da positiva, entrando na negativa) e se \emph{somam};
+nunca se anulam ali. Fora do segmento, eles têm sentidos contrários, e o
+cancelamento só é possível onde o campo da carga \emph{menor} --- que está mais
+próxima --- consegue igualar o da maior. Por isso o ponto neutro fica sempre do
+lado da carga de menor módulo.
+
+\textbf{(c) Não.} Potencial é grandeza \emph{escalar}:
+\[
+V = \ke\frac{4Q}{2d}+\ke\frac{(-Q)}{d}
+= \frac{2\ke Q}{d}-\frac{\ke Q}{d}
+= \frac{\ke Q}{d}\neq 0.
+\]
+\textbf{Conclusão conceitual:} campo nulo e potencial nulo são condições
+\emph{independentes}. Neste caso, $\vec E = 0$ mas $V \neq 0$. No ponto médio de um
+dipolo simétrico ocorre o oposto: $V = 0$ mas $\vec E \neq 0$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um elétron entra com velocidade horizontal $v_0=\SI{2e7}{\meter\per\second}$ na
+região entre duas placas paralelas de comprimento $L=\SI{5}{\centi\meter}$, onde
+existe campo elétrico uniforme $E=\SI{e4}{\volt\per\meter}$, perpendicular à
+velocidade.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ \draw[cinza!70,line width=2.2pt] (0,1.3)--(4.2,1.3);
+ \draw[cinza!70,line width=2.2pt] (0,-1.3)--(4.2,-1.3);
+ \node[above,font=\footnotesize] at (2.1,1.35) {$+$\ placa};
+ \node[below,font=\footnotesize] at (2.1,-1.35) {$-$\ placa};
+ \foreach \x in {0.6,1.5,2.4,3.3}
+   \draw[->,Vcol!70] (\x,1.2)--(\x,-1.2);
+ \node[Vcol,font=\footnotesize] at (3.85,0.55) {$\vec E$};
+ \draw[->,laranja,line width=1.2pt] (-1.4,0)--(0,0)
+       node[midway,above,font=\footnotesize]{$v_0$};
+ \draw[laranja,line width=1.2pt,domain=0:4.2,samples=40,smooth]
+       plot (\x,{0.055*\x*\x});
+ \draw[->,laranja,line width=1.2pt] (4.2,{0.055*4.2*4.2})--(5.3,{0.055*4.2*4.2+0.55});
+ \draw[<->,cinza] (0,-1.75)--(4.2,-1.75) node[midway,below,font=\footnotesize]{$L$};
+ \draw[<->,cinza] (4.5,0)--(4.5,{0.055*4.2*4.2}) node[midway,right,font=\footnotesize]{$y$};
+\end{tikzpicture}}{Deflexão de um elétron em campo elétrico uniforme.}
+
+\begin{itensq}
+\item Calcule a aceleração do elétron.
+\item Determine o tempo de permanência entre as placas e o desvio vertical $y$.
+\item Calcule o ângulo de saída em relação à direção inicial.
+\end{itensq}
+\dados{$e=\SI{1.6e-19}{\coulomb}$; $m_e=\SI{9.11e-31}{\kilogram}$.}
+\resposta{(a) $a\approx\SI{1.76e15}{\meter\per\second\squared}$;
+(b) $t=\SI{2.5}{\nano\second}$, $y\approx\SI{5.5}{\milli\meter}$;
+(c) $\theta\approx\SI{12.4}{\degree}$}
+\resolucao{Este é um \textbf{lançamento de projétil} eletrostático: movimento
+uniforme na horizontal e uniformemente acelerado na vertical.\\
+(a) $a=\dfrac{eE}{m_e}=\dfrac{(\pot{1.6}{-19})(\pot{1}{4})}{\pot{9.11}{-31}}
+\approx\pot{1.76}{15}\,\si{\meter\per\second\squared}$
+--- cerca de $10^{14}$ vezes a gravidade, o que justifica desprezar o peso.\\
+(b) Na horizontal (MU):
+$t=\dfrac{L}{v_0}=\dfrac{0{,}05}{\pot{2}{7}}=\pot{2.5}{-9}\,\si{\second}
+=\SI{2.5}{\nano\second}$.\\
+Na vertical (MUV, partindo do repouso):
+\[
+y=\tfrac12 a t^{2}=\tfrac12(\pot{1.76}{15})(\pot{2.5}{-9})^{2}
+\approx\pot{5.5}{-3}\,\si{\meter}=\SI{5.5}{\milli\meter}.
+\]
+(c) A velocidade vertical na saída é $v_y = a\,t \approx
+\pot{4.4}{6}\,\si{\meter\per\second}$, logo
+\[
+\tan\theta=\frac{v_y}{v_0}=\frac{\pot{4.4}{6}}{\pot{2}{7}}=0{,}22
+\;\Longrightarrow\;
+\theta\approx\SI{12.4}{\degree}.
+\]
+\textbf{Aplicação:} é exatamente esse o mecanismo de deflexão dos antigos tubos de
+raios catódicos (TV e osciloscópios) e das impressoras a jato de tinta, que
+defletem gotículas carregadas para formar caracteres.}
+\end{questao}
+
+\begin{questao}[3]{}
+Quatro cargas de módulo $q=\SI{1}{\micro\coulomb}$ ocupam os vértices de um
+quadrado de lado $a=\SI{10}{\centi\meter}$. Compare o \textbf{campo elétrico no
+centro} em três configurações:
+\begin{itensq}
+\item todas positivas;
+\item duas positivas e duas negativas, alternadas ($+,-,+,-$);
+\item duas positivas e duas negativas, adjacentes ($+,+,-,-$).
+\end{itensq}
+\dados{$\ke=\SI{9e9}{}$; $\sqrt2\approx1{,}41$.}
+\resposta{(a) $\vec E=0$; (b) $\vec E=0$; (c) $E\approx\pot{5.1}{6}\,\si{\newton\per\coulomb}$}
+\resolucao{Cada carga dista $\dfrac{a\sqrt2}{2}=\SI{0.0707}{\meter}$ do centro,
+produzindo individualmente
+\[
+E_1=\frac{\ke q}{(a\sqrt2/2)^{2}}=\frac{9\cdot10^{9}\cdot\pot{1}{-6}}{0{,}005}
+=\pot{1.8}{6}\,\si{\newton\per\coulomb}.
+\]
+\textbf{(a) Todas positivas.} Os quatro vetores apontam radialmente para fora,
+aos pares diametralmente opostos: cancelam-se dois a dois. $\vec E = 0$.\\
+\textbf{(b) Alternadas ($+,-,+,-$).} As cargas diametralmente opostas têm o
+\emph{mesmo} sinal, e seus campos continuam se cancelando aos pares.
+$\vec E = 0$ novamente.\\
+\textbf{(c) Adjacentes ($+,+,-,-$).} Agora cada par diametralmente oposto tem
+sinais \emph{contrários}: os campos se \textbf{somam} em vez de cancelar. Os dois
+pares contribuem na mesma direção (perpendicular à linha que separa as positivas
+das negativas):
+\[
+E=2\,(E_1\sqrt2)=2\sqrt2\,E_1\approx 2{,}83\cdot\pot{1.8}{6}
+\approx\pot{5.1}{6}\,\si{\newton\per\coulomb}.
+\]
+\textbf{Lição central.} Em (a) e (b), configurações \emph{muito} diferentes
+produzem o mesmo resultado nulo. Em (c), com as mesmas quatro cargas, apenas
+reposicionadas, o campo é máximo. \emph{O campo resultante depende da geometria
+tanto quanto dos valores das cargas} --- e a simetria é a ferramenta que revela
+isso sem nenhum cálculo pesado.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma carga $-Q$ está na origem e uma carga $+4Q$ está em $x=d$.
+\begin{itensq}
+\item Determine o ponto sobre o eixo $x$ onde o campo resultante é nulo.
+\item Explique por que ele fica \emph{fora} do segmento e do lado da carga de
+      menor módulo.
+\item Nesse ponto, quanto vale o potencial elétrico?
+\end{itensq}
+\resposta{(a) $x=-d$ (a uma distância $d$ à esquerda de $-Q$);
+(b) e (c) ver comentário; $V=\dfrac{\ke Q}{d}$}
+\resolucao{(a) Como as cargas têm sinais \emph{opostos}, entre elas os campos
+apontam no mesmo sentido e se somam --- o cancelamento só pode ocorrer fora do
+segmento. Seja $x<0$ a posição procurada; a distância a $-Q$ é $|x|$ e a $+4Q$ é
+$|x|+d$:
+\[
+\frac{\ke Q}{|x|^{2}}=\frac{\ke\,4Q}{(|x|+d)^{2}}
+\;\Longrightarrow\;
+\frac{|x|+d}{|x|}=2
+\;\Longrightarrow\;
+|x|=d.
+\]
+O ponto está em $x=-d$.\\
+(b) Do lado da carga \emph{maior}, seu campo sempre domina (está mais perto
+\emph{e} é mais intensa) --- nunca poderia ser equilibrado. Do lado da carga
+menor, a proximidade compensa a menor intensidade, e existe exatamente um ponto
+de equilíbrio.\\
+(c) O potencial é escalar:
+\[
+V=\ke\frac{(-Q)}{d}+\ke\frac{4Q}{2d}
+=-\frac{\ke Q}{d}+\frac{2\ke Q}{d}
+=\frac{\ke Q}{d}\neq0.
+\]
+\textbf{Mais um exemplo de que $\vec E=0$ não implica $V=0$} --- e vice-versa. O
+campo mede a \emph{taxa de variação} do potencial, não o seu valor.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um anel isolante de raio $R$ está uniformemente carregado com carga total $Q$.
+Considere um ponto P sobre o eixo do anel, a uma distância $x$ do centro.
+\begin{itensq}
+\item Explique, por simetria, por que o campo em P é paralelo ao eixo.
+\item Sabendo que $E(x)=\dfrac{\ke\,Q\,x}{\left(x^{2}+R^{2}\right)^{3/2}}$,
+      determine $E$ no centro do anel e no limite $x\gg R$.
+\item Mostre que o campo é \emph{máximo} em $x = \dfrac{R}{\sqrt2}$.
+\end{itensq}
+\resposta{(b) $E(0)=0$ e $E\to\ke Q/x^{2}$; (c) demonstração}
+\resolucao{(a) \textbf{Argumento de simetria.} Para cada elemento de carga do
+anel existe outro diametralmente oposto. As componentes de campo
+\emph{perpendiculares} ao eixo desses dois elementos são iguais e opostas,
+cancelando-se. Restam apenas as componentes \emph{paralelas} ao eixo, que se
+somam. Logo $\vec E$ é axial.
+
+(b) \textbf{No centro} ($x=0$): substituindo,
+\[
+E(0)=\frac{\ke Q\cdot 0}{R^{3}}=0.
+\]
+Faz sentido: no centro, as contribuições de elementos opostos se cancelam
+\emph{integralmente}.\\
+\textbf{Longe} ($x\gg R$): então $\left(x^{2}+R^{2}\right)^{3/2}\approx x^{3}$ e
+\[
+E\approx\frac{\ke Q x}{x^{3}}=\frac{\ke Q}{x^{2}},
+\]
+o campo de uma carga puntiforme --- como esperado, pois de longe o anel "vira"
+um ponto.
+
+(c) \textbf{Máximo.} Derivando $E(x)$ e igualando a zero:
+\[
+\frac{\mathrm{d}E}{\mathrm{d}x}
+=\ke Q\,\frac{\left(x^{2}+R^{2}\right)^{3/2}-x\cdot\tfrac32\left(x^{2}+R^{2}\right)^{1/2}(2x)}
+{\left(x^{2}+R^{2}\right)^{3}}=0.
+\]
+O numerador, dividido por $\left(x^{2}+R^{2}\right)^{1/2}$, dá
+\[
+\left(x^{2}+R^{2}\right)-3x^{2}=0
+\;\Longrightarrow\;
+R^{2}=2x^{2}
+\;\Longrightarrow\;
+\boxed{\,x=\frac{R}{\sqrt2}\,}
+\]
+\textbf{Interpretação física do máximo.} Perto do centro, as contribuições
+axiais são pequenas (os vetores são quase perpendiculares ao eixo). Muito longe,
+a distância cresce e o campo decai. Entre os dois regimes existe um ponto ótimo,
+a $x=R/\sqrt2\approx0{,}71R$.\\
+\textbf{Onde isso é usado:} essa geometria é a base das \emph{bobinas de
+Helmholtz} (versão magnética do mesmo cálculo) e dos anéis focalizadores em
+aceleradores de partículas e microscópios eletrônicos.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+Uma haste isolante fina de comprimento $L$ está uniformemente carregada com carga
+total $Q$ (densidade linear $\lambda=Q/L$). Considere um ponto P sobre o
+prolongamento da haste, a uma distância $a$ da extremidade mais próxima.
+\begin{itensq}
+\item Monte a integral que fornece o campo elétrico em P.
+\item Mostre que $E=\dfrac{\ke\,Q}{a\,(a+L)}$.
+\item Verifique o comportamento no limite $a \gg L$ e interprete.
+\end{itensq}
+\resposta{(b) demonstração; (c) $E\to \ke Q/a^{2}$ (carga puntiforme)}
+\resolucao{(a) Tome um elemento de comprimento $\mathrm{d}x$ à distância $x$ de P
+(com $x$ variando de $a$ até $a+L$). Sua carga é
+$\mathrm{d}q=\lambda\,\mathrm{d}x$ e contribui com
+\[
+\mathrm{d}E=\frac{\ke\,\mathrm{d}q}{x^{2}}=\frac{\ke\lambda\,\mathrm{d}x}{x^{2}}.
+\]
+Como todos os elementos estão alinhados com P, as contribuições têm a
+\emph{mesma direção} e somam-se escalarmente:
+\[
+E=\int_{a}^{a+L}\frac{\ke\lambda}{x^{2}}\,\mathrm{d}x.
+\]
+(b) Integrando:
+\[
+E=\ke\lambda\left[-\frac{1}{x}\right]_{a}^{a+L}
+=\ke\lambda\left(\frac{1}{a}-\frac{1}{a+L}\right)
+=\ke\lambda\,\frac{L}{a(a+L)}.
+\]
+Como $\lambda L = Q$:
+\[
+\boxed{\;E=\frac{\ke\,Q}{a\,(a+L)}\;}
+\]
+(c) \textbf{Limite $a\gg L$:} então $a+L\approx a$ e
+\[
+E\approx\frac{\ke Q}{a^{2}},
+\]
+que é exatamente o campo de uma \textbf{carga puntiforme} $Q$.\\
+\textbf{Interpretação:} de longe, qualquer distribuição finita de carga
+"parece" puntiforme. Esse teste de consistência --- verificar se a expressão
+obtida reproduz o caso conhecido em algum limite --- é uma das melhores formas de
+validar um resultado. \emph{Se o limite não fechasse, haveria erro na
+integração.}\\
+\textbf{Limite oposto ($a\ll L$):} $E\approx\dfrac{\ke Q}{aL}=\dfrac{\ke\lambda}{a}$
+--- campo de um fio "infinito" visto de perto, decaindo com $1/a$ em vez de
+$1/a^{2}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+Um dipolo elétrico é formado por cargas $+q$ e $-q$ separadas por uma pequena
+distância $2\ell$. Define-se o \textbf{momento de dipolo} $p=q\,(2\ell)$.
+\begin{itensq}
+\item Mostre que, sobre a mediatriz do dipolo, a uma distância $r\gg\ell$ do
+      centro, o campo vale $E\approx\dfrac{\ke\,p}{r^{3}}$.
+\item Por que o campo do dipolo decai mais rápido que o de uma carga isolada?
+\item Um dipolo colocado em campo uniforme sofre força resultante? E torque?
+\end{itensq}
+\resposta{(a) demonstração; (b) e (c) ver comentário}
+\resolucao{(a) Sobre a mediatriz, cada carga dista
+$d=\sqrt{r^{2}+\ell^{2}}$ do ponto e produz campo de módulo
+$E_1=\dfrac{\ke q}{r^{2}+\ell^{2}}$. As componentes \emph{paralelas} à mediatriz
+se cancelam (simetria); restam as componentes ao longo do eixo do dipolo, cada uma
+valendo $E_1\cos\alpha$, com $\cos\alpha=\dfrac{\ell}{\sqrt{r^{2}+\ell^{2}}}$:
+\[
+E=2E_1\cos\alpha
+=\frac{2\ke q\,\ell}{\left(r^{2}+\ell^{2}\right)^{3/2}}.
+\]
+Para $r\gg\ell$, $\left(r^{2}+\ell^{2}\right)^{3/2}\approx r^{3}$, e como
+$p=2q\ell$:
+\[
+\boxed{\;E\approx\frac{\ke\,p}{r^{3}}\;}
+\]
+(b) Porque a carga \emph{total} do dipolo é nula. De longe, os campos das duas
+cargas quase se cancelam --- sobra apenas o efeito da pequena separação entre
+elas, que é de ordem superior. Daí o decaimento $1/r^{3}$ em vez de $1/r^{2}$.\\
+(c) Em campo \textbf{uniforme}:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item \textbf{Força resultante nula}: as forças $+qE$ e $-qE$ sobre as duas cargas
+      têm mesmo módulo e sentidos opostos.
+\item \textbf{Torque não nulo}: como elas atuam em \emph{pontos diferentes},
+      formam um binário de momento
+      \[
+      \tau = p\,E\sin\theta,
+      \]
+      que tende a \emph{alinhar} o dipolo com o campo.
+\end{itemize}
+\textbf{Aplicações:} é esse torque que alinha moléculas polares (como a água) em
+um campo --- princípio do forno de micro-ondas, onde o campo oscilante faz as
+moléculas girarem e o atrito molecular gera calor. Em campo \emph{não} uniforme,
+surge também força resultante --- razão pela qual um objeto neutro é atraído por
+um corpo eletrizado.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Campo elétrico
+\input{bancos/banco-campo-eletrico.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[1.3 Campo elétrico]

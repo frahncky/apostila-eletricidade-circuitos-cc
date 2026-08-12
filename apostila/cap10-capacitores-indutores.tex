@@ -1,0 +1,624 @@
+% =====================================================================
+%  CAPITULO 10 - CAPACITORES E INDUTORES
+% =====================================================================
+\section{Capacitores e Indutores}
+
+\begin{conceito}[Antes de começar]
+\textbf{Capacitor plano:} $C = \dfrac{\varepsilon_0\,A}{d}$, com
+$\varepsilon_0 = \SI{8.85e-12}{\farad\per\meter}$.\par
+\textbf{Carga e energia:} $Q = C\,U$ \quad e \quad
+$E = \tfrac12 C\,U^2 = \tfrac12 Q\,U$.\par
+\textbf{Associação (oposta à dos resistores):}
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item \emph{paralelo:} $\Ceq = C_1 + C_2 + \dots$ (as capacitâncias somam);
+\item \emph{série:} $\dfrac{1}{\Ceq} = \dfrac{1}{C_1}+\dfrac{1}{C_2}+\dots$
+\end{itemize}
+\textbf{Circuito RC --- constante de tempo:} $\tau = R\,C$. Na \emph{carga},
+$v_C(t) = U_0\big(1-e^{-t/\tau}\big)$; na \emph{descarga},
+$v_C(t) = U_0\,e^{-t/\tau}$. Após $5\tau$, considera-se o regime permanente
+atingido.\par
+\textbf{Indutor:} $E = \tfrac12 L\,I^2$; a associação segue a \emph{mesma} regra
+dos resistores (série soma, paralelo inverso). Constante de tempo RL:
+$\tau = L/R$.
+\end{conceito}
+
+\legendaniveis
+
+% =====================================================================
+\subsection{Capacitores}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+A capacitância de um capacitor de placas paralelas:
+\begin{alternativas}
+\item aumenta com a distância entre as placas.
+\item aumenta com a área das placas.
+\item independe do meio entre as placas.
+\item diminui ao inserir um dielétrico.
+\item depende da tensão aplicada.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{De $C = \dfrac{\varepsilon_0 A}{d}$: a capacitância cresce com a área
+$A$ e \emph{diminui} com a distância $d$ --- o que elimina (a). Ela não depende da
+tensão (elimina e), e inserir um dielétrico \emph{aumenta} $C$ (elimina d).}
+\end{questao}
+
+\begin{questao}[1]{}
+Calcule a capacitância de um capacitor plano de área $A = \SI{100}{\centi\meter\squared}$
+e distância entre placas $d = \SI{1}{\milli\meter}$, no vácuo.
+\dados{$\varepsilon_0 = \SI{8.85e-12}{\farad\per\meter}$.}
+\resposta{$C \approx \SI{88.5}{\pico\farad}$}
+\resolucao{Convertendo: $A = \SI{100}{\centi\meter\squared} = \pot{100}{-4}\,\si{\meter\squared}
+= \pot{1}{-2}\,\si{\meter\squared}$ e $d = \pot{1}{-3}\,\si{\meter}$:
+\[
+C=\frac{\varepsilon_0 A}{d}
+=\frac{\pot{8.85}{-12}\cdot\pot{1}{-2}}{\pot{1}{-3}}
+=\pot{8.85}{-11}\,\si{\farad}\approx\SI{88.5}{\pico\farad}.
+\]}
+\end{questao}
+
+\begin{questao}[1]{}
+Um capacitor de $\SI{10}{\micro\farad}$ é submetido a uma tensão de
+$\SI{12}{\volt}$. Determine a carga armazenada e a energia acumulada.
+\resposta{$Q = \SI{120}{\micro\coulomb}$; $E = \SI{720}{\micro\joule}$}
+\resolucao{$Q = C\,U = \pot{10}{-6}\cdot12 = \SI{120}{\micro\coulomb}$.\\
+$E = \tfrac12 C\,U^2 = \tfrac12\cdot\pot{10}{-6}\cdot12^2
+= \SI{720}{\micro\joule}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois capacitores de $\SI{6}{\micro\farad}$ e $\SI{3}{\micro\farad}$ são ligados
+em \textbf{série}. A capacitância equivalente é:
+\begin{alternativas}[3]
+\item \SI{2}{\micro\farad}
+\item \SI{4.5}{\micro\farad}
+\item \SI{9}{\micro\farad}
+\item \SI{18}{\micro\farad}
+\item \SI{0.5}{\micro\farad}
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Em série, $\Ceq = \dfrac{C_1 C_2}{C_1 + C_2} = \dfrac{6\cdot3}{9}
+= \SI{2}{\micro\farad}$. Note que, no capacitor, a série se comporta como o
+paralelo do resistor: o equivalente é \emph{menor} que o menor deles.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois capacitores de $\SI{4}{\micro\farad}$ e $\SI{12}{\micro\farad}$ são ligados
+em \textbf{paralelo}. A capacitância equivalente é:
+\begin{alternativas}[3]
+\item \SI{3}{\micro\farad}
+\item \SI{8}{\micro\farad}
+\item \SI{16}{\micro\farad}
+\item \SI{48}{\micro\farad}
+\item \SI{6}{\micro\farad}
+\end{alternativas}
+\resposta{(c)}
+\resolucao{No paralelo, as capacitâncias \emph{somam}:
+$\Ceq = 4 + 12 = \SI{16}{\micro\farad}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um capacitor de $\SI{100}{\micro\farad}$ é carregado a $\SI{50}{\volt}$. A energia
+armazenada é:
+\begin{alternativas}[3]
+\item \SI{2.5}{\milli\joule}
+\item \SI{5}{\milli\joule}
+\item \SI{125}{\milli\joule}
+\item \SI{250}{\milli\joule}
+\item \SI{5}{\joule}
+\end{alternativas}
+\resposta{(c)}
+\resolucao{$E = \tfrac12 C U^2 = \tfrac12\cdot\pot{100}{-6}\cdot50^2
+= \tfrac12\cdot\pot{100}{-6}\cdot2500 = \SI{0.125}{\joule} = \SI{125}{\milli\joule}$.
+Essa energia fica armazenada no campo elétrico entre as placas e pode ser liberada
+rapidamente --- princípio do flash fotográfico e do desfibrilador.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma associação mista tem $C_1 = \SI{6}{\micro\farad}$ e
+$C_2 = \SI{3}{\micro\farad}$ em \emph{paralelo}, e esse conjunto em \emph{série}
+com $C_3 = \SI{2}{\micro\farad}$. Calcule a capacitância total.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0.75) to[short,o-] (1,0.75) coordinate(a);
+ \draw (a) -- (1,1.5) to[C,l={$C_1=\SI{6}{\micro\farad}$}] (3,1.5) -- (3,0.75) coordinate(b);
+ \draw (a) -- (1,0) to[C,l_={$C_2=\SI{3}{\micro\farad}$}] (3,0) -- (3,0.75);
+ \draw (b) to[C,l={$C_3=\SI{2}{\micro\farad}$}] (5,0.75) to[short,-o] (6,0.75);
+\end{circuitikz}}
+
+\resposta{$\Ceq \approx \SI{1.64}{\micro\farad}$}
+\resolucao{\textbf{Paralelo} $C_1$ e $C_2$: somam-se,
+$C_{12} = 6 + 3 = \SI{9}{\micro\farad}$.\\
+\textbf{Série} com $C_3$:
+\[
+\Ceq=\frac{C_{12}\,C_3}{C_{12}+C_3}=\frac{9\cdot2}{11}=\frac{18}{11}
+\approx\SI{1.64}{\micro\farad}.
+\]}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma associação é feita com dois capacitores de $\SI{8}{\micro\farad}$ em
+\emph{série}, e esse conjunto em \emph{paralelo} com um capacitor de
+$\SI{4}{\micro\farad}$. Calcule a capacitância equivalente.
+\resposta{$\Ceq = \SI{8}{\micro\farad}$}
+\resolucao{\textbf{Série} dos dois de \SI{8}{\micro\farad}:
+$\dfrac{8}{2} = \SI{4}{\micro\farad}$.\\
+\textbf{Paralelo} com o de \SI{4}{\micro\farad}:
+$4 + 4 = \SI{8}{\micro\farad}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito RC série tem $R = \SI{1}{\kilo\ohm}$ e $C = \SI{1}{\micro\farad}$,
+ligado a uma fonte de $\SI{10}{\volt}$ em $t = 0$.
+\begin{itensq}
+\item Qual a constante de tempo?
+\item Qual a tensão no capacitor após um intervalo igual a $\tau$?
+\item Qual a tensão em regime permanente?
+\end{itensq}
+\resposta{(a) $\tau = \SI{1}{\milli\second}$; (b) $\approx\SI{6.32}{\volt}$;
+(c) \SI{10}{\volt}}
+\resolucao{(a) $\tau = RC = \pot{1}{3}\cdot\pot{1}{-6} = \SI{1}{\milli\second}$.\\
+(b) Na carga, $v_C(\tau) = U_0(1 - e^{-1}) = 10\cdot0{,}632 \approx \SI{6.32}{\volt}$
+--- o capacitor atinge cerca de $\SI{63}{\percent}$ da tensão final em um $\tau$.\\
+(c) Em regime permanente ($t\to\infty$), o capacitor está totalmente carregado,
+não circula corrente, e $v_C = U_0 = \SI{10}{\volt}$: o capacitor se comporta como
+um circuito \emph{aberto}.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito da figura, determine a tensão no capacitor em regime permanente.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$\SI{12}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{4}{\ohm}$}] (3,3) coordinate(a);
+ \draw (a) to[R,l={$R_2=\SI{2}{\ohm}$}] (3,0) coordinate(b) -- (0,0);
+ \draw (a) -- (5,3) to[C,l={$C$}] (5,0) -- (b);
+ \node[right,Vcol,font=\footnotesize] at (5.1,1.5) {$v_C$};
+\end{circuitikz}}
+
+\resposta{$v_C = \SI{4}{\volt}$}
+\resolucao{Em regime permanente, o capacitor está carregado e \emph{não conduz}
+(ramo aberto). Toda a corrente passa por $R_1$ e $R_2$ em série:
+\[
+I=\frac{12}{4+2}=\SI{2}{\ampere}.
+\]
+A tensão no capacitor iguala a tensão sobre $R_2$ (estão em paralelo):
+\[
+v_C = R_2\,I = 2\cdot2 = \SI{4}{\volt}.
+\]
+\textbf{Princípio-chave:} em regime permanente CC, capacitor = circuito aberto
+(e indutor = curto-circuito). Isso transforma o problema em uma simples análise
+resistiva.}
+\end{questao}
+
+\begin{questao}[2]{}
+Três capacitores de $\SI{6}{\micro\farad}$ cada são associados. Determine a
+capacitância equivalente se estiverem ligados (a) todos em série; (b) todos em
+paralelo; (c) dois em paralelo, e o conjunto em série com o terceiro.
+\resposta{(a) \SI{2}{\micro\farad}; (b) \SI{18}{\micro\farad}; (c) \SI{4}{\micro\farad}}
+\resolucao{(a) Série de três iguais: $\Ceq = \dfrac{C}{3} = \SI{2}{\micro\farad}$.\\
+(b) Paralelo de três iguais: $\Ceq = 3C = \SI{18}{\micro\farad}$.\\
+(c) Dois em paralelo: $6+6 = \SI{12}{\micro\farad}$; em série com o terceiro:
+$\dfrac{12\cdot6}{18} = \SI{4}{\micro\farad}$.\\
+Repare como a topologia muda drasticamente o resultado, de \SI{2}{} a
+\SI{18}{\micro\farad} com os mesmos três componentes.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um capacitor de $\SI{2}{\micro\farad}$ está carregado a $\SI{6}{\volt}$ e é
+descarregado através de um resistor de $\SI{500}{\ohm}$.
+\begin{itensq}
+\item Qual a constante de tempo da descarga?
+\item Qual a corrente inicial de descarga?
+\item Qual a carga restante no capacitor após um intervalo igual a $\tau$?
+\end{itensq}
+\resposta{(a) $\tau = \SI{1}{\milli\second}$; (b) $I_0 = \SI{12}{\milli\ampere}$;
+(c) $\approx\SI{4.4}{\micro\coulomb}$}
+\resolucao{(a) $\tau = RC = 500\cdot\pot{2}{-6} = \SI{1}{\milli\second}$.\\
+(b) A corrente inicial é limitada apenas pelo resistor:
+$I_0 = \dfrac{U_0}{R} = \dfrac{6}{500} = \SI{12}{\milli\ampere}$.\\
+(c) A carga inicial é $Q_0 = C\,U_0 = \pot{2}{-6}\cdot6 = \SI{12}{\micro\coulomb}$.
+Após um $\tau$, resta $Q(\tau) = Q_0\,e^{-1} = 12\cdot0{,}368
+\approx\SI{4.4}{\micro\coulomb}$ --- cerca de $\SI{37}{\percent}$ do inicial.}
+\end{questao}
+
+\begin{questao}[3]{}
+O gráfico mostra a tensão $v_C(t)$ sobre um capacitor durante a carga em um
+circuito RC alimentado por $\SI{10}{\volt}$.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=9.5cm,height=5cm,xlabel={$t$ (ms)},ylabel={$v_C$ (V)},
+   xmin=0,xmax=5,ymin=0,ymax=11,xtick={0,1,2,3,4,5},ytick={0,6.32,10},
+   yticklabels={0,6.32,10},grid=both,axis lines=left,domain=0:5,samples=100]
+   \addplot[Ccol,very thick] {10*(1-exp(-x))};
+   \addplot[dashed,cinza] coordinates {(1,0)(1,6.32)};
+   \addplot[dashed,cinza] coordinates {(0,6.32)(1,6.32)};
+   \node[Ccol,anchor=west,font=\footnotesize] at (axis cs:1.1,6.0) {$(\tau,\,0{,}63\,U_0)$};
+ \end{axis}
+\end{tikzpicture}}{Carga de um capacitor em circuito RC.}
+
+Sabendo que a tensão atinge $\SI{6.32}{\volt}$ em $t = \SI{1}{\milli\second}$,
+determine a constante de tempo e a tensão final.
+\resposta{$\tau = \SI{1}{\milli\second}$; $U_0 = \SI{10}{\volt}$}
+\resolucao{O valor $\SI{6.32}{\volt}$ corresponde a $\SI{63}{\percent}$ da tensão
+final --- por definição, esse é o instante $t = \tau$. Logo
+$\tau = \SI{1}{\milli\second}$. A curva satisfaz $v_C = U_0(1 - e^{-t/\tau})$, e
+sua assíntota horizontal é a tensão da fonte, $U_0 = \SI{10}{\volt}$. Lendo o
+gráfico: a $\SI{63}{\percent}$ em $\SI{1}{\milli\second}$ e saturando em
+\SI{10}{\volt}, confirma-se $\tau = \SI{1}{\milli\second}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor $C_1 = \SI{10}{\micro\farad}$ é carregado a $\SI{100}{\volt}$ e
+depois conectado, por meio de uma chave, a um capacitor descarregado
+$C_2 = \SI{5}{\micro\farad}$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) to[C,l_={$C_1$}] (0,2.6) -- (1.6,2.6) coordinate(a);
+ \draw (a) to[cspst,l={S}] (3.4,2.6) -- (4.6,2.6);
+ \draw (4.6,2.6) to[C,l={$C_2$}] (4.6,0) -- (0,0);
+ \node[font=\footnotesize] at (0,-0.45) {carregado a \SI{100}{\volt}};
+ \node[font=\footnotesize] at (4.6,-0.45) {descarregado};
+\end{circuitikz}}
+
+Após fechar a chave:
+\begin{itensq}
+\item Determine a tensão final comum aos dois capacitores.
+\item Calcule a energia armazenada antes e depois.
+\item Explique o "paradoxo": para onde foi a energia que desapareceu?
+\end{itensq}
+\resposta{(a) $V_f \approx \SI{66.7}{\volt}$; (b) \SI{50}{\milli\joule} $\to$
+\SI{33.3}{\milli\joule}; (c) ver comentário}
+\resolucao{\textbf{(a)} A carga total se \emph{conserva} e se redistribui até que
+as tensões se igualem:
+\[
+Q_0 = C_1V_0=(\pot{10}{-6})(100)=\SI{1}{\milli\coulomb},
+\]
+\[
+V_f=\frac{Q_0}{C_1+C_2}=\frac{\pot{1}{-3}}{\pot{15}{-6}}
+=\frac{200}{3}\approx\SI{66.7}{\volt}.
+\]
+\textbf{(b) Energias:}
+\[
+E_i=\tfrac12 C_1V_0^{\,2}=\tfrac12(\pot{10}{-6})(100)^2=\SI{50}{\milli\joule},
+\]
+\[
+E_f=\tfrac12 (C_1+C_2)V_f^{\,2}
+=\tfrac12(\pot{15}{-6})\left(\tfrac{200}{3}\right)^{2}
+=\frac{100}{3}\approx\SI{33.3}{\milli\joule}.
+\]
+Perderam-se $\SI{16.7}{\milli\joule}$ --- exatamente $\dfrac{1}{3}$ da energia
+inicial.
+
+\textbf{(c) Resolução do paradoxo.} A carga se conserva, mas a energia
+\textbf{não} precisa se conservar \emph{dentro do subsistema dos capacitores} ---
+ela foi \emph{dissipada}. Os mecanismos:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item \textbf{Resistência dos fios e da chave:} por menor que seja, a corrente
+      transitória a atravessa e gera calor $\int Ri^2\,\mathrm{d}t$. O
+      resultado notável é que \emph{a energia perdida independe do valor de $R$}
+      --- só o \emph{tempo} do transitório muda.
+\item \textbf{Radiação eletromagnética:} no limite $R\to0$, o circuito LC
+      oscilaria e irradiaria a energia como ondas.
+\end{itemize}
+\textbf{Fórmula geral da perda:}
+\[
+\Delta E=\frac{1}{2}\,\frac{C_1C_2}{C_1+C_2}\,V_0^{\,2}
+=\frac12\cdot\frac{10\cdot5}{15}\cdot10^{-6}\cdot 100^2
+\approx\SI{16.7}{\milli\joule}.\ \checkmark
+\]
+\textbf{Relevância prática:} esse é o motivo pelo qual bancos de capacitores nunca
+são conectados em paralelo sem resistores de pré-carga (\emph{soft-start}) ---
+a corrente de equalização pode ser destrutiva.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor de placas paralelas com $C_0 = \SI{10}{\micro\farad}$ é carregado a
+$U_0 = \SI{100}{\volt}$ e então \textbf{desconectado} da fonte. Em seguida,
+introduz-se entre as placas um dielétrico de constante $\kappa = 4$.
+\begin{itensq}
+\item O que acontece com a carga, a capacitância, a tensão e a energia?
+\item Calcule os valores finais de cada grandeza.
+\item Para onde foi a energia "perdida"? Ela violou a conservação de energia?
+\item E se o dielétrico fosse inserido com o capacitor \emph{ainda ligado} à
+      fonte? Compare os dois casos.
+\end{itensq}
+\resposta{(b) $Q=\SI{1}{\milli\coulomb}$ (constante), $C=\SI{40}{\micro\farad}$,
+$U=\SI{25}{\volt}$, $E$ cai de \SI{50}{\milli\joule} para \SI{12.5}{\milli\joule};
+(c) e (d) ver comentário}
+\resolucao{\textbf{(a) e (b) --- capacitor isolado ($Q$ constante).}
+Desconectado, a carga não tem para onde ir:
+\[
+Q = C_0U_0 = \pot{10}{-6}\cdot100 = \SI{1}{\milli\coulomb}\ \text{(constante)}.
+\]
+O dielétrico multiplica a capacitância por $\kappa$:
+\[
+C = \kappa C_0 = \SI{40}{\micro\farad},
+\qquad
+U = \frac{Q}{C}=\frac{\pot{1}{-3}}{\pot{40}{-6}}=\SI{25}{\volt}
+\quad\left(=\frac{U_0}{\kappa}\right).
+\]
+Energias:
+\[
+E_i=\tfrac12 C_0U_0^{\,2}=\SI{50}{\milli\joule},
+\qquad
+E_f=\tfrac12 CU^{2}=\tfrac12(\pot{40}{-6})(25)^2=\SI{12.5}{\milli\joule}
+=\frac{E_i}{\kappa}.
+\]
+\textbf{(c) Para onde foi a energia?} \emph{Não houve violação alguma.} O
+dielétrico é \textbf{atraído} para dentro do capacitor pelo campo de borda ---
+existe uma força elétrica real puxando-o. Se ele for solto, essa força realiza
+trabalho e o acelera; a energia "perdida" pelo campo converte-se em energia
+cinética do dielétrico (e, ao final, em calor por atrito e vibração).
+Para inseri-lo \emph{quase-estaticamente}, um agente externo precisa segurá-lo,
+e é ele quem \emph{recebe} os \SI{37.5}{\milli\joule}.
+
+\textbf{(d) Caso alternativo --- capacitor ligado à fonte ($U$ constante).}
+Agora a tensão é fixada em \SI{100}{\volt}:
+\[
+C = \SI{40}{\micro\farad},\qquad
+Q = CU = \SI{4}{\milli\coulomb}\ (\text{quadruplicou}),\qquad
+E_f=\tfrac12 CU^{2}=\SI{200}{\milli\joule}\ (\text{quadruplicou}).
+\]
+A energia armazenada \emph{aumentou} \SI{150}{\milli\joule}. A fonte, porém,
+forneceu $\Delta Q\cdot U = (\pot{3}{-3})(100)=\SI{300}{\milli\joule}$ --- o
+dobro. A metade restante (\SI{150}{\milli\joule}) foi entregue como trabalho
+mecânico ao dielétrico (que também é sugado para dentro).
+
+\smallskip
+\begin{center}\small\sffamily
+\begin{tabular}{@{}l c c@{}}
+\toprule
+ & \textbf{Isolado ($Q$ const.)} & \textbf{Ligado ($U$ const.)}\\
+\midrule
+Carga & constante & $\times\kappa$\\
+Tensão & $\div\kappa$ & constante\\
+Energia & $\div\kappa$ (diminui) & $\times\kappa$ (aumenta)\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Moral:} a mesma ação física (inserir o dielétrico) produz resultados
+\emph{opostos} para a energia conforme a condição de contorno. Identificar
+\emph{qual grandeza permanece constante} é o passo decisivo do problema.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Capacitores
+\input{bancos/banco-capacitores.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[10.1 Capacitores]
+
+% =====================================================================
+\subsection{Indutores}
+% =====================================================================
+
+\begin{conceito}[Antes de começar]
+\textbf{Indutância de um solenoide:}
+$L = \dfrac{\mu_0\,N^2\,A}{\ell}$, com
+$\mu_0 = 4\pi\times10^{-7}\,\si{\henry\per\meter}$.\par
+\textbf{Tensão induzida:} $v_L = L\,\dfrac{\mathrm{d}i}{\mathrm{d}t}$ --- o
+indutor se opõe à \emph{variação} de corrente.\par
+\textbf{Energia armazenada:} $E = \tfrac12 L\,I^2$.\par
+\textbf{Associação (igual à dos resistores):} série soma, paralelo pelo inverso.\par
+\textbf{Circuito RL:} $\tau = L/R$; na energização,
+$i(t) = \dfrac{U_0}{R}\big(1 - e^{-t/\tau}\big)$.
+\end{conceito}
+
+\legendaniveis
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um indutor ideal, em regime permanente CC (corrente constante), comporta-se como:
+\begin{alternativas}
+\item um circuito aberto.
+\item um curto-circuito.
+\item um resistor de valor $L$.
+\item uma fonte de tensão.
+\item um capacitor.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Como $v_L = L\dfrac{\mathrm{d}i}{\mathrm{d}t}$ e, em regime permanente,
+a corrente é constante ($\mathrm{d}i/\mathrm{d}t = 0$), a tensão no indutor é
+\emph{nula}: ele se comporta como um \textbf{curto-circuito}. (É o oposto do
+capacitor, que vira circuito aberto.)}
+\end{questao}
+
+\begin{questao}[1]{}
+Calcule a indutância de um solenoide com $N = 500$ espiras, comprimento
+$\ell = \SI{0.3}{\meter}$ e área $A = \SI{5}{\centi\meter\squared}$.
+\dados{$\mu_0 = 4\pi\times10^{-7}\,\si{\henry\per\meter}$.}
+\resposta{$L \approx \SI{0.52}{\milli\henry}$}
+\resolucao{Com $A = \SI{5}{\centi\meter\squared} = \pot{5}{-4}\,\si{\meter\squared}$:
+\[
+L=\frac{\mu_0 N^2 A}{\ell}
+=\frac{(\pot{4\pi}{-7})(500)^2(\pot{5}{-4})}{0{,}3}
+\approx\pot{5.24}{-4}\,\si{\henry}=\SI{0.52}{\milli\henry}.
+\]}
+\end{questao}
+
+\begin{questao}[1]{}
+Um indutor de $\SI{0.1}{\henry}$ tem a corrente variando de $0$ a
+$\SI{2}{\ampere}$ em $\SI{0.2}{\second}$. Calcule a tensão média induzida.
+\resposta{$v_L = \SI{1}{\volt}$}
+\resolucao{$v_L = L\dfrac{\Delta i}{\Delta t}
+= 0{,}1\cdot\dfrac{2}{0{,}2} = \SI{1}{\volt}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois indutores de $\SI{3}{\henry}$ e $\SI{9}{\henry}$ são ligados em paralelo. A
+indutância equivalente é:
+\begin{alternativas}[3]
+\item \SI{12}{\henry}
+\item \SI{6}{\henry}
+\item \SI{2.25}{\henry}
+\item \SI{3}{\henry}
+\item \SI{27}{\henry}
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Indutores seguem a mesma regra dos resistores. Em paralelo:
+\[
+\Leq=\frac{L_1 L_2}{L_1+L_2}=\frac{3\cdot9}{12}=\frac{27}{12}=\SI{2.25}{\henry}.
+\]}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um indutor de $L = \SI{1}{\henry}$ é ligado em série com $R = \SI{100}{\ohm}$ a
+uma fonte de $\SI{12}{\volt}$.
+\begin{itensq}
+\item Qual a constante de tempo?
+\item Qual a corrente final (regime permanente)?
+\item Qual a corrente após um intervalo igual a $\tau$?
+\end{itensq}
+\resposta{(a) $\tau = \SI{10}{\milli\second}$; (b) \SI{0.12}{\ampere};
+(c) $\approx\SI{75.8}{\milli\ampere}$}
+\resolucao{(a) $\tau = \dfrac{L}{R} = \dfrac{1}{100} = \SI{10}{\milli\second}$.\\
+(b) Em regime permanente, o indutor vira curto e a corrente é limitada só por $R$:
+$I_\infty = \dfrac{12}{100} = \SI{0.12}{\ampere}$.\\
+(c) $i(\tau) = I_\infty(1 - e^{-1}) = 0{,}12\cdot0{,}632
+\approx\SI{75.8}{\milli\ampere}$ --- cerca de $\SI{63}{\percent}$ do valor final,
+o mesmo comportamento do capacitor na carga.}
+\end{questao}
+
+\begin{questao}[2]{}
+Calcule a indutância equivalente para:
+\begin{itensq}
+\item $L_1 = \SI{2}{\milli\henry}$ e $L_2 = \SI{3}{\milli\henry}$ em série;
+\item os mesmos dois indutores em paralelo.
+\end{itensq}
+\resposta{(a) \SI{5}{\milli\henry}; (b) \SI{1.2}{\milli\henry}}
+\resolucao{(a) Série: $\Leq = L_1 + L_2 = 2 + 3 = \SI{5}{\milli\henry}$.\\
+(b) Paralelo: $\Leq = \dfrac{2\cdot3}{5} = \SI{1.2}{\milli\henry}$.}
+\end{questao}
+
+\begin{questao}[2]{Apostila original revisada}
+Dois indutores ideais de $\SI{5}{\henry}$ são ligados em paralelo. Essa associação
+é conectada em série com um indutor de $\SI{2}{\henry}$. Determine a indutância
+equivalente.
+\resposta{$L_{\mathrm{eq}}=\SI{4.5}{\henry}$}
+\resolucao{Os dois indutores iguais em paralelo resultam em
+$L_p=5/2=\SI{2.5}{\henry}$. Em série com $\SI{2}{\henry}$:
+$L_{\mathrm{eq}}=2{,}5+2=\SI{4.5}{\henry}$.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Compare, lado a lado, o comportamento de um capacitor e de um indutor em um
+circuito de corrente contínua, preenchendo mentalmente a tabela abaixo e
+justificando cada linha.
+
+\begin{table}[H]
+\centering
+\small\sffamily
+\setlength{\arraystretch}{1.3}
+\begin{tabular}{@{}l c c@{}}
+\toprule
+ & \textbf{Capacitor} & \textbf{Indutor}\\
+\midrule
+Grandeza que não muda bruscamente & tensão $v_C$ & corrente $i_L$\\
+Em regime permanente CC & circuito aberto & curto-circuito\\
+Energia armazenada & $\tfrac12 C v^2$ (campo elétrico) & $\tfrac12 L i^2$ (campo magnético)\\
+Constante de tempo & $\tau = RC$ & $\tau = L/R$\\
+\bottomrule
+\end{tabular}
+\caption{Dualidade entre capacitor e indutor.}
+\end{table}
+
+Explique por que a tensão no capacitor e a corrente no indutor não podem variar
+instantaneamente.
+\resposta{Ver comentário}
+\resolucao{A tensão do capacitor está ligada à sua carga por $v = Q/C$; mudar $v$
+instantaneamente exigiria corrente infinita ($i = C\,\mathrm{d}v/\mathrm{d}t$),
+o que é fisicamente impossível. De modo \emph{dual}, a corrente do indutor não
+pode saltar, pois isso exigiria tensão infinita
+($v = L\,\mathrm{d}i/\mathrm{d}t$). Por isso o capacitor "segura" a tensão e o
+indutor "segura" a corrente --- é essa continuidade que dá origem às respostas
+exponenciais com constante de tempo $\tau$. A tabela evidencia a bela
+\textbf{dualidade} entre os dois componentes: trocando tensão$\leftrightarrow$corrente
+e $C\leftrightarrow L$, uma descrição vira a outra.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um indutor de $L = \SI{0.5}{\henry}$ conduz corrente estabilizada de
+$\SI{4}{\ampere}$, alimentado por uma fonte através de um resistor. Em
+$t=0$, a chave que liga a fonte é \textbf{aberta bruscamente}.
+\begin{itensq}
+\item Qual a energia armazenada no indutor imediatamente antes da abertura?
+\item Por que surge um arco elétrico (faísca) nos contatos da chave?
+\item Estime a tensão induzida se a corrente for interrompida em
+      $\SI{1}{\milli\second}$.
+\item Qual solução prática se usa para proteger o circuito? Explique seu
+      funcionamento.
+\end{itensq}
+\resposta{(a) $E=\SI{4}{\joule}$; (c) $\approx\SI{2000}{\volt}$; (b) e (d) ver comentário}
+\resolucao{\textbf{(a)} $E = \tfrac12 L I^2 = \tfrac12(0{,}5)(4)^2
+= \SI{4}{\joule}$ --- armazenados no \emph{campo magnético}.
+
+\textbf{(b) Origem do arco.} A corrente em um indutor \textbf{não pode variar
+instantaneamente}, pois isso exigiria tensão infinita:
+$v_L = L\,\dfrac{\mathrm{d}i}{\mathrm{d}t}$. Ao abrir a chave, tenta-se impor
+$\mathrm{d}i/\mathrm{d}t \to \infty$; o indutor reage gerando uma tensão
+altíssima, de polaridade \emph{invertida}, que tenta manter a corrente
+circulando. Essa tensão ioniza o ar entre os contatos e a corrente continua
+fluindo pelo \textbf{arco} --- que é o caminho que o circuito "encontra" para
+dissipar os \SI{4}{\joule} armazenados.
+
+\textbf{(c) Estimativa da sobretensão.} Com $\Delta i = \SI{4}{\ampere}$ em
+$\Delta t = \SI{1}{\milli\second}$:
+\[
+|v_L| = L\,\frac{\Delta i}{\Delta t}
+= 0{,}5\cdot\frac{4}{\pot{1}{-3}} = \SI{2000}{\volt}.
+\]
+Duzentas vezes maior que uma alimentação típica de \SI{12}{\volt}! Se a abertura
+fosse dez vezes mais rápida, a tensão seria dez vezes maior.
+
+\textbf{(d) Proteção --- o diodo de roda livre (\emph{freewheeling}).}
+Liga-se um diodo em \textbf{antiparalelo} com o indutor (catodo no positivo).
+Em operação normal ele fica reversamente polarizado e não conduz. No instante da
+abertura, a tensão do indutor inverte, o diodo entra em condução e oferece um
+caminho fechado para a corrente, que decai suavemente com constante de tempo
+$\tau = L/R$, dissipando a energia no próprio circuito em vez de no arco.\\
+Alternativas: \emph{snubber} RC, varistor (MOV) ou diodo Zener --- este último
+quando se deseja desmagnetização \emph{rápida}, aceitando uma sobretensão
+controlada.\\
+\textbf{Onde isso aparece na prática:} todo relé, contator, solenoide ou motor
+CC acionado por transistor precisa desse diodo. Sem ele, o transistor de
+acionamento é destruído na primeira comutação --- um dos erros mais comuns de
+quem começa em eletrônica de potência.}
+\end{questao}
+
+\begin{questao}[3]{Apostila original revisada}
+Um indutor de $L=\SI{2}{\milli\henry}$ permanece por muito tempo em série com um
+resistor de $\SI{6}{\kilo\ohm}$ e uma fonte de $\SI{12}{\volt}$. Em $t=0$, a fonte
+e o resistor de $\SI{6}{\kilo\ohm}$ são desconectados, e o indutor passa a descarregar
+por um resistor de $\SI{2}{\kilo\ohm}$.
+\begin{itensq}
+\item Determine $i_L(0^-)$ e $i_L(0^+)$.
+\item Calcule a constante de tempo da descarga.
+\item Escreva $i_L(t)$ para $t\ge 0$ e determine o módulo da tensão inicial no resistor.
+\end{itensq}
+\resposta{$i_L(0^-)=i_L(0^+)=\SI{2}{\milli\ampere}$; $\tau=\SI{1}{\micro\second}$;
+$i_L(t)=\SI{2}{\milli\ampere}e^{-t/(\SI{1}{\micro\second})}$; $|v_R(0^+)|=\SI{4}{\volt}$}
+\resolucao{Em regime permanente, o indutor é curto-circuito: $i=12/6000=\SI{2}{\milli\ampere}$.
+A corrente do indutor é contínua na comutação. Na descarga, $\tau=L/R=2\,\mathrm{mH}/2\,\mathrm{k\Omega}=\SI{1}{\micro\second}$.
+A tensão inicial no resistor vale $Ri=2000\times0{,}002=\SI{4}{\volt}$; sua polaridade é tal que mantém a corrente.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Indutores
+\input{bancos/banco-indutores.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[10.2 Indutores]

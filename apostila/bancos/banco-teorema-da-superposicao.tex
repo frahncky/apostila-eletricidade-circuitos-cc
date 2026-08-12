@@ -1,0 +1,881 @@
+% =====================================================================
+%  Banco complementar --- Teorema da Superposicao  (REVISADO)
+%  Substitui a versao gerada por template (9 clones em N2, 10 em N3 --
+%  todos com o mesmo enunciado sobre potencia -- e 8 questoes
+%  conceituais indevidamente marcadas como N4).
+%  Sem sobreposicao com o cap06, que ja traz: como desativar fontes
+%  ideais (MC), o que pode ser superposto (MC), V e I no resistor de
+%  3 ohm com duas fontes, potencial com fonte de tensao + corrente,
+%  o erro de somar potencias (analise do erro do estudante) e o
+%  circuito com tres fontes independentes.
+%  Distribuicao mantida: 6 N1 + 9 N2 + 10 N3 + 8 N4 = 33
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Teorema da Superposição}
+
+\begin{atencao}[Organização do banco]
+A superposição decorre de uma única propriedade: em rede linear,
+$\mathbf{v}=\mathbf{G}^{-1}\mathbf{b}$ é \emph{linear} no vetor de excitações.
+Daí três consequências que organizam todo o tópico: tensões e correntes se
+somam; \textbf{potências não}; e fontes \emph{dependentes} nunca são desativadas,
+porque pertencem à rede, não à excitação. O N3 trata de fontes reais,
+coeficientes de transferência e falha em circuitos não lineares; o N4 exige
+demonstração, algoritmo e projeto de ensaio.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um nó $A$ é alimentado por uma fonte de $\SI{12}{\volt}$ através de
+$\SI{6}{\ohm}$ e ligado ao terra por $\SI{3}{\ohm}$; há ainda uma fonte de
+corrente ligada a $A$. Determine a contribuição \emph{apenas} da fonte de
+tensão para $V_A$.
+\resposta{$V_A'=\SI{4}{\volt}$}
+\resolucao{Desativar a fonte de corrente significa substituí-la por um
+\textbf{circuito aberto} --- o ramo simplesmente desaparece. Resta um divisor:
+\[
+V_A'=12\cdot\frac{3}{6+3}=\SI{4}{\volt}.
+\]
+Esta é apenas uma \emph{parcela}: o valor real de $V_A$ só sai depois de somada
+a contribuição da outra fonte.}
+\end{questao}
+
+\begin{questao}[1]{}
+No mesmo circuito, a fonte de corrente vale $\SI{2}{\ampere}$ e injeta em $A$.
+Determine a contribuição \emph{apenas} dela.
+\resposta{$V_A''=\SI{4}{\volt}$}
+\resolucao{Desativar a fonte de tensão ideal significa substituí-la por um
+\textbf{curto}. Os dois resistores ficam então em paralelo:
+\[
+R=\frac{6\cdot3}{9}=\SI{2}{\ohm}
+\;\Longrightarrow\;
+V_A''=2\cdot2=\SI{4}{\volt}.
+\]
+\textbf{Memorize a assimetria:} fonte de \emph{tensão} ideal $\to$ curto (pois
+impõe $\SI{0}{\volt}$); fonte de \emph{corrente} ideal $\to$ aberto (pois impõe
+$\SI{0}{\ampere}$).}
+\end{questao}
+
+\begin{questao}[1]{}
+Some as duas contribuições anteriores e determine $V_A$.
+\resposta{$V_A=\SI{8}{\volt}$}
+\resolucao{
+\[
+V_A=V_A'+V_A''=4+4=\SI{8}{\volt}.
+\]
+\textbf{Verificação por análise nodal:}
+\[
+\frac{V_A-12}{6}+\frac{V_A}{3}=2
+\;\Longrightarrow\;
+V_A-12+2V_A=12
+\;\Longrightarrow\;
+V_A=\SI{8}{\volt}.\ \checkmark
+\]
+A concordância não é coincidência --- as duas técnicas são consequências da
+mesma linearidade.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um circuito contém quatro fontes independentes. Quantas análises parciais a
+superposição exige, e o que se faz em cada uma?
+\resposta{Quatro análises; em cada uma, apenas uma fonte permanece ativa}
+\resolucao{Uma análise por fonte independente: mantém-se \emph{uma} ativa e
+desativam-se as outras três (tensão $\to$ curto, corrente $\to$ aberto). Ao
+final, somam-se as quatro contribuições \emph{com sinal}.\\
+\textbf{Observação de custo:} o esforço cresce \emph{linearmente} com o número
+de fontes, mas cada análise parcial costuma ser bem mais simples que o circuito
+completo. A vantagem se inverte quando há muitas fontes --- com quatro ou mais,
+a análise nodal em geral é mais rápida.}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas fontes produzem, sobre o mesmo resistor, contribuições de
+$\SI{+7}{\volt}$ e $\SI{-3}{\volt}$. Determine a tensão resultante e comente.
+\resposta{$U=\SI{4}{\volt}$}
+\resolucao{
+\[
+U=(+7)+(-3)=\SI{4}{\volt}.
+\]
+O sinal negativo indica que a segunda fonte produz, sozinha, uma tensão de
+polaridade \emph{oposta} à adotada como referência. \textbf{Somar módulos seria
+erro grave} --- daria $\SI{10}{\volt}$.\\
+Fixe uma polaridade de referência \emph{antes} de começar e mantenha-a em todas
+as análises parciais: é a única forma de os sinais saírem corretos
+automaticamente.}
+\end{questao}
+
+\begin{questao}[1]{}
+O teorema da superposição pode ser aplicado a um circuito que contenha um
+resistor cuja resistência varia com a corrente?
+\begin{alternativas}[2]
+\item sim, sempre
+\item sim, desde que haja apenas uma fonte
+\item não, pois o circuito deixa de ser linear
+\item não, pois a potência não se superpõe
+\end{alternativas}
+\resposta{(c)}
+\resolucao{A superposição exige \textbf{linearidade}: a resposta deve ser
+proporcional à excitação. Um resistor cuja resistência depende da corrente
+quebra essa proporcionalidade, e a soma das respostas parciais deixa de valer.\\
+A alternativa (d) enuncia um fato verdadeiro, mas irrelevante aqui --- a
+potência não se superpõe nem mesmo em circuitos perfeitamente lineares, por uma
+razão diferente (ela é \emph{quadrática}, não não linear).\\
+E (b) é curiosa: com uma única fonte não há o que superpor, então a questão nem
+se coloca.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um nó $A$ recebe $\SI{24}{\volt}$ através de $\SI{12}{\ohm}$,
+$\SI{12}{\volt}$ através de $\SI{6}{\ohm}$, uma fonte de corrente de
+$\SI{1}{\ampere}$, e liga-se ao terra por $\SI{4}{\ohm}$. Determine $V_A$ por
+superposição.
+\resposta{$V_A=\SI{10}{\volt}$}
+\resolucao{A condutância total do nó é a mesma nas três análises:
+\[
+G=\frac1{12}+\frac16+\frac14=\SI{0.5}{\siemens}.
+\]
+\textbf{Só a fonte de $\SI{24}{\volt}$} (as outras: curto e aberto):
+$V'=\dfrac{24/12}{0{,}5}=\SI{4}{\volt}$.\\
+\textbf{Só a de $\SI{12}{\volt}$:} $V''=\dfrac{12/6}{0{,}5}=\SI{4}{\volt}$.\\
+\textbf{Só a de corrente:} $V'''=\dfrac{1}{0{,}5}=\SI{2}{\volt}$.\\
+\[
+V_A=4+4+2=\SI{10}{\volt}.
+\]
+\textbf{Atalho revelado:} como todas as fontes de tensão são aterradas, $G$ não
+muda entre as análises --- e a soma das três parcelas reproduz exatamente a
+equação nodal única. Superposição e análise nodal coincidem passo a passo neste
+caso.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito anterior, determine a contribuição \emph{percentual} de cada fonte
+para $V_A$.
+\resposta{$40\%$, $40\%$ e $20\%$}
+\resolucao{
+\[
+\frac{4}{10}=40\%;\qquad \frac{4}{10}=40\%;\qquad \frac{2}{10}=20\%.
+\]
+\textbf{Utilidade prática:} a decomposição identifica qual fonte domina o
+resultado. Se a fonte de corrente for a menos estável, seu erro afeta $V_A$
+com peso de apenas $20\%$; se o objetivo for estabilizar $V_A$, o esforço deve
+ir para as duas fontes de tensão.\\
+Essa leitura --- impossível pela análise nodal direta, que entrega só o total ---
+é a principal razão pela qual a superposição continua sendo usada mesmo quando
+não é o método mais rápido.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas fontes de corrente injetam $\SI{3}{\ampere}$ e retiram
+$\SI{1}{\ampere}$ de um mesmo nó, ligado ao terra por
+$\SI{10}{\ohm}\parallel\SI{15}{\ohm}$. Determine a tensão por superposição e
+verifique.
+\resposta{$V=\SI{12}{\volt}$}
+\resolucao{A resistência do nó é $10\parallel15=\SI{6}{\ohm}$ em ambas as
+análises (desativar uma fonte de corrente apenas abre seu ramo).
+\[
+V'=3(6)=\SI{18}{\volt};
+\qquad
+V''=-1(6)=\SI{-6}{\volt};
+\qquad
+V=18-6=\SI{12}{\volt}.
+\]
+\textbf{Verificação direta:} corrente líquida $3-1=\SI{2}{\ampere}$, logo
+$V=2(6)=\SI{12}{\volt}$ \checkmark.\\
+Com fontes de corrente no mesmo nó, a superposição é trivial --- elas se somam
+algebricamente antes de qualquer conta. O método só ganha relevância quando as
+fontes atuam em \emph{pontos diferentes} da rede.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas fontes de tensão de $\SI{18}{\volt}$ e $\SI{6}{\volt}$, com polaridades
+\textbf{opostas}, estão em série com $R=\SI{4}{\ohm}$. Determine a corrente por
+superposição.
+\resposta{$I=\SI{3}{\ampere}$}
+\resolucao{Com a malha série, cada fonte age sozinha sobre o mesmo $R$ (a outra,
+curto-circuitada, não altera a resistência):
+\[
+I'=\frac{18}{4}=\SI{4.5}{\ampere};
+\qquad
+I''=-\frac{6}{4}=\SI{-1.5}{\ampere};
+\qquad
+I=4{,}5-1{,}5=\SI{3}{\ampere}.
+\]
+\textbf{Verificação:} tensão líquida $18-6=\SI{12}{\volt}$, logo
+$I=12/4=\SI{3}{\ampere}$ \checkmark.\\
+O sinal negativo de $I''$ é essencial: a fonte de $\SI{6}{\volt}$ se opõe à de
+$\SI{18}{\volt}$. Somar módulos daria $\SI{6}{\ampere}$ --- o dobro do
+correto.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine, por superposição, a \textbf{corrente} no resistor de
+$\SI{4}{\ohm}$ do circuito de três fontes ($V_A=\SI{10}{\volt}$).
+\resposta{$I=\SI{2.5}{\ampere}$}
+\resolucao{As contribuições de tensão no nó já foram obtidas: $4$, $4$ e
+$\SI{2}{\volt}$. Como o resistor liga $A$ ao terra,
+\[
+I'=\frac{4}{4}=1;\quad I''=\frac{4}{4}=1;\quad I'''=\frac{2}{4}=0{,}5
+\;\Longrightarrow\;
+I=\SI{2.5}{\ampere}.
+\]
+\textbf{Verificação:} $I=V_A/4=10/4=\SI{2.5}{\ampere}$ \checkmark.\\
+\textbf{Observação:} correntes se superpõem tão livremente quanto tensões ---
+ambas são \emph{lineares} nas excitações. É a mesma propriedade, aplicada a
+outra grandeza.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em um circuito, a contribuição de $V_1$ para certa corrente é
+$\SI{200}{\milli\ampere}$. Se $V_1$ for \textbf{triplicada}, mantidas as demais
+fontes, o que ocorre com essa contribuição e com a corrente total?
+\resposta{A contribuição triplica ($\SI{600}{\milli\ampere}$); a corrente total
+aumenta em $\SI{400}{\milli\ampere}$}
+\resolucao{Cada contribuição é \emph{proporcional} à sua fonte, portanto
+$200\to\SI{600}{\milli\ampere}$.\\
+As demais contribuições \textbf{não mudam}, pois nada foi alterado nas outras
+fontes nem na rede. Logo a corrente total aumenta exatamente pelo acréscimo:
+$600-200=\SI{400}{\milli\ampere}$.\\
+\textbf{Poder do método:} para responder "o que acontece se eu mexer nesta
+fonte", não é preciso resolver o circuito de novo --- basta escalar a parcela
+correspondente. Essa é a base da análise de sensibilidade em redes lineares.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito com duas fontes tem contribuições de $\SI{6}{\volt}$ e
+$\SI{2}{\volt}$ sobre um resistor de $\SI{4}{\ohm}$. Calcule a potência de
+duas formas: somando potências parciais e usando a tensão total. Compare.
+\resposta{$\SI{10}{\watt}$ (errado) contra $\SI{16}{\watt}$ (correto)}
+\resolucao{\textbf{Somando potências parciais (incorreto):}
+\[
+P'=\frac{6^{2}}{4}=9;\qquad P''=\frac{2^{2}}{4}=1;\qquad
+P'+P''=\SI{10}{\watt}.
+\]
+\textbf{Pela tensão total (correto):}
+\[
+U=6+2=\SI{8}{\volt}
+\;\Longrightarrow\;
+P=\frac{8^{2}}{4}=\SI{16}{\watt}.
+\]
+A diferença é de $\SI{6}{\watt}$ --- erro de $37{,}5\%$ no resultado correto.\\
+\textbf{Procedimento correto:} superponha \emph{tensões} (ou correntes), some, e
+só então calcule a potência. Nunca superponha potências. A origem algébrica
+dessa falha é explorada no bloco de desafio.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte \textbf{real} de $\SI{12}{\volt}$ com $r=\SI{2}{\ohm}$ e outra de
+$\SI{6}{\volt}$ com $r=\SI{3}{\ohm}$ alimentam em paralelo uma carga de
+$\SI{6}{\ohm}$. Determine a tensão na carga por superposição.
+\resposta{$U=\SI{8}{\volt}$}
+\resolucao{\textbf{Ponto crítico:} desativar uma fonte real significa zerar sua
+\textbf{f.e.m.}, mantendo sua resistência interna no circuito.\\
+Condutância total (a mesma nas duas análises):
+$G=\frac12+\frac13+\frac16=\SI{1}{\siemens}$.
+\[
+U'=\frac{12/2}{1}=\SI{6}{\volt};
+\qquad
+U''=\frac{6/3}{1}=\SI{2}{\volt};
+\qquad
+U=\SI{8}{\volt}.
+\]
+\textbf{Erro comum:} remover a fonte de $\SI{6}{\volt}$ \emph{junto} com seus
+$\SI{3}{\ohm}$. Isso daria $G=\frac12+\frac16=\SI{0.667}{\siemens}$ e
+$U'=\SI{9}{\volt}$ --- resultado inconsistente, pois a soma não fecharia com a
+análise nodal.}
+\end{questao}
+
+\begin{questao}[2]{}
+Verifique o resultado da questão anterior por análise nodal e explique por que
+os dois métodos devem concordar.
+\resposta{$U=\SI{8}{\volt}$ pelos dois métodos}
+\resolucao{\textbf{Nodal:}
+\[
+\frac{U-12}{2}+\frac{U-6}{3}+\frac{U}{6}=0.
+\]
+Multiplicando por $6$: $3U-36+2U-12+U=0\Rightarrow6U=48\Rightarrow
+U=\SI{8}{\volt}$ \checkmark.\\
+\textbf{Por que concordam:} a equação nodal tem a forma
+$G\,U=\sum b_k$, com $b_k$ as contribuições de corrente de cada fonte. Como
+$U=\left(\sum b_k\right)/G=\sum\left(b_k/G\right)$, cada parcela $b_k/G$ é
+exatamente a contribuição individual da fonte $k$.\\
+A superposição não é um método \emph{alternativo} à análise nodal --- ela é a
+mesma equação, lida termo a termo. A demonstração formal está no bloco de
+desafio.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um circuito contém uma fonte independente de $\SI{12}{\volt}$ (através de
+$\SI{2}{\kilo\ohm}$ até o nó $A$), $\SI{2}{\kilo\ohm}$ de $A$ ao terra, uma
+fonte de corrente independente de $\SI{1}{\milli\ampere}$ injetando em $A$, e
+uma fonte \textbf{dependente} que injeta $gV_A$ em $A$, com
+$g=\SI{0.5}{\milli\siemens}$.
+\begin{itensq}
+\item Determine $V_A$ pela análise nodal.
+\item Determine-o por superposição, aplicando o procedimento correto.
+\item Mostre o resultado que se obteria desativando a fonte dependente.
+\end{itensq}
+\resposta{(a) e (b) $V_A=\SI{14}{\volt}$; (c) $\SI{7}{\volt}$ --- errado}
+\resolucao{(a) LKC em $A$:
+\[
+\frac{V_A-12}{2000}+\frac{V_A}{2000}-\pot{0.5}{-3}V_A=\pot{1}{-3}.
+\]
+A condutância líquida é
+$\pot{1}{-3}-\pot{0.5}{-3}=\pot{0.5}{-3}\,\si{\siemens}$, e o lado direito vale
+$\pot{6}{-3}+\pot{1}{-3}=\pot{7}{-3}$. Logo
+$V_A=\SI{14}{\volt}$.\\
+(b) \textbf{A fonte dependente permanece ativa nas duas análises parciais} ---
+ela não é excitação, é parte da rede. A condutância líquida é sempre
+$\pot{0.5}{-3}\,\si{\siemens}$:
+\[
+V'=\frac{\pot{6}{-3}}{\pot{0.5}{-3}}=\SI{12}{\volt};
+\qquad
+V''=\frac{\pot{1}{-3}}{\pot{0.5}{-3}}=\SI{2}{\volt};
+\qquad
+V_A=\SI{14}{\volt}.\ \checkmark
+\]
+(c) Desativando indevidamente a dependente, a condutância voltaria a
+$\pot{1}{-3}$:
+\[
+V'=6,\quad V''=1
+\;\Longrightarrow\;
+V_A=\SI{7}{\volt},
+\]
+exatamente \textbf{metade} do correto.\\
+\textbf{Critério:} desative apenas fontes cujo valor é \emph{imposto de fora}.
+Se o valor depende de uma variável do próprio circuito, a fonte fica.}
+\end{questao}
+
+\begin{questao}[3]{}
+Escreva $V_A$ do circuito de três fontes na forma
+$V_A=a\,V_1+b\,V_2+c\,I_3$ e determine os coeficientes.
+\begin{itensq}
+\item Obtenha $a$, $b$ e $c$ com suas unidades.
+\item Verifique com os valores originais.
+\item Explique o significado físico de cada coeficiente.
+\end{itensq}
+\resposta{$a=1/6$, $b=1/3$ (adimensionais), $c=\SI{2}{\ohm}$}
+\resolucao{(a) Com $G=\SI{0.5}{\siemens}$, cada fonte de tensão $V_k$ contribui
+com $(V_k/R_k)/G$ e a fonte de corrente com $I_3/G$:
+\[
+a=\frac{1/12}{0{,}5}=\frac16;
+\qquad
+b=\frac{1/6}{0{,}5}=\frac13;
+\qquad
+c=\frac{1}{0{,}5}=\SI{2}{\ohm}.
+\]
+(b) $\frac{24}{6}+\frac{12}{3}+2(1)=4+4+2=\SI{10}{\volt}$ \checkmark.\\
+(c) $a$ e $b$ são \textbf{ganhos de tensão} (adimensionais): que fração de cada
+fonte chega ao nó. $c$ é uma \textbf{resistência de transferência}
+($\si{\volt\per\ampere}$): quantos volts aparecem por ampère injetado.\\
+\textbf{Utilidade:} obtidos uma única vez, os coeficientes respondem a qualquer
+combinação de valores de fonte sem refazer o circuito. É a forma compacta de
+armazenar a solução de uma rede linear --- e é exatamente a linha correspondente
+da matriz $\mathbf{G}^{-1}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare o esforço de resolver por superposição e por análise nodal um circuito
+com $2$ nós desconhecidos e $4$ fontes independentes.
+\begin{itensq}
+\item Quantifique cada abordagem.
+\item Indique quando cada uma é preferível.
+\end{itensq}
+\resposta{Superposição: 4 sistemas $2\times2$; nodal: 1 sistema $2\times2$}
+\resolucao{(a) \textbf{Nodal:} monta-se \emph{um} sistema $2\times2$ com todas
+as fontes no vetor independente e resolve-se uma vez.\\
+\textbf{Superposição:} quatro sistemas $2\times2$, um por fonte, e depois a
+soma. Cerca de \textbf{quatro vezes} mais trabalho.\\
+(b) \textbf{Nodal é preferível} quando se quer apenas o resultado numérico ---
+quase sempre.\\
+\textbf{Superposição é preferível} quando: \emph{(i)} se quer saber a
+\emph{contribuição} de cada fonte (análise de sensibilidade, rastreamento de
+ruído, identificação da fonte dominante); \emph{(ii)} as fontes são de naturezas
+diferentes e se deseja tratá-las separadamente; \emph{(iii)} algumas análises
+parciais são triviais, colapsando o circuito por curtos ou aberturas ---
+situação frequente e que pode inverter completamente a comparação de esforço.\\
+\textbf{Síntese:} a superposição raramente é o caminho mais curto para o
+número, mas frequentemente é o único caminho para o \emph{entendimento}.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um circuito tem duas fontes cujas contribuições para a corrente em um resistor
+de $\SI{5}{\ohm}$ são $\SI{2}{\ampere}$ e $\SI{-3}{\ampere}$.
+\begin{itensq}
+\item Determine a corrente e a potência reais.
+\item Calcule o erro que se cometeria somando potências parciais.
+\item Determine o termo cruzado e seu sinal.
+\end{itensq}
+\resposta{(a) $\SI{-1}{\ampere}$, $\SI{5}{\watt}$; (b) somaria
+$\SI{65}{\watt}$; (c) termo cruzado $=\SI{-60}{\watt}$}
+\resolucao{(a) $I=2-3=\SI{-1}{\ampere}$, logo
+$P=5(1)^{2}=\SI{5}{\watt}$.\\
+(b) $P'=5(4)=20$ e $P''=5(9)=\SI{45}{\watt}$; a soma daria
+$\SI{65}{\watt}$ --- \textbf{treze vezes} o valor real.\\
+(c)
+\[
+P=R(I'+I'')^{2}=R I'^{2}+R I''^{2}+2RI'I''
+\;\Longrightarrow\;
+P_{cruz}=2(5)(2)(-3)=\SI{-60}{\watt}.
+\]
+\textbf{Sinal negativo:} as contribuições têm sentidos opostos e se
+\emph{cancelam} parcialmente. O termo cruzado subtrai.\\
+\textbf{Caso extremo:} se as contribuições fossem $+2$ e $\SI{-2}{\ampere}$, a
+corrente real seria nula e a potência também --- enquanto a soma de potências
+parciais daria $\SI{40}{\watt}$ de dissipação inexistente. É o exemplo mais
+claro de que potência não se superpõe.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas fontes de tensão de $\SI{5}{\volt}$ e $\SI{-5}{\volt}$, cada uma através
+de $\SI{1}{\kilo\ohm}$, alimentam um nó ligado ao terra por um \textbf{diodo}
+(queda direta de $\SI{0.7}{\volt}$, bloqueio perfeito no reverso).
+\begin{itensq}
+\item Determine a tensão do nó com cada fonte agindo sozinha.
+\item Some as contribuições.
+\item Determine a tensão real e explique a discrepância.
+\end{itensq}
+\resposta{(a) $\SI{0.7}{\volt}$ e $\SI{-2.5}{\volt}$; (b) previsão
+$\SI{-1.8}{\volt}$; (c) real $\SI{0}{\volt}$}
+\resolucao{(a) \textbf{Só a fonte $+\SI{5}{\volt}$} (a outra substituída por
+curto): o nó é alimentado por $\SI{5}{\volt}$ através de
+$\SI{1}{\kilo\ohm}$ e ligado ao terra por outro $\SI{1}{\kilo\ohm}$ (o ramo
+curto-circuitado). Sem o diodo, o divisor daria $\SI{2.5}{\volt}$ --- acima da
+queda direta. O diodo conduz e grampeia o nó em
+$V'=\SI{0.7}{\volt}$.\\
+\textbf{Só a fonte $-\SI{5}{\volt}$:} pelo mesmo divisor, o nó tenderia a
+$\SI{-2.5}{\volt}$. O diodo fica reversamente polarizado e não conduz, de modo
+que $V''=\SI{-2.5}{\volt}$.\\
+(b) Soma das parcelas: $0{,}7-2{,}5=\SI{-1.8}{\volt}$.\\
+(c) \textbf{Situação real:} com as duas fontes ativas e simétricas, as correntes
+pelos dois resistores iguais se cancelam e o nó assume $\SI{0}{\volt}$. Com
+$\SI{0}{\volt}$ o diodo não conduz --- hipótese consistente. Logo
+$V=\SI{0}{\volt}$.\\
+A previsão da superposição ($\SI{-1.8}{\volt}$) está \textbf{errada}, e nem
+sequer perto.\\
+\textbf{Razão:} o diodo não é linear --- seu \emph{estado} (conduzindo ou
+bloqueado) depende do circuito inteiro, e mudou entre as duas análises
+parciais. Superpor respostas obtidas em \emph{configurações diferentes} não tem
+significado. Este é o contraexemplo definitivo: a superposição não é uma
+conveniência que se pode forçar, é uma consequência da linearidade.}
+\end{questao}
+
+\begin{questao}[3]{}
+Explique por que, ao desativar uma fonte \textbf{real} de tensão, mantém-se sua
+resistência interna, e quantifique o erro de removê-la no circuito de
+$E_1=\SI{12}{\volt}/r_1=\SI{2}{\ohm}$, $E_2=\SI{6}{\volt}/r_2=\SI{3}{\ohm}$ e
+$R_L=\SI{6}{\ohm}$.
+\resposta{Contribuição correta de $E_1$: $\SI{6}{\volt}$; removendo $r_2$
+obter-se-ia $\SI{9}{\volt}$ --- erro de $50\%$}
+\resolucao{\textbf{Por quê:} a fonte real é um \emph{modelo} de dois elementos
+--- uma f.e.m. ideal em série com $r$. Desativar a \emph{fonte} significa zerar
+a f.e.m.; o resistor $r$ é um componente físico da rede e permanece, exatamente
+como qualquer outro resistor.\\
+\textbf{Correto:} com $E_2=0$ e $r_2$ presente,
+$G=\frac12+\frac13+\frac16=\SI{1}{\siemens}$ e
+\[
+U'=\frac{12/2}{1}=\SI{6}{\volt}.
+\]
+\textbf{Incorreto:} removendo o ramo inteiro,
+$G=\frac12+\frac16=\SI{0.667}{\siemens}$ e
+$U'=\dfrac{6}{0{,}667}=\SI{9}{\volt}$ --- $50\%$ acima.\\
+\textbf{Como o erro se denuncia:} a soma das parcelas incorretas não fecha com
+a análise nodal ($\SI{8}{\volt}$). Conferir a soma total contra um método
+independente é a salvaguarda padrão da superposição.}
+\end{questao}
+
+\begin{questao}[3]{}
+Em um circuito com duas fontes, mediu-se: com ambas ativas,
+$I=\SI{1.4}{\ampere}$; com apenas a primeira, $I'=\SI{2.0}{\ampere}$.
+\begin{itensq}
+\item Determine a contribuição da segunda fonte.
+\item Determine a corrente se a segunda fonte for dobrada.
+\item Determine o valor da segunda fonte que anularia $I$.
+\end{itensq}
+\resposta{(a) $\SI{-0.6}{\ampere}$; (b) $\SI{0.8}{\ampere}$; (c) o triplo do
+valor original}
+\resolucao{(a) $I''=I-I'=1{,}4-2{,}0=\SI{-0.6}{\ampere}$ --- ela se opõe à
+primeira.\\
+(b) Dobrando a segunda fonte, sua contribuição dobra e a da primeira não muda:
+\[
+I=2{,}0+2(-0{,}6)=\SI{0.8}{\ampere}.
+\]
+(c) Anular exige $I''=\SI{-2.0}{\ampere}$, ou seja, um fator
+$2{,}0/0{,}6=3{,}33$ sobre o valor original.\\
+\textbf{Poder do método:} duas medições permitem prever o comportamento para
+\emph{qualquer} valor da segunda fonte, sem conhecer a topologia do circuito.
+Basta a garantia de linearidade --- e é justamente por isso que a verificação
+experimental da linearidade (bloco de desafio) tem valor prático.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma ponte é alimentada por duas fontes independentes. Sabe-se que a
+contribuição da primeira para a corrente do galvanômetro é
+$\SI{+40}{\milli\ampere}$ e que a corrente total medida é
+$\SI{0}{\milli\ampere}$.
+\begin{itensq}
+\item Determine a contribuição da segunda fonte.
+\item Explique por que o equilíbrio observado \emph{não} significa que a ponte
+      esteja balanceada no sentido usual.
+\end{itensq}
+\resposta{(a) $\SI{-40}{\milli\ampere}$; (b) trata-se de cancelamento entre
+fontes, não de equilíbrio da rede}
+\resolucao{(a) $I''=0-40=\SI{-40}{\milli\ampere}$.\\
+(b) O \textbf{equilíbrio clássico} da ponte é uma propriedade da \emph{rede}
+($R_1/R_2=R_3/R_4$): a corrente é nula qualquer que seja a alimentação, e o
+valor de $R_g$ é irrelevante.\\
+Aqui, ao contrário, a rede está desequilibrada --- cada fonte, sozinha, produz
+corrente considerável. O zero resulta de um \textbf{cancelamento numérico}
+entre as duas contribuições, e depende dos \emph{valores} das fontes.\\
+\textbf{Consequência prática:} basta variar qualquer uma das fontes em $1\%$
+para que o zero desapareça. Um ajuste desse tipo não tem a robustez do
+equilíbrio verdadeiro, e por isso não serve como método de medição --- ele
+mediria a razão entre as fontes, não a razão entre os resistores.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um sinal de $\SI{50}{\milli\volt}$ e uma interferência de rede de
+$\SI{200}{\milli\volt}$ atuam simultaneamente sobre um circuito linear, com
+ganhos de $8$ e $0{,}05$ respectivamente.
+\begin{itensq}
+\item Determine as contribuições na saída.
+\item Determine a razão sinal-ruído resultante.
+\item Explique como a superposição justifica o tratamento separado.
+\end{itensq}
+\resposta{(a) $\SI{400}{\milli\volt}$ e $\SI{10}{\milli\volt}$; (b) $40$, ou
+$\SI{32}{\decibel}$}
+\resolucao{(a) $V_{sinal}=8(50)=\SI{400}{\milli\volt}$;
+$V_{ruído}=0{,}05(200)=\SI{10}{\milli\volt}$.\\
+(b) Razão $=400/10=40$, ou
+$20\log_{10}40\approx\SI{32}{\decibel}$.\\
+Na entrada, a razão era $50/200=0{,}25$ --- o \emph{ruído era quatro vezes
+maior que o sinal}. O circuito melhorou a relação em um fator $160$.\\
+(c) \textbf{Justificativa:} em rede linear, sinal e interferência percorrem o
+circuito \emph{independentemente}, cada um com seu próprio ganho. Isso permite
+projetar o circuito para maximizar um ganho e minimizar o outro, tratando-os
+como problemas separados.\\
+\textbf{E é exatamente isso que se perde na não linearidade:} em um circuito não
+linear surgem \emph{produtos de intermodulação} --- termos cruzados que geram
+componentes em frequências novas, impossíveis de separar depois. É o análogo,
+em sinais, do termo cruzado de potência.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um circuito linear tem três fontes. Sabe-se que $V_{saída}=\SI{15}{\volt}$ com
+todas ativas, $\SI{9}{\volt}$ sem a terceira e $\SI{4}{\volt}$ apenas com a
+primeira. Determine a contribuição de cada fonte.
+\resposta{$\SI{4}{\volt}$, $\SI{5}{\volt}$ e $\SI{6}{\volt}$}
+\resolucao{Sejam $a$, $b$ e $c$ as contribuições.
+\begin{itemize}
+\item Todas ativas: $a+b+c=15$.
+\item Sem a terceira: $a+b=9$ $\Rightarrow$ $c=15-9=\SI{6}{\volt}$.
+\item Apenas a primeira: $a=\SI{4}{\volt}$ $\Rightarrow$
+      $b=9-4=\SI{5}{\volt}$.
+\end{itemize}
+\textbf{Verificação:} $4+5+6=\SI{15}{\volt}$ \checkmark.\\
+\textbf{Observação de método:} bastaram \emph{três} medições para decompor
+completamente um sistema de três fontes, e nenhuma delas exigiu isolar a segunda
+ou a terceira sozinhas. Em geral, $m$ medições \textbf{independentes} bastam
+para $m$ fontes --- resultado que decorre de o sistema ser linear e as
+contribuições, aditivas.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração formal.)} Seja uma rede resistiva descrita por
+$\mathbf{G}\mathbf{v}=\mathbf{b}$, com
+$\mathbf{b}=\mathbf{b}_1+\mathbf{b}_2$ as contribuições de duas fontes.
+\begin{itensq}
+\item Prove a superposição a partir da linearidade do sistema.
+\item Generalize para $m$ fontes.
+\item Identifique onde a demonstração falha se $\mathbf{G}$ depender de
+      $\mathbf{v}$.
+\end{itensq}
+\resposta{$\mathbf{v}=\mathbf{G}^{-1}\mathbf{b}_1+\mathbf{G}^{-1}\mathbf{b}_2$}
+\resolucao{(a) Como $\mathbf{G}$ é não singular em rede passiva conectada,
+\[
+\mathbf{v}=\mathbf{G}^{-1}\mathbf{b}
+=\mathbf{G}^{-1}(\mathbf{b}_1+\mathbf{b}_2)
+=\underbrace{\mathbf{G}^{-1}\mathbf{b}_1}_{\mathbf{v}_1}
++\underbrace{\mathbf{G}^{-1}\mathbf{b}_2}_{\mathbf{v}_2}.
+\]
+Ora, $\mathbf{v}_1$ é exatamente a solução com \emph{apenas} a primeira fonte
+ativa (as demais zeradas anulam suas parcelas em $\mathbf{b}$). Logo
+$\mathbf{v}=\mathbf{v}_1+\mathbf{v}_2$: o teorema.\\
+(b) Por indução imediata,
+$\mathbf{v}=\sum_{k=1}^{m}\mathbf{G}^{-1}\mathbf{b}_k$. A distributividade do
+produto matricial sobre a soma é tudo o que se usa.\\
+(c) \textbf{Se $\mathbf{G}=\mathbf{G}(\mathbf{v})$}, a matriz muda de uma
+análise parcial para outra --- e $\mathbf{G}_1^{-1}\mathbf{b}_1
++\mathbf{G}_2^{-1}\mathbf{b}_2$ não é solução de nada. Foi precisamente isso que
+ocorreu no exemplo do diodo: a matriz do circuito com o diodo conduzindo é
+diferente da matriz com ele bloqueado.\\
+\textbf{Três leituras do resultado.} \emph{(i)} A superposição é uma
+propriedade da \emph{álgebra linear}, não da eletricidade --- vale para qualquer
+sistema linear. \emph{(ii)} Fontes dependentes entram em $\mathbf{G}$, não em
+$\mathbf{b}$ --- por isso não são desativadas. \emph{(iii)} A potência é
+quadrática em $\mathbf{v}$, e nenhuma função quadrática de uma soma é a soma das
+funções.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(O termo cruzado.)} Para um resistor $R$ sujeito a contribuições de
+corrente $I_1$ e $I_2$:
+\begin{itensq}
+\item Expanda $P$ e identifique o termo cruzado.
+\item Determine em que condições ele é nulo, positivo ou negativo.
+\item Mostre que a soma de potências parciais pode ser maior \emph{ou} menor
+      que a potência real, com exemplos numéricos.
+\end{itensq}
+\resposta{$P=RI_1^{2}+RI_2^{2}+2RI_1I_2$; o cruzado tem o sinal de
+$I_1I_2$}
+\resolucao{(a)
+\[
+P=R(I_1+I_2)^{2}=\underbrace{RI_1^{2}}_{P_1}+\underbrace{RI_2^{2}}_{P_2}
++\underbrace{2RI_1I_2}_{P_{cruz}}.
+\]
+(b) $P_{cruz}=0$ apenas se $I_1=0$ ou $I_2=0$ --- ou seja, praticamente nunca
+com duas fontes atuantes. Ele é \textbf{positivo} quando as contribuições têm o
+mesmo sentido e \textbf{negativo} quando se opõem.\\
+\emph{(Nota: em corrente alternada, $P_{cruz}$ pode ter média nula se as
+contribuições forem de frequências diferentes --- é a única situação em que
+somar potências é legítimo, e ela não ocorre em CC.)}\\
+(c) \textbf{Soma parcial menor que a real} ($R=\SI{4}{\ohm}$, contribuições de
+tensão $6$ e $\SI{2}{\volt}$):
+$P_1+P_2=9+1=\SI{10}{\watt}$ contra $P=\SI{16}{\watt}$. O cruzado soma
+$\SI{6}{\watt}$.\\
+\textbf{Soma parcial maior que a real} ($R=\SI{5}{\ohm}$, correntes
+$+2$ e $\SI{-3}{\ampere}$): $P_1+P_2=20+45=\SI{65}{\watt}$ contra
+$P=\SI{5}{\watt}$. O cruzado subtrai $\SI{60}{\watt}$.\\
+\textbf{Conclusão:} o erro não tem sequer sinal previsível --- não existe
+"correção" ou fator de segurança que salve o procedimento. A única saída é
+superpor tensões ou correntes e calcular a potência ao final.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Algoritmo.)} Formule um procedimento de superposição para $m$ fontes e
+$n$ grandezas de interesse.
+\begin{itensq}
+\item Descreva o algoritmo e a estrutura de dados resultante.
+\item Determine o custo computacional e compare com $m$ análises completas.
+\item Indique como a matriz resultante é usada depois.
+\end{itensq}
+\resposta{Matriz de coeficientes $n\times m$; custo de uma fatoração mais $m$
+substituições}
+\resolucao{(a) \textbf{Algoritmo.}
+\begin{enumerate}
+\item Monte $\mathbf{G}$ uma única vez (ela não depende das fontes).
+\item Fatore $\mathbf{G}=\mathbf{L}\mathbf{U}$ --- também uma única vez.
+\item Para cada fonte $k=1,\dots,m$: monte $\mathbf{b}_k$ com apenas essa fonte
+      ativa e resolva por substituição, obtendo $\mathbf{v}_k$.
+\item Extraia as $n$ grandezas de interesse de cada $\mathbf{v}_k$ e armazene
+      na coluna $k$ de uma matriz $\mathbf{H}$ de dimensão $n\times m$.
+\end{enumerate}
+(b) \textbf{Custo:} a fatoração custa $\mathcal{O}(N^{3}/3)$ para uma rede de
+$N$ nós, e cada substituição custa $\mathcal{O}(N^{2})$. Total:
+$\mathcal{O}(N^{3}/3+mN^{2})$.\\
+Repetir a análise completa $m$ vezes custaria
+$\mathcal{O}(mN^{3}/3)$. Para $N=20$ e $m=5$, a razão é de aproximadamente
+$4{,}7$ contra $13{,}3$ (em milhares de operações) --- \textbf{quase três vezes
+mais rápido}, e a vantagem cresce com $m$.\\
+\textbf{Observação:} a superposição sai \emph{de graça} como subproduto da
+fatoração. O custo extra em relação a uma única análise é apenas
+$(m-1)N^{2}$.\\
+(c) \textbf{Uso posterior:} qualquer combinação de valores de fonte
+$\mathbf{s}$ produz as saídas por um simples produto
+$\mathbf{y}=\mathbf{H}\mathbf{s}$ --- sem tocar no circuito. A matriz
+$\mathbf{H}$ é o \emph{modelo linear} completo da rede, e é ela que permite
+varredura de parâmetros, análise de pior caso e otimização.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de ensaio.)} Elabore uma verificação experimental da
+superposição em um circuito com duas fontes de tensão.
+\begin{itensq}
+\item Descreva o procedimento e o cuidado essencial na desativação.
+\item Estabeleça o critério de aceitação, dadas incertezas de $\pm1\%$ nas
+      medições.
+\item Interprete uma discrepância de $8\%$.
+\end{itensq}
+\resposta{Critério: $|V-(V'+V'')|$ dentro de cerca de $\pm3\%$; $8\%$ indica
+não linearidade ou erro de procedimento}
+\resolucao{(a) \textbf{Procedimento.}
+\begin{enumerate}
+\item Com ambas as fontes ativas, meça $V$ no ponto escolhido.
+\item Desative a fonte $2$ e meça $V'$.
+\item Restaure a fonte $2$, desative a $1$ e meça $V''$.
+\item Compare $V$ com $V'+V''$.
+\end{enumerate}
+\textbf{Cuidado essencial:} desativar significa \textbf{substituir por um
+curto}, não simplesmente desligar a fonte nem retirá-la do circuito. Uma fonte
+desligada apresenta impedância indefinida (alta, em geral) --- o que equivale a
+\emph{abrir} o ramo e altera a topologia. Se a fonte tiver resistência interna
+apreciável, ela deve ser mantida no lugar da f.e.m.\\
+(b) \textbf{Critério.} As três medições são independentes, e as incertezas se
+propagam. Como $V'$ e $V''$ entram somadas, a incerteza da soma é
+$\sqrt{u'^{2}+u''^{2}}$; combinada com a de $V$, chega-se a algo em torno de
+$\pm1{,}7\%$ para uma estimativa estatística, ou até $\pm3\%$ no pior caso.
+\textbf{Adote $\pm3\%$} como faixa de aceitação.\\
+(c) \textbf{Discrepância de $8\%$} está muito além da incerteza. Causas
+prováveis, em ordem de probabilidade:
+\begin{itemize}
+\item \textbf{Erro de procedimento:} fonte desligada em vez de curto-circuitada
+      --- de longe a causa mais comum.
+\item \textbf{Resistência interna ignorada} na desativação.
+\item \textbf{Não linearidade real:} aquecimento de resistores, diodo de
+      proteção conduzindo, ou fonte entrando em limitação.
+\end{itemize}
+\textbf{Como distinguir:} repita o ensaio com tensões \emph{reduzidas à
+metade}. Se a discrepância percentual permanecer, o problema é de procedimento;
+se diminuir, é não linearidade dependente de nível.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Comparação de métodos.)} Um circuito tem duas fontes de tensão reais e
+uma fonte de corrente.
+\begin{itensq}
+\item Descreva a solução por transformação de fontes.
+\item Compare com a superposição em número de etapas e em informação obtida.
+\item Indique o critério de escolha.
+\end{itensq}
+\resposta{Transformação: mais rápida para o número; superposição: entrega a
+decomposição}
+\resolucao{(a) \textbf{Transformação de fontes.} Converta cada fonte real de
+tensão $(E_k,r_k)$ em fonte de corrente $(E_k/r_k, r_k)$. Todas as fontes de
+corrente ficam então em paralelo com todas as resistências, e podem ser
+\emph{somadas algebricamente} em uma única fonte equivalente; as condutâncias
+também se somam. Uma divisão final entrega a tensão do nó.\\
+(b) \textbf{Etapas.}
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+& Transformação & Superposição\\
+\hline
+Análises do circuito & 1 & 3\\
+Resultado numérico & sim & sim\\
+Contribuição por fonte & não & sim\\
+\hline
+\end{tabular}
+\end{center}
+A transformação é claramente mais econômica --- ela é, na prática, a
+\emph{montagem} da equação nodal por outro caminho.\\
+Mas note: as parcelas $E_k/r_k$ que a transformação soma são \emph{exatamente}
+as contribuições que a superposição calcula separadamente. Os métodos não são
+rivais; um é a forma agregada do outro.\\
+(c) \textbf{Critério.} Use transformação de fontes (ou análise nodal) para
+obter o número. Use superposição quando a pergunta for \emph{"quanto cada fonte
+contribui"} --- rastreamento de ruído, análise de sensibilidade, diagnóstico de
+qual fonte está causando um desvio. Se a resposta desejada for um número único,
+a superposição é trabalho desperdiçado.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Limites de aplicação.)} Determine se a superposição se aplica e
+justifique.
+\begin{itensq}
+\item Circuito com lâmpada incandescente, cuja resistência cresce com a
+      temperatura.
+\item Circuito linear em que se deseja a \emph{energia} dissipada em um
+      intervalo.
+\item Circuito com amplificador operacional operando na região linear.
+\end{itensq}
+\resposta{(a) não; (b) não; (c) sim}
+\resolucao{(a) \textbf{Não se aplica.} A resistência depende da potência
+dissipada, que depende da corrente --- realimentação que torna o circuito não
+linear. Cada análise parcial teria uma temperatura, e portanto uma
+\emph{resistência}, diferente.\\
+\emph{Ressalva:} para pequenas variações em torno de um ponto de operação, o
+modelo incremental é linear e a superposição vale \emph{para as variações}.\\
+(b) \textbf{Não se aplica.} Energia é a integral da potência, e potência é
+quadrática --- herda o termo cruzado. Superpor energias comete o mesmo erro que
+superpor potências, apenas acumulado no tempo.\\
+\emph{Procedimento correto:} superponha correntes, obtenha $i(t)$ total,
+calcule $p(t)=Ri^{2}$ e só então integre.\\
+(c) \textbf{Aplica-se.} O amp-op na região linear é descrito por relações
+lineares (curto virtual e corrente de entrada nula), e o ganho é uma constante.
+Superposição é, aliás, a ferramenta padrão para analisar amplificadores
+somadores e diferenciais: calcula-se o ganho de cada entrada com as demais
+aterradas e somam-se as contribuições.\\
+\emph{Fronteira:} se a saída satura, a linearidade se perde e a superposição
+falha --- o mesmo padrão do diodo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Escolha de sinais.)} Estabeleça um procedimento sistemático para os
+sinais das contribuições e aplique-o a um caso com resultado negativo.
+\begin{itensq}
+\item Formule a regra.
+\item Aplique a duas fontes cujas contribuições de corrente são
+      $\SI{2}{\ampere}$ (a favor) e $\SI{5}{\ampere}$ (contra) a referência.
+\item Explique por que o resultado negativo não indica erro.
+\end{itensq}
+\resposta{$I=\SI{-3}{\ampere}$: mesma intensidade, sentido oposto ao adotado}
+\resolucao{(a) \textbf{Regra em três passos.}
+\begin{enumerate}
+\item \textbf{Antes} de qualquer cálculo, desenhe uma seta de referência para a
+      corrente (ou uma polaridade $+/-$ para a tensão) e \textbf{não a mude
+      mais}.
+\item Em cada análise parcial, determine o sentido real da contribuição.
+Atribua sinal $+$ se coincidir com a referência e $-$ se for oposto.
+\item Some algebricamente.
+\end{enumerate}
+O erro clássico é redesenhar a seta a cada análise parcial "para ficar
+positivo" --- o que torna a soma final sem significado.\\
+(b)
+\[
+I=(+2)+(-5)=\SI{-3}{\ampere}.
+\]
+(c) \textbf{O sinal negativo é informação, não erro.} Ele diz que a corrente
+real tem módulo $\SI{3}{\ampere}$ e flui no sentido \emph{oposto} ao da seta
+desenhada. Se a seta tivesse sido desenhada ao contrário desde o início, o
+resultado seria $\SI{+3}{\ampere}$ --- e descreveria exatamente a mesma
+realidade física.\\
+\textbf{Verificação útil:} grandezas que não podem ser negativas --- como a
+potência dissipada em um resistor --- servem de teste. Aqui,
+$P=R(3)^{2}$ é positiva independentemente do sinal de $I$, como deve ser.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Superposição e ruído.)} Um amplificador linear recebe um sinal
+$V_s$ e sofre a injeção de uma interferência $V_n$ em um ponto interno, com
+ganhos $A_s=40$ e $A_n=2$.
+\begin{itensq}
+\item Escreva a saída e a razão sinal-ruído em função das entradas.
+\item Determine o ganho $A_n$ máximo admissível para
+      $\mathrm{SNR}\ge\SI{40}{\decibel}$, com
+      $V_s=\SI{10}{\milli\volt}$ e $V_n=\SI{100}{\milli\volt}$.
+\item Explique por que essa análise seria impossível em circuito não linear.
+\end{itensq}
+\resposta{(a) $V_o=A_sV_s+A_nV_n$; (b) $A_n\le0{,}04$}
+\resolucao{(a) Pela superposição, cada entrada percorre o circuito
+independentemente:
+\[
+V_o=A_sV_s+A_nV_n;
+\qquad
+\mathrm{SNR}=\frac{A_sV_s}{A_nV_n}.
+\]
+(b) $\SI{40}{\decibel}$ corresponde a uma razão de $100$:
+\[
+\frac{40(10)}{A_n(100)}\ge100
+\;\Longrightarrow\;
+\frac{400}{100A_n}\ge100
+\;\Longrightarrow\;
+A_n\le0{,}04.
+\]
+O ganho de $2$ do enunciado é \textbf{cinquenta vezes} maior que o admissível
+--- o projeto está muito longe da especificação, e a conta diz exatamente
+quanto: são necessários $\SI{34}{\decibel}$ de atenuação adicional no caminho
+da interferência.\\
+(c) \textbf{Em circuito não linear, "o ganho do ruído" não existe como grandeza
+independente.} A resposta à interferência dependeria do nível do sinal
+\emph{simultâneo}, e vice-versa. Surgiriam produtos de intermodulação --- termos
+proporcionais a $V_sV_n$ --- que criam componentes espectrais novas, dentro da
+banda do sinal e portanto \textbf{impossíveis de filtrar}.\\
+É o mesmo termo cruzado que impede somar potências, agora manifestado no
+domínio dos sinais. A linearidade não é um detalhe matemático: é o que garante
+que sinal e ruído permaneçam separáveis.}
+\end{questao}

@@ -1,0 +1,1197 @@
+% =====================================================================
+%  Banco complementar --- Forca Magnetica  (REVISADO)
+%  Substitui a versao gerada por template (5 clones em N1, 10 em N2,
+%  10 em N3 e 8 questoes conceituais marcadas como N4).
+%  O cap11 ja cobre: condicao de forca nula (MC), condutor de 30 cm com
+%  2 A em 0,5 T, regra da mao para carga movendo-se com B entrando no
+%  plano, carga elementar a 1e6 m/s em 0,2 T, espira retangular girando
+%  (qualitativo), proton em campo uniforme (raio) e o SELETOR DE
+%  VELOCIDADES com campos cruzados -- motivo pelo qual a N4 antiga sobre
+%  projeto de seletor foi removida deste banco. Ela e substituida pelo
+%  ESPECTROMETRO DE MASSA, que usa o seletor como etapa e vai alem.
+%  Este banco explora: forca entre fios e a definicao do ampere,
+%  trajetoria helicoidal, torque e momento magnetico, efeito Hall
+%  quantitativo, campo nao uniforme, projeto de atuador e a demonstracao
+%  de que a forca magnetica nao realiza trabalho.
+%  ACRESCIMO POSTERIOR: tres questoes sobre a FORCA DE LORENTZ COMPLETA,
+%  F = q(E + v x B). As duas parcelas ja apareciam separadamente e os
+%  campos cruzados surgiam no seletor de velocidades e na deriva ExB,
+%  mas a expressao unificada nao estava escrita em lugar nenhum.
+%  Distribuicao: 5 N1 + 11 N2 + 11 N3 + 9 N4 = 36
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Força magnética}
+
+\begin{atencao}[Organização do banco]
+Duas expressões governam tudo: $\vec F=q\,\vec v\times\vec B$ para cargas e
+$\vec F=I\,\vec\ell\times\vec B$ para condutores. Ambas são \textbf{produtos
+vetoriais} --- a força é \emph{perpendicular} tanto à velocidade quanto ao
+campo, e se anula quando eles são paralelos. Daí decorre o fato central: a força
+magnética \textbf{nunca realiza trabalho}. O N3 trata de trajetórias,
+espectrometria e efeito Hall; o N4 exige demonstrações e projeto.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Uma carga $q=+\SI{2}{\micro\coulomb}$ move-se a $\SI{500}{\meter\per\second}$
+perpendicularmente a um campo de $\SI{0.2}{\tesla}$. Determine a força.
+\resposta{$F=\SI{0.2}{\milli\newton}$}
+\resolucao{
+\[
+F=qvB\sin\theta=(\pot{2}{-6})(500)(0{,}2)(1)=\pot{2}{-4}\,\si{\newton}.
+\]
+\textbf{Direção:} perpendicular \emph{simultaneamente} a $\vec v$ e a
+$\vec B$, dada pela regra da mão direita aplicada a
+$\vec v\times\vec B$ (e invertida, se a carga for negativa).}
+\end{questao}
+
+\begin{questao}[1]{}
+Um condutor retilíneo de $\SI{40}{\centi\meter}$ conduz $\SI{3}{\ampere}$
+perpendicularmente a $B=\SI{0.25}{\tesla}$. Determine a força.
+\resposta{$F=\SI{0.3}{\newton}$}
+\resolucao{
+\[
+F=BIL\sin\theta=(0{,}25)(3)(0{,}40)(1)=\SI{0.3}{\newton}.
+\]
+\textbf{Origem da fórmula:} ela é a soma das forças sobre todos os portadores do
+condutor. Escrevendo $I=nqv_dA$ e $L$ o comprimento, o produto
+$nqv_dA\cdot L$ reproduz $qv_d$ somado sobre $nAL$ portadores.\\
+A força é transmitida ao \emph{fio} pelas colisões dos portadores com a rede
+cristalina --- não são os elétrons que "empurram" o fio diretamente.}
+\end{questao}
+
+\begin{questao}[1]{}
+A mesma carga da primeira questão move-se agora formando $\ang{30}$ com o
+campo. Determine a força.
+\resposta{$F=\SI{0.1}{\milli\newton}$}
+\resolucao{
+\[
+F=qvB\sin\ang{30}=(\pot{2}{-4})(0{,}5)=\pot{1}{-4}\,\si{\newton}.
+\]
+\textbf{Metade} do valor perpendicular.\\
+\textbf{Casos-limite:} $\theta=\ang{90}$ dá força máxima; $\theta=0$ ou
+$\ang{180}$ (velocidade \emph{paralela} ao campo) dá força \textbf{nula} --- a
+carga segue em linha reta, sem sentir o campo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma carga positiva move-se para a \textbf{direita} em uma região onde
+$\vec B$ aponta para \textbf{cima}. Determine o sentido da força.
+\begin{alternativas}[2]
+\item para dentro do plano
+\item para fora do plano
+\item para cima
+\item para a direita
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Pela regra da mão direita para $\vec v\times\vec B$: dedos apontando
+no sentido de $\vec v$ (direita), curvando-se para $\vec B$ (cima) --- o polegar
+aponta para \textbf{dentro} do plano.\\
+\textbf{Verificação:} a força deve ser perpendicular a ambos. "Direita" e
+"cima" definem o plano da folha, logo a força só pode ser perpendicular a ele
+--- o que elimina (c) e (d) imediatamente.\\
+\textbf{Se a carga fosse negativa}, a força seria para fora do plano.}
+\end{questao}
+
+\begin{questao}[1]{}
+A partir de $F=qvB$, mostre que $\SI{1}{\tesla}$ equivale a
+$\SI{1}{\newton\second\per\coulomb\per\meter}$.
+\resposta{$\si{\tesla}=\dfrac{\si{\newton}}{\si{\coulomb}\cdot
+\si{\meter\per\second}}$}
+\resolucao{
+\[
+B=\frac{F}{qv}
+\;\Longrightarrow\;
+[\si{\tesla}]=\frac{\si{\newton}}{\si{\coulomb}\cdot\si{\meter\per\second}}
+=\frac{\si{\newton}\cdot\si{\second}}{\si{\coulomb}\cdot\si{\meter}}
+=\frac{\si{\newton}}{\si{\ampere}\cdot\si{\meter}}.
+\]
+A última forma, $\si{\newton\per\ampere\per\meter}$, decorre diretamente de
+$F=BIL$ --- e é a mais prática para conferir contas com condutores.\\
+\textbf{O tesla é uma unidade grande:} $\SI{1}{\tesla}$ exerce
+$\SI{1}{\newton}$ sobre um metro de fio conduzindo $\SI{1}{\ampere}$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um fio de $\SI{10}{\centi\meter}$ conduz $\SI{2}{\ampere}$ em um campo de
+$\SI{0.2}{\tesla}$, formando $\ang{30}$ com ele. Determine a força.
+\resposta{$F=\SI{20}{\milli\newton}$}
+\resolucao{
+\[
+F=BIL\sin\ang{30}=(0{,}2)(2)(0{,}10)(0{,}5)=\pot{2}{-2}\,\si{\newton}.
+\]
+\textbf{Interpretação do seno:} apenas a componente de $\vec\ell$
+\emph{perpendicular} a $\vec B$ contribui. Equivalentemente, o comprimento
+\emph{efetivo} é $L\sin\theta=\SI{5}{\centi\meter}$.\\
+\textbf{Direção da força:} perpendicular ao plano definido pelo fio e pelo
+campo --- e \emph{não} perpendicular apenas ao fio.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um próton entra perpendicularmente em um campo de $\SI{0.5}{\tesla}$ com
+$v=\pot{2}{6}\,\si{\meter\per\second}$.
+\begin{itensq}
+\item Determine o raio da trajetória.
+\item Determine o período.
+\end{itensq}
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$; $m_p=\pot{1.67}{-27}\,\si{\kilogram}$}
+\resposta{$r=\SI{4.18}{\centi\meter}$; $T=\SI{131}{\nano\second}$}
+\resolucao{(a) A força magnética é centrípeta:
+\[
+qvB=\frac{mv^{2}}{r}
+\;\Longrightarrow\;
+r=\frac{mv}{qB}=\frac{(\pot{1.67}{-27})(\pot{2}{6})}{(\pot{1.6}{-19})(0{,}5)}
+=\SI{0.0418}{\meter}.
+\]
+(b)
+\[
+T=\frac{2\pi r}{v}=\frac{2\pi m}{qB}
+=\frac{2\pi(\pot{1.67}{-27})}{(\pot{1.6}{-19})(0{,}5)}
+=\pot{1.31}{-7}\,\si{\second}.
+\]
+\textbf{Fato notável:} o período \textbf{não depende da velocidade} nem do raio.
+Partículas rápidas descrevem círculos maiores, mas levam o mesmo tempo para
+completá-los.\\
+É esse fato que torna possível o \textbf{cíclotron}: a frequência de aceleração
+pode ser fixa, embora a partícula ganhe energia a cada volta.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um elétron e um próton, com a mesma velocidade, entram no mesmo campo
+magnético perpendicularmente. Compare seus raios e períodos.
+\resposta{$r_p/r_e=1836$; $T_p/T_e=1836$}
+\resolucao{Como $r=mv/(qB)$ e $T=2\pi m/(qB)$, ambos são
+\emph{proporcionais à massa} (as cargas têm o mesmo módulo):
+\[
+\frac{r_p}{r_e}=\frac{T_p}{T_e}=\frac{m_p}{m_e}
+=\frac{\pot{1.67}{-27}}{\pot{9.11}{-31}}=1836.
+\]
+\textbf{Sentidos opostos:} tendo cargas de sinais contrários, as duas partículas
+curvam-se para lados opostos --- é assim que se identifica o sinal da carga em
+câmaras de detecção.\\
+\textbf{Consequência experimental:} para conter elétrons e prótons no mesmo
+aparelho, o raio do próton é quase dois mil vezes maior. Aceleradores de prótons
+são, por isso, muito maiores que os de elétrons para a mesma energia.}
+\end{questao}
+
+\begin{questao}[2]{}
+Dois fios paralelos longos, separados por $\SI{5}{\centi\meter}$, conduzem
+$\SI{10}{\ampere}$ cada. Determine a força por unidade de comprimento.
+\dados{$\mu_0=4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$}
+\resposta{$F/L=\SI{0.4}{\milli\newton\per\meter}$}
+\resolucao{Um fio cria campo $B=\dfrac{\mu_0I_1}{2\pi d}$ na posição do outro,
+que sofre $F=BI_2L$:
+\[
+\frac{F}{L}=\frac{\mu_0I_1I_2}{2\pi d}
+=\pot{2}{-7}\frac{(10)(10)}{0{,}05}=\pot{4}{-4}\,\si{\newton\per\meter}.
+\]
+\textbf{Sentido:} correntes de \emph{mesmo} sentido \textbf{atraem-se};
+de sentidos opostos, \textbf{repelem-se}.\\
+\textbf{Cuidado com a intuição elétrica:} cargas de mesmo sinal se repelem, mas
+correntes de mesmo sentido se atraem. As duas situações não são análogas.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira retangular de área $\SI{100}{\centi\meter\squared}$ com $50$ voltas
+conduz $\SI{2}{\ampere}$ em um campo de $\SI{0.3}{\tesla}$.
+\begin{itensq}
+\item Determine o momento de dipolo magnético.
+\item Determine o torque máximo.
+\end{itensq}
+\resposta{$m=\SI{1}{\ampere\meter\squared}$; $\tau=\SI{0.3}{\newton\meter}$}
+\resolucao{(a) $A=\SI{100}{\centi\meter\squared}=\pot{1}{-2}\,\si{\meter\squared}$:
+\[
+m=NIA=50(2)(\pot{1}{-2})=\SI{1}{\ampere\meter\squared}.
+\]
+(b)
+\[
+\tau=mB\sin\theta
+\;\Longrightarrow\;
+\tau_{\max}=mB=(1)(0{,}3)=\SI{0.3}{\newton\meter}.
+\]
+\textbf{Quando ocorre o máximo:} com o plano da espira \emph{paralelo} ao campo,
+isto é, $\vec m$ perpendicular a $\vec B$. O torque é \textbf{nulo} quando
+$\vec m$ está alinhado com $\vec B$ --- posição de equilíbrio.\\
+\textbf{Analogia útil:} a espira comporta-se como uma agulha de bússola, e
+$\vec m$ faz o papel do "norte" dela.}
+\end{questao}
+
+\begin{questao}[2]{}
+Explique por que a força magnética não altera o módulo da velocidade de uma
+partícula carregada.
+\resposta{Ela é sempre perpendicular a $\vec v$, logo não realiza trabalho}
+\resolucao{A potência entregue por uma força é $P=\vec F\cdot\vec v$. Como
+\[
+\vec F=q\,\vec v\times\vec B
+\;\Longrightarrow\;
+\vec F\perp\vec v
+\;\Longrightarrow\;
+\vec F\cdot\vec v=0.
+\]
+Sem potência, não há variação de energia cinética --- e portanto o \emph{módulo}
+da velocidade permanece constante.\\
+\textbf{O que a força magnética faz:} muda a \emph{direção} do movimento, e só
+isso. Ela curva a trajetória sem acelerar nem frear.\\
+\textbf{Consequência prática:} um campo magnético sozinho jamais acelera
+partículas. Aceleradores usam campos \emph{elétricos} para ganhar energia e
+campos magnéticos apenas para \emph{guiar} o feixe.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um elétron é abandonado \textbf{em repouso} em uma região onde coexistem
+$E=\SI{500}{\volt\per\meter}$ e $B=\SI{0.02}{\tesla}$, perpendiculares entre
+si.
+\begin{itensq}
+\item Determine a força e a aceleração no instante inicial.
+\item Descreva qualitativamente o movimento subsequente.
+\end{itensq}
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$; $m_e=\pot{9.11}{-31}\,\si{\kilogram}$}
+\resposta{$F=\SI{8e-17}{\newton}$ (só elétrica);
+$a=\pot{8.8}{13}\,\si{\meter\per\second\squared}$}
+\resolucao{(a) A força total é a \textbf{força de Lorentz}:
+\[
+\vec F=q\left(\vec E+\vec v\times\vec B\right).
+\]
+Com $\vec v=\vec 0$, a parcela magnética \textbf{se anula} --- resta apenas a
+elétrica:
+\[
+F=eE=(\pot{1.6}{-19})(500)=\pot{8}{-17}\,\si{\newton};
+\qquad
+a=\frac{F}{m_e}=\pot{8.8}{13}\,\si{\meter\per\second\squared}.
+\]
+(b) \textbf{Movimento subsequente.} Assim que o elétron adquire velocidade, a
+parcela magnética \emph{deixa de ser nula} e passa a encurvar a trajetória. A
+força elétrica continua acelerando; a magnética continua desviando.\\
+O resultado é uma trajetória \textbf{cicloidal}, com deriva média
+\[
+v_d=\frac{E}{B}=\frac{500}{0{,}02}=\pot{2.5}{4}\,\si{\meter\per\second},
+\]
+perpendicular a ambos os campos.\\
+\textbf{Ponto essencial:} a força magnética \emph{depende da velocidade} --- ela
+não age sobre cargas paradas. Já a elétrica age sempre. É essa assimetria que
+faz o movimento começar de um jeito e evoluir para outro.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um fio em forma de semicircunferência de raio $R$ conduz corrente $I$ em um
+campo uniforme $\vec B$ perpendicular ao plano do semicírculo. Determine a
+força resultante.
+\resposta{$F=2RIB$, como se o fio fosse retilíneo de comprimento $2R$}
+\resolucao{Para um fio de forma qualquer em campo \textbf{uniforme},
+\[
+\vec F=I\left(\int\mathrm{d}\vec\ell\right)\times\vec B
+=I\,\vec L_{ef}\times\vec B,
+\]
+onde $\vec L_{ef}$ é o vetor que liga o \textbf{início ao fim} do fio --- a
+\emph{corda}, não o comprimento percorrido.\\
+Para a semicircunferência, a corda vale $2R$:
+\[
+F=2RIB.
+\]
+\textbf{Poder do resultado:} a forma do fio é irrelevante em campo uniforme.
+Um fio retorcido, ondulado ou em zigue-zague sofre a mesma força que o segmento
+reto entre suas extremidades.\\
+\textbf{Corolário importante:} em uma \emph{espira fechada}, a corda é nula ---
+logo a força resultante sobre qualquer espira em campo uniforme é
+\textbf{zero}. Só há torque.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma balança de corrente tem um fio horizontal de $\SI{20}{\centi\meter}$ em um
+campo vertical de $\SI{0.4}{\tesla}$. Determine a corrente necessária para
+equilibrar uma massa de $\SI{2}{\gram}$.
+\dados{$g=\SI{9.8}{\meter\per\second\squared}$}
+\resposta{$I=\SI{0.245}{\ampere}$}
+\resolucao{Equilíbrio entre peso e força magnética:
+\[
+BIL=mg
+\;\Longrightarrow\;
+I=\frac{mg}{BL}=\frac{(\pot{2}{-3})(9{,}8)}{(0{,}4)(0{,}20)}
+=\SI{0.245}{\ampere}.
+\]
+\textbf{Uso do arranjo:} conhecendo $m$, $L$ e $I$, obtém-se $B$ com boa
+exatidão --- é o método clássico de calibração absoluta de campo magnético, sem
+depender de sensores.\\
+\textbf{Inversamente}, conhecendo $B$, mede-se corrente. Foi assim que o ampère
+foi definido durante décadas: pela força entre condutores.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine a velocidade de uma partícula que atravessa sem desvio uma região com
+$E=\SI{2e4}{\volt\per\meter}$ e $B=\SI{0.1}{\tesla}$ perpendiculares entre si
+e à velocidade.
+\resposta{$v=\pot{2}{5}\,\si{\meter\per\second}$}
+\resolucao{Para não haver desvio, as forças elétrica e magnética devem se
+cancelar:
+\[
+qE=qvB
+\;\Longrightarrow\;
+v=\frac{E}{B}=\frac{\pot{2}{4}}{0{,}1}=\pot{2}{5}\,\si{\meter\per\second}.
+\]
+\textbf{Duas propriedades notáveis:}
+\begin{itemize}
+\item A condição \textbf{não depende da carga} --- $q$ cancela. Íons e elétrons
+com a mesma velocidade passam igualmente.
+\item Também \textbf{não depende da massa}. É pura seleção de \emph{velocidade}.
+\end{itemize}
+\textbf{Consequência:} partículas mais rápidas são desviadas pela força
+magnética (maior), e mais lentas pela elétrica. Apenas a velocidade $E/B$
+atravessa em linha reta.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira quadrada de lado $\SI{10}{\centi\meter}$ conduz $\SI{5}{\ampere}$
+em um campo uniforme de $\SI{0.2}{\tesla}$ paralelo ao seu plano.
+\begin{itensq}
+\item Determine a força resultante.
+\item Determine o torque.
+\end{itensq}
+\resposta{$\vec F=\vec 0$; $\tau=\SI{10}{\milli\newton\meter}$}
+\resolucao{(a) \textbf{Força resultante nula.} Em campo uniforme, os quatro
+lados sofrem forças que se cancelam duas a duas --- lados opostos conduzem em
+sentidos contrários.\\
+(b) \textbf{Mas o torque não é nulo.} As forças nos dois lados perpendiculares
+ao campo formam um \emph{binário}:
+\[
+\tau=mB\sin\ang{90}=IAB=(5)(\pot{1}{-2})(0{,}2)
+=\pot{1}{-2}\,\si{\newton\meter}.
+\]
+\textbf{Situação de torque máximo:} o campo está no plano da espira, ou seja,
+$\vec m$ (perpendicular ao plano) está a $\ang{90}$ de $\vec B$.\\
+\textbf{Este é o princípio do motor elétrico} --- e também sua limitação: o
+torque cai a zero quando a espira gira até o alinhamento, o que exige comutador
+para inverter a corrente e manter a rotação.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma partícula de carga $q$ e massa $m$ entra perpendicularmente em um campo
+uniforme $B$ com velocidade $v$.
+\begin{itensq}
+\item Deduza o raio e o período da trajetória.
+\item Determine a frequência angular (frequência de cíclotron).
+\item Explique por que o período independe de $v$.
+\end{itensq}
+\resposta{$r=\dfrac{mv}{qB}$; $T=\dfrac{2\pi m}{qB}$;
+$\omega=\dfrac{qB}{m}$}
+\resolucao{(a) A força magnética é perpendicular a $\vec v$ e de módulo
+constante --- exatamente as condições de um movimento \textbf{circular
+uniforme}. Igualando à resultante centrípeta:
+\[
+qvB=\frac{mv^{2}}{r}
+\;\Longrightarrow\;
+r=\frac{mv}{qB}.
+\]
+\[
+T=\frac{2\pi r}{v}=\frac{2\pi m}{qB}.
+\]
+(b)
+\[
+\omega=\frac{2\pi}{T}=\frac{qB}{m},
+\]
+a \textbf{frequência angular de cíclotron}.\\
+(c) \textbf{Por que $T$ independe de $v$.} Dobrar a velocidade dobra a força
+magnética \emph{e} dobra o raio necessário --- os dois efeitos se compensam
+exatamente. A partícula percorre um círculo duas vezes maior a velocidade duas
+vezes maior, no mesmo tempo.\\
+Algebricamente, $v$ aparece em $r$ e é cancelado por $v$ em $T=2\pi r/v$.\\
+\textbf{Consequência:} o cíclotron pode operar com frequência \emph{fixa}.
+\emph{(Isso vale enquanto $v\ll c$; em regime relativístico a massa efetiva
+cresce, $T$ aumenta e é preciso modular a frequência --- o síncrotron.)}}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma partícula entra em um campo uniforme formando $\ang{30}$ com $\vec B$, com
+$v=\pot{1}{6}\,\si{\meter\per\second}$ e $B=\SI{0.1}{\tesla}$ (próton).
+\begin{itensq}
+\item Decomponha a velocidade e descreva a trajetória.
+\item Determine o raio e o passo da hélice.
+\end{itensq}
+\resposta{Hélice com $r=\SI{5.2}{\centi\meter}$ e passo de
+$\SI{0.57}{\meter}$}
+\resolucao{(a) \textbf{Decomposição:}
+\[
+v_\perp=v\sin\ang{30}=\pot{5}{5}\,\si{\meter\per\second};
+\qquad
+v_\parallel=v\cos\ang{30}=\pot{8.66}{5}\,\si{\meter\per\second}.
+\]
+A componente \textbf{perpendicular} sofre força e produz movimento circular. A
+componente \textbf{paralela} não sofre força alguma ($\vec v\times\vec B=0$
+para ela) e produz movimento retilíneo uniforme.\\
+A composição é uma \textbf{hélice} de eixo paralelo a $\vec B$.\\
+(b)
+\[
+r=\frac{mv_\perp}{qB}
+=\frac{(\pot{1.67}{-27})(\pot{5}{5})}{(\pot{1.6}{-19})(0{,}1)}
+=\SI{0.052}{\meter};
+\]
+\[
+T=\frac{2\pi m}{qB}=\pot{6.56}{-7}\,\si{\second};
+\qquad
+\text{passo}=v_\parallel T=(\pot{8.66}{5})(\pot{6.56}{-7})=\SI{0.568}{\meter}.
+\]
+\textbf{Aplicação:} é essa trajetória que confina partículas nos cinturões de
+Van Allen e em espelhos magnéticos --- as partículas espiralam ao longo das
+linhas de campo, e o passo diminui onde o campo se intensifica, até a reversão
+do movimento.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um espectrômetro de massa usa um seletor de velocidades ($v=\pot{1}{5}\,
+\si{\meter\per\second}$) seguido de um campo de $\SI{0.1}{\tesla}$. Íons de
+neônio de massas $20\,u$ e $22\,u$, todos com carga $+e$, entram no segundo
+campo.
+\begin{itensq}
+\item Determine o raio de cada trajetória.
+\item Determine a separação entre os pontos de chegada no detector.
+\end{itensq}
+\dados{$u=\pot{1.66}{-27}\,\si{\kilogram}$}
+\resposta{$r_{20}=\SI{20.8}{\centi\meter}$, $r_{22}=\SI{22.8}{\centi\meter}$;
+separação de $\SI{4.2}{\centi\meter}$}
+\resolucao{(a) Com $r=mv/(qB)$ e velocidade já selecionada:
+\[
+r_{20}=\frac{20(\pot{1.66}{-27})(\pot{1}{5})}{(\pot{1.6}{-19})(0{,}1)}
+=\SI{0.2075}{\meter};
+\qquad
+r_{22}=\SI{0.2283}{\meter}.
+\]
+(b) Após meia volta, cada íon atinge o detector a uma distância $2r$ do ponto
+de entrada:
+\[
+\Delta=2\left(r_{22}-r_{20}\right)=2(0{,}0208)=\SI{4.15}{\centi\meter}.
+\]
+\textbf{Por que o seletor é indispensável:} sem ele, íons de massas diferentes
+mas velocidades diferentes poderiam produzir o \emph{mesmo} raio --- pois
+$r\propto mv$. O seletor fixa $v$, tornando $r$ função apenas de $m/q$.\\
+\textbf{Resolução do instrumento:} a separação relativa é
+$\Delta r/r=\Delta m/m=10\%$ para esses isótopos --- larga. Separar isótopos
+com $\Delta m/m$ de $0{,}1\%$ exigiria feixe muito bem colimado e detector de
+alta resolução espacial.}
+\end{questao}
+
+\begin{questao}[3]{}
+A definição do ampère baseava-se na força entre condutores paralelos.
+\begin{itensq}
+\item Determine a força por metro entre dois fios distantes
+      $\SI{1}{\meter}$, conduzindo $\SI{1}{\ampere}$ cada.
+\item Explique o papel dessa relação na definição da unidade.
+\item Comente a mudança recente.
+\end{itensq}
+\resposta{$F/L=\pot{2}{-7}\,\si{\newton\per\meter}$}
+\resolucao{(a)
+\[
+\frac{F}{L}=\frac{\mu_0I^{2}}{2\pi d}
+=\frac{(4\pi\times10^{-7})(1)}{2\pi(1)}=\pot{2}{-7}\,\si{\newton\per\meter}.
+\]
+(b) \textbf{Definição antiga (até 2019):} o ampère era \emph{definido} como a
+corrente que, em dois condutores paralelos infinitos separados por
+$\SI{1}{\meter}$ no vácuo, produzisse exatamente
+$\pot{2}{-7}\,\si{\newton}$ por metro.\\
+Essa definição \textbf{fixava $\mu_0$} em $4\pi\times10^{-7}$ por construção ---
+não era um valor medido, mas uma consequência da escolha.\\
+(c) \textbf{Desde 2019}, o ampère é definido fixando-se a \emph{carga
+elementar} em $e=\pot{1.602176634}{-19}\,\si{\coulomb}$ exatamente.\\
+\textbf{Consequência da mudança:} $\mu_0$ deixou de ser exato e passou a ser uma
+grandeza \textbf{medida}, com incerteza experimental --- embora ainda
+igual a $4\pi\times10^{-7}$ dentro de partes por bilhão.\\
+A troca reflete uma mudança de filosofia: definir unidades por
+\emph{constantes fundamentais} em vez de por experimentos difíceis de
+reproduzir.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um sensor Hall de espessura $\SI{0.1}{\milli\meter}$ conduz
+$\SI{1}{\ampere}$ em campo de $\SI{0.5}{\tesla}$.
+\begin{itensq}
+\item Determine a tensão Hall para cobre ($n=\pot{8.5}{28}\,\si{\per\meter\cubed}$).
+\item Repita para um semicondutor com $n=\pot{1}{22}\,\si{\per\meter\cubed}$.
+\item Explique a diferença.
+\end{itensq}
+\resposta{$\SI{0.37}{\micro\volt}$ no cobre; $\SI{3.1}{\volt}$ no
+semicondutor}
+\resolucao{(a) A tensão Hall vale
+\[
+V_H=\frac{IB}{nqt}
+=\frac{(1)(0{,}5)}{(\pot{8.5}{28})(\pot{1.6}{-19})(\pot{1}{-4})}
+=\pot{3.68}{-7}\,\si{\volt}.
+\]
+(b) Com $n=\pot{1}{22}$:
+\[
+V_H=\frac{0{,}5}{(\pot{1}{22})(\pot{1.6}{-19})(\pot{1}{-4})}=\SI{3.1}{\volt}.
+\]
+\textbf{Diferença de sete ordens de grandeza.}\\
+(c) \textbf{Explicação.} A tensão Hall é inversamente proporcional a $n$. Metais
+têm um portador por átomo --- densidade altíssima --- e cada portador precisa se
+mover \emph{devagar} para produzir a mesma corrente. Velocidade de deriva baixa
+significa força magnética pequena e, portanto, separação de cargas mínima.\\
+Semicondutores têm densidade de portadores milhões de vezes menor; eles se movem
+muito mais rápido, e o efeito Hall se torna macroscópico.\\
+\textbf{Consequência tecnológica:} \emph{todos} os sensores Hall comerciais são
+de semicondutor. Um sensor de cobre exigiria amplificação de nanovolts,
+inviável na presença de ruído térmico e de tensões termoelétricas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um motor elementar tem espira de $200$ voltas, área
+$\SI{50}{\centi\meter\squared}$, corrente de $\SI{3}{\ampere}$ e campo de
+$\SI{0.4}{\tesla}$.
+\begin{itensq}
+\item Determine o torque máximo.
+\item Determine a potência mecânica a $\SI{1200}{rpm}$, supondo torque médio
+      igual a $2/\pi$ do máximo.
+\end{itensq}
+\resposta{$\tau_{\max}=\SI{1.2}{\newton\meter}$;
+$P\approx\SI{96}{\watt}$}
+\resolucao{(a)
+\[
+m=NIA=200(3)(\pot{5}{-3})=\SI{3}{\ampere\meter\squared};
+\qquad
+\tau_{\max}=mB=3(0{,}4)=\SI{1.2}{\newton\meter}.
+\]
+\emph{(Atenção à conversão: $\SI{50}{\centi\meter\squared}
+=\pot{5}{-3}\,\si{\meter\squared}$, e não $\pot{5}{-2}$.)}\\
+(b) O torque varia como $\sin\theta$ ao longo da volta, e seu valor médio sobre
+meio ciclo é $\dfrac{2}{\pi}\tau_{\max}=\SI{0.764}{\newton\meter}$.
+\[
+\omega=1200\ \text{rpm}=\frac{1200(2\pi)}{60}=\SI{125.7}{\radian\per\second};
+\]
+\[
+P=\tau_{méd}\,\omega=0{,}764(125{,}7)=\SI{96}{\watt}.
+\]
+\textbf{Por que o comutador é necessário:} sem inverter a corrente a cada meia
+volta, o torque mudaria de sinal e a espira apenas oscilaria em torno da posição
+de alinhamento.\\
+\textbf{Por que motores reais usam muitas bobinas:} com uma só, o torque
+\emph{pulsa} entre zero e o máximo. Várias bobinas defasadas produzem torque
+quase constante --- e é isso que se busca em qualquer máquina prática.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma espira de corrente é colocada em um campo magnético \textbf{não uniforme},
+mais intenso de um lado.
+\begin{itensq}
+\item Determine se há força resultante.
+\item Determine o sentido dessa força.
+\item Relacione com o comportamento de ímãs.
+\end{itensq}
+\resposta{Há força resultante, dirigida para a região de campo mais intenso (se
+$\vec m$ estiver alinhado com $\vec B$)}
+\resolucao{(a) \textbf{Sim.} Em campo \emph{uniforme}, as forças nos lados
+opostos da espira se cancelam exatamente e resta apenas torque. Em campo
+\emph{não uniforme}, os lados estão em campos de módulos diferentes --- e o
+cancelamento é incompleto.\\
+(b) \textbf{Sentido.} A força resultante é dada pelo gradiente:
+\[
+\vec F=\nabla\left(\vec m\cdot\vec B\right).
+\]
+Se $\vec m$ estiver \emph{alinhado} com $\vec B$, a espira é atraída para a
+região de campo mais intenso. Se estiver \emph{antialinhado}, é repelida.\\
+(c) \textbf{Relação com ímãs.} Um ímã permanente é, essencialmente, um conjunto
+de espiras microscópicas (correntes de magnetização) com momentos alinhados.
+Daí:
+\begin{itemize}
+\item \textbf{Dois ímãs se atraem ou repelem} conforme a orientação relativa dos
+momentos --- exatamente o comportamento da espira.
+\item \textbf{Um ímã atrai ferro não magnetizado} porque primeiro o magnetiza
+(alinhando seus domínios com o campo aplicado) e depois o puxa para a região de
+campo mais forte. A atração é sempre no sentido do gradiente.
+\item \textbf{Em campo uniforme, um ímã não é atraído} --- ele apenas gira até
+se alinhar. É por isso que a agulha de uma bússola aponta, mas não é puxada em
+direção ao norte.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare a força entre dois fios paralelos conduzindo correntes iguais no mesmo
+sentido e em sentidos opostos.
+\begin{itensq}
+\item Determine o sentido em cada caso.
+\item Determine o módulo.
+\item Explique a diferença em termos de campo.
+\end{itensq}
+\resposta{Mesmo sentido: atração; opostos: repulsão. Módulos iguais}
+\resolucao{(a) e (b) O \textbf{módulo} é o mesmo nos dois casos:
+\[
+\frac{F}{L}=\frac{\mu_0I_1I_2}{2\pi d}.
+\]
+O que muda é o \emph{sentido}: correntes paralelas \textbf{atraem-se},
+antiparalelas \textbf{repelem-se}.\\
+(c) \textbf{Explicação pelo campo.} Considere o fio 2 imerso no campo do fio 1.
+\begin{itemize}
+\item \textbf{Mesmo sentido:} na posição do fio 2, o campo de 1 aponta em certo
+sentido; aplicando $\vec F=I\vec\ell\times\vec B$, a força aponta \emph{para} o
+fio 1.
+\item \textbf{Sentidos opostos:} $\vec\ell$ inverte, e a força inverte junto.
+\end{itemize}
+\textbf{Leitura pelas linhas de campo.} Com correntes paralelas, o campo se
+\emph{cancela} entre os fios e se \emph{reforça} fora --- as linhas envolvem o
+par, e a "tensão" ao longo delas puxa os fios um contra o outro. Com correntes
+opostas, ocorre o inverso: campo intenso entre os fios, que os afasta.\\
+\textbf{Consequência prática:} em curtos-circuitos, barramentos paralelos
+sofrem forças enormes. Com $\SI{20}{\kilo\ampere}$ a $\SI{10}{\centi\meter}$,
+a força chega a $\SI{800}{\newton\per\meter}$ --- razão de existirem
+espaçadores mecânicos robustos em painéis de potência.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um próton atravessa uma região com $E=\SI{2e4}{\volt\per\meter}$ e
+$B=\SI{0.1}{\tesla}$, perpendiculares entre si e à velocidade, dispostos de
+modo que as forças se oponham.
+\begin{itensq}
+\item Determine as duas parcelas da força de Lorentz para
+      $v=\pot{1}{5}$, $\pot{2}{5}$ e $\pot{4}{5}\,\si{\meter\per\second}$.
+\item Identifique qual parcela domina em cada caso.
+\item Interprete o resultado.
+\end{itensq}
+\resposta{Domina a elétrica em $\pot{1}{5}$, equilíbrio em $\pot{2}{5}$ e a
+magnética em $\pot{4}{5}\,\si{\meter\per\second}$}
+\resolucao{(a) A parcela elétrica \textbf{não depende de $v$}:
+\[
+F_E=qE=(\pot{1.6}{-19})(\pot{2}{4})=\pot{3.2}{-15}\,\si{\newton}.
+\]
+A magnética é \textbf{proporcional a $v$}: $F_B=qvB$.
+\begin{center}
+\begin{tabular}{cccl}
+\hline
+$v$ ($\si{\meter\per\second}$) & $F_E$ ($\si{\newton}$)
+ & $F_B$ ($\si{\newton}$) & Resultante\\
+\hline
+$\pot{1}{5}$ & $\pot{3.2}{-15}$ & $\pot{1.6}{-15}$ & elétrica domina\\
+$\pot{2}{5}$ & $\pot{3.2}{-15}$ & $\pot{3.2}{-15}$ & \textbf{nula}\\
+$\pot{4}{5}$ & $\pot{3.2}{-15}$ & $\pot{6.4}{-15}$ & magnética domina\\
+\hline
+\end{tabular}
+\end{center}
+(b) e (c) \textbf{Interpretação.} O equilíbrio ocorre em
+\[
+v=\frac{E}{B}=\frac{\pot{2}{4}}{0{,}1}=\pot{2}{5}\,\si{\meter\per\second},
+\]
+e apenas nessa velocidade a partícula segue reta.\\
+\textbf{As três situações da tabela descrevem o mesmo dispositivo}: partículas
+lentas são empurradas para um lado pela força elétrica, rápidas para o outro
+pela magnética, e só as de velocidade $E/B$ atravessam sem desvio. É a
+\emph{seleção de velocidades}, vista agora como competição entre as duas
+parcelas de $\vec F=q(\vec E+\vec v\times\vec B)$.\\
+\textbf{Observe a estrutura:} uma parcela constante e outra linear em $v$. A
+igualdade só pode ocorrer em \emph{um} valor de velocidade --- e é isso que dá
+seletividade ao instrumento.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma partícula carregada move-se em uma região com campos $\vec E$ e $\vec B$
+perpendiculares entre si, mas com velocidade \emph{diferente} de $E/B$.
+\begin{itensq}
+\item Descreva qualitativamente o movimento.
+\item Determine a velocidade média de deriva.
+\item Indique uma aplicação.
+\end{itensq}
+\resposta{Movimento cicloidal, com deriva média
+$\vec v_d=\dfrac{\vec E\times\vec B}{B^{2}}$}
+\resolucao{(a) \textbf{Movimento.} A partícula descreve uma trajetória
+\textbf{cicloidal}: um movimento circular (devido a $\vec B$) superposto a um
+deslocamento uniforme. Se ela parte do repouso, a curva é uma cicloide clássica
+--- como um ponto na borda de uma roda que rola.\\
+(b) \textbf{Velocidade de deriva.} O centro do círculo desloca-se com
+\[
+\vec v_d=\frac{\vec E\times\vec B}{B^{2}},
+\qquad
+|v_d|=\frac{E}{B},
+\]
+perpendicular a \emph{ambos} os campos.\\
+\textbf{Duas propriedades notáveis:} a deriva \textbf{não depende da carga}
+(íons e elétrons derivam no mesmo sentido) nem da \textbf{massa}.\\
+(c) \textbf{Aplicações.}
+\begin{itemize}
+\item \textbf{Magnetrons} (fornos de micro-ondas): elétrons em campos cruzados
+descrevem trajetórias cicloidais que excitam cavidades ressonantes.
+\item \textbf{Confinamento de plasma:} a deriva $\vec E\times\vec B$ é um dos
+mecanismos que governam o transporte em tokamaks --- e como ela não separa
+cargas, não gera corrente própria.
+\item \textbf{Magnetosfera terrestre:} explica parte do movimento de partículas
+aprisionadas.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[3]{}
+Um condutor de $\SI{50}{\centi\meter}$ e $\SI{100}{\gram}$ está apoiado sobre
+dois trilhos horizontais em campo vertical de $\SI{0.8}{\tesla}$. O
+coeficiente de atrito estático é $0{,}25$.
+\begin{itensq}
+\item Determine a corrente mínima para iniciar o movimento.
+\item Determine a aceleração inicial se a corrente for o dobro, com atrito
+      cinético de $0{,}20$.
+\end{itensq}
+\resposta{$I=\SI{0.613}{\ampere}$; $a\approx\SI{2.9}{\meter\per\second\squared}$}
+\resolucao{(a) A força magnética deve vencer o atrito estático:
+\[
+BIL=\mu_e mg
+\;\Longrightarrow\;
+I=\frac{0{,}25(0{,}100)(9{,}8)}{(0{,}8)(0{,}50)}=\SI{0.613}{\ampere}.
+\]
+(b) Com $I=\SI{1.226}{\ampere}$:
+\[
+F=BIL=(0{,}8)(1{,}226)(0{,}50)=\SI{0.490}{\newton};
+\]
+\[
+f_c=\mu_c mg=0{,}20(0{,}100)(9{,}8)=\SI{0.196}{\newton};
+\]
+\[
+a=\frac{0{,}490-0{,}196}{0{,}100}=\SI{2.94}{\meter\per\second\squared}.
+\]
+\textbf{Este é o princípio do canhão eletromagnético (\emph{railgun})} --- e
+também do motor linear. \\
+\textbf{Ressalva importante:} conforme o condutor acelera, ele passa a induzir
+f.e.m. contrária ($\varepsilon=BLv$), que reduz a corrente. A aceleração
+calculada vale apenas no \emph{instante inicial}; o movimento tende a uma
+velocidade-limite em que a f.e.m. induzida equilibra a fonte.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- trabalho nulo.)} Prove que a força magnética nunca
+realiza trabalho sobre uma carga puntiforme.
+\begin{itensq}
+\item Demonstre formalmente.
+\item Concilie com o fato de que motores elétricos realizam trabalho.
+\item Explique o que ocorre com a energia em um motor.
+\end{itensq}
+\resposta{$\vec F\cdot\vec v=0$ sempre; o trabalho no motor vem da fonte, não do
+campo}
+\resolucao{(a) A potência é
+\[
+P=\vec F\cdot\vec v=q\left(\vec v\times\vec B\right)\cdot\vec v.
+\]
+O produto misto $(\vec v\times\vec B)\cdot\vec v$ é \textbf{identicamente
+nulo}, pois $\vec v\times\vec B$ é perpendicular a $\vec v$ por construção. Logo
+$P=0$ e $\Delta E_c=0$: o \emph{módulo} da velocidade nunca muda.\\
+(b) \textbf{O aparente paradoxo do motor.} Um motor claramente realiza trabalho
+--- ele levanta cargas e move veículos. Como conciliar?\\
+\textbf{Resolução:} a força magnética atua sobre os \emph{portadores} do
+condutor, e é perpendicular à velocidade \emph{deles}. Mas o fio se move, e a
+velocidade total de um portador é a soma da deriva ao longo do fio com a
+velocidade do fio.\\
+A força magnética \emph{redistribui} energia: ela empurra o fio (realizando
+trabalho positivo sobre ele) e, simultaneamente, freia a deriva dos portadores
+(trabalho negativo de mesmo módulo). A soma continua sendo zero.\\
+(c) \textbf{De onde vem a energia.} O freio à deriva manifesta-se como
+\textbf{f.e.m. contraeletromotriz}, e é a \emph{fonte} que precisa vencê-la:
+\[
+P_{fonte}=\varepsilon_{fem}\,I=P_{mecânica}+P_{Joule}.
+\]
+\textbf{O campo magnético é um intermediário, não uma fonte.} Ele transfere
+energia da fonte elétrica para o eixo, sem fornecer nem armazenar nada
+líquido.\\
+\emph{(É o mesmo papel de uma polia em mecânica: ela redireciona força sem criar
+energia.)}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Dedução do torque.)} Deduza a expressão do torque sobre uma espira
+retangular em campo uniforme.
+\begin{itensq}
+\item Analise as forças em cada lado.
+\item Obtenha $\tau=NIAB\sin\theta$.
+\item Generalize para espira de forma qualquer.
+\end{itensq}
+\resposta{$\vec\tau=\vec m\times\vec B$, com $\vec m=NI\vec A$}
+\resolucao{(a) Seja a espira de lados $a$ e $b$, com $\vec B$ no plano
+horizontal e o eixo de rotação vertical. Chamando $\theta$ o ângulo entre
+$\vec B$ e a \emph{normal} à espira:
+\begin{itemize}
+\item Os lados de comprimento $a$ \emph{paralelos} ao eixo sofrem forças
+$F=BIa$, perpendiculares tanto ao fio quanto ao campo, em sentidos opostos.
+Elas formam um \textbf{binário}.
+\item Os lados de comprimento $b$ sofrem forças que se cancelam e cuja linha de
+ação passa pelo eixo --- não produzem torque.
+\end{itemize}
+(b) O braço de alavanca de cada força do binário é
+$\dfrac{b}{2}\sin\theta$:
+\[
+\tau=2\left(BIa\right)\frac{b}{2}\sin\theta=BI(ab)\sin\theta=BIA\sin\theta.
+\]
+Com $N$ espiras, $\tau=NIAB\sin\theta$.\\
+(c) \textbf{Generalização.} Definindo o momento magnético
+$\vec m=NI\vec A$ (com $\vec A$ normal à espira, sentido dado pela regra da mão
+direita):
+\[
+\boxed{\vec\tau=\vec m\times\vec B}
+\]
+Essa forma vale para espira de \textbf{qualquer} formato --- basta decompô-la em
+retângulos infinitesimais, cujas correntes internas se cancelam aos pares.\\
+\textbf{Analogia formal com o dipolo elétrico:} $\vec\tau=\vec p\times\vec E$.
+As duas expressões são idênticas em estrutura, e por isso a espira é
+literalmente um \emph{dipolo magnético}.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de espectrômetro.)} Projete um espectrômetro capaz de separar
+isótopos com $\Delta m/m=1\%$.
+\begin{itensq}
+\item Determine a separação espacial em função dos parâmetros.
+\item Estabeleça o requisito de colimação do feixe.
+\item Discuta as limitações práticas.
+\end{itensq}
+\resposta{$\Delta r/r=\Delta m/m$; a resolução exige feixe com dispersão angular
+e de velocidade menores que $1\%$}
+\resolucao{(a) De $r=\dfrac{mv}{qB}$ com $v$ e $B$ fixos:
+\[
+\frac{\Delta r}{r}=\frac{\Delta m}{m}=1\%.
+\]
+Com $r=\SI{20}{\centi\meter}$, a separação de raios é
+$\SI{2}{\milli\meter}$, e no detector (após meia volta) a separação é
+$2\Delta r=\SI{4}{\milli\meter}$.\\
+(b) \textbf{Requisito de colimação.} Para \emph{resolver} duas linhas separadas
+por $\SI{4}{\milli\meter}$, a largura de cada linha deve ser bem menor. Duas
+fontes de alargamento:
+\begin{itemize}
+\item \textbf{Dispersão de velocidade:} como $r\propto v$, uma dispersão
+$\Delta v/v$ produz alargamento $\Delta r/r$ de mesma magnitude. É preciso
+$\Delta v/v\ll1\%$ --- daí a necessidade do seletor de velocidades.
+\item \textbf{Dispersão angular:} íons entrando com pequenos ângulos diferentes
+descrevem círculos deslocados. \emph{Felizmente}, a geometria de meia volta é
+\textbf{autofocalizante}: íons que divergem de um ponto reconvergem após
+$\ang{180}$, em primeira ordem. O alargamento residual é de segunda ordem no
+ângulo.
+\end{itemize}
+(c) \textbf{Limitações práticas.}
+\begin{itemize}
+\item \textbf{Vácuo:} colisões com gás residual espalham o feixe. É preciso
+pressão abaixo de $\pot{1}{-5}\,\si{\pascal}$.
+\item \textbf{Uniformidade do campo:} variações de $B$ ao longo da trajetória
+introduzem erro proporcional. Exige-se uniformidade melhor que a resolução
+desejada.
+\item \textbf{Carga espacial:} feixes intensos se repelem eletrostaticamente e
+se alargam --- limitando a corrente utilizável.
+\item \textbf{Íons de mesma razão $m/q$:} não são separáveis. $\mathrm{N_2^+}$ e
+$\mathrm{CO^+}$ (ambos $28\,u$) exigem instrumentos de altíssima resolução para
+distinguir.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de atuador linear.)} Projete um atuador que produza
+$\SI{5}{\newton}$ com curso de $\SI{2}{\centi\meter}$.
+\begin{itensq}
+\item Determine as combinações de $B$, $I$ e $L$ possíveis.
+\item Avalie o compromisso entre corrente e número de espiras.
+\item Determine a potência dissipada e o trabalho realizado.
+\end{itensq}
+\resposta{Com $B=\SI{0.5}{\tesla}$ e $L=\SI{0.2}{\meter}$: $I=\SI{50}{\ampere}$
+com uma espira, ou $\SI{2.5}{\ampere}$ com vinte}
+\resolucao{(a) De $F=NBIL$:
+\[
+NIL=\frac{F}{B}=\frac{5}{0{,}5}=\SI{10}{\ampere\meter}.
+\]
+Qualquer combinação que satisfaça esse produto serve --- há dois graus de
+liberdade.\\
+(b) \textbf{Compromisso.} Com $L=\SI{0.2}{\meter}$ fixo:
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$N$ & $I$ & Observação\\
+\hline
+$1$ & $\SI{50}{\ampere}$ & fio muito grosso, fonte de alta corrente\\
+$20$ & $\SI{2.5}{\ampere}$ & equilíbrio razoável\\
+$200$ & $\SI{0.25}{\ampere}$ & bobina volumosa, alta indutância\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Mais espiras} reduzem a corrente (fio mais fino, fonte mais simples),
+mas aumentam volume, massa, resistência e \emph{indutância} --- o que torna o
+atuador mais lento a responder.\\
+\textbf{Menos espiras} dão resposta rápida, ao custo de corrente elevada.\\
+(c) \textbf{Dissipação.} Com $N=20$, $I=\SI{2.5}{\ampere}$ e resistência total
+estimada em $\SI{2}{\ohm}$:
+\[
+P=RI^{2}=2(6{,}25)=\SI{12.5}{\watt}.
+\]
+\textbf{Trabalho útil:}
+\[
+W=F\,d=5(0{,}02)=\SI{0.1}{\joule}.
+\]
+\textbf{Comparação reveladora:} se o curso levar $\SI{0.1}{\second}$, a potência
+mecânica é $\SI{1}{\watt}$ contra $\SI{12.5}{\watt}$ dissipados --- rendimento
+de $7\%$. Atuadores eletromagnéticos de curso curto são intrinsecamente
+ineficientes, e é por isso que costumam operar em regime \emph{pulsado}, e não
+contínuo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Efeito Hall.)} Deduza a expressão da tensão Hall e analise suas
+aplicações.
+\begin{itensq}
+\item Deduza $V_H=\dfrac{IB}{nqt}$.
+\item Explique como o sinal revela o tipo de portador.
+\item Cite três aplicações e o que cada uma mede.
+\end{itensq}
+\resposta{Equilíbrio entre força magnética e força elétrica transversal}
+\resolucao{(a) \textbf{Dedução.} Os portadores, com velocidade de deriva
+$v_d$, sofrem força magnética $qv_dB$ transversal e acumulam-se em uma face.
+Isso cria campo elétrico transversal $E_H$, que cresce até equilibrar:
+\[
+qE_H=qv_dB
+\;\Longrightarrow\;
+E_H=v_dB.
+\]
+Com largura $w$, a tensão é $V_H=E_Hw=v_dBw$. Usando
+$I=nqv_d(wt)$, elimina-se $v_d$:
+\[
+v_d=\frac{I}{nqwt}
+\;\Longrightarrow\;
+V_H=\frac{IB}{nqt}.
+\]
+\textbf{Note:} a largura $w$ cancela --- só a \emph{espessura} $t$ importa.\\
+(b) \textbf{Sinal e tipo de portador.} Elétrons (negativos) e lacunas
+(positivas) movem-se em sentidos opostos para produzir a mesma corrente. A força
+$q\vec v\times\vec B$ os desvia para o \textbf{mesmo} lado --- mas com cargas de
+sinais contrários, a polaridade de $V_H$ \textbf{se inverte}.\\
+\textbf{É o único método simples de determinar experimentalmente o sinal dos
+portadores} --- e foi assim que se estabeleceu que semicondutores tipo P
+conduzem por lacunas.\\
+(c) \textbf{Três aplicações.}
+\begin{itemize}
+\item \textbf{Medição de campo magnético} (gaussímetro): com $I$, $n$ e
+$t$ conhecidos, $V_H\propto B$.
+\item \textbf{Medição de corrente sem contato:} coloca-se o sensor no entreferro
+de um núcleo que envolve o condutor. Mede $B$, e daí $I$ --- com isolação
+galvânica completa.
+\item \textbf{Caracterização de materiais:} com $B$ e $I$ conhecidos, obtém-se
+$n$ (densidade de portadores) e o \emph{sinal} deles. Combinado com a
+condutividade, fornece a mobilidade.
+\end{itemize}
+\textbf{Vantagem sobre alternativas:} sensores Hall respondem a campo
+\emph{estático}, ao contrário de bobinas, que só detectam variação.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Estabilidade de espira.)} Analise o equilíbrio de uma espira de
+corrente em campo magnético uniforme.
+\begin{itensq}
+\item Determine as posições de equilíbrio.
+\item Classifique cada uma quanto à estabilidade.
+\item Deduza o período de pequenas oscilações.
+\end{itensq}
+\resposta{$\theta=0$ é estável, $\theta=\pi$ é instável;
+$T=2\pi\sqrt{J/(mB)}$}
+\resolucao{(a) O torque é $\tau=-mB\sin\theta$, com $\theta$ o ângulo entre
+$\vec m$ e $\vec B$. Ele se anula em
+\[
+\theta=0 \quad\text{e}\quad \theta=\pi.
+\]
+(b) \textbf{Classificação pela energia.} A energia potencial de um dipolo
+magnético é
+\[
+U=-\vec m\cdot\vec B=-mB\cos\theta.
+\]
+\begin{itemize}
+\item $\theta=0$ ($\vec m$ paralelo a $\vec B$): $U=-mB$, \textbf{mínimo}
+$\Rightarrow$ equilíbrio \textbf{estável}. Deslocada, a espira sofre torque
+restaurador.
+\item $\theta=\pi$ (antiparalelo): $U=+mB$, \textbf{máximo} $\Rightarrow$
+equilíbrio \textbf{instável}. Qualquer perturbação a faz girar $\ang{180}$.
+\end{itemize}
+(c) \textbf{Pequenas oscilações.} Para $\theta\ll1$, $\sin\theta\approx\theta$ e
+\[
+J\ddot\theta=-mB\theta
+\;\Longrightarrow\;
+\ddot\theta+\frac{mB}{J}\theta=0,
+\]
+equação do MHS com
+\[
+\omega=\sqrt{\frac{mB}{J}};
+\qquad
+T=2\pi\sqrt{\frac{J}{mB}},
+\]
+onde $J$ é o momento de inércia da espira.\\
+\textbf{Aplicação prática:} é assim que funcionam o \textbf{galvanômetro de
+bobina móvel} --- em que uma mola acrescenta torque restaurador proporcional a
+$\theta$, tornando a deflexão proporcional à corrente --- e a \textbf{bússola},
+cujo período de oscilação permite medir o campo terrestre se $J$ e $m$ forem
+conhecidos.\\
+\textbf{Diferença de $U$ entre os dois equilíbrios:} $2mB$ --- energia
+necessária para inverter a espira, e a mesma que um ímã precisa receber para ter
+sua polarização revertida.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Força de Lorentz --- estrutura e consequências.)} Analise a expressão
+completa $\vec F=q\left(\vec E+\vec v\times\vec B\right)$.
+\begin{itensq}
+\item Compare as duas parcelas quanto à dependência da velocidade, à direção e
+      ao trabalho realizado.
+\item Avalie um próton com $v=\pot{3}{4}\,\si{\meter\per\second}$ em
+      $E=\SI{500}{\volt\per\meter}$ e $B=\SI{0.02}{\tesla}$
+      \emph{perpendiculares entre si}, com $\vec v$ paralelo a $\vec E$.
+\item Explique por que aceleradores usam campo elétrico para acelerar e
+      magnético para guiar.
+\end{itensq}
+\resposta{$F_E=\SI{8e-17}{\newton}$, $F_B=\SI{9.6e-17}{\newton}$,
+perpendiculares; $|F|=\SI{1.25e-16}{\newton}$ a $\ang{50.2}$ de $\vec E$}
+\resolucao{(a) \textbf{Comparação das duas parcelas.}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+& Parcela elétrica & Parcela magnética\\
+\hline
+Expressão & $q\vec E$ & $q\,\vec v\times\vec B$\\
+Depende de $v$? & \textbf{não} & \textbf{sim} (linear)\\
+Age em repouso? & sim & não\\
+Direção & paralela a $\vec E$ & $\perp$ a $\vec v$ \emph{e} a $\vec B$\\
+Realiza trabalho? & \textbf{sim} & \textbf{nunca}\\
+Altera $|v|$? & sim & não\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{A linha decisiva é a do trabalho.} Como
+$\left(\vec v\times\vec B\right)\cdot\vec v=0$ identicamente, a parcela
+magnética tem potência nula --- ela desvia sem acelerar. A elétrica, ao
+contrário, é a única capaz de variar a energia cinética.\\
+(b) \textbf{Avaliação numérica.}
+\[
+F_E=qE=(\pot{1.6}{-19})(500)=\pot{8}{-17}\,\si{\newton};
+\]
+\[
+F_B=qvB=(\pot{1.6}{-19})(\pot{3}{4})(0{,}02)=\pot{9.6}{-17}\,\si{\newton}.
+\]
+Com $\vec v$ paralelo a $\vec E$ e $\vec B$ perpendicular a ambos, a força
+magnética é \textbf{perpendicular} à elétrica:
+\[
+|\vec F|=\sqrt{F_E^{2}+F_B^{2}}=\pot{1.25}{-16}\,\si{\newton},
+\qquad
+\theta=\arctan\frac{9{,}6}{8{,}0}=\ang{50.2}
+\]
+em relação a $\vec E$.\\
+\textbf{Razão entre as parcelas:}
+$\dfrac{F_B}{F_E}=\dfrac{vB}{E}=1{,}20$ --- adimensional, e igual a $1$
+exatamente na velocidade $E/B$ do seletor.\\
+\textbf{Trabalho em um deslocamento de $\SI{1}{\centi\meter}$ ao longo de
+$\vec E$:} apenas a parcela elétrica contribui,
+\[
+W=F_E d=(\pot{8}{-17})(0{,}01)=\pot{8}{-19}\,\si{\joule}=\SI{5}{\electronvolt},
+\]
+que é simplesmente $qEd$ --- ou seja, $q$ vezes a tensão percorrida.\\
+(c) \textbf{Divisão de papéis em aceleradores.}
+\begin{itemize}
+\item \textbf{Campo elétrico acelera.} É o único que realiza trabalho, e o ganho
+de energia por passagem é $qU$ --- daí as cavidades de radiofrequência.
+\item \textbf{Campo magnético guia.} Ele curva a trajetória sem custo
+energético, permitindo fechar o percurso em círculo e reaproveitar as mesmas
+cavidades milhares de vezes.
+\item \textbf{Campo magnético também focaliza}, com quadrupolos que comprimem o
+feixe transversalmente --- de novo, sem alterar a energia.
+\end{itemize}
+\textbf{Se fosse possível acelerar com campo magnético}, aceleradores lineares
+de quilômetros seriam desnecessários. A impossibilidade não é técnica: é
+consequência direta de $\left(\vec v\times\vec B\right)\perp\vec v$.\\
+\textbf{Nota histórica:} a expressão completa reúne dois fenômenos que foram
+descobertos e estudados separadamente. Sua unificação --- e a constatação de que
+o que é campo elétrico em um referencial pode ser magnético em outro --- é um
+dos pontos de partida da relatividade restrita.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de cíclotron.)} Um cíclotron acelera prótons até
+$\SI{10}{\mega\electronvolt}$ usando campo de $\SI{1.5}{\tesla}$.
+\begin{itensq}
+\item Determine a frequência de operação.
+\item Determine o raio máximo e o número de voltas, com
+      $\SI{50}{\kilo\volt}$ de ganho por passagem.
+\item Determine se a correção relativística é necessária.
+\end{itensq}
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$; $m_p=\pot{1.67}{-27}\,\si{\kilogram}$;
+$\SI{1}{\mega\electronvolt}=\pot{1.6}{-13}\,\si{\joule}$}
+\resposta{$f=\SI{22.9}{\mega\hertz}$; $r=\SI{30.5}{\centi\meter}$;
+$100$ voltas; correção de $1{,}1\%$}
+\resolucao{(a) A frequência de cíclotron independe da energia:
+\[
+f=\frac{qB}{2\pi m}=\frac{(\pot{1.6}{-19})(1{,}5)}{2\pi(\pot{1.67}{-27})}
+=\SI{22.9}{\mega\hertz}.
+\]
+\textbf{É isso que torna o aparelho viável:} o oscilador que alimenta os "dês"
+opera em frequência \emph{fixa}, embora a partícula ganhe energia
+continuamente.\\
+(b) Da energia final,
+\[
+v=\sqrt{\frac{2E}{m}}
+=\sqrt{\frac{2(10)(\pot{1.6}{-13})}{\pot{1.67}{-27}}}
+=\pot{4.38}{7}\,\si{\meter\per\second};
+\]
+\[
+r=\frac{mv}{qB}=\SI{0.305}{\meter}
+\;\Longrightarrow\;
+\text{diâmetro}\approx\SI{61}{\centi\meter}.
+\]
+Com dois cruzamentos do intervalo por volta, cada volta rende
+$\SI{100}{\kilo\electronvolt}$:
+\[
+N=\frac{10\,\si{\mega\electronvolt}}{0{,}1\,\si{\mega\electronvolt}}
+=100\ \text{voltas}.
+\]
+\textbf{Tempo total:} $100/f=\SI{4.4}{\micro\second}$.\\
+(c) \textbf{Correção relativística.} Com
+$v/c=0{,}146$:
+\[
+\gamma=\frac{1}{\sqrt{1-(v/c)^{2}}}=1{,}0108,
+\]
+ou seja, a massa efetiva é $1{,}1\%$ maior no fim da aceleração.\\
+\textbf{Consequência:} a frequência de cíclotron cai na mesma proporção, e a
+partícula começa a chegar \emph{atrasada} ao intervalo acelerador. Após muitas
+voltas o defasamento acumula e a aceleração cessa.\\
+\textbf{Aqui, $1{,}1\%$ é tolerável} --- o cíclotron clássico funciona. Mas para
+$\SI{100}{\mega\electronvolt}$ o desvio passaria de $10\%$ e seria proibitivo.\\
+\textbf{Soluções:} o \textbf{sincrociclotron} modula a frequência ao longo do
+ciclo; o \textbf{síncrotron} mantém o raio fixo e varia o campo. Ambos abandonam
+a simplicidade do cíclotron justamente porque o período deixa de ser constante
+--- e a raiz disso está na expressão $T=2\pi m/qB$, válida apenas enquanto
+$m$ o for.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Força entre correntes e o limite de barramentos.)} Um barramento de
+subestação tem dois condutores paralelos separados por $\SI{15}{\centi\meter}$,
+que devem suportar um curto-circuito de $\SI{40}{\kilo\ampere}$.
+\begin{itensq}
+\item Determine a força por metro durante o curto.
+\item Determine o espaçamento máximo entre suportes, para deflexão admissível.
+\item Discuta o caráter dessa solicitação.
+\end{itensq}
+\resposta{$F/L\approx\SI{2.1}{\kilo\newton\per\meter}$ --- comparável ao peso
+de uma pessoa por metro}
+\resolucao{(a)
+\[
+\frac{F}{L}=\frac{\mu_0I^{2}}{2\pi d}
+=\pot{2}{-7}\frac{(\pot{4}{4})^{2}}{0{,}15}
+=\pot{2}{-7}\frac{\pot{1.6}{9}}{0{,}15}=\SI{2133}{\newton\per\meter}.
+\]
+Mais de duas toneladas-força por metro de barramento --- e \textbf{repulsiva},
+se as correntes forem opostas (que é o caso em um curto entre fases).\\
+(b) \textbf{Espaçamento entre suportes.} Tratando o barramento como viga
+biapoiada com carga distribuída $w=F/L$, a flecha é
+\[
+\delta=\frac{5wL_s^{4}}{384EJ}.
+\]
+Para deflexão admissível $\delta$, o vão máximo cresce apenas com
+$L_s\propto\delta^{1/4}$ --- \textbf{dependência muito fraca}. Dobrar a flecha
+admissível permite aumentar o vão em apenas $19\%$.\\
+Na prática, os suportes ficam a cada $\SI{0.5}{}$ a $\SI{1}{\meter}$.\\
+(c) \textbf{Caráter da solicitação.}
+\begin{itemize}
+\item \textbf{É transitória} --- dura o tempo de atuação da proteção, tipicamente
+$\SI{100}{\milli\second}$. Mas a força \emph{de pico} pode ser o dobro da
+calculada, devido à componente assimétrica da corrente de curto.
+\item \textbf{Vai com $I^{2}$} --- dobrar a corrente de curto quadruplica a
+força. É por isso que a corrente de curto-circuito presumida é um dado de
+projeto tão crítico.
+\item \textbf{É dinâmica:} se a frequência natural da estrutura estiver próxima
+de $\SI{120}{\hertz}$ (dobro da rede, pois $F\propto i^{2}$), pode haver
+ressonância mecânica.
+\end{itemize}
+\textbf{Conclusão:} em regime normal ($\SI{1}{\kilo\ampere}$, digamos), a força
+seria $\SI{1.3}{\newton\per\meter}$ --- desprezível. O dimensionamento mecânico
+de barramentos é governado inteiramente pela condição de \emph{falta}.}
+\end{questao}

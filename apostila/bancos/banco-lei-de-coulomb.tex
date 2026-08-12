@@ -1,0 +1,816 @@
+% =====================================================================
+%  Banco complementar --- Lei de Coulomb  (REVISADO)
+%  Substitui a versao gerada por template: 32 questoes, todas com
+%  enunciado distinto. Nivel 4 reclassificado conforme o criterio da
+%  obra (sintese, demonstracao, otimizacao ou modelagem nao rotineira).
+%  Distribuicao mantida: 7 N1 + 10 N2 + 6 N3 + 9 N4 = 32
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Lei de Coulomb}
+
+\begin{atencao}[Organização do banco]
+As questões abaixo complementam o tópico sem repetir enunciados da seção
+principal. Cada nível explora uma \emph{estrutura de raciocínio} diferente:
+N1 aplica a fórmula em suas quatro formas isoladas ($F$, $q$, $r$, meio);
+N2 exige composição ou reinterpretação; N3 combina vetores, equilíbrio e
+redistribuição de carga; N4 pede demonstração, integração, otimização ou
+modelagem.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Duas cargas puntiformes $q_1=\SI{20}{\nano\coulomb}$ e
+$q_2=\SI{30}{\nano\coulomb}$ estão separadas por $\SI{3}{\centi\meter}$ no
+vácuo. Determine o módulo da força elétrica e classifique-a.
+\dados{$\ke=\SI{9e9}{\newton\meter\squared\per\coulomb\squared}$}
+\resposta{$F=\SI{6}{\milli\newton}$, repulsiva}
+\resolucao{Convertendo antes de substituir --- este é o erro mais comum:
+$q_1=\pot{2}{-8}\,\si{\coulomb}$, $q_2=\pot{3}{-8}\,\si{\coulomb}$,
+$r=\pot{3}{-2}\,\si{\meter}$.
+\[
+F=\ke\frac{q_1q_2}{r^{2}}
+ =\frac{\pot{9}{9}\cdot\pot{2}{-8}\cdot\pot{3}{-8}}{(\pot{3}{-2})^{2}}
+ =\frac{\pot{5.4}{-6}}{\pot{9}{-4}}=\pot{6}{-3}\,\si{\newton}.
+\]
+Ambas positivas $\Rightarrow$ repulsão.}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas esferas idênticas recebem cargas iguais $q$ e se repelem com força de
+$\SI{0.90}{\newton}$ quando separadas por $\SI{20}{\centi\meter}$.
+\begin{itensq}
+\item Determine $q$.
+\item Quantos elétrons foram \textbf{retirados} de cada esfera?
+\end{itensq}
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$}
+\resposta{(a) $q=\SI{2}{\micro\coulomb}$; (b) $n=\pot{1.25}{13}$ elétrons}
+\resolucao{(a) De $F=\ke q^{2}/r^{2}$,
+\[
+q=\sqrt{\frac{Fr^{2}}{\ke}}=\sqrt{\frac{0{,}90\cdot(0{,}20)^{2}}{\pot{9}{9}}}
+ =\sqrt{\pot{4}{-12}}=\pot{2}{-6}\,\si{\coulomb}.
+\]
+(b) Repulsão com cargas iguais e sinal positivo indica \emph{falta} de
+elétrons: $n=q/e=\pot{2}{-6}/\pot{1.6}{-19}=\pot{1.25}{13}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas cargas de $\SI{5}{\micro\coulomb}$ cada devem exercer uma sobre a outra
+força de $\SI{2.5}{\newton}$ no vácuo. A que distância devem ser colocadas?
+\resposta{$r=\SI{0.30}{\meter}$}
+\resolucao{Isolando $r$ na lei de Coulomb:
+\[
+r=\sqrt{\frac{\ke q_1q_2}{F}}
+ =\sqrt{\frac{\pot{9}{9}\cdot(\pot{5}{-6})^{2}}{2{,}5}}
+ =\sqrt{\frac{0{,}225}{2{,}5}}=\sqrt{0{,}09}=\SI{0.30}{\meter}.
+\]}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas cargas puntiformes se atraem com força $F$. Mantendo as cargas e
+\textbf{dobrando} a distância entre elas, a nova força será:
+\begin{alternativas}[3]
+\item $F/4$
+\item $F/2$
+\item $F$
+\item $2F$
+\item $4F$
+\end{alternativas}
+\resposta{(a)}
+\resolucao{$F\propto 1/r^{2}$. Dobrar $r$ divide a força por $2^{2}=4$:
+$F'=F/4$. Note que a natureza (atrativa) não muda --- ela depende apenas dos
+sinais, nunca da distância.}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas cargas separadas por uma distância fixa exercem força de
+$\SI{0.80}{\newton}$ no vácuo. Todo o conjunto é então imerso em um líquido
+isolante de permissividade relativa $\varepsilon_r=4$. Determine a nova força.
+\resposta{$F'=\SI{0.20}{\newton}$}
+\resolucao{Em um meio dielétrico, $F_{\text{meio}}=F_{\text{vácuo}}/\varepsilon_r$,
+pois $\ke$ é substituída por $\ke/\varepsilon_r$:
+\[
+F'=\frac{0{,}80}{4}=\SI{0.20}{\newton}.
+\]
+O dielétrico se polariza e blinda parcialmente as cargas --- por isso a força
+\emph{sempre} diminui ($\varepsilon_r\ge 1$).}
+\end{questao}
+
+\begin{questao}[1]{}
+Um bastão carregado positivamente é aproximado --- sem tocar --- de uma esfera
+metálica \textbf{neutra} e isolada. A força entre eles é:
+\begin{alternativas}[2]
+\item nula, pois a esfera é neutra
+\item atrativa
+\item repulsiva
+\item atrativa ou repulsiva, dependendo da distância
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A carga \emph{líquida} da esfera continua nula, mas o bastão
+positivo atrai elétrons livres para a face próxima e repele carga positiva
+para a face distante (\textbf{indução eletrostática}). A face próxima, negativa,
+está \emph{mais perto} do bastão que a face distante, positiva. Como
+$F\propto 1/r^{2}$, a atração vence: resultante \textbf{atrativa}. É o mesmo
+princípio pelo qual um canudo atritado atrai pedaços de papel neutros.}
+\end{questao}
+
+\begin{questao}[1]{}
+Estime a força entre duas cargas de $\SI{1}{\coulomb}$ separadas por
+$\SI{1}{\kilo\meter}$ e comente o resultado.
+\resposta{$F=\SI{9}{\kilo\newton}$ (o peso de cerca de \SI{900}{\kilogram})}
+\resolucao{
+\[
+F=\frac{\pot{9}{9}\cdot 1\cdot 1}{(10^{3})^{2}}=\pot{9}{3}\,\si{\newton}.
+\]
+Nove mil newtons --- o peso de quase uma tonelada --- a \emph{um quilômetro}
+de distância. Isso mostra por que o coulomb é uma unidade enorme para a
+eletrostática: cargas realmente separáveis por atrito ficam na faixa de
+$\si{\nano\coulomb}$ a $\si{\micro\coulomb}$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Três cargas estão fixas sobre o eixo $x$: $q_1=\SI{+3}{\micro\coulomb}$ em
+$x=0$, $q_2=\SI{+2}{\micro\coulomb}$ em $x=\SI{20}{\centi\meter}$ e
+$q_3=\SI{-5}{\micro\coulomb}$ em $x=\SI{50}{\centi\meter}$. Determine a força
+resultante sobre $q_2$ (módulo e sentido).
+\resposta{$F=\SI{2.35}{\newton}$, no sentido $+x$}
+\resolucao{Trate cada par separadamente e some \emph{com sinal}.
+\[
+F_{12}=\frac{\pot{9}{9}\cdot\pot{3}{-6}\cdot\pot{2}{-6}}{(0{,}20)^{2}}
+=\SI{1.35}{\newton}\quad(\text{repulsão}\Rightarrow +x)
+\]
+\[
+F_{32}=\frac{\pot{9}{9}\cdot\pot{2}{-6}\cdot\pot{5}{-6}}{(0{,}30)^{2}}
+=\SI{1.00}{\newton}\quad(\text{atração por } q_3 \Rightarrow +x)
+\]
+As duas apontam no mesmo sentido: $F=1{,}35+1{,}00=\SI{2.35}{\newton}$ em $+x$.
+\textbf{Cuidado:} não some as cargas antes; a lei de Coulomb vale par a par
+(princípio da superposição).}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas esferas metálicas idênticas com $q_1=\SI{+8}{\micro\coulomb}$ e
+$q_2=\SI{-2}{\micro\coulomb}$ estão a $\SI{30}{\centi\meter}$. Elas são postas
+em contato e recolocadas na mesma posição.
+\begin{itensq}
+\item Calcule a força antes do contato.
+\item Calcule a força depois.
+\end{itensq}
+\resposta{(a) $\SI{1.6}{\newton}$, atrativa; (b) $\SI{0.9}{\newton}$, repulsiva}
+\resolucao{(a) $F=\dfrac{\pot{9}{9}\cdot\pot{8}{-6}\cdot\pot{2}{-6}}{(0{,}30)^{2}}
+=\dfrac{0{,}144}{0{,}09}=\SI{1.6}{\newton}$, atrativa (sinais opostos).\\
+(b) Esferas \emph{idênticas} em contato dividem a carga total igualmente:
+\[
+q'=\frac{q_1+q_2}{2}=\frac{+8-2}{2}=\SI{+3}{\micro\coulomb}\ \text{cada}.
+\]
+\[
+F'=\frac{\pot{9}{9}\cdot(\pot{3}{-6})^{2}}{0{,}09}=\SI{0.9}{\newton},
+\ \text{agora repulsiva}.
+\]
+A força \emph{e} a natureza mudaram: o contato conserva a carga total, não a
+individual.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas cargas fixas exercem entre si $\SI{0.60}{\newton}$ no vácuo. O conjunto é
+mergulhado em óleo com $\varepsilon_r=2{,}5$.
+\begin{itensq}
+\item Qual a nova força, mantida a distância?
+\item Que fração da distância original restauraria a força de
+      $\SI{0.60}{\newton}$?
+\end{itensq}
+\resposta{(a) $\SI{0.24}{\newton}$; (b) $r'=r/\sqrt{2{,}5}\approx 0{,}63\,r$}
+\resolucao{(a) $F'=F/\varepsilon_r=0{,}60/2{,}5=\SI{0.24}{\newton}$.\\
+(b) Queremos $\dfrac{\ke q_1q_2}{\varepsilon_r r'^{2}}=\dfrac{\ke q_1q_2}{r^{2}}$,
+ou seja $\varepsilon_r r'^{2}=r^{2}$:
+\[
+r'=\frac{r}{\sqrt{\varepsilon_r}}=\frac{r}{\sqrt{2{,}5}}=0{,}632\,r.
+\]
+Aproximar as cargas em cerca de $37\%$ compensa exatamente o efeito do meio.}
+\end{questao}
+
+\begin{questao}[2]{}
+A força entre duas cargas $q_1$ e $q_2$ separadas por $d$ vale $F$. Se $q_1$ for
+\textbf{triplicada} e a distância for reduzida à \textbf{metade}, a nova força
+será:
+\begin{alternativas}[3]
+\item $1{,}5F$
+\item $3F$
+\item $6F$
+\item $12F$
+\item $24F$
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Os efeitos são multiplicativos e independentes:
+\[
+F'=\ke\frac{(3q_1)q_2}{(d/2)^{2}}=3\cdot 4\cdot \ke\frac{q_1q_2}{d^{2}}=12F.
+\]
+Fator $3$ da carga $\times$ fator $4$ da distância $=12$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma impressora a jato eletrostático, cada gota de tinta tem massa
+$\pot{1.0}{-11}\,\si{\kilogram}$ e é carregada pela remoção de
+$\pot{2.0}{5}$ elétrons. Duas gotas vizinhas ficam a $\SI{1.0}{\milli\meter}$.
+Compare a força elétrica entre elas com o peso de uma gota.
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$; $g=\SI{9.8}{\meter\per\second\squared}$}
+\resposta{$F_e=\pot{9.2}{-12}\,\si{\newton}$; $P=\pot{9.8}{-11}\,\si{\newton}$;
+$F_e/P\approx 0{,}094$}
+\resolucao{Carga da gota: $q=ne=\pot{2.0}{5}\cdot\pot{1.6}{-19}
+=\pot{3.2}{-14}\,\si{\coulomb}$.
+\[
+F_e=\frac{\pot{9}{9}\cdot(\pot{3.2}{-14})^{2}}{(\pot{1.0}{-3})^{2}}
+=\pot{9.2}{-12}\,\si{\newton}.
+\]
+Peso: $P=mg=\pot{1.0}{-11}\cdot 9{,}8=\pot{9.8}{-11}\,\si{\newton}$.
+Razão $\approx 9{,}4\%$: a repulsão entre gotas é pequena diante do peso, mas
+não desprezível --- é ela que degrada a nitidez quando as gotas são emitidas
+muito próximas.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas cargas positivas, $q_1=\SI{4}{\micro\coulomb}$ em $x=0$ e
+$q_2=\SI{9}{\micro\coulomb}$ em $x=\SI{50}{\centi\meter}$, estão fixas.
+Determine o ponto onde uma terceira carga ficaria em equilíbrio.
+\resposta{$x=\SI{20}{\centi\meter}$}
+\resolucao{Como as duas são positivas, o ponto de força nula está
+\emph{entre} elas. Seja $x$ a distância a $q_1$:
+\[
+\frac{\ke q_1 q_3}{x^{2}}=\frac{\ke q_2 q_3}{(0{,}50-x)^{2}}
+\;\Longrightarrow\;
+\frac{4}{x^{2}}=\frac{9}{(0{,}50-x)^{2}}.
+\]
+Extraindo a raiz (ambos os lados positivos):
+$\dfrac{2}{x}=\dfrac{3}{0{,}50-x}\Rightarrow 2(0{,}50-x)=3x
+\Rightarrow x=\SI{0.20}{\meter}$.
+O ponto fica \emph{mais próximo da carga menor}, como esperado. Note que $q_3$
+se cancela: a posição não depende dela.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma carga $q$ e outra $100q$ interagem. Sobre os módulos das forças que uma
+exerce sobre a outra, é correto afirmar:
+\begin{alternativas}[2]
+\item a força sobre $q$ é 100 vezes maior
+\item a força sobre $100q$ é 100 vezes maior
+\item as forças têm o mesmo módulo
+\item depende das massas
+\end{alternativas}
+\resposta{(c)}
+\resolucao{A lei de Coulomb é simétrica no produto $q_1q_2$: ambas valem
+$\ke\,q\cdot 100q/r^{2}$. Formam um par ação--reação (3\textsuperscript{a} lei
+de Newton): mesmo módulo, mesma direção, sentidos opostos. O que \emph{difere}
+é a \textbf{aceleração}, se as massas forem diferentes --- confundir força com
+aceleração é o erro clássico aqui.}
+\end{questao}
+
+\begin{questao}[2]{}
+No modelo de Bohr para o hidrogênio, o elétron orbita o próton a
+$\pot{5.3}{-11}\,\si{\meter}$. Determine a força elétrica e a aceleração
+centrípeta do elétron.
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$; $m_e=\pot{9.11}{-31}\,\si{\kilogram}$}
+\resposta{$F=\pot{8.2}{-8}\,\si{\newton}$;
+$a=\pot{9.0}{22}\,\si{\meter\per\second\squared}$}
+\resolucao{
+\[
+F=\frac{\pot{9}{9}\cdot(\pot{1.6}{-19})^{2}}{(\pot{5.3}{-11})^{2}}
+=\frac{\pot{2.304}{-28}}{\pot{2.81}{-21}}=\pot{8.2}{-8}\,\si{\newton}.
+\]
+\[
+a=\frac{F}{m_e}=\frac{\pot{8.2}{-8}}{\pot{9.11}{-31}}
+=\pot{9.0}{22}\,\si{\meter\per\second\squared}.
+\]
+Uma força minúscula produz aceleração de $10^{22}\,\si{\meter\per\second\squared}$
+porque a massa do elétron é ainda mais minúscula.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas esferas metálicas idênticas com cargas $+Q$ e $+3Q$, separadas por $d$,
+repelem-se com força $F$. Elas são postas em contato e depois afastadas até
+$2d$. Determine a nova força em função de $F$.
+\resposta{$F'=F/3$}
+\resolucao{Antes: $F=\ke\dfrac{Q\cdot 3Q}{d^{2}}=\dfrac{3\ke Q^{2}}{d^{2}}$.\\
+Após o contato, cada esfera fica com $\dfrac{Q+3Q}{2}=2Q$. A $2d$:
+\[
+F'=\ke\frac{(2Q)(2Q)}{(2d)^{2}}=\ke\frac{4Q^{2}}{4d^{2}}=\frac{\ke Q^{2}}{d^{2}}
+=\frac{F}{3}.
+\]
+O produto das cargas subiu (de $3Q^2$ para $4Q^2$), mas o fator $4$ da
+distância dominou.}
+\end{questao}
+
+\begin{questao}[2]{}
+Compare a força entre duas cargas de $\SI{1.0}{\micro\coulomb}$ separadas por
+$\SI{1.0}{\centi\meter}$ com o peso de um corpo de $\SI{1.0}{\kilogram}$, e
+interprete.
+\dados{$g=\SI{9.8}{\meter\per\second\squared}$}
+\resposta{$F=\SI{90}{\newton}$ contra $P=\SI{9.8}{\newton}$; razão $\approx 9{,}2$}
+\resolucao{
+\[
+F=\frac{\pot{9}{9}\cdot(\pot{1}{-6})^{2}}{(\pot{1}{-2})^{2}}
+=\frac{\pot{9}{-3}}{\pot{1}{-4}}=\SI{90}{\newton};
+\qquad P=1{,}0\cdot 9{,}8=\SI{9.8}{\newton}.
+\]
+Um milionésimo de coulomb, a um centímetro, produz nove vezes o peso de um
+quilograma. Essa desproporção entre a força elétrica e a gravitacional é a razão
+pela qual a matéria macroscópica é praticamente neutra: qualquer desequilíbrio
+apreciável de carga seria violentamente desfeito.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Duas cargas fixas sobre o eixo $x$: $q_1=\SI{+4}{\micro\coulomb}$ em $x=0$ e
+$q_2=\SI{-1}{\micro\coulomb}$ em $x=\SI{30}{\centi\meter}$. Determine todos os
+pontos do eixo onde a força sobre uma carga de prova seria nula.
+\resposta{Um único ponto: $x=\SI{60}{\centi\meter}$}
+\resolucao{Com \textbf{sinais opostos}, o ponto não pode estar entre as cargas
+(ali as duas forças apontam para o mesmo lado). Deve estar \emph{fora} do
+segmento e, mais especificamente, do lado da carga de \emph{menor} módulo ---
+só assim a maior proximidade compensa o menor valor. Testando $x>0{,}30$:
+\[
+\frac{\ke\cdot 4\mu}{x^{2}}=\frac{\ke\cdot 1\mu}{(x-0{,}30)^{2}}
+\;\Longrightarrow\;
+\frac{2}{x}=\frac{1}{x-0{,}30}
+\;\Longrightarrow\;
+2x-0{,}60=x \Rightarrow x=\SI{0.60}{\meter}.
+\]
+\textbf{Verificação:}
+$\ke\cdot4\mu/(0{,}60)^{2}=\ke\cdot1\mu/(0{,}30)^{2}$ --- confere. A raiz
+$x=0{,}20$ da equação quadrática completa é \emph{espúria}: corresponde ao
+ponto interno, onde as forças se somam em vez de se cancelar.}
+\end{questao}
+
+\begin{questao}[3]{}
+Seis cargas iguais $Q=\SI{2}{\micro\coulomb}$ ocupam os vértices de um hexágono
+regular de lado $a=\SI{10}{\centi\meter}$, com uma carga
+$q=\SI{1}{\micro\coulomb}$ no centro.
+\begin{itensq}
+\item Qual a força resultante sobre $q$?
+\item Uma das seis cargas é removida. Qual passa a ser a força sobre $q$
+      (módulo e direção)?
+\end{itensq}
+\resposta{(a) nula; (b) $\SI{1.8}{\newton}$, apontando \emph{para} o vértice vazio}
+\resolucao{(a) Em um hexágono regular, o centro dista $a$ de todos os vértices
+e as cargas ocupam posições diametralmente opostas duas a duas. Cada par
+contribui com forças de mesmo módulo e sentidos opostos: resultante nula, por
+simetria.\\
+(b) Use o argumento da superposição \emph{ao contrário}: 
+$\vec{F}_{6}= \vec{F}_{5}+\vec{F}_{\text{removida}}=\vec{0}$, logo
+$\vec{F}_{5}=-\vec{F}_{\text{removida}}$.
+\[
+|\vec{F}_{5}|=\frac{\ke Qq}{a^{2}}
+=\frac{\pot{9}{9}\cdot\pot{2}{-6}\cdot\pot{1}{-6}}{(0{,}10)^{2}}
+=\SI{1.8}{\newton}.
+\]
+A carga removida \emph{repelia} $q$ para longe do vértice; sem ela, a resultante
+aponta \textbf{para} o vértice vazio. Este truque de simetria evita somar cinco
+vetores.}
+\end{questao}
+
+\begin{questao}[3]{}
+Três cargas ocupam os vértices de um triângulo retângulo:
+$q_A=\SI{+2}{\micro\coulomb}$ na origem, $q_B=\SI{+3}{\micro\coulomb}$ em
+$(\SI{30}{\centi\meter},0)$ e $q_C=\SI{+4}{\micro\coulomb}$ em
+$(0,\SI{40}{\centi\meter})$. Determine a força resultante sobre $q_A$: módulo e
+ângulo com o eixo $x$.
+\resposta{$F=\SI{0.75}{\newton}$, a $\SI{216.9}{\degree}$ (isto é, $\SI{36.9}{\degree}$ abaixo
+do semieixo $-x$)}
+\resolucao{As duas forças sobre $q_A$ são perpendiculares --- o que torna a
+composição imediata.
+\[
+F_{AB}=\frac{\pot{9}{9}\cdot\pot{2}{-6}\cdot\pot{3}{-6}}{(0{,}30)^{2}}
+=\SI{0.60}{\newton}\ \ (\text{repulsão}\Rightarrow -x)
+\]
+\[
+F_{AC}=\frac{\pot{9}{9}\cdot\pot{2}{-6}\cdot\pot{4}{-6}}{(0{,}40)^{2}}
+=\SI{0.45}{\newton}\ \ (\text{repulsão}\Rightarrow -y)
+\]
+\[
+F=\sqrt{0{,}60^{2}+0{,}45^{2}}=\sqrt{0{,}5625}=\SI{0.75}{\newton},
+\qquad
+\tan\theta=\frac{0{,}45}{0{,}60}=0{,}75 \Rightarrow \theta=\SI{36.87}{\degree}.
+\]
+Um clássico triângulo $3$--$4$--$5$ escondido. \textbf{Atenção:} a hipotenusa
+$BC=\SI{50}{\centi\meter}$ é irrelevante --- ela governa a força \emph{entre}
+$q_B$ e $q_C$, não a força sobre $q_A$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas pequenas esferas metálicas idênticas, separadas por $\SI{10}{\centi\meter}$,
+\textbf{atraem-se} com força de $\SI{0.108}{\newton}$. Postas em contato e
+recolocadas na mesma distância, passam a \textbf{repelir-se} com
+$\SI{0.036}{\newton}$. Determine as cargas iniciais.
+\resposta{$q_1=\SI{+0.6}{\micro\coulomb}$ e $q_2=\SI{-0.2}{\micro\coulomb}$
+(ou a permuta)}
+\resolucao{\textbf{Etapa 1 --- produto.} A atração indica sinais opostos:
+\[
+|q_1q_2|=\frac{F_1r^{2}}{\ke}=\frac{0{,}108\cdot 0{,}01}{\pot{9}{9}}
+=\pot{1.2}{-13}\ \Rightarrow\ q_1q_2=-\pot{1.2}{-13}\,\si{\coulomb\squared}.
+\]
+\textbf{Etapa 2 --- soma.} Após o contato cada esfera fica com
+$q'=(q_1+q_2)/2$:
+\[
+q'=\sqrt{\frac{F_2r^{2}}{\ke}}=\sqrt{\frac{0{,}036\cdot0{,}01}{\pot{9}{9}}}
+=\pot{2}{-7}\,\si{\coulomb}
+\ \Rightarrow\ q_1+q_2=\pot{4}{-7}\,\si{\coulomb}.
+\]
+\textbf{Etapa 3 --- soma e produto.} As cargas são raízes de
+$x^{2}-Sx+P=0$ com $S=\pot{4}{-7}$ e $P=-\pot{1.2}{-13}$:
+\[
+x=\frac{\pot{4}{-7}\pm\sqrt{\pot{1.6}{-13}+\pot{4.8}{-13}}}{2}
+ =\frac{\pot{4}{-7}\pm\pot{8}{-7}}{2}
+ \Rightarrow x=\pot{6}{-7}\ \text{ou}\ -\pot{2}{-7}.
+\]
+A repulsão final confirma que a soma é não nula. Se as cargas fossem simétricas
+($q$ e $-q$), o contato as neutralizaria e a força final seria zero.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um pequeno bloco de massa $m=\SI{20}{\gram}$, com carga $q=\SI{1}{\micro\coulomb}$,
+repousa sobre um plano inclinado \textbf{liso} de $\SI{30}{\degree}$. Uma carga fixa
+$Q=\SI{1}{\micro\coulomb}$ está presa na base do plano, e a força elétrica atua
+ao longo da superfície. Determine a distância de equilíbrio $d$ medida sobre o
+plano.
+\dados{$g=\SI{9.8}{\meter\per\second\squared}$}
+\resposta{$d\approx\SI{30.3}{\centi\meter}$}
+\resolucao{Sobre o plano liso, o equilíbrio na direção da superfície envolve
+apenas a componente do peso e a repulsão elétrica (a normal é perpendicular):
+\[
+\frac{\ke Qq}{d^{2}}=mg\sin\theta.
+\]
+\[
+mg\sin\SI{30}{\degree}=0{,}020\cdot 9{,}8\cdot 0{,}5=\SI{0.098}{\newton};
+\qquad
+d=\sqrt{\frac{\pot{9}{9}\cdot(\pot{1}{-6})^{2}}{0{,}098}}
+=\sqrt{0{,}0918}=\SI{0.303}{\meter}.
+\]
+\textbf{Estabilidade:} se o bloco descer, $d$ diminui e a repulsão cresce como
+$1/d^{2}$, empurrando-o de volta; se subir, a repulsão cai e o peso o traz de
+volta. O equilíbrio é \emph{estável}.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um dipolo é formado por $+q$ e $-q$, com $q=\SI{1}{\micro\coulomb}$, fixos em
+$(\pm\SI{5}{\centi\meter},0)$. Uma carga $Q=\SI{2}{\micro\coulomb}$ é colocada
+em $(0,\SI{12}{\centi\meter})$, sobre a mediatriz.
+\begin{itensq}
+\item Mostre que a resultante sobre $Q$ é paralela ao eixo do dipolo.
+\item Calcule seu módulo.
+\end{itensq}
+\resposta{(a) as componentes verticais se cancelam; (b) $F=\SI{0.82}{\newton}$,
+no sentido $-x$ (de $+q$ para $-q$)}
+\resolucao{(a) Cada carga dista
+$r=\sqrt{0{,}05^{2}+0{,}12^{2}}=\SI{0.13}{\meter}$ de $Q$ (triângulo
+$5$--$12$--$13$). A carga $+q$ \emph{repele} $Q$ e $-q$ a \emph{atrai}: as duas
+forças têm o mesmo módulo e as componentes em $y$ apontam em sentidos opostos,
+cancelando-se. Restam as componentes em $x$, que se \textbf{somam}.\\
+(b) Cada força vale $F_1=\ke qQ/r^{2}$ e sua componente horizontal é
+$F_1\cdot(a/r)$, com $a=\SI{0.05}{\meter}$:
+\[
+F=2\,\frac{\ke qQ}{r^{2}}\cdot\frac{a}{r}=\frac{2\ke qQ\,a}{r^{3}}
+=\frac{2\cdot\pot{9}{9}\cdot\pot{1}{-6}\cdot\pot{2}{-6}\cdot 0{,}05}
+       {(0{,}13)^{3}}=\SI{0.82}{\newton}.
+\]
+Note a dependência $1/r^{3}$: longe do dipolo a força cai \emph{mais rápido}
+que a de uma carga isolada, porque as duas cargas quase se cancelam.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Modelagem experimental.)} Em uma reprodução da balança de torção, duas
+esferas com cargas iguais $q=\SI{0.10}{\micro\coulomb}$ foram mantidas a várias
+distâncias e a força foi medida:
+
+\begin{center}
+\begin{tabular}{cccccc}
+\hline
+$r$ (m) & 0,020 & 0,030 & 0,040 & 0,050 & 0,060\\
+$F$ (N) & 0,223 & 0,101 & 0,0558 & 0,0362 & 0,0249\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{itensq}
+\item Proponha uma linearização que permita testar a hipótese $F=C\,r^{n}$.
+\item Estime $n$ e discuta se os dados sustentam a lei do inverso do quadrado.
+\item Obtenha o valor experimental de $\ke$ e compare com o tabelado.
+\end{itensq}
+\resposta{(a) $\log F=\log C+n\log r$; (b) $n\approx-2{,}00$; (c)
+$\ke\approx\pot{9.1}{9}\,\si{\newton\meter\squared\per\coulomb\squared}$
+(erro $\approx 1\%$)}
+\resolucao{(a) Tomando logaritmos, uma lei de potência vira uma reta:
+$\log F = \log C + n\log r$. O coeficiente angular do gráfico
+$\log F \times \log r$ é o expoente procurado.\\
+(b) Ajustando os cinco pontos por mínimos quadrados obtém-se
+$n=-1{,}997$ e $C=\pot{9.09}{-5}$. O expoente reproduz $-2$ com desvio de
+$0{,}15\%$ --- dentro do que se espera de medidas de força dessa ordem. Um teste
+rápido sem regressão: dobrar $r$ de $0{,}020$ para $0{,}040$ deveria dividir $F$
+por $4$; de fato $0{,}223/0{,}0558=4{,}00$.\\
+(c) Como $C=\ke q^{2}$ e $q^{2}=\pot{1}{-14}\,\si{\coulomb\squared}$:
+\[
+\ke=\frac{C}{q^{2}}=\frac{\pot{9.09}{-5}}{\pot{1}{-14}}
+=\pot{9.09}{9}\,\si{\newton\meter\squared\per\coulomb\squared},
+\]
+contra $\pot{8.99}{9}$ tabelado --- erro relativo de $1{,}1\%$.\\
+\textbf{Observação de método:} a linearização logarítmica é preferível a ajustar
+$F\times 1/r^{2}$ diretamente, porque \emph{não pressupõe} o expoente --- ela o
+mede. Esse é exatamente o argumento que Coulomb precisou construir em 1785.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Otimização com cálculo.)} Um anel fino de raio $R$, com carga total $Q$
+uniformemente distribuída, está no plano $yz$. Uma carga puntiforme $q$ é
+colocada sobre o eixo do anel, a uma distância $x$ do centro.
+\begin{itensq}
+\item Mostre que $F(x)=\dfrac{\ke Q q\,x}{(x^{2}+R^{2})^{3/2}}$.
+\item Determine o valor de $x$ que \textbf{maximiza} a força.
+\item Calcule $F_{\max}$ para $Q=\SI{10}{\micro\coulomb}$,
+      $q=\SI{2}{\micro\coulomb}$ e $R=\SI{10}{\centi\meter}$.
+\end{itensq}
+\resposta{(b) $x=R/\sqrt{2}\approx\SI{7.07}{\centi\meter}$;
+(c) $F_{\max}=\dfrac{2\ke Qq}{3\sqrt{3}\,R^{2}}=\SI{6.93}{\newton}$}
+\resolucao{(a) Divida o anel em elementos $\mathrm{d} Q$. Cada um dista
+$s=\sqrt{x^{2}+R^{2}}$ de $q$ e contribui com $\ke q\,\mathrm{d} Q/s^{2}$. Por
+simetria, as componentes perpendiculares ao eixo se cancelam aos pares; sobra a
+projeção axial, fator $\cos\alpha=x/s$:
+\[
+F=\int \frac{\ke q\,\mathrm{d} Q}{s^{2}}\cdot\frac{x}{s}
+ =\frac{\ke q x}{(x^{2}+R^{2})^{3/2}}\int \mathrm{d} Q
+ =\frac{\ke Q q\,x}{(x^{2}+R^{2})^{3/2}}.
+\]
+(b) Derivando e igualando a zero:
+\[
+\frac{\mathrm{d} F}{\mathrm{d} x}\propto (x^{2}+R^{2})^{3/2}-x\cdot 3x(x^{2}+R^{2})^{1/2}=0
+\;\Rightarrow\; x^{2}+R^{2}-3x^{2}=0 \;\Rightarrow\; x=\frac{R}{\sqrt{2}}.
+\]
+(c) Substituindo $x=R/\sqrt2$:
+\[
+F_{\max}=\frac{2\,\ke Qq}{3\sqrt{3}\,R^{2}}
+=\frac{2\cdot\pot{9}{9}\cdot\pot{1}{-5}\cdot\pot{2}{-6}}{3\sqrt3\cdot 0{,}01}
+=\frac{0{,}36}{0{,}0520}=\SI{6.93}{\newton}.
+\]
+\textbf{Casos-limite:} em $x=0$ a força é nula (simetria perfeita); para
+$x\gg R$, $F\to\ke Qq/x^{2}$ --- o anel se comporta como carga puntiforme.
+Entre esses dois zeros deve existir um máximo, e ele está em $R/\sqrt2$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Distribuição contínua.)} Um bastão isolante retilíneo de comprimento
+$L$ possui carga $Q$ uniformemente distribuída. Uma carga puntiforme $q$ está
+sobre o prolongamento do bastão, a uma distância $d$ da extremidade mais
+próxima.
+\begin{itensq}
+\item Deduza $F=\dfrac{\ke Qq}{d\,(d+L)}$.
+\item Verifique o comportamento para $L\ll d$.
+\item Calcule $F$ para $Q=\SI{4}{\micro\coulomb}$, $L=\SI{20}{\centi\meter}$,
+      $q=\SI{1}{\micro\coulomb}$ e $d=\SI{10}{\centi\meter}$.
+\end{itensq}
+\resposta{(b) $F\to\ke Qq/d^{2}$; (c) $F=\SI{1.2}{\newton}$}
+\resolucao{(a) Densidade linear $\lambda=Q/L$. Um elemento $\mathrm{d} x$ a uma
+distância $x$ da carga carrega $\mathrm{d} Q=\lambda\,\mathrm{d} x$ e todas as contribuições
+são \emph{colineares} --- por isso a integral é escalar:
+\[
+F=\int_{d}^{d+L}\frac{\ke q\lambda\,\mathrm{d} x}{x^{2}}
+ =\ke q\lambda\left[-\frac{1}{x}\right]_{d}^{d+L}
+ =\ke q\lambda\left(\frac{1}{d}-\frac{1}{d+L}\right)
+ =\frac{\ke q\lambda L}{d(d+L)}=\frac{\ke Qq}{d(d+L)}.
+\]
+(b) Se $L\ll d$, então $d+L\approx d$ e $F\to\ke Qq/d^{2}$: recuperamos a lei de
+Coulomb puntiforme, como deve ser.\\
+(c) $F=\dfrac{\pot{9}{9}\cdot\pot{4}{-6}\cdot\pot{1}{-6}}{0{,}10\cdot 0{,}30}
+=\dfrac{0{,}036}{0{,}03}=\SI{1.2}{\newton}$.\\
+\textbf{Compare:} se toda a carga estivesse concentrada no centro do bastão
+($\SI{20}{\centi\meter}$), teríamos $\SI{0.9}{\newton}$. A força real é maior
+porque as porções mais próximas pesam com $1/x^{2}$ --- concentrar carga no
+centro geométrico \emph{subestima} a força.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- estabilidade.)} Duas cargas $+Q$ estão fixas em
+$x=-d$ e $x=+d$. Uma carga $q$ é colocada na origem.
+\begin{itensq}
+\item Mostre que a origem é posição de equilíbrio para qualquer $q$.
+\item Para $q>0$, analise a estabilidade a um pequeno deslocamento
+      \emph{longitudinal} ($\pm x$).
+\item Repita para um deslocamento \emph{transversal} ($\pm y$) e conclua.
+\end{itensq}
+\resposta{(a) por simetria; (b) estável, com $F\approx-4\ke Qq\,x/d^{3}$;
+(c) instável, com $F\approx+2\ke Qq\,y/d^{3}$ --- não há equilíbrio estável em
+todas as direções}
+\resolucao{(a) As duas forças têm o mesmo módulo e sentidos opostos: resultante
+nula, independentemente do sinal e do valor de $q$.\\
+(b) Deslocando $q>0$ para $x$ pequeno:
+\[
+F_x=\ke Qq\left[\frac{1}{(d+x)^{2}}-\frac{1}{(d-x)^{2}}\right].
+\]
+Com $(d\pm x)^{-2}\approx d^{-2}(1\mp 2x/d)$:
+\[
+F_x\approx\frac{\ke Qq}{d^{2}}\left(-\frac{4x}{d}\right)=-\frac{4\ke Qq}{d^{3}}\,x.
+\]
+Sinal negativo $\Rightarrow$ força \textbf{restauradora}: estável nessa direção
+(e o movimento é harmônico simples).\\
+(c) Deslocando para $y$ pequeno, cada carga dista $\sqrt{d^{2}+y^{2}}\approx d$ e
+repele $q$ com componente transversal $\ke Qq\,y/d^{3}$; as duas se somam:
+\[
+F_y\approx +\frac{2\ke Qq}{d^{3}}\,y,
+\]
+sinal positivo $\Rightarrow$ força que \textbf{afasta}: instável.\\
+\textbf{Conclusão.} O equilíbrio é do tipo \emph{ponto de sela}: estável em uma
+direção, instável na outra. Este é um caso particular do \textbf{teorema de
+Earnshaw}: nenhuma configuração de cargas fixas pode manter uma carga puntiforme
+em equilíbrio estável apenas por forças eletrostáticas. É por isso que modelos
+puramente eletrostáticos do átomo não se sustentam.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Série infinita.)} Cargas puntiformes de mesmo módulo $Q$ e
+\textbf{sinais alternados} ocupam as posições $x=a,\,2a,\,3a,\dots$ sobre um
+eixo: $-Q$ em $a$, $+Q$ em $2a$, $-Q$ em $3a$ e assim por diante,
+indefinidamente. Uma carga $+q$ está na origem.
+\begin{itensq}
+\item Escreva a força resultante sobre $q$ como uma série.
+\item Some a série e obtenha a expressão fechada.
+\end{itensq}
+\dados{$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{2}}=\frac{\pi^{2}}{12}$}
+\resposta{$F=\dfrac{\pi^{2}}{12}\cdot\dfrac{\ke Qq}{a^{2}}
+\approx 0{,}822\,\dfrac{\ke Qq}{a^{2}}$, atrativa (sentido $+x$)}
+\resolucao{(a) A $n$-ésima carga está em $x=na$ e tem sinal $(-1)^{n}Q$. Uma
+carga negativa \emph{atrai} $q$ (puxa no sentido $+x$); uma positiva
+\emph{repele} (sentido $-x$). Tomando $+x$ como positivo:
+\[
+F=\frac{\ke Qq}{a^{2}}\left(\frac{1}{1^{2}}-\frac{1}{2^{2}}+\frac{1}{3^{2}}
+-\frac{1}{4^{2}}+\cdots\right)
+=\frac{\ke Qq}{a^{2}}\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{2}}.
+\]
+(b) Usando o resultado dado:
+\[
+F=\frac{\pi^{2}}{12}\cdot\frac{\ke Qq}{a^{2}}\approx 0{,}822\,\frac{\ke Qq}{a^{2}}.
+\]
+\textbf{Interpretação.} Apesar de haver infinitas cargas, a força é
+\emph{finita} e vale menos que a da primeira carga sozinha: a alternância de
+sinais produz cancelamento progressivo, e o decaimento $1/n^{2}$ garante
+convergência absoluta. Se todas as cargas fossem negativas, a soma seria
+$\pi^2/6\approx1{,}645$ --- exatamente o dobro.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Oscilações.)} Uma partícula de massa $m=\SI{1.0}{\gram}$ e carga
+$-q=\SI{-2}{\micro\coulomb}$ é liberada em repouso sobre o eixo de um anel de
+raio $R=\SI{10}{\centi\meter}$ e carga $Q=\SI{5}{\micro\coulomb}$, a uma
+distância $x_0\ll R$ do centro.
+\begin{itensq}
+\item Mostre que, para $x\ll R$, o movimento é harmônico simples.
+\item Obtenha $\omega$ e o período $T$.
+\end{itensq}
+\resposta{(b) $\omega=\sqrt{\ke Qq/(mR^{3})}=\SI{300}{\radian\per\second}$;
+$T\approx\SI{20.9}{\milli\second}$}
+\resolucao{(a) A força axial sobre a carga negativa é atrativa, dirigida ao
+centro, de módulo $F=\ke Qq\,x/(x^{2}+R^{2})^{3/2}$. Para $x\ll R$, o
+denominador tende a $R^{3}$:
+\[
+F_x\approx-\frac{\ke Qq}{R^{3}}\,x.
+\]
+Força proporcional ao deslocamento e de sinal oposto --- exatamente a forma
+$F=-kx$ da lei de Hooke, com constante efetiva $k_{\text{ef}}=\ke Qq/R^{3}$.
+Logo o MHS.\\
+(b)
+\[
+\omega=\sqrt{\frac{k_{\text{ef}}}{m}}=\sqrt{\frac{\ke Qq}{mR^{3}}}
+=\sqrt{\frac{\pot{9}{9}\cdot\pot{5}{-6}\cdot\pot{2}{-6}}
+{\pot{1}{-3}\cdot(0{,}10)^{3}}}
+=\sqrt{\frac{0{,}09}{\pot{1}{-6}}}=\SI{300}{\radian\per\second},
+\]
+\[
+T=\frac{2\pi}{\omega}=\SI{20.9}{\milli\second}.
+\]
+\textbf{Observe:} o período não depende de $x_0$ --- é a assinatura do MHS. Fora
+da aproximação $x\ll R$, a força deixa de ser linear e o movimento continua
+periódico, mas com período dependente da amplitude.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Modelagem com taxas.)} Duas esferas idênticas de massa
+$m=\SI{2.0}{\gram}$, cada uma com carga $q$, pendem de fios isolantes de
+comprimento $L=\SI{60}{\centi\meter}$ presos ao mesmo ponto. Elas se afastam até
+uma separação $x\ll L$. Por fuga de carga para o ar úmido, as esferas se
+aproximam lentamente.
+\begin{itensq}
+\item Mostre que $x^{3}=\dfrac{2\ke q^{2}L}{mg}$.
+\item Demonstre que
+      $\dfrac{\mathrm{d} x}{\mathrm{d} t}=\dfrac{2x}{3q}\dfrac{\mathrm{d} q}{\mathrm{d} t}$.
+\item Se em certo instante $x=\SI{6.0}{\centi\meter}$ e as esferas se aproximam
+      a $\SI{1.0}{\milli\meter\per\second}$, calcule $\mathrm{d} q/\mathrm{d} t$.
+\end{itensq}
+\dados{$g=\SI{9.8}{\meter\per\second\squared}$}
+\resposta{(c) $q\approx\SI{19.8}{\nano\coulomb}$ e
+$\mathrm{d} q/\mathrm{d} t\approx\SI{-0.49}{\nano\coulomb\per\second}$}
+\resolucao{(a) Para cada esfera: tensão, peso e repulsão. Do triângulo de
+forças, $\tan\theta=F/(mg)$. Com $x\ll L$,
+$\tan\theta\approx\sin\theta=(x/2)/L$. Igualando:
+\[
+\frac{x}{2L}=\frac{\ke q^{2}}{x^{2}mg}
+\;\Longrightarrow\;
+x^{3}=\frac{2\ke q^{2}L}{mg}.
+\]
+(b) Derivando implicitamente em relação ao tempo:
+\[
+3x^{2}\frac{\mathrm{d} x}{\mathrm{d} t}=\frac{4\ke L}{mg}\,q\,\frac{\mathrm{d} q}{\mathrm{d} t}.
+\]
+De (a), $\dfrac{2\ke L}{mg}=\dfrac{x^{3}}{q^{2}}$; substituindo:
+\[
+3x^{2}\frac{\mathrm{d} x}{\mathrm{d} t}=\frac{2x^{3}}{q}\frac{\mathrm{d} q}{\mathrm{d} t}
+\;\Longrightarrow\;
+\frac{\mathrm{d} x}{\mathrm{d} t}=\frac{2x}{3q}\frac{\mathrm{d} q}{\mathrm{d} t}.
+\]
+(c) Primeiro $q$, por (a):
+\[
+q=\sqrt{\frac{x^{3}mg}{2\ke L}}
+=\sqrt{\frac{(0{,}060)^{3}\cdot 0{,}0020\cdot 9{,}8}{2\cdot\pot{9}{9}\cdot0{,}60}}
+=\pot{1.98}{-8}\,\si{\coulomb}.
+\]
+Com $\mathrm{d} x/\mathrm{d} t=-\pot{1.0}{-3}\,\si{\meter\per\second}$ (aproximação):
+\[
+\frac{\mathrm{d} q}{\mathrm{d} t}=\frac{3q}{2x}\frac{\mathrm{d} x}{\mathrm{d} t}
+=\frac{3\cdot\pot{1.98}{-8}}{2\cdot 0{,}060}\cdot(-\pot{1}{-3})
+=-\pot{4.9}{-10}\,\si{\coulomb\per\second}.
+\]
+\textbf{Leitura física:} medir uma \emph{velocidade} converte-se em medir uma
+\emph{corrente de fuga} de meio nanoampère --- pequena demais para muitos
+amperímetros, mas visível a olho nu pelo movimento das esferas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Simetria e integração.)} Um fio semicircular de raio
+$R=\SI{5.0}{\centi\meter}$ possui carga $Q=\SI{3}{\micro\coulomb}$ distribuída
+uniformemente. Uma carga $q=\SI{1}{\micro\coulomb}$ ocupa o centro do
+semicírculo.
+\begin{itensq}
+\item Justifique por que a resultante é dirigida ao longo do eixo de simetria.
+\item Mostre que $F=\dfrac{2\ke Qq}{\pi R^{2}}$ e calcule seu valor.
+\end{itensq}
+\resposta{$F=\SI{6.9}{\newton}$, ao longo do eixo de simetria}
+\resolucao{(a) Para cada elemento do fio existe outro simétrico em relação ao
+eixo vertical. Suas contribuições têm componentes perpendiculares ao eixo iguais
+e opostas --- que se cancelam --- e componentes ao longo do eixo que se somam.\\
+(b) Densidade linear $\lambda=Q/(\pi R)$. O elemento em $\theta$ tem
+$\mathrm{d} Q=\lambda R\,\mathrm{d}\theta$, dista $R$ do centro e contribui com
+$\ke q\,\mathrm{d} Q/R^{2}$; sua projeção no eixo vale $\sin\theta$:
+\[
+F=\int_{0}^{\pi}\frac{\ke q\lambda R\,\mathrm{d}\theta}{R^{2}}\sin\theta
+ =\frac{\ke q\lambda}{R}\underbrace{\int_{0}^{\pi}\sin\theta\,\mathrm{d}\theta}_{=2}
+ =\frac{2\ke q\lambda}{R}=\frac{2\ke Qq}{\pi R^{2}}.
+\]
+\[
+F=\frac{2\cdot\pot{9}{9}\cdot\pot{3}{-6}\cdot\pot{1}{-6}}
+{\pi\,(0{,}050)^{2}}=\frac{0{,}054}{\pot{7.85}{-3}}=\SI{6.9}{\newton}.
+\]
+\textbf{Compare:} se a mesma carga $Q$ estivesse concentrada em um ponto a $R$,
+teríamos $\ke Qq/R^{2}=\SI{10.8}{\newton}$. O fator $2/\pi\approx 0{,}64$ mede
+exatamente a perda por cancelamento vetorial ao longo do arco. Um anel
+\emph{completo} levaria esse fator a zero.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Síntese --- equilíbrio de um sistema.)} Quatro cargas iguais
+$Q=\SI{2}{\micro\coulomb}$ ocupam os vértices de um quadrado de lado $a$. Uma
+quinta carga $q$ é colocada no centro.
+\begin{itensq}
+\item Determine $q$ (sinal e módulo, em função de $Q$) para que \textbf{cada}
+      carga dos vértices fique em equilíbrio.
+\item Calcule $q$ numericamente.
+\item O sistema completo está em equilíbrio estável? Justifique.
+\end{itensq}
+\resposta{(a) $q=-\dfrac{Q(2\sqrt{2}+1)}{4}$; (b) $q\approx\SI{-1.91}{\micro\coulomb}$;
+(c) não --- o equilíbrio é instável}
+\resolucao{(a) Por simetria, basta impor o equilíbrio de \emph{um} vértice; a
+resultante das outras três cargas aponta ao longo da diagonal, para fora.
+\begin{itemize}
+\item Duas vizinhas, a distância $a$: cada uma contribui $\ke Q^{2}/a^{2}$, e
+suas projeções sobre a diagonal valem $\cos\SI{45}{\degree}=\sqrt2/2$ cada, somando
+$\sqrt{2}\,\ke Q^{2}/a^{2}$.
+\item A oposta, a distância $a\sqrt{2}$: contribui
+$\ke Q^{2}/(2a^{2})$, já ao longo da diagonal.
+\end{itemize}
+\[
+F_{\text{vértices}}=\frac{\ke Q^{2}}{a^{2}}\left(\sqrt{2}+\frac{1}{2}\right).
+\]
+A carga central dista $a/\sqrt{2}$ do vértice, logo atua com
+$F_{c}=\ke|q|Q/(a^{2}/2)=2\ke|q|Q/a^{2}$ e deve ser \textbf{atrativa} ---
+portanto $q<0$. Igualando:
+\[
+2|q|=Q\left(\sqrt2+\frac12\right)
+\;\Longrightarrow\;
+|q|=\frac{Q\,(2\sqrt{2}+1)}{4}\approx 0{,}957\,Q.
+\]
+(b) $q\approx-0{,}957\cdot 2=\SI{-1.91}{\micro\coulomb}$.\\
+(c) \textbf{Não.} A condição imposta zera a resultante sobre os vértices, mas
+não sobre a carga central --- que já está em equilíbrio por simetria, embora
+instável. Mais fundamentalmente, o teorema de Earnshaw proíbe equilíbrio
+eletrostático estável: qualquer perturbação de $q$ ao longo de uma diagonal a
+faz cair sobre um vértice. O equilíbrio existe, mas não sobrevive a uma
+perturbação infinitesimal.}
+\end{questao}

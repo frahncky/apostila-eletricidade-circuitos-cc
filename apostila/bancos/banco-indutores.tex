@@ -1,0 +1,1069 @@
+% =====================================================================
+%  Banco complementar --- Indutores  (REVISADO)
+%  Substitui a versao gerada por template (12 clones em N2, 12 em N3,
+%  10 questoes conceituais indevidamente marcadas como N4).
+%  Sem sobreposicao com o cap10, que ja traz: indutor ideal em CC (MC),
+%  indutancia de solenoide N=500, rampa de corrente basica, paralelo
+%  3H/9H, RL com L=1H e R=100 ohm, Leq serie/paralelo e a tabela
+%  comparativa capacitor x indutor.
+%  Distribuicao mantida: 6 N1 + 12 N2 + 12 N3 + 10 N4 = 40
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Indutores}
+
+\begin{atencao}[Organização do banco]
+Três relações sustentam tudo: $v=L\dfrac{\mathrm{d}i}{\mathrm{d}t}$,
+$W=\frac12LI^{2}$ e $\lambda=LI$. Delas seguem os dois fatos que governam o
+comportamento transitório --- a corrente \textbf{não pode saltar} (isso exigiria
+tensão infinita) e o indutor \textbf{se opõe à variação}, não à corrente em si.
+O N3 trata de sobretensão, acoplamento, saturação e extração de parâmetros; o
+N4 exige dedução da EDO, integração de energia e projeto com restrições
+físicas.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+A tensão sobre um indutor vale $\SI{50}{\volt}$ quando a corrente varia à taxa
+de $\SI{250}{\ampere\per\second}$. Determine a indutância.
+\resposta{$L=\SI{0.2}{\henry}$}
+\resolucao{Isolando $L$ na relação fundamental:
+\[
+v=L\frac{\mathrm{d}i}{\mathrm{d}t}
+\;\Longrightarrow\;
+L=\frac{v}{\mathrm{d}i/\mathrm{d}t}=\frac{50}{250}=\SI{0.2}{\henry}.
+\]
+O henry é, portanto, volt-segundo por ampère: $\SI{1}{\henry}$ é a indutância
+que produz $\SI{1}{\volt}$ para uma variação de $\SI{1}{\ampere\per\second}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um indutor de $\SI{0.4}{\henry}$ conduz $\SI{5}{\ampere}$ constantes. Determine
+a energia armazenada no campo magnético.
+\resposta{$W=\SI{5}{\joule}$}
+\resolucao{
+\[
+W=\frac12LI^{2}=\frac12(0{,}4)(5)^{2}=\SI{5}{\joule}.
+\]
+A dependência é \emph{quadrática} na corrente: dobrar $I$ quadruplica a
+energia. Note que, embora a tensão sobre o indutor ideal seja nula em regime CC
+(corrente constante), a energia armazenada não é --- ela ficou guardada no
+campo durante a fase de crescimento da corrente.}
+\end{questao}
+
+\begin{questao}[1]{}
+Sobre a corrente em um indutor ideal, é correto afirmar que ela:
+\begin{alternativas}[2]
+\item pode variar instantaneamente
+\item não pode variar instantaneamente
+\item é sempre constante
+\item é sempre nula em corrente contínua
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Um salto de corrente significaria
+$\mathrm{d}i/\mathrm{d}t\to\infty$ e, por $v=L\,\mathrm{d}i/\mathrm{d}t$, uma
+tensão infinita --- fisicamente impossível. Logo a corrente no indutor é uma
+função \textbf{contínua} do tempo: $i(0^{+})=i(0^{-})$.\\
+Cuidado com (c) e (d): a corrente pode variar (e varia, nos transitórios), e em
+CC ela é constante e em geral \emph{não nula}. O que é nula em CC é a
+\emph{tensão}.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um indutor de $\SI{200}{\milli\henry}$ está em série com $\SI{50}{\ohm}$.
+Determine a constante de tempo do circuito.
+\resposta{$\tau=\SI{4}{\milli\second}$}
+\resolucao{
+\[
+\tau=\frac{L}{R}=\frac{0{,}200}{50}=\SI{4e-3}{\second}=\SI{4}{\milli\second}.
+\]
+\textbf{Atenção à estrutura:} no circuito RL, $\tau=L/R$ --- resistência
+\emph{maior} torna o transitório \emph{mais rápido}. No RC é o oposto
+($\tau=RC$). Trocar as duas fórmulas é o erro mais comum entre os dois
+elementos armazenadores.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o fluxo concatenado em um indutor de $\SI{0.25}{\henry}$ percorrido
+por $\SI{8}{\ampere}$.
+\resposta{$\lambda=\SI{2}{\weber}$}
+\resolucao{
+\[
+\lambda=LI=0{,}25\cdot8=\SI{2}{\weber}.
+\]
+O fluxo concatenado $\lambda=N\Phi$ é o produto do fluxo por espira pelo número
+de espiras. A indutância é justamente a constante de proporcionalidade entre
+$\lambda$ e $I$ --- é essa a definição primária de $L$, da qual
+$v=L\,\mathrm{d}i/\mathrm{d}t$ decorre pela lei de Faraday.}
+\end{questao}
+
+\begin{questao}[1]{}
+Aplicam-se $\SI{30}{\volt}$ a um indutor de $\SI{0.15}{\henry}$ inicialmente
+sem corrente. Determine a taxa inicial de variação da corrente.
+\resposta{$\mathrm{d}i/\mathrm{d}t=\SI{200}{\ampere\per\second}$}
+\resolucao{
+\[
+\frac{\mathrm{d}i}{\mathrm{d}t}=\frac{v}{L}=\frac{30}{0{,}15}
+=\SI{200}{\ampere\per\second}.
+\]
+No instante inicial a corrente é nula, mas sua \emph{taxa} é máxima. Se a
+tensão se mantivesse constante e não houvesse resistência, a corrente cresceria
+indefinidamente em rampa --- é a resistência do circuito que estabelece o
+patamar final.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um indutor de $\SI{0.5}{\henry}$ conduz $\SI{3}{\ampere}$.
+\begin{itensq}
+\item Determine a energia armazenada.
+\item Determine a tensão necessária para levar a corrente a zero
+      \emph{linearmente} em $\SI{50}{\milli\second}$.
+\end{itensq}
+\resposta{(a) $\SI{2.25}{\joule}$; (b) $\SI{30}{\volt}$}
+\resolucao{(a) $W=\frac12(0{,}5)(9)=\SI{2.25}{\joule}$.\\
+(b) A taxa é $\mathrm{d}i/\mathrm{d}t=(0-3)/0{,}050
+=\SI{-60}{\ampere\per\second}$, e
+\[
+|v|=L\left|\frac{\mathrm{d}i}{\mathrm{d}t}\right|=0{,}5\cdot60=\SI{30}{\volt}.
+\]
+O sinal negativo indica \textbf{inversão de polaridade}: o indutor passa a
+funcionar como fonte, devolvendo ao circuito os $\SI{2.25}{\joule}$
+armazenados. É esse comportamento que produz as sobretensões de abertura.}
+\end{questao}
+
+\begin{questao}[2]{}
+A corrente em um indutor de $\SI{100}{\milli\henry}$ cai linearmente de
+$\SI{4}{\ampere}$ a zero em $\SI{20}{\milli\second}$. Determine a tensão
+induzida e sua polaridade.
+\resposta{$\SI{20}{\volt}$, com polaridade \emph{invertida} em relação à fase
+de crescimento}
+\resolucao{
+\[
+|v|=L\left|\frac{\Delta i}{\Delta t}\right|
+=0{,}100\cdot\frac{4}{0{,}020}=\SI{20}{\volt}.
+\]
+Durante o \emph{crescimento} da corrente, o indutor absorve energia e sua
+tensão se opõe ao aumento. Durante o \emph{decrescimento}, ele devolve energia
+e a tensão inverte, tentando sustentar a corrente.\\
+Em ambos os casos vale a lei de Lenz: o indutor se opõe à \emph{variação}, não
+ao sentido da corrente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Três indutores não acoplados de $\SI{6}{\milli\henry}$,
+$\SI{12}{\milli\henry}$ e $\SI{12}{\milli\henry}$ são associados. Determine
+$L_{eq}$ em série e em paralelo.
+\resposta{Série: $\SI{30}{\milli\henry}$; paralelo: $\SI{3}{\milli\henry}$}
+\resolucao{\textbf{Série:} $L_{eq}=6+12+12=\SI{30}{\milli\henry}$.\\
+\textbf{Paralelo:}
+\[
+\frac{1}{L_{eq}}=\frac16+\frac1{12}+\frac1{12}=\frac{2+1+1}{12}=\frac13
+\;\Longrightarrow\;
+L_{eq}=\SI{3}{\milli\henry}.
+\]
+As regras são \emph{idênticas} às dos resistores --- e opostas às dos
+capacitores. A ressalva é a hipótese de \textbf{não acoplamento}: se houver
+fluxo mútuo, as fórmulas mudam (ver bloco de aprofundamento).}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito RL série tem $L=\SI{0.6}{\henry}$, $R=\SI{30}{\ohm}$ e fonte de
+$\SI{24}{\volt}$, com a chave fechada em $t=0$.
+\begin{itensq}
+\item Determine $\tau$ e a corrente final.
+\item Determine a tensão sobre o indutor em $t=0^{+}$.
+\end{itensq}
+\resposta{(a) $\tau=\SI{20}{\milli\second}$, $I_f=\SI{0.8}{\ampere}$;
+(b) $\SI{24}{\volt}$}
+\resolucao{(a) $\tau=L/R=0{,}6/30=\SI{20}{\milli\second}$;
+$I_f=V/R=24/30=\SI{0.8}{\ampere}$.\\
+(b) Em $t=0^{+}$ a corrente ainda é nula (continuidade), logo o resistor não
+tem queda e \textbf{toda} a tensão da fonte aparece sobre o indutor:
+$v_L(0^{+})=\SI{24}{\volt}$.\\
+\textbf{Os dois extremos:} em $t=0^{+}$ o indutor se comporta como circuito
+\emph{aberto} (corrente nula); em $t\to\infty$, como \emph{curto}
+(tensão nula). Reconhecer esses dois limites resolve a maioria dos problemas
+sem integrar nada.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito anterior, determine a corrente em $t=\tau$, $t=2\tau$ e
+$t=3\tau$.
+\resposta{$\SI{0.506}{\ampere}$, $\SI{0.692}{\ampere}$ e
+$\SI{0.760}{\ampere}$}
+\resolucao{Com $i(t)=I_f\left(1-e^{-t/\tau}\right)$ e
+$I_f=\SI{0.8}{\ampere}$:
+\[
+i(\tau)=0{,}8(1-e^{-1})=0{,}8(0{,}632)=\SI{0.506}{\ampere},
+\]
+\[
+i(2\tau)=0{,}8(0{,}865)=\SI{0.692}{\ampere},
+\qquad
+i(3\tau)=0{,}8(0{,}950)=\SI{0.760}{\ampere}.
+\]
+As frações $63{,}2\%$, $86{,}5\%$ e $95{,}0\%$ são universais --- valem para
+qualquer RL ou RC. Após $5\tau$ atinge-se $99{,}3\%$, e por convenção o
+transitório é dado por encerrado.}
+\end{questao}
+
+\begin{questao}[2]{}
+Aplica-se a um indutor de $\SI{5}{\milli\henry}$ uma onda quadrada de tensão
+que alterna entre $+\SI{10}{\volt}$ e $-\SI{10}{\volt}$, com meio período de
+$\SI{1}{\milli\second}$. Determine a variação de corrente pico a pico em
+regime.
+\resposta{$\Delta i=\SI{2}{\ampere}$}
+\resolucao{Durante o semiciclo positivo, a tensão constante produz rampa de
+corrente:
+\[
+\Delta i=\frac{v\,\Delta t}{L}=\frac{10\cdot0{,}001}{0{,}005}=\SI{2}{\ampere}.
+\]
+No semiciclo negativo a corrente desce pela mesma quantidade, e o regime é
+simétrico.\\
+\textbf{Resultado geral:} tensão quadrada no indutor produz corrente
+\textbf{triangular} --- o indutor \emph{integra} a tensão. O capacitor faz o
+oposto: corrente quadrada nele produz tensão triangular.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um indutor \emph{real} de $\SI{0.5}{\henry}$ possui resistência de enrolamento
+$r=\SI{8}{\ohm}$ e é ligado a uma fonte CC de $\SI{24}{\volt}$.
+\begin{itensq}
+\item Determine a corrente em regime permanente.
+\item Determine a energia armazenada e a potência dissipada.
+\end{itensq}
+\resposta{(a) $\SI{3}{\ampere}$; (b) $W=\SI{2.25}{\joule}$ e
+$P=\SI{72}{\watt}$}
+\resolucao{(a) Em regime, $\mathrm{d}i/\mathrm{d}t=0$ e o indutor ideal não cai
+tensão: só $r$ limita a corrente.
+\[
+I=\frac{24}{8}=\SI{3}{\ampere}.
+\]
+(b) $W=\frac12(0{,}5)(9)=\SI{2.25}{\joule}$;
+$P=rI^{2}=8(9)=\SI{72}{\watt}$.\\
+\textbf{Contraste essencial:} a energia é \emph{armazenada} e recuperável; a
+potência é \emph{dissipada} continuamente e perdida. Manter esses
+$\SI{2.25}{\joule}$ no campo custa $\SI{72}{\watt}$ permanentes --- razão pela
+qual eletroímãs de grande porte usam supercondutores, em que $r=0$ e a
+manutenção do campo é gratuita.}
+\end{questao}
+
+\begin{questao}[2]{}
+Dois indutores armazenam a mesma energia: o primeiro tem
+$L_1=\SI{2}{\henry}$ com $I_1=\SI{1}{\ampere}$. Se
+$L_2=\SI{0.5}{\henry}$, determine $I_2$.
+\resposta{$I_2=\SI{2}{\ampere}$}
+\resolucao{
+\[
+\frac12L_1I_1^{2}=\frac12L_2I_2^{2}
+\;\Longrightarrow\;
+I_2=I_1\sqrt{\frac{L_1}{L_2}}=1\cdot\sqrt{4}=\SI{2}{\ampere}.
+\]
+Ambos armazenam $\SI{1}{\joule}$. Reduzir $L$ por um fator $4$ exige
+\emph{dobrar} a corrente --- e, como as perdas vão com $I^{2}$, o indutor menor
+custa quatro vezes mais em dissipação para armazenar o mesmo tanto. É o
+compromisso central no projeto de indutores de potência.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um solenoide de $N=200$ espiras tem indutância $L$. Determine a nova
+indutância se o número de espiras for dobrado, mantidos o comprimento e a
+seção.
+\resposta{$4L$}
+\resolucao{Para um solenoide longo,
+\[
+L=\frac{\mu N^{2}A}{\ell},
+\]
+de modo que $L\propto N^{2}$. Dobrar $N$ quadruplica $L$.\\
+\textbf{Por que o quadrado:} dobrar as espiras dobra o campo produzido por
+uma dada corrente \emph{e} dobra o número de espiras que concatenam esse campo.
+Os dois efeitos se multiplicam.\\
+\textbf{Ressalva prática:} com o mesmo espaço de bobina, dobrar $N$ exige fio
+de seção menor, o que aumenta $r$ e as perdas. Na prática, o ganho de $L$ vem
+acompanhado de penalidade em corrente admissível.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um indutor com núcleo de ar tem $L_0=\SI{2}{\milli\henry}$. Introduz-se um
+núcleo ferromagnético de permeabilidade relativa $\mu_r=500$. Determine a nova
+indutância e comente as limitações.
+\resposta{$L=\SI{1}{\henry}$}
+\resolucao{Como $L\propto\mu=\mu_r\mu_0$:
+\[
+L=\mu_rL_0=500\cdot2=\SI{1000}{\milli\henry}=\SI{1}{\henry}.
+\]
+\textbf{Três limitações do núcleo.} \emph{(i)} \textbf{Saturação:} acima de
+certa corrente, $\mu_r$ despenca e $L$ colapsa. \emph{(ii)} \textbf{Perdas:}
+histerese e correntes de Foucault dissipam energia proporcionalmente à
+frequência. \emph{(iii)} \textbf{Não linearidade:} $L$ deixa de ser constante,
+e as fórmulas lineares passam a ser aproximações válidas apenas em torno de um
+ponto de operação.\\
+Núcleos de ar têm $L$ minúsculo, mas são perfeitamente lineares e sem perdas
+magnéticas --- por isso dominam aplicações de radiofrequência.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito RL com $\tau=\SI{20}{\milli\second}$ e $I_f=\SI{0.8}{\ampere}$,
+determine o instante em que a corrente atinge $\SI{0.5}{\ampere}$.
+\resposta{$t\approx\SI{19.6}{\milli\second}$}
+\resolucao{De $i=I_f(1-e^{-t/\tau})$, isole a exponencial:
+\[
+e^{-t/\tau}=1-\frac{0{,}5}{0{,}8}=0{,}375
+\;\Longrightarrow\;
+t=\tau\ln\!\left(\frac{1}{0{,}375}\right)=0{,}020\cdot0{,}981
+=\SI{19.6}{\milli\second}.
+\]
+Ou seja, praticamente $1\tau$ --- coerente com o fato de que
+$\SI{0.5}{\ampere}$ corresponde a $62{,}5\%$ de $I_f$, muito próximo dos
+$63{,}2\%$ atingidos em exatamente $\tau$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um indutor de $\SI{0.4}{\henry}$ conduz $\SI{2}{\ampere}$ quando a fonte é
+substituída por um curto através de $R=\SI{20}{\ohm}$. Determine $\tau$ e a
+corrente após $\SI{40}{\milli\second}$.
+\resposta{$\tau=\SI{20}{\milli\second}$; $i=\SI{0.27}{\ampere}$}
+\resolucao{$\tau=L/R=0{,}4/20=\SI{20}{\milli\second}$.\\
+Na descarga, a corrente decai exponencialmente a partir do valor inicial:
+\[
+i(t)=I_0e^{-t/\tau}=2\,e^{-40/20}=2e^{-2}=2(0{,}135)=\SI{0.27}{\ampere}.
+\]
+\textbf{Continuidade:} no instante da comutação a corrente permanece
+$\SI{2}{\ampere}$ --- ela não pode saltar. O que muda instantaneamente é a
+\emph{tensão}, que assume $-RI_0=\SI{-40}{\volt}$ para manter essa corrente
+circulando pelo resistor.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um indutor de $\SI{0.2}{\henry}$ conduz $\SI{5}{\ampere}$ e é descarregado
+através de um resistor.
+\begin{itensq}
+\item Determine a energia total dissipada no resistor.
+\item Explique por que ela não depende do valor de $R$.
+\item Determine como $R$ afeta o processo.
+\end{itensq}
+\resposta{(a) $\SI{2.5}{\joule}$; (b) conservação de energia; (c) $R$ altera a
+\emph{duração} e a \emph{potência}, não a energia total}
+\resolucao{(a) Toda a energia armazenada acaba no resistor:
+\[
+W=\frac12LI_0^{2}=\frac12(0{,}2)(25)=\SI{2.5}{\joule}.
+\]
+(b) O indutor ideal não dissipa e o circuito é fechado: a energia magnética não
+tem outro destino. A independência em relação a $R$ é consequência direta da
+conservação --- e é confirmada por integração no bloco de desafio.\\
+(c) $R$ governa $\tau=L/R$ e, portanto, o \emph{ritmo}:
+\begin{itemize}
+\item $R$ pequeno $\Rightarrow$ $\tau$ grande: descarga lenta, potência baixa e
+prolongada.
+\item $R$ grande $\Rightarrow$ $\tau$ pequeno: descarga rápida, com pico de
+potência $P_0=RI_0^{2}$ muito elevado.
+\end{itemize}
+\textbf{Exemplo:} com $R=\SI{10}{\ohm}$, $P_0=\SI{250}{\watt}$ por
+$\SI{20}{\milli\second}$; com $R=\SI{1000}{\ohm}$, $P_0=\SI{25}{\kilo\watt}$
+por $\SI{0.2}{\milli\second}$. Mesma energia, potências que diferem em cem
+vezes.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um indutor de $\SI{0.1}{\henry}$ conduz $\SI{2}{\ampere}$ quando uma chave
+mecânica é aberta, interrompendo a corrente em cerca de
+$\SI{1}{\micro\second}$.
+\begin{itensq}
+\item Estime a tensão induzida.
+\item Explique por que esse valor não se observa na prática.
+\item Indique a consequência real.
+\end{itensq}
+\resposta{(a) $\SI{200}{\kilo\volt}$ (estimativa idealizada);
+(b) o ar rompe muito antes; (c) formação de arco elétrico nos contatos}
+\resolucao{(a)
+\[
+|v|=L\frac{\Delta i}{\Delta t}=0{,}1\cdot\frac{2}{10^{-6}}
+=\pot{2}{5}\,\si{\volt}=\SI{200}{\kilo\volt}.
+\]
+(b) A rigidez dielétrica do ar é da ordem de
+$\SI{3}{\kilo\volt\per\milli\meter}$. Com contatos separados por décimos de
+milímetro, o ar ioniza a alguns \emph{quilovolts} --- muito antes dos
+$\SI{200}{\kilo\volt}$. O cálculo é uma \textbf{estimativa por absurdo}: ele
+mostra que a hipótese "a corrente cessa em $\SI{1}{\micro\second}$" é
+insustentável.\\
+(c) Forma-se um \textbf{arco elétrico}, que mantém a corrente circulando
+enquanto o campo se esvazia. O arco limita a tensão a algumas centenas de
+volts, mas corrói os contatos, gera interferência eletromagnética e reduz
+drasticamente a vida da chave.\\
+\textbf{Leitura correta:} não é o indutor que "gera" $\SI{200}{\kilo\volt}$ ---
+é a impossibilidade de interromper a corrente que \emph{força} o circuito a
+encontrar um caminho, e ele o encontra no ar.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um diodo de roda livre é colocado em antiparalelo com uma bobina de
+$\SI{0.1}{\henry}$ e $r=\SI{5}{\ohm}$, que conduz $\SI{2}{\ampere}$.
+\begin{itensq}
+\item Explique o funcionamento no instante da abertura.
+\item Determine a tensão máxima sobre a chave.
+\item Determine a constante de tempo de extinção.
+\end{itensq}
+\resposta{(b) $\approx\SI{0.7}{\volt}$ acima da alimentação;
+(c) $\tau=\SI{20}{\milli\second}$}
+\resolucao{(a) Com a chave aberta, a corrente da bobina precisa de um caminho.
+O diodo, que estava reversamente polarizado, entra em condução e fecha uma
+malha bobina--diodo. A corrente continua circulando e decai exponencialmente,
+dissipando-se em $r$ e no diodo --- sem arco.\\
+(b) A tensão sobre a bobina fica grampeada em $-V_D\approx\SI{-0.7}{\volt}$, de
+modo que a chave suporta apenas a tensão de alimentação acrescida de
+$\SI{0.7}{\volt}$. Compare com os quilovolts do caso anterior.\\
+(c) $\tau=L/r=0{,}1/5=\SI{20}{\milli\second}$.\\
+\textbf{Custo do método:} a extinção fica \emph{lenta}. Em um relé, isso
+prolonga o tempo de desarme; em acionamentos rápidos, prefere-se um diodo em
+série com um resistor (ou um Zener), que eleva a tensão de grampeamento e
+acelera a queda --- trocando proteção máxima por velocidade.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dois indutores acoplados, $L_1=\SI{4}{\milli\henry}$ e
+$L_2=\SI{9}{\milli\henry}$, têm indutância mútua $M=\SI{3}{\milli\henry}$.
+\begin{itensq}
+\item Determine $L_{eq}$ em série nas duas orientações possíveis.
+\item Determine o coeficiente de acoplamento $k$.
+\item Explique como identificar experimentalmente a orientação.
+\end{itensq}
+\resposta{(a) $\SI{19}{\milli\henry}$ e $\SI{7}{\milli\henry}$; (b) $k=0{,}5$}
+\resolucao{(a) Em série,
+\[
+L_{eq}=L_1+L_2\pm2M
+\;\Longrightarrow\;
+4+9+6=\SI{19}{\milli\henry}
+\ \text{ou}\ 4+9-6=\SI{7}{\milli\henry}.
+\]
+O sinal $+$ vale para \textbf{acoplamento aditivo} (os fluxos se reforçam; a
+corrente entra pelos dois pontos marcados); o sinal $-$, para
+\textbf{subtrativo}.\\
+(b)
+\[
+k=\frac{M}{\sqrt{L_1L_2}}=\frac{3}{\sqrt{36}}=0{,}5.
+\]
+Como $0\le k\le1$, este é um acoplamento médio --- típico de bobinas
+próximas com núcleo de ar. Transformadores de potência atingem $k>0{,}99$.\\
+(c) \textbf{Método experimental:} meça $L_{eq}$ nas duas ligações possíveis. A
+\emph{maior} corresponde ao acoplamento aditivo e identifica os pontos.
+Além disso, $M$ sai de graça:
+\[
+M=\frac{L_{aditivo}-L_{subtrativo}}{4}=\frac{19-7}{4}=\SI{3}{\milli\henry}.
+\]
+É assim que se determina $M$ sem acesso à geometria interna das bobinas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte de $\SI{12}{\volt}$ alimenta, através de $R_1=\SI{20}{\ohm}$, um nó
+do qual saem $R_3=\SI{60}{\ohm}$ ao terra e um ramo com
+$R_2=\SI{30}{\ohm}$ em série com $L=\SI{0.9}{\henry}$.
+\begin{itensq}
+\item Determine a resistência de Thévenin vista pelo indutor.
+\item Determine $\tau$ e a corrente final no indutor.
+\end{itensq}
+\resposta{(a) $R_{Th}=\SI{45}{\ohm}$; (b) $\tau=\SI{20}{\milli\second}$ e
+$I_f=\SI{0.2}{\ampere}$}
+\resolucao{(a) Zerando a fonte (curto), o indutor vê $R_2$ em série com
+$R_1\parallel R_3$:
+\[
+R_{Th}=30+\frac{20\cdot60}{80}=30+15=\SI{45}{\ohm}.
+\]
+(b) $\tau=L/R_{Th}=0{,}9/45=\SI{20}{\milli\second}$.\\
+A tensão de Thévenin sai com o indutor removido (sem corrente em $R_2$, logo
+sem queda nele):
+\[
+V_{Th}=12\cdot\frac{60}{20+60}=\SI{9}{\volt}
+\;\Longrightarrow\;
+I_f=\frac{9}{45}=\SI{0.2}{\ampere}.
+\]
+\textbf{Método geral:} em qualquer circuito com \emph{um} elemento armazenador,
+substitua todo o restante pelo equivalente de Thévenin visto por ele. O
+problema se reduz a um RL série, com $\tau=L/R_{Th}$ e
+$I_f=V_{Th}/R_{Th}$ --- e não é preciso resolver a rede inteira em regime
+transitório.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um indutor de $\SI{0.5}{\henry}$ já conduz $\SI{1}{\ampere}$ quando é ligado a
+uma fonte que estabeleceria $\SI{3}{\ampere}$ em regime, com
+$R=\SI{25}{\ohm}$.
+\begin{itensq}
+\item Escreva $i(t)$.
+\item Determine a corrente após $\SI{20}{\milli\second}$.
+\item Determine a tensão inicial sobre o indutor.
+\end{itensq}
+\resposta{(a) $i(t)=3-2e^{-t/\tau}$ com $\tau=\SI{20}{\milli\second}$;
+(b) $\SI{2.26}{\ampere}$; (c) $\SI{50}{\volt}$}
+\resolucao{(a) A forma geral do transitório de primeira ordem é
+\[
+i(t)=I_f+\left(I_0-I_f\right)e^{-t/\tau},
+\]
+com $I_0=\SI{1}{\ampere}$, $I_f=\SI{3}{\ampere}$ e
+$\tau=0{,}5/25=\SI{20}{\milli\second}$:
+\[
+i(t)=3-2e^{-t/0{,}020}.
+\]
+(b) $i(0{,}020)=3-2e^{-1}=3-0{,}736=\SI{2.26}{\ampere}$.\\
+(c) Em $t=0^{+}$, $i=\SI{1}{\ampere}$ e o resistor cai
+$25(1)=\SI{25}{\volt}$; a fonte vale $RI_f=25(3)=\SI{75}{\volt}$. Logo
+\[
+v_L(0^{+})=75-25=\SI{50}{\volt}.
+\]
+\textbf{Generalidade:} a fórmula de (a) cobre carga, descarga e condições
+iniciais quaisquer --- basta identificar $I_0$, $I_f$ e $\tau$. Não é preciso
+memorizar três expressões diferentes.}
+\end{questao}
+
+\begin{questao}[3]{}
+Em um circuito RL, mediu-se corrente final de $\SI{2}{\ampere}$ com fonte de
+$\SI{50}{\volt}$, e verificou-se que a corrente atingiu $\SI{1.264}{\ampere}$
+em $\SI{8}{\milli\second}$. Determine $R$ e $L$.
+\resposta{$R=\SI{25}{\ohm}$; $L=\SI{0.2}{\henry}$}
+\resolucao{\textbf{Resistência:} do regime permanente,
+$R=V/I_f=50/2=\SI{25}{\ohm}$.\\
+\textbf{Constante de tempo:} note que
+$1{,}264/2=0{,}632$ --- exatamente a fração característica de $1\tau$. Logo
+$\tau=\SI{8}{\milli\second}$, e
+\[
+L=R\tau=25(0{,}008)=\SI{0.2}{\henry}.
+\]
+\textbf{Se a fração não fosse reconhecível}, o caminho geral seria
+$\tau=-t/\ln(1-i/I_f)$.\\
+\textbf{Método:} o regime permanente entrega $R$; o transitório entrega $\tau$
+e, por consequência, $L$. Duas medidas de naturezas diferentes são necessárias,
+porque nenhuma delas isola $L$ sozinha.}
+\end{questao}
+
+\begin{questao}[3]{}
+Analise o sinal da potência instantânea $p=vi$ em um indutor durante um ciclo
+completo de carga e descarga, e relacione-o com a energia armazenada.
+\resposta{$p>0$ na carga (absorve), $p<0$ na descarga (devolve); a integral em
+um ciclo completo é nula}
+\resolucao{\textbf{Carga:} $i>0$ e crescente $\Rightarrow$
+$v=L\,\mathrm{d}i/\mathrm{d}t>0$ $\Rightarrow$ $p>0$: o indutor \emph{absorve}
+energia da fonte e a armazena no campo.\\
+\textbf{Descarga:} $i>0$ mas decrescente $\Rightarrow$ $v<0$ $\Rightarrow$
+$p<0$: o indutor \emph{fornece} energia ao circuito.\\
+\textbf{Integral:} como
+\[
+\int p\,\mathrm{d}t=\int Li\,\frac{\mathrm{d}i}{\mathrm{d}t}\,\mathrm{d}t
+=\int Li\,\mathrm{d}i=\frac12Li^{2},
+\]
+a energia depende \emph{apenas} da corrente instantânea, não do caminho
+percorrido. Se o ciclo retorna à mesma corrente, a integral é nula: o indutor
+ideal não consome energia líquida.\\
+\textbf{Consequência:} indutor e capacitor são elementos \textbf{reativos} ---
+trocam energia com o circuito sem consumi-la. Só a resistência dissipa. Essa
+distinção é a base de todo o tratamento de potência ativa e reativa em corrente
+alternada.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine a densidade de energia magnética em um núcleo onde
+$B=\SI{1.2}{\tesla}$, supondo $\mu\approx\mu_0$ no entreferro.
+\begin{itensq}
+\item Calcule $u$.
+\item Compare com a densidade de energia elétrica em um campo de
+      $\SI{3}{\mega\volt\per\meter}$.
+\end{itensq}
+\dados{$\mu_0=4\pi\times10^{-7}\,\si{\henry\per\meter}$;
+$\varepsilon_0=\pot{8.85}{-12}\,\si{\farad\per\meter}$}
+\resposta{(a) $u\approx\SI{573}{\kilo\joule\per\meter\cubed}$;
+(b) $\approx\SI{40}{\joule\per\meter\cubed}$}
+\resolucao{(a)
+\[
+u_B=\frac{B^{2}}{2\mu_0}=\frac{(1{,}2)^{2}}{2(4\pi\times10^{-7})}
+=\frac{1{,}44}{\pot{2.513}{-6}}
+\approx\pot{5.73}{5}\,\si{\joule\per\meter\cubed}.
+\]
+(b)
+\[
+u_E=\frac12\varepsilon_0E^{2}
+=\frac12(\pot{8.85}{-12})(3\times10^{6})^{2}
+\approx\SI{40}{\joule\per\meter\cubed}.
+\]
+\textbf{Razão: cerca de $14\,000$ vezes.} O campo elétrico usado é o limite de
+ruptura do ar, e o magnético é típico de aço-silício --- ou seja, comparam-se
+dois valores \emph{praticáveis}.\\
+\textbf{Consequência tecnológica:} armazenar energia magneticamente é muito
+mais denso do que eletrostaticamente. É por isso que transformadores e motores
+operam com campos magnéticos, e por que capacitores só competem em energia
+quando se usa dielétrico de altíssima constante e espessura nanométrica ---
+como nos supercapacitores.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas bobinas têm $L_1=\SI{50}{\milli\henry}$ e $L_2=\SI{200}{\milli\henry}$.
+\begin{itensq}
+\item Determine o valor máximo possível de $M$.
+\item Se $M=\SI{80}{\milli\henry}$, determine $k$.
+\item Interprete fisicamente $k=1$ e $k=0$.
+\end{itensq}
+\resposta{(a) $M_{\max}=\SI{100}{\milli\henry}$; (b) $k=0{,}8$}
+\resolucao{(a) Como $k\le1$,
+\[
+M_{\max}=\sqrt{L_1L_2}=\sqrt{50\cdot200}=\sqrt{10\,000}
+=\SI{100}{\milli\henry}.
+\]
+(b) $k=80/100=0{,}8$ --- acoplamento forte, típico de bobinas sobre um mesmo
+núcleo ferromagnético com pequeno entreferro.\\
+(c) $k=1$ significa \textbf{acoplamento perfeito}: \emph{todo} o fluxo produzido
+por uma bobina concatena a outra, sem dispersão. É o transformador ideal ---
+inatingível, mas aproximado em núcleos toroidais fechados de alta
+permeabilidade.\\
+$k=0$ significa \textbf{desacoplamento total}: nenhuma influência mútua. Obtém-se
+afastando as bobinas ou dispondo seus eixos perpendicularmente, de modo que o
+fluxo de uma atravesse a outra tangencialmente. É a razão de indutores vizinhos
+em placas serem montados em orientações ortogonais.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um indutor com núcleo apresenta $L=\SI{100}{\micro\henry}$ até
+$\SI{3}{\ampere}$; acima disso, a saturação reduz $L$ a
+$\SI{20}{\micro\henry}$. Ele opera com $\SI{12}{\volt}$ aplicados durante
+$\SI{10}{\micro\second}$ a partir de $\SI{2}{\ampere}$.
+\begin{itensq}
+\item Determine a corrente ao final do pulso, ignorando a saturação.
+\item Refaça considerando a saturação.
+\item Comente a consequência prática.
+\end{itensq}
+\resposta{(a) $\SI{3.2}{\ampere}$; (b) $\SI{5}{\ampere}$; (c) risco de
+destruição do interruptor}
+\resolucao{(a) Com $L$ constante,
+\[
+\Delta i=\frac{v\,\Delta t}{L}=\frac{12\cdot10^{-5}}{10^{-4}}
+=\SI{1.2}{\ampere}
+\;\Longrightarrow\;
+i_{final}=2+1{,}2=\SI{3.2}{\ampere}.
+\]
+(b) A corrente sobe de $2$ a $\SI{3}{\ampere}$ com
+$L=\SI{100}{\micro\henry}$, o que consome
+\[
+\Delta t_1=\frac{L\,\Delta i}{v}=\frac{10^{-4}\cdot1}{12}
+=\SI{8.33}{\micro\second}.
+\]
+Restam $\SI{1.67}{\micro\second}$, agora com $L=\SI{20}{\micro\henry}$:
+\[
+\Delta i_2=\frac{12\cdot\pot{1.67}{-6}}{\pot{2}{-5}}=\SI{1}{\ampere}
+\;\Longrightarrow\;
+i_{final}=\SI{5}{\ampere}.
+\]
+(c) A corrente real é $56\%$ maior que a prevista pelo modelo linear, e a
+subida final é \emph{cinco vezes} mais íngreme. Em um conversor chaveado, isso
+significa que o transistor pode ver o dobro da corrente esperada em uma fração
+do tempo --- destruição por sobrecorrente antes que qualquer proteção lenta
+atue.\\
+\textbf{Regra de projeto:} dimensione o indutor para que a corrente de pico
+fique confortavelmente abaixo do joelho de saturação, e verifique
+$L$ \emph{na corrente de operação}, nunca no valor de catálogo medido a
+corrente nula.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte de \textbf{corrente} de $\SI{2}{\ampere}$ alimenta um indutor de
+$\SI{0.5}{\henry}$ em paralelo com $R=\SI{10}{\ohm}$, em regime permanente.
+\begin{itensq}
+\item Determine a corrente no indutor e no resistor.
+\item A fonte é subitamente desligada (aberta). Determine a tensão inicial
+      sobre o resistor.
+\item Determine o tempo de extinção.
+\end{itensq}
+\resposta{(a) $\SI{2}{\ampere}$ no indutor, $\SI{0}{\ampere}$ no resistor;
+(b) $\SI{-20}{\volt}$; (c) $\tau=\SI{50}{\milli\second}$}
+\resolucao{(a) Em regime CC o indutor ideal é um \textbf{curto}: ele desvia
+toda a corrente, e o resistor em paralelo fica com tensão nula --- logo
+corrente nula. Todos os $\SI{2}{\ampere}$ passam por $L$.\\
+(b) Ao abrir a fonte, a corrente do indutor \emph{não pode saltar}: continua
+$\SI{2}{\ampere}$, e o único caminho disponível é o resistor. A corrente agora
+o percorre em sentido oposto ao anterior:
+\[
+v_R=-RI_0=-10(2)=\SI{-20}{\volt}.
+\]
+(c) $\tau=L/R=0{,}5/10=\SI{50}{\milli\second}$; a extinção é praticamente
+completa em $5\tau=\SI{250}{\milli\second}$.\\
+\textbf{Observação:} o resistor, que parecia inútil em regime (corrente nula),
+é justamente o que evita a sobretensão destrutiva na abertura. Ele é um
+\emph{caminho de escape} projetado --- exatamente a função do diodo de roda
+livre, aqui desempenhada por um resistor.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Dedução --- resposta do circuito RL.)} Um circuito RL série com fonte
+$V$ tem a chave fechada em $t=0$, com $i(0)=0$.
+\begin{itensq}
+\item Escreva a equação diferencial e resolva-a por separação de variáveis.
+\item Identifique $\tau$ e o valor final.
+\item Obtenha $v_L(t)$ e verifique a LKT em $t=0^{+}$ e $t\to\infty$.
+\end{itensq}
+\resposta{$i(t)=\dfrac{V}{R}\left(1-e^{-Rt/L}\right)$;
+$\tau=L/R$; $v_L=Ve^{-Rt/L}$}
+\resolucao{(a) Pela LKT,
+\[
+V=Ri+L\frac{\mathrm{d}i}{\mathrm{d}t}
+\;\Longrightarrow\;
+\frac{\mathrm{d}i}{V/R-i}=\frac{R}{L}\,\mathrm{d}t.
+\]
+Integrando de $0$ a $t$ (com $i(0)=0$):
+\[
+-\ln\!\left(\frac{V/R-i}{V/R}\right)=\frac{R}{L}t
+\;\Longrightarrow\;
+i(t)=\frac{V}{R}\left(1-e^{-Rt/L}\right).
+\]
+(b) O expoente deve ser adimensional, o que identifica
+$\tau=L/R$; e $i(\infty)=V/R$, coerente com o indutor tornando-se um curto.\\
+(c)
+\[
+v_L=L\frac{\mathrm{d}i}{\mathrm{d}t}
+=L\cdot\frac{V}{R}\cdot\frac{R}{L}e^{-Rt/L}=V\,e^{-Rt/L}.
+\]
+\emph{Em $t=0^{+}$:} $v_L=V$ e $Ri=0$; soma $=V$ \checkmark.\\
+\emph{Em $t\to\infty$:} $v_L=0$ e $Ri=V$; soma $=V$ \checkmark.\\
+\textbf{Estrutura geral:} a solução é (regime permanente) $+$ (transitório
+exponencial). Essa decomposição vale para \emph{qualquer} circuito de primeira
+ordem e dispensa refazer a integração a cada problema.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Integração --- energia na descarga.)} Um indutor com corrente inicial
+$I_0$ é descarregado através de $R$.
+\begin{itensq}
+\item Escreva $i(t)$ e a potência instantânea no resistor.
+\item Integre para obter a energia total dissipada.
+\item Mostre que o resultado independe de $R$ e interprete.
+\end{itensq}
+\resposta{$W=\frac12LI_0^{2}$, independente de $R$}
+\resolucao{(a) Sem fonte, $Ri+L\,\mathrm{d}i/\mathrm{d}t=0$, cuja solução é
+$i(t)=I_0e^{-t/\tau}$ com $\tau=L/R$. Então
+\[
+p_R(t)=Ri^{2}=RI_0^{2}e^{-2t/\tau}.
+\]
+(b)
+\[
+W=\int_0^{\infty}RI_0^{2}e^{-2t/\tau}\,\mathrm{d}t
+=RI_0^{2}\left[-\frac{\tau}{2}e^{-2t/\tau}\right]_0^{\infty}
+=\frac{RI_0^{2}\tau}{2}.
+\]
+Substituindo $\tau=L/R$:
+\[
+W=\frac{RI_0^{2}}{2}\cdot\frac{L}{R}=\frac12LI_0^{2}.
+\]
+(c) O $R$ \textbf{cancela} exatamente: ele aparece na potência
+($\propto R$) e desaparece na duração ($\tau\propto1/R$). Aumentar $R$ dez
+vezes decuplica a potência inicial e divide o tempo por dez --- a área sob a
+curva não muda.\\
+\textbf{Significado:} a energia dissipada é determinada pelo \emph{estado
+inicial} do indutor, não pelo caminho de descarga. É a mesma lógica que faz um
+capacitor descarregado entregar sempre $\frac12CV_0^{2}$, e confirma por
+integração o argumento de conservação usado no bloco anterior.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de proteção.)} Uma bobina de relé com $L=\SI{0.2}{\henry}$ e
+$r=\SI{100}{\ohm}$ opera em $\SI{24}{\volt}$. O transistor de comando suporta
+no máximo $\SI{60}{\volt}$.
+\begin{itensq}
+\item Determine a corrente de operação e a energia armazenada.
+\item Dimensione um grampeador resistivo (diodo em série com $R_g$) que
+      respeite o limite do transistor.
+\item Compare o tempo de extinção com o do diodo simples.
+\end{itensq}
+\resposta{(a) $\SI{0.24}{\ampere}$, $\SI{5.76}{\milli\joule}$;
+(b) $R_g\le\SI{150}{\ohm}$; (c) $\SI{0.8}{\milli\second}$ contra
+$\SI{2}{\milli\second}$}
+\resolucao{(a) $I=24/100=\SI{0.24}{\ampere}$;
+$W=\frac12(0{,}2)(0{,}24)^{2}=\SI{5.76}{\milli\joule}$.\\
+(b) Na abertura, a corrente $\SI{0.24}{\ampere}$ é forçada pelo diodo e por
+$R_g$. A tensão no coletor sobe para $V+R_gI$ (desprezando o diodo). Exigindo
+$\le\SI{60}{\volt}$:
+\[
+24+R_g(0{,}24)\le60
+\;\Longrightarrow\;
+R_g\le\frac{36}{0{,}24}=\SI{150}{\ohm}.
+\]
+Adote $R_g=\SI{150}{\ohm}$ e verifique a dissipação: o pulso entrega
+$\SI{5.76}{\milli\joule}$ e, a $\SI{10}{\hertz}$ de comutação, isso são
+$\SI{57.6}{\milli\watt}$ médios --- um resistor de
+$\frac14\,\si{\watt}$ basta, desde que suporte o pico de
+$0{,}24^{2}(150)=\SI{8.6}{\watt}$ instantâneos.\\
+(c) \emph{Com grampeador:} $\tau=L/(r+R_g)=0{,}2/250=\SI{0.8}{\milli\second}$.\\
+\emph{Com diodo simples:} $\tau=L/r=0{,}2/100=\SI{2}{\milli\second}$.\\
+\textbf{Compromisso quantificado:} o grampeador reduz o tempo de desarme em
+$60\%$, ao custo de submeter o transistor a $\SI{60}{\volt}$ em vez de
+$\SI{24.7}{\volt}$. Quanto maior $R_g$, mais rápido o relé desarma e maior a
+tensão no interruptor --- o projeto consiste em usar toda a margem do
+transistor, e nada além dela.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de armazenamento.)} Deseja-se um indutor que armazene
+$\SI{5}{\joule}$ conduzindo $\SI{10}{\ampere}$.
+\begin{itensq}
+\item Determine $L$.
+\item Para um núcleo toroidal com $A=\SI{10}{\centi\meter\squared}$,
+      $\ell=\SI{0.25}{\meter}$ e $\mu_r=2000$, determine o número de espiras.
+\item Verifique a densidade de fluxo e avalie a viabilidade.
+\end{itensq}
+\resposta{(a) $L=\SI{0.1}{\henry}$; (b) $N\approx35$ espiras;
+(c) $B\approx\SI{3.5}{\tesla}$ --- \textbf{inviável}, o núcleo satura}
+\resolucao{(a) $W=\frac12LI^{2}\Rightarrow
+L=\dfrac{2W}{I^{2}}=\dfrac{10}{100}=\SI{0.1}{\henry}$.\\
+(b) De $L=\dfrac{\mu_r\mu_0N^{2}A}{\ell}$:
+\[
+N=\sqrt{\frac{L\ell}{\mu_r\mu_0A}}
+=\sqrt{\frac{0{,}1\cdot0{,}25}{2000(4\pi\times10^{-7})(10^{-3})}}
+=\sqrt{9{,}95}\approx35\ \text{espiras}.
+\]
+(c) O fluxo é
+\[
+B=\frac{\mu_r\mu_0NI}{\ell}
+=\frac{2000(4\pi\times10^{-7})(35)(10)}{0{,}25}\approx\SI{3.5}{\tesla}.
+\]
+Materiais ferromagnéticos comuns saturam entre $1{,}2$ e
+$\SI{1.8}{\tesla}$. O projeto é \textbf{inviável}: muito antes de atingir
+$\SI{10}{\ampere}$, o núcleo satura, $\mu_r$ despenca e $L$ some.\\
+\textbf{Diagnóstico e correção.} A energia armazenada em material
+ferromagnético é limitada justamente porque $\mu_r$ alto significa $B$ alto para
+pouca corrente. A solução clássica é introduzir um \textbf{entreferro}: ele
+reduz a permeabilidade efetiva (exigindo mais espiras), mas permite corrente
+muito maior antes da saturação --- e a maior parte da energia passa a residir
+no entreferro, onde $u=B^{2}/2\mu_0$ é enorme.\\
+\textbf{Lição:} calcular $L$ e $N$ não basta. Sem verificar $B$, obtém-se um
+projeto aritmeticamente correto e fisicamente impossível.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de constante de tempo.)} Deseja-se $\tau=\SI{20}{\milli\second}$
+com $R=\SI{50}{\ohm}$.
+\begin{itensq}
+\item Determine $L$.
+\item Avalie a viabilidade física dessa indutância.
+\item Proponha duas alternativas para obter o mesmo $\tau$ de forma prática.
+\end{itensq}
+\resposta{(a) $L=\SI{1}{\henry}$; (c) aumentar $R$, ou usar RC equivalente}
+\resolucao{(a) $L=\tau R=0{,}020(50)=\SI{1}{\henry}$.\\
+(b) \textbf{Um henry é um componente grande.} Exige núcleo ferromagnético e
+centenas de espiras; a resistência do próprio enrolamento facilmente atinge
+dezenas de ohms --- comparável aos $\SI{50}{\ohm}$ do projeto, o que
+\emph{altera} o $\tau$ pretendido. Some-se a isso massa, custo, sensibilidade a
+campos externos e saturação.\\
+(c) \textbf{Alternativa 1 --- elevar $R$.} Com $R=\SI{500}{\ohm}$,
+$L=\SI{10}{\henry}$... pior. O caminho correto é o inverso: fixar um $L$
+razoável e ajustar $R$. Com $L=\SI{10}{\milli\henry}$, obter
+$\tau=\SI{20}{\milli\second}$ exigiria $R=\SI{0.5}{\ohm}$ --- baixo demais para
+ser prático em circuitos de sinal.\\
+\textbf{Alternativa 2 --- usar RC.} Um capacitor de
+$\SI{20}{\micro\farad}$ com $\SI{1}{\kilo\ohm}$ dá $\tau=\SI{20}{\milli\second}$
+em um componente barato, pequeno e estável.\\
+\textbf{Conclusão de engenharia:} para constantes de tempo da ordem de
+milissegundos ou mais, \textbf{RC vence RL} quase sempre. Indutores são
+preferíveis quando se precisa de armazenamento de energia com corrente elevada
+ou de comportamento em frequência --- não para gerar atrasos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- acoplamento em série.)} Duas bobinas acopladas em
+série conduzem a mesma corrente $i$.
+\begin{itensq}
+\item Deduza $L_{eq}=L_1+L_2\pm2M$ a partir das tensões induzidas.
+\item Demonstre que $M\le\sqrt{L_1L_2}$, usando o fato de a energia ser não
+      negativa.
+\item Explique o significado da convenção dos pontos.
+\end{itensq}
+\resposta{(b) da condição $W\ge0$ para toda corrente segue
+$M^{2}\le L_1L_2$}
+\resolucao{(a) Cada bobina sofre autoindução \emph{e} indução mútua:
+\[
+v_1=L_1\frac{\mathrm{d}i}{\mathrm{d}t}\pm M\frac{\mathrm{d}i}{\mathrm{d}t},
+\qquad
+v_2=L_2\frac{\mathrm{d}i}{\mathrm{d}t}\pm M\frac{\mathrm{d}i}{\mathrm{d}t}.
+\]
+Somando e comparando com
+$v=L_{eq}\,\mathrm{d}i/\mathrm{d}t$:
+\[
+L_{eq}=L_1+L_2\pm2M.
+\]
+(b) Com correntes independentes $i_1$ e $i_2$, a energia do par é
+\[
+W=\frac12L_1i_1^{2}+\frac12L_2i_2^{2}+Mi_1i_2.
+\]
+Como um sistema passivo não pode armazenar energia negativa, $W\ge0$ para
+\emph{quaisquer} $i_1,i_2$. Tomando $i_1=x$ e $i_2=-1$:
+\[
+\frac12L_1x^{2}-Mx+\frac12L_2\ge0\quad\forall x,
+\]
+o que exige discriminante não positivo:
+\[
+M^{2}-L_1L_2\le0
+\;\Longrightarrow\;
+M\le\sqrt{L_1L_2}
+\;\Longrightarrow\;
+k=\frac{M}{\sqrt{L_1L_2}}\le1.
+\]
+(c) Os pontos marcam terminais \textbf{magneticamente correspondentes}:
+correntes que entram pelos terminais pontuados produzem fluxos que se
+\emph{reforçam}. Se ambas as correntes entram (ou ambas saem) pelos pontos, o
+termo mútuo é positivo; caso contrário, negativo.\\
+\textbf{Por que a convenção é necessária:} o esquema elétrico não informa o
+sentido de enrolamento das bobinas, que é uma propriedade \emph{física} da
+construção. Sem os pontos, $L_{eq}$ seria ambíguo entre
+$\SI{19}{\milli\henry}$ e $\SI{7}{\milli\henry}$ --- e, em um transformador, a
+polaridade da saída ficaria indeterminada.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Indutor real em regime.)} Um indutor com $L=\SI{0.5}{\henry}$ e
+$r=\SI{2}{\ohm}$ é alimentado por $\SI{10}{\volt}$ CC.
+\begin{itensq}
+\item Determine a corrente, a energia armazenada e a potência dissipada em
+      regime.
+\item Determine o tempo necessário para atingir $99\%$ da corrente final.
+\item Discuta o "custo de manutenção" da energia armazenada.
+\end{itensq}
+\resposta{(a) $\SI{5}{\ampere}$, $\SI{6.25}{\joule}$, $\SI{50}{\watt}$;
+(b) $\approx\SI{1.15}{\second}$}
+\resolucao{(a) $I=10/2=\SI{5}{\ampere}$;
+$W=\frac12(0{,}5)(25)=\SI{6.25}{\joule}$;
+$P=rI^{2}=2(25)=\SI{50}{\watt}$.\\
+(b) $\tau=L/r=0{,}5/2=\SI{0.25}{\second}$, e $99\%$ correspondem a
+$t=\tau\ln100=0{,}25(4{,}605)=\SI{1.15}{\second}$.\\
+(c) \textbf{O contraste é gritante.} Carregar o campo custou
+$\SI{6.25}{\joule}$; mantê-lo custa $\SI{50}{\watt}$ \emph{continuamente}.
+Em apenas $\SI{0.125}{\second}$ de operação, a dissipação já iguala toda a
+energia armazenada; em um minuto, dissipam-se $\SI{3000}{\joule}$ --- $480$
+vezes o conteúdo do campo.\\
+\textbf{Figura de mérito:} a razão $W/P=L/(2r)=\tau/2$ tem dimensão de tempo e
+mede a "qualidade" do indutor em CC. Aqui vale $\SI{0.125}{\second}$.\\
+\textbf{Consequência:} indutores são péssimos \emph{reservatórios} de energia
+para armazenamento prolongado --- ao contrário de baterias ou capacitores, que
+não exigem corrente para manter o estado. Eles são excelentes para
+\emph{transferir} energia em ciclos curtos, que é exatamente o que fazem em
+conversores chaveados, onde o ciclo dura microssegundos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Conversor chaveado.)} Um conversor opera a $\SI{50}{\kilo\hertz}$ com
+razão cíclica $D=0{,}5$, aplicando $\SI{12}{\volt}$ sobre um indutor de
+$\SI{100}{\micro\henry}$ durante a condução.
+\begin{itensq}
+\item Determine a ondulação de corrente pico a pico.
+\item Determine a corrente de pico se a componente contínua for
+      $\SI{3}{\ampere}$.
+\item O indutor satura em $\SI{3.5}{\ampere}$. Proponha e quantifique duas
+      correções.
+\end{itensq}
+\resposta{(a) $\Delta i=\SI{1.2}{\ampere}$; (b) $I_{pico}=\SI{3.6}{\ampere}$;
+(c) satura --- elevar $L$ ou a frequência}
+\resolucao{(a) Durante o tempo de condução
+$t_{on}=D/f=0{,}5/\pot{5}{4}=\SI{10}{\micro\second}$:
+\[
+\Delta i=\frac{V\,t_{on}}{L}=\frac{12(10^{-5})}{10^{-4}}=\SI{1.2}{\ampere}.
+\]
+(b) A ondulação se distribui simetricamente em torno da média:
+\[
+I_{pico}=3+\frac{1{,}2}{2}=\SI{3.6}{\ampere}\ >\ \SI{3.5}{\ampere}.
+\]
+\textbf{O indutor satura} --- e note que a corrente \emph{média}
+($\SI{3}{\ampere}$) estava confortavelmente abaixo do limite. Dimensionar pela
+média é o erro clássico.\\
+(c) Como $\Delta i=\dfrac{VD}{fL}$, há dois caminhos:\\
+\textbf{(i) Aumentar $L$.} Para $I_{pico}\le3{,}5$ é preciso
+$\Delta i\le\SI{1}{\ampere}$, ou seja
+\[
+L\ge\frac{12(10^{-5})}{1}=\SI{120}{\micro\henry}.
+\]
+Custo: indutor maior e mais caro.\\
+\textbf{(ii) Aumentar a frequência.} Mantendo
+$L=\SI{100}{\micro\henry}$, exige-se
+\[
+f\ge\frac{12(0{,}5)}{10^{-4}(1)}=\SI{60}{\kilo\hertz}.
+\]
+Custo: mais perdas de comutação no transistor e maior interferência
+eletromagnética.\\
+\textbf{Compromisso:} $\Delta i\propto1/(fL)$ --- o produto $fL$ é o que
+importa. Elevar a frequência permite indutores menores, e é exatamente essa a
+tendência que tornou as fontes chaveadas modernas tão compactas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- continuidade da corrente.)} Prove que a corrente em
+um indutor ideal não pode sofrer descontinuidade, usando um argumento
+energético.
+\begin{itensq}
+\item Suponha um salto de $I_1$ para $I_2$ em intervalo $\Delta t\to0$ e
+      analise a tensão.
+\item Analise a potência e a energia envolvidas.
+\item Explique por que capacitores em paralelo apresentam o problema dual.
+\end{itensq}
+\resposta{Um salto exigiria tensão e potência infinitas; a energia é finita,
+mas a taxa de transferência não pode ser}
+\resolucao{(a) Um salto implica
+\[
+v=L\lim_{\Delta t\to0}\frac{I_2-I_1}{\Delta t}\to\infty.
+\]
+Nenhuma fonte real fornece tensão infinita.\\
+(b) A potência $p=vi$ também diverge. A \emph{energia} necessária é finita
+---
+\[
+\Delta W=\frac12L\left(I_2^{2}-I_1^{2}\right),
+\]
+--- mas ela teria de ser transferida em tempo nulo, exigindo potência
+infinita. \textbf{É a taxa, não a quantidade, que torna o salto impossível.}\\
+(c) \textbf{Problema dual:} dois capacitores com tensões diferentes ligados em
+paralelo exigiriam salto de \emph{tensão}, o que demandaria corrente infinita
+($i=C\,\mathrm{d}v/\mathrm{d}t$). Na prática, a resistência inevitável dos
+condutores limita a corrente e dissipa a diferença de energia --- e demonstra-se
+que a perda independe do valor dessa resistência, resultado análogo ao da
+descarga do indutor.\\
+\textbf{Regra prática:} nunca ligue em série indutores com correntes distintas,
+nem em paralelo capacitores com tensões distintas. Em ambos os casos, o modelo
+ideal falha e o circuito real encontra uma saída --- arco elétrico no primeiro
+caso, pico de corrente no segundo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Modelagem --- sensor indutivo.)} Um sensor de proximidade usa uma
+bobina cuja indutância varia com a distância $x$ a um alvo ferromagnético,
+segundo $L(x)=L_0\left(1+\dfrac{a}{x}\right)$, com
+$L_0=\SI{10}{\milli\henry}$ e $a=\SI{1}{\milli\meter}$.
+\begin{itensq}
+\item Determine $L$ para $x=\SI{1}{\milli\meter}$ e $x=\SI{5}{\milli\meter}$.
+\item Obtenha a sensibilidade $\mathrm{d}L/\mathrm{d}x$ e avalie nos dois
+      pontos.
+\item Discuta a consequência para o projeto do sensor.
+\end{itensq}
+\resposta{(a) $\SI{20}{\milli\henry}$ e $\SI{12}{\milli\henry}$;
+(b) $-\SI{10}{\milli\henry\per\milli\meter}$ e
+$-\SI{0.4}{\milli\henry\per\milli\meter}$}
+\resolucao{(a)
+\[
+L(1)=10(1+1)=\SI{20}{\milli\henry};
+\qquad
+L(5)=10(1+0{,}2)=\SI{12}{\milli\henry}.
+\]
+(b)
+\[
+\frac{\mathrm{d}L}{\mathrm{d}x}=-\frac{L_0a}{x^{2}}.
+\]
+Em $x=\SI{1}{\milli\meter}$:
+$-10(1)/1=-\SI{10}{\milli\henry\per\milli\meter}$.\\
+Em $x=\SI{5}{\milli\meter}$:
+$-10(1)/25=-\SI{0.4}{\milli\henry\per\milli\meter}$.\\
+A sensibilidade cai com $1/x^{2}$: é \textbf{25 vezes menor} a
+$\SI{5}{\milli\meter}$.\\
+(c) \textbf{Três consequências.} \emph{(i)} O sensor é fortemente
+\textbf{não linear} --- a leitura bruta de $L$ não é proporcional a $x$, e a
+conversão exige linearização ou tabela. \emph{(ii)} A \textbf{faixa útil} é
+curta: além de poucos milímetros, a variação se confunde com a deriva térmica
+da própria bobina. \emph{(iii)} A \textbf{resolução} depende da posição: perto
+do alvo, décimos de micrômetro são detectáveis; longe, nem décimos de
+milímetro.\\
+\textbf{Solução usual:} operar sempre na região próxima e usar o sensor como
+detector de \emph{limiar} (presença/ausência), em vez de medidor de distância
+--- que é exatamente como os sensores indutivos industriais são
+especificados.}
+\end{questao}

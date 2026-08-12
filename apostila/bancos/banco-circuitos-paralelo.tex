@@ -1,0 +1,928 @@
+% =====================================================================
+%  Banco complementar --- Circuitos Paralelo  (REVISADO)
+%  Substitui a versao gerada por template (11 clones em N2, 13 em N3,
+%  9 questoes conceituais indevidamente marcadas como N4).
+%  Sem sobreposicao com o cap03 (n resistores iguais, R desconhecido a
+%  partir de Req, divisor 12 A entre 4 e 12 ohm, tres lampadas de 60 W,
+%  fio ideal em paralelo, banco de 100 ohm/2 W e a demonstracao de que
+%  Req < menor resistor ja estao la).
+%  Distribuicao mantida: 7 N1 + 11 N2 + 13 N3 + 9 N4 = 40
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Circuitos paralelo}
+
+\begin{atencao}[Organização do banco]
+No paralelo, a \textbf{tensão é comum} e as \textbf{correntes se somam}. Daí
+decorre que corrente e potência se distribuem \emph{inversamente} a $R$ ---
+exatamente o oposto da série. Trabalhe com \textbf{condutâncias}: elas somam
+diretamente e tornam quase toda conta trivial. O N3 explora falhas de ramo,
+fuga, deriva térmica e instrumentação; o N4 trata de projeto de \emph{shunt},
+sensibilidade, propagação de incerteza e seletividade de proteção.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Determine a resistência equivalente de $R_1=\SI{30}{\ohm}$ e
+$R_2=\SI{60}{\ohm}$ em paralelo.
+\resposta{$R_{eq}=\SI{20}{\ohm}$}
+\resolucao{Para dois resistores, a regra do produto pela soma é a mais rápida:
+\[
+R_{eq}=\frac{R_1R_2}{R_1+R_2}=\frac{30\cdot60}{90}=\SI{20}{\ohm}.
+\]
+\textbf{Conferência instantânea:} o resultado ($\SI{20}{\ohm}$) é menor que o
+menor dos dois ($\SI{30}{\ohm}$) --- se não for, há erro. Cuidado: a regra
+produto/soma vale \emph{apenas} para dois resistores.}
+\end{questao}
+
+\begin{questao}[1]{}
+Três resistores de $\SI{4}{\ohm}$, $\SI{8}{\ohm}$ e $\SI{8}{\ohm}$ estão em
+paralelo. Calcule a condutância total e $R_{eq}$.
+\resposta{$G=\SI{0.5}{\siemens}$; $R_{eq}=\SI{2}{\ohm}$}
+\resolucao{
+\[
+G=\frac14+\frac18+\frac18=0{,}25+0{,}125+0{,}125=\SI{0.5}{\siemens}
+\;\Longrightarrow\;
+R_{eq}=\frac{1}{0{,}5}=\SI{2}{\ohm}.
+\]
+Com três ou mais ramos, some as condutâncias e inverta \emph{uma única vez} no
+final. Inverter parcialmente a cada passo é a origem mais comum de erro.}
+\end{questao}
+
+\begin{questao}[1]{}
+Três resistores iguais de $\SI{90}{\ohm}$ são associados em paralelo. Determine
+$R_{eq}$.
+\resposta{$R_{eq}=\SI{30}{\ohm}$}
+\resolucao{Para $n$ resistores \emph{iguais},
+\[
+R_{eq}=\frac{R}{n}=\frac{90}{3}=\SI{30}{\ohm}.
+\]
+O atalho vale só quando todos são iguais; com valores diferentes é obrigatório
+somar condutâncias.}
+\end{questao}
+
+\begin{questao}[1]{}
+Acrescentando-se mais um ramo \textbf{em paralelo} a um circuito alimentado por
+fonte ideal de tensão, a corrente total:
+\begin{alternativas}[2]
+\item aumenta
+\item diminui
+\item não se altera
+\item pode aumentar ou diminuir, conforme o valor
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Cada novo ramo acrescenta uma condutância positiva:
+$G_{eq}=\sum G_k$ só pode crescer, logo $R_{eq}$ só pode diminuir. Com $V$
+fixo, $I=V/R_{eq}$ aumenta.\\
+Note o contraste com a série, em que acrescentar elemento \emph{reduz} a
+corrente. E note também que os ramos já existentes continuam com \emph{a mesma}
+corrente --- quem cresce é o total.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um ramo de $\SI{48}{\ohm}$ pertence a uma associação paralela ligada a
+$\SI{24}{\volt}$. Determine a corrente desse ramo.
+\resposta{$I=\SI{0.5}{\ampere}$}
+\resolucao{
+\[
+I=\frac{V}{R}=\frac{24}{48}=\SI{0.5}{\ampere}.
+\]
+No paralelo, a tensão é \emph{comum} a todos os ramos: a corrente de cada um
+depende só do próprio resistor. Não é preciso conhecer os demais ramos nem
+$R_{eq}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma associação paralela sob $\SI{40}{\volt}$ tem ramos que conduzem
+$\SI{2}{\ampere}$, $\SI{3}{\ampere}$ e $\SI{5}{\ampere}$. Determine a corrente
+total e $R_{eq}$.
+\resposta{$I_t=\SI{10}{\ampere}$; $R_{eq}=\SI{4}{\ohm}$}
+\resolucao{Pela LKC, as correntes de ramo se somam:
+$I_t=2+3+5=\SI{10}{\ampere}$.
+\[
+R_{eq}=\frac{V}{I_t}=\frac{40}{10}=\SI{4}{\ohm}.
+\]
+Observe que não foi preciso conhecer os resistores individualmente --- embora
+eles saiam de imediato: $20$, $13{,}3$ e $\SI{8}{\ohm}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Em uma associação paralela, o ramo que conduz a \textbf{maior} corrente é:
+\begin{alternativas}[2]
+\item o de maior resistência
+\item o de menor resistência
+\item o mais próximo da fonte
+\item todos conduzem igualmente
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Com $V$ comum, $I_k=V/R_k$: a corrente é \emph{inversamente}
+proporcional à resistência. O ramo de menor $R$ é o caminho de menor oposição e
+leva a maior corrente.\\
+A alternativa (c) é sedutora, mas falsa: em circuitos de parâmetros
+concentrados, a posição física dos ramos é irrelevante --- só importa a
+topologia.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+$R_1=\SI{10}{\ohm}$, $R_2=\SI{20}{\ohm}$ e $R_3=\SI{20}{\ohm}$ estão em
+paralelo sob $\SI{60}{\volt}$. Determine as correntes de ramo, a corrente total
+e $R_{eq}$.
+\resposta{$\SI{6}{\ampere}$, $\SI{3}{\ampere}$, $\SI{3}{\ampere}$;
+$I_t=\SI{12}{\ampere}$; $R_{eq}=\SI{5}{\ohm}$}
+\resolucao{Tensão comum, então cada ramo é independente:
+\[
+I_1=\frac{60}{10}=6,\quad I_2=I_3=\frac{60}{20}=\SI{3}{\ampere}.
+\]
+\[
+I_t=6+3+3=\SI{12}{\ampere}
+\;\Longrightarrow\;
+R_{eq}=\frac{60}{12}=\SI{5}{\ohm}.
+\]
+\textbf{Conferência:} $G=0{,}1+0{,}05+0{,}05=\SI{0.2}{\siemens}$ e
+$1/0{,}2=\SI{5}{\ohm}$ \checkmark.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito da questão anterior, calcule a potência de cada ramo e confronte
+com a potência total.
+\resposta{$\SI{360}{\watt}$, $\SI{180}{\watt}$, $\SI{180}{\watt}$; total
+$\SI{720}{\watt}$}
+\resolucao{Com $V$ comum, use $P=V^{2}/R$:
+\[
+P_1=\frac{3600}{10}=360,\qquad P_2=P_3=\frac{3600}{20}=\SI{180}{\watt}.
+\]
+Fonte: $P=VI_t=60\cdot12=\SI{720}{\watt}=360+180+180$ \checkmark.\\
+\textbf{Regra do paralelo:} $P\propto1/R$ --- o \emph{menor} resistor dissipa
+mais. Compare com a série, em que $P\propto R$. Trocar essas duas regras é o
+erro conceitual mais frequente em associações.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma corrente de $\SI{15}{\ampere}$ chega a um nó e se divide entre
+$R_1=\SI{8}{\ohm}$ e $R_2=\SI{12}{\ohm}$. Determine as correntes de ramo pela
+fórmula do divisor.
+\resposta{$I_1=\SI{9}{\ampere}$, $I_2=\SI{6}{\ampere}$}
+\resolucao{Para \emph{dois} ramos, a corrente de um deles é proporcional à
+resistência do \textbf{outro}:
+\[
+I_1=I_t\frac{R_2}{R_1+R_2}=15\cdot\frac{12}{20}=\SI{9}{\ampere},
+\qquad
+I_2=15\cdot\frac{8}{20}=\SI{6}{\ampere}.
+\]
+\textbf{Verificação:} $9+6=\SI{15}{\ampere}$ \checkmark, e a maior corrente ficou
+no \emph{menor} resistor \checkmark. O "cruzamento" dos índices é o ponto que
+mais confunde --- ele existe porque $I_k\propto G_k$, e escrever a fórmula em
+condutâncias ($I_1=I_tG_1/(G_1+G_2)$) elimina a inversão.}
+\end{questao}
+
+\begin{questao}[2]{}
+Três resistores em paralelo sob $\SI{100}{\volt}$ drenam $\SI{5}{\ampere}$ no
+total. Dois deles valem $\SI{50}{\ohm}$ e $\SI{100}{\ohm}$. Determine o
+terceiro.
+\resposta{$R_3=\SI{50}{\ohm}$}
+\resolucao{Trabalhe em condutâncias, onde a subtração é direta:
+\[
+G_{eq}=\frac{I_t}{V}=\frac{5}{100}=\SI{0.05}{\siemens},
+\qquad
+G_1+G_2=0{,}02+0{,}01=\SI{0.03}{\siemens}.
+\]
+\[
+G_3=0{,}05-0{,}03=\SI{0.02}{\siemens}
+\;\Longrightarrow\;
+R_3=\SI{50}{\ohm}.
+\]
+Tentar subtrair \emph{resistências} aqui levaria a um resultado sem sentido:
+no paralelo, o que é aditivo é $G$, não $R$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas lâmpadas de resistências $\SI{240}{\ohm}$ e $\SI{960}{\ohm}$ são ligadas
+\textbf{em paralelo} a $\SI{120}{\volt}$. Qual brilha mais? Compare com o
+resultado da mesma dupla em série.
+\resposta{Em paralelo, a de $\SI{240}{\ohm}$ ($\SI{60}{\watt}$ contra
+$\SI{15}{\watt}$) --- inverte-se em relação à série}
+\resolucao{
+\[
+P_{240}=\frac{120^{2}}{240}=\SI{60}{\watt},
+\qquad
+P_{960}=\frac{120^{2}}{960}=\SI{15}{\watt}.
+\]
+Em paralelo, $V$ é comum e $P\propto1/R$: brilha mais a de \emph{menor}
+resistência. Em série (mesma dupla), $I$ é comum e $P\propto R$: brilharia mais
+a de $\SI{960}{\ohm}$.\\
+\textbf{Conclusão que vale guardar:} não existe "a lâmpada mais potente" em
+termos absolutos --- a potência depende da \emph{ligação}. É por isso que
+lâmpadas residenciais, sempre em paralelo, obedecem à intuição usual
+($\SI{100}{\watt}$ brilha mais que $\SI{25}{\watt}$), mas guirlandas em série
+se comportam ao contrário.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um galvanômetro tem resistência interna $\SI{100}{\ohm}$ e deflexão total com
+$\SI{1}{\milli\ampere}$. Determine o resistor \emph{shunt} que amplia a escala
+para $\SI{11}{\milli\ampere}$.
+\resposta{$R_{sh}=\SI{10}{\ohm}$}
+\resolucao{O shunt fica em paralelo com o galvanômetro e desvia o excedente:
+$I_{sh}=11-1=\SI{10}{\milli\ampere}$. Como a tensão é comum,
+\[
+R_{sh}I_{sh}=R_gI_g
+\;\Longrightarrow\;
+R_{sh}=\frac{R_gI_g}{I_{sh}}=\frac{100\cdot1}{10}=\SI{10}{\ohm}.
+\]
+A regra geral é $R_{sh}=\dfrac{R_g}{n-1}$, com $n=I_{total}/I_g$ o fator de
+ampliação --- aqui $n=11$ e $R_{sh}=100/10$ \checkmark.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito residencial de $\SI{220}{\volt}$ alimenta, em paralelo, cargas de
+$\SI{4400}{\watt}$, $\SI{1100}{\watt}$ e $\SI{550}{\watt}$. Determine a
+corrente total e escolha o disjuntor.
+\resposta{$I_t=\SI{27.5}{\ampere}$; disjuntor de $\SI{32}{\ampere}$}
+\resolucao{Cada carga drena $I=P/V$:
+\[
+I_1=\frac{4400}{220}=20,\quad
+I_2=\frac{1100}{220}=5,\quad
+I_3=\frac{550}{220}=\SI{2.5}{\ampere}.
+\]
+Total: $\SI{27.5}{\ampere}$ (as correntes se somam porque as cargas estão em
+paralelo).\\
+O disjuntor comercial imediatamente superior é o de $\SI{32}{\ampere}$ ---
+$\SI{25}{\ampere}$ seria insuficiente. \textbf{Atenção:} escolhido o disjuntor,
+a seção do condutor deve suportar \emph{a corrente do disjuntor}, não a da
+carga; caso contrário, o cabo vira o elo fraco da proteção.}
+\end{questao}
+
+\begin{questao}[2]{}
+Dois condutores idênticos de $\SI{0.8}{\ohm}$ cada são ligados em paralelo para
+alimentar uma carga. Determine a resistência resultante e explique a prática.
+\resposta{$\SI{0.4}{\ohm}$ --- metade}
+\resolucao{$R_{eq}=0{,}8/2=\SI{0.4}{\ohm}$.\\
+Dobrar o número de condutores idênticos equivale a dobrar a seção: a
+resistência cai à metade, e com ela a queda de tensão e as perdas
+$RI^{2}$ na linha.\\
+\textbf{Condição prática:} os condutores devem ter mesmo comprimento, seção e
+material. Se um for mais curto, ele terá menor resistência e assumirá corrente
+desproporcional --- podendo sobreaquecer enquanto o outro fica ocioso. Por isso
+condutores em paralelo são sempre especificados com o mesmo lance.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um resistor de $\SI{1}{\mega\ohm}$ é ligado em paralelo com um de
+$\SI{100}{\ohm}$. A resistência equivalente:
+\begin{alternativas}[2]
+\item fica praticamente igual a $\SI{100}{\ohm}$
+\item fica praticamente igual a $\SI{1}{\mega\ohm}$
+\item vale aproximadamente $\SI{500}{\kilo\ohm}$
+\item vale exatamente $\SI{50}{\ohm}$
+\end{alternativas}
+\resposta{(a)}
+\resolucao{$G=0{,}01+10^{-6}\approx\SI{0.010001}{\siemens}$, logo
+$R_{eq}\approx\SI{99.99}{\ohm}$ --- diferença de $0{,}01\%$.\\
+\textbf{Princípio geral:} no paralelo, quem manda é o \emph{menor} resistor;
+ramos muito maiores são praticamente circuitos abertos. É exatamente por isso
+que um voltímetro de alta impedância "não carrega" o circuito sob medição.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um chuveiro possui duas resistências de $\SI{22}{\ohm}$ que podem ser ligadas
+isoladamente ou em paralelo, sob $\SI{220}{\volt}$. Determine a potência em
+cada caso.
+\resposta{$\SI{2200}{\watt}$ com uma; $\SI{4400}{\watt}$ com as duas}
+\resolucao{Uma resistência:
+$P=\dfrac{220^{2}}{22}=\SI{2200}{\watt}$.\\
+Duas em paralelo: $R_{eq}=\SI{11}{\ohm}$ e
+$P=\dfrac{220^{2}}{11}=\SI{4400}{\watt}$.\\
+A potência \emph{dobra} porque a resistência caiu à metade sob a mesma tensão.
+É assim que funcionam as chaves inverno/verão. \textbf{Consequência para a
+instalação:} a corrente também dobra ($10\to\SI{20}{\ampere}$), e o
+dimensionamento de disjuntor e condutor deve ser feito para a posição de maior
+potência.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma associação paralela mediram-se as correntes de ramo $\SI{4}{\ampere}$,
+$\SI{1}{\ampere}$ e $\SI{1}{\ampere}$, com corrente total de
+$\SI{6}{\ampere}$ e tensão de $\SI{20}{\volt}$. Verifique a consistência e
+determine as três resistências e a potência total.
+\resposta{Consistente; $\SI{5}{\ohm}$, $\SI{20}{\ohm}$, $\SI{20}{\ohm}$;
+$P=\SI{120}{\watt}$}
+\resolucao{\textbf{LKC:} $4+1+1=\SI{6}{\ampere}$ \checkmark.\\
+\textbf{Resistências:} $R_k=V/I_k$ $\Rightarrow$ $20/4=5$ e
+$20/1=\SI{20}{\ohm}$ (duas vezes).\\
+\textbf{Potência:} $P=VI_t=20\cdot6=\SI{120}{\watt}$; por ramo,
+$80+20+20=\SI{120}{\watt}$ \checkmark.\\
+Dois testes independentes --- LKC e balanço de potência --- fecham. Se apenas o
+primeiro fechasse, o erro estaria na leitura da tensão.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma corrente total de $\SI{6}{\ampere}$ divide-se entre $\SI{5}{\ohm}$,
+$\SI{20}{\ohm}$ e $\SI{20}{\ohm}$ em paralelo.
+\begin{itensq}
+\item Determine $R_{eq}$ e a tensão da associação.
+\item Obtenha as três correntes pelo divisor em condutâncias.
+\item Verifique por dois caminhos independentes.
+\end{itensq}
+\resposta{$R_{eq}=\SI{3.33}{\ohm}$, $V=\SI{20}{\volt}$;
+$\SI{4}{\ampere}$, $\SI{1}{\ampere}$, $\SI{1}{\ampere}$}
+\resolucao{(a) $G=0{,}2+0{,}05+0{,}05=\SI{0.3}{\siemens}$,
+$R_{eq}=1/0{,}3=\SI{3.33}{\ohm}$ e $V=I_tR_{eq}=6\cdot3{,}33=\SI{20}{\volt}$.\\
+(b) Com três ou mais ramos, a forma correta do divisor usa condutâncias:
+\[
+I_k=I_t\frac{G_k}{G_{eq}}
+\;\Rightarrow\;
+I_1=6\cdot\frac{0{,}2}{0{,}3}=4,\quad
+I_2=I_3=6\cdot\frac{0{,}05}{0{,}3}=\SI{1}{\ampere}.
+\]
+\textbf{Alerta:} a fórmula $I_1=I_tR_2/(R_1+R_2)$ \emph{não} se generaliza para
+três ramos --- ela é um caso particular que só funciona com dois.\\
+(c) \emph{LKC:} $4+1+1=6$ \checkmark. \emph{Lei de Ohm por ramo:}
+$20/5=4$ e $20/20=1$ \checkmark.}
+\end{questao}
+
+\begin{questao}[3]{}
+Três ramos de $\SI{10}{\ohm}$, $\SI{20}{\ohm}$ e $\SI{20}{\ohm}$ operam sob
+fonte \textbf{ideal} de $\SI{60}{\volt}$. O ramo de $\SI{10}{\ohm}$ se
+\textbf{abre}. Determine o que muda nas correntes de ramo, na corrente total e
+em $R_{eq}$.
+\resposta{Ramos restantes inalterados ($\SI{3}{\ampere}$ cada);
+$I_t$: $12\to\SI{6}{\ampere}$; $R_{eq}$: $5\to\SI{10}{\ohm}$}
+\resolucao{Com fonte ideal, $V=\SI{60}{\volt}$ permanece fixo. Como cada ramo
+depende \emph{só} da tensão comum e do próprio resistor, os dois ramos íntegros
+continuam com $60/20=\SI{3}{\ampere}$ --- \textbf{nada muda para eles}.\\
+O que muda é o agregado: $I_t=3+3=\SI{6}{\ampere}$ (queda de $50\%$) e
+$R_{eq}=\SI{10}{\ohm}$.\\
+\textbf{Por isso a ligação residencial é em paralelo:} a queima de uma lâmpada
+não afeta as demais. Em série, uma falha derruba o circuito inteiro.\\
+\emph{Ressalva importante:} isso depende de a fonte ser ideal. Com resistência
+interna, $V$ sobe quando um ramo abre --- caso tratado no bloco de desafio.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um dos ramos de uma associação paralela sofre \textbf{curto-circuito}. Analise
+$R_{eq}$, a corrente total e o efeito sobre os demais ramos, e justifique a
+necessidade de proteção.
+\resposta{$R_{eq}\to0$; $I_t\to\infty$ (limitada só pela fonte e pela fiação);
+os demais ramos ficam sem tensão}
+\resolucao{Um ramo em curto tem $R=0$, portanto $G\to\infty$. Como
+$G_{eq}=\sum G_k$, a condutância total explode e $R_{eq}\to0$:
+\[
+R_{eq}=\frac{1}{\infty+G_2+G_3}\to0.
+\]
+Com fonte ideal, $I_t=V/R_{eq}\to\infty$. Na prática, a corrente é limitada
+pela resistência interna da fonte e pela impedância da fiação --- mas ainda
+assim atinge dezenas ou centenas de ampères.\\
+\textbf{Efeito sobre os demais:} o curto derruba a tensão do barramento a
+praticamente zero. Os outros ramos, embora íntegros, \emph{param de funcionar}
+--- eles são vítimas, não causa.\\
+\textbf{Proteção:} é este o cenário que o disjuntor combate. Diferentemente do
+ramo aberto (falha benigna e localizada), o curto em um ramo compromete o
+sistema inteiro e libera energia suficiente para incendiar a instalação. Daí a
+assimetria de tratamento: monitoram-se \emph{sobrecorrentes}, não
+subcorrentes.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dispõe-se de resistores de $\SI{220}{\ohm}$ com dissipação máxima de
+$\SI{1}{\watt}$. Projete uma associação paralela de $\SI{55}{\ohm}$ capaz de
+dissipar pelo menos $\SI{4}{\watt}$, e determine a tensão máxima aplicável.
+\resposta{Quatro em paralelo; $P_{\max}=\SI{4}{\watt}$;
+$V_{\max}=\SI{14.8}{\volt}$}
+\resolucao{\textbf{Valor:} $220/n=55\Rightarrow n=4$.\\
+\textbf{Potência:} sendo iguais e sob a mesma tensão, os quatro dividem a carga
+térmica igualmente, então $P_{tot}=4\times1=\SI{4}{\watt}$ \checkmark.\\
+\textbf{Tensão máxima:} limita-se pelo componente individual:
+\[
+V_{\max}=\sqrt{P_1R_1}=\sqrt{1\cdot220}=\SI{14.8}{\volt}.
+\]
+\textbf{Conferência:} $P_{tot}=V^{2}/R_{eq}=220/55=\SI{4}{\watt}$ \checkmark.\\
+\textbf{Observação de projeto:} o paralelo multiplica a capacidade térmica
+\emph{e} divide o valor por $n$; a série multiplica ambos. Se o objetivo exige
+valor \emph{maior} com mais potência, use série; valor \emph{menor}, paralelo.
+Para manter o valor e aumentar a potência, é preciso uma matriz
+série--paralelo de $n\times n$ unidades.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma rede tem cinco ramos em paralelo: $\SI{10}{\ohm}$, $\SI{20}{\ohm}$,
+$\SI{20}{\ohm}$, $\SI{40}{\ohm}$ e $\SI{40}{\ohm}$. Calcule $R_{eq}$ e explique
+por que o cálculo em condutâncias é preferível.
+\resposta{$G=\SI{0.25}{\siemens}$; $R_{eq}=\SI{4}{\ohm}$}
+\resolucao{
+\[
+G=0{,}100+0{,}050+0{,}050+0{,}025+0{,}025=\SI{0.25}{\siemens}
+\;\Longrightarrow\;
+R_{eq}=\SI{4}{\ohm}.
+\]
+\textbf{Três vantagens da condutância.} \emph{(i)} A operação é uma soma
+simples, com um único inverso no fim --- contra quatro aplicações sucessivas da
+regra produto/soma. \emph{(ii)} A distribuição de corrente sai de graça:
+$I_k/I_t=G_k/G_{eq}$, aqui $40\%$, $20\%$, $20\%$, $10\%$ e $10\%$.
+\emph{(iii)} Para incerteza, a propagação em $G$ é \emph{linear}, ao passo que
+em $R$ envolve derivadas de uma função racional.\\
+É também a razão pela qual a análise nodal --- construída sobre a LKC --- adota
+condutâncias como grandeza natural.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um galvanômetro de $\SI{99}{\ohm}$ e $\SI{1}{\milli\ampere}$ de fundo de escala
+deve medir até $\SI{100}{\milli\ampere}$.
+\begin{itensq}
+\item Determine o shunt.
+\item Calcule a resistência do amperímetro resultante.
+\item Explique por que essa resistência precisa ser pequena.
+\end{itensq}
+\resposta{(a) $R_{sh}=\SI{1}{\ohm}$; (b) $\SI{0.99}{\ohm}$}
+\resolucao{(a) O shunt conduz $100-1=\SI{99}{\milli\ampere}$:
+\[
+R_{sh}=\frac{R_gI_g}{I_{sh}}=\frac{99\cdot1}{99}=\SI{1}{\ohm}.
+\]
+(b) $R_A=R_g\parallel R_{sh}=\dfrac{99\cdot1}{100}=\SI{0.99}{\ohm}$.\\
+(c) O amperímetro é inserido \textbf{em série} no ramo sob medição, somando-se
+à resistência do circuito. Se $R_A$ não for desprezível diante do circuito, a
+própria medição altera a corrente que se pretende medir --- o chamado
+\emph{erro de inserção}.\\
+\textbf{Exemplo:} medindo um ramo de $\SI{100}{\ohm}$, o erro é
+$0{,}99/100\approx1\%$; medindo um de $\SI{1}{\ohm}$, seria de $50\%$.\\
+Note a dualidade: o \emph{amperímetro} deve ter resistência quase nula e vai em
+série; o \emph{voltímetro}, resistência quase infinita e vai em paralelo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma carga de $\SI{100}{\ohm}$ opera a $\SI{200}{\volt}$. A isolação
+degradada cria um caminho de fuga de $\SI{10}{\kilo\ohm}$ em paralelo.
+\begin{itensq}
+\item Determine a corrente de fuga e a corrente total.
+\item Calcule $R_{eq}$ e o erro relativo cometido ao ignorar a fuga.
+\item Comente o risco.
+\end{itensq}
+\resposta{(a) $\SI{20}{\milli\ampere}$ e $\SI{2.02}{\ampere}$;
+(b) $\SI{99.01}{\ohm}$, erro de $1\%$; (c) risco de choque}
+\resolucao{(a) $I_{carga}=200/100=\SI{2}{\ampere}$;
+$I_{fuga}=200/10000=\SI{20}{\milli\ampere}$; total $\SI{2.02}{\ampere}$.\\
+(b) $R_{eq}=\dfrac{100\cdot10000}{10100}=\SI{99.01}{\ohm}$ --- desvio de
+$\approx1\%$ em relação a $\SI{100}{\ohm}$.\\
+(c) Do ponto de vista \emph{elétrico}, $1\%$ é irrelevante: nenhum instrumento
+de painel acusaria a anomalia. Do ponto de vista da \textbf{segurança}, é
+gravíssimo: $\SI{20}{\milli\ampere}$ atravessando um corpo humano já provoca
+tetanização muscular, e a partir de $\SI{30}{\milli\ampere}$ o risco de
+fibrilação é real.\\
+\textbf{Por isso existe o DR (dispositivo diferencial residual):} ele não mede
+a corrente total, e sim o \emph{desequilíbrio} entre fase e neutro --- que é
+exatamente a corrente de fuga. Um DR de $\SI{30}{\milli\ampere}$ detecta o que
+os $\SI{2}{\ampere}$ da carga mascaram completamente.}
+\end{questao}
+
+\begin{questao}[3]{}
+$R_1=\SI{100}{\ohm}\pm5\%$ e $R_2=\SI{400}{\ohm}\pm5\%$ estão em paralelo.
+Determine $R_{eq}$ nominal e seus extremos de pior caso.
+\resposta{$R_{eq}=\SI{80}{\ohm}$, entre $\SI{76}{\ohm}$ e $\SI{84}{\ohm}$
+($\pm5\%$)}
+\resolucao{Nominal: $R_{eq}=\dfrac{100\cdot400}{500}=\SI{80}{\ohm}$.\\
+Como $R_{eq}$ cresce monotonicamente com $R_1$ e com $R_2$, os extremos ocorrem
+com \emph{ambos} nos extremos:
+\[
+R_{eq}^{\min}=\frac{95\cdot380}{475}=\SI{76}{\ohm},
+\qquad
+R_{eq}^{\max}=\frac{105\cdot420}{525}=\SI{84}{\ohm}.
+\]
+Ou seja, $80\pm4$, isto é, $\pm5\%$ --- exatamente a tolerância das parcelas.\\
+\textbf{Resultado notável:} o paralelo \emph{também} preserva a tolerância
+relativa, assim como a série. Isso não é coincidência, e a razão é demonstrada
+no bloco de desafio.}
+\end{questao}
+
+\begin{questao}[3]{}
+$R_1=\SI{100}{\ohm}$ com $\alpha=\SI{0.004}{\per\celsius}$ está em paralelo com
+$R_2=\SI{100}{\ohm}$ de coeficiente desprezível. Determine $R_{eq}$ a
+$\SI{20}{\celsius}$ e a $\SI{80}{\celsius}$, e calcule a variação percentual.
+\resposta{$\SI{50}{\ohm}$ e $\SI{55.36}{\ohm}$; variação de $+10{,}7\%$}
+\resolucao{A $\SI{20}{\celsius}$: $R_{eq}=100/2=\SI{50}{\ohm}$.\\
+A $\SI{80}{\celsius}$: $R_1=100[1+0{,}004(60)]=\SI{124}{\ohm}$ e
+\[
+R_{eq}=\frac{124\cdot100}{224}=\SI{55.36}{\ohm}.
+\]
+Variação: $(55{,}36-50)/50=+10{,}7\%$.\\
+\textbf{Comparação instrutiva:} $R_1$ variou $24\%$, mas $R_{eq}$ variou
+$10{,}7\%$ --- o ramo estável "amortece" a deriva. Curiosamente, o valor é o
+mesmo obtido para a \emph{corrente} da associação série equivalente: em ambos
+os casos o elemento estável divide o efeito aproximadamente pela metade, porque
+as duas resistências são comparáveis.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um resistor de $\SI{1000}{\ohm}$ está em paralelo com um de $\SI{10}{\ohm}$.
+\begin{itensq}
+\item Calcule $R_{eq}$.
+\item Recalcule supondo que $R_1$ varie $+10\%$.
+\item Interprete o resultado em termos de sensibilidade.
+\end{itensq}
+\resposta{(a) $\SI{9.901}{\ohm}$; (b) $\SI{9.910}{\ohm}$; (c) variação de
+apenas $0{,}09\%$}
+\resolucao{(a) $R_{eq}=\dfrac{1000\cdot10}{1010}=\SI{9.901}{\ohm}$.\\
+(b) Com $R_1=\SI{1100}{\ohm}$:
+$R_{eq}=\dfrac{1100\cdot10}{1110}=\SI{9.910}{\ohm}$.\\
+(c) Uma variação de $10\%$ em $R_1$ produziu $0{,}09\%$ em $R_{eq}$ ---
+atenuação de mais de cem vezes. O ramo dominante ($\SI{10}{\ohm}$) fixa
+praticamente sozinho o resultado.\\
+\textbf{Uso prático:} é assim que se faz um ajuste \emph{fino}. Colocando um
+resistor grande em paralelo com um pequeno, obtém-se um deslocamento pequeno e
+controlado --- técnica usada em calibração de shunts e de divisores de
+precisão. A quantificação exata dessa sensibilidade aparece no bloco de
+desafio.}
+\end{questao}
+
+\begin{questao}[3]{}
+As cargas da questão residencial ($\SI{27.5}{\ampere}$ totais) são alimentadas
+por um circuito cuja fiação tem $\SI{0.2}{\ohm}$ de ida e volta, a partir de um
+quadro de $\SI{220}{\volt}$.
+\begin{itensq}
+\item Determine a queda de tensão na fiação e a tensão nas cargas.
+\item Calcule a perda de potência na fiação.
+\item Avalie se a queda atende ao limite usual de $4\%$.
+\end{itensq}
+\resposta{(a) $\SI{5.5}{\volt}$; $\SI{214.5}{\volt}$;
+(b) $\SI{151.25}{\watt}$; (c) $2{,}5\%$ --- atende}
+\resolucao{(a) $\Delta V=R_fI=0{,}2\cdot27{,}5=\SI{5.5}{\volt}$, logo as cargas
+recebem $220-5{,}5=\SI{214.5}{\volt}$.\\
+(b) $P_f=R_fI^{2}=0{,}2(27{,}5)^{2}=\SI{151.25}{\watt}$ --- dissipados em puro
+aquecimento do cabo.\\
+(c) $5{,}5/220=2{,}5\%$, abaixo do limite típico de $4\%$ para circuitos
+terminais. \checkmark\\
+\textbf{Observação sutil:} a fiação está em \emph{série} com o conjunto, mesmo
+que as cargas estejam em paralelo entre si. É por isso que ligar mais uma carga
+--- que não afeta as demais em uma rede ideal --- na prática \emph{reduz} a
+tensão de todas: a corrente total sobe e a queda na fiação também. O efeito é
+visível quando as luzes piscam ao ligar um chuveiro.}
+\end{questao}
+
+\begin{questao}[3]{}
+Deseja-se obter $\SI{75}{\ohm}$ dispondo de um resistor de $\SI{100}{\ohm}$.
+Determine o resistor a ser associado em paralelo e discuta a viabilidade.
+\resposta{$R=\SI{300}{\ohm}$}
+\resolucao{
+\[
+\frac{1}{75}=\frac{1}{100}+\frac{1}{R}
+\;\Longrightarrow\;
+\frac{1}{R}=\frac{1}{75}-\frac{1}{100}=\frac{4-3}{300}
+\;\Longrightarrow\;
+R=\SI{300}{\ohm}.
+\]
+\textbf{Viabilidade:} $\SI{300}{\ohm}$ existe na série E24, e o alvo
+($\SI{75}{\ohm}$) está a $25\%$ do resistor de partida --- folga confortável.
+A precisão do resultado depende principalmente do resistor de
+$\SI{100}{\ohm}$, que domina o paralelo.\\
+\textbf{Limite do método:} só se pode \emph{reduzir} o valor de partida; alvos
+acima de $\SI{100}{\ohm}$ exigem série. E, como se verá no desafio, alvos muito
+próximos de $\SI{100}{\ohm}$ tornam a solução impraticável.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare a mesma dupla $R_1=\SI{30}{\ohm}$ e $R_2=\SI{60}{\ohm}$ ligada em série
+e em paralelo, sob $\SI{90}{\volt}$: resistência, corrente total, distribuição
+de corrente e de potência.
+\resposta{Série: $\SI{90}{\ohm}$, $\SI{1}{\ampere}$, $P=30$ e
+$\SI{60}{\watt}$. Paralelo: $\SI{20}{\ohm}$, $\SI{4.5}{\ampere}$,
+$P=270$ e $\SI{135}{\watt}$}
+\resolucao{\textbf{Série:} $R=\SI{90}{\ohm}$, $I=\SI{1}{\ampere}$ (comum),
+$P_1=30$, $P_2=\SI{60}{\watt}$; total $\SI{90}{\watt}$. O \emph{maior}
+resistor dissipa mais.\\
+\textbf{Paralelo:} $R=\SI{20}{\ohm}$, $I_1=3$, $I_2=\SI{1.5}{\ampere}$,
+$I_t=\SI{4.5}{\ampere}$, $P_1=\SI{270}{\watt}$, $P_2=\SI{135}{\watt}$; total
+$\SI{405}{\watt}$. O \emph{menor} resistor dissipa mais.\\
+\textbf{Razões:} $R_{s}/R_{p}=90/20=4{,}5$, e a potência total é $4{,}5$ vezes
+maior no paralelo --- o mesmo fator, pois $P=V^{2}/R$ com $V$ fixo.\\
+\textbf{Síntese:} de dois resistores obtêm-se quatro valores
+($30$, $60$, $20$ e $\SI{90}{\ohm}$) e duas distribuições opostas de potência.
+A ligação é uma variável de projeto tão importante quanto os componentes.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Projeto de instrumentação.)} Um galvanômetro tem $R_g=\SI{99}{\ohm}$ e
+fundo de escala $I_g=\SI{1}{\milli\ampere}$. Deseja-se um amperímetro de três
+escalas: $\SI{10}{\milli\ampere}$, $\SI{100}{\milli\ampere}$ e
+$\SI{1}{\ampere}$.
+\begin{itensq}
+\item Determine os três shunts na configuração de shunts comutados.
+\item Aponte o risco dessa configuração e descreva a alternativa (shunt de
+      Ayrton).
+\item Calcule a resistência do instrumento em cada escala.
+\end{itensq}
+\resposta{(a) $\SI{11}{\ohm}$, $\SI{1}{\ohm}$ e $\SI{0.0991}{\ohm}$;
+(c) $\SI{9.9}{\ohm}$, $\SI{0.99}{\ohm}$ e $\SI{0.099}{\ohm}$}
+\resolucao{(a) Com $n=I_{\max}/I_g$, vale
+$R_{sh}=\dfrac{R_g}{n-1}$:
+\[
+n=10\Rightarrow\frac{99}{9}=\SI{11}{\ohm};\quad
+n=100\Rightarrow\frac{99}{99}=\SI{1}{\ohm};\quad
+n=1000\Rightarrow\frac{99}{999}=\SI{0.0991}{\ohm}.
+\]
+(b) \textbf{Risco:} durante a comutação, a chave passa por um instante em que
+\emph{nenhum} shunt está conectado. Toda a corrente de linha --- até
+$\SI{1}{\ampere}$ --- atravessaria o galvanômetro, projetado para
+$\SI{1}{\milli\ampere}$: destruição imediata.\\
+\textbf{Shunt de Ayrton:} os resistores ficam permanentemente ligados em série
+entre si e o conjunto em paralelo com o galvanômetro; a chave apenas escolhe
+\emph{em que ponto} da cadeia a corrente entra. Assim o galvanômetro nunca
+fica desprotegido, mesmo durante a comutação.\\
+(c) $R_A=R_g\parallel R_{sh}$: $99\parallel11=\SI{9.9}{\ohm}$;
+$99\parallel1=\SI{0.99}{\ohm}$; $99\parallel0{,}0991=\SI{0.099}{\ohm}$.\\
+Note que $R_A=R_g/n$ exatamente --- escalas maiores exigem instrumentos de
+resistência menor, o que é justamente o desejável.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- escalonamento de bancos.)} Considere $N$ resistores
+iguais de valor $R$ e potência nominal $P_1$.
+\begin{itensq}
+\item Mostre que a associação paralela vale $R/N$ e suporta $NP_1$.
+\item Mostre que a série vale $NR$ e também suporta $NP_1$.
+\item Deduza a matriz $m\times n$ necessária para manter o valor $R$ e obter
+      potência $mnP_1$.
+\end{itensq}
+\resposta{(c) $m$ colunas em paralelo de $n$ unidades em série, com $m=n$}
+\resolucao{(a) $G_{eq}=NG\Rightarrow R_{eq}=R/N$. Sob tensão $V$ comum, cada
+unidade dissipa $V^{2}/R$; como todas são iguais e submetidas à mesma tensão, o
+total é $N$ vezes o individual: $P_{\max}=NP_1$.\\
+(b) $R_{eq}=NR$. Com corrente $I$ comum, cada unidade dissipa $RI^{2}$ e o
+total é novamente $NP_1$.\\
+\textbf{Fato central:} \emph{qualquer} associação de $N$ resistores iguais
+suporta $NP_1$, desde que a dissipação se reparta igualmente. O que a topologia
+escolhe é o \emph{valor}, não a capacidade térmica.\\
+(c) Uma matriz de $n$ unidades em série, repetida em $m$ colunas paralelas:
+\[
+R_{eq}=\frac{nR}{m},\qquad P_{\max}=mnP_1.
+\]
+Para preservar o valor, $n=m$; então $R_{eq}=R$ e
+$P_{\max}=n^{2}P_1$.\\
+\textbf{Exemplo:} para quadruplicar a potência sem alterar o valor, use
+$2\times2=4$ unidades. Para $\times9$, use $3\times3=9$. A potência cresce com
+o \emph{quadrado} do lado da matriz --- e o custo, também.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Sensibilidade.)} Para $R_{eq}=\dfrac{R_1R_2}{R_1+R_2}$:
+\begin{itensq}
+\item Obtenha $\dfrac{\partial R_{eq}}{\partial R_1}$ e mostre que vale
+      $\left(\dfrac{R_2}{R_1+R_2}\right)^{2}$.
+\item Obtenha a sensibilidade relativa e mostre que
+      $S_1+S_2=1$.
+\item Avalie para $R_1=\SI{100}{\ohm}$ e $R_2=\SI{400}{\ohm}$, e interprete.
+\end{itensq}
+\resposta{(a) $0{,}64$; (b) $S_1=R_2/(R_1+R_2)$, $S_2=R_1/(R_1+R_2)$;
+(c) $S_1=0{,}8$ e $S_2=0{,}2$}
+\resolucao{(a) Derivando o quociente em relação a $R_1$:
+\[
+\frac{\partial R_{eq}}{\partial R_1}
+=\frac{R_2(R_1+R_2)-R_1R_2}{(R_1+R_2)^{2}}
+=\frac{R_2^{2}}{(R_1+R_2)^{2}}
+=\left(\frac{R_2}{R_1+R_2}\right)^{2}.
+\]
+Com $R_1=100$ e $R_2=400$: $(400/500)^{2}=0{,}64$ --- adimensional, pois é
+$\si{\ohm}$ por $\si{\ohm}$.\\
+(b)
+\[
+S_1=\frac{\partial R_{eq}}{\partial R_1}\cdot\frac{R_1}{R_{eq}}
+=\frac{R_2^{2}}{(R_1+R_2)^{2}}\cdot\frac{R_1(R_1+R_2)}{R_1R_2}
+=\frac{R_2}{R_1+R_2}.
+\]
+Por simetria, $S_2=\dfrac{R_1}{R_1+R_2}$, e a soma é $1$ --- consequência de
+$R_{eq}$ ser \textbf{homogênea de grau 1}.\\
+(c) $S_1=0{,}8$ e $S_2=0{,}2$: um erro de $1\%$ em $R_1$ produz $0{,}8\%$ em
+$R_{eq}$, e o mesmo erro em $R_2$ produz apenas $0{,}2\%$.\\
+\textbf{Regra de projeto:} o resistor \emph{menor} domina o paralelo e deve
+receber a tolerância apertada --- exatamente o inverso da série, onde manda o
+maior. E se $R_2\gg R_1$, então $S_1\to1$ e $S_2\to0$: o ramo grande vira
+ajuste fino, o que confirma quantitativamente o observado na questão do
+$\SI{1000}{\ohm}$ com $\SI{10}{\ohm}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Divisão de corrente sob tolerância.)} Três shunts iguais de
+$\SI{0.01}{\ohm}$ devem dividir igualmente $\SI{30}{\ampere}$.
+\begin{itensq}
+\item Determine a corrente ideal por shunt e a tensão sobre eles.
+\item Se um deles for $2\%$ menor e os outros dois nominais, calcule o
+      desequilíbrio de corrente.
+\item Discuta a implicação térmica.
+\end{itensq}
+\resposta{(a) $\SI{10}{\ampere}$ e $\SI{0.1}{\volt}$;
+(b) $\SI{10.13}{\ampere}$ contra $\SI{9.93}{\ampere}$ --- desvio de $1{,}3\%$;
+(c) o mais "fraco" aquece mais}
+\resolucao{(a) $I=30/3=\SI{10}{\ampere}$;
+$V=0{,}01\cdot10=\SI{0.1}{\volt}$.\\
+(b) Com $R_a=\SI{0.0098}{\ohm}$ e $R_b=R_c=\SI{0.0100}{\ohm}$:
+\[
+G=\frac{1}{0{,}0098}+\frac{2}{0{,}0100}=102{,}04+200{,}00=\SI{302.04}{\siemens},
+\]
+\[
+I_a=30\cdot\frac{102{,}04}{302{,}04}=\SI{10.13}{\ampere},
+\qquad
+I_b=I_c=30\cdot\frac{100{,}00}{302{,}04}=\SI{9.93}{\ampere}.
+\]
+\textbf{Verificação:} $10{,}13+9{,}93+9{,}93=\SI{29.99}{\ampere}$ \checkmark.\\
+\textbf{Fato tranquilizador:} um desvio de $2\%$ na resistência produziu apenas
+$1{,}3\%$ de desequilíbrio --- a divisão é \emph{mais estável} que os
+componentes, porque os outros dois ramos "puxam" a média.\\
+(c) $P_a=0{,}0098(10{,}13)^{2}=\SI{1.006}{\watt}$ contra
+$P_b=0{,}0100(9{,}93)^{2}=\SI{0.986}{\watt}$: o shunt de menor resistência
+dissipa $2\%$ a mais. Se tiver coeficiente térmico positivo, aquecerá,
+aumentará sua resistência e \emph{devolverá} corrente aos vizinhos --- uma
+realimentação \textbf{estabilizadora}. Com coeficiente negativo ocorreria o
+oposto: fuga térmica. É por isso que resistores para divisão de corrente são
+feitos em ligas de $\alpha$ positivo e pequeno, como a manganina.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Compensação térmica em paralelo.)} Deseja-se uma associação paralela
+com resistência independente da temperatura, usando
+$R_1=\SI{100}{\ohm}$ com $\alpha_1=+4000\,\mathrm{ppm/^{\circ}C}$ e um segundo
+resistor com $\alpha_2=-1000\,\mathrm{ppm/^{\circ}C}$.
+\begin{itensq}
+\item Deduza a condição de compensação em termos de condutâncias.
+\item Determine $R_2$ e $R_{eq}$.
+\item Verifique a compensação e comente sua exatidão.
+\end{itensq}
+\resposta{(a) $G_1\alpha_1+G_2\alpha_2=0$; (b) $R_2=\SI{25}{\ohm}$,
+$R_{eq}=\SI{20}{\ohm}$; (c) exata só em primeira ordem}
+\resolucao{(a) Partindo de $G_{eq}=G_1+G_2$ e de
+$R_k(T)=R_k(1+\alpha_k\Delta T)$, tem-se
+$G_k\approx G_k(1-\alpha_k\Delta T)$ para $\alpha_k\Delta T\ll1$. Então
+\[
+G_{eq}(T)\approx(G_1+G_2)-(G_1\alpha_1+G_2\alpha_2)\Delta T,
+\]
+e a condição de estabilidade é
+\[
+G_1\alpha_1+G_2\alpha_2=0
+\quad\Longleftrightarrow\quad
+\frac{\alpha_1}{R_1}+\frac{\alpha_2}{R_2}=0.
+\]
+(b) $R_2=-\dfrac{\alpha_2R_1}{\alpha_1}=\dfrac{1000\cdot100}{4000}
+=\SI{25}{\ohm}$, e $R_{eq}=100\parallel25=\SI{20}{\ohm}$.\\
+(c) \emph{Para $\Delta T=\SI{1}{\celsius}$:}
+$R_1=\SI{100.4}{\ohm}$, $R_2=\SI{24.975}{\ohm}$, $R_{eq}=\SI{20.000}{\ohm}$ ---
+compensação praticamente perfeita.\\
+\emph{Para $\Delta T=\SI{50}{\celsius}$:} $R_1=\SI{120}{\ohm}$,
+$R_2=\SI{23.75}{\ohm}$, $R_{eq}=\SI{19.83}{\ohm}$ --- desvio de $0{,}9\%$.\\
+A compensação é de \textbf{primeira ordem}: excelente perto da temperatura de
+projeto, degradando-se quadraticamente conforme se afasta.\\
+\textbf{Compare com a série}, cuja condição era $R_1\alpha_1+R_2\alpha_2=0$
+(ponderada por resistências). Aqui a ponderação é por \emph{condutâncias} ---
+mais uma manifestação da dualidade série/paralelo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Falha de ramo com fonte real.)} Uma fonte de $\SI{24}{\volt}$ com
+$r=\SI{2}{\ohm}$ alimenta três ramos de $\SI{6}{\ohm}$ em paralelo.
+\begin{itensq}
+\item Determine a tensão do barramento, a corrente total e a de cada ramo.
+\item Um ramo se abre. Recalcule tudo.
+\item Explique por que os ramos remanescentes \emph{mudam}, ao contrário do
+      caso com fonte ideal.
+\end{itensq}
+\resposta{(a) $\SI{12}{\volt}$, $\SI{6}{\ampere}$, $\SI{2}{\ampere}$ por ramo;
+(b) $\SI{14.4}{\volt}$, $\SI{4.8}{\ampere}$, $\SI{2.4}{\ampere}$ por ramo}
+\resolucao{(a) $R_{eq}=6/3=\SI{2}{\ohm}$;
+\[
+I_t=\frac{24}{2+2}=\SI{6}{\ampere},\qquad
+V_{barra}=24-2(6)=\SI{12}{\volt},\qquad
+I_{ramo}=\frac{12}{6}=\SI{2}{\ampere}.
+\]
+(b) Com dois ramos, $R_{eq}=\SI{3}{\ohm}$:
+\[
+I_t=\frac{24}{2+3}=\SI{4.8}{\ampere},\qquad
+V_{barra}=24-2(4{,}8)=\SI{14.4}{\volt},\qquad
+I_{ramo}=\frac{14{,}4}{6}=\SI{2.4}{\ampere}.
+\]
+(c) Os ramos remanescentes \emph{não mudaram de valor}, mas a tensão que os
+alimenta subiu de $12$ para $\SI{14.4}{\volt}$ ($+20\%$), e com ela a corrente
+de cada um ($+20\%$).\\
+\textbf{Mecanismo:} $r$ está em série com o conjunto. Menos ramos $\Rightarrow$
+menor corrente total $\Rightarrow$ menor queda interna $\Rightarrow$ maior
+tensão disponível.\\
+\textbf{Implicação de projeto:} o isolamento entre ramos paralelos é uma
+\emph{idealização}. Com fonte real, ramos interagem via $r$ --- e a perda de
+uma carga pode sobrecarregar as demais em $20\%$ ou mais. Fontes reguladas
+existem justamente para levar $r$ efetiva a valores próximos de zero e
+restaurar o desacoplamento.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Limite do método de ajuste.)} Dispõe-se de um resistor fixo de
+$\SI{100}{\ohm}$ e deseja-se obter valores-alvo por associação paralela.
+\begin{itensq}
+\item Deduza $R(alvo)$ e calcule para alvos de $\SI{90}{\ohm}$,
+      $\SI{95}{\ohm}$ e $\SI{99}{\ohm}$.
+\item Obtenha a sensibilidade do alvo em relação a $R$ e avalie no caso de
+      $\SI{99}{\ohm}$.
+\item Conclua sobre a viabilidade prática.
+\end{itensq}
+\resposta{(a) $\SI{900}{\ohm}$, $\SI{1900}{\ohm}$ e $\SI{9900}{\ohm}$;
+(c) inviável para alvos próximos do resistor fixo}
+\resolucao{(a) De $\dfrac{1}{R_{alvo}}=\dfrac{1}{R_f}+\dfrac{1}{R}$:
+\[
+R=\frac{R_fR_{alvo}}{R_f-R_{alvo}}.
+\]
+\[
+90\to\frac{100\cdot90}{10}=\SI{900}{\ohm};\quad
+95\to\frac{100\cdot95}{5}=\SI{1900}{\ohm};\quad
+99\to\frac{100\cdot99}{1}=\SI{9900}{\ohm}.
+\]
+O denominador $R_f-R_{alvo}$ tende a zero e $R$ \textbf{diverge}.\\
+(b) Pela sensibilidade relativa do paralelo,
+$S=\dfrac{R}{R_f+R}$. Para $R=\SI{9900}{\ohm}$:
+$S=9900/10000=0{,}99$.\\
+Ou seja: $1\%$ de erro em $R$ produz $0{,}99\%$ de erro no alvo. Como o ajuste
+pretendido é de apenas $1\%$ (de $100$ para $\SI{99}{\ohm}$), \emph{o erro tem
+a mesma ordem de grandeza do ajuste} --- ele o anula.\\
+(c) \textbf{Inviável.} Com resistor de $5\%$ de tolerância, o "ajuste" de
+$\SI{1}{\ohm}$ vem com incerteza de $\SI{0.99}{\ohm}$: o alvo pode ficar em
+qualquer ponto entre $98$ e $\SI{100}{\ohm}$. Além disso,
+$\SI{9900}{\ohm}$ não é valor comercial, e a resistência de contato já é
+comparável ao efeito buscado.\\
+\textbf{Regra prática:} ajuste por paralelo só é confiável para correções de
+\emph{dezenas} de por cento. Para correções finas, use potenciômetro de ajuste
+ou selecione o componente por medição direta.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- propagação de incerteza.)} Mostre que, se
+\emph{todos} os resistores de uma rede puramente resistiva tiverem a mesma
+tolerância relativa $t$, então $R_{eq}$ terá exatamente a tolerância $t$,
+qualquer que seja a topologia.
+\begin{itensq}
+\item Demonstre a propriedade de homogeneidade.
+\item Verifique em um exemplo série e em um paralelo.
+\item Discuta o que muda quando as tolerâncias são diferentes.
+\end{itensq}
+\resposta{$R_{eq}$ é homogênea de grau 1: $R_{eq}(\lambda R_k)=\lambda
+R_{eq}(R_k)$; logo a tolerância relativa se conserva}
+\resolucao{(a) Qualquer $R_{eq}$ de rede resistiva é construída por somas
+($R_i+R_j$) e por combinações do tipo $\dfrac{R_iR_j}{R_i+R_j}$ --- ambas
+\textbf{homogêneas de grau 1}. Multiplicando \emph{todos} os resistores por
+$\lambda$:
+\[
+\lambda R_i+\lambda R_j=\lambda(R_i+R_j),
+\qquad
+\frac{(\lambda R_i)(\lambda R_j)}{\lambda R_i+\lambda R_j}
+=\lambda\frac{R_iR_j}{R_i+R_j}.
+\]
+Por indução sobre a construção da rede, $R_{eq}(\lambda R_k)=\lambda R_{eq}$.
+Fazendo $\lambda=1\pm t$, obtém-se $R_{eq}(1\pm t)$: tolerância relativa
+exatamente $t$.\\
+(b) \emph{Série:} $100\pm5\%$ e $200\pm5\%$ dão $300\pm\SI{15}{\ohm}=\pm5\%$
+\checkmark. \emph{Paralelo:} $100\pm5\%$ e $400\pm5\%$ dão
+$80\pm\SI{4}{\ohm}=\pm5\%$ \checkmark. A demonstração explica por que os dois
+casos, aparentemente distintos, deram o mesmo resultado.\\
+(c) Com tolerâncias \emph{diferentes}, a homogeneidade não se aplica --- os
+resistores não escalam pelo mesmo $\lambda$. Vale então a combinação ponderada
+pelas sensibilidades:
+\[
+t_{eq}=\sum_k S_k\,t_k,
+\qquad \text{com } \sum_k S_k=1.
+\]
+Em série, $S_k=R_k/\sum R_j$ (manda o maior); em paralelo,
+$S_k=G_k/\sum G_j$ (manda o menor). A restrição $\sum S_k=1$ é justamente a
+identidade de Euler para funções homogêneas de grau 1 --- e garante que
+$t_{eq}$ jamais ultrapasse a maior das tolerâncias individuais.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Seletividade da proteção.)} Um barramento de $\SI{220}{\volt}$
+alimenta três circuitos em paralelo, com correntes nominais de
+$\SI{20}{\ampere}$, $\SI{5}{\ampere}$ e $\SI{2.5}{\ampere}$, protegidos
+individualmente e por um disjuntor geral.
+\begin{itensq}
+\item Especifique os disjuntores de ramo e o geral.
+\item Explique o requisito de seletividade e o que ocorre se ele falhar.
+\item Discuta por que a soma dos disjuntores de ramo pode exceder o geral.
+\end{itensq}
+\resposta{(a) ramos de $25$, $10$ e $\SI{10}{\ampere}$; geral de
+$\SI{32}{\ampere}$; (b) o ramo deve atuar antes do geral}
+\resolucao{(a) Cada disjuntor de ramo fica acima da corrente nominal do próprio
+circuito: $\SI{25}{\ampere}$, $\SI{10}{\ampere}$ e $\SI{10}{\ampere}$
+(valores comerciais). O geral cobre a soma das cargas,
+$\SI{27.5}{\ampere}$: disjuntor de $\SI{32}{\ampere}$.\\
+(b) \textbf{Seletividade} significa que, diante de uma falta em um ramo,
+\emph{apenas} o disjuntor daquele ramo abre --- os demais circuitos continuam
+alimentados. Isso exige que a curva tempo--corrente do dispositivo de ramo
+esteja inteiramente \emph{abaixo} da do geral.\\
+Se a seletividade falhar, um curto em uma tomada derruba a instalação inteira:
+além do transtorno, perde-se a informação de \emph{onde} está o defeito, e a
+localização passa a exigir religamentos sucessivos.\\
+(c) Porque as cargas dificilmente operam \emph{todas} no máximo ao mesmo tempo
+--- é o \textbf{fator de demanda}. Aqui $25+10+10=\SI{45}{\ampere}$ contra um
+geral de $\SI{32}{\ampere}$: perfeitamente admissível, desde que a demanda
+simultânea real permaneça abaixo de $\SI{32}{\ampere}$.\\
+\textbf{Consequência do paralelo:} como as correntes de ramo se somam no
+alimentador, é o \emph{comportamento estatístico} do conjunto --- e não a soma
+aritmética dos máximos --- que dimensiona a entrada. Superdimensionar o geral
+para $\SI{45}{\ampere}$ exigiria condutores muito mais caros sem ganho real de
+disponibilidade.}
+\end{questao}

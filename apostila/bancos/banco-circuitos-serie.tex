@@ -1,0 +1,907 @@
+% =====================================================================
+%  Banco complementar --- Circuitos Serie  (REVISADO)
+%  Substitui a versao gerada por template (11 clones em N2, 12 em N3,
+%  10 questoes conceituais indevidamente marcadas como N4).
+%  Sem sobreposicao com o cap03 (fonte em oposicao, seis lampadas,
+%  queda em cabo e linha de transmissao ja estao la).
+%  Distribuicao mantida: 6 N1 + 11 N2 + 12 N3 + 10 N4 = 39
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Circuitos série}
+
+\begin{atencao}[Organização do banco]
+Toda associação série repousa em dois fatos: a \textbf{corrente é a mesma} em
+todos os elementos e as \textbf{quedas se somam}. Deles decorre que a tensão e
+a potência se distribuem \emph{proporcionalmente} a $R$. O N3 explora falhas,
+temperatura e tolerância; o N4 trata de projeto, sensibilidade, propagação de
+incerteza e otimização.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Determine a resistência equivalente de $R_1=\SI{1.2}{\kilo\ohm}$,
+$R_2=\SI{470}{\ohm}$ e $R_3=\SI{2.2}{\kilo\ohm}$ em série.
+\resposta{$R_{eq}=\SI{3.87}{\kilo\ohm}$}
+\resolucao{Converta tudo para a mesma unidade \emph{antes} de somar:
+\[
+R_{eq}=1200+470+2200=\SI{3870}{\ohm}=\SI{3.87}{\kilo\ohm}.
+\]
+Em série a soma é direta --- não há inversos envolvidos. Misturar
+$\si{\kilo\ohm}$ com $\si{\ohm}$ sem converter é o erro mais frequente aqui.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma associação série de três resistores tem $R_{eq}=\SI{75}{\ohm}$. Sabendo que
+$R_1=\SI{22}{\ohm}$ e $R_2=\SI{33}{\ohm}$, determine $R_3$.
+\resposta{$R_3=\SI{20}{\ohm}$}
+\resolucao{
+\[
+R_3=R_{eq}-R_1-R_2=75-22-33=\SI{20}{\ohm}.
+\]
+A soma série é reversível: conhecidos o total e todas as parcelas menos uma,
+a que falta sai por subtração --- diferente do paralelo, em que seria preciso
+subtrair \emph{condutâncias}.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte ideal de $\SI{24}{\volt}$ alimenta $R_1=\SI{4}{\ohm}$ em série com
+$R_2=\SI{8}{\ohm}$. Determine a corrente do circuito.
+\resposta{$I=\SI{2}{\ampere}$}
+\resolucao{
+\[
+R_{eq}=4+8=\SI{12}{\ohm}
+\;\Longrightarrow\;
+I=\frac{V}{R_{eq}}=\frac{24}{12}=\SI{2}{\ampere}.
+\]
+Essa corrente é a \emph{mesma} nos dois resistores --- não existe "corrente de
+$R_1$" diferente da "corrente de $R_2$" em uma série.}
+\end{questao}
+
+\begin{questao}[1]{}
+Em uma cadeia série percorrida por $\SI{0.5}{\ampere}$, determine a queda de
+tensão em um resistor de $\SI{68}{\ohm}$.
+\resposta{$U=\SI{34}{\volt}$}
+\resolucao{Lei de Ohm aplicada ao elemento:
+\[
+U=R\,I=68\cdot0{,}5=\SI{34}{\volt}.
+\]
+Como $I$ é comum, a queda de cada resistor é \emph{diretamente proporcional} ao
+seu valor: o maior resistor sempre fica com a maior parcela da tensão.}
+\end{questao}
+
+\begin{questao}[1]{}
+Acrescentando-se mais um resistor \textbf{em série} a um circuito alimentado
+por fonte ideal, a corrente total:
+\begin{alternativas}[2]
+\item aumenta
+\item diminui
+\item não se altera
+\item pode aumentar ou diminuir, conforme o valor
+\end{alternativas}
+\resposta{(b)}
+\resolucao{$R_{eq}$ só pode crescer ao se acrescentar um resistor em série
+($R_{eq}=\sum R_k$, com todas as parcelas positivas). Com $V$ fixo,
+$I=V/R_{eq}$ necessariamente diminui. Consequência prática: em uma cadeia de
+lâmpadas, acrescentar mais uma faz \emph{todas} brilharem menos.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois resistores de $\SI{15}{\ohm}$ e $\SI{45}{\ohm}$ são ligados em série a uma
+fonte. Trocando-se a \textbf{ordem} deles no circuito, o que muda?
+\begin{alternativas}[2]
+\item a resistência equivalente
+\item a corrente do circuito
+\item a queda em cada resistor
+\item nada
+\end{alternativas}
+\resposta{(d)}
+\resolucao{A soma $R_{eq}=15+45=\SI{60}{\ohm}$ é comutativa, a corrente
+$I=V/R_{eq}$ depende só de $R_{eq}$, e cada queda $U_k=R_kI$ depende só do
+próprio resistor e de $I$. Nada muda.\\
+O que muda é o \emph{potencial} de cada ponto intermediário em relação ao terra
+--- relevante apenas se algum ponto do circuito estiver aterrado ou se houver
+medição referida a um nó específico.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+$R_1=\SI{5}{\ohm}$, $R_2=\SI{10}{\ohm}$ e $R_3=\SI{15}{\ohm}$ estão em série
+sob $\SI{60}{\volt}$. Determine a corrente e as três quedas de tensão.
+\resposta{$I=\SI{2}{\ampere}$; $U_1=\SI{10}{\volt}$, $U_2=\SI{20}{\volt}$,
+$U_3=\SI{30}{\volt}$}
+\resolucao{
+\[
+R_{eq}=5+10+15=\SI{30}{\ohm}
+\;\Longrightarrow\;
+I=\frac{60}{30}=\SI{2}{\ampere}.
+\]
+\[
+U_1=5\cdot2=10,\quad U_2=10\cdot2=20,\quad U_3=15\cdot2=\SI{30}{\volt}.
+\]
+\textbf{Verificação (LKT):} $10+20+30=\SI{60}{\volt}$ --- fecha com a fonte.
+Note a proporcionalidade: as quedas estão entre si como $5:10:15=1:2:3$.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito da questão anterior, calcule a potência dissipada em cada resistor
+e confronte com a potência fornecida pela fonte.
+\resposta{$\SI{20}{\watt}$, $\SI{40}{\watt}$, $\SI{60}{\watt}$; total
+$\SI{120}{\watt}$}
+\resolucao{Com $I=\SI{2}{\ampere}$ comum, use $P=RI^{2}$:
+\[
+P_1=5\cdot4=20,\quad P_2=10\cdot4=40,\quad P_3=15\cdot4=\SI{60}{\watt}.
+\]
+Fonte: $P=VI=60\cdot2=\SI{120}{\watt}=20+40+60$ \checkmark.\\
+\textbf{Regra da série:} como $I$ é comum, $P\propto R$. O maior resistor
+dissipa mais --- exatamente o oposto do que ocorre no paralelo, onde $V$ é
+comum e $P\propto 1/R$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma cadeia série de três resistores, mediu-se $\SI{18}{\volt}$ sobre o
+resistor de $\SI{90}{\ohm}$. Os outros dois valem $\SI{30}{\ohm}$ e
+$\SI{60}{\ohm}$. Determine a tensão da fonte.
+\resposta{$V=\SI{36}{\volt}$}
+\resolucao{A medida sobre um único elemento revela a corrente da cadeia
+inteira:
+\[
+I=\frac{18}{90}=\SI{0.2}{\ampere}.
+\]
+\[
+R_{eq}=30+60+90=\SI{180}{\ohm}
+\;\Longrightarrow\;
+V=R_{eq}I=180\cdot0{,}2=\SI{36}{\volt}.
+\]
+Este é o procedimento padrão de bancada: medir a queda em um resistor conhecido
+transforma-o em um \emph{sensor de corrente} (resistor \emph{shunt}), sem
+abrir o circuito para inserir o amperímetro.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas lâmpadas incandescentes, de resistências $\SI{240}{\ohm}$ e
+$\SI{960}{\ohm}$, são ligadas \textbf{em série} a $\SI{120}{\volt}$. Qual
+brilha mais e por quê?
+\resposta{A de $\SI{960}{\ohm}$; $P=\SI{9.6}{\watt}$ contra $\SI{2.4}{\watt}$}
+\resolucao{
+\[
+I=\frac{120}{240+960}=\frac{120}{1200}=\SI{0.1}{\ampere}
+\]
+\[
+P_{240}=240\cdot(0{,}1)^{2}=\SI{2.4}{\watt},\qquad
+P_{960}=960\cdot(0{,}1)^{2}=\SI{9.6}{\watt}.
+\]
+Como a corrente é comum, $P\propto R$: a lâmpada de \emph{maior} resistência
+brilha mais. Isso contraria a intuição de quem associa "mais potência" a "menos
+resistência" --- válido apenas quando a \emph{tensão} é comum, isto é, no
+paralelo. Uma lâmpada de $\SI{100}{\watt}$ e outra de $\SI{25}{\watt}$ ligadas
+em série: a de $\SI{25}{\watt}$ é que brilha mais.}
+\end{questao}
+
+\begin{questao}[2]{}
+Deseja-se limitar a $\SI{150}{\milli\ampere}$ a corrente de uma carga de
+$\SI{60}{\ohm}$ alimentada por $\SI{24}{\volt}$. Determine o resistor série
+necessário e sua potência.
+\resposta{$R_s=\SI{100}{\ohm}$; $P_s=\SI{2.25}{\watt}$}
+\resolucao{
+\[
+R_{eq}=\frac{V}{I}=\frac{24}{0{,}150}=\SI{160}{\ohm}
+\;\Longrightarrow\;
+R_s=160-60=\SI{100}{\ohm}.
+\]
+\[
+P_s=R_sI^{2}=100\cdot(0{,}15)^{2}=\SI{2.25}{\watt}.
+\]
+Especifique pelo menos $\SI{5}{\watt}$ (fator $2\times$ de folga). Observe que o
+resistor limitador dissipa $\SI{2.25}{\watt}$ dos $\SI{3.6}{\watt}$ totais ---
+$62\%$ da energia vira calor. Limitar corrente com resistor é simples, mas
+nunca eficiente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas montagens têm a mesma $R_{eq}=\SI{100}{\ohm}$ sob $\SI{50}{\volt}$:
+(A) dois resistores de $\SI{50}{\ohm}$; (B) um de $\SI{10}{\ohm}$ e outro de
+$\SI{90}{\ohm}$. Compare corrente total, potência total e a potência do
+resistor mais solicitado.
+\resposta{Corrente e potência totais iguais ($\SI{0.5}{\ampere}$,
+$\SI{25}{\watt}$); resistor mais solicitado: $\SI{12.5}{\watt}$ em (A) e
+$\SI{22.5}{\watt}$ em (B)}
+\resolucao{Em ambas: $I=50/100=\SI{0.5}{\ampere}$ e
+$P_{tot}=50\cdot0{,}5=\SI{25}{\watt}$.\\
+(A) $P=50\cdot0{,}25=\SI{12.5}{\watt}$ em cada.\\
+(B) $P_{10}=\SI{2.5}{\watt}$ e $P_{90}=\SI{22.5}{\watt}$.\\
+\textbf{Conclusão de projeto:} $R_{eq}$ igual \emph{não} significa
+especificação igual. A montagem (B) exige um resistor de pelo menos
+$\SI{25}{\watt}$, enquanto (A) se resolve com dois de $\SI{15}{\watt}$.
+Distribuir a resistência em parcelas iguais distribui também o aquecimento.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma cadeia série de $\SI{48}{\ohm}$ é alimentada por $\SI{12}{\volt}$ e
+protegida por fusível. Determine a corrente normal de operação e justifique a
+escolha de um fusível de $\SI{500}{\milli\ampere}$.
+\resposta{$I=\SI{250}{\milli\ampere}$; o fusível deve ficar acima da corrente
+normal e abaixo da corrente de falha}
+\resolucao{
+\[
+I=\frac{12}{48}=\SI{0.25}{\ampere}=\SI{250}{\milli\ampere}.
+\]
+Um fusível de $\SI{500}{\milli\ampere}$ dá folga de $2\times$: não atua em
+transitórios normais de energização, mas interrompe bem antes das correntes de
+curto. \textbf{Estimativa da falha:} se metade da cadeia entrar em curto,
+$R=\SI{24}{\ohm}$ e $I=\SI{500}{\milli\ampere}$ --- exatamente no limiar; um
+curto franco ($R\to0$) levaria a corrente a valores muito maiores, e o fusível
+atua rapidamente. Um fusível \emph{muito} próximo da corrente nominal produz
+desarmes espúrios; muito acima, não protege.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um reostato de $\SI{0}{\ohm}$ a $\SI{100}{\ohm}$ está em série com uma carga de
+$\SI{50}{\ohm}$, sob $\SI{30}{\volt}$. Determine a faixa de variação da
+corrente.
+\resposta{de $\SI{0.2}{\ampere}$ a $\SI{0.6}{\ampere}$}
+\resolucao{
+\[
+I_{\max}=\frac{30}{50+0}=\SI{0.6}{\ampere},
+\qquad
+I_{\min}=\frac{30}{50+100}=\SI{0.2}{\ampere}.
+\]
+A faixa é $3{:}1$ --- \textbf{não} $\infty{:}1$, porque a carga fixa de
+$\SI{50}{\ohm}$ impõe um teto à corrente por mais que o reostato seja reduzido.
+Para ampliar a faixa seria preciso um reostato de valor maior em relação à
+carga. Note também que a relação $I(R)$ é hiperbólica, não linear: o controle é
+muito mais "sensível" perto de $R=0$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma cadeia série sob tensão fixa, se um dos resistores tiver seu valor
+\textbf{dobrado}, a queda sobre ele:
+\begin{alternativas}[2]
+\item dobra
+\item aumenta, mas menos que o dobro
+\item não se altera
+\item diminui
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A queda é $U_k=V\dfrac{R_k}{R_{eq}}$. Dobrar $R_k$ dobra o
+numerador, mas \emph{também} aumenta o denominador --- o crescimento é menos
+que proporcional.\\
+\textbf{Exemplo:} $R_1=R_2=\SI{10}{\ohm}$ sob $\SI{12}{\volt}$ dá
+$U_1=\SI{6}{\volt}$. Com $R_1=\SI{20}{\ohm}$: $U_1=12\cdot20/30=\SI{8}{\volt}$
+--- aumento de $33\%$, não de $100\%$. No limite $R_1\to\infty$, $U_1\to V$: a
+queda satura no valor da fonte, nunca o ultrapassa.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma cadeia série dissipa $\SI{300}{\watt}$ e opera $\SI{6}{\hour}$ por dia
+durante $\SI{30}{\day}$. Calcule a energia consumida e o custo, a
+$\mathrm{R\$}\,0{,}80$ por $\si{\kilo\watt\hour}$.
+\resposta{$E=\SI{54}{\kilo\watt\hour}$; custo $=\mathrm{R\$}\,43{,}20$}
+\resolucao{
+\[
+E=P\,t=0{,}300\,\si{\kilo\watt}\times6\times30
+=\SI{54}{\kilo\watt\hour}.
+\]
+\[
+\text{Custo}=54\times0{,}80=\mathrm{R\$}\,43{,}20.
+\]
+A conta não depende de \emph{como} a resistência está distribuída na cadeia ---
+só da potência total. A distribuição importa para o dimensionamento térmico de
+cada componente, não para a fatura.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma cadeia série sob $\SI{100}{\volt}$ mediram-se as quedas
+$\SI{22}{\volt}$, $\SI{35}{\volt}$ e $\SI{41}{\volt}$. A medição é consistente?
+Se a corrente for $\SI{50}{\milli\ampere}$, determine os três resistores.
+\resposta{Sim ($22+35+41=98\approx100$, dentro de $2\%$);
+$\SI{440}{\ohm}$, $\SI{700}{\ohm}$ e $\SI{820}{\ohm}$}
+\resolucao{\textbf{Consistência (LKT):} a soma das quedas deve igualar a tensão
+da fonte. Aqui $22+35+41=\SI{98}{\volt}$, desvio de $\SI{2}{\volt}$ ($2\%$) ---
+compatível com a exatidão típica de um multímetro de bancada. Um desvio de,
+digamos, $\SI{20}{\volt}$ indicaria erro de medida ou um quarto elemento não
+contabilizado (resistência de contato, por exemplo).\\
+\textbf{Resistores:} com $I=\SI{0.050}{\ampere}$ comum a todos,
+\[
+R_1=\frac{22}{0{,}05}=440,\quad
+R_2=\frac{35}{0{,}05}=700,\quad
+R_3=\frac{41}{0{,}05}=\SI{820}{\ohm}.
+\]}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+$R_1=\SI{10}{\ohm}$ e $R_2=\SI{20}{\ohm}$ estão em série sob
+$\SI{30}{\volt}$.
+\begin{itensq}
+\item Calcule a potência de cada um.
+\item Especifique a potência nominal comercial de cada resistor, com fator de
+      segurança $2$.
+\item Explique por que especificar ambos igualmente seria desperdício ou risco.
+\end{itensq}
+\resposta{(a) $\SI{10}{\watt}$ e $\SI{20}{\watt}$; (b) $\SI{25}{\watt}$ e
+$\SI{50}{\watt}$}
+\resolucao{(a) $I=30/30=\SI{1}{\ampere}$; $P_1=10\cdot1=\SI{10}{\watt}$,
+$P_2=20\cdot1=\SI{20}{\watt}$.\\
+(b) Com fator $2$: $\SI{20}{\watt}$ e $\SI{40}{\watt}$; os valores comerciais
+imediatamente superiores são $\SI{25}{\watt}$ e $\SI{50}{\watt}$.\\
+(c) Especificar \emph{ambos} como $\SI{25}{\watt}$ deixaria $R_2$ operando a
+$80\%$ do nominal --- sem margem para elevação de temperatura ambiente ou
+ventilação deficiente. Especificar \emph{ambos} como $\SI{50}{\watt}$ dobraria
+volume e custo de $R_1$ sem ganho. \textbf{Regra:} em série, $P\propto R$;
+dimensione resistor a resistor.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um resistor de fio tem $\SI{50}{\ohm}$ a $\SI{20}{\celsius}$ e coeficiente
+térmico $\alpha=\SI{0.004}{\per\celsius}$. Ele está em série com um resistor de
+filme de $\SI{50}{\ohm}$ e $\alpha\approx0$, sob $\SI{124}{\volt}$.
+\begin{itensq}
+\item Determine a resistência do resistor de fio a $\SI{80}{\celsius}$.
+\item Calcule a corrente a $\SI{20}{\celsius}$ e a $\SI{80}{\celsius}$.
+\item Comente a variação percentual.
+\end{itensq}
+\resposta{(a) $\SI{62}{\ohm}$; (b) $\SI{1.24}{\ampere}$ e
+$\SI{1.107}{\ampere}$; (c) queda de $10{,}7\%$}
+\resolucao{(a)
+$R=R_0[1+\alpha(T-T_0)]=50[1+0{,}004(60)]=50\cdot1{,}24=\SI{62}{\ohm}$.\\
+(b) A $\SI{20}{\celsius}$: $R_{eq}=\SI{100}{\ohm}$ e
+$I=124/100=\SI{1.24}{\ampere}$.\\
+A $\SI{80}{\celsius}$: $R_{eq}=62+50=\SI{112}{\ohm}$ e
+$I=124/112=\SI{1.107}{\ampere}$.\\
+(c) Redução de $10{,}7\%$. Note que o resistor de fio variou $24\%$, mas a
+corrente variou apenas $10{,}7\%$ --- o resistor de filme, estável, "dilui" o
+efeito. Essa é a base do item de projeto explorado adiante: combinar
+coeficientes para estabilizar a cadeia inteira.}
+\end{questao}
+
+\begin{questao}[3]{}
+$R_1=\SI{100}{\ohm}\pm5\%$ e $R_2=\SI{200}{\ohm}\pm5\%$ estão em série.
+\begin{itensq}
+\item Determine $R_{eq}$ e seus limites de pior caso.
+\item Expresse a tolerância resultante em porcentagem.
+\item Repita supondo $R_2$ com tolerância de $1\%$.
+\end{itensq}
+\resposta{(a) $\SI{300}{\ohm}$, entre $\SI{285}{\ohm}$ e $\SI{315}{\ohm}$;
+(b) $\pm5\%$; (c) $\pm2{,}33\%$}
+\resolucao{(a) Em série as incertezas \emph{absolutas} se somam:
+$\Delta R=5+10=\SI{15}{\ohm}$, logo $300\pm15$, isto é, de
+$\SI{285}{\ohm}$ a $\SI{315}{\ohm}$.\\
+(b) $15/300=5\%$ --- \emph{idêntica} às parcelas.\\
+(c) Agora $\Delta R=5+2=\SI{7}{\ohm}$, e $7/300=2{,}33\%$.\\
+\textbf{Padrão geral:} a tolerância relativa da série é a \emph{média
+ponderada} das tolerâncias individuais, com pesos $R_k/R_{eq}$:
+\[
+t_{eq}=\frac{\sum R_k t_k}{\sum R_k}.
+\]
+Em (b), $t_1=t_2$ e a média devolve o mesmo valor. Em (c), o resistor
+\emph{maior} domina o resultado --- por isso, ao apertar tolerâncias, comece
+sempre pela maior parcela da cadeia.}
+\end{questao}
+
+\begin{questao}[3]{}
+Na cadeia $R_1=\SI{10}{\ohm}$, $R_2=\SI{20}{\ohm}$, $R_3=\SI{30}{\ohm}$ sob
+$\SI{60}{\volt}$, o resistor $R_2$ sofre \textbf{curto-circuito}. Compare
+corrente e potências antes e depois.
+\resposta{$I$: $\SI{1}{\ampere}\to\SI{1.5}{\ampere}$;
+$P_1$: $10\to\SI{22.5}{\watt}$; $P_3$: $30\to\SI{67.5}{\watt}$}
+\resolucao{\textbf{Antes:} $R_{eq}=\SI{60}{\ohm}$, $I=\SI{1}{\ampere}$,
+$P=(10;20;30)\,\si{\watt}$, total $\SI{60}{\watt}$.\\
+\textbf{Depois:} $R_{eq}=10+30=\SI{40}{\ohm}$, $I=60/40=\SI{1.5}{\ampere}$.
+\[
+P_1=10(1{,}5)^{2}=\SI{22.5}{\watt},\qquad P_3=30(1{,}5)^{2}=\SI{67.5}{\watt},
+\]
+total $\SI{90}{\watt}$ --- $50\%$ a mais consumido da fonte.\\
+\textbf{Ponto crítico:} $P_1$ e $P_3$ subiram $125\%$ (fator $1{,}5^{2}=2{,}25$).
+Um curto em \emph{um} componente pode destruir os \emph{outros}, que passam a
+operar muito acima do nominal. Essa é a razão de as falhas em cadeia serem
+frequentemente sequenciais, e não simultâneas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Na mesma cadeia ($\SI{10}{\ohm}$, $\SI{20}{\ohm}$, $\SI{30}{\ohm}$ sob
+$\SI{60}{\volt}$), agora $R_2$ \textbf{abre}. Determine a corrente e a leitura
+de um voltímetro ideal colocado sobre cada resistor.
+\resposta{$I=0$; $\SI{0}{\volt}$ em $R_1$ e $R_3$; $\SI{60}{\volt}$ em $R_2$}
+\resolucao{Com o circuito interrompido, $I=0$ em toda a série. Pela lei de Ohm,
+$U=RI=0$ nos resistores íntegros --- mesmo estando eles perfeitamente
+conectados à fonte.\\
+Pela LKT, a soma das quedas deve continuar valendo $\SI{60}{\volt}$; como as
+outras são nulas, \textbf{toda} a tensão da fonte aparece sobre a
+descontinuidade: o voltímetro sobre $R_2$ lê $\SI{60}{\volt}$.\\
+\textbf{Uso prático:} é assim que se localiza o componente aberto em uma cadeia
+--- percorre-se a série com o voltímetro e o defeito é o único ponto onde
+aparece tensão. Note que o voltímetro precisa ser de alta impedância; um
+instrumento de baixa impedância fecharia o circuito e falsearia a leitura.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um LED com queda direta de $\SI{2.0}{\volt}$ deve operar com
+$\SI{15}{\milli\ampere}$ a partir de uma fonte de $\SI{5.0}{\volt}$.
+\begin{itensq}
+\item Determine o resistor série ideal.
+\item Escolha o valor comercial (série E12) e recalcule a corrente real.
+\item Determine a potência do resistor.
+\end{itensq}
+\resposta{(a) $\SI{200}{\ohm}$; (b) $\SI{220}{\ohm}\Rightarrow
+\SI{13.6}{\milli\ampere}$; (c) $\SI{41}{\milli\watt}$}
+\resolucao{(a) O resistor absorve a diferença entre a fonte e a queda do LED:
+\[
+R=\frac{V_{fonte}-V_{LED}}{I}=\frac{5{,}0-2{,}0}{0{,}015}=\SI{200}{\ohm}.
+\]
+(b) A E12 oferece $\SI{180}{\ohm}$ e $\SI{220}{\ohm}$. Escolha o
+\textbf{maior} --- errar para menos aumenta a corrente e reduz a vida do LED:
+\[
+I=\frac{3{,}0}{220}=\SI{13.6}{\milli\ampere}.
+\]
+(c) $P=R I^{2}=220(0{,}0136)^{2}=\SI{41}{\milli\watt}$; um resistor de
+$\frac{1}{8}\,\si{\watt}$ já basta com folga generosa.\\
+\textbf{Observação:} o LED \emph{não} obedece à lei de Ohm --- sua queda é
+aproximadamente constante. Por isso ele entra na conta como uma "fonte de
+tensão" a ser subtraída, e não como uma resistência a ser somada.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma bateria de $\EMF=\SI{12}{\volt}$ e resistência interna $r=\SI{0.5}{\ohm}$
+alimenta uma carga de $\SI{9.5}{\ohm}$.
+\begin{itensq}
+\item Determine a corrente e a tensão nos terminais.
+\item Calcule a regulação de tensão percentual.
+\item Determine a fração da potência perdida internamente.
+\end{itensq}
+\resposta{(a) $\SI{1.2}{\ampere}$, $\SI{11.4}{\volt}$; (b) $5{,}26\%$;
+(c) $5\%$}
+\resolucao{(a) $I=\dfrac{12}{9{,}5+0{,}5}=\SI{1.2}{\ampere}$;
+$V_{term}=12-0{,}5(1{,}2)=\SI{11.4}{\volt}$.\\
+(b) Tomando a tensão em vazio como referência de partida:
+\[
+\text{Reg}=\frac{V_{vazio}-V_{carga}}{V_{carga}}
+=\frac{12-11{,}4}{11{,}4}=5{,}26\%.
+\]
+(c) $P_r=rI^{2}=0{,}5(1{,}44)=\SI{0.72}{\watt}$ contra
+$P_{tot}=12(1{,}2)=\SI{14.4}{\watt}$: exatamente $5\%$, que é a razão
+$r/(r+R_L)$.\\
+\textbf{Compromisso:} reduzir $r$ melhora regulação \emph{e} rendimento
+simultaneamente --- por isso $r$ baixo é sempre desejável em fontes. É diferente
+da máxima transferência de potência, que exigiria $R_L=r$ e um rendimento de
+apenas $50\%$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas cadeias têm $R_{eq}=\SI{120}{\ohm}$ sob $\SI{120}{\volt}$: (A) quatro
+resistores de $\SI{30}{\ohm}$; (B) um de $\SI{100}{\ohm}$ e dois de
+$\SI{10}{\ohm}$. Compare a potência do componente mais solicitado e a potência
+total, e escolha a montagem preferível.
+\resposta{Total $\SI{120}{\watt}$ em ambas; pior componente:
+$\SI{30}{\watt}$ em (A) e $\SI{100}{\watt}$ em (B) --- (A) é preferível}
+\resolucao{$I=120/120=\SI{1}{\ampere}$ nas duas.\\
+(A) $P=30\cdot1=\SI{30}{\watt}$ em cada um dos quatro.\\
+(B) $P_{100}=\SI{100}{\watt}$; $P_{10}=\SI{10}{\watt}$ (dois).\\
+Total: $\SI{120}{\watt}$ nos dois casos --- a fonte não distingue as montagens.\\
+\textbf{Decisão:} (A) exige quatro resistores de $\SI{50}{\watt}$ nominais;
+(B) exige um de $\SI{200}{\watt}$, componente caro, volumoso e com ponto quente
+concentrado. Sempre que possível, \textbf{divida a dissipação} em parcelas
+iguais: a área de troca térmica cresce e a temperatura máxima cai.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um termistor NTC de $\SI{120}{\ohm}$ (frio) e $\SI{5}{\ohm}$ (quente) é
+colocado em série com uma carga de $\SI{20}{\ohm}$, sob $\SI{100}{\volt}$.
+Determine a corrente no instante da energização e em regime, e explique a
+função do componente.
+\resposta{$\SI{0.71}{\ampere}$ na partida e $\SI{4.0}{\ampere}$ em regime}
+\resolucao{\textbf{Partida (frio):}
+$I=\dfrac{100}{120+20}=\SI{0.71}{\ampere}$.\\
+\textbf{Regime (aquecido):}
+$I=\dfrac{100}{5+20}=\SI{4.0}{\ampere}$.\\
+\textbf{Função:} sem o NTC, a corrente de energização seria imediatamente
+$100/20=\SI{5}{\ampere}$. O termistor a limita a $\SI{0.71}{\ampere}$ e vai
+"saindo do caminho" à medida que aquece --- um \textbf{limitador de corrente de
+partida}. É o que protege capacitores de entrada e contatos de relé em fontes
+chaveadas.\\
+\textbf{Limitação:} em regime o NTC ainda dissipa $5(4)^{2}=\SI{80}{\watt}$, e
+precisa de tempo para esfriar antes de um novo religamento --- por isso ele não
+protege contra reenergizações rápidas e sucessivas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Em uma cadeia de três resistores sob $\SI{90}{\volt}$, sabe-se que
+$R_2=2R_1$, $R_3=3R_1$ e que a corrente é $\SI{0.5}{\ampere}$. Determine os
+três valores e as quedas.
+\resposta{$R_1=\SI{30}{\ohm}$, $R_2=\SI{60}{\ohm}$, $R_3=\SI{90}{\ohm}$;
+quedas $\SI{15}{\volt}$, $\SI{30}{\volt}$, $\SI{45}{\volt}$}
+\resolucao{
+\[
+R_{eq}=\frac{V}{I}=\frac{90}{0{,}5}=\SI{180}{\ohm}.
+\]
+Como $R_{eq}=R_1+2R_1+3R_1=6R_1$:
+\[
+R_1=\frac{180}{6}=\SI{30}{\ohm},\quad R_2=\SI{60}{\ohm},\quad R_3=\SI{90}{\ohm}.
+\]
+Quedas: $U_k=R_kI$, ou seja $15$, $30$ e $\SI{45}{\volt}$; soma
+$=\SI{90}{\volt}$ \checkmark.\\
+Como as quedas guardam a mesma proporção $1{:}2{:}3$ dos resistores, poderiam
+ter sido obtidas direto: $90$ dividido em $6$ partes de $\SI{15}{\volt}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma cadeia de $n$ resistores iguais de $\SI{47}{\ohm}$ deve limitar a corrente
+a no máximo $\SI{40}{\milli\ampere}$ sob $\SI{24}{\volt}$. Determine o menor
+$n$ e a corrente resultante.
+\resposta{$n=13$; $I=\SI{39.3}{\milli\ampere}$}
+\resolucao{Exige-se $R_{eq}\ge V/I_{\max}=24/0{,}040=\SI{600}{\ohm}$:
+\[
+47n\ge600 \;\Longrightarrow\; n\ge12{,}77 \;\Longrightarrow\; n=13.
+\]
+\[
+R_{eq}=13\cdot47=\SI{611}{\ohm}
+\;\Longrightarrow\;
+I=\frac{24}{611}=\SI{39.3}{\milli\ampere}\ \le\ \SI{40}{\milli\ampere}\ \checkmark
+\]
+\textbf{Cuidado com o arredondamento:} $n=12$ daria
+$R_{eq}=\SI{564}{\ohm}$ e $I=\SI{42.6}{\milli\ampere}$ --- \emph{acima} do
+limite. Em restrições do tipo "no máximo", arredonde sempre \textbf{para cima},
+mesmo que a fração seja pequena.}
+\end{questao}
+
+\begin{questao}[3]{}
+Em uma cadeia série de dois resistores sob tensão fixa $V$, demonstre que a
+soma das potências é $P=\dfrac{V^{2}}{R_1+R_2}$ e explique por que aumentar
+\emph{qualquer} resistor reduz a potência total, embora possa \emph{aumentar} a
+potência do outro.
+\resposta{Aumentar $R_k$ reduz $P_{tot}$; a potência do outro sempre diminui
+--- é a do próprio $R_k$ que pode subir}
+\resolucao{Com $I=V/(R_1+R_2)$:
+\[
+P=VI=\frac{V^{2}}{R_1+R_2}.
+\]
+Como $R_1+R_2$ cresce, $P$ diminui --- \emph{sempre}.\\
+Para o outro resistor, $P_2=R_2I^{2}=\dfrac{V^{2}R_2}{(R_1+R_2)^{2}}$: com
+$R_2$ fixo e $R_1$ crescendo, $P_2$ só pode \textbf{diminuir}.\\
+Já a potência do \emph{próprio} $R_1$,
+$P_1=\dfrac{V^{2}R_1}{(R_1+R_2)^{2}}$, cresce enquanto $R_1<R_2$, atinge um
+máximo em $R_1=R_2$ e depois decresce. \textbf{Conclusão:} o enunciado
+intuitivo "mais resistência, mais aquecimento" é falso em série --- o
+aquecimento de um resistor é máximo quando ele iguala a soma dos demais, e cai
+para os dois lados. Este resultado é retomado quantitativamente no bloco de
+desafio.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Projeto.)} Uma cadeia série de três resistores deve dividir
+$\SI{24}{\volt}$ em quedas de $\SI{6}{\volt}$, $\SI{8}{\volt}$ e
+$\SI{10}{\volt}$, com corrente de $\SI{20}{\milli\ampere}$.
+\begin{itensq}
+\item Determine os três resistores e suas potências.
+\item Escolha valores comerciais E24 e recalcule as quedas reais.
+\item Avalie se o erro é aceitável para alimentar cargas com tolerância de
+      $\pm5\%$.
+\end{itensq}
+\resposta{(a) $\SI{300}{\ohm}$, $\SI{400}{\ohm}$, $\SI{500}{\ohm}$;
+$\SI{0.12}{\watt}$, $\SI{0.16}{\watt}$, $\SI{0.20}{\watt}$;
+(b) $300/390/510\ \si{\ohm}$ $\Rightarrow$ $5{,}98/7{,}77/10{,}16\ \si{\volt}$;
+(c) sim, erro máximo de $2{,}9\%$}
+\resolucao{(a) Como a corrente é comum, $R_k=U_k/I$:
+\[
+R_1=\frac{6}{0{,}02}=300,\quad R_2=\frac{8}{0{,}02}=400,\quad
+R_3=\frac{10}{0{,}02}=\SI{500}{\ohm}.
+\]
+Potências: $P_k=U_kI$ $\Rightarrow$ $0{,}12$; $0{,}16$;
+$\SI{0.20}{\watt}$. Um resistor de $\frac{1}{2}\,\si{\watt}$ em cada posição
+oferece folga confortável.\\
+(b) A E24 tem $300$ e $510$, mas não $400$ --- o vizinho é $\SI{390}{\ohm}$.
+Com $R_{eq}=300+390+510=\SI{1200}{\ohm}$, a corrente real é
+$24/1200=\SI{20.0}{\milli\ampere}$ (coincidência favorável), e as quedas ficam
+\[
+U_1=\SI{6.00}{\volt},\quad U_2=\SI{7.80}{\volt},\quad U_3=\SI{10.20}{\volt}.
+\]
+(c) Desvios: $0\%$, $-2{,}5\%$ e $+2{,}0\%$ --- todos dentro de $\pm5\%$.
+\textbf{Ressalva essencial:} este projeto só vale \emph{em vazio}. Qualquer
+carga real conectada em paralelo com uma das quedas altera a corrente da cadeia
+e derruba todas as tensões. Um divisor resistivo puro serve para referências de
+altíssima impedância, nunca para alimentar cargas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Propagação de incerteza.)} Uma cadeia é formada por $N$ resistores
+nominalmente iguais, cada um com tolerância relativa $t$.
+\begin{itensq}
+\item Obtenha a tolerância de $R_{eq}$ no critério de \textbf{pior caso}.
+\item Obtenha-a no critério \textbf{estatístico} (erros independentes).
+\item Compare para $N=5$ e $t=5\%$, e discuta qual usar.
+\end{itensq}
+\resposta{(a) $t$; (b) $t/\sqrt{N}$; (c) $5\%$ contra $2{,}24\%$}
+\resolucao{(a) Pior caso: todos desviam para o mesmo lado.
+$\Delta R_{eq}=N(tR)$ e $R_{eq}=NR$, logo
+\[
+\frac{\Delta R_{eq}}{R_{eq}}=\frac{NtR}{NR}=t.
+\]
+A tolerância relativa \textbf{não melhora nem piora} --- resultado que
+surpreende, mas decorre de a série somar tanto os valores quanto os desvios.\\
+(b) Desvios independentes combinam-se em quadratura:
+\[
+u(R_{eq})=\sqrt{N}\,(tR)
+\;\Longrightarrow\;
+\frac{u(R_{eq})}{R_{eq}}=\frac{\sqrt{N}\,tR}{NR}=\frac{t}{\sqrt{N}}.
+\]
+(c) Para $N=5$, $t=5\%$: pior caso $5\%$; estatístico
+$5/\sqrt5=2{,}24\%$.\\
+\textbf{Qual usar:} o \emph{pior caso} para projetos de segurança e para lotes
+pequenos, em que os desvios podem ser correlacionados (resistores do mesmo
+rolo, mesma batelada, mesma temperatura). O \emph{estatístico} para produção em
+série com componentes de origens independentes, onde o pior caso seria
+excessivamente conservador. Note que a hipótese de independência é quase sempre
+otimista na prática.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto com compensação térmica.)} Deseja-se uma associação série cuja
+resistência total seja \emph{independente} da temperatura, combinando um
+resistor de $R_1=\SI{100}{\ohm}$ com $\alpha_1=+4000\,\mathrm{ppm/^{\circ}C}$ e
+outro com $\alpha_2=-1000\,\mathrm{ppm/^{\circ}C}$.
+\begin{itensq}
+\item Deduza a condição de compensação.
+\item Determine $R_2$ e a resistência total.
+\item Discuta a limitação prática dessa compensação.
+\end{itensq}
+\resposta{(a) $R_1\alpha_1+R_2\alpha_2=0$; (b) $R_2=\SI{400}{\ohm}$,
+$R_{eq}=\SI{500}{\ohm}$; (c) só é exata em primeira ordem e numa temperatura}
+\resolucao{(a) Para pequenas variações,
+$R_k(T)=R_k[1+\alpha_k\Delta T]$, logo
+\[
+R_{eq}(T)=(R_1+R_2)+(R_1\alpha_1+R_2\alpha_2)\Delta T.
+\]
+Anular o termo em $\Delta T$ exige
+\[
+R_1\alpha_1+R_2\alpha_2=0.
+\]
+(b) $R_2=-\dfrac{R_1\alpha_1}{\alpha_2}
+=\dfrac{100\cdot4000}{1000}=\SI{400}{\ohm}$, e
+$R_{eq}=100+400=\SI{500}{\ohm}$.\\
+\textbf{Verificação a $\Delta T=\SI{50}{\celsius}$:}
+$R_1\to100(1{,}20)=\SI{120}{\ohm}$ e $R_2\to400(0{,}95)=\SI{380}{\ohm}$; soma
+$=\SI{500}{\ohm}$ \checkmark.\\
+(c) Três limitações. \textbf{(i)} A compensação é de \emph{primeira ordem};
+$\alpha$ real varia com $T$, e o cancelamento se degrada longe da temperatura
+de projeto. \textbf{(ii)} Os dois resistores precisam estar \emph{à mesma
+temperatura} --- exige acoplamento térmico, o que é difícil quando as
+dissipações diferem (aqui, $P_2=4P_1$). \textbf{(iii)} O valor de $R_2$ fica
+\emph{amarrado} pela razão $\alpha_1/\alpha_2$: não se pode escolher
+livremente $R_{eq}$ \emph{e} exigir compensação. Materiais dedicados
+(manganina, constantan, com $\alpha$ naturalmente próximo de zero) resolvem o
+problema de forma mais direta.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto sob incerteza.)} Um LED deve ser alimentado por uma fonte
+entre $\SI{9}{\volt}$ e $\SI{12}{\volt}$. Sua queda direta varia entre
+$\SI{1.8}{\volt}$ e $\SI{2.2}{\volt}$, e a corrente não pode exceder
+$\SI{20}{\milli\ampere}$.
+\begin{itensq}
+\item Identifique a combinação de pior caso e determine o menor $R$ admissível.
+\item Determine a corrente mínima resultante e avalie o impacto no brilho.
+\item Especifique a potência do resistor.
+\end{itensq}
+\resposta{(a) $\SI{12}{\volt}$ com $\SI{1.8}{\volt}$ $\Rightarrow$
+$R\ge\SI{510}{\ohm}$; (b) $\SI{13.3}{\milli\ampere}$;
+(c) $\SI{0.204}{\watt}\Rightarrow\frac{1}{2}\,\si{\watt}$}
+\resolucao{(a) A corrente é máxima quando a fonte está no \textbf{máximo} e a
+queda do LED no \textbf{mínimo} --- é preciso combinar os extremos que atuam no
+mesmo sentido, e não os extremos "nominais":
+\[
+R\ge\frac{12-1{,}8}{0{,}020}=\SI{510}{\ohm}.
+\]
+O valor $\SI{510}{\ohm}$ existe na série E24.\\
+(b) O outro extremo (fonte mínima, queda máxima):
+\[
+I_{\min}=\frac{9-2{,}2}{510}=\SI{13.3}{\milli\ampere}.
+\]
+A corrente varia $13{,}3$--$\SI{20}{\milli\ampere}$, razão de $1{,}5{:}1$. Como
+o fluxo luminoso é aproximadamente proporcional à corrente, o brilho varia
+cerca de $33\%$ --- perceptível, porém aceitável para sinalização. Para brilho
+constante seria preciso uma fonte de \emph{corrente}, não um resistor.\\
+(c) $P=RI_{\max}^{2}=510(0{,}020)^{2}=\SI{0.204}{\watt}$; especifique
+$\frac{1}{2}\,\si{\watt}$.\\
+\textbf{Método:} em projeto com faixas, nunca use valores nominais --- enumere
+os extremos e identifique qual combinação é crítica para \emph{cada} requisito.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Sensibilidade.)} Em uma cadeia $I=\dfrac{V}{R_1+R_2}$, com
+$V=\SI{12}{\volt}$, $R_1=\SI{100}{\ohm}$ e $R_2=\SI{200}{\ohm}$.
+\begin{itensq}
+\item Obtenha $\partial I/\partial R_1$ e avalie-a numericamente.
+\item Obtenha a sensibilidade \emph{relativa}
+      $S=\dfrac{\partial I/I}{\partial R_1/R_1}$.
+\item Interprete o resultado para $R_1\ll R_2$ e $R_1\gg R_2$.
+\end{itensq}
+\resposta{(a) $-\pot{1.33}{-4}\,\si{\ampere\per\ohm}$;
+(b) $S=-R_1/(R_1+R_2)=-1/3$; (c) $S\to0$ e $S\to-1$}
+\resolucao{(a)
+\[
+\frac{\partial I}{\partial R_1}=-\frac{V}{(R_1+R_2)^{2}}
+=-\frac{12}{300^{2}}=-\pot{1.33}{-4}\,\si{\ampere\per\ohm}.
+\]
+Um aumento de $\SI{1}{\ohm}$ em $R_1$ reduz a corrente em
+$\SI{0.133}{\milli\ampere}$ (de $\SI{40}{\milli\ampere}$).\\
+(b)
+\[
+S=\frac{\partial I}{\partial R_1}\cdot\frac{R_1}{I}
+=-\frac{V}{(R_1+R_2)^{2}}\cdot\frac{R_1(R_1+R_2)}{V}
+=-\frac{R_1}{R_1+R_2}=-\frac13.
+\]
+Ou seja: $1\%$ de erro em $R_1$ produz apenas $0{,}33\%$ de erro em $I$.\\
+(c) Se $R_1\ll R_2$, $S\to0$: a corrente é governada por $R_2$ e $R_1$ torna-se
+irrelevante --- é o caso do resistor \emph{shunt} de medição, deliberadamente
+pequeno para não perturbar o circuito. Se $R_1\gg R_2$, $S\to-1$: $R_1$ passa a
+determinar sozinho a corrente, e toda a sua imprecisão é transferida
+integralmente. \textbf{Regra de projeto:} coloque a tolerância apertada no
+elemento cuja sensibilidade relativa se aproxima de $1$; nos demais, use
+componentes baratos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Análise de falhas.)} Dez resistores de $\SI{10}{\ohm}$ formam uma
+cadeia sob $\SI{100}{\volt}$.
+\begin{itensq}
+\item Determine corrente, queda e potência por resistor em operação normal.
+\item Repita supondo que \emph{um} resistor entre em curto.
+\item Compare com o caso de um resistor \emph{aberto} e discuta qual falha é
+      mais perigosa.
+\end{itensq}
+\resposta{(a) $\SI{1}{\ampere}$, $\SI{10}{\volt}$, $\SI{10}{\watt}$;
+(b) $\SI{1.11}{\ampere}$, $\SI{11.1}{\volt}$, $\SI{12.3}{\watt}$;
+(c) o curto é mais perigoso}
+\resolucao{(a) $R_{eq}=\SI{100}{\ohm}$, $I=\SI{1}{\ampere}$,
+$U=\SI{10}{\volt}$, $P=\SI{10}{\watt}$ cada; total $\SI{100}{\watt}$.\\
+(b) $R_{eq}=\SI{90}{\ohm}$, $I=100/90=\SI{1.111}{\ampere}$ ($+11\%$),
+$U=\SI{11.1}{\volt}$, $P=10(1{,}111)^{2}=\SI{12.35}{\watt}$ ($+23{,}5\%$);
+total $\SI{111}{\watt}$.\\
+(c) O \textbf{aberto} zera a corrente: o circuito para de funcionar, mas nada
+sofre --- é uma falha \emph{segura} (\emph{fail-safe}), fácil de localizar com
+voltímetro.\\
+O \textbf{curto} é insidioso: o circuito continua operando, aparentemente
+normal, mas cada resistor remanescente passa a dissipar $23{,}5\%$ a mais. Se
+já operavam próximos do nominal, entram em sobrecarga --- e cada novo curto
+agrava o quadro de forma \emph{acelerada}. Com dois curtos,
+$P=\SI{15.6}{\watt}$ ($+56\%$); com três, $\SI{20.4}{\watt}$ ($+104\%$).
+\textbf{Conclusão:} falhas que \emph{reduzem} a resistência de um circuito em
+série tendem a ser progressivas e devem ser detectadas por monitoração de
+corrente, não por observação funcional.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Método experimental.)} Para determinar $\EMF$ e $r$ de uma bateria,
+mediu-se a tensão de terminal em duas condições de carga:
+$(\SI{1}{\ampere};\ \SI{11.5}{\volt})$ e
+$(\SI{3}{\ampere};\ \SI{10.5}{\volt})$.
+\begin{itensq}
+\item Obtenha $r$ e $\EMF$.
+\item Explique a vantagem de usar dois pontos em vez de medir a tensão em
+      vazio.
+\item Estime a corrente de curto-circuito e comente sua validade.
+\end{itensq}
+\resposta{(a) $r=\SI{0.5}{\ohm}$, $\EMF=\SI{12}{\volt}$;
+(c) $I_{cc}=\SI{24}{\ampere}$, valor apenas indicativo}
+\resolucao{(a) O modelo é $V=\EMF-rI$ --- uma reta. Dois pontos a determinam:
+\[
+r=-\frac{\Delta V}{\Delta I}=-\frac{10{,}5-11{,}5}{3-1}=\SI{0.5}{\ohm},
+\]
+\[
+\EMF=V+rI=11{,}5+0{,}5(1)=\SI{12}{\volt}.
+\]
+(b) A medida em vazio exigiria um voltímetro de impedância \emph{infinita}; com
+impedância finita, circula uma pequena corrente e a leitura já não é $\EMF$.
+Além disso, baterias reais apresentam recuperação de tensão em repouso, o que
+falseia a leitura em vazio. O ajuste por dois (ou mais) pontos de carga
+\textbf{extrapola} para $I=0$ sem precisar chegar lá, e ainda entrega $r$ de
+brinde. Com três ou mais pontos, uma regressão linear também revela se o modelo
+é adequado.\\
+(c) $I_{cc}=\EMF/r=12/0{,}5=\SI{24}{\ampere}$. \textbf{Ressalva:} o valor
+pressupõe $r$ constante, hipótese que falha em correntes altas --- $r$ cresce
+com a corrente e com a descarga, e há aquecimento. O número serve como
+\emph{ordem de grandeza} para dimensionar proteção, jamais como previsão
+precisa.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto com componentes disponíveis.)} Deseja-se uma resistência de
+$\SI{1}{\kilo\ohm}$ capaz de dissipar $\SI{2}{\watt}$, dispondo apenas de
+resistores de $\SI{200}{\ohm}$ e $\frac{1}{2}\,\si{\watt}$.
+\begin{itensq}
+\item Proponha a associação e verifique o valor.
+\item Determine a potência de cada resistor e a margem de segurança.
+\item Calcule a tensão e a corrente nominais da associação.
+\end{itensq}
+\resposta{(a) cinco em série; (b) $\SI{0.4}{\watt}$ cada, margem de $25\%$;
+(c) $\SI{44.7}{\volt}$ e $\SI{44.7}{\milli\ampere}$}
+\resolucao{(a) $5\times\SI{200}{\ohm}=\SI{1000}{\ohm}$ \checkmark.\\
+(b) Em série a corrente é comum e os resistores são iguais, logo a potência se
+reparte igualmente:
+\[
+P_k=\frac{2}{5}=\SI{0.4}{\watt}\ <\ \SI{0.5}{\watt}\ \checkmark
+\]
+Margem: $(0{,}5-0{,}4)/0{,}4=25\%$. É uma folga modesta --- em ambiente quente
+ou sem ventilação, considere sete unidades de $\SI{150}{\ohm}$
+($\SI{1050}{\ohm}$) ou resistores de $\SI{1}{\watt}$.\\
+(c)
+\[
+V=\sqrt{PR}=\sqrt{2\cdot1000}=\SI{44.7}{\volt},
+\qquad
+I=\sqrt{P/R}=\sqrt{0{,}002}=\SI{44.7}{\milli\ampere}.
+\]
+\textbf{Por que a série resolve:} ela multiplica \emph{simultaneamente} o valor
+e a capacidade de dissipação por $N$. Uma associação em paralelo de cinco
+unidades também daria $\SI{2.5}{\watt}$, mas $\SI{40}{\ohm}$ --- resolveria a
+potência e destruiria o valor.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Instrumentação.)} Cinco sensores resistivos de $\SI{1}{\kilo\ohm}$
+estão em série, alimentados por uma fonte de \textbf{corrente constante} de
+$\SI{1}{\milli\ampere}$. Mede-se a tensão de cada nó em relação ao terra.
+\begin{itensq}
+\item Determine as cinco tensões nodais em condição nominal.
+\item Um sensor passa a $\SI{1.2}{\kilo\ohm}$. Mostre como identificar
+      \emph{qual} deles mudou.
+\item Explique por que a fonte de corrente é preferível a uma fonte de tensão.
+\end{itensq}
+\resposta{(a) $1$, $2$, $3$, $4$ e $\SI{5}{\volt}$; (b) pela quebra do degrau
+uniforme de $\SI{1}{\volt}$; (c) desacopla os sensores entre si}
+\resolucao{(a) Com $I=\SI{1}{\milli\ampere}$, cada sensor cai
+$\SI{1}{\volt}$. Acumulando a partir do terra: $1$, $2$, $3$, $4$,
+$\SI{5}{\volt}$.\\
+(b) Se o \emph{terceiro} sensor for a $\SI{1.2}{\kilo\ohm}$, as tensões passam
+a $1$, $2$, $3{,}2$, $4{,}2$, $\SI{5.2}{\volt}$. A \textbf{diferença entre nós
+consecutivos} vale $1;\,1;\,1{,}2;\,1;\,1$ --- o degrau anômalo aponta
+diretamente o sensor defeituoso, e sua magnitude dá o novo valor:
+$\Delta R=\Delta U/I=0{,}2/0{,}001=\SI{200}{\ohm}$.\\
+(c) Com \textbf{corrente constante}, a queda de cada sensor é $U_k=IR_k$ ---
+depende \emph{só} do próprio sensor. A variação de um não afeta a leitura dos
+demais, e a relação é rigorosamente linear.\\
+Com fonte de \textbf{tensão}, a corrente seria $V/\sum R_k$: a mudança de um
+sensor alteraria a corrente e, portanto, \emph{todas} as leituras
+simultaneamente --- o sistema ficaria acoplado, com resposta não linear e sem
+identificação direta do sensor. É exatamente por isso que sistemas de RTD e
+extensômetros são excitados por corrente.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Otimização.)} Uma cadeia série sob tensão fixa $V$ contém um resistor
+ajustável $R$ e um bloco fixo de resistência total $R_f$.
+\begin{itensq}
+\item Obtenha $P_R(R)$ e mostre que ela é máxima em $R=R_f$.
+\item Calcule $P_{R,\max}$ e o rendimento nesse ponto.
+\item Compare com a condição de máxima potência \emph{total} e explique a
+      diferença.
+\end{itensq}
+\resposta{(a) $R=R_f$; (b) $P_{\max}=V^{2}/(4R_f)$, rendimento $50\%$;
+(c) a potência total é máxima em $R\to0$}
+\resolucao{(a)
+\[
+P_R=RI^{2}=\frac{V^{2}R}{(R+R_f)^{2}}.
+\]
+\[
+\frac{\mathrm{d}P_R}{\mathrm{d}R}
+=V^{2}\frac{(R+R_f)^{2}-R\cdot2(R+R_f)}{(R+R_f)^{4}}
+=V^{2}\frac{R_f-R}{(R+R_f)^{3}}=0
+\;\Longrightarrow\;
+R=R_f.
+\]
+A derivada é positiva para $R<R_f$ e negativa para $R>R_f$: máximo confirmado.\\
+(b) $P_{\max}=\dfrac{V^{2}R_f}{(2R_f)^{2}}=\dfrac{V^{2}}{4R_f}$. A potência
+total nesse ponto é $\dfrac{V^{2}}{2R_f}$, de modo que $R$ recebe exatamente
+\textbf{metade} --- rendimento de $50\%$.\\
+(c) A potência \emph{total} $P=\dfrac{V^{2}}{R+R_f}$ é monotonicamente
+decrescente: ela é máxima quando $R\to0$, e aí $P\to V^{2}/R_f$ --- o dobro do
+valor anterior, porém integralmente entregue ao bloco fixo.\\
+\textbf{Distinção que importa:} "máxima potência \emph{no elemento}" e "máxima
+potência \emph{do circuito}" são objetivos diferentes e incompatíveis. O
+primeiro é o critério de casamento (relevante quando o bloco fixo é a
+resistência interna de uma fonte); o segundo é o critério de eficiência. Este
+mesmo antagonismo reaparece no teorema da máxima transferência de potência.}
+\end{questao}

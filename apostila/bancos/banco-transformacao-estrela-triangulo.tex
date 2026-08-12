@@ -1,0 +1,917 @@
+% =====================================================================
+%  Banco complementar --- Transformacao Estrela-Triangulo  (REVISADO)
+%  Substitui a versao gerada por template (9 clones em N2, 8 em N3 e
+%  8 questoes conceituais marcadas como N4).
+%  O cap03 ja cobre: estrela 3/6/9 -> triangulo, triangulo 10/5/15 ->
+%  estrela, "explique por que a transformacao e util", triangulo
+%  9/6/3 com figura, tres de 2 ohm em estrela com fonte, triangulo
+%  12/6/6 com itens, e o triangulo XYZ 9/12/15. As conversoes basicas,
+%  portanto, ja estao exaustivamente cobertas la.
+%  Este banco explora: reversibilidade e verificacao, casos-limite
+%  (lado nulo, lado infinito), ponte desequilibrada por dois caminhos,
+%  condicionamento numerico, valores comerciais, e as DEDUCOES das
+%  duas formulas a partir das resistencias entre terminais.
+%  Distribuicao mantida: 5 N1 + 9 N2 + 8 N3 + 8 N4 = 30
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Transformação estrela-triângulo}
+
+\begin{atencao}[Organização do banco]
+As duas fórmulas têm estruturas espelhadas. \textbf{Triângulo para estrela:}
+cada braço é o \emph{produto} dos dois lados que tocam aquele terminal, dividido
+pela \emph{soma} dos três lados. \textbf{Estrela para triângulo:} cada lado é a
+soma dos três produtos de braços, dividida pelo braço \emph{oposto}. O N3 trata
+de pontes, casos-limite e condicionamento; o N4 exige as deduções, provas de
+positividade e a análise de valores comerciais.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um triângulo equilátero tem três lados de $\SI{30}{\ohm}$. Determine a estrela
+equivalente.
+\resposta{Três braços de $\SI{10}{\ohm}$}
+\resolucao{Para o caso equilibrado, a fórmula geral colapsa:
+\[
+R_Y=\frac{R_\Delta\cdot R_\Delta}{3R_\Delta}=\frac{R_\Delta}{3}
+=\frac{30}{3}=\SI{10}{\ohm}.
+\]
+\textbf{Regra rápida:} $R_Y=R_\Delta/3$. Guarde o sentido --- a estrela é
+sempre \emph{menor}, porque seus dois braços em série ($2R_Y=\SI{20}{\ohm}$)
+devem igualar o paralelo do triângulo
+($30\parallel60=\SI{20}{\ohm}$) \checkmark.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma estrela equilibrada tem três braços de $\SI{5}{\ohm}$. Determine o
+triângulo equivalente.
+\resposta{Três lados de $\SI{15}{\ohm}$}
+\resolucao{
+\[
+R_\Delta=\frac{3R_Y^{2}}{R_Y}=3R_Y=3(5)=\SI{15}{\ohm}.
+\]
+\textbf{Regra rápida:} $R_\Delta=3R_Y$ --- inversa da anterior. Se
+$R_Y=R_\Delta/3$ e $R_\Delta=3R_Y$ não fossem consistentes, uma das fórmulas
+estaria trocada. É a conferência mais barata que existe para o caso
+equilibrado.}
+\end{questao}
+
+\begin{questao}[1]{}
+Escreva, \textbf{sem calcular}, a expressão do braço $R_B$ de uma estrela
+equivalente a um triângulo de lados $R_{AB}$, $R_{BC}$ e $R_{CA}$.
+\resposta{$R_B=\dfrac{R_{AB}\,R_{BC}}{R_{AB}+R_{BC}+R_{CA}}$}
+\resolucao{A regra é posicional: o braço ligado ao terminal $B$ é o
+\textbf{produto dos dois lados que tocam $B$} --- que são $R_{AB}$ e
+$R_{BC}$ --- dividido pela \textbf{soma dos três lados}.\\
+\textbf{Como não errar:} identifique o terminal, olhe quais dois lados chegam
+nele e multiplique. O lado \emph{oposto} ($R_{CA}$) aparece apenas no
+denominador, junto com os outros dois.}
+\end{questao}
+
+\begin{questao}[1]{}
+Compare estrela e triângulo quanto ao número de elementos e de nós.
+\begin{alternativas}[2]
+\item ambos têm 3 resistores; a estrela tem um nó interno adicional
+\item a estrela tem 3 e o triângulo tem 4 resistores
+\item ambos têm o mesmo número de nós
+\item o triângulo tem um nó interno adicional
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Ambas as configurações usam \textbf{três} resistores e possuem os
+mesmos três terminais externos ($A$, $B$, $C$). A diferença é o \textbf{nó
+central} da estrela, que não tem correspondente no triângulo.\\
+\textbf{Consequência importante:} a equivalência vale apenas para o que se
+observa nos \emph{três terminais externos}. O potencial do nó central da estrela
+não corresponde a ponto algum do triângulo --- e nenhuma corrente interna é
+preservada pela transformação.}
+\end{questao}
+
+\begin{questao}[1]{}
+Identifique qual das expressões é a conversão triângulo-estrela:
+\begin{alternativas}[2]
+\item $R=\dfrac{\text{produto de dois}}{\text{soma dos três}}$
+\item $R=\dfrac{\text{soma dos produtos}}{\text{oposto}}$
+\item $R=\dfrac{\text{soma dos três}}{3}$
+\item $R=\dfrac{\text{produto dos três}}{\text{soma dos três}}$
+\end{alternativas}
+\resposta{(a)}
+\resolucao{\textbf{Triângulo $\to$ estrela:} produto de dois sobre a soma dos
+três --- alternativa (a). O resultado tem dimensão de $\si{\ohm}$
+($\si{\ohm^2}/\si{\ohm}$) \checkmark.\\
+\textbf{Estrela $\to$ triângulo:} soma dos produtos sobre o braço oposto ---
+alternativa (b). Também $\si{\ohm}$ \checkmark.\\
+\textbf{Teste de sanidade:} a alternativa (d) daria $\si{\ohm^{2}}$ --- errada
+por análise dimensional. E, no caso equilibrado, (a) devolve $R/3$ e (b)
+devolve $3R$, o que confirma qual é qual.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um triângulo tem $R_{AB}=\SI{20}{\ohm}$, $R_{BC}=\SI{30}{\ohm}$ e
+$R_{CA}=\SI{50}{\ohm}$. Determine a estrela equivalente.
+\resposta{$R_A=\SI{10}{\ohm}$, $R_B=\SI{6}{\ohm}$, $R_C=\SI{15}{\ohm}$}
+\resolucao{A soma dos lados é $20+30+50=\SI{100}{\ohm}$.
+\[
+R_A=\frac{R_{AB}R_{CA}}{100}=\frac{20(50)}{100}=\SI{10}{\ohm};
+\]
+\[
+R_B=\frac{R_{AB}R_{BC}}{100}=\frac{20(30)}{100}=\SI{6}{\ohm};
+\qquad
+R_C=\frac{R_{BC}R_{CA}}{100}=\frac{30(50)}{100}=\SI{15}{\ohm}.
+\]
+\textbf{Conferência de plausibilidade:} cada braço é menor que os lados que o
+originaram, e o maior braço ($R_C$) está no terminal tocado pelos dois maiores
+lados. Coerente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Converta de volta a estrela obtida ($10$, $6$ e $\SI{15}{\ohm}$) para
+triângulo e verifique a reversibilidade.
+\resposta{$20$, $30$ e $\SI{50}{\ohm}$ --- os valores originais}
+\resolucao{Soma dos produtos:
+\[
+\Sigma=R_AR_B+R_BR_C+R_CR_A=60+90+150=\SI{300}{\ohm\squared}.
+\]
+Cada lado é $\Sigma$ dividido pelo braço \emph{oposto}:
+\[
+R_{AB}=\frac{300}{R_C}=\frac{300}{15}=\SI{20}{\ohm};
+\quad
+R_{BC}=\frac{300}{R_A}=\SI{30}{\ohm};
+\quad
+R_{CA}=\frac{300}{R_B}=\SI{50}{\ohm}.
+\]
+\textbf{Reversibilidade confirmada.} As duas transformações são inversas exatas
+--- fato garantido pela construção, já que ambas derivam do mesmo sistema de
+três equações. Fazer a ida e a volta é a verificação mais completa possível de
+uma conversão.}
+\end{questao}
+
+\begin{questao}[2]{}
+Para o triângulo $20/30/\SI{50}{\ohm}$ e sua estrela equivalente, calcule a
+resistência entre $A$ e $B$ (com $C$ aberto) nas duas configurações.
+\resposta{$\SI{16}{\ohm}$ em ambas}
+\resolucao{\textbf{No triângulo:} o lado direto $R_{AB}$ em paralelo com o
+caminho $A$--$C$--$B$:
+\[
+R_{AB}^{eq}=20\parallel(50+30)=\frac{20(80)}{100}=\SI{16}{\ohm}.
+\]
+\textbf{Na estrela:} com $C$ aberto, o braço $R_C$ não conduz; sobram
+$R_A$ e $R_B$ em série:
+\[
+R_{AB}^{eq}=10+6=\SI{16}{\ohm}.\ \checkmark
+\]
+\textbf{É exatamente esta a definição de equivalência:} a resistência vista
+entre cada par de terminais, com o terceiro aberto, deve coincidir. As três
+igualdades desse tipo constituem o sistema de onde as fórmulas são deduzidas ---
+como se mostra no bloco de desafio.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma estrela tem $R_A=\SI{4}{\ohm}$, $R_B=\SI{8}{\ohm}$ e
+$R_C=\SI{12}{\ohm}$. Determine o triângulo equivalente e identifique o maior
+lado.
+\resposta{$R_{AB}=\SI{14.67}{\ohm}$, $R_{BC}=\SI{44}{\ohm}$,
+$R_{CA}=\SI{22}{\ohm}$; o maior é $R_{BC}$}
+\resolucao{
+\[
+\Sigma=4(8)+8(12)+12(4)=32+96+48=\SI{176}{\ohm\squared}.
+\]
+\[
+R_{AB}=\frac{176}{12}=\SI{14.67}{\ohm};
+\qquad
+R_{BC}=\frac{176}{4}=\SI{44}{\ohm};
+\qquad
+R_{CA}=\frac{176}{8}=\SI{22}{\ohm}.
+\]
+\textbf{Padrão:} o maior lado do triângulo é o \emph{oposto} ao menor braço da
+estrela. Como $R_A=\SI{4}{\ohm}$ é o menor braço, $R_{BC}$ é o maior lado ---
+a divisão por um número pequeno produz um resultado grande.\\
+\textbf{Interpretação:} um braço pequeno "aproxima" seu terminal do centro,
+o que equivale, no triângulo, a afastar os outros dois entre si.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em um triângulo, o lado $R_{BC}$ é substituído por um \textbf{circuito aberto}.
+Determine a estrela equivalente e interprete.
+\resposta{$R_A=\dfrac{R_{AB}R_{CA}}{R_{AB}+R_{CA}}$, $R_B=R_C=0$ --- ou seja,
+apenas dois resistores em série}
+\resolucao{Com $R_{BC}\to\infty$, a soma dos lados também diverge. Nos numeradores:
+\[
+R_A=\frac{R_{AB}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}\to0
+\]
+--- mas os braços $R_B$ e $R_C$ contêm $R_{BC}$ no numerador e o limite exige
+cuidado:
+\[
+R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}\to R_{AB};
+\qquad
+R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}\to R_{CA}.
+\]
+\textbf{Resultado:} $R_A=0$, $R_B=R_{AB}$ e $R_C=R_{CA}$. A estrela degenera em
+$R_{AB}$ e $R_{CA}$ ligados diretamente em série pelo terminal $A$ --- que é
+exatamente o circuito restante. \checkmark\\
+\textbf{Lição:} os casos-limite não quebram as fórmulas; eles as confirmam. Um
+lado ausente do triângulo apenas devolve a associação série trivial.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em um triângulo, o lado $R_{AB}$ é substituído por um \textbf{curto-circuito}.
+Determine a estrela equivalente.
+\resposta{$R_A=R_B=0$ e $R_C=\dfrac{R_{BC}R_{CA}}{R_{BC}+R_{CA}}$}
+\resolucao{Com $R_{AB}=0$, a soma vale $R_{BC}+R_{CA}$ e:
+\[
+R_A=\frac{0\cdot R_{CA}}{\Sigma}=0;
+\qquad
+R_B=\frac{0\cdot R_{BC}}{\Sigma}=0;
+\qquad
+R_C=\frac{R_{BC}R_{CA}}{R_{BC}+R_{CA}}.
+\]
+\textbf{Interpretação:} os terminais $A$ e $B$ estão em curto, logo ambos
+coincidem com o nó central --- daí $R_A=R_B=0$. E $R_C$ é o paralelo de
+$R_{BC}$ com $R_{CA}$, o que é correto: com $A$ e $B$ unidos, os dois resistores
+ficam mesmo em paralelo entre $C$ e esse nó comum. \checkmark\\
+\textbf{Observação:} a conversão \emph{inversa} não existe aqui --- uma estrela
+com dois braços nulos daria $\Sigma=0$ e divisão por zero. A transformação
+$Y\to\Delta$ exige todos os braços estritamente positivos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Verifique numericamente, para o triângulo $20/30/\SI{50}{\ohm}$, a identidade
+$R_{AB}R_{BC}+R_{BC}R_{CA}+R_{CA}R_{AB}
+=\left(\sum R_\Delta\right)\left(\sum R_Y\right)$.
+\resposta{$3100=100\times31$ \checkmark}
+\resolucao{\textbf{Lado esquerdo:}
+\[
+20(30)+30(50)+50(20)=600+1500+1000=3100.
+\]
+\textbf{Lado direito:} $\sum R_\Delta=100$ e
+$\sum R_Y=10+6+15=31$, logo $100(31)=3100$ \checkmark.\\
+\textbf{Utilidade:} a identidade permite obter a soma dos braços da estrela
+\emph{sem calcular cada um}:
+\[
+\sum R_Y=\frac{\sum_{\text{pares}}R_\Delta R_\Delta}{\sum R_\Delta}
+=\frac{3100}{100}=\SI{31}{\ohm}.
+\]
+É uma conferência rápida do conjunto das três conversões --- se a soma não
+bater, ao menos um braço está errado.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma rede, três resistores formam um triângulo entre os nós $P$, $Q$ e $R$,
+e há mais resistores ligados a esses três nós. Explique por que convém
+converter o triângulo em estrela, e não o contrário.
+\resposta{A estrela cria um nó interno isolado, liberando associações
+série/paralelo}
+\resolucao{\textbf{O problema do triângulo:} cada um de seus lados liga dois nós
+que \emph{também} recebem outros elementos. Nenhum lado fica em série ou em
+paralelo com nada --- a redução trava.\\
+\textbf{O que a estrela resolve:} ela substitui os três lados por três braços
+que se encontram em um nó \textbf{novo}, ao qual nada mais está ligado. Cada
+braço passa a estar em série com o que já existia em seu terminal, e essas
+séries podem então ser combinadas em paralelo.\\
+\textbf{Quando fazer o contrário:} se a rede contiver uma \emph{estrela} cujo
+nó central recebe outros elementos, converta-a em triângulo --- isso elimina o
+nó problemático. \textbf{A regra é sempre a mesma:} transforme na direção que
+\emph{elimina} o nó que está impedindo a redução.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma estrela tem braços $R_A=R_B=\SI{6}{\ohm}$ e $R_C=\SI{3}{\ohm}$. Determine o
+triângulo equivalente e verifique pela resistência entre $A$ e $B$.
+\resposta{$R_{AB}=\SI{24}{\ohm}$, $R_{BC}=R_{CA}=\SI{12}{\ohm}$}
+\resolucao{
+\[
+\Sigma=6(6)+6(3)+3(6)=36+18+18=\SI{72}{\ohm\squared};
+\]
+\[
+R_{AB}=\frac{72}{3}=\SI{24}{\ohm};
+\qquad
+R_{BC}=R_{CA}=\frac{72}{6}=\SI{12}{\ohm}.
+\]
+\textbf{Verificação (entre $A$ e $B$, com $C$ aberto):}\\
+\emph{Estrela:} $R_A+R_B=\SI{12}{\ohm}$.\\
+\emph{Triângulo:} $24\parallel(12+12)=\dfrac{24(24)}{48}=\SI{12}{\ohm}$
+\checkmark.\\
+\textbf{Simetria preservada:} como $R_A=R_B$, o triângulo também sai simétrico
+em relação ao par $A$--$B$. Qualquer simetria da estrela reaparece no
+triângulo --- propriedade útil para conferir resultados rapidamente.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma ponte é alimentada por $\SI{84}{\volt}$ entre o nó $S$ e o terra. Do nó
+$S$ partem $\SI{6}{\ohm}$ até $A$ e $\SI{12}{\ohm}$ até $B$; de $A$ sai
+$\SI{12}{\ohm}$ ao terra e de $B$ sai $\SI{6}{\ohm}$ ao terra; entre $A$ e
+$B$ há $\SI{6}{\ohm}$.
+\begin{itensq}
+\item Verifique que a ponte está desequilibrada.
+\item Converta o triângulo $S$--$A$--$B$ em estrela e determine $R_{eq}$.
+\item Determine a corrente total.
+\end{itensq}
+\resposta{(b) $R_{eq}=\SI{8.4}{\ohm}$; (c) $I=\SI{10}{\ampere}$}
+\resolucao{(a) Equilíbrio exigiria $\dfrac{6}{12}=\dfrac{12}{6}$, ou seja
+$0{,}5=2$ --- falso. \textbf{Desequilibrada}, e o resistor central conduz.
+Nenhuma associação série/paralelo é possível.\\
+(b) O triângulo formado por $S$, $A$ e $B$ tem lados
+$R_{SA}=6$, $R_{SB}=12$ e $R_{AB}=\SI{6}{\ohm}$, com soma
+$\SI{24}{\ohm}$. Convertendo em estrela de centro $N$:
+\[
+R_S=\frac{6(12)}{24}=\SI{3}{\ohm};
+\quad
+R_A=\frac{6(6)}{24}=\SI{1.5}{\ohm};
+\quad
+R_B=\frac{12(6)}{24}=\SI{3}{\ohm}.
+\]
+Agora a rede é redutível: de $N$ partem dois caminhos ao terra,
+\[
+(1{,}5+12)=\SI{13.5}{\ohm}
+\quad\text{e}\quad
+(3+6)=\SI{9}{\ohm},
+\]
+em paralelo: $\dfrac{13{,}5(9)}{22{,}5}=\SI{5.4}{\ohm}$. Somando $R_S$:
+\[
+R_{eq}=3+5{,}4=\SI{8.4}{\ohm}.
+\]
+(c) $I=\dfrac{84}{8{,}4}=\SI{10}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Resolva a mesma ponte por \textbf{análise nodal} e confronte com o resultado da
+conversão.
+\resposta{$V_A=\SI{48}{\volt}$, $V_B=\SI{36}{\volt}$; $R_{eq}=\SI{8.4}{\ohm}$
+--- confere}
+\resolucao{Com $V_S=\SI{84}{\volt}$ conhecido:
+\[
+\begin{cases}
+V_A\left(\tfrac16+\tfrac1{12}+\tfrac16\right)-\tfrac16V_B=\tfrac{84}{6}=14\\[4pt]
+-\tfrac16V_A+V_B\left(\tfrac1{12}+\tfrac16+\tfrac16\right)=\tfrac{84}{12}=7
+\end{cases}
+\]
+Resolvendo: $V_A=\SI{48}{\volt}$ e $V_B=\SI{36}{\volt}$.\\
+\textbf{Corrente total} (a que sai de $S$):
+\[
+I=\frac{84-48}{6}+\frac{84-36}{12}=6+4=\SI{10}{\ampere}
+\;\Longrightarrow\;
+R_{eq}=\frac{84}{10}=\SI{8.4}{\ohm}.\ \checkmark
+\]
+\textbf{Corrente no ramo central:} $(48-36)/6=\SI{2}{\ampere}$, de $A$ para
+$B$ --- confirmando o desequilíbrio.\\
+\textbf{Vantagem da conversão:} ela entrega $R_{eq}$ sem resolver sistema
+algum. \textbf{Vantagem da nodal:} ela entrega \emph{também} os potenciais
+internos e a corrente do ramo central --- que a conversão destrói. Escolha
+conforme o que se precisa saber.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um triângulo tem um lado muito menor que os outros dois:
+$R_{AB}=\SI{0.1}{\ohm}$, $R_{BC}=R_{CA}=\SI{100}{\ohm}$.
+\begin{itensq}
+\item Determine a estrela equivalente.
+\item Compare $R_A+R_B$ com $R_{AB}$ e interprete.
+\end{itensq}
+\resposta{$R_A=R_B=\SI{49.98}{\milli\ohm}$, $R_C=\SI{49.98}{\ohm}$;
+$R_A+R_B\approx R_{AB}$}
+\resolucao{(a) $\Sigma=0{,}1+100+100=\SI{200.1}{\ohm}$:
+\[
+R_A=R_B=\frac{0{,}1(100)}{200{,}1}=\SI{49.98}{\milli\ohm};
+\qquad
+R_C=\frac{100(100)}{200{,}1}=\SI{49.98}{\ohm}.
+\]
+(b) $R_A+R_B=\SI{99.95}{\milli\ohm}\approx R_{AB}=\SI{0.1}{\ohm}$.\\
+\textbf{Por quê:} a resistência entre $A$ e $B$ com $C$ aberto vale
+$R_{AB}\parallel(R_{BC}+R_{CA})=0{,}1\parallel200\approx\SI{0.1}{\ohm}$, e na
+estrela ela é exatamente $R_A+R_B$. O lado pequeno domina o paralelo, e a soma
+dos dois braços apenas reproduz esse domínio.\\
+\textbf{Consequência prática:} quando um lado do triângulo é muito menor que os
+outros, a estrela resultante tem \emph{dois braços minúsculos e um braço
+médio}. Os dois braços pequenos costumam ser desprezíveis diante do restante da
+rede --- mas verifique antes de descartá-los, porque em redes de baixa
+resistência eles podem ser exatamente o que importa.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma estrela tem um braço muito pequeno: $R_A=R_B=\SI{10}{\ohm}$ e
+$R_C=\SI{0.1}{\ohm}$.
+\begin{itensq}
+\item Determine o triângulo equivalente.
+\item Analise o comportamento quando $R_C\to0$.
+\end{itensq}
+\resposta{$R_{AB}=\SI{1020}{\ohm}$, $R_{BC}=R_{CA}=\SI{10.2}{\ohm}$;
+$R_{AB}\to\infty$}
+\resolucao{(a) $\Sigma=10(10)+10(0{,}1)+0{,}1(10)=100+1+1
+=\SI{102}{\ohm\squared}$:
+\[
+R_{AB}=\frac{102}{0{,}1}=\SI{1020}{\ohm};
+\qquad
+R_{BC}=R_{CA}=\frac{102}{10}=\SI{10.2}{\ohm}.
+\]
+(b) Com $R_C\to0$, o numerador tende a $R_AR_B=100$ e
+\[
+R_{AB}=\frac{100}{R_C}\to\infty,
+\]
+enquanto $R_{BC}\to R_B$ e $R_{CA}\to R_A$.\\
+\textbf{Interpretação:} $R_C=0$ significa que o terminal $C$ coincide com o nó
+central. No triângulo, isso equivale a $A$ e $B$ se ligarem a $C$ diretamente
+por $R_A$ e $R_B$, sem lado direto entre eles --- e $R_{AB}=\infty$ é
+exatamente a ausência desse lado. \checkmark\\
+\textbf{Nota numérica:} $\SI{1020}{\ohm}$ em paralelo com $\SI{10.2}{\ohm}$
+contribui com menos de $1\%$. Nesses casos, o lado enorme pode ser descartado
+sem prejuízo --- e vale conferir se descartá-lo simplifica a rede antes de
+seguir com o valor exato.}
+\end{questao}
+
+\begin{questao}[3]{}
+Discuta o condicionamento das fórmulas de conversão para resistores positivos.
+\begin{itensq}
+\item Identifique se há risco de cancelamento catastrófico.
+\item Determine onde, na prática, a precisão realmente se perde.
+\end{itensq}
+\resposta{As fórmulas são bem condicionadas; a perda de precisão ocorre na
+\emph{redução posterior} da rede}
+\resolucao{(a) \textbf{Não há risco.} Ambas as fórmulas envolvem apenas
+\emph{produtos} e \emph{somas} de quantidades positivas, seguidos de uma
+divisão por um número positivo. Não ocorre subtração de valores próximos ---
+que é a única fonte de cancelamento catastrófico. Erros relativos de entrada se
+propagam com fator próximo de $1$.\\
+\textbf{Verificação:} arredondando a estrela do exemplo anterior
+($49{,}98\,\mathrm{m}$; $49{,}98\,\mathrm{m}$; $\SI{49.98}{\ohm}$) para três
+algarismos e convertendo de volta, recupera-se
+$R_{AB}=\SI{0.1000}{\ohm}$ --- erro inferior a $0{,}1\%$.\\
+(b) \textbf{A precisão se perde depois.} Situações típicas:
+\begin{itemize}
+\item Um braço convertido, muito grande, fica em paralelo com um pequeno: sua
+contribuição é desprezível, e carregar seus algarismos é inútil --- mas
+\emph{descartá-lo cedo demais} pode mascarar um efeito real.
+\item O resultado final é uma \emph{diferença} entre valores próximos --- por
+exemplo, ao calcular a corrente de uma ponte quase equilibrada, em que
+$V_A-V_B$ é pequeno diante de $V_A$.
+\end{itemize}
+\textbf{Regra prática:} conduza a conversão com todos os algarismos e arredonde
+\emph{apenas no resultado final}. E desconfie sempre que a resposta for uma
+pequena diferença de números grandes --- ali, e não na transformação, é onde a
+precisão evapora.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma conversão produz um triângulo de $36{,}67$, $110$ e $\SI{55}{\ohm}$.
+Escolha valores comerciais E24 e avalie o erro.
+\begin{itensq}
+\item Indique os valores adotados.
+\item Converta de volta e compare com a estrela original de $10$, $20$ e
+      $\SI{30}{\ohm}$.
+\end{itensq}
+\resposta{$36$, $110$ e $\SI{56}{\ohm}$; erros de $-0{,}2\%$, $-2{,}0\%$ e
+$+1{,}7\%$ nos braços}
+\resolucao{(a) Valores E24 mais próximos: $\SI{36}{\ohm}$, $\SI{110}{\ohm}$ e
+$\SI{56}{\ohm}$ (desvios de $-1{,}8\%$, $0\%$ e $+1{,}8\%$ nos lados).\\
+(b) Convertendo o triângulo comercial de volta a estrela
+($\Sigma=36+110+56=\SI{202}{\ohm}$):
+\[
+R_A=\frac{36(56)}{202}=\SI{9.98}{\ohm};
+\quad
+R_B=\frac{36(110)}{202}=\SI{19.60}{\ohm};
+\quad
+R_C=\frac{110(56)}{202}=\SI{30.50}{\ohm}.
+\]
+Erros: $-0{,}2\%$, $-2{,}0\%$ e $+1{,}7\%$ em relação a $10$, $20$ e
+$\SI{30}{\ohm}$.\\
+\textbf{Observação importante:} os erros dos braços \emph{não} reproduzem os
+erros dos lados --- eles se recombinam. Um lado com erro nulo
+($\SI{110}{\ohm}$) contribuiu para dois braços que erraram $2\%$.\\
+\textbf{Método correto de avaliação:} nunca julgue o erro pelos componentes
+isolados. Converta de volta e compare com o alvo, ou --- melhor ainda --- calcule
+a grandeza que realmente interessa (a resistência entre os terminais usados) nos
+dois casos.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare o esforço de resolver a ponte desequilibrada por conversão
+estrela-triângulo e por análise nodal.
+\begin{itensq}
+\item Enumere as etapas de cada método.
+\item Indique o critério de escolha.
+\end{itensq}
+\resposta{Conversão: 3 fórmulas e reduções; nodal: sistema $2\times2$. A
+conversão dá só $R_{eq}$; a nodal dá tudo}
+\resolucao{(a) \textbf{Conversão:} identificar o triângulo (1); aplicar três
+fórmulas (2); somar duas séries (3); um paralelo (4); uma soma final (5). Sem
+sistemas de equações.\\
+\textbf{Nodal:} montar a matriz $2\times2$ (1); resolver (2); calcular a
+corrente total a partir dos potenciais (3).\\
+(b) \textbf{Critério.}
+\begin{itemize}
+\item Se a pergunta é \textbf{só} $R_{eq}$ --- ou a corrente total --- a
+conversão é mais rápida e não exige álgebra linear.
+\item Se são necessários potenciais internos, correntes de ramo ou potências
+individuais, use \textbf{nodal}. A conversão destrói a estrutura interna: o nó
+central da estrela não existe no circuito real, e nenhuma corrente calculada
+nele tem significado físico.
+\item Para pontes com \emph{mais} de um triângulo irredutível, a conversão
+precisa ser aplicada repetidamente e perde a vantagem; a nodal escala melhor.
+\end{itemize}
+\textbf{Estratégia mista frequente:} converter para obter $R_{eq}$ e a corrente
+total, e depois voltar ao circuito \emph{original} para distribuir essa corrente
+--- aproveitando o melhor dos dois.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma rede de três terminais é formada por resistores positivos em uma topologia
+qualquer. Discuta se ela sempre admite equivalente em estrela.
+\begin{itensq}
+\item Estabeleça a condição.
+\item Dê um exemplo em que a estrela equivalente teria braço negativo.
+\end{itensq}
+\resposta{A condição é a desigualdade triangular sobre as resistências entre
+pares}
+\resolucao{(a) Sejam $R_{ab}$, $R_{bc}$ e $R_{ca}$ as resistências medidas
+entre cada par de terminais (com o terceiro aberto). Da estrela, valem
+$R_{ab}=R_A+R_B$, $R_{bc}=R_B+R_C$ e $R_{ca}=R_C+R_A$, de onde
+\[
+R_A=\frac{R_{ab}+R_{ca}-R_{bc}}{2},
+\]
+e analogamente para $R_B$ e $R_C$.\\
+\textbf{Condição:} os três braços são não negativos se e somente se cada soma
+de duas resistências medidas for maior ou igual à terceira --- exatamente a
+\textbf{desigualdade triangular}.\\
+(b) \textbf{Contraexemplo.} Suponha
+$R_{ab}=\SI{1}{\ohm}$, $R_{bc}=\SI{10}{\ohm}$ e
+$R_{ca}=\SI{1}{\ohm}$. Então
+\[
+R_B=\frac{1+10-1}{2}=\SI{5}{\ohm};
+\qquad
+R_A=\frac{1+1-10}{2}=\SI{-4}{\ohm}.
+\]
+Braço negativo --- fisicamente irrealizável com resistores passivos.\\
+\textbf{Mas atenção:} essa combinação de medidas também não é realizável por
+uma rede passiva de três terminais. A desigualdade triangular é uma
+\emph{propriedade} de tais redes, não uma restrição adicional. Braços negativos
+só surgem como artifício de cálculo --- em transformações intermediárias ou em
+redes com elementos ativos.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Dedução --- triângulo para estrela.)} Deduza as fórmulas de conversão a
+partir das resistências entre terminais.
+\begin{itensq}
+\item Escreva as três equações de equivalência.
+\item Resolva o sistema para $R_A$, $R_B$ e $R_C$.
+\item Obtenha a forma final em função dos lados do triângulo.
+\end{itensq}
+\resposta{$R_A=\dfrac{R_{AB}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$ e análogas}
+\resolucao{(a) A equivalência exige que a resistência entre cada par de
+terminais, com o terceiro \emph{aberto}, seja a mesma nas duas configurações:
+\[
+\begin{cases}
+R_A+R_B=R_{AB}\parallel(R_{BC}+R_{CA})\\[3pt]
+R_B+R_C=R_{BC}\parallel(R_{CA}+R_{AB})\\[3pt]
+R_C+R_A=R_{CA}\parallel(R_{AB}+R_{BC})
+\end{cases}
+\]
+(b) Somando as três e dividindo por $2$, obtém-se $R_A+R_B+R_C$. Subtraindo
+dessa soma a segunda equação, resta
+\[
+R_A=\frac{(R_A+R_B)+(R_C+R_A)-(R_B+R_C)}{2}.
+\]
+(c) Substituindo os paralelos, com $\Sigma=R_{AB}+R_{BC}+R_{CA}$:
+\[
+R_A+R_B=\frac{R_{AB}(R_{BC}+R_{CA})}{\Sigma};
+\qquad
+R_C+R_A=\frac{R_{CA}(R_{AB}+R_{BC})}{\Sigma};
+\]
+\[
+R_B+R_C=\frac{R_{BC}(R_{CA}+R_{AB})}{\Sigma}.
+\]
+Levando à expressão de $R_A$ e simplificando o numerador:
+\[
+R_{AB}R_{BC}+R_{AB}R_{CA}+R_{CA}R_{AB}+R_{CA}R_{BC}
+-R_{BC}R_{CA}-R_{BC}R_{AB}=2R_{AB}R_{CA},
+\]
+donde
+\[
+R_A=\frac{2R_{AB}R_{CA}}{2\Sigma}=\frac{R_{AB}R_{CA}}{\Sigma}.
+\]
+\textbf{A regra mnemônica agora tem origem:} o produto dos dois lados que tocam
+o terminal aparece porque os demais termos se cancelam aos pares na combinação
+$(R_{ab}+R_{ca}-R_{bc})/2$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Dedução --- estrela para triângulo.)} Obtenha a transformação inversa.
+\begin{itensq}
+\item Deduza $R_{AB}$ em função dos braços.
+\item Verifique que a composição das duas transformações é a identidade.
+\item Explique por que o denominador é o braço \emph{oposto}.
+\end{itensq}
+\resposta{$R_{AB}=\dfrac{R_AR_B+R_BR_C+R_CR_A}{R_C}$}
+\resolucao{(a) Tomando as três fórmulas diretas e formando a soma dos produtos
+dois a dois:
+\[
+R_AR_B+R_BR_C+R_CR_A
+=\frac{R_{AB}R_{BC}R_{CA}\left(R_{AB}+R_{BC}+R_{CA}\right)}{\Sigma^{2}}
+=\frac{R_{AB}R_{BC}R_{CA}}{\Sigma}.
+\]
+Chamando esse valor de $P$ e observando que
+$R_C=\dfrac{R_{BC}R_{CA}}{\Sigma}$, tem-se
+\[
+\frac{P}{R_C}
+=\frac{R_{AB}R_{BC}R_{CA}/\Sigma}{R_{BC}R_{CA}/\Sigma}=R_{AB}.
+\]
+Logo
+\[
+R_{AB}=\frac{R_AR_B+R_BR_C+R_CR_A}{R_C}.
+\]
+(b) A dedução \emph{é} a verificação: partiu-se das fórmulas diretas e
+chegou-se de volta aos lados originais. Numericamente, o exemplo
+$20/30/\SI{50}{\ohm}\to10/6/\SI{15}{\ohm}\to20/30/\SI{50}{\ohm}$ confirma.\\
+(c) \textbf{Por que o oposto.} O braço $R_C$ é o único que \emph{não} contém
+$R_{AB}$ em seu numerador --- ele é construído a partir de $R_{BC}$ e
+$R_{CA}$. Ao dividir $P$ (que contém o produto dos três lados) por $R_C$,
+cancelam-se exatamente $R_{BC}$ e $R_{CA}$, isolando $R_{AB}$. É por isso que
+o denominador tem de ser o braço oposto, e não outro.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Positividade.)} Prove que as transformações preservam a positividade
+dos elementos.
+\begin{itensq}
+\item Mostre que $\Delta\to Y$ com lados positivos gera braços positivos.
+\item Mostre que $Y\to\Delta$ com braços positivos gera lados positivos.
+\item Determine o que ocorre quando um elemento tende a zero ou a infinito.
+\end{itensq}
+\resposta{Ambas as fórmulas são quocientes de quantidades positivas ---
+positividade garantida}
+\resolucao{(a) $R_A=\dfrac{R_{AB}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$. Com todos os
+lados positivos, numerador e denominador são positivos, logo $R_A>0$. O mesmo
+para $R_B$ e $R_C$.\\
+\textbf{Além disso, há um limite superior:} como
+$\Sigma>R_{CA}$, segue $R_A<R_{AB}$; e como $\Sigma>R_{AB}$, segue
+$R_A<R_{CA}$. Ou seja, \textbf{cada braço é menor que os dois lados que o
+originaram} --- teste de sanidade imediato para qualquer conversão.\\
+(b) $R_{AB}=\dfrac{R_AR_B+R_BR_C+R_CR_A}{R_C}$: soma de três produtos positivos
+dividida por um positivo, logo $R_{AB}>0$.\\
+\textbf{E há um limite inferior:} $R_{AB}>\dfrac{R_AR_C+R_BR_C}{R_C}=R_A+R_B$
+--- \textbf{cada lado é maior que a soma dos dois braços correspondentes}.
+Segundo teste de sanidade, dual do anterior.\\
+(c) \textbf{Casos-limite.}
+\begin{itemize}
+\item $R_{AB}\to0$ (lado em curto) $\Rightarrow$ $R_A,R_B\to0$: os terminais
+$A$ e $B$ colapsam sobre o nó central.
+\item $R_{AB}\to\infty$ (lado aberto) $\Rightarrow$ a estrela degenera em uma
+série simples.
+\item $R_C\to0$ na estrela $\Rightarrow$ $R_{AB}\to\infty$: o lado direto
+desaparece.
+\item $R_C\to\infty$ $\Rightarrow$ $R_{AB}\to R_A+R_B$, e os outros dois lados
+divergem.
+\end{itemize}
+Em todos os casos, o limite reproduz a interpretação física esperada --- as
+fórmulas nunca produzem resultados sem sentido para entradas positivas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Alcance da equivalência.)} Analise \emph{o que} a transformação
+preserva e o que ela destrói.
+\begin{itensq}
+\item Prove que as resistências entre os três terminais são preservadas.
+\item Determine se correntes e potências internas são preservadas.
+\item Estabeleça o procedimento correto quando grandezas internas são
+      necessárias.
+\end{itensq}
+\resposta{Preserva o comportamento nos três terminais; \emph{não} preserva nada
+do interior}
+\resolucao{(a) Por construção, as três equações de equivalência impõem
+igualdade das resistências entre pares. Como a rede de três terminais é linear e
+tem apenas três acessos, seu comportamento externo é completamente descrito por
+esses três valores --- qualquer excitação aplicada aos terminais produz a mesma
+resposta nas duas configurações.\\
+\emph{(Formalmente: a matriz de condutâncias de três terminais tem três
+parâmetros independentes, e as três equações os fixam todos.)}\\
+(b) \textbf{Não.} A estrela possui um nó central inexistente no triângulo, e o
+triângulo possui um lado direto inexistente na estrela. Consequências:
+\begin{itemize}
+\item As correntes dos elementos são \emph{completamente diferentes}.
+\item As potências individuais também --- embora a potência \emph{total} seja a
+mesma, pois o comportamento externo é idêntico.
+\item O potencial do nó central não corresponde a ponto algum do triângulo.
+\end{itemize}
+\textbf{Exemplo:} na ponte resolvida anteriormente, o resistor central de
+$\SI{6}{\ohm}$ conduz $\SI{2}{\ampere}$. Após a conversão, esse resistor
+\emph{não existe} --- e nenhum braço da estrela conduz $\SI{2}{\ampere}$.\\
+(c) \textbf{Procedimento correto:} use a conversão para obter as grandezas
+\emph{externas} (resistência equivalente, corrente total, tensões nos
+terminais). Depois \textbf{volte ao circuito original} e, com essas grandezas já
+conhecidas, distribua correntes e tensões pelos elementos reais.\\
+Se muitas grandezas internas forem necessárias, a análise nodal costuma ser
+mais direta desde o início.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto com valores comerciais.)} Uma estrela de $10$, $20$ e
+$\SI{30}{\ohm}$ deve ser substituída por um triângulo montado com resistores
+E24.
+\begin{itensq}
+\item Determine o triângulo exato.
+\item Escolha valores comerciais e avalie o erro na resistência entre $A$ e
+      $B$.
+\item Proponha uma estratégia para reduzir o erro.
+\end{itensq}
+\resposta{Exato: $36{,}67$, $110$ e $\SI{55}{\ohm}$; com $36/110/56$, o erro em
+$R_{AB}$ é de cerca de $1\%$}
+\resolucao{(a) $\Sigma=10(20)+20(30)+30(10)=200+600+300=\SI{1100}{\ohm\squared}$:
+\[
+R_{AB}=\frac{1100}{30}=\SI{36.67}{\ohm};
+\quad
+R_{BC}=\frac{1100}{10}=\SI{110}{\ohm};
+\quad
+R_{CA}=\frac{1100}{20}=\SI{55}{\ohm}.
+\]
+(b) E24: $\SI{36}{\ohm}$, $\SI{110}{\ohm}$, $\SI{56}{\ohm}$.\\
+\textbf{Grandeza que interessa} --- resistência entre $A$ e $B$ com $C$ aberto:
+\[
+\text{alvo (estrela)}: R_A+R_B=\SI{30}{\ohm};
+\]
+\[
+\text{obtido}: 36\parallel(110+56)=\frac{36(166)}{202}=\SI{29.58}{\ohm}.
+\]
+Erro de $-1{,}4\%$ --- aceitável para a maioria das aplicações, e menor que a
+tolerância de $5\%$ dos próprios resistores.\\
+(c) \textbf{Estratégias, em ordem de custo.}
+\begin{itemize}
+\item \textbf{Testar combinações:} $39/110/56$ daria
+$39\parallel166=\SI{31.6}{\ohm}$ ($+5{,}3\%$) --- pior. O par
+$36/110/56$ já é bom.
+\item \textbf{Série E96} ($1\%$): contém $36{,}5$ e $54{,}9$, reduzindo o erro
+a frações de por cento.
+\item \textbf{Associação:} $\SI{36.67}{\ohm}$ sai de $\SI{33}{\ohm}$ em série
+com $\SI{3.6}{\ohm}$, ou de $\SI{110}{\ohm}$ em paralelo com
+$\SI{55}{\ohm}$ --- e note que esses dois valores já estão na lista!
+\end{itemize}
+\textbf{Critério de avaliação:} sempre meça o erro na \emph{grandeza de
+interesse}, não nos componentes. Erros de lados individuais podem se compensar
+ou se somar, e só o cálculo da resistência terminal revela o efeito real.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Ponte quase equilibrada.)} Uma ponte tem $R_1=\SI{100}{\ohm}$,
+$R_2=\SI{100}{\ohm}$, $R_3=\SI{100}{\ohm}$ e
+$R_4=\SI{101}{\ohm}$, com $R_g=\SI{100}{\ohm}$ e alimentação de
+$\SI{10}{\volt}$.
+\begin{itensq}
+\item Estime a corrente do galvanômetro por análise nodal.
+\item Discuta a viabilidade de obter esse valor por conversão
+      estrela-triângulo.
+\end{itensq}
+\resposta{$I_g\approx\SI{-124}{\micro\ampere}$ (de $B$ para $A$); a conversão é
+inadequada para esta grandeza}
+\resolucao{(a) Com $V_S=\SI{10}{\volt}$ e o terra na base, o sistema nodal
+\[
+\begin{cases}
+V_A\left(\tfrac{1}{100}+\tfrac{1}{100}+\tfrac{1}{100}\right)
+-\tfrac{V_B}{100}=\tfrac{10}{100}\\[4pt]
+-\tfrac{V_A}{100}
++V_B\left(\tfrac{1}{100}+\tfrac{1}{101}+\tfrac{1}{100}\right)=\tfrac{10}{100}
+\end{cases}
+\]
+dá $V_A=\SI{5.00621}{\volt}$ e $V_B=\SI{5.01863}{\volt}$, de onde
+\[
+I_g=\frac{V_A-V_B}{100}=\frac{-0{,}01242}{100}=\SI{-124}{\micro\ampere}.
+\]
+O sinal indica corrente de $B$ para $A$ --- coerente, pois $R_4>R_3$ eleva
+$V_B$.\\
+(b) \textbf{A conversão é inadequada, por duas razões independentes.}\\
+\emph{(i) Ela não fornece a grandeza pedida.} Após converter o triângulo, o
+resistor do galvanômetro deixa de existir como elemento --- e é justamente sua
+corrente que se quer. Seria necessário converter, obter $R_{eq}$ e a corrente
+total, voltar ao circuito original e só então distribuir --- caminho mais longo
+que a nodal direta.\\
+\emph{(ii) O problema é mal condicionado.} A resposta é a diferença
+$V_A-V_B=\SI{-12.4}{\milli\volt}$ entre dois valores próximos de
+$\SI{5}{\volt}$ --- uma diferença relativa de apenas $0{,}25\%$.
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+Algarismos usados & $V_A-V_B$ obtido & erro em $I_g$\\
+\hline
+$6$ ($5{,}00621$; $5{,}01863$) & $\SI{-12.42}{\milli\volt}$ & $<0{,}1\%$\\
+$4$ ($5{,}006$; $5{,}019$) & $\SI{-13}{\milli\volt}$ & $\approx5\%$\\
+$3$ ($5{,}01$; $5{,}02$) & $\SI{-10}{\milli\volt}$ & $\approx20\%$\\
+\hline
+\end{tabular}
+\end{center}
+Arredondar cedo destrói o resultado.\\
+\textbf{Método adequado:} tratar o desequilíbrio como \emph{perturbação}. Para
+$\delta=\Delta R/R$ pequeno, $I_g$ é aproximadamente proporcional a $\delta$, e
+a expressão linearizada evita completamente a subtração de valores próximos.\\
+\textbf{Moral:} escolher o método é também escolher \emph{como} o erro numérico
+se propaga. A conversão estrela-triângulo é excelente para $R_{eq}$ e péssima
+para desequilíbrios pequenos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Síntese.)} Uma rede de três terminais deve apresentar
+$R_{AB}=\SI{20}{\ohm}$, $R_{BC}=\SI{30}{\ohm}$ e $R_{CA}=\SI{40}{\ohm}$
+(medidas com o terceiro terminal aberto).
+\begin{itensq}
+\item Verifique a realizabilidade e determine a estrela que atende.
+\item Determine o triângulo equivalente.
+\item Escolha valores comerciais e avalie qual das duas topologias erra menos.
+\end{itensq}
+\resposta{$R_A=\SI{15}{\ohm}$, $R_B=\SI{5}{\ohm}$, $R_C=\SI{25}{\ohm}$;
+triângulo $23$, $38{,}33$ e $\SI{115}{\ohm}$; a estrela é preferível}
+\resolucao{(a) \textbf{Realizabilidade.} A desigualdade triangular exige que
+cada resistência medida seja menor que a soma das outras duas:
+$20<70$, $30<60$, $40<50$ \checkmark. A rede é realizável com resistores
+positivos.\\
+Invertendo o sistema $R_A+R_B=R_{AB}$ e análogos:
+\[
+R_A=\frac{20+40-30}{2}=\SI{15}{\ohm};
+\quad
+R_B=\frac{20+30-40}{2}=\SI{5}{\ohm};
+\quad
+R_C=\frac{30+40-20}{2}=\SI{25}{\ohm}.
+\]
+\textbf{Conferência:} $15+5=20$; $5+25=30$; $25+15=40$ \checkmark.\\
+(b) $\Sigma=15(5)+5(25)+25(15)=75+125+375=\SI{575}{\ohm\squared}$:
+\[
+R_{AB}=\frac{575}{25}=\SI{23}{\ohm};
+\quad
+R_{BC}=\frac{575}{15}=\SI{38.33}{\ohm};
+\quad
+R_{CA}=\frac{575}{5}=\SI{115}{\ohm}.
+\]
+(c) \textbf{Estrela com E24:} $\SI{15}{\ohm}$ e $\SI{24}{\ohm}$ existem, e o
+mais próximo de $\SI{5}{\ohm}$ é $\SI{5.1}{\ohm}$. Com
+$(15;\,5{,}1;\,24)$:
+\[
+R_{AB}=\SI{20.1}{\ohm}\ (+0{,}5\%);
+\quad
+R_{BC}=\SI{29.1}{\ohm}\ (-3{,}0\%);
+\quad
+R_{CA}=\SI{39.0}{\ohm}\ (-2{,}5\%).
+\]
+\textbf{Triângulo com E24:} $(24;\,39;\,110)$:
+\[
+R_{AB}=\SI{20.67}{\ohm}\ (+3{,}4\%);
+\quad
+R_{BC}=\SI{30.21}{\ohm}\ (+0{,}7\%);
+\quad
+R_{CA}=\SI{40.06}{\ohm}\ (+0{,}1\%).
+\]
+\textbf{Conclusão.} Os dois erram no mesmo patamar (pior caso de $3{,}0\%$
+contra $3{,}4\%$), mas a \textbf{estrela é preferível} por três razões: seus
+valores são menores (componentes mais baratos), o erro é dominado por um único
+braço difícil ($\SI{5}{\ohm}$), e cada resistência medida depende de
+\emph{apenas dois} braços --- o que torna o ajuste previsível.\\
+No triângulo, cada medida envolve os \emph{três} lados através de um paralelo, e
+os erros se recombinam de forma difícil de controlar.\\
+\textbf{Se a precisão for crítica:} o braço de $\SI{5}{\ohm}$ pode ser obtido
+associando $\SI{10}{\ohm}$ em paralelo com $\SI{10}{\ohm}$, eliminando o
+único desvio significativo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Generalização.)} A transformação estrela-triângulo é o caso $n=3$ de
+uma família mais ampla.
+\begin{itensq}
+\item Descreva a transformação estrela-polígono para $n$ terminais.
+\item Determine quantos elementos há em cada configuração.
+\item Explique por que a transformação inversa nem sempre existe para $n>3$.
+\end{itensq}
+\resposta{Estrela: $n$ braços; polígono: $n(n-1)/2$ lados. A inversa só existe
+para $n=3$}
+\resolucao{(a) Uma estrela de $n$ braços $R_1,\dots,R_n$ ligados a um nó comum
+equivale a um polígono completo em que o lado entre os terminais $i$ e $j$ vale
+\[
+R_{ij}=R_iR_j\sum_{k=1}^{n}\frac{1}{R_k}.
+\]
+Para $n=3$ isso reproduz a fórmula conhecida:
+$R_{12}=R_1R_2\left(\frac1{R_1}+\frac1{R_2}+\frac1{R_3}\right)
+=\frac{R_1R_2+R_2R_3+R_3R_1}{R_3}$ \checkmark.\\
+(b) \textbf{Estrela:} $n$ elementos. \textbf{Polígono completo:}
+$\dbinom{n}{2}=\dfrac{n(n-1)}{2}$ elementos.
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$n$ & estrela & polígono\\
+\hline
+$3$ & $3$ & $3$\\
+$4$ & $4$ & $6$\\
+$5$ & $5$ & $10$\\
+\hline
+\end{tabular}
+\end{center}
+(c) \textbf{Contagem de graus de liberdade.} A transformação
+$Y\to$ polígono sempre existe. A inversa exigiria determinar $n$ braços a
+partir de $n(n-1)/2$ lados --- um sistema \textbf{sobredeterminado} para
+$n>3$.\\
+Só quando $n=3$ os dois números coincidem ($3=3$), e a correspondência é
+biunívoca. Para $n=4$, seria preciso obter $4$ incógnitas de $6$ equações: um
+polígono \emph{genérico} de quatro terminais simplesmente não admite estrela
+equivalente.\\
+\textbf{Consequência prática:} a conversão $\Delta\to Y$ é uma ferramenta
+peculiar ao caso de três terminais. Redes de quatro ou mais acessos exigem
+descrição matricial completa --- e é por isso que a análise nodal, que não
+depende de topologias especiais, é o método geral.}
+\end{questao}

@@ -1,0 +1,891 @@
+% =====================================================================
+%  Banco complementar --- Corrente Eletrica e Carga  (REVISADO)
+%  Substitui a versao gerada por template (8 clones em N2, 10 em N3 e
+%  8 questoes conceituais marcadas como N4).
+%  O cap02 ja cobre: Q=It em tres questoes N1, condutor com 32 mA,
+%  DOIS graficos i x t, carga em 10 h, rampa linear de 6 A a 2 A e a
+%  velocidade de deriva em fio de cobre de 1 mm2 com 10 A.
+%  Este banco explora: capacidade em A.h e autonomia sob corrente
+%  variavel, formas de onda (triangular, trapezoidal, pulsada),
+%  carga liquida x carga total em correntes bipolares, densidade de
+%  corrente e limite termico, eletrolise, corrente de fuga, o erro de
+%  estimar carga pelo pico e a distincao entre velocidade de deriva e
+%  velocidade de propagacao do sinal.
+%  Distribuicao mantida: 5 N1 + 8 N2 + 10 N3 + 8 N4 = 31
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Corrente elétrica e carga}
+
+\begin{atencao}[Organização do banco]
+A relação $Q=It$ vale apenas para corrente \textbf{constante}. No caso geral,
+$Q=\int i\,\mathrm{d}t$ --- ou seja, a carga é a \textbf{área} sob a curva
+$i\times t$, com sinal. O N3 explora formas de onda, eletrólise e limites
+térmicos; o N4 trata de autonomia de baterias, erros de estimativa por pico,
+correntes bipolares e a diferença entre velocidade de deriva e velocidade do
+sinal.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Uma corrente constante de $\SI{1.5}{\ampere}$ circula durante
+$\SI{40}{\second}$. Determine a carga transportada.
+\resposta{$Q=\SI{60}{\coulomb}$}
+\resolucao{
+\[
+Q=It=1{,}5\times40=\SI{60}{\coulomb}.
+\]
+\textbf{Fundamento:} a corrente é a taxa de passagem de carga,
+$i=\mathrm{d}q/\mathrm{d}t$. Sendo constante, a integral vira produto simples.
+Um ampère é, por definição, um coulomb por segundo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma carga de $\SI{90}{\coulomb}$ atravessa a seção de um condutor em
+$\SI{45}{\second}$. Determine a corrente média.
+\resposta{$I=\SI{2}{\ampere}$}
+\resolucao{
+\[
+I=\frac{Q}{t}=\frac{90}{45}=\SI{2}{\ampere}.
+\]
+\textbf{Atenção ao termo "média":} o resultado é a corrente \emph{média} no
+intervalo. Ela pode ter variado --- inclusive muito --- sem que isso altere a
+carga total. Duas formas de onda completamente diferentes podem ter a mesma
+média.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o tempo necessário para transportar $\SI{60}{\coulomb}$ com corrente
+de $\SI{250}{\milli\ampere}$.
+\resposta{$t=\SI{240}{\second}=\SI{4}{\minute}$}
+\resolucao{
+\[
+t=\frac{Q}{I}=\frac{60}{0{,}250}=\SI{240}{\second}.
+\]
+\textbf{Erro comum:} usar $I=\SI{250}{\ampere}$ e obter
+$\SI{0.24}{\second}$. Converta o prefixo \emph{antes} de dividir --- o
+resultado errado é mil vezes menor e ainda assim parece plausível.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o número de elétrons que atravessa uma seção quando circula
+$\SI{16}{\coulomb}$.
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$}
+\resposta{$n=\pot{1}{20}$ elétrons}
+\resolucao{
+\[
+n=\frac{Q}{e}=\frac{16}{\pot{1.6}{-19}}=\pot{1}{20}.
+\]
+Cem quintilhões de elétrons --- e essa carga passa em apenas
+$\SI{8}{\second}$ com corrente de $\SI{2}{\ampere}$.\\
+\textbf{Ordem de grandeza:} o coulomb é uma unidade \emph{enorme} em termos de
+partículas. É por isso que a quantização da carga é imperceptível em circuitos:
+um erro de um elétron em $10^{20}$ não se mede.}
+\end{questao}
+
+\begin{questao}[1]{}
+Sobre o sentido convencional da corrente, é correto afirmar:
+\begin{alternativas}[2]
+\item coincide com o movimento dos elétrons em um metal
+\item é oposto ao movimento dos elétrons em um metal
+\item existe apenas em semicondutores
+\item depende da intensidade da corrente
+\end{alternativas}
+\resposta{(b)}
+\resolucao{O sentido \textbf{convencional} é o do movimento de cargas
+\emph{positivas} --- escolha feita antes de se conhecer o elétron. Em metais,
+os portadores são elétrons (negativos), que se movem no sentido
+\textbf{oposto}.\\
+\textbf{Por que a convenção não atrapalha:} uma carga $-q$ movendo-se para a
+esquerda é eletricamente equivalente a $+q$ movendo-se para a direita. Todas as
+leis de circuitos funcionam identicamente.\\
+\textbf{Onde a distinção importa:} em efeitos que dependem do \emph{portador
+real}, como o efeito Hall --- cujo sinal revela se os portadores são elétrons ou
+lacunas, e é assim que se distingue um semicondutor tipo N de um tipo P.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Por um condutor passam $\SI{240}{\coulomb}$ em $\SI{120}{\second}$.
+\begin{itensq}
+\item Determine a corrente média.
+\item Determine o número de elétrons.
+\end{itensq}
+\resposta{$I=\SI{2}{\ampere}$; $n=\pot{1.5}{21}$}
+\resolucao{
+\[
+I=\frac{240}{120}=\SI{2}{\ampere};
+\qquad
+n=\frac{240}{\pot{1.6}{-19}}=\pot{1.5}{21}\ \text{elétrons}.
+\]
+\textbf{Taxa por segundo:} $\pot{1.25}{19}$ elétrons atravessam a seção a cada
+segundo. Se fosse possível contá-los um por vez, a $\SI{1}{\per\second}$,
+levaria cerca de $400$ bilhões de anos --- trinta vezes a idade do universo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bateria de celular tem capacidade de $\SI{2000}{\milli\ampere\hour}$.
+\begin{itensq}
+\item Converta para coulombs.
+\item Determine por quanto tempo ela alimenta uma carga de
+      $\SI{250}{\milli\ampere}$.
+\end{itensq}
+\resposta{$Q=\SI{7200}{\coulomb}$; $t=\SI{8}{\hour}$}
+\resolucao{(a)
+\[
+Q=2000\,\si{\milli\ampere\hour}=2\,\si{\ampere}\times3600\,\si{\second}
+=\SI{7200}{\coulomb}.
+\]
+(b)
+\[
+t=\frac{2000\,\si{\milli\ampere\hour}}{250\,\si{\milli\ampere}}=\SI{8}{\hour}.
+\]
+\textbf{Por que se usa $\si{\ampere\hour}$:} a conta acima sai em uma linha,
+enquanto com coulombs seria preciso converter duas vezes. A unidade é prática,
+mas é preciso lembrar que ela mede \emph{carga}, não energia.\\
+\textbf{Ressalva:} a capacidade nominal pressupõe uma corrente de descarga
+específica. Descargas muito rápidas entregam menos carga total --- efeito
+Peukert.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma corrente pulsada vale $\SI{5}{\ampere}$ durante
+$\SI{20}{\milli\second}$ e zero durante os $\SI{80}{\milli\second}$
+seguintes, repetindo-se.
+\begin{itensq}
+\item Determine a carga por ciclo.
+\item Determine a corrente média.
+\end{itensq}
+\resposta{$Q=\SI{100}{\milli\coulomb}$; $I_{méd}=\SI{1}{\ampere}$}
+\resolucao{(a) $Q=5\times0{,}020=\SI{0.1}{\coulomb}$.\\
+(b) O período é $\SI{100}{\milli\second}$:
+\[
+I_{méd}=\frac{Q}{T}=\frac{0{,}1}{0{,}1}=\SI{1}{\ampere},
+\]
+ou, equivalentemente, $I_{pico}\times D=5(0{,}20)$.\\
+\textbf{Advertência que vale repetir:} a corrente média de
+$\SI{1}{\ampere}$ descreve corretamente a \emph{carga} transportada, mas
+\emph{não} o aquecimento. Para efeito Joule, o que vale é o valor eficaz,
+$I_{rms}=5\sqrt{0{,}2}=\SI{2.24}{\ampere}$ --- que dissipa cinco vezes mais que
+$\SI{1}{\ampere}$ contínuo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um condutor de seção $\SI{1.5}{\milli\meter\squared}$ conduz
+$\SI{15}{\ampere}$. Determine a densidade de corrente.
+\resposta{$J=\SI{10}{\ampere\per\milli\meter\squared}=\pot{1}{7}\,
+\si{\ampere\per\meter\squared}$}
+\resolucao{
+\[
+J=\frac{I}{A}=\frac{15}{1{,}5}=\SI{10}{\ampere\per\milli\meter\squared}
+=\frac{15}{\pot{1.5}{-6}}=\pot{1}{7}\,\si{\ampere\per\meter\squared}.
+\]
+\textbf{Por que $J$ importa mais que $I$:} o aquecimento e a durabilidade de um
+condutor dependem da \emph{concentração} de corrente, não do total. Valores
+usuais em instalações prediais ficam entre $4$ e
+$\SI{6}{\ampere\per\milli\meter\squared}$ --- este condutor está bem acima, e
+aqueceria demais.\\
+\textbf{Comparação:} trilhas de circuito impresso admitem
+$\SI{20}{\ampere\per\milli\meter\squared}$ ou mais, porque dissipam calor
+diretamente para o ar e para a placa.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um capacitor de $\SI{100}{\micro\farad}$, inicialmente descarregado, recebe
+corrente constante de $\SI{2}{\milli\ampere}$ durante $\SI{5}{\second}$.
+\begin{itensq}
+\item Determine a carga acumulada.
+\item Determine a tensão final.
+\end{itensq}
+\resposta{$Q=\SI{10}{\milli\coulomb}$; $U=\SI{100}{\volt}$}
+\resolucao{(a) $Q=It=\pot{2}{-3}\times5=\SI{10}{\milli\coulomb}$.\\
+(b) $U=\dfrac{Q}{C}=\dfrac{\pot{1}{-2}}{\pot{1}{-4}}=\SI{100}{\volt}$.\\
+\textbf{Observação:} com corrente \emph{constante}, a tensão cresce
+\textbf{linearmente} no tempo --- uma rampa de
+$\SI{20}{\volt\per\second}$. É exatamente o oposto do carregamento por fonte de
+tensão através de resistor, que produz crescimento exponencial.\\
+\textbf{Aplicação:} é assim que se geram rampas precisas em geradores de sinal e
+em conversores analógico-digitais de dupla rampa.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma solução de $\mathrm{NaCl}$, íons $\mathrm{Na^{+}}$ movem-se para a
+direita transportando $\SI{3}{\coulomb}$ por segundo, enquanto
+$\mathrm{Cl^{-}}$ movem-se para a esquerda transportando
+$\SI{2}{\coulomb}$ por segundo em módulo. Determine a corrente resultante.
+\resposta{$I=\SI{5}{\ampere}$ para a direita}
+\resolucao{Cargas positivas indo para a direita e cargas negativas indo para a
+esquerda produzem corrente convencional \textbf{no mesmo sentido} --- elas se
+\emph{somam}:
+\[
+I=3+2=\SI{5}{\ampere}\ \text{para a direita}.
+\]
+\textbf{Erro comum:} subtrair, obtendo $\SI{1}{\ampere}$. O sinal negativo do
+íon \emph{e} o sentido oposto do movimento se cancelam, resultando em
+contribuição positiva.\\
+\textbf{Regra:} corrente convencional $=$ (cargas positivas no sentido adotado)
+$+$ (cargas negativas no sentido contrário). Em eletrólitos e em plasmas, os
+dois tipos de portador contribuem simultaneamente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bateria descarregada de $\SI{1200}{\milli\ampere\hour}$ é recarregada com
+corrente constante de $\SI{400}{\milli\ampere}$.
+\begin{itensq}
+\item Determine o tempo teórico de recarga.
+\item Explique por que o tempo real é maior.
+\end{itensq}
+\resposta{$t=\SI{3}{\hour}$ teórico; na prática, $20$ a $40\%$ mais}
+\resolucao{(a)
+\[
+t=\frac{1200}{400}=\SI{3}{\hour}.
+\]
+(b) \textbf{Três razões para o tempo real ser maior.}
+\begin{itemize}
+\item \textbf{Rendimento de carga:} parte da carga injetada não fica armazenada
+--- ela se perde em reações secundárias e em aquecimento. O rendimento
+coulômbico típico fica entre $85$ e $95\%$.
+\item \textbf{Fase de tensão constante:} carregadores modernos aplicam corrente
+constante até certa tensão e depois \emph{reduzem} a corrente
+progressivamente. Essa fase final é lenta e pode responder por metade do tempo
+total.
+\item \textbf{Limitação térmica:} se a bateria aquecer, o carregador reduz a
+corrente para protegê-la.
+\end{itemize}
+\textbf{Estimativa prática:} multiplique o tempo teórico por $1{,}3$ a
+$1{,}4$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma corrente de $\SI{8}{\ampere}$ atravessa um fusível cuja especificação é
+$I^{2}t=\SI{50}{\ampere\squared\second}$. Determine o tempo até a fusão.
+\resposta{$t\approx\SI{0.78}{\second}$}
+\resolucao{
+\[
+t=\frac{I^{2}t}{I^{2}}=\frac{50}{64}=\SI{0.78}{\second}.
+\]
+\textbf{Por que a especificação usa $I^{2}t$:} a energia dissipada no elemento
+fusível é $RI^{2}t$, e a fusão ocorre quando essa energia atinge o valor
+necessário para fundir o metal. Como $R$ é fixo, o parâmetro característico é
+$I^{2}t$.\\
+\textbf{Consequência:} dobrar a corrente reduz o tempo de atuação por
+\textbf{quatro}. Com $\SI{16}{\ampere}$, o mesmo fusível abriria em
+$\SI{0.20}{\second}$; com $\SI{80}{\ampere}$, em
+$\SI{7.8}{\milli\second}$.\\
+\textbf{Note a diferença conceitual:} aqui a grandeza relevante é
+$I^{2}t$ (energia), e não $It$ (carga). São perguntas distintas sobre a mesma
+corrente.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+A corrente em um circuito varia segundo $i(t)=1+2t$ (ampères, com $t$ em
+segundos), no intervalo $0\le t\le\SI{2}{\second}$.
+\begin{itensq}
+\item Determine a carga total transferida.
+\item Determine a corrente média e compare com a média dos extremos.
+\end{itensq}
+\resposta{$Q=\SI{6}{\coulomb}$; $I_{méd}=\SI{3}{\ampere}$}
+\resolucao{(a)
+\[
+Q=\int_0^{2}(1+2t)\,\mathrm{d}t=\Big[t+t^{2}\Big]_0^{2}=2+4=\SI{6}{\coulomb}.
+\]
+(b) $I_{méd}=Q/T=6/2=\SI{3}{\ampere}$.\\
+\textbf{Média dos extremos:} $i(0)=1$ e $i(2)=\SI{5}{\ampere}$, cuja média é
+$\SI{3}{\ampere}$ --- \emph{coincide}.\\
+\textbf{Mas cuidado:} a coincidência ocorre porque a função é \textbf{linear}.
+Para $i(t)=t^{2}$ no mesmo intervalo, a média verdadeira seria
+$\frac{1}{2}\int_0^{2}t^{2}\mathrm{d}t=\SI{1.33}{\ampere}$, enquanto a média
+dos extremos daria $\SI{2}{\ampere}$ --- erro de $50\%$.\\
+\textbf{Regra:} a média dos extremos só vale para variação linear. No caso
+geral, é preciso integrar.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um pulso de corrente cresce linearmente de zero a $\SI{6}{\ampere}$ em
+$\SI{2}{\milli\second}$ e retorna a zero em mais $\SI{3}{\milli\second}$.
+\begin{itensq}
+\item Determine a carga transferida.
+\item Determine a corrente média no pulso.
+\end{itensq}
+\resposta{$Q=\SI{15}{\milli\coulomb}$; $I_{méd}=\SI{3}{\ampere}$}
+\resolucao{(a) A carga é a \textbf{área} do triângulo:
+\[
+Q=\frac{1}{2}\,I_{pico}\,T=\frac{1}{2}(6)(\pot{5}{-3})
+=\pot{1.5}{-2}\,\si{\coulomb}=\SI{15}{\milli\coulomb}.
+\]
+\textbf{Observe:} a repartição $2+3$ do tempo \emph{não} importa para a área ---
+qualquer triângulo de base $\SI{5}{\milli\second}$ e altura
+$\SI{6}{\ampere}$ tem a mesma área. A assimetria afetaria o valor eficaz, não a
+carga.\\
+(b) $I_{méd}=Q/T=0{,}015/0{,}005=\SI{3}{\ampere}$, exatamente metade do pico
+--- característica de qualquer forma triangular.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma corrente trapezoidal sobe de $0$ a $\SI{4}{\ampere}$ em
+$\SI{1}{\second}$, permanece constante por $\SI{3}{\second}$ e cai a zero em
+$\SI{2}{\second}$.
+\begin{itensq}
+\item Determine a carga total.
+\item Determine a corrente média.
+\end{itensq}
+\resposta{$Q=\SI{18}{\coulomb}$; $I_{méd}=\SI{3}{\ampere}$}
+\resolucao{(a) Some as três áreas:
+\[
+Q=\underbrace{\tfrac12(1)(4)}_{2}+\underbrace{(3)(4)}_{12}
++\underbrace{\tfrac12(2)(4)}_{4}=\SI{18}{\coulomb}.
+\]
+(b) O intervalo total é $\SI{6}{\second}$:
+$I_{méd}=18/6=\SI{3}{\ampere}$.\\
+\textbf{Atalho para trapézios:} a área vale
+$I_{pico}\times\dfrac{B+b}{2}$, com $B=\SI{6}{\second}$ (base maior) e
+$b=\SI{3}{\second}$ (base menor):
+$4\times4{,}5=\SI{18}{\coulomb}$ \checkmark.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma corrente alterna entre $+\SI{4}{\ampere}$ por $\SI{3}{\second}$ e
+$-\SI{6}{\ampere}$ por $\SI{2}{\second}$, repetindo-se.
+\begin{itensq}
+\item Determine a carga líquida por ciclo.
+\item Determine a carga total \emph{transportada} em módulo.
+\item Interprete a diferença.
+\end{itensq}
+\resposta{Líquida: $\SI{0}{\coulomb}$; total: $\SI{24}{\coulomb}$}
+\resolucao{(a)
+\[
+Q_{líq}=4(3)+(-6)(2)=12-12=\SI{0}{\coulomb}.
+\]
+(b) Em módulo, passaram $12+12=\SI{24}{\coulomb}$.\\
+(c) \textbf{As duas respostas são corretas para perguntas diferentes.}
+\begin{itemize}
+\item A \textbf{carga líquida} nula significa que nada se acumula: um capacitor
+nesse circuito voltaria à tensão inicial a cada ciclo, e uma bateria não se
+carregaria nem descarregaria.
+\item A \textbf{carga transportada} de $\SI{24}{\coulomb}$ é o que
+efetivamente atravessou a seção. Em eletrólise, ela é que produziria depósito
+--- se o processo fosse irreversível.
+\item O \textbf{aquecimento} depende de outra grandeza ainda:
+$I_{rms}=\sqrt{\frac{4^{2}(3)+6^{2}(2)}{5}}=\SI{4.9}{\ampere}$.
+\end{itemize}
+\textbf{Moral:} "quanta corrente passou" é uma pergunta ambígua. Especifique se
+o interesse é acúmulo, transporte ou dissipação.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma corrente de descarga vale $i(t)=I_0e^{-t/\tau}$, com
+$I_0=\SI{2}{\ampere}$ e $\tau=\SI{50}{\milli\second}$.
+\begin{itensq}
+\item Determine a carga total transferida.
+\item Determine a fração transferida no primeiro $\tau$.
+\end{itensq}
+\resposta{$Q=\SI{0.1}{\coulomb}$; $63{,}2\%$}
+\resolucao{(a)
+\[
+Q=\int_0^{\infty}I_0e^{-t/\tau}\,\mathrm{d}t
+=I_0\tau=2(0{,}050)=\SI{0.1}{\coulomb}.
+\]
+\textbf{Interpretação geométrica:} a carga equivale à corrente inicial mantida
+por exatamente $\tau$ --- o retângulo $I_0\times\tau$ tem a mesma área da
+exponencial completa.\\
+(b)
+\[
+\frac{Q(\tau)}{Q}=1-e^{-1}=63{,}2\%.
+\]
+\textbf{Compare com a energia:} na mesma descarga, a energia decai com
+constante $\tau/2$ (pois $p\propto i^{2}$), e $86{,}5\%$ dela é dissipada em um
+$\tau$. \textbf{Carga e energia têm ritmos diferentes} --- a energia se esgota
+mais depressa.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma corrente de $\SI{2}{\ampere}$ atravessa uma célula eletrolítica de cobre
+durante $\SI{30}{\minute}$.
+\begin{itensq}
+\item Determine a carga transferida.
+\item Determine a massa de cobre depositada.
+\end{itensq}
+\dados{$M_{Cu}=\SI{63.5}{\gram\per\mole}$; valência $z=2$;
+$F=\SI{96500}{\coulomb\per\mole}$}
+\resposta{$Q=\SI{3600}{\coulomb}$; $m=\SI{1.18}{\gram}$}
+\resolucao{(a) $Q=2\times1800=\SI{3600}{\coulomb}$.\\
+(b) Pela lei de Faraday da eletrólise:
+\[
+m=\frac{QM}{zF}=\frac{3600(63{,}5)}{2(96500)}
+=\frac{228600}{193000}=\SI{1.18}{\gram}.
+\]
+\textbf{Significado de $z=2$:} cada íon $\mathrm{Cu^{2+}}$ precisa de
+\emph{dois} elétrons para se neutralizar. São necessários, portanto,
+$2F$ coulombs por mol depositado.\\
+\textbf{Conexão conceitual:} esta é a medida mais direta de que a corrente
+transporta carga em quantidades proporcionais à matéria depositada --- foi
+justamente por experimentos assim que Faraday inferiu a existência de uma
+unidade elementar de carga, décadas antes da descoberta do elétron.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um condutor de $\SI{2.5}{\milli\meter\squared}$ deve conduzir
+$\SI{20}{\ampere}$.
+\begin{itensq}
+\item Determine a densidade de corrente.
+\item Compare com o limite usual de $\SI{5}{\ampere\per\milli\meter\squared}$ e
+      determine a seção adequada.
+\end{itensq}
+\resposta{$J=\SI{8}{\ampere\per\milli\meter\squared}$ --- excessiva; adotar
+$\SI{4}{\milli\meter\squared}$ ou mais}
+\resolucao{(a) $J=20/2{,}5=\SI{8}{\ampere\per\milli\meter\squared}$.\\
+(b) O valor está $60\%$ acima do limite usual. A seção mínima seria
+\[
+A=\frac{20}{5}=\SI{4}{\milli\meter\squared},
+\]
+e a bitola comercial adequada é $\SI{4}{\milli\meter\squared}$ (ou
+$\SI{6}{\milli\meter\squared}$, com folga).\\
+\textbf{O que acontece se mantivermos $\SI{2.5}{\milli\meter\squared}$:} a
+potência dissipada por metro é $\rho J^{2}A=\rho I^{2}/A$, que com a seção
+menor é $1{,}6$ vezes maior. A temperatura do condutor sobe, a isolação
+envelhece mais depressa e a resistência aumenta --- realimentando o
+aquecimento.\\
+\textbf{Ressalva:} o limite de $\SI{5}{\ampere\per\milli\meter\squared}$ é
+apenas uma regra de bolso. O valor normativo depende do tipo de isolação, do
+método de instalação (eletroduto, bandeja, ao ar livre), do agrupamento de
+circuitos e da temperatura ambiente.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor de $\SI{470}{\micro\farad}$ carregado a $\SI{100}{\volt}$
+apresenta corrente de fuga aproximadamente constante de
+$\SI{20}{\micro\ampere}$.
+\begin{itensq}
+\item Determine a carga armazenada.
+\item Estime o tempo para descarga completa.
+\item Comente a validade da hipótese de corrente constante.
+\end{itensq}
+\resposta{$Q=\SI{47}{\milli\coulomb}$; $t\approx\SI{39}{\minute}$}
+\resolucao{(a) $Q=CU=\pot{470}{-6}(100)=\SI{47}{\milli\coulomb}$.\\
+(b) Com $I$ constante:
+\[
+t=\frac{Q}{I}=\frac{\pot{4.7}{-2}}{\pot{2}{-5}}=\SI{2350}{\second}
+\approx\SI{39}{\minute}.
+\]
+(c) \textbf{A hipótese é otimista.} A corrente de fuga é aproximadamente
+proporcional à tensão ($I=U/R_{fuga}$), de modo que ela \emph{diminui} durante
+a descarga --- e o processo é exponencial, não linear.\\
+Com $R_{fuga}=100/\pot{2}{-5}=\SI{5}{\mega\ohm}$, tem-se
+$\tau=R_{fuga}C=\SI{2350}{\second}$ --- o \emph{mesmo} número, mas com
+significado diferente: após $\SI{39}{\minute}$ resta $37\%$ da tensão, não
+zero. A descarga prática ($<1\%$) leva $5\tau\approx\SI{3.3}{\hour}$.\\
+\textbf{Implicação de segurança:} um banco de capacitores pode reter tensão
+letal por horas. Resistores de descarga permanentes não são opcionais.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare a carga transportada e o aquecimento produzido por duas correntes de
+mesma média: (A) $\SI{2}{\ampere}$ constantes; (B) $\SI{10}{\ampere}$ durante
+$20\%$ do tempo e zero no restante.
+\begin{itensq}
+\item Determine a carga em $\SI{10}{\second}$ para cada uma.
+\item Determine o valor eficaz de cada uma.
+\item Compare o aquecimento em um resistor de $\SI{1}{\ohm}$.
+\end{itensq}
+\resposta{Mesma carga ($\SI{20}{\coulomb}$); $I_{rms}=2$ e
+$\SI{4.47}{\ampere}$; aquecimento $5$ vezes maior em (B)}
+\resolucao{(a) Ambas transportam $Q=I_{méd}t=2(10)=\SI{20}{\coulomb}$ ---
+por construção.\\
+(b) \textbf{(A)} $I_{rms}=\SI{2}{\ampere}$ (constante).\\
+\textbf{(B)} $I_{rms}=\sqrt{0{,}2(10)^{2}}=\sqrt{20}=\SI{4.47}{\ampere}$.\\
+(c)
+\[
+P_A=1(2)^{2}=\SI{4}{\watt};
+\qquad
+P_B=1(4{,}47)^{2}=\SI{20}{\watt}.
+\]
+\textbf{Cinco vezes mais}, exatamente o inverso do ciclo de trabalho.\\
+\textbf{Síntese fundamental:} \emph{mesma carga, aquecimento completamente
+diferente}. A carga depende da média; o aquecimento, do valor eficaz. Duas
+grandezas independentes de uma mesma forma de onda.\\
+\textbf{Consequência prática:} circuitos pulsados exigem condutores
+dimensionados pelo valor \emph{eficaz}, ainda que a carga transportada seja
+modesta.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um circuito recebe pulsos de $\SI{50}{\ampere}$ com duração de
+$\SI{100}{\micro\second}$, a uma taxa de $\SI{200}{\per\second}$.
+\begin{itensq}
+\item Determine a carga por pulso e a corrente média.
+\item Determine o ciclo de trabalho.
+\item Determine o valor eficaz.
+\end{itensq}
+\resposta{$\SI{5}{\milli\coulomb}$ por pulso; $I_{méd}=\SI{1}{\ampere}$;
+$D=2\%$; $I_{rms}=\SI{7.07}{\ampere}$}
+\resolucao{(a) $Q=50\times\pot{100}{-6}=\SI{5}{\milli\coulomb}$.
+Com $200$ pulsos por segundo,
+\[
+I_{méd}=200\times\pot{5}{-3}=\SI{1}{\ampere}.
+\]
+(b) $D=\dfrac{\pot{100}{-6}}{1/200}=\dfrac{\pot{100}{-6}}{\pot{5}{-3}}
+=0{,}02=2\%$.\\
+(c) $I_{rms}=I_{pico}\sqrt{D}=50\sqrt{0{,}02}=\SI{7.07}{\ampere}$.\\
+\textbf{Três números, três finalidades.}
+\begin{itemize}
+\item $I_{méd}=\SI{1}{\ampere}$ dimensiona a \textbf{fonte} e a autonomia da
+bateria.
+\item $I_{rms}=\SI{7.07}{\ampere}$ dimensiona o \textbf{aquecimento} de
+condutores e componentes.
+\item $I_{pico}=\SI{50}{\ampere}$ dimensiona a \textbf{corrente máxima}
+suportável pelos semicondutores e a queda instantânea na fonte.
+\end{itemize}
+Usar o número errado leva a projetos ou superdimensionados ou destruídos.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Autonomia sob corrente variável.)} Uma bateria de
+$\SI{2.4}{\ampere\hour}$ alimenta uma carga cuja corrente alterna entre
+$\SI{0.4}{\ampere}$ por $\SI{20}{\minute}$ e $\SI{1.2}{\ampere}$ por
+$\SI{5}{\minute}$, repetidamente.
+\begin{itensq}
+\item Determine a carga consumida por ciclo e a corrente média.
+\item Determine a autonomia.
+\item Discuta por que a autonomia real será menor.
+\end{itensq}
+\resposta{$\SI{0.233}{\ampere\hour}$ por ciclo; $I_{méd}=\SI{0.56}{\ampere}$;
+autonomia $\approx\SI{4.3}{\hour}$}
+\resolucao{(a) Convertendo os tempos para horas:
+\[
+Q_{ciclo}=0{,}4\left(\tfrac{20}{60}\right)+1{,}2\left(\tfrac{5}{60}\right)
+=0{,}1333+0{,}1000=\SI{0.2333}{\ampere\hour}.
+\]
+O ciclo dura $\SI{25}{\minute}$, logo
+\[
+I_{méd}=\frac{0{,}2333}{25/60}=\SI{0.56}{\ampere}.
+\]
+(b)
+\[
+n=\frac{2{,}4}{0{,}2333}=10{,}3\ \text{ciclos}
+\;\Longrightarrow\;
+t=10{,}3(25)=\SI{257}{\minute}=\SI{4.3}{\hour}.
+\]
+\emph{(Conferindo: $2{,}4/0{,}56=\SI{4.3}{\hour}$ \checkmark.)}\\
+\textbf{Observe:} o patamar de $\SI{1.2}{\ampere}$ dura apenas um quinto do
+tempo do outro, mas consome $43\%$ da carga.\\
+(c) \textbf{Por que a autonomia real é menor.}
+\begin{itemize}
+\item \textbf{Efeito Peukert:} a capacidade útil diminui com correntes mais
+altas. Os picos de $\SI{1.2}{\ampere}$ extraem menos carga útil do que a
+proporção sugere.
+\item \textbf{Tensão de corte:} o equipamento para de funcionar antes de a
+bateria se esgotar, ao atingir sua tensão mínima --- e isso ocorre \emph{mais
+cedo} durante um pico de corrente, por causa da queda em $r$.
+\item \textbf{Resistência interna crescente} ao longo da descarga, o que agrava
+o item anterior.
+\item \textbf{Temperatura:} capacidade menor no frio.
+\end{itemize}
+\textbf{Estimativa realista:} $\SI{4.3}{\hour}$ é um teto teórico; espere de
+$3{,}5$ a $\SI{4}{\hour}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Erro de estimativa pelo pico.)} Um técnico estima a carga de um pulso
+triangular ($0\to\SI{6}{\ampere}\to0$ em $\SI{5}{\milli\second}$) como
+$Q\approx I_{pico}T$.
+\begin{itensq}
+\item Determine o erro cometido.
+\item Generalize para formas de onda quaisquer.
+\item Proponha uma regra prática.
+\end{itensq}
+\resposta{Erro de $+100\%$ --- o dobro do valor real}
+\resolucao{(a) \textbf{Valor real:}
+$Q=\frac12(6)(0{,}005)=\SI{15}{\milli\coulomb}$.\\
+\textbf{Estimativa:} $6(0{,}005)=\SI{30}{\milli\coulomb}$.\\
+\[
+\text{erro}=\frac{30-15}{15}=+100\%.
+\]
+(b) \textbf{Generalização.} Definindo o \emph{fator de forma}
+$k=I_{méd}/I_{pico}$, a estimativa por pico erra sempre por um fator $1/k$:
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Forma de onda & $k$ & erro de $I_{pico}T$\\
+\hline
+Retangular (contínua) & $1{,}00$ & $0\%$\\
+Trapezoidal (exemplo anterior) & $0{,}75$ & $+33\%$\\
+Triangular & $0{,}50$ & $+100\%$\\
+Exponencial ($T=5\tau$) & $0{,}20$ & $+400\%$\\
+Pulsada ($D=2\%$) & $0{,}02$ & $+4900\%$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{O erro é sempre para mais} --- a estimativa por pico é
+\emph{conservadora}.\\
+(c) \textbf{Regra prática.}
+\begin{itemize}
+\item Se a intenção é \textbf{garantir margem} (dimensionar uma bateria, por
+exemplo), a estimativa por pico é segura, mas pode superdimensionar
+absurdamente.
+\item Se a intenção é \textbf{prever} a carga, integre --- ou ao menos use o
+fator de forma da onda em questão.
+\item \textbf{Nunca} use $I_{pico}T$ para estimar autonomia: o
+superdimensionamento chega a ordens de grandeza em sinais pulsados.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de forma de onda.)} Projete uma corrente em \textbf{dois
+patamares} que transfira exatamente $\SI{10}{\coulomb}$ em
+$\SI{4}{\second}$, com valores comerciais simples.
+\begin{itensq}
+\item Estabeleça a condição geral.
+\item Proponha duas soluções e compare o valor eficaz.
+\item Indique qual é preferível e por quê.
+\end{itensq}
+\resposta{Condição: $I_1t_1+I_2t_2=10$ com $t_1+t_2=4$; a solução mais
+uniforme minimiza o aquecimento}
+\resolucao{(a) \textbf{Condição:}
+\[
+I_1t_1+I_2t_2=\SI{10}{\coulomb};
+\qquad
+t_1+t_2=\SI{4}{\second}.
+\]
+Duas equações e quatro incógnitas --- o problema tem \textbf{dois graus de
+liberdade}, e admite infinitas soluções. É preciso um critério adicional.\\
+(b) \textbf{Solução A:} $\SI{4}{\ampere}$ por $\SI{1}{\second}$ e
+$\SI{2}{\ampere}$ por $\SI{3}{\second}$.
+\[
+Q=4+6=\SI{10}{\coulomb}\ \checkmark;
+\qquad
+I_{rms}=\sqrt{\frac{16(1)+4(3)}{4}}=\sqrt{7}=\SI{2.65}{\ampere}.
+\]
+\textbf{Solução B:} $\SI{8}{\ampere}$ por $\SI{1}{\second}$ e
+$\SI{0.667}{\ampere}$ por $\SI{3}{\second}$.
+\[
+Q=8+2=\SI{10}{\coulomb}\ \checkmark;
+\qquad
+I_{rms}=\sqrt{\frac{64(1)+0{,}444(3)}{4}}=\sqrt{16{,}3}=\SI{4.04}{\ampere}.
+\]
+(c) \textbf{A solução A é preferível.} Ela tem valor eficaz $34\%$ menor e,
+portanto, aquecimento $2{,}3$ vezes menor --- entregando exatamente a mesma
+carga.\\
+\textbf{Princípio geral:} para uma dada carga em um dado tempo, o valor eficaz é
+\textbf{mínimo} quando a corrente é \emph{constante}
+($I=10/4=\SI{2.5}{\ampere}$, $I_{rms}=\SI{2.5}{\ampere}$). Qualquer
+variação aumenta $I_{rms}$ acima da média --- é a mesma desigualdade
+$\langle i^{2}\rangle\ge\langle i\rangle^{2}$ vista antes.\\
+\textbf{Conclusão de projeto:} se a aplicação permitir, use corrente constante.
+Se exigir patamares, mantenha-os o mais próximos possível entre si.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Corrente bipolar.)} Uma corrente periódica é positiva em parte do
+ciclo e negativa no restante.
+\begin{itensq}
+\item Formule a condição para carga líquida nula.
+\item Determine se isso implica ausência de efeitos.
+\item Cite duas aplicações em que essa condição é imposta deliberadamente.
+\end{itensq}
+\resposta{$\int_0^{T}i\,\mathrm{d}t=0$; os efeitos térmicos e mecânicos
+permanecem}
+\resolucao{(a) \textbf{Condição:}
+\[
+\int_0^{T}i(t)\,\mathrm{d}t=0,
+\]
+ou seja, as áreas positiva e negativa devem ser iguais em módulo. Em termos de
+patamares, $I_{+}t_{+}=|I_{-}|t_{-}$.\\
+(b) \textbf{Não implica ausência de efeitos.} O que se anula é apenas o
+\emph{acúmulo} de carga. Permanecem:
+\begin{itemize}
+\item \textbf{Aquecimento:} $P=RI_{rms}^{2}$, com
+$I_{rms}=\sqrt{\frac1T\int i^{2}\mathrm{d}t}>0$ sempre.
+\item \textbf{Forças magnéticas} sobre condutores, que dependem de $i$
+instantâneo.
+\item \textbf{Desgaste eletroquímico}, se as reações direta e inversa não forem
+perfeitamente simétricas.
+\end{itemize}
+(c) \textbf{Duas aplicações da condição imposta deliberadamente.}
+\begin{itemize}
+\item \textbf{Estimulação elétrica médica} (marca-passos, eletroestimuladores):
+pulsos bifásicos com carga líquida rigorosamente nula evitam acúmulo de
+subprodutos eletroquímicos no tecido e corrosão dos eletrodos. É requisito
+normativo, não preferência.
+\item \textbf{Acionamento de transformadores:} carga líquida não nula
+introduziria componente contínua, que satura o núcleo magnético e provoca
+corrente de magnetização excessiva. Conversores em ponte são projetados para
+garantir simetria.
+\end{itemize}
+\textbf{E há um terceiro caso instrutivo:} em galvanoplastia usa-se
+\emph{deliberadamente} carga líquida não nula --- ali o acúmulo é o objetivo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Medição --- média contra instantâneo.)} Dois instrumentos medem a
+mesma corrente pulsada: um indica a média temporal, outro o valor instantâneo.
+\begin{itensq}
+\item Explique por que os resultados diferem.
+\item Determine qual usar para estimar carga, aquecimento e pico.
+\item Projete uma medição que forneça os três.
+\end{itensq}
+\resposta{Média para carga, eficaz para aquecimento, instantâneo para pico}
+\resolucao{(a) \textbf{Os instrumentos medem grandezas diferentes de uma mesma
+forma de onda.} Um amperímetro de bobina móvel responde à média (por inércia
+mecânica); um osciloscópio mostra o valor instantâneo; um multímetro "true RMS"
+calcula o valor eficaz.\\
+Para a corrente pulsada de $\SI{50}{\ampere}$ com $D=2\%$, os três leriam
+$\SI{1}{\ampere}$, $\SI{50}{\ampere}$ e $\SI{7.07}{\ampere}$ --- todos
+corretos, todos respondendo perguntas distintas.\\
+(b)
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Objetivo & Grandeza\\
+\hline
+Carga transferida, autonomia de bateria & \textbf{média}\\
+Aquecimento, dimensionamento de condutor & \textbf{eficaz}\\
+Corrente máxima em semicondutor, saturação & \textbf{pico}\\
+\hline
+\end{tabular}
+\end{center}
+(c) \textbf{Projeto de medição completa.} Use um \emph{resistor shunt} de baixo
+valor e observe a tensão sobre ele com osciloscópio digital:
+\begin{enumerate}
+\item O \textbf{traço instantâneo} fornece o pico diretamente.
+\item A função \textbf{média} do osciloscópio integra a forma de onda e entrega
+$I_{méd}$ --- e portanto a carga, multiplicando pelo tempo.
+\item A função \textbf{RMS} entrega $I_{rms}$.
+\end{enumerate}
+\textbf{Cuidados:} a largura de banda do osciloscópio e do shunt deve ser muito
+maior que a taxa de subida dos pulsos, sob pena de arredondá-los e subestimar o
+pico. E a indutância parasita do shunt introduz erro proporcional a
+$\mathrm{d}i/\mathrm{d}t$ --- use shunts coaxiais em pulsos rápidos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Integração de sinal ruidoso.)} Uma corrente medida contém ruído
+aditivo de média zero.
+\begin{itensq}
+\item Explique por que integrar melhora a estimativa da carga.
+\item Determine como o erro decresce com o tempo de integração.
+\item Indique em que situação integrar \emph{piora} o resultado.
+\end{itensq}
+\resposta{O erro relativo decresce como $1/\sqrt{N}$; integrar piora se houver
+\emph{deriva} (ruído de média não nula)}
+\resolucao{(a) \textbf{Por que integrar ajuda.} A carga é
+$Q=\int i\,\mathrm{d}t$. Se o ruído tem média zero, suas contribuições
+positivas e negativas tendem a se cancelar na integral, enquanto o sinal
+verdadeiro se acumula. A relação sinal-ruído \emph{melhora} com o tempo.\\
+(b) \textbf{Decrescimento do erro.} Para $N$ amostras independentes de ruído de
+desvio $\sigma$, o desvio da \emph{soma} é $\sigma\sqrt{N}$, enquanto a soma do
+sinal cresce com $N$. Logo o erro relativo cai como
+\[
+\frac{\sigma\sqrt{N}}{SN}=\frac{\sigma}{S\sqrt{N}}\propto\frac{1}{\sqrt{T}}.
+\]
+\textbf{Quantificando:} integrar por $\SI{100}{\second}$ em vez de
+$\SI{1}{\second}$ reduz o erro relativo por um fator $10$. Para ganhar outro
+fator $10$, seriam necessários $\SI{10000}{\second}$ --- rendimento
+decrescente.\\
+(c) \textbf{Quando integrar piora.} Se o ruído \textbf{não} tiver média zero ---
+isto é, se houver \emph{offset} ou \emph{deriva} no instrumento --- o erro
+\textbf{também se acumula}, e cresce \emph{linearmente} com $T$:
+\[
+\text{erro}=\varepsilon_{offset}\times T.
+\]
+Enquanto o ruído aleatório cai com $\sqrt{T}$, o erro sistemático cresce com
+$T$. Existe, portanto, um \textbf{tempo ótimo} de integração, além do qual a
+deriva domina.\\
+\textbf{Prática de laboratório:} meça a leitura com \emph{entrada em curto}
+antes do ensaio, para quantificar o \emph{offset}, e subtraia-o. Sem essa
+correção, integrações longas são pior que inúteis --- elas produzem números
+precisos e errados.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Por que a LKC é tão precisa.)} A lei dos nós afirma que a carga não se
+acumula em um nó. Quantifique o quanto ela poderia, em princípio, ser violada.
+\begin{itensq}
+\item Estime a capacitância parasita de um nó típico e relacione carga acumulada
+      com potencial.
+\item Determine o desequilíbrio de corrente necessário para elevar o nó em
+      $\SI{1}{\volt}$.
+\item Conclua sobre o caráter da lei.
+\end{itensq}
+\resposta{Com $C\approx\SI{1}{\pico\farad}$, basta $\SI{1}{\pico\coulomb}$ para
+$\SI{1}{\volt}$ --- um desequilíbrio de $\SI{1}{\micro\ampere}$ por
+$\SI{1}{\micro\second}$}
+\resolucao{(a) Um nó real (uma solda, um trecho de trilha) tem capacitância
+parasita para o ambiente da ordem de $C\approx\SI{1}{\pico\farad}$. Se uma
+carga $\Delta Q$ se acumulasse ali, o potencial subiria:
+\[
+\Delta V=\frac{\Delta Q}{C}.
+\]
+Para $\Delta V=\SI{1}{\volt}$:
+\[
+\Delta Q=\pot{1}{-12}\,\si{\coulomb}
+=\frac{\pot{1}{-12}}{\pot{1.6}{-19}}=\pot{6.25}{6}\ \text{elétrons}.
+\]
+Apenas seis milhões de elétrons --- número minúsculo diante dos
+$10^{19}$ que atravessam a seção a cada segundo com $\SI{2}{\ampere}$.\\
+(b) O desequilíbrio necessário é irrisório:
+\[
+\Delta I\,\Delta t=\SI{1}{\pico\coulomb}
+\;\Longrightarrow\;
+\SI{1}{\micro\ampere}\ \text{durante}\ \SI{1}{\micro\second},
+\]
+ou $\SI{1}{\nano\ampere}$ durante $\SI{1}{\milli\second}$. Em um circuito de
+$\SI{2}{\ampere}$, isso corresponde a um desequilíbrio relativo de
+$\pot{5}{-7}$ --- meio milionésimo.\\
+(c) \textbf{Conclusão: a LKC não é uma aproximação, é uma consequência
+autorregulada.} Qualquer tentativa de acumular carga em um nó eleva
+imediatamente seu potencial, e esse potencial \emph{expulsa} o excesso --- as
+correntes se reajustam em nanossegundos.\\
+\textbf{Onde a lei realmente falha:} em frequências altíssimas, quando o tempo
+de propagação pelo circuito deixa de ser desprezível, correntes de deslocamento
+por capacitâncias parasitas passam a importar e a LKC "de nó concentrado" perde
+sentido. É preciso então tratar o circuito por linhas de transmissão ou por
+campos.\\
+\textbf{Critério prático:} a LKC vale enquanto as dimensões do circuito forem
+muito menores que o comprimento de onda do sinal --- a chamada aproximação de
+\emph{parâmetros concentrados}.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Deriva contra propagação.)} Um fio de cobre de
+$\SI{2.5}{\milli\meter\squared}$ conduz $\SI{10}{\ampere}$, com densidade de
+portadores $n=\pot{8.5}{28}\,\si{\per\meter\cubed}$.
+\begin{itensq}
+\item Determine a velocidade de deriva dos elétrons.
+\item Determine o tempo para um elétron percorrer $\SI{1}{\meter}$.
+\item Compare com o tempo de propagação do sinal e explique o paradoxo
+      aparente.
+\end{itensq}
+\resposta{$v_d=\SI{0.29}{\milli\meter\per\second}$; $\SI{57}{\minute}$ para
+$\SI{1}{\meter}$; o sinal leva $\SI{5}{\nano\second}$}
+\resolucao{(a)
+\[
+v_d=\frac{I}{nAe}
+=\frac{10}{(\pot{8.5}{28})(\pot{2.5}{-6})(\pot{1.6}{-19})}
+=\frac{10}{\pot{3.4}{4}}=\pot{2.94}{-4}\,\si{\meter\per\second}.
+\]
+Menos de um terço de milímetro por segundo.\\
+(b)
+\[
+t=\frac{1}{\pot{2.94}{-4}}=\SI{3400}{\second}\approx\SI{57}{\minute}.
+\]
+(c) \textbf{O sinal viaja a cerca de $\pot{2}{8}\,\si{\meter\per\second}$}
+(dois terços de $c$, em cabo típico), percorrendo o metro em
+$\SI{5}{\nano\second}$ --- \textbf{$\pot{6.8}{11}$ vezes mais rápido} que os
+elétrons.\\
+\textbf{Resolução do paradoxo aparente.} O que se propaga rapidamente não são os
+elétrons, mas o \textbf{campo eletromagnético} que os põe em movimento. Ao
+fechar o interruptor, o campo se estabelece ao longo de todo o condutor quase
+instantaneamente, e \emph{todos} os elétrons começam a se mover praticamente ao
+mesmo tempo --- cada um localmente, e devagar.\\
+\textbf{Analogia:} um cano cheio de água. Ao abrir a torneira, a água sai
+imediatamente na outra ponta, embora nenhuma molécula tenha percorrido o cano.
+O que se propaga é a \emph{pressão}, não a matéria.\\
+\textbf{Consequência prática:} a lâmpada acende no instante em que se aciona o
+interruptor, mas os elétrons que estavam junto dele levariam quase uma hora para
+chegar até ela.}
+\end{questao}

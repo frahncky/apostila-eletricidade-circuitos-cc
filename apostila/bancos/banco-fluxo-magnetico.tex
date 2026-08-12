@@ -1,0 +1,1045 @@
+% =====================================================================
+%  Banco complementar --- Fluxo Magnetico  (REVISADO)
+%  Substitui a versao gerada por template (6 clones em N1, 10 em N2,
+%  11 em N3 e 7 questoes conceituais marcadas como N4).
+%  O cap11 ja cobre: condicao de fluxo maximo (MC), espira de 20 cm2
+%  perpendicular a 0,5 T, espira circular de R=8 cm em 0,3 T, campo de
+%  1e-4 T em area de 1e-5 m2, grafico Phi(t) com fem por trecho e --
+%  como N4 -- a ESPIRA RETANGULAR GIRANDO com velocidade angular
+%  constante. Esta ultima motivou a remocao da N4 antiga sobre fluxo em
+%  espira girante, que a duplicava.
+%  Este banco explora: campo nao uniforme por integracao, fluxo de um
+%  fio reto atraves de espira retangular, CIRCUITO MAGNETICO com
+%  relutancia e entreferro, dispersao e coeficiente de acoplamento,
+%  independencia da superficie e nucleo de secao variavel.
+%  A INDUCAO propriamente dita tem banco proprio (Lenz); aqui a fem so
+%  aparece onde o fluxo e o objeto de interesse.
+%  Distribuicao mantida: 6 N1 + 10 N2 + 11 N3 + 7 N4 = 34
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Fluxo magnético}
+
+\begin{atencao}[Organização do banco]
+O fluxo é $\Phi=\int\vec B\cdot\mathrm{d}\vec A$, que se reduz a
+$BA\cos\theta$ apenas quando o campo é \textbf{uniforme} e a superfície
+\textbf{plana} --- $\theta$ sendo o ângulo entre $\vec B$ e a \emph{normal}, e
+não entre $\vec B$ e o plano. Duas propriedades estruturam o tópico: o fluxo por
+qualquer superfície \emph{fechada} é nulo, e o fluxo por superfícies de mesma
+\emph{borda} é o mesmo. O N3 trata de campos não uniformes, circuitos magnéticos
+e dispersão; o N4 exige demonstrações e projeto.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Uma superfície plana de $\SI{0.01}{\meter\squared}$ está em campo uniforme de
+$\SI{0.1}{\tesla}$, com a normal formando $\ang{60}$ com o campo. Determine o
+fluxo.
+\resposta{$\Phi=\SI{0.5}{\milli\weber}$}
+\resolucao{
+\[
+\Phi=BA\cos\theta=(0{,}1)(0{,}01)\cos\ang{60}
+=(0{,}1)(0{,}01)(0{,}5)=\pot{5}{-4}\,\si{\weber}.
+\]
+\textbf{Atenção ao ângulo:} $\theta$ é medido entre $\vec B$ e a \textbf{normal}
+à superfície. Se o enunciado der o ângulo com o \emph{plano}, use o complemento
+--- é a troca de $\cos$ por $\sin$ que mais gera erro neste tópico.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o fluxo quando o campo é \textbf{paralelo} ao plano da superfície.
+\resposta{$\Phi=0$}
+\resolucao{Campo paralelo ao plano significa campo \emph{perpendicular} à
+normal, logo $\theta=\ang{90}$ e $\cos\theta=0$:
+\[
+\Phi=0.
+\]
+\textbf{Interpretação geométrica:} nenhuma linha de campo \emph{atravessa} a
+superfície --- elas passam rentes a ela.\\
+\textbf{Casos-limite úteis:} $\Phi$ é máximo com $\vec B$ perpendicular ao plano
+(paralelo à normal) e nulo com $\vec B$ contido no plano.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um fluxo de $\SI{2}{\milli\weber}$ atravessa perpendicularmente uma superfície
+em campo de $\SI{0.4}{\tesla}$. Determine a área.
+\resposta{$A=\SI{50}{\centi\meter\squared}$}
+\resolucao{
+\[
+A=\frac{\Phi}{B}=\frac{\pot{2}{-3}}{0{,}4}=\pot{5}{-3}\,\si{\meter\squared}
+=\SI{50}{\centi\meter\squared}.
+\]
+\textbf{Lembre da conversão:}
+$\SI{1}{\meter\squared}=\SI{e4}{\centi\meter\squared}$, pois a área é o
+\emph{quadrado} de um comprimento.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma espira de $\SI{30}{\centi\meter\squared}$ é atravessada
+perpendicularmente por fluxo de $\SI{1.5}{\milli\weber}$. Determine a densidade
+de fluxo.
+\resposta{$B=\SI{0.5}{\tesla}$}
+\resolucao{
+\[
+B=\frac{\Phi}{A}=\frac{\pot{1.5}{-3}}{\pot{3}{-3}}=\SI{0.5}{\tesla}.
+\]
+\textbf{Nomenclatura:} $B$ é chamado \emph{densidade de fluxo} justamente por
+ser fluxo por unidade de área --- e $\SI{1}{\tesla}=\SI{1}{\weber\per\meter\squared}$.\\
+As duas grandezas descrevem a mesma realidade em escalas diferentes: $B$ é
+local, $\Phi$ é integral.}
+\end{questao}
+
+\begin{questao}[1]{}
+O fluxo magnético líquido através de qualquer superfície \textbf{fechada} é:
+\begin{alternativas}[2]
+\item proporcional à corrente envolvida
+\item sempre nulo
+\item proporcional ao volume
+\item máximo quando a superfície é esférica
+\end{alternativas}
+\resposta{(b)}
+\resolucao{As linhas de campo magnético são \textbf{fechadas} --- não têm início
+nem fim. Toda linha que entra em uma superfície fechada necessariamente sai dela,
+e as contribuições se cancelam:
+\[
+\oint\vec B\cdot\mathrm{d}\vec A=0.
+\]
+\textbf{Contraste com o campo elétrico:} lá, a lei de Gauss dá
+$\oint\vec E\cdot\mathrm{d}\vec A=Q_{env}/\varepsilon_0$ --- diferente de zero
+sempre que houver carga envolvida.\\
+\textbf{A diferença tem uma causa única:} existem cargas elétricas isoladas
+(monopolos elétricos), mas \textbf{não existem monopolos magnéticos}. Esta é uma
+das equações de Maxwell, e sua forma diferencial é $\nabla\cdot\vec B=0$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Converta $\SI{5}{\milli\weber}$ para maxwells.
+\dados{$\SI{1}{\weber}=10^{8}\,\si{\maxwell}$}
+\resposta{$\pot{5}{5}\,\si{\maxwell}$}
+\resolucao{
+\[
+\Phi=\pot{5}{-3}\times10^{8}=\pot{5}{5}\,\si{\maxwell}.
+\]
+\textbf{Origem da unidade:} o maxwell pertence ao sistema CGS, e vale
+$\SI{1}{\gauss\centi\meter\squared}$. A conversão decorre diretamente de
+$\SI{1}{\tesla}=\SI{e4}{\gauss}$ e
+$\SI{1}{\meter\squared}=\SI{e4}{\centi\meter\squared}$:
+\[
+10^{4}\times10^{4}=10^{8}.
+\]
+Embora obsoleto no SI, o maxwell ainda aparece em catálogos de ímãs e em
+literatura mais antiga.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma bobina de $50$ espiras é atravessada por fluxo de
+$\SI{1}{\milli\weber}$ por espira.
+\begin{itensq}
+\item Determine o fluxo concatenado.
+\item Determine a indutância, se a corrente for $\SI{2}{\ampere}$.
+\end{itensq}
+\resposta{$\lambda=\SI{50}{\milli\weber}$-espira; $L=\SI{25}{\milli\henry}$}
+\resolucao{(a)
+\[
+\lambda=N\Phi=50(\pot{1}{-3})=\pot{5}{-2}\,\si{\weber}\text{-espira}.
+\]
+(b)
+\[
+L=\frac{\lambda}{I}=\frac{0{,}05}{2}=\SI{25}{\milli\henry}.
+\]
+\textbf{Distinção essencial.} $\Phi$ é o fluxo através de \emph{uma} espira;
+$\lambda=N\Phi$ é o \emph{fluxo concatenado}, que conta cada espira
+separadamente. É $\lambda$, e não $\Phi$, que entra na definição de indutância e
+na lei de Faraday para bobinas ($\varepsilon=-\mathrm{d}\lambda/\mathrm{d}t$).}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira de $\SI{200}{\centi\meter\squared}$ está em campo de
+$\SI{0.25}{\tesla}$, com a normal a $\ang{60}$ do campo. Determine o fluxo e o
+valor que ele teria na posição de fluxo máximo.
+\resposta{$\Phi=\SI{2.5}{\milli\weber}$; máximo de $\SI{5}{\milli\weber}$}
+\resolucao{
+\[
+\Phi=BA\cos\ang{60}=(0{,}25)(\pot{2}{-2})(0{,}5)=\pot{2.5}{-3}\,\si{\weber};
+\]
+\[
+\Phi_{\max}=BA=\pot{5}{-3}\,\si{\weber}\quad(\theta=0).
+\]
+\textbf{Aplicação:} girar a espira entre essas duas posições varia o fluxo de
+$\SI{2.5}{\milli\weber}$. Feito em $\SI{10}{\milli\second}$, isso induziria
+$\varepsilon=\SI{0.25}{\volt}$ por espira --- princípio do gerador.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um solenoide de $\SI{1000}{}$ espiras por metro conduz $\SI{2}{\ampere}$ e tem
+seção de $\SI{10}{\centi\meter\squared}$. Determine o fluxo por espira.
+\resposta{$\Phi=\SI{2.51}{\micro\weber}$}
+\resolucao{
+\[
+B=\mu_0nI=(4\pi\times10^{-7})(1000)(2)=\pot{2.51}{-3}\,\si{\tesla};
+\]
+\[
+\Phi=BA=(\pot{2.51}{-3})(\pot{1}{-3})=\pot{2.51}{-6}\,\si{\weber}.
+\]
+\textbf{Ordem de grandeza:} apenas $\SI{2.5}{\micro\weber}$ --- fluxos em
+núcleo de ar são pequenos. Com núcleo ferromagnético de
+$\mu_r=1000$, o mesmo solenoide produziria $\SI{2.5}{\milli\weber}$.\\
+\textbf{É por isso que máquinas elétricas usam núcleo:} sem ele, o fluxo (e
+portanto a f.e.m. induzida e o torque) seria mil vezes menor.}
+\end{questao}
+
+\begin{questao}[2]{}
+O fluxo através de uma bobina de $100$ espiras varia linearmente de zero a
+$\SI{4}{\milli\weber}$ em $\SI{20}{\milli\second}$. Determine a f.e.m.
+induzida.
+\resposta{$\varepsilon=\SI{20}{\volt}$}
+\resolucao{
+\[
+|\varepsilon|=N\frac{\Delta\Phi}{\Delta t}
+=100\,\frac{\pot{4}{-3}}{\pot{2}{-2}}=\SI{20}{\volt}.
+\]
+\textbf{Como a variação é linear}, a f.e.m. é \emph{constante} durante todo o
+intervalo. Se o fluxo variasse de outra forma, seria preciso derivar ponto a
+ponto.\\
+\textbf{Note o papel de $N$:} cem espiras multiplicam a f.e.m. por cem, embora o
+fluxo \emph{por espira} seja o mesmo. É o fluxo concatenado que importa.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas superfícies diferentes apoiam-se na \textbf{mesma} espira: uma plana e
+outra em forma de calota. Compare o fluxo através delas.
+\resposta{São iguais}
+\resolucao{O fluxo através de qualquer superfície depende apenas de sua
+\textbf{borda}.\\
+\textbf{Demonstração:} as duas superfícies, juntas, formam uma superfície
+\emph{fechada}. Como
+$\oint\vec B\cdot\mathrm{d}\vec A=0$, o fluxo que entra por uma sai pela outra
+--- e portanto os fluxos através delas são iguais (atentando para a orientação
+das normais).\\
+\textbf{Consequência prática:} na lei de Faraday, pode-se escolher
+\emph{qualquer} superfície apoiada no circuito. Escolha a que tornar a
+integral mais simples --- geralmente a plana, mas às vezes uma superfície
+curva evita regiões de campo complicado.\\
+\textbf{Contraste:} isso \emph{não} vale para o fluxo elétrico, que depende da
+carga envolvida e portanto da superfície escolhida.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira quadrada de lado $\SI{20}{\centi\meter}$ é girada de
+$\ang{0}$ a $\ang{90}$ (normal em relação ao campo) em campo de
+$\SI{0.6}{\tesla}$. Determine a variação de fluxo.
+\resposta{$\Delta\Phi=\SI{-24}{\milli\weber}$}
+\resolucao{
+\[
+\Phi_i=BA=(0{,}6)(0{,}04)=\SI{24}{\milli\weber};
+\qquad
+\Phi_f=BA\cos\ang{90}=0.
+\]
+\[
+\Delta\Phi=0-0{,}024=\SI{-24}{\milli\weber}.
+\]
+\textbf{Duas formas de variar o fluxo aparecem no tópico:} mudar $B$, mudar
+$A$, ou mudar a \emph{orientação}. Esta última é a base do gerador rotativo, em
+que $\theta=\omega t$ e o fluxo varia senoidalmente.\\
+\textbf{Sinal:} o fluxo diminuiu. Pela lei de Lenz, a corrente induzida
+circularia no sentido de \emph{manter} o fluxo original.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um núcleo toroidal tem seção de $\SI{4}{\centi\meter\squared}$ e conduz fluxo
+de $\SI{0.6}{\milli\weber}$. Determine a densidade de fluxo e avalie a
+proximidade da saturação.
+\resposta{$B=\SI{1.5}{\tesla}$ --- próximo da saturação típica}
+\resolucao{
+\[
+B=\frac{\Phi}{A}=\frac{\pot{6}{-4}}{\pot{4}{-4}}=\SI{1.5}{\tesla}.
+\]
+\textbf{Avaliação:} aços-silício saturam entre $1{,}5$ e $\SI{2}{\tesla}$;
+ferrites, bem antes (tipicamente $0{,}3$ a $\SI{0.5}{\tesla}$).\\
+Portanto, para aço-silício este núcleo opera \textbf{no limite}. Qualquer
+aumento de corrente levaria à saturação, com queda abrupta de $\mu_r$ e
+distorção severa da forma de onda.\\
+\textbf{Prática de projeto:} dimensione para $B_{\max}$ entre $60$ e
+$80\%$ da saturação, deixando margem para transitórios e para a variação com a
+temperatura.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bobina de $200$ espiras e área $\SI{15}{\centi\meter\squared}$ está em
+campo de $\SI{0.4}{\tesla}$ perpendicular. Determine o fluxo concatenado.
+\resposta{$\lambda=\SI{120}{\milli\weber}$-espira}
+\resolucao{
+\[
+\Phi=BA=(0{,}4)(\pot{1.5}{-3})=\pot{6}{-4}\,\si{\weber};
+\]
+\[
+\lambda=N\Phi=200(\pot{6}{-4})=\pot{0.12}{}\,\si{\weber}\text{-espira}.
+\]
+\textbf{Se essa bobina fosse retirada do campo em $\SI{50}{\milli\second}$:}
+\[
+|\varepsilon|=\frac{\Delta\lambda}{\Delta t}=\frac{0{,}12}{0{,}05}
+=\SI{2.4}{\volt}.
+\]
+É esse o princípio do \emph{fluxímetro}: integrando a f.e.m. medida, recupera-se
+$\Delta\lambda$ e, com $N$ e $A$ conhecidos, o campo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira está totalmente fora de uma região de campo uniforme e é empurrada
+até ficar totalmente dentro. Descreva a variação do fluxo.
+\resposta{Cresce de zero a $BA$, com taxa constante enquanto a espira atravessa
+a fronteira}
+\resolucao{\textbf{Três fases:}
+\begin{itemize}
+\item \textbf{Totalmente fora:} $\Phi=0$ e $\mathrm{d}\Phi/\mathrm{d}t=0$ ---
+nenhuma f.e.m.
+\item \textbf{Atravessando a fronteira:} a área \emph{dentro} do campo cresce
+linearmente com o deslocamento. Se a velocidade for constante,
+$\Phi$ cresce linearmente e a f.e.m. é \textbf{constante}.
+\item \textbf{Totalmente dentro:} $\Phi=BA$ e volta a ser constante ---
+nenhuma f.e.m., mesmo que a espira continue se movendo.
+\end{itemize}
+\textbf{Ponto conceitual importante:} não é o \emph{movimento} que induz f.e.m.,
+e sim a \textbf{variação de fluxo}. Uma espira movendo-se rapidamente dentro de
+um campo uniforme não gera nada.\\
+Com largura $\ell$ e velocidade $v$, a f.e.m. na fase intermediária vale
+$\varepsilon=B\ell v$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Explique a diferença entre fluxo magnético e densidade de fluxo, e indique
+quando cada um é a grandeza adequada.
+\resposta{$\Phi$ é integral (weber); $B$ é local (tesla). $\Phi$ governa a
+indução; $B$ governa forças e saturação}
+\resolucao{\textbf{Densidade de fluxo $\vec B$:} grandeza \emph{local} e
+vetorial, medida em tesla. Ela é o que determina:
+\begin{itemize}
+\item a força sobre cargas e condutores ($\vec F=q\vec v\times\vec B$);
+\item a saturação do material ($B$ próximo de $B_{sat}$);
+\item o que um sensor Hall mede.
+\end{itemize}
+\textbf{Fluxo $\Phi$:} grandeza \emph{integral} e escalar, medida em weber.
+Ela é o que determina:
+\begin{itemize}
+\item a f.e.m. induzida ($\varepsilon=-\mathrm{d}\Phi/\mathrm{d}t$);
+\item a indutância ($L=\lambda/I$);
+\item o acoplamento entre bobinas.
+\end{itemize}
+\textbf{Relação:} $\Phi=\int\vec B\cdot\mathrm{d}\vec A$, e no caso uniforme
+$B=\Phi/A$.\\
+\textbf{Erro comum:} falar em "fluxo" quando se quer dizer "campo". Um ímã
+pequeno e um grande podem ter o mesmo $B$ na superfície e fluxos totais muito
+diferentes --- e é o fluxo que determina o desempenho em um circuito magnético.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um campo não uniforme $B(x)=B_0\dfrac{x}{L}$, perpendicular ao plano, atravessa
+uma superfície retangular de largura $L$ (na direção $x$) e altura $h$, com
+$B_0=\SI{0.5}{\tesla}$, $L=\SI{20}{\centi\meter}$ e
+$h=\SI{10}{\centi\meter}$.
+\begin{itensq}
+\item Determine o fluxo por integração.
+\item Compare com as estimativas usando $B_0$ e usando o valor médio.
+\end{itensq}
+\resposta{$\Phi=\SI{5}{\milli\weber}$ --- igual à estimativa pelo valor médio}
+\resolucao{(a) Dividindo em faixas verticais de largura $\mathrm{d}x$ e área
+$h\,\mathrm{d}x$:
+\[
+\Phi=\int_0^{L}B_0\frac{x}{L}\,h\,\mathrm{d}x
+=\frac{B_0h}{L}\left[\frac{x^{2}}{2}\right]_0^{L}
+=\frac{B_0hL}{2}.
+\]
+\[
+\Phi=\frac{(0{,}5)(0{,}10)(0{,}20)}{2}=\pot{5}{-3}\,\si{\weber}.
+\]
+(b)
+\begin{center}
+\begin{tabular}{lc}
+\hline
+Estimativa & $\Phi$\\
+\hline
+Usando $B_0$ (valor máximo) & $\SI{10}{\milli\weber}$\\
+\textbf{Integração exata} & $\SI{5}{\milli\weber}$\\
+Usando $\bar B=B_0/2$ & $\SI{5}{\milli\weber}$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{A média coincide com o exato} --- mas apenas porque $B$ varia
+\emph{linearmente}. Para $B\propto x^{2}$, a integração daria $B_0hL/3$,
+enquanto a média aritmética dos extremos daria $B_0hL/2$ --- erro de
+$50\%$.\\
+\textbf{Regra:} substituir o campo pela média só é legítimo em variação linear.
+Fora disso, integre.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um fio retilíneo longo conduz $\SI{10}{\ampere}$. Uma espira retangular de
+$\SI{20}{\centi\meter}$ de comprimento (paralelo ao fio) está no mesmo plano,
+com os lados a $\SI{5}{\centi\meter}$ e $\SI{20}{\centi\meter}$ do fio.
+\begin{itensq}
+\item Deduza a expressão do fluxo.
+\item Calcule seu valor.
+\end{itensq}
+\resposta{$\Phi=\dfrac{\mu_0Ia}{2\pi}\ln\dfrac{d+b}{d}=\SI{0.55}{\micro\weber}$}
+\resolucao{(a) O campo do fio \textbf{não é uniforme} na região da espira:
+$B(r)=\dfrac{\mu_0I}{2\pi r}$. Dividindo a espira em faixas de largura
+$\mathrm{d}r$ e comprimento $a$:
+\[
+\Phi=\int_d^{d+b}\frac{\mu_0I}{2\pi r}\,a\,\mathrm{d}r
+=\frac{\mu_0Ia}{2\pi}\ln\!\left(\frac{d+b}{d}\right).
+\]
+(b) Com $a=\SI{0.20}{\meter}$, $d=\SI{0.05}{\meter}$ e
+$b=\SI{0.15}{\meter}$ (borda externa em $\SI{0.20}{\meter}$):
+\[
+\Phi=\pot{2}{-7}(10)(0{,}20)\ln 4
+=(\pot{4}{-7})(1{,}386)=\pot{5.55}{-7}\,\si{\weber}.
+\]
+\textbf{Observe o logaritmo:} afastar a espira reduz o fluxo muito devagar.
+Dobrar $d$ e $b$ juntos (mantendo a razão) \emph{não muda nada} --- o fluxo
+depende apenas da razão $(d+b)/d$ e do comprimento $a$.\\
+\textbf{Consequência:} a indutância mútua entre um fio e uma espira próxima é
+notavelmente insensível à distância absoluta. É por isso que interferência
+magnética de cabos de potência é difícil de eliminar apenas afastando-os.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um núcleo magnético de ferro tem comprimento médio $\SI{50}{\centi\meter}$,
+seção de $\SI{4}{\centi\meter\squared}$ e $\mu_r=2000$, com enrolamento de
+$\SI{1000}{}$ ampère-espiras.
+\begin{itensq}
+\item Determine a relutância do núcleo.
+\item Determine o fluxo e a densidade de fluxo.
+\item Avalie o resultado.
+\end{itensq}
+\resposta{$\mathcal{R}=\pot{4.97}{5}\,\si{\per\henry}$;
+$\Phi=\SI{2}{\milli\weber}$; $B=\SI{5}{\tesla}$ --- \textbf{impossível}}
+\resolucao{(a) Em analogia ao circuito elétrico, a \textbf{relutância} vale
+\[
+\mathcal{R}=\frac{\ell}{\mu_r\mu_0A}
+=\frac{0{,}50}{(2000)(4\pi\times10^{-7})(\pot{4}{-4})}
+=\pot{4.97}{5}\,\si{\per\henry}.
+\]
+(b) Com a força magnetomotriz $\mathcal{F}=NI=\SI{1000}{}$ ampère-espiras:
+\[
+\Phi=\frac{\mathcal{F}}{\mathcal{R}}=\frac{1000}{\pot{4.97}{5}}
+=\pot{2.01}{-3}\,\si{\weber};
+\qquad
+B=\frac{\Phi}{A}=\SI{5.03}{\tesla}.
+\]
+(c) \textbf{O resultado é impossível.} Nenhum material ferromagnético comum
+sustenta $\SI{5}{\tesla}$ --- todos saturam entre $1{,}5$ e
+$\SI{2}{\tesla}$.\\
+\textbf{O que realmente aconteceria:} conforme $B$ se aproxima de
+$\SI{2}{\tesla}$, $\mu_r$ despenca de $2000$ para valores próximos de $1$. A
+relutância dispara, e o fluxo estaciona em torno de
+$B_{sat}A=\SI{0.8}{\milli\weber}$.\\
+\textbf{Lição de método:} o modelo linear com $\mu_r$ constante é válido
+\emph{apenas} abaixo da saturação. Calcular e depois \textbf{verificar $B$}
+contra $B_{sat}$ é etapa obrigatória --- exatamente como se verifica a rigidez
+dielétrica em problemas de campo elétrico.}
+\end{questao}
+
+\begin{questao}[3]{}
+O mesmo núcleo da questão anterior recebe um \textbf{entreferro} de
+$\SI{1}{\milli\meter}$.
+\begin{itensq}
+\item Determine a relutância do entreferro e a total.
+\item Determine o novo fluxo e $B$.
+\item Explique por que o entreferro domina.
+\end{itensq}
+\resposta{$\mathcal{R}_g=\pot{1.99}{6}$, quatro vezes a do ferro;
+$B=\SI{1.0}{\tesla}$}
+\resolucao{(a) No entreferro, $\mu_r=1$:
+\[
+\mathcal{R}_g=\frac{g}{\mu_0A}
+=\frac{\pot{1}{-3}}{(4\pi\times10^{-7})(\pot{4}{-4})}
+=\pot{1.99}{6}\,\si{\per\henry}.
+\]
+Em série com o ferro:
+$\mathcal{R}_{tot}=\pot{4.97}{5}+\pot{1.99}{6}=\pot{2.49}{6}$.\\
+(b)
+\[
+\Phi=\frac{1000}{\pot{2.49}{6}}=\pot{4.02}{-4}\,\si{\weber};
+\qquad
+B=\SI{1.005}{\tesla}.
+\]
+\textbf{Agora sim, valor fisicamente sustentável} --- e com margem para
+saturação.\\
+(c) \textbf{Por que o entreferro domina.} Ele tem apenas
+$\SI{1}{\milli\meter}$ contra $\SI{500}{\milli\meter}$ de ferro --- é
+$500$ vezes mais curto. Mas sua permeabilidade é $2000$ vezes menor. O saldo:
+\[
+\frac{\mathcal{R}_g}{\mathcal{R}_{fe}}=\frac{2000}{500}=4.
+\]
+\textbf{Um milímetro de ar vale quatro vezes meio metro de ferro.}\\
+\textbf{Consequências de projeto.}
+\begin{itemize}
+\item O entreferro \emph{lineariza} o circuito magnético: como ele domina, a
+relação $\Phi\times I$ torna-se quase reta, mesmo com o ferro não linear.
+\item Ele permite armazenar muito mais energia (que se concentra no ar) --- daí
+seu uso em indutores de conversores chaveados.
+\item Em contrapartida, reduz a indutância e exige mais ampère-espiras.
+\item \textbf{Entreferros parasitas} (juntas mal ajustadas de núcleos em E ou U)
+degradam severamente o desempenho, mesmo com dezenas de micrômetros.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas bobinas compartilham parte do fluxo. A bobina $1$ produz
+$\SI{5}{\milli\weber}$, dos quais $\SI{4}{\milli\weber}$ atravessam a bobina
+$2$.
+\begin{itensq}
+\item Determine o fluxo de dispersão.
+\item Determine o coeficiente de acoplamento aproximado.
+\item Discuta como aumentá-lo.
+\end{itensq}
+\resposta{$\SI{1}{\milli\weber}$ de dispersão; $k\approx0{,}8$}
+\resolucao{(a) \textbf{Dispersão:} a parcela que não atravessa a outra bobina:
+\[
+\Phi_{disp}=5-4=\SI{1}{\milli\weber}\quad(20\%).
+\]
+(b) O coeficiente de acoplamento é a fração de fluxo compartilhada:
+\[
+k\approx\frac{\Phi_{12}}{\Phi_1}=\frac{4}{5}=0{,}8.
+\]
+\emph{(A definição rigorosa é $k=M/\sqrt{L_1L_2}$, que coincide com esta razão
+quando as bobinas são simétricas.)}\\
+(c) \textbf{Como aumentar $k$.}
+\begin{itemize}
+\item \textbf{Núcleo fechado} de alta permeabilidade: o fluxo prefere o caminho
+de baixa relutância e "não escapa". Toroides atingem $k>0{,}99$.
+\item \textbf{Enrolamentos concêntricos ou intercalados}, em vez de lado a lado
+--- reduz drasticamente o caminho de fuga.
+\item \textbf{Eliminar entreferros} desnecessários, que forçam o fluxo a
+divergir.
+\end{itemize}
+\textbf{Compromisso:} $k$ alto é desejável em transformadores (transferência
+eficiente), mas dispersão \emph{controlada} é útil em alguns casos --- ela
+funciona como indutância série natural, limitando corrente de curto em
+transformadores de solda e em reatores.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um núcleo tem seção variável: $\SI{6}{\centi\meter\squared}$ em um trecho e
+$\SI{2}{\centi\meter\squared}$ em outro, sem dispersão.
+\begin{itensq}
+\item Compare o fluxo nos dois trechos.
+\item Compare a densidade de fluxo.
+\item Identifique onde ocorre a saturação primeiro.
+\end{itensq}
+\resposta{Mesmo fluxo; $B$ três vezes maior na seção estreita, que satura
+primeiro}
+\resolucao{(a) \textbf{O fluxo é o mesmo.} Sem dispersão, todas as linhas que
+passam por um trecho passam pelo outro --- é a consequência direta de
+$\oint\vec B\cdot\mathrm{d}\vec A=0$ aplicada a uma superfície que envolve a
+junção.\\
+\textbf{Analogia elétrica:} é o equivalente magnético da LKC. O fluxo se
+conserva ao longo de um circuito magnético sem ramificação, como a corrente em
+um circuito série.\\
+(b) Como $B=\Phi/A$:
+\[
+\frac{B_2}{B_1}=\frac{A_1}{A_2}=\frac{6}{2}=3.
+\]
+(c) \textbf{A seção estreita satura primeiro}, por ter $B$ três vezes maior.\\
+\textbf{Consequência de projeto:} o dimensionamento de um núcleo é governado
+pela sua \textbf{menor} seção. Aumentar a seção larga não adianta nada ---
+é preciso alargar o gargalo.\\
+\textbf{Onde isso aparece na prática:} cantos de núcleos em E, junções mal
+projetadas e regiões com furos de fixação. São esses pontos que saturam
+primeiro e produzem aquecimento e distorção localizados.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma espira de $\SI{25}{\centi\meter\squared}$ está parcialmente dentro de uma
+região de campo de $\SI{0.8}{\tesla}$, com $60\%$ de sua área na região.
+\begin{itensq}
+\item Determine o fluxo.
+\item Determine a f.e.m. se a espira for retirada completamente em
+      $\SI{40}{\milli\second}$.
+\end{itensq}
+\resposta{$\Phi=\SI{1.2}{\milli\weber}$; $\varepsilon=\SI{30}{\milli\volt}$}
+\resolucao{(a) Apenas a área \emph{dentro} do campo contribui:
+\[
+\Phi=B\,A_{efetiva}=(0{,}8)(0{,}60)(\pot{2.5}{-3})
+=\pot{1.2}{-3}\,\si{\weber}.
+\]
+(b)
+\[
+|\varepsilon|=\frac{\Delta\Phi}{\Delta t}
+=\frac{\pot{1.2}{-3}}{\pot{4}{-2}}=\pot{3}{-2}\,\si{\volt}.
+\]
+\textbf{Observação importante:} o fluxo depende da área \emph{efetivamente}
+imersa no campo, não da área geométrica total da espira. Fora da região,
+$B=0$ e a contribuição é nula.\\
+\textbf{Se a espira tivesse $N$ espiras}, a f.e.m. seria $N$ vezes maior --- e é
+assim que se aumenta a sensibilidade de sensores de fluxo sem aumentar a área.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um transformador tem núcleo de seção $\SI{10}{\centi\meter\squared}$ e opera
+com $B_{\max}=\SI{1.2}{\tesla}$.
+\begin{itensq}
+\item Determine o fluxo máximo.
+\item Determine o número de espiras do primário para
+      $\SI{220}{\volt}$ a $\SI{60}{\hertz}$.
+\end{itensq}
+\resposta{$\Phi_{\max}=\SI{1.2}{\milli\weber}$; $N\approx688$ espiras}
+\resolucao{(a) $\Phi_{\max}=B_{\max}A=(1{,}2)(\pot{1}{-3})
+=\pot{1.2}{-3}\,\si{\weber}$.\\
+(b) Para fluxo senoidal, a f.e.m. eficaz vale
+\[
+V_{ef}=4{,}44\,N\,f\,\Phi_{\max},
+\]
+\emph{(o fator $4{,}44=2\pi/\sqrt2$ decorre de derivar uma senoide e converter
+para valor eficaz)}. Logo
+\[
+N=\frac{220}{4{,}44(60)(\pot{1.2}{-3})}=\frac{220}{0{,}3197}\approx688.
+\]
+\textbf{Compromisso central do projeto:} menos espiras significam $B$ maior (e
+risco de saturação); mais espiras significam mais cobre, mais resistência e mais
+perdas.\\
+\textbf{Por que a frequência importa:} $N\propto1/f$. Em $\SI{400}{\hertz}$
+(aviação) ou em dezenas de quilohertz (fontes chaveadas), o mesmo transformador
+precisa de muito menos espiras --- e o núcleo pode ser muito menor. É essa a
+razão física de fontes chaveadas serem tão mais compactas que as lineares.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma superfície fechada envolve completamente um ímã permanente. Determine o
+fluxo magnético líquido através dela e justifique.
+\resposta{Nulo, independentemente da posição e da intensidade do ímã}
+\resolucao{\textbf{Resultado:} $\oint\vec B\cdot\mathrm{d}\vec A=0$, sempre.\\
+\textbf{Justificativa:} as linhas de campo de um ímã \emph{não começam nem
+terminam} nele --- elas saem do polo norte, percorrem o espaço externo, entram
+pelo sul e \textbf{continuam dentro do material}, fechando-se sobre si mesmas.\\
+Toda linha que atravessa a superfície para fora atravessa também para dentro,
+em algum outro ponto. O balanço é rigorosamente nulo.\\
+\textbf{Contraste com a carga elétrica.} Se a superfície envolvesse uma carga
+$+Q$, o fluxo elétrico seria $Q/\varepsilon_0\ne0$ --- porque as linhas
+elétricas \emph{nascem} na carga.\\
+\textbf{O que isso significa fisicamente:} não existe "carga magnética". Cortar
+um ímã ao meio não separa os polos --- produz dois ímãs completos, cada um com
+seus dois polos. Não há como isolar um norte de um sul.\\
+\textbf{Consequência para a teoria:} $\nabla\cdot\vec B=0$ é uma equação de
+Maxwell, e é ela que garante a existência do potencial vetor $\vec A$ com
+$\vec B=\nabla\times\vec A$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma bobina de $500$ espiras e área $\SI{8}{\centi\meter\squared}$ é usada como
+sensor de campo. Ela é retirada rapidamente do campo, e um integrador registra
+$\SI{6}{\milli\volt\second}$.
+\begin{itensq}
+\item Determine o fluxo concatenado inicial.
+\item Determine o campo.
+\item Explique a vantagem do método.
+\end{itensq}
+\resposta{$\lambda=\SI{6}{\milli\weber}$-espira; $B=\SI{15}{\milli\tesla}$}
+\resolucao{(a) Integrando a lei de Faraday:
+\[
+\int\varepsilon\,\mathrm{d}t=\Delta\lambda
+\;\Longrightarrow\;
+\lambda_i=\pot{6}{-3}\,\si{\weber}\text{-espira}
+\]
+(pois o fluxo final é zero).\\
+(b)
+\[
+\Phi=\frac{\lambda}{N}=\frac{\pot{6}{-3}}{500}=\pot{1.2}{-5}\,\si{\weber};
+\qquad
+B=\frac{\Phi}{A}=\frac{\pot{1.2}{-5}}{\pot{8}{-4}}=\pot{1.5}{-2}\,\si{\tesla}.
+\]
+(c) \textbf{Vantagem do método integral.} O resultado depende \emph{apenas} da
+variação total de fluxo --- \textbf{não} de \emph{como} a bobina foi retirada.
+Rápido ou devagar, com solavancos ou suavemente, a integral é a mesma.\\
+Isso torna a medição notavelmente robusta: não é preciso controlar a velocidade
+nem a trajetória.\\
+\textbf{Limitações:} o integrador acumula qualquer \emph{offset} do
+amplificador, o que limita o tempo de medição (problema já discutido na
+integração de sinais ruidosos). E o método mede apenas \emph{variações} --- para
+campos estáticos permanentes, é preciso mover a bobina ou usar sensor Hall.}
+\end{questao}
+
+\begin{questao}[3]{}
+Avalie o erro de assumir campo uniforme ao calcular o fluxo através de uma
+espira de $\SI{10}{\centi\meter}$ de lado, situada entre $\SI{5}{}$ e
+$\SI{15}{\centi\meter}$ de um fio retilíneo.
+\begin{itensq}
+\item Determine o fluxo exato e o estimado pelo campo no centro.
+\item Determine o erro.
+\end{itensq}
+\resposta{Erro de cerca de $+2{,}5\%$ na estimativa pelo centro}
+\resolucao{\textbf{Exato} (com $I$ genérico e $a=\SI{0.10}{\meter}$):
+\[
+\Phi_{ex}=\frac{\mu_0Ia}{2\pi}\ln\frac{0{,}15}{0{,}05}
+=\pot{2}{-8}I\ln3=\pot{2.197}{-8}\,I.
+\]
+\textbf{Estimativa pelo centro} ($r=\SI{0.10}{\meter}$):
+\[
+\Phi_{est}=\frac{\mu_0I}{2\pi(0{,}10)}\,a^{2}
+=\pot{2}{-7}\frac{I}{0{,}10}(0{,}01)=\pot{2}{-8}\,I.
+\]
+\[
+\text{erro}=\frac{2{,}00-2{,}197}{2{,}197}=-9{,}0\%.
+\]
+\textbf{A estimativa pelo centro \emph{subestima}} o fluxo --- porque
+$B\propto1/r$ é uma função \textbf{convexa}, e a média de uma função convexa é
+maior que a função da média (desigualdade de Jensen).\\
+\textbf{Quando a aproximação é aceitável:} quando a variação de $B$ ao longo da
+espira for pequena. Aqui, $B$ varia por um fator $3$ --- muito. Se a espira
+estivesse entre $95$ e $\SI{105}{\centi\meter}$, a variação seria de apenas
+$10\%$ e o erro cairia para frações de por cento.\\
+\textbf{Critério prático:} use campo uniforme se
+$B_{\max}/B_{\min}<1{,}1$; caso contrário, integre.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- fluxo por superfície fechada.)} Prove que
+$\oint\vec B\cdot\mathrm{d}\vec A=0$ e explore suas consequências.
+\begin{itensq}
+\item Demonstre a partir da inexistência de monopolos.
+\item Deduza a conservação do fluxo em circuitos magnéticos.
+\item Compare com a lei de Gauss elétrica.
+\end{itensq}
+\resposta{Linhas fechadas $\Rightarrow$ fluxo líquido nulo $\Rightarrow$ o fluxo
+se conserva ao longo de um circuito magnético}
+\resolucao{(a) \textbf{Demonstração.} As linhas de $\vec B$ são curvas
+\emph{fechadas} --- fato experimental, equivalente à inexistência de monopolos
+magnéticos. Uma curva fechada que penetre uma superfície fechada precisa
+atravessá-la um número \emph{par} de vezes, alternando entrada e saída.\\
+Cada entrada contribui com fluxo negativo e cada saída com positivo, de módulos
+iguais. A soma se cancela:
+\[
+\oint\vec B\cdot\mathrm{d}\vec A=0.
+\]
+Pelo teorema da divergência, isso equivale a $\nabla\cdot\vec B=0$ em todo
+ponto.\\
+(b) \textbf{Conservação do fluxo.} Considere uma junção em um núcleo magnético,
+onde um trecho de seção $A_1$ encontra outro de seção $A_2$. Envolvendo a junção
+com uma superfície fechada:
+\[
+-\Phi_1+\Phi_2=0
+\;\Longrightarrow\;
+\Phi_1=\Phi_2.
+\]
+\textbf{O fluxo se conserva} --- exatamente como a corrente em um nó. Se o
+núcleo se ramificar em dois caminhos:
+\[
+\Phi_{total}=\Phi_a+\Phi_b,
+\]
+que é a \textbf{lei dos nós magnética}, análoga à LKC.\\
+(c) \textbf{Comparação com Gauss elétrica.}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Elétrico & Magnético\\
+\hline
+$\oint\vec E\cdot\mathrm{d}\vec A=Q/\varepsilon_0$
+ & $\oint\vec B\cdot\mathrm{d}\vec A=0$\\
+Linhas nascem e morrem em cargas & Linhas são fechadas\\
+Existem monopolos (cargas) & Não existem monopolos\\
+$\nabla\cdot\vec E=\rho/\varepsilon_0$ & $\nabla\cdot\vec B=0$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Consequência profunda:} a ausência de monopolos permite escrever
+$\vec B=\nabla\times\vec A$, base de toda a formulação moderna do
+eletromagnetismo. Se monopolos existissem, essa construção seria impossível.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Independência da superfície.)} Prove que o fluxo através de qualquer
+superfície apoiada em uma dada curva fechada é o mesmo.
+\begin{itensq}
+\item Demonstre.
+\item Explique a importância para a lei de Faraday.
+\item Indique o que ocorre se as normais forem orientadas incoerentemente.
+\end{itensq}
+\resposta{Duas superfícies de mesma borda formam superfície fechada, cujo fluxo
+é nulo}
+\resolucao{(a) \textbf{Demonstração.} Sejam $S_1$ e $S_2$ duas superfícies
+apoiadas na mesma curva $C$. Juntas, elas delimitam um \textbf{volume fechado}.
+Aplicando o resultado anterior:
+\[
+\oint\vec B\cdot\mathrm{d}\vec A
+=\Phi_{S_2}^{(saindo)}-\Phi_{S_1}^{(saindo)}=0
+\;\Longrightarrow\;
+\Phi_{S_1}=\Phi_{S_2}.
+\]
+(b) \textbf{Importância para Faraday.} A lei
+$\varepsilon=-\dfrac{\mathrm{d}\Phi}{\mathrm{d}t}$ só faz sentido se
+$\Phi$ estiver \emph{bem definido} --- ou seja, se não depender da superfície
+escolhida.\\
+Se dependesse, a f.e.m. de um mesmo circuito teria valores diferentes conforme a
+superfície imaginada --- absurdo, pois a f.e.m. é medível.\\
+\textbf{Liberdade prática:} escolha a superfície que simplificar a integral. Ao
+calcular o fluxo através de uma espira que envolve um solenoide, por exemplo,
+convém uma superfície que corte o solenoide perpendicularmente.\\
+(c) \textbf{Orientação das normais.} A igualdade exige que as normais sejam
+orientadas \emph{coerentemente} com o sentido de percurso da borda, pela regra
+da mão direita.\\
+Se uma delas for invertida, aparece um sinal negativo --- e a conclusão errônea
+de que os fluxos são opostos. \textbf{Fixe o sentido de percurso da curva
+primeiro}, e derive as normais dele.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Circuito magnético.)} Estabeleça a analogia formal entre circuitos
+magnéticos e elétricos, e discuta seus limites.
+\begin{itensq}
+\item Construa a tabela de correspondências.
+\item Deduza a expressão da relutância.
+\item Aponte três diferenças que quebram a analogia.
+\end{itensq}
+\resposta{$\mathcal{F}=\Phi\mathcal{R}$, com
+$\mathcal{R}=\ell/\mu A$; a analogia falha por não linearidade, dispersão e
+ausência de dissipação}
+\resolucao{(a)
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Circuito elétrico & Circuito magnético\\
+\hline
+F.e.m. $\varepsilon$ & Força magnetomotriz $\mathcal{F}=NI$\\
+Corrente $I$ & Fluxo $\Phi$\\
+Resistência $R=\ell/\sigma A$ & Relutância
+ $\mathcal{R}=\ell/\mu A$\\
+$\varepsilon=RI$ & $\mathcal{F}=\mathcal{R}\Phi$\\
+Condutividade $\sigma$ & Permeabilidade $\mu$\\
+LKC nos nós & Conservação do fluxo\\
+Resistências em série somam & Relutâncias em série somam\\
+\hline
+\end{tabular}
+\end{center}
+(b) \textbf{Dedução da relutância.} Da lei de Ampère aplicada ao caminho médio
+do núcleo, $NI=H\ell$. Com $B=\mu H$ e $\Phi=BA$:
+\[
+NI=\frac{B\ell}{\mu}=\frac{\Phi\,\ell}{\mu A}
+\;\Longrightarrow\;
+\mathcal{R}=\frac{\ell}{\mu A}.
+\]
+(c) \textbf{Três diferenças que quebram a analogia.}
+\begin{enumerate}
+\item \textbf{Não linearidade.} $\sigma$ é constante em metais, mas
+$\mu$ varia enormemente com $B$ --- e desaba na saturação. A "resistência
+magnética" depende da própria corrente que a atravessa.
+\item \textbf{Dispersão.} A corrente elétrica fica confinada no condutor porque
+a razão de condutividades metal/ar é de $10^{20}$. Já a razão de
+permeabilidades ferro/ar é de apenas $10^{3}$ --- e por isso parte do fluxo
+\emph{escapa} do núcleo. Não existe "isolante magnético".
+\item \textbf{Ausência de dissipação.} A corrente dissipa $RI^{2}$ em calor.
+O fluxo \emph{não dissipa} nada --- manter $\Phi$ constante não custa energia
+(as perdas por histerese e Foucault ocorrem apenas quando o fluxo \emph{varia},
+e por outros mecanismos).
+\end{enumerate}
+\textbf{Conclusão:} a analogia é excelente como \emph{ferramenta de cálculo}
+abaixo da saturação, e enganosa como \emph{modelo físico}. Use-a para
+dimensionar; não a use para raciocinar sobre energia.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de entreferro.)} Um indutor de $\SI{100}{\micro\henry}$ deve
+conduzir $\SI{5}{\ampere}$ de pico, com núcleo de ferrite de seção
+$\SI{1}{\centi\meter\squared}$, caminho médio $\SI{6}{\centi\meter}$,
+$\mu_r=2000$ e $B_{sat}=\SI{0.3}{\tesla}$.
+\begin{itensq}
+\item Determine a energia armazenada e o número mínimo de espiras.
+\item Determine o entreferro necessário.
+\item Determine a fração de energia armazenada no entreferro.
+\end{itensq}
+\resposta{$W=\SI{1.25}{\milli\joule}$; $N=17$ espiras;
+$g\approx\SI{0.33}{\milli\meter}$; $92\%$ da energia no entreferro}
+\resolucao{(a)
+\[
+W=\tfrac12LI^{2}=\tfrac12(\pot{1}{-4})(25)=\SI{1.25}{\milli\joule}.
+\]
+O fluxo concatenado é $\lambda=LI=\pot{5}{-4}\,\si{\weber}$-espira, e o fluxo
+máximo por espira é limitado pela saturação:
+\[
+\Phi_{\max}=B_{sat}A=(0{,}3)(\pot{1}{-4})=\SI{30}{\micro\weber}.
+\]
+\[
+N\ge\frac{\lambda}{\Phi_{\max}}=\frac{\pot{5}{-4}}{\pot{3}{-5}}=16{,}7
+\;\Longrightarrow\;
+N=17\ \text{espiras}.
+\]
+\emph{(Verificação: com $N=17$, $B=\lambda/(NA)=\SI{0.294}{\tesla}$ ---
+logo abaixo do limite.)}\\
+(b) De $L=N^{2}/\mathcal{R}$:
+\[
+\mathcal{R}_{tot}=\frac{17^{2}}{\pot{1}{-4}}=\pot{2.89}{6}\,\si{\per\henry}.
+\]
+A parcela do ferrite é
+$\mathcal{R}_{fe}=\dfrac{0{,}06}{(2000)\mu_0(\pot{1}{-4})}
+=\pot{2.39}{5}$, restando para o entreferro
+$\mathcal{R}_g=\pot{2.65}{6}$:
+\[
+g=\mathcal{R}_g\,\mu_0A=(\pot{2.65}{6})(4\pi\times10^{-7})(\pot{1}{-4})
+=\SI{0.33}{\milli\meter}.
+\]
+\textbf{Note que o entreferro responde por $92\%$ da relutância total}, embora
+seja $180$ vezes mais curto que o caminho de ferrite.\\
+(c) Como $B$ é o mesmo nos dois meios e $u=B^{2}/2\mu$:
+\[
+\frac{W_g}{W_{fe}}=\frac{g/\mu_0}{\ell_{fe}/(\mu_r\mu_0)}
+=\frac{g\,\mu_r}{\ell_{fe}}
+=\frac{(\pot{3.33}{-4})(2000)}{0{,}06}=11{,}1,
+\]
+ou seja, $\SI{91.7}{\percent}$ da energia está no \textbf{entreferro}.\\
+\textbf{Por que isso importa.} A densidade de energia
+$u=B^{2}/2\mu$ é \emph{inversamente} proporcional a $\mu$ --- para o mesmo
+$B$, o ar armazena duas mil vezes mais energia por volume que o ferrite.\\
+\textbf{O entreferro é o reservatório; o núcleo apenas conduz o fluxo até
+ele.} Um indutor sem entreferro satura com corrente mínima e armazena quase
+nada --- ao contrário de um transformador, que \emph{não deve} armazenar
+energia e por isso dispensa entreferro.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Dispersão e acoplamento.)} Analise o efeito da dispersão de fluxo no
+desempenho de um transformador.
+\begin{itensq}
+\item Relacione $k$ com as indutâncias própria e mútua.
+\item Determine o efeito sobre a tensão de saída.
+\item Discuta quando a dispersão é desejável.
+\end{itensq}
+\resposta{$k=M/\sqrt{L_1L_2}$; a dispersão aparece como indutância série e
+causa queda de tensão com a carga}
+\resolucao{(a) Por definição,
+\[
+k=\frac{M}{\sqrt{L_1L_2}},
+\qquad 0\le k\le1,
+\]
+resultado já demonstrado a partir da não negatividade da energia do par de
+bobinas.\\
+Decompondo cada indutância em parcela \emph{magnetizante} (fluxo compartilhado)
+e parcela de \emph{dispersão}:
+\[
+L_1=L_{m1}+L_{d1},
+\qquad
+k^{2}=\frac{L_{m1}L_{m2}}{L_1L_2}.
+\]
+(b) \textbf{Efeito na saída.} A indutância de dispersão comporta-se como uma
+\emph{impedância em série} com o enrolamento. Sob carga, ela produz queda de
+tensão proporcional à corrente:
+\begin{itemize}
+\item \textbf{Em vazio}, a relação de tensões é praticamente $N_2/N_1$ --- a
+dispersão não se manifesta.
+\item \textbf{Com carga}, a tensão de saída \emph{cai}, e a regulação piora
+proporcionalmente à dispersão.
+\end{itemize}
+Um transformador com $k=0{,}98$ tem cerca de $2\%$ de dispersão e regulação
+tipicamente na faixa de $2$ a $5\%$.\\
+(c) \textbf{Quando a dispersão é desejável.}
+\begin{itemize}
+\item \textbf{Transformadores de solda:} a dispersão elevada (às vezes
+$k\approx0{,}8$) limita naturalmente a corrente de arco, dispensando reator
+externo. A característica "mole" é justamente o que se quer.
+\item \textbf{Transformadores de forno e de descarga:} mesma lógica --- a carga
+é essencialmente um curto controlado.
+\item \textbf{Limitação de curto-circuito:} em transformadores de distribuição,
+uma dispersão mínima é \emph{exigida} por norma, para limitar a corrente de
+falta a valores que a proteção consiga interromper.
+\end{itemize}
+\textbf{Conclusão:} $k\to1$ não é universalmente melhor. A dispersão é um
+parâmetro de projeto, e não apenas um defeito a minimizar.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Fluxo e energia.)} Deduza a energia armazenada em um circuito
+magnético e mostre onde ela reside.
+\begin{itensq}
+\item Deduza $W=\frac12\mathcal{R}\Phi^{2}$.
+\item Determine a densidade de energia em função de $B$ e $\mu$.
+\item Determine a fração de energia no entreferro do exemplo anterior.
+\end{itensq}
+\resposta{$u=B^{2}/2\mu$; praticamente toda a energia fica no entreferro}
+\resolucao{(a) Com $L=N^{2}/\mathcal{R}$ e $\lambda=N\Phi=LI$:
+\[
+W=\frac12LI^{2}=\frac{\lambda^{2}}{2L}
+=\frac{(N\Phi)^{2}}{2N^{2}/\mathcal{R}}
+=\frac{1}{2}\mathcal{R}\,\Phi^{2}.
+\]
+\textbf{Analogia:} é a forma magnética de $W=\frac12 CU^{2}$ escrita como
+$Q^{2}/2C$ --- o fluxo faz o papel da carga e a relutância, o do inverso da
+capacitância.\\
+(b) Escrevendo $\mathcal{R}=\ell/\mu A$ e $\Phi=BA$:
+\[
+W=\frac{1}{2}\frac{\ell}{\mu A}(BA)^{2}=\frac{B^{2}}{2\mu}(A\ell)
+\;\Longrightarrow\;
+u=\frac{B^{2}}{2\mu}.
+\]
+\textbf{Ponto decisivo:} a densidade de energia é \emph{inversamente}
+proporcional a $\mu$. Para o mesmo $B$, o ar armazena $\mu_r$ vezes \emph{mais}
+energia por volume que o ferro.\\
+(c) \textbf{Fração no entreferro.} Como $B$ é o mesmo nos dois meios (fluxo
+conservado e mesma seção), a razão das energias é a razão dos produtos
+$\ell/\mu$:
+\[
+\frac{W_g}{W_{fe}}
+=\frac{g/\mu_0}{\ell_{fe}/(\mu_r\mu_0)}
+=\frac{g\,\mu_r}{\ell_{fe}}
+=\frac{(\pot{0.56}{-3})(2000)}{0{,}50}=2{,}24.
+\]
+Ou seja, cerca de $69\%$ da energia está no entreferro, contra $31\%$ no
+ferro --- e a proporção cresce rapidamente com $g$.\\
+\textbf{Por isso o entreferro é o elemento de projeto de um indutor de
+potência:} ele é o \emph{reservatório}. O ferro apenas conduz o fluxo até ele.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Núcleo de seção variável.)} Formule o cálculo do fluxo em um núcleo
+cuja seção varia ao longo do caminho, sem dispersão.
+\begin{itensq}
+\item Escreva a relutância total.
+\item Determine o critério de dimensionamento.
+\item Analise o caso de um núcleo com estreitamento localizado.
+\end{itensq}
+\resposta{$\mathcal{R}=\displaystyle\int\frac{\mathrm{d}\ell}{\mu A(\ell)}$;
+dimensiona-se pela \emph{menor} seção}
+\resolucao{(a) Cada trecho infinitesimal contribui como uma relutância em
+série:
+\[
+\mathcal{R}=\int_0^{L}\frac{\mathrm{d}\ell}{\mu\,A(\ell)}.
+\]
+Para trechos de seção constante, isso vira a soma
+$\sum\ell_i/(\mu A_i)$.\\
+(b) \textbf{Critério de dimensionamento.} Sem dispersão, o fluxo é o
+\emph{mesmo} em toda a extensão. Logo
+\[
+B(\ell)=\frac{\Phi}{A(\ell)},
+\]
+e $B$ é máximo onde $A$ é \textbf{mínimo}. A condição de não saturação é
+\[
+\Phi\le B_{sat}\,A_{\min}.
+\]
+\textbf{Toda a capacidade do núcleo é ditada pela sua menor seção} --- alargar
+o resto não ajuda em nada.\\
+(c) \textbf{Estreitamento localizado.} Suponha um núcleo de
+$\SI{6}{\centi\meter\squared}$ com um trecho curto de
+$\SI{2}{\centi\meter\squared}$:
+\begin{itemize}
+\item \textbf{Efeito na relutância:} se o trecho estreito for curto, sua
+contribuição a $\mathcal{R}$ é pequena --- o fluxo total quase não muda.
+\item \textbf{Efeito na saturação:} ali $B$ é \emph{três vezes} maior, e o
+trecho satura com um terço do fluxo que o resto suportaria.
+\item \textbf{Efeito local:} saturado, aquele trecho aquece por perdas
+concentradas e sua permeabilidade cai --- criando um entreferro
+\emph{efetivo} não projetado.
+\end{itemize}
+\textbf{Onde isso ocorre na prática:} furos de fixação, cantos internos de
+núcleos em E, e emendas de lâminas. São defeitos que passam despercebidos no
+cálculo de relutância (pequeno efeito) mas dominam o comportamento na saturação
+(efeito grande).\\
+\textbf{Regra:} calcule $\mathcal{R}$ pelo caminho todo, mas verifique
+$B$ na \emph{seção crítica}.}
+\end{questao}
+
+
+ 
+ 

@@ -1,0 +1,888 @@
+% =====================================================================
+%  Banco complementar --- Divisor de Tensao  (REVISADO)
+%  Substitui a versao gerada por template (8 clones em N2, 9 em N3 e
+%  8 questoes conceituais marcadas como N4).
+%  O cap04 ja cobre: maior parcela (MC), tres resistores em serie,
+%  100 V com 60/40, tres iguais sob 60 V, projeto de 5 V a partir de
+%  15 V, saida em vazio e com carga R_L, potenciometro de 10 kohm como
+%  divisor, malha unica com cinco resistores, divisor para carga de
+%  10 mA, divisor 4k/2k carregado e sistema de 5 V para carga de
+%  100 ohm. O EFEITO DE CARGA basico, portanto, ja esta no capitulo --
+%  e tambem no banco de circuitos mistos. Aqui ele so reaparece na
+%  forma da CONDICAO DE PROJETO (N4) e da nao linearidade do
+%  potenciometro carregado, que sao angulos novos.
+%  Distribuicao mantida: 4 N1 + 8 N2 + 9 N3 + 8 N4 = 29
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Divisor de tensão}
+
+\begin{atencao}[Organização do banco]
+A relação $U_o=U_{in}\dfrac{R_2}{R_1+R_2}$ pressupõe \textbf{corrente comum} ---
+ou seja, saída em vazio. Todo o resto do tópico decorre de levar a sério essa
+hipótese: o divisor tem resistência interna $R_1\parallel R_2$, e qualquer carga
+comparável a ela derruba a saída. O N3 explora tomadas múltiplas, sensores e
+fontes não ideais; o N4 trata de projeto sob restrição de potência, tolerância
+de razão, sonda compensada e a comparação com reguladores.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Três resistores de $\SI{1}{\kilo\ohm}$, $\SI{2}{\kilo\ohm}$ e
+$\SI{3}{\kilo\ohm}$ estão em série sob $\SI{12}{\volt}$. Determine a tensão
+sobre o resistor \emph{intermediário}.
+\resposta{$U=\SI{4}{\volt}$}
+\resolucao{A regra do divisor vale para qualquer número de elementos em série:
+cada um fica com a fração de sua própria resistência sobre o total.
+\[
+U_2=12\cdot\frac{2}{1+2+3}=12\cdot\frac13=\SI{4}{\volt}.
+\]
+\textbf{Conferência:} as três tensões são $2$, $4$ e $\SI{6}{\volt}$, somando
+$\SI{12}{\volt}$ \checkmark, e guardam a proporção $1{:}2{:}3$ dos
+resistores.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um divisor deve entregar $25\%$ da tensão de entrada. Determine a razão
+$R_1/R_2$.
+\resposta{$R_1/R_2=3$}
+\resolucao{
+\[
+\frac{R_2}{R_1+R_2}=0{,}25
+\;\Longrightarrow\;
+R_1+R_2=4R_2
+\;\Longrightarrow\;
+R_1=3R_2.
+\]
+\textbf{Observação importante:} apenas a \emph{razão} é fixada --- $3\,$k$/1\,$k
+e $30\,$k$/10\,$k produzem a mesma saída em vazio. O que os distingue é a
+corrente de repouso e a resistência interna do divisor, e é isso que decide o
+projeto quando há carga.}
+\end{questao}
+
+\begin{questao}[1]{}
+Em um divisor em vazio, ambos os resistores são \textbf{dobrados}. A tensão de
+saída:
+\begin{alternativas}[2]
+\item dobra
+\item cai à metade
+\item não se altera
+\item depende dos valores originais
+\end{alternativas}
+\resposta{(c)}
+\resolucao{A razão $\dfrac{2R_2}{2R_1+2R_2}=\dfrac{R_2}{R_1+R_2}$ é
+inalterada --- a saída em vazio depende só da proporção.\\
+\textbf{O que muda:} a corrente de repouso cai à metade (menos consumo) e a
+resistência interna $R_1\parallel R_2$ \emph{dobra} (mais sensível à carga).
+Escalar um divisor troca consumo por robustez, e essa é sempre a decisão
+central do projeto.}
+\end{questao}
+
+\begin{questao}[1]{}
+Analise os casos-limite de um divisor: (a) $R_2\to0$; (b) $R_2\to\infty$.
+\resposta{(a) $U_o\to0$; (b) $U_o\to U_{in}$}
+\resolucao{(a) Com $R_2=0$, a saída está em \textbf{curto} com o terra:
+$U_o=0$. A corrente vale $U_{in}/R_1$ --- toda a potência vai para $R_1$.\\
+(b) Com $R_2\to\infty$ (circuito aberto), não circula corrente, não há queda em
+$R_1$ e $U_o\to U_{in}$.\\
+\textbf{Conclusão:} a saída de um divisor está sempre entre $0$ e $U_{in}$ --- ele
+só \emph{reduz} tensão, nunca a eleva. Obter tensão maior que a entrada exige
+elemento armazenador (indutor ou capacitor) e comutação.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um divisor de $\SI{12}{\volt}$ usa três resistores em série de
+$\SI{1}{\kilo\ohm}$, $\SI{1}{\kilo\ohm}$ e $\SI{2}{\kilo\ohm}$, com duas
+tomadas intermediárias.
+\begin{itensq}
+\item Determine as duas tensões de saída em relação ao terra.
+\item Determine a corrente de repouso.
+\end{itensq}
+\resposta{(a) $\SI{9}{\volt}$ e $\SI{6}{\volt}$; (b) $\SI{3}{\milli\ampere}$}
+\resolucao{Total: $R=\SI{4}{\kilo\ohm}$ e
+$I=12/4000=\SI{3}{\milli\ampere}$.\\
+A tomada mais alta tem, abaixo de si, $1+2=\SI{3}{\kilo\ohm}$:
+\[
+U_A=12\cdot\frac{3}{4}=\SI{9}{\volt}.
+\]
+A tomada inferior tem $\SI{2}{\kilo\ohm}$ abaixo:
+\[
+U_B=12\cdot\frac{2}{4}=\SI{6}{\volt}.
+\]
+\textbf{Cuidado:} cada saída conta apenas a resistência \emph{entre ela e o
+terra}, não a do trecho acima. E as duas tomadas se \emph{influenciam}: carregar
+uma altera a outra, pois compartilham a mesma cadeia.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{30}{\volt}$ alimenta dois resistores iguais em série, e o
+ponto médio é adotado como referência (terra). Determine as tensões dos dois
+extremos.
+\resposta{$\SI{+15}{\volt}$ e $\SI{-15}{\volt}$}
+\resolucao{Cada resistor cai $\SI{15}{\volt}$. Tomando o ponto médio como
+$\SI{0}{\volt}$, o terminal superior fica em $\SI{+15}{\volt}$ e o inferior em
+$\SI{-15}{\volt}$.\\
+\textbf{Aplicação:} é assim que se obtém alimentação \emph{simétrica} para
+amplificadores operacionais a partir de uma fonte simples. \\
+\textbf{Limitação séria:} o "terra" assim criado é um ponto de divisor, com
+resistência interna $R/2$. Qualquer corrente drenada de forma assimétrica pelos
+dois ramos desloca a referência. Na prática, o divisor precisa ser reforçado por
+um seguidor de tensão ou por capacitores de grande valor.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um divisor de $\SI{24}{\volt}$ tem $R_1=\SI{8}{\kilo\ohm}$ e
+$R_2=\SI{4}{\kilo\ohm}$. Determine a saída, a corrente de repouso e a potência
+total dissipada.
+\resposta{$\SI{8}{\volt}$; $\SI{2}{\milli\ampere}$; $\SI{48}{\milli\watt}$}
+\resolucao{
+\[
+U_o=24\cdot\frac{4}{12}=\SI{8}{\volt};
+\qquad
+I=\frac{24}{12000}=\SI{2}{\milli\ampere};
+\]
+\[
+P=U_{in}I=24(\pot{2}{-3})=\SI{48}{\milli\watt}.
+\]
+\textbf{Distribuição:} $P_1=8000(\pot{2}{-3})^{2}=\SI{32}{\milli\watt}$ e
+$P_2=\SI{16}{\milli\watt}$ --- proporcionais às resistências, como em qualquer
+série.\\
+Note que essa potência é consumida \emph{permanentemente}, mesmo sem carga
+alguma conectada. Em equipamentos alimentados por bateria, divisores de repouso
+são uma fonte silenciosa de descarga.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um divisor tem $R_1=\SI{2}{\kilo\ohm}$ fixo e $R_2$ ajustável de
+$\SI{0}{\ohm}$ a $\SI{8}{\kilo\ohm}$, sob $\SI{10}{\volt}$. Determine a faixa
+da tensão de saída.
+\resposta{de $\SI{0}{\volt}$ a $\SI{8}{\volt}$}
+\resolucao{
+\[
+R_2=0 \Rightarrow U_o=0;
+\qquad
+R_2=\SI{8}{\kilo\ohm} \Rightarrow U_o=10\cdot\frac{8}{10}=\SI{8}{\volt}.
+\]
+\textbf{Não linearidade do ajuste:} no meio do curso
+($R_2=\SI{4}{\kilo\ohm}$), a saída é $10\cdot4/6=\SI{6.67}{\volt}$ --- e não
+$\SI{4}{\volt}$, como uma escala linear sugeriria. A relação
+$U_o(R_2)$ é uma hipérbole, não uma reta.\\
+Para obter ajuste \emph{linear}, é preciso usar um potenciômetro (em que a soma
+$R_1+R_2$ permanece constante), e não um reostato em série com resistor fixo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um divisor deve entregar $\SI{4.5}{\volt}$ com $R_2=\SI{3}{\kilo\ohm}$.
+Determine $U_{in}$ para $R_1=\SI{5}{\kilo\ohm}$.
+\resposta{$U_{in}=\SI{12}{\volt}$}
+\resolucao{
+\[
+4{,}5=U_{in}\cdot\frac{3}{5+3}
+\;\Longrightarrow\;
+U_{in}=4{,}5\cdot\frac{8}{3}=\SI{12}{\volt}.
+\]
+\textbf{Verificação:} $12\cdot3/8=\SI{4.5}{\volt}$ \checkmark, e a corrente é
+$12/8000=\SI{1.5}{\milli\ampere}$.\\
+A relação do divisor pode ser resolvida em qualquer das quatro variáveis ---
+$U_{in}$, $U_o$, $R_1$ ou $R_2$ --- desde que as outras três sejam conhecidas.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um termistor NTC vale $\SI{10}{\kilo\ohm}$ a $\SI{25}{\celsius}$ e
+$\SI{4}{\kilo\ohm}$ a $\SI{50}{\celsius}$. Ele ocupa a posição de $R_2$ em um
+divisor com $R_1=\SI{10}{\kilo\ohm}$ sob $\SI{5}{\volt}$. Determine a saída nas
+duas temperaturas.
+\resposta{$\SI{2.5}{\volt}$ e $\SI{1.43}{\volt}$}
+\resolucao{
+\[
+\SI{25}{\celsius}:\ U_o=5\cdot\frac{10}{20}=\SI{2.5}{\volt};
+\qquad
+\SI{50}{\celsius}:\ U_o=5\cdot\frac{4}{14}=\SI{1.43}{\volt}.
+\]
+Variação de $\SI{1.07}{\volt}$ em $\SI{25}{\celsius}$, ou cerca de
+$\SI{43}{\milli\volt\per\celsius}$ na média --- sinal amplo e fácil de digitalizar.\\
+\textbf{Ressalva:} a relação \emph{não} é linear, pois nem o termistor é linear
+em $T$, nem o divisor é linear em $R_2$. Para converter tensão em temperatura é
+preciso tabela, polinômio ou a equação de Steinhart--Hart. A escolha de
+$R_1=\SI{10}{\kilo\ohm}$ não é casual --- ela maximiza a sensibilidade em torno
+de $\SI{25}{\celsius}$, como se demonstra no bloco de desafio.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um LDR varia de $\SI{1}{\kilo\ohm}$ (claro) a $\SI{100}{\kilo\ohm}$ (escuro).
+Ele é colocado como $R_1$ de um divisor com $R_2=\SI{10}{\kilo\ohm}$ sob
+$\SI{5}{\volt}$. Determine a faixa de saída e o sentido da variação.
+\resposta{de $\SI{4.55}{\volt}$ (claro) a $\SI{0.45}{\volt}$ (escuro)}
+\resolucao{
+\[
+\text{claro}:\ U_o=5\cdot\frac{10}{11}=\SI{4.55}{\volt};
+\qquad
+\text{escuro}:\ U_o=5\cdot\frac{10}{110}=\SI{0.45}{\volt}.
+\]
+Com o LDR na posição \emph{superior}, mais luz significa \emph{maior} tensão de
+saída.\\
+\textbf{Inversão do comportamento:} trocando as posições (LDR embaixo), a saída
+passaria de $\SI{0.45}{\volt}$ no claro a $\SI{4.55}{\volt}$ no escuro. A
+escolha da posição define a polaridade do sensor --- decisão de projeto que
+custa nada e evita inverter o sinal depois em software.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um divisor projetado com $R_1=\SI{8.7}{\kilo\ohm}$ e $R_2=\SI{3.3}{\kilo\ohm}$
+para $12\to\SI{3.3}{\volt}$ deve usar valores E24. Adotando
+$R_1=\SI{9.1}{\kilo\ohm}$, determine a saída real e o erro.
+\resposta{$U_o=\SI{3.19}{\volt}$; erro de $-3{,}2\%$}
+\resolucao{
+\[
+U_o=12\cdot\frac{3{,}3}{9{,}1+3{,}3}=12\cdot\frac{3{,}3}{12{,}4}=\SI{3.19}{\volt};
+\qquad
+\text{erro}=\frac{3{,}19-3{,}30}{3{,}30}=-3{,}2\%.
+\]
+\textbf{Alternativa melhor:} o par $\SI{10}{\kilo\ohm}/\SI{3.9}{\kilo\ohm}$ dá
+$U_o=\SI{3.37}{\volt}$, erro de apenas $+2{,}0\%$. Vale sempre testar
+\emph{vários} pares E24 antes de escolher --- a razão importa mais que os
+valores individuais.\\
+\textbf{Se $3\%$ for demais:} use a série E96 (tolerância $1\%$), que contém
+$\SI{8.66}{\kilo\ohm}$ e resolve o problema diretamente.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um divisor $R_1=\SI{6}{\kilo\ohm}$, $R_2=\SI{3}{\kilo\ohm}$ é alimentado por
+uma fonte \textbf{real} de $\SI{12}{\volt}$ com $r=\SI{1}{\kilo\ohm}$.
+\begin{itensq}
+\item Determine a saída, considerando $r$.
+\item Compare com a previsão que ignora $r$.
+\item Determine a resistência de Thévenin vista na saída.
+\end{itensq}
+\resposta{(a) $\SI{3.6}{\volt}$; (b) previsão de $\SI{4}{\volt}$, erro de
+$10\%$; (c) $R_{Th}=\SI{2.1}{\kilo\ohm}$}
+\resolucao{(a) A resistência interna soma-se a $R_1$:
+\[
+U_o=12\cdot\frac{3}{1+6+3}=12\cdot\frac{3}{10}=\SI{3.6}{\volt}.
+\]
+(b) Ignorando $r$: $12\cdot3/9=\SI{4}{\volt}$. O erro é de $10\%$ --- nada
+desprezível.\\
+(c) Zerando a f.e.m. (mas mantendo $r$), a saída enxerga $R_2$ em paralelo com
+$(r+R_1)$:
+\[
+R_{Th}=\frac{3\cdot7}{10}=\SI{2.1}{\kilo\ohm}.
+\]
+\textbf{Leitura:} a resistência interna da fonte se comporta como parte de
+$R_1$ --- ela piora a razão \emph{e} aumenta a impedância de saída. Em divisores
+de baixa impedância (resistores de dezenas de ohms), $r$ pode dominar
+completamente o projeto.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dois divisores idênticos ($R_1=\SI{3}{\kilo\ohm}$, $R_2=\SI{1}{\kilo\ohm}$)
+são alimentados pela mesma fonte de $\SI{8}{\volt}$, mas em um deles $R_2$ é
+trocado por $\SI{1.1}{\kilo\ohm}$.
+\begin{itensq}
+\item Determine as duas saídas e a diferença entre elas.
+\item Determine a sensibilidade da diferença a variações de $R_2$.
+\end{itensq}
+\resposta{(a) $\SI{2}{\volt}$ e $\SI{2.146}{\volt}$; diferença de
+$\SI{146}{\milli\volt}$}
+\resolucao{(a)
+\[
+U_A=8\cdot\frac{1}{4}=\SI{2}{\volt};
+\qquad
+U_B=8\cdot\frac{1{,}1}{4{,}1}=\SI{2.146}{\volt};
+\qquad
+\Delta U=\SI{146}{\milli\volt}.
+\]
+(b) Derivando $U=U_{in}R_2/(R_1+R_2)$:
+\[
+\frac{\mathrm{d}U}{\mathrm{d}R_2}
+=\frac{U_{in}R_1}{(R_1+R_2)^{2}}
+=\frac{8(3000)}{(4000)^{2}}=\SI{1.5}{\milli\volt\per\ohm}.
+\]
+Para $\Delta R_2=\SI{100}{\ohm}$, prevê-se $\SI{150}{\milli\volt}$ --- muito
+próximo dos $\SI{146}{\milli\volt}$ exatos, pois a variação é pequena.\\
+\textbf{Esta é a estrutura da ponte:} dois divisores comparados, em que o
+\emph{desequilíbrio} carrega a informação. A grande vantagem é que variações
+comuns aos dois ramos --- deriva da fonte, temperatura ambiente --- se cancelam
+na diferença.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor $R_1=R_2=\SI{100}{\kilo\ohm}$ sob $\SI{10}{\volt}$ é medido por um
+voltímetro cuja resistência de entrada é $\SI{1}{\mega\ohm}$.
+\begin{itensq}
+\item Determine a leitura do instrumento.
+\item Determine o erro percentual.
+\item Determine a resistência mínima do voltímetro para erro inferior a
+      $1\%$.
+\end{itensq}
+\resposta{(a) $\SI{4.76}{\volt}$; (b) $-4{,}8\%$; (c)
+$\ge\SI{5}{\mega\ohm}$}
+\resolucao{(a) O voltímetro entra em paralelo com $R_2$:
+\[
+R_2'=\frac{100\cdot1000}{1100}=\SI{90.9}{\kilo\ohm};
+\qquad
+U=10\cdot\frac{90{,}9}{100+90{,}9}=\SI{4.76}{\volt}.
+\]
+(b) Erro: $(4{,}76-5{,}00)/5{,}00=-4{,}8\%$.\\
+(c) A resistência interna do divisor é
+$R_{Th}=100\parallel100=\SI{50}{\kilo\ohm}$. O erro relativo é
+aproximadamente $R_{Th}/R_V$, então
+\[
+\frac{50\,\mathrm{k}}{R_V}\le0{,}01
+\;\Longrightarrow\;
+R_V\ge\SI{5}{\mega\ohm}.
+\]
+\textbf{Lição de instrumentação:} o instrumento \emph{perturba} o circuito que
+mede. Multímetros digitais comuns têm $\SI{10}{\mega\ohm}$ --- suficientes aqui,
+mas insuficientes para divisores de megaohms. E note que a especificação
+depende de $R_{Th}$ do circuito, não da tensão medida.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor $R_1=\SI{4}{\kilo\ohm}$, $R_2=\SI{1}{\kilo\ohm}$ sob
+$\SI{10}{\volt}$ fornece referência a um conversor A/D de $10$ bits com fundo
+de escala de $\SI{2.5}{\volt}$.
+\begin{itensq}
+\item Determine a saída e a margem em relação ao fundo de escala.
+\item Determine o degrau de quantização.
+\item Compare o erro de quantização com o erro de resistores de $1\%$.
+\end{itensq}
+\resposta{(a) $\SI{2}{\volt}$, $80\%$ do fundo; (b) $\SI{2.44}{\milli\volt}$;
+(c) resistores dominam ($\approx\SI{16}{\milli\volt}$)}
+\resolucao{(a) $U_o=10\cdot1/5=\SI{2}{\volt}$, ou $80\%$ do fundo de escala ---
+boa utilização da faixa, sem risco de saturação.\\
+(b) Com $10$ bits, $2^{10}=1024$ degraus:
+\[
+\Delta=\frac{2{,}5}{1024}=\SI{2.44}{\milli\volt}.
+\]
+(c) Com resistores de $1\%$, o pior erro de razão vale
+$\dfrac{R_1}{R_1+R_2}(t_1+t_2)=0{,}8(2\%)=1{,}6\%$, ou
+$0{,}016\times2=\SI{32}{\milli\volt}$ --- \textbf{treze vezes} o degrau de
+quantização.\\
+\textbf{Conclusão de projeto:} não adianta usar um conversor de $12$ ou
+$16$ bits com esse divisor. O gargalo é o divisor, e a solução é resistores de
+$0{,}1\%$, calibração por software, ou uma referência de tensão dedicada.
+Aumentar a resolução do conversor sem corrigir o divisor é gastar dinheiro em
+dígitos sem significado.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor de $\SI{48}{\volt}$ para $\SI{12}{\volt}$ deve alimentar uma carga
+de $\SI{100}{\ohm}$.
+\begin{itensq}
+\item Determine $R_1$ e $R_2$ ignorando a carga, com corrente de repouso de
+      $\SI{120}{\milli\ampere}$.
+\item Determine a saída real com a carga conectada.
+\item Avalie a viabilidade.
+\end{itensq}
+\resposta{(a) $R_1=\SI{300}{\ohm}$, $R_2=\SI{100}{\ohm}$;
+(b) $\SI{6.86}{\volt}$; (c) inviável}
+\resolucao{(a) $R_2=12/0{,}120=\SI{100}{\ohm}$;
+$R_1=(48-12)/0{,}120=\SI{300}{\ohm}$.\\
+(b) A carga de $\SI{100}{\ohm}$ fica em paralelo com $R_2$:
+\[
+R_2'=\frac{100\cdot100}{200}=\SI{50}{\ohm};
+\qquad
+U_o=48\cdot\frac{50}{350}=\SI{6.86}{\volt}.
+\]
+Queda de $43\%$ em relação ao projetado.\\
+(c) \textbf{Inviável.} A carga consome $\SI{120}{\milli\ampere}$ a
+$\SI{12}{\volt}$ --- exatamente a corrente de repouso, e não uma fração dela. A
+regra de bolso exige repouso de $10$ a $20$ vezes a corrente da carga, o que
+levaria $R_2$ a $\SI{10}{\ohm}$ e a dissipação total a
+$48\times1{,}2=\SI{57.6}{\watt}$ para entregar $\SI{1.44}{\watt}$ --- rendimento
+de $2{,}5\%$.\\
+\textbf{Diagnóstico geral:} divisores resistivos servem para gerar
+\emph{referências} de alta impedância, não para \emph{alimentar} cargas. Aqui o
+caso pede regulador.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor com $R_1=\SI{10}{\kilo\ohm}$ e $R_2=\SI{10}{\kilo\ohm}$ opera sob
+$\SI{200}{\volt}$.
+\begin{itensq}
+\item Determine a potência de cada resistor e a tensão sobre cada um.
+\item Especifique os resistores considerando potência \emph{e} tensão máxima de
+      trabalho.
+\end{itensq}
+\resposta{$\SI{1}{\watt}$ e $\SI{100}{\volt}$ em cada; exige resistor de
+potência com tensão de trabalho adequada}
+\resolucao{(a) $I=200/20000=\SI{10}{\milli\ampere}$;
+\[
+U_1=U_2=\SI{100}{\volt};
+\qquad
+P_1=P_2=10^{4}(10^{-2})^{2}=\SI{1}{\watt}.
+\]
+(b) \textbf{Dois critérios independentes:}
+\begin{itemize}
+\item \textbf{Potência:} com fator $2$ de folga, resistores de
+$\SI{2}{\watt}$.
+\item \textbf{Tensão máxima de trabalho:} um resistor de filme comum de
+$\frac14\,\si{\watt}$ suporta cerca de $\SI{250}{\volt}$; os de
+$\SI{2}{\watt}$ chegam a $\SI{500}{\volt}$. Os $\SI{100}{\volt}$ exigidos são
+atendidos com folga.
+\end{itemize}
+\textbf{Por que o segundo critério existe:} a tensão máxima é limitada pela
+ruptura do revestimento e pelo arco entre as espiras do filme --- fenômeno que
+independe da potência. Em divisores de \emph{alta} tensão (quilovolts), é comum
+que a tensão, e não a potência, force o uso de vários resistores em série,
+mesmo com dissipação irrisória.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor deve fornecer $\SI{5}{\volt}$ a partir de $\SI{15}{\volt}$ para uma
+entrada de microcontrolador com corrente de entrada de
+$\SI{1}{\micro\ampere}$.
+\begin{itensq}
+\item Determine $R_1$ e $R_2$ para corrente de repouso de
+      $\SI{10}{\micro\ampere}$.
+\item Verifique o erro introduzido pela corrente de entrada.
+\item Comente o compromisso com o consumo.
+\end{itensq}
+\resposta{(a) $R_1=\SI{1}{\mega\ohm}$, $R_2=\SI{500}{\kilo\ohm}$;
+(b) erro de $\approx3\%$}
+\resolucao{(a) $R_2=5/\pot{10}{-6}=\SI{500}{\kilo\ohm}$;
+$R_1=10/\pot{10}{-6}=\SI{1}{\mega\ohm}$.\\
+(b) A corrente de entrada de $\SI{1}{\micro\ampere}$ é $10\%$ da corrente de
+repouso --- longe de desprezível. Modelando a entrada como resistência
+equivalente $R_{in}=5/\pot{1}{-6}=\SI{5}{\mega\ohm}$:
+\[
+R_2'=\frac{500\cdot5000}{5500}=\SI{454.5}{\kilo\ohm};
+\qquad
+U_o=15\cdot\frac{454{,}5}{1454{,}5}=\SI{4.69}{\volt},
+\]
+erro de $-6{,}2\%$.\\
+(c) \textbf{Compromisso.} Reduzir o erro exige aumentar a corrente de repouso ---
+com $\SI{100}{\micro\ampere}$ ($R_1=\SI{100}{\kilo\ohm}$,
+$R_2=\SI{50}{\kilo\ohm}$), o erro cai para cerca de $0{,}7\%$, mas o consumo em
+repouso sobe dez vezes.\\
+Em um dispositivo alimentado por bateria de $\SI{1000}{\milli\ampere\hour}$,
+$\SI{100}{\micro\ampere}$ contínuos consomem a bateria em pouco mais de um ano
+\emph{só com o divisor}. É o tipo de detalhe que decide a autonomia de um
+produto.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine, em um divisor, a expressão da resistência de Thévenin vista na saída
+e avalie-a para $R_1=\SI{6}{\kilo\ohm}$ e $R_2=\SI{3}{\kilo\ohm}$.
+\begin{itensq}
+\item Deduza $R_{Th}$.
+\item Mostre que $R_{Th}<\min(R_1,R_2)$.
+\item Explique seu papel no carregamento.
+\end{itensq}
+\resposta{$R_{Th}=R_1\parallel R_2=\SI{2}{\kilo\ohm}$}
+\resolucao{(a) Zerando a fonte de entrada (curto), a saída enxerga $R_1$ e
+$R_2$ em paralelo:
+\[
+R_{Th}=\frac{R_1R_2}{R_1+R_2}=\frac{6\cdot3}{9}=\SI{2}{\kilo\ohm}.
+\]
+(b) O paralelo de dois resistores positivos é sempre menor que o menor deles ---
+resultado geral já estabelecido para associações. Aqui,
+$\SI{2}{\kilo\ohm}<\SI{3}{\kilo\ohm}$ \checkmark.\\
+(c) \textbf{Papel no carregamento.} Conectada uma carga $R_L$, o divisor se
+comporta como fonte de Thévenin:
+\[
+U_L=U_{Th}\cdot\frac{R_L}{R_L+R_{Th}}.
+\]
+O erro relativo é aproximadamente $R_{Th}/R_L$ para $R_L\gg R_{Th}$. Logo:
+\begin{itemize}
+\item $R_L=10R_{Th}$ $\Rightarrow$ erro $\approx9\%$;
+\item $R_L=100R_{Th}$ $\Rightarrow$ erro $\approx1\%$.
+\end{itemize}
+\textbf{Consequência de projeto:} o único parâmetro que importa para o
+carregamento é $R_{Th}$ --- não $R_1$, não $R_2$, não a razão. Reduzir os dois
+resistores proporcionalmente reduz $R_{Th}$ e melhora a robustez, ao custo de
+consumo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor alimenta uma carga que \textbf{varia} entre $\SI{10}{\kilo\ohm}$ e
+$\SI{100}{\kilo\ohm}$. O divisor tem $R_{Th}=\SI{2}{\kilo\ohm}$ e
+$U_{Th}=\SI{5}{\volt}$.
+\begin{itensq}
+\item Determine a faixa de tensão de saída.
+\item Determine a regulação percentual.
+\item Indique como melhorá-la.
+\end{itensq}
+\resposta{(a) de $\SI{4.17}{\volt}$ a $\SI{4.90}{\volt}$;
+(b) $\approx15\%$}
+\resolucao{(a)
+\[
+R_L=\SI{10}{\kilo\ohm}:\ U=5\cdot\frac{10}{12}=\SI{4.17}{\volt};
+\qquad
+R_L=\SI{100}{\kilo\ohm}:\ U=5\cdot\frac{100}{102}=\SI{4.90}{\volt}.
+\]
+(b) Regulação:
+\[
+\frac{4{,}90-4{,}17}{4{,}90}=15{,}0\%.
+\]
+(c) \textbf{Como melhorar.}
+\begin{itemize}
+\item \textbf{Reduzir $R_{Th}$.} Com $R_{Th}=\SI{200}{\ohm}$, a faixa passa a
+$4{,}90$--$\SI{4.99}{\volt}$ e a regulação cai para $1{,}8\%$ --- ao custo de
+dez vezes mais consumo de repouso.
+\item \textbf{Inserir um seguidor de tensão} (amp-op em configuração de ganho
+unitário). A impedância de saída cai para frações de ohm e a regulação
+praticamente desaparece, sem aumentar o consumo do divisor.
+\item \textbf{Usar regulador}, se a carga também exigir corrente apreciável.
+\end{itemize}
+\textbf{Observação:} a segunda opção é a mais elegante --- ela desacopla
+\emph{razão} de \emph{impedância}, que no divisor puro estão inevitavelmente
+amarradas.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Condição de carregamento.)} Deduza a condição para que uma carga
+$R_L$ altere a saída de um divisor em menos de um erro relativo $\varepsilon$.
+\begin{itensq}
+\item Obtenha a expressão exata do erro.
+\item Deduza a condição aproximada para $\varepsilon$ pequeno.
+\item Construa a tabela de $R_L/R_{Th}$ para
+      $\varepsilon=10\%$, $1\%$ e $0{,}1\%$.
+\end{itensq}
+\resposta{$\varepsilon=\dfrac{R_{Th}}{R_L+R_{Th}}$; aproximadamente
+$R_L\ge R_{Th}/\varepsilon$}
+\resolucao{(a) Com carga,
+$U_L=U_{Th}\dfrac{R_L}{R_L+R_{Th}}$, logo
+\[
+\varepsilon=\frac{U_{Th}-U_L}{U_{Th}}=1-\frac{R_L}{R_L+R_{Th}}
+=\frac{R_{Th}}{R_L+R_{Th}}.
+\]
+(b) Para $R_L\gg R_{Th}$, o denominador tende a $R_L$:
+\[
+\varepsilon\approx\frac{R_{Th}}{R_L}
+\;\Longrightarrow\;
+R_L\ge\frac{R_{Th}}{\varepsilon}.
+\]
+(c)
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$\varepsilon$ & $R_L/R_{Th}$ (exato) & $R_L/R_{Th}$ (aprox.)\\
+\hline
+$10\%$ & $9$ & $10$\\
+$1\%$ & $99$ & $100$\\
+$0{,}1\%$ & $999$ & $1000$\\
+\hline
+\end{tabular}
+\end{center}
+A aproximação erra por exatamente $1$ unidade e é conservadora --- pode ser
+usada sem receio.\\
+\textbf{Regra de bolso resultante:} para $1\%$ de erro,
+$R_L\ge100\,R_{Th}$. Note que $R_{Th}=R_1\parallel R_2$ é sempre \emph{menor}
+que qualquer um dos resistores, o que torna a condição menos severa do que
+comparar $R_L$ com $R_2$ diretamente --- erro comum que leva a
+superdimensionar o divisor.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto sob restrição de potência.)} Projete um divisor que reduza
+$\SI{100}{\volt}$ a $\SI{5}{\volt}$, dissipando no máximo
+$\SI{0.5}{\watt}$.
+\begin{itensq}
+\item Determine $R_1$ e $R_2$.
+\item Determine a potência e a tensão de cada resistor.
+\item Determine a maior carga que pode ser atendida com erro de até $1\%$.
+\end{itensq}
+\resposta{(a) $R_1=\SI{19}{\kilo\ohm}$, $R_2=\SI{1}{\kilo\ohm}$;
+(b) $0{,}475$ e $\SI{0.025}{\watt}$; (c) $R_L\ge\SI{95}{\kilo\ohm}$}
+\resolucao{(a) A restrição de potência fixa a \emph{soma}:
+\[
+P=\frac{U_{in}^{2}}{R_1+R_2}\le0{,}5
+\;\Longrightarrow\;
+R_1+R_2\ge\frac{100^{2}}{0{,}5}=\SI{20}{\kilo\ohm}.
+\]
+A razão fixa a \emph{proporção}: $R_2/(R_1+R_2)=0{,}05$. Adotando o mínimo,
+\[
+R_2=\SI{1}{\kilo\ohm};\qquad R_1=\SI{19}{\kilo\ohm}.
+\]
+(b) $I=100/20000=\SI{5}{\milli\ampere}$;
+\[
+P_1=19000(\pot{5}{-3})^{2}=\SI{0.475}{\watt};
+\qquad
+P_2=\SI{0.025}{\watt};
+\]
+com $U_1=\SI{95}{\volt}$ e $U_2=\SI{5}{\volt}$.\\
+\textbf{Especificação:} $R_1$ concentra $95\%$ da dissipação --- use
+$\SI{1}{\watt}$ nele e $\frac18\,\si{\watt}$ em $R_2$. Alternativamente,
+dividir $R_1$ em dois de $\SI{9.5}{\kilo\ohm}$ reparte o calor e a tensão.\\
+(c) $R_{Th}=19\parallel1=\SI{950}{\ohm}$; pela condição anterior,
+\[
+R_L\ge100\,R_{Th}=\SI{95}{\kilo\ohm}.
+\]
+\textbf{Tensão de projeto:} o divisor entrega $\SI{5}{\volt}$ a uma carga que
+consome no máximo $\SI{53}{\micro\ampere}$ --- serve para um conversor A/D, não
+para alimentar nada.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Potenciômetro carregado.)} Um potenciômetro de $\SI{10}{\kilo\ohm}$
+é usado como divisor sob $\SI{10}{\volt}$, com carga
+$R_L=\SI{10}{\kilo\ohm}$ na saída. Seja $x$ a fração do curso.
+\begin{itensq}
+\item Deduza $U_o(x)$ com a carga.
+\item Avalie em $x=0{,}25$, $0{,}5$ e $0{,}75$ e compare com o caso ideal.
+\item Determine onde o desvio é máximo e como reduzi-lo.
+\end{itensq}
+\resposta{Em $x=0{,}5$: $\SI{4.00}{\volt}$ contra $\SI{5}{\volt}$ ideal ---
+desvio de $20\%$}
+\resolucao{(a) A porção inferior vale $xR_p$ e fica em paralelo com $R_L$; a
+superior vale $(1-x)R_p$:
+\[
+U_o=U_{in}\,\frac{xR_p\parallel R_L}{(1-x)R_p+\left(xR_p\parallel R_L\right)}.
+\]
+Com $R_p=R_L=\SI{10}{\kilo\ohm}$, tem-se
+$xR_p\parallel R_L=\dfrac{10x}{1+x}\,\si{\kilo\ohm}$ e
+\[
+U_o=10\cdot\frac{\dfrac{10x}{1+x}}{10(1-x)+\dfrac{10x}{1+x}}
+=10\cdot\frac{x}{(1-x)(1+x)+x}
+=\frac{10x}{1+x-x^{2}}.
+\]
+(b)
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+$x$ & ideal & com carga & desvio\\
+\hline
+$0{,}25$ & $\SI{2.50}{\volt}$ & $\SI{2.105}{\volt}$ & $-15{,}8\%$\\
+$0{,}50$ & $\SI{5.00}{\volt}$ & $\SI{4.000}{\volt}$ & $-20{,}0\%$\\
+$0{,}75$ & $\SI{7.50}{\volt}$ & $\SI{6.316}{\volt}$ & $-15{,}8\%$\\
+\hline
+\end{tabular}
+\end{center}
+(c) O desvio \emph{absoluto} é máximo perto do meio do curso, onde a
+resistência de Thévenin do potenciômetro ($x(1-x)R_p$) atinge seu máximo,
+$R_p/4=\SI{2.5}{\kilo\ohm}$. Nos extremos ($x\to0$ ou $x\to1$) a impedância
+tende a zero e a carga deixa de importar.\\
+\textbf{A curva deixa de ser reta:} o potenciômetro linear, carregado, comporta-se
+de forma \textbf{não linear}, e o erro depende da posição --- o que é
+inaceitável em um controle graduado.\\
+\textbf{Correções:} \emph{(i)} usar $R_L\ge100R_p$, o que reduz o desvio máximo
+a menos de $0{,}25\%$; \emph{(ii)} inserir um seguidor de tensão entre o cursor
+e a carga, solução padrão em instrumentação; \emph{(iii)} usar potenciômetro de
+lei "logarítmica reversa" pré-distorcida --- gambiarra que só funciona para uma
+carga específica.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Tolerância de razão.)} Um divisor usa resistores de $1\%$ com entrada
+exata.
+\begin{itensq}
+\item Deduza a expressão do pior erro relativo da saída.
+\item Avalie para as razões $12\to\SI{6}{\volt}$, $12\to\SI{5}{\volt}$ e
+      $100\to\SI{5}{\volt}$.
+\item Explique por que resistores \emph{casados} melhoram drasticamente o
+      resultado.
+\end{itensq}
+\resposta{$\varepsilon=\dfrac{R_1}{R_1+R_2}(t_1+t_2)$; $1{,}00\%$,
+$1{,}17\%$ e $1{,}90\%$}
+\resolucao{(a) De $U_o=U_{in}\dfrac{R_2}{R_1+R_2}$, tomando logaritmos e
+diferenciando:
+\[
+\frac{\Delta U_o}{U_o}
+=\frac{R_1}{R_1+R_2}\left(\frac{\Delta R_2}{R_2}-\frac{\Delta R_1}{R_1}\right),
+\]
+cujo módulo máximo (desvios opostos) é
+$\varepsilon=\dfrac{R_1}{R_1+R_2}(t_1+t_2)$.\\
+(b) O fator $\dfrac{R_1}{R_1+R_2}$ vale $1-U_o/U_{in}$:
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+Razão & $R_1/(R_1+R_2)$ & Pior erro\\
+\hline
+$12\to6$ & $0{,}500$ & $1{,}00\%$\\
+$12\to5$ & $0{,}583$ & $1{,}17\%$\\
+$100\to5$ & $0{,}950$ & $1{,}90\%$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Padrão:} quanto \emph{maior} a razão de divisão, pior o erro --- ele
+tende a $t_1+t_2=2\%$ quando $U_o\ll U_{in}$, e nunca o ultrapassa.\\
+(c) \textbf{Resistores casados.} Em uma rede resistiva integrada, os dois
+resistores são fabricados lado a lado, no mesmo processo e no mesmo substrato.
+Seus desvios são \textbf{correlacionados}: se um sai $0{,}8\%$ acima do
+nominal, o outro também sai. O termo entre parênteses,
+$\dfrac{\Delta R_2}{R_2}-\dfrac{\Delta R_1}{R_1}$, tende a \emph{zero}.\\
+Na prática, redes casadas oferecem razão com precisão de $0{,}05\%$ mesmo com
+valores absolutos de $\pm20\%$. \textbf{O que importa no divisor é a razão, não
+os valores} --- e o casamento é a única forma barata de obtê-la com precisão.
+Esse é o princípio que viabiliza conversores A/D e amplificadores de
+instrumentação.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Sonda atenuadora.)} Uma sonda $10{:}1$ é formada por
+$\SI{9}{\mega\ohm}$ na ponta, em série com a entrada de
+$\SI{1}{\mega\ohm}$ do osciloscópio.
+\begin{itensq}
+\item Verifique a razão de atenuação e a resistência de entrada total.
+\item Determine o erro ao medir uma fonte com $R_{Th}=\SI{100}{\kilo\ohm}$,
+      com e sem a sonda.
+\item Explique o que se perde ao usar a sonda.
+\end{itensq}
+\resposta{(a) $1/10$ e $\SI{10}{\mega\ohm}$; (b) $1{,}0\%$ com sonda,
+$9{,}1\%$ sem}
+\resolucao{(a) A entrada do osciloscópio \emph{é} o $R_2$ do divisor:
+\[
+\frac{U_o}{U_{in}}=\frac{1}{9+1}=\frac{1}{10}\ \checkmark;
+\qquad
+R_{entrada}=9+1=\SI{10}{\mega\ohm}.
+\]
+(b) \textbf{Com sonda:} o instrumento apresenta $\SI{10}{\mega\ohm}$ à fonte:
+\[
+\varepsilon=\frac{100\,\mathrm{k}}{10\,\mathrm{M}+100\,\mathrm{k}}=1{,}0\%.
+\]
+\textbf{Sem sonda} (cabo direto, $\SI{1}{\mega\ohm}$):
+\[
+\varepsilon=\frac{100\,\mathrm{k}}{1\,\mathrm{M}+100\,\mathrm{k}}=9{,}1\%.
+\]
+A sonda reduz o erro de carregamento por um fator $9$.\\
+(c) \textbf{O que se perde: amplitude.} O sinal chega ao instrumento dez vezes
+menor, o que reduz a relação sinal-ruído em $\SI{20}{\decibel}$ e torna
+inviável medir sinais de poucos milivolts.\\
+\textbf{O compromisso central da sonda} é exatamente esse: troca-se sensibilidade
+por não perturbação. Por isso os osciloscópios trazem seletor $1\times/10\times$
+--- sinais pequenos em fontes de baixa impedância pedem $1\times$; sinais grandes
+em circuitos de alta impedância pedem $10\times$.\\
+\emph{(Em sinais variáveis há ainda a capacitância parasita, que exige o
+capacitor de compensação ajustável presente em toda sonda real --- assunto de
+corrente alternada.)}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Otimização de sensor.)} Um termistor de resistência $R_t$ ocupa a
+posição inferior de um divisor com resistor fixo $R$ e alimentação $U$.
+\begin{itensq}
+\item Obtenha $\dfrac{\mathrm{d}U_o}{\mathrm{d}R_t}$.
+\item Determine o valor de $R$ que maximiza a sensibilidade em um dado ponto de
+      operação.
+\item Avalie para $U=\SI{5}{\volt}$, $R_t=\SI{10}{\kilo\ohm}$ e coeficiente de
+      $\SI{-400}{\ohm\per\celsius}$.
+\end{itensq}
+\resposta{(b) $R=R_t$; (c) $\SI{-50}{\milli\volt\per\celsius}$}
+\resolucao{(a) De $U_o=U\dfrac{R_t}{R+R_t}$:
+\[
+\frac{\mathrm{d}U_o}{\mathrm{d}R_t}
+=U\,\frac{(R+R_t)-R_t}{(R+R_t)^{2}}
+=\frac{U\,R}{(R+R_t)^{2}}.
+\]
+(b) Maximizando em relação a $R$, com $R_t$ fixo:
+\[
+\frac{\mathrm{d}}{\mathrm{d}R}\left[\frac{R}{(R+R_t)^{2}}\right]
+=\frac{(R+R_t)-2R}{(R+R_t)^{3}}
+=\frac{R_t-R}{(R+R_t)^{3}}=0
+\;\Longrightarrow\;
+\boxed{R=R_t}
+\]
+--- e a saída no ponto ótimo é exatamente $U/2$.\\
+\textbf{Mesma estrutura} do resultado de máxima potência: a derivada de
+$R/(R+R_t)^{2}$ é a mesma que a de $P_R$ em uma série, e por isso o ótimo cai
+em igualdade.\\
+(c) Com $R=R_t=\SI{10}{\kilo\ohm}$:
+\[
+\frac{\mathrm{d}U_o}{\mathrm{d}R_t}=\frac{5(10^{4})}{(\pot{2}{4})^{2}}
+=\SI{1.25e-4}{\volt\per\ohm},
+\]
+\[
+\frac{\mathrm{d}U_o}{\mathrm{d}T}
+=(\pot{1.25}{-4})(-400)=\SI{-50}{\milli\volt\per\celsius}.
+\]
+\textbf{Excelente sensibilidade:} um conversor A/D de $10$ bits com fundo de
+$\SI{5}{\volt}$ tem degrau de $\SI{4.9}{\milli\volt}$, resolvendo cerca de
+$\SI{0.1}{\celsius}$.\\
+\textbf{Ressalva:} o ótimo vale para \emph{um} ponto de operação. Em faixa
+ampla de temperatura, $R_t$ varia por ordens de grandeza e a sensibilidade cai
+nas extremidades --- escolha $R$ igual a $R_t$ na temperatura de maior interesse,
+não na média da faixa.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Divisor contra regulador.)} Compare as duas soluções para obter
+$\SI{5}{\volt}$ a partir de $\SI{12}{\volt}$, para uma carga que varia de
+$\SI{1}{\milli\ampere}$ a $\SI{10}{\milli\ampere}$.
+\begin{itensq}
+\item Dimensione o divisor com repouso de dez vezes a carga máxima e determine
+      a regulação.
+\item Determine o rendimento de cada solução.
+\item Estabeleça o critério de escolha.
+\end{itensq}
+\resposta{(a) $R_1=\SI{70}{\ohm}$, $R_2=\SI{50}{\ohm}$; regulação
+$\approx5{,}3\%$; (b) $3{,}8\%$ contra $42\%$}
+\resolucao{(a) Repouso de $\SI{100}{\milli\ampere}$:
+$R_2=5/0{,}1=\SI{50}{\ohm}$ e
+$R_1=7/0{,}1=\SI{70}{\ohm}$.
+\[
+R_{Th}=50\parallel70=\SI{29.2}{\ohm};
+\qquad
+\Delta U=R_{Th}\,\Delta I_L=29{,}2(\pot{9}{-3})=\SI{0.26}{\volt},
+\]
+ou seja, cerca de $5{,}3\%$ de variação.\\
+(b) \textbf{Divisor:} consumo total
+$\approx12\times0{,}11=\SI{1.32}{\watt}$ para entregar no máximo
+$5\times0{,}01=\SI{50}{\milli\watt}$ --- rendimento de $3{,}8\%$.\\
+\textbf{Regulador linear:} consome a mesma corrente da carga,
+$12\times0{,}01=\SI{120}{\milli\watt}$ para entregar
+$\SI{50}{\milli\watt}$ --- rendimento de $41{,}7\%$ (igual à razão
+$U_o/U_{in}$), com regulação típica melhor que $0{,}1\%$.\\
+(c) \textbf{Critério.}
+\begin{itemize}
+\item \textbf{Divisor} apenas quando a carga é de \emph{altíssima impedância} e
+praticamente constante: entradas de conversores A/D, polarização de bases,
+referências internas. Vantagens: dois componentes, custo desprezível, sem ruído
+de comutação.
+\item \textbf{Regulador} sempre que a carga consumir corrente apreciável ou
+variar. O regulador linear resolve com rendimento $U_o/U_{in}$; o chaveado
+ultrapassa $90\%$, ao custo de complexidade e ruído.
+\end{itemize}
+\textbf{Fronteira prática:} se a corrente da carga for maior que cerca de
+$1\%$ da corrente de repouso que o divisor exigiria, o divisor já não é a
+escolha certa.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Divisor com proteção.)} Projete a interface entre um sinal de entrada
+que varia de $\SI{0}{\volt}$ a $\SI{30}{\volt}$ e um conversor A/D de
+$\SI{3.3}{\volt}$ e impedância de entrada muito alta.
+\begin{itensq}
+\item Determine a razão e escolha os resistores.
+\item Verifique o comportamento em sobretensão de $\SI{50}{\volt}$ e proponha
+      proteção.
+\item Determine o consumo e discuta o compromisso com a impedância exigida pelo
+      conversor.
+\end{itensq}
+\resposta{(a) razão $\approx1/10$: $R_1=\SI{91}{\kilo\ohm}$,
+$R_2=\SI{10}{\kilo\ohm}$; (c) $\SI{297}{\micro\ampere}$ no fundo de escala}
+\resolucao{(a) É preciso $30\to\SI{3.3}{\volt}$, razão $0{,}11$. Com
+$R_2=\SI{10}{\kilo\ohm}$ e $R_1=\SI{91}{\kilo\ohm}$ (ambos E24):
+\[
+U_o=30\cdot\frac{10}{101}=\SI{2.97}{\volt},
+\]
+$10\%$ abaixo do fundo de escala --- margem prudente, que acomoda tolerância dos
+resistores sem saturar o conversor.\\
+(b) Com $\SI{50}{\volt}$ na entrada, a saída iria a
+$50\times10/101=\SI{4.95}{\volt}$, acima do limite absoluto do conversor.\\
+\textbf{Proteção:} um diodo Zener de $\SI{3.3}{\volt}$ (ou um diodo de
+grampeamento para a alimentação) em paralelo com $R_2$. Em sobretensão, ele
+conduz e limita a saída; a corrente é confinada por $R_1$ a
+\[
+I=\frac{50-3{,}3}{91\,\mathrm{k}}=\SI{0.51}{\milli\ampere},
+\]
+valor inofensivo tanto para o Zener quanto para $R_1$
+($P=\SI{24}{\milli\watt}$). \textbf{É $R_1$ que faz a proteção funcionar} ---
+sem ele, o diodo teria de absorver corrente ilimitada.\\
+(c) No fundo de escala, $I=30/101\,\mathrm{k}=\SI{297}{\micro\ampere}$ e
+$P\approx\SI{8.9}{\milli\watt}$.\\
+\textbf{Compromisso.} $R_{Th}=91\parallel10=\SI{9}{\kilo\ohm}$. Conversores A/D
+de aproximações sucessivas exigem impedância de fonte baixa (tipicamente
+$<\SI{10}{\kilo\ohm}$) para carregar o capacitor de amostragem no tempo
+disponível --- este projeto fica no limite.\\
+\textbf{Soluções:} reduzir os resistores por um fator $10$ (custa dez vezes mais
+consumo), acrescentar um capacitor de $\SI{100}{\nano\farad}$ na entrada do
+conversor (fornece a carga instantânea de amostragem), ou inserir um seguidor
+de tensão. A segunda opção é a mais comum, e a mais barata.}
+\end{questao}

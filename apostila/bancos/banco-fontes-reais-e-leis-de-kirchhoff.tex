@@ -1,0 +1,951 @@
+% =====================================================================
+%  Banco complementar --- Fontes Reais e Leis de Kirchhoff  (REVISADO)
+%  Substitui a versao gerada por template (9 clones em N2, 9 em N3 e
+%  7 questoes conceituais marcadas como N4).
+%  O cap02 ja cobre: duas fontes ideais em oposicao, LKC em no com
+%  I1 e I2 entrando, bateria 12 V / 0,5 ohm, bateria com r=0,4 ohm,
+%  no com cinco correntes, DOIS circuitos de duas malhas resolvidos
+%  por Kirchhoff, quatro fontes ideais com terminais abertos e --- como
+%  N4 --- DUAS BATERIAS DE FEM DIFERENTES EM PARALELO. Este ultimo tema
+%  motivou a remocao de uma N4 do banco antigo, que o duplicava.
+%  O banco de circuitos serie revisado ja traz regulacao de tensao e a
+%  determinacao de fem e r por dois pontos de carga.
+%  Este banco explora: fonte ABSORVENDO potencia, banco de baterias
+%  serie x paralelo, LKC generalizada, contagem de equacoes
+%  independentes, propagacao de incerteza na verificacao da LKC e o
+%  teorema de Tellegen em forma elementar.
+%  Distribuicao mantida: 6 N1 + 9 N2 + 9 N3 + 7 N4 = 31
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Fontes reais e leis de Kirchhoff}
+
+\begin{atencao}[Organização do banco]
+A fonte real é o modelo $\EMF$ em série com $r$, e dele decorre
+$V=\EMF-rI$ quando ela \emph{fornece} --- mas $V=\EMF+rI$ quando ela
+\textbf{recebe} corrente, situação de carregamento que aparece com frequência e
+costuma ser esquecida. As leis de Kirchhoff, por sua vez, decorrem da
+conservação de carga e de energia: elas valem para \emph{qualquer} elemento,
+linear ou não. O N3 explora fontes absorvendo potência, bancos de baterias e
+contagem de equações; o N4 exige demonstração, ensaio e propagação de
+incertezas.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Uma fonte de $\EMF=\SI{6}{\volt}$ e $r=\SI{1}{\ohm}$ fornece
+$\SI{1}{\ampere}$. Determine a tensão em seus terminais.
+\resposta{$V=\SI{5}{\volt}$}
+\resolucao{
+\[
+V=\EMF-rI=6-1(1)=\SI{5}{\volt}.
+\]
+A diferença de $\SI{1}{\volt}$ é a queda \emph{interna}, que não chega à carga.
+Ela cresce com a corrente --- é por isso que a tensão de uma pilha cai quando se
+liga um aparelho que exige mais.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte de $\EMF=\SI{9}{\volt}$ apresenta $\SI{8.4}{\volt}$ nos terminais
+quando fornece $\SI{2}{\ampere}$. Determine sua resistência interna.
+\resposta{$r=\SI{0.3}{\ohm}$}
+\resolucao{
+\[
+r=\frac{\EMF-V}{I}=\frac{9-8{,}4}{2}=\SI{0.3}{\ohm}.
+\]
+\textbf{Método geral:} a queda interna dividida pela corrente. Uma única medição
+sob carga, somada ao valor de $\EMF$, determina $r$ --- e $\EMF$ pode ser lida
+em vazio com um voltímetro de alta impedância.}
+\end{questao}
+
+\begin{questao}[1]{}
+Em um nó entram $\SI{2.5}{\ampere}$ e $\SI{1.5}{\ampere}$, e sai uma única
+corrente. Determine seu valor.
+\resposta{$I=\SI{4}{\ampere}$}
+\resolucao{Pela lei dos nós,
+\[
+\sum I_{entra}=\sum I_{sai}
+\;\Longrightarrow\;
+2{,}5+1{,}5=\SI{4}{\ampere}.
+\]
+\textbf{Fundamento:} a LKC expressa a \textbf{conservação da carga}. Um nó não
+acumula carga --- tudo o que entra, sai. Isso vale independentemente dos
+elementos ligados a ele, e mesmo que sejam não lineares.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma malha simples contém uma fonte ideal de $\SI{12}{\volt}$ e resistores de
+$\SI{4}{\ohm}$ e $\SI{8}{\ohm}$. Determine a corrente pela lei das malhas.
+\resposta{$I=\SI{1}{\ampere}$}
+\resolucao{Pela LKT, a soma das quedas iguala a f.e.m.:
+\[
+12=4I+8I=12I
+\;\Longrightarrow\;
+I=\SI{1}{\ampere}.
+\]
+\textbf{Fundamento:} a LKT expressa a \textbf{conservação da energia}. Uma carga
+que percorre a malha e retorna ao ponto de partida deve ter ganho e perdido a
+mesma energia --- o potencial é uma função de estado.}
+\end{questao}
+
+\begin{questao}[1]{}
+Sobre a diferença entre fonte ideal e fonte real, é correto afirmar:
+\begin{alternativas}[2]
+\item a ideal mantém a tensão constante para qualquer corrente
+\item a real mantém a tensão constante para qualquer corrente
+\item ambas mantêm a corrente constante
+\item a ideal tem resistência interna maior
+\end{alternativas}
+\resposta{(a)}
+\resolucao{A fonte \textbf{ideal} tem $r=0$: sua tensão terminal é
+$\EMF$ independentemente da corrente, inclusive em curto-circuito --- o que
+exigiria corrente infinita, revelando que se trata de uma idealização.\\
+A fonte \textbf{real} tem $r>0$, e sua tensão cai como $\EMF-rI$.\\
+\textbf{Quando a idealização é aceitável:} sempre que $r\ll R_{carga}$. Uma
+fonte de bancada com $r=\SI{10}{\milli\ohm}$ alimentando
+$\SI{100}{\ohm}$ é, para todos os efeitos, ideal.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma pilha de $\EMF=\SI{1.5}{\volt}$ tem $r=\SI{0.25}{\ohm}$. Determine sua
+corrente de curto-circuito.
+\resposta{$I_{cc}=\SI{6}{\ampere}$}
+\resolucao{
+\[
+I_{cc}=\frac{\EMF}{r}=\frac{1{,}5}{0{,}25}=\SI{6}{\ampere}.
+\]
+\textbf{Ressalva importante:} o valor pressupõe $r$ constante --- hipótese
+otimista. Em uma pilha real, $r$ cresce com a corrente e com o aquecimento, e a
+corrente efetiva é menor. Ainda assim, $\SI{6}{\ampere}$ em uma pilha pequena
+significa $\SI{9}{\watt}$ dissipados \emph{dentro} dela: aquecimento rápido,
+vazamento de eletrólito e risco de ruptura.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma bateria de $\EMF=\SI{12}{\volt}$ e $r=\SI{0.6}{\ohm}$ alimenta
+$R=\SI{5.4}{\ohm}$.
+\begin{itensq}
+\item Determine a corrente e a tensão terminal.
+\item Determine as potências e o rendimento.
+\end{itensq}
+\resposta{$I=\SI{2}{\ampere}$, $V=\SI{10.8}{\volt}$;
+$P_R=\SI{21.6}{\watt}$, $P_r=\SI{2.4}{\watt}$, $\eta=90\%$}
+\resolucao{(a)
+\[
+I=\frac{\EMF}{r+R}=\frac{12}{6}=\SI{2}{\ampere};
+\qquad
+V=12-0{,}6(2)=\SI{10.8}{\volt}.
+\]
+(b)
+\[
+P_{total}=\EMF\,I=\SI{24}{\watt};
+\quad
+P_R=5{,}4(4)=\SI{21.6}{\watt};
+\quad
+P_r=0{,}6(4)=\SI{2.4}{\watt};
+\]
+\[
+\eta=\frac{R}{R+r}=\frac{5{,}4}{6}=90\%.
+\]
+\textbf{Fórmula útil:} o rendimento de uma fonte real é sempre
+$R/(R+r)$ --- ele depende só da razão entre as resistências, e não da tensão
+nem da corrente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um carregador de $\SI{14}{\volt}$ é ligado a uma bateria de
+$\SI{12}{\volt}$, com resistência total de $\SI{0.4}{\ohm}$ no circuito.
+\begin{itensq}
+\item Determine a corrente de carga.
+\item Determine a tensão nos terminais da bateria.
+\end{itensq}
+\resposta{$I=\SI{5}{\ampere}$; $V=\SI{14}{\volt}$}
+\resolucao{(a) As duas f.e.m. estão em \textbf{oposição}, e a diferença é que
+impulsiona a corrente:
+\[
+I=\frac{14-12}{0{,}4}=\SI{5}{\ampere}.
+\]
+(b) A bateria está \textbf{recebendo} corrente, então a queda interna
+\emph{soma-se} à f.e.m.:
+\[
+V=\EMF+rI=12+0{,}4(5)=\SI{14}{\volt}.
+\]
+\textbf{Inversão do sinal:} quando a fonte fornece, $V=\EMF-rI<\EMF$; quando
+recebe, $V=\EMF+rI>\EMF$. É por isso que a tensão de uma bateria de automóvel
+sobe de $\SI{12.6}{\volt}$ para cerca de $\SI{14}{\volt}$ com o motor ligado ---
+sinal de que o alternador está carregando.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em um nó, entram $\SI{3}{\ampere}$, $\SI{4}{\ampere}$ e $\SI{2}{\ampere}$;
+sai $\SI{6}{\ampere}$ por um ramo e $I_5$ por outro. Determine $I_5$.
+\resposta{$I_5=\SI{3}{\ampere}$, saindo}
+\resolucao{
+\[
+3+4+2=6+I_5
+\;\Longrightarrow\;
+I_5=9-6=\SI{3}{\ampere}.
+\]
+O sinal positivo confirma o sentido admitido (saindo).\\
+\textbf{Convenção alternativa:} adotar todas as correntes como \emph{entrando} e
+impor soma nula. As que realmente saem aparecem com sinal negativo. As duas
+convenções são equivalentes --- escolha uma e mantenha-a.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma malha contém fontes ideais de $\SI{24}{\volt}$ e $\SI{6}{\volt}$ em
+oposição, com resistores somando $\SI{6}{\ohm}$. Determine a corrente e
+identifique qual fonte absorve energia.
+\resposta{$I=\SI{3}{\ampere}$; a de $\SI{6}{\volt}$ absorve}
+\resolucao{
+\[
+I=\frac{24-6}{6}=\SI{3}{\ampere},
+\]
+no sentido imposto pela fonte maior.\\
+\textbf{Balanço:} a de $\SI{24}{\volt}$ fornece $24(3)=\SI{72}{\watt}$; a de
+$\SI{6}{\volt}$ \emph{absorve} $6(3)=\SI{18}{\watt}$; os resistores dissipam
+$6(9)=\SI{54}{\watt}$. Soma: $18+54=\SI{72}{\watt}$ \checkmark.\\
+\textbf{Critério para identificar:} a fonte \emph{absorve} quando a corrente
+entra pelo seu terminal positivo. Se ela for recarregável, está sendo
+carregada; se não for (uma pilha comum), a energia vira calor e o dispositivo
+pode ser danificado.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas pilhas de $\SI{1.5}{\volt}$ e $r=\SI{0.2}{\ohm}$ cada são associadas.
+Determine a f.e.m. e a resistência interna equivalentes em série e em paralelo.
+\resposta{Série: $\SI{3}{\volt}$ e $\SI{0.4}{\ohm}$; paralelo:
+$\SI{1.5}{\volt}$ e $\SI{0.1}{\ohm}$}
+\resolucao{\textbf{Série:} as f.e.m. se somam e as resistências internas também:
+$\EMF=\SI{3}{\volt}$, $r=\SI{0.4}{\ohm}$.\\
+\textbf{Paralelo} (pilhas \emph{idênticas}): a f.e.m. permanece
+$\SI{1.5}{\volt}$ e as resistências internas ficam em paralelo:
+$r=\SI{0.1}{\ohm}$.\\
+\textbf{Correntes de curto:} série $3/0{,}4=\SI{7.5}{\ampere}$; paralelo
+$1{,}5/0{,}1=\SI{15}{\ampere}$.\\
+\textbf{Advertência:} a associação em paralelo só é segura com pilhas
+\emph{idênticas e no mesmo estado de carga}. Com f.e.m. diferentes, circula
+corrente entre elas mesmo sem carga externa.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine o número de equações independentes de LKC e de LKT para um circuito
+com $n=5$ nós e $b=8$ ramos.
+\resposta{$4$ de LKC e $4$ de LKT, totalizando $8$}
+\resolucao{\textbf{LKC:} $n-1=4$ equações. A do quinto nó é combinação linear
+das anteriores --- redundante.\\
+\textbf{LKT:} $b-n+1=8-5+1=4$ equações, uma por malha independente.\\
+\textbf{Total:} $4+4=8=b$ --- exatamente o número de correntes de ramo a
+determinar. O sistema é quadrado e bem posto.\\
+\textbf{Não é coincidência:} $(n-1)+(b-n+1)=b$ sempre. As leis de Kirchhoff
+fornecem \emph{precisamente} as equações necessárias, nem uma a mais nem a
+menos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\EMF=\SI{12}{\volt}$ e $r=\SI{0.5}{\ohm}$ alimenta duas cargas
+em paralelo, de $\SI{12}{\ohm}$ e $\SI{6}{\ohm}$. Determine a tensão terminal e
+a corrente de cada carga.
+\resposta{$V=\SI{10.67}{\volt}$; $\SI{0.89}{\ampere}$ e
+$\SI{1.78}{\ampere}$}
+\resolucao{
+\[
+R_{par}=\frac{12(6)}{18}=\SI{4}{\ohm};
+\qquad
+I=\frac{12}{4{,}5}=\SI{2.67}{\ampere};
+\qquad
+V=12-0{,}5(2{,}67)=\SI{10.67}{\volt}.
+\]
+\emph{(Conferindo: $V=R_{par}I=4(2{,}67)=\SI{10.67}{\volt}$ \checkmark.)}
+\[
+I_{12}=\frac{10{,}67}{12}=\SI{0.89}{\ampere};
+\qquad
+I_{6}=\frac{10{,}67}{6}=\SI{1.78}{\ampere}.
+\]
+\textbf{Acoplamento pelas cargas:} se a carga de $\SI{6}{\ohm}$ for desligada,
+a corrente total cai para $12/12{,}5=\SI{0.96}{\ampere}$ e a tensão sobe para
+$\SI{11.52}{\volt}$ --- o que \emph{aumenta} a corrente da carga remanescente.
+As cargas se influenciam através de $r$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bateria em uso apresenta $\EMF=\SI{1.5}{\volt}$ e $r=\SI{0.3}{\ohm}$
+quando nova, e $\EMF=\SI{1.3}{\volt}$ com $r=\SI{1.2}{\ohm}$ ao final da vida.
+Compare a tensão entregue a uma carga de $\SI{3}{\ohm}$.
+\resposta{$\SI{1.36}{\volt}$ contra $\SI{0.93}{\volt}$ --- queda de $32\%$}
+\resolucao{\textbf{Nova:} $I=1{,}5/3{,}3=\SI{0.455}{\ampere}$ e
+$V=3(0{,}455)=\SI{1.36}{\volt}$.\\
+\textbf{Gasta:} $I=1{,}3/4{,}2=\SI{0.310}{\ampere}$ e
+$V=3(0{,}310)=\SI{0.93}{\volt}$.\\
+\textbf{Observe o que domina:} a f.e.m. caiu apenas $13\%$, mas a resistência
+interna \textbf{quadruplicou} --- e é ela a responsável pela maior parte da
+perda de desempenho.\\
+\textbf{Consequência para diagnóstico:} medir a tensão de uma pilha \emph{em
+vazio} é enganoso, pois ela mostra quase $\EMF$ mesmo já esgotada. O teste
+correto é sob carga, ou a medição direta de $r$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Verifique o balanço de potência de um circuito com fonte de
+$\EMF=\SI{20}{\volt}$, $r=\SI{1}{\ohm}$ e carga de $\SI{9}{\ohm}$.
+\resposta{Fornecido $\SI{40}{\watt}$; dissipado $4+\SI{36}{\watt}$}
+\resolucao{
+\[
+I=\frac{20}{10}=\SI{2}{\ampere};
+\qquad
+P_{fonte}=\EMF\,I=\SI{40}{\watt};
+\]
+\[
+P_r=1(4)=\SI{4}{\watt};
+\qquad
+P_R=9(4)=\SI{36}{\watt};
+\qquad 4+36=40\ \checkmark
+\]
+\textbf{Cuidado com a distinção:} a potência \emph{gerada} usa $\EMF$, não a
+tensão terminal. Usando $V=\SI{18}{\volt}$ obter-se-ia $\SI{36}{\watt}$ ---
+que é a potência \emph{entregue aos terminais}, e não a produzida internamente.
+A diferença de $\SI{4}{\watt}$ é exatamente o que $r$ consome.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Duas fontes reais alimentam a mesma carga: $\EMF_1=\SI{12}{\volt}$ com
+$r_1=\SI{1}{\ohm}$ e $\EMF_2=\SI{6}{\volt}$ com $r_2=\SI{1}{\ohm}$, ambas
+ligadas a $R=\SI{4}{\ohm}$.
+\begin{itensq}
+\item Determine a tensão comum e as três correntes.
+\item Identifique o comportamento de cada fonte.
+\end{itensq}
+\resposta{$V=\SI{8}{\volt}$; $I_1=\SI{4}{\ampere}$,
+$I_2=\SI{-2}{\ampere}$, $I_R=\SI{2}{\ampere}$ --- a fonte 2 é
+\textbf{carregada}}
+\resolucao{(a) LKC no nó comum:
+\[
+\frac{V-12}{1}+\frac{V-6}{1}+\frac{V}{4}=0
+\;\Longrightarrow\;
+4V-48+4V-24+V=0
+\;\Longrightarrow\;
+V=\SI{8}{\volt}.
+\]
+\[
+I_1=\frac{12-8}{1}=\SI{4}{\ampere};
+\qquad
+I_2=\frac{6-8}{1}=\SI{-2}{\ampere};
+\qquad
+I_R=\frac{8}{4}=\SI{2}{\ampere}.
+\]
+\textbf{LKC:} $4+(-2)=2$ \checkmark.\\
+(b) \textbf{A fonte 2 tem corrente negativa} --- ela não fornece, \emph{recebe}
+$\SI{2}{\ampere}$. A fonte 1, mais forte, alimenta a carga \emph{e} carrega a
+fonte 2.\\
+\textbf{Balanço completo:}
+\begin{center}
+\begin{tabular}{lr}
+\hline
+Fonte 1 fornece & $\SI{48}{\watt}$\\
+$r_1$ dissipa & $\SI{16}{\watt}$\\
+$R$ dissipa & $\SI{16}{\watt}$\\
+Fonte 2 absorve (f.e.m.) & $\SI{12}{\watt}$\\
+$r_2$ dissipa & $\SI{4}{\watt}$\\
+\hline
+\end{tabular}
+\end{center}
+Total consumido: $16+16+12+4=\SI{48}{\watt}$ \checkmark.\\
+\textbf{Se a fonte 2 for recarregável}, os $\SI{12}{\watt}$ são armazenados. Se
+não for, viram calor --- e o dispositivo aquece perigosamente.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um banco é formado por quatro pilhas de $\SI{1.5}{\volt}$ e
+$r=\SI{0.2}{\ohm}$.
+\begin{itensq}
+\item Compare série e paralelo quanto a $\EMF$, $r$ e corrente de
+      curto.
+\item Determine a potência máxima disponível em cada arranjo.
+\item Estabeleça o critério de escolha.
+\end{itensq}
+\resposta{Série: $\SI{6}{\volt}$/$\SI{0.8}{\ohm}$; paralelo:
+$\SI{1.5}{\volt}$/$\SI{0.05}{\ohm}$; $P_{\max}=\SI{11.25}{\watt}$ nos
+\textbf{dois}}
+\resolucao{(a)
+\begin{center}
+\begin{tabular}{lccc}
+\hline
+Arranjo & $\EMF$ & $r$ & $I_{cc}$\\
+\hline
+Série & $\SI{6}{\volt}$ & $\SI{0.8}{\ohm}$ & $\SI{7.5}{\ampere}$\\
+Paralelo & $\SI{1.5}{\volt}$ & $\SI{0.05}{\ohm}$ & $\SI{30}{\ampere}$\\
+\hline
+\end{tabular}
+\end{center}
+(b)
+\[
+\text{Série: } \frac{6^{2}}{4(0{,}8)}=\SI{11.25}{\watt};
+\qquad
+\text{Paralelo: } \frac{1{,}5^{2}}{4(0{,}05)}=\SI{11.25}{\watt}.
+\]
+\textbf{Idênticas} --- e não por acaso. Ambos os arranjos usam as mesmas quatro
+pilhas, e a energia total disponível é a mesma. A topologia decide \emph{como}
+ela é entregue, não \emph{quanto}.\\
+(c) \textbf{Critério de escolha.}
+\begin{itemize}
+\item \textbf{Série} para cargas de \emph{alta} resistência, que precisam de
+tensão. A carga ótima é $\SI{0.8}{\ohm}$.
+\item \textbf{Paralelo} para cargas de \emph{baixa} resistência, que precisam de
+corrente. A carga ótima é $\SI{0.05}{\ohm}$.
+\item \textbf{Série-paralelo} (dois ramos de duas) daria $\SI{3}{\volt}$ e
+$\SI{0.2}{\ohm}$ --- e, de novo, $\SI{11.25}{\watt}$.
+\end{itemize}
+\textbf{Regra:} escolha o arranjo cuja resistência interna se aproxime da carga
+--- ou, mais realisticamente, cuja \emph{tensão} atenda ao que a carga exige.}
+\end{questao}
+
+\begin{questao}[3]{}
+Aplique a LKC a uma \textbf{superfície fechada} que envolva dois nós de um
+circuito, e explique por que o resultado é válido.
+\begin{itensq}
+\item Enuncie a forma generalizada.
+\item Justifique a partir da conservação de carga.
+\item Dê um exemplo de uso.
+\end{itensq}
+\resposta{A soma das correntes que atravessam qualquer superfície fechada é
+nula}
+\resolucao{(a) \textbf{LKC generalizada:} para qualquer superfície fechada que
+corte o circuito, a soma algébrica das correntes que a atravessam é zero.\\
+(b) \textbf{Justificativa:} a carga total dentro da superfície não pode variar
+(em regime permanente). Como corrente é fluxo de carga, o que entra deve
+igualar o que sai --- exatamente o mesmo argumento que vale para um nó, agora
+aplicado a uma região que \emph{contém} vários nós.\\
+Formalmente, escrevendo a LKC para cada nó interno e somando, as correntes dos
+ramos \emph{internos} aparecem duas vezes com sinais opostos e se cancelam;
+sobram apenas as que cruzam a fronteira.\\
+(c) \textbf{Exemplo de uso.} Considere um bloco de circuito ligado ao restante
+por três fios apenas. Se dois deles conduzem $\SI{5}{\ampere}$ e
+$\SI{3}{\ampere}$ para dentro, o terceiro conduz necessariamente
+$\SI{8}{\ampere}$ para fora --- \textbf{sem que seja preciso conhecer nada do
+interior do bloco}, que pode conter dezenas de componentes.\\
+\textbf{Aplicação prática:} é o que permite verificar a corrente de um circuito
+inteiro medindo apenas os condutores de entrada, e é também o princípio do
+\emph{dispositivo diferencial residual}, que compara fase e neutro --- qualquer
+diferença indica corrente escapando por um terceiro caminho.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte foi ensaiada sob diferentes cargas, obtendo-se:
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+$I$ ($\si{\ampere}$) & $0{,}50$ & $1{,}00$ & $2{,}00$\\
+$V$ ($\si{\volt}$) & $11{,}75$ & $11{,}50$ & $11{,}00$\\
+\hline
+\end{tabular}
+\end{center}
+\begin{itensq}
+\item Determine $\EMF$ e $r$.
+\item Verifique a linearidade do modelo.
+\item Estime a corrente de curto e discuta a extrapolação.
+\end{itensq}
+\resposta{$\EMF=\SI{12}{\volt}$, $r=\SI{0.5}{\ohm}$;
+$I_{cc}=\SI{24}{\ampere}$}
+\resolucao{(a) O modelo $V=\EMF-rI$ é uma reta. De dois pontos quaisquer:
+\[
+r=-\frac{\Delta V}{\Delta I}=-\frac{11{,}00-11{,}75}{2{,}00-0{,}50}
+=\frac{0{,}75}{1{,}50}=\SI{0.5}{\ohm};
+\]
+\[
+\EMF=11{,}75+0{,}5(0{,}50)=\SI{12}{\volt}.
+\]
+(b) \textbf{Verificação com o terceiro ponto:}
+$12-0{,}5(1{,}00)=\SI{11.50}{\volt}$ \checkmark. Os três pontos são
+\emph{exatamente} colineares --- o modelo linear descreve bem a fonte nessa
+faixa.\\
+\textbf{Nota de método:} com apenas dois pontos, sempre passa uma reta e a
+linearidade não pode ser testada. O terceiro ponto é o que transforma o ajuste
+em \emph{verificação}.\\
+(c) $I_{cc}=\EMF/r=12/0{,}5=\SI{24}{\ampere}$.\\
+\textbf{Cautela com a extrapolação:} o ensaio cobriu de $0{,}5$ a
+$\SI{2}{\ampere}$, e o valor de curto está \emph{doze vezes} além do maior
+ponto medido. Fontes reais aquecem, $r$ cresce e proteções atuam --- os
+$\SI{24}{\ampere}$ são um \textbf{limite superior}, útil para dimensionar
+proteção, não uma previsão.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um circuito tem $n=6$ nós, $b=9$ ramos e $2$ fontes de corrente ideais.
+\begin{itensq}
+\item Determine o número de equações de Kirchhoff necessárias.
+\item Explique como as fontes de corrente reduzem o trabalho.
+\item Compare com a contagem para análise nodal.
+\end{itensq}
+\resposta{$5$ LKC $+$ $4$ LKT $=9$; as fontes de corrente fixam duas correntes
+de ramo, restando $7$ incógnitas}
+\resolucao{(a) LKC: $n-1=5$. LKT: $b-n+1=9-6+1=4$. Total: $9$ --- igual ao
+número de correntes de ramo.\\
+(b) \textbf{Cada fonte de corrente ideal fixa diretamente a corrente de seu
+ramo.} Duas delas eliminam duas incógnitas, restando $7$. Em compensação, a
+tensão sobre cada fonte de corrente é desconhecida, o que impede escrever a LKT
+de malhas que a atravessem --- é preciso escolher malhas que as contornem, ou
+tratar essas tensões como novas incógnitas.\\
+\textbf{Resultado líquido:} sistema $7\times7$ em vez de $9\times9$.\\
+(c) \textbf{Análise nodal:} $n-1=5$ equações, com as fontes de corrente entrando
+\emph{diretamente} no vetor independente, sem nenhuma manipulação. Sistema
+$5\times5$.\\
+\textbf{Conclusão:} a análise nodal é claramente superior aqui. Ela é, na
+verdade, uma forma organizada de aplicar a LKC com a LKT já embutida na escolha
+dos potenciais --- e por isso produz o sistema menor sempre que há fontes de
+corrente.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte tem resistência interna que \emph{cresce} com a corrente, segundo
+$r=0{,}2+0{,}1\,I$ (com $r$ em $\si{\ohm}$ e $I$ em $\si{\ampere}$), com
+$\EMF=\SI{6}{\volt}$.
+\begin{itensq}
+\item Determine a corrente para uma carga de $\SI{1}{\ohm}$.
+\item Compare com a previsão do modelo linear com $r=\SI{0.2}{\ohm}$.
+\end{itensq}
+\resposta{$I=\SI{3.80}{\ampere}$ contra $\SI{5}{\ampere}$ previstos}
+\resolucao{(a) A LKT dá
+\[
+6=(0{,}2+0{,}1I)I+1\cdot I
+\;\Longrightarrow\;
+0{,}1I^{2}+1{,}2I-6=0.
+\]
+\[
+I=\frac{-1{,}2+\sqrt{1{,}44+2{,}4}}{0{,}2}
+=\frac{-1{,}2+1{,}960}{0{,}2}=\SI{3.80}{\ampere}.
+\]
+\emph{(Verificação: $r=0{,}2+0{,}380=\SI{0.58}{\ohm}$ e
+$6/(0{,}58+1)=\SI{3.80}{\ampere}$ \checkmark.)}\\
+(b) \textbf{Modelo linear:} $I=6/1{,}2=\SI{5}{\ampere}$ --- \textbf{$32\%$
+acima} do valor real.\\
+\textbf{Duas lições.}\\
+\emph{(i)} As \textbf{leis de Kirchhoff continuam válidas} --- elas não exigem
+linearidade. O que muda é que a equação resultante deixa de ser linear e passa a
+exigir solução de segundo grau.\\
+\emph{(ii)} O modelo de $r$ constante é uma \emph{aproximação de pequenos
+sinais}. Ele descreve bem a fonte perto do ponto onde $r$ foi medido, e falha
+progressivamente longe dele. Baterias reais comportam-se assim, e é por isso
+que fabricantes especificam $r$ para uma corrente de ensaio definida.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma bateria de $\EMF=\SI{12}{\volt}$ e $r=\SI{0.5}{\ohm}$ deve entregar tensão
+terminal de pelo menos $\SI{11.4}{\volt}$.
+\begin{itensq}
+\item Determine a corrente máxima admissível.
+\item Determine a menor carga que pode ser conectada.
+\item Determine a potência entregue nessa condição.
+\end{itensq}
+\resposta{$I\le\SI{1.2}{\ampere}$; $R\ge\SI{9.5}{\ohm}$;
+$P=\SI{13.68}{\watt}$}
+\resolucao{(a) De $V=\EMF-rI\ge11{,}4$:
+\[
+0{,}5I\le0{,}6
+\;\Longrightarrow\;
+I\le\SI{1.2}{\ampere}.
+\]
+(b) $R=V/I=11{,}4/1{,}2=\SI{9.5}{\ohm}$ --- cargas menores exigiriam mais
+corrente e derrubariam a tensão.\\
+(c) $P=VI=11{,}4(1{,}2)=\SI{13.68}{\watt}$, com rendimento
+$9{,}5/10=95\%$.\\
+\textbf{Contraste com a máxima transferência:} a potência máxima ocorreria em
+$R=\SI{0.5}{\ohm}$, valendo $\SI{72}{\watt}$ --- mas com tensão terminal de
+apenas $\SI{6}{\volt}$, muito abaixo do requisito.\\
+\textbf{A restrição de tensão é quase sempre a que manda} em eletrônica, porque
+circuitos alimentados simplesmente não funcionam abaixo de sua tensão mínima. A
+saída de engenharia é reduzir $r$, não aceitar tensão menor.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um circuito contém uma fonte \textbf{dependente} de tensão de valor
+$3\,I_x$ (em volts, com $I_x$ em ampères) em série com $\SI{2}{\ohm}$, além de
+uma fonte independente de $\SI{20}{\volt}$ e um resistor de $\SI{8}{\ohm}$, em
+malha única. A corrente de controle $I_x$ é a própria corrente da malha.
+\begin{itensq}
+\item Escreva a LKT e resolva.
+\item Explique por que Kirchhoff continua válido.
+\end{itensq}
+\resposta{$I=\SI{1.54}{\ampere}$ (fonte dependente em oposição)}
+\resolucao{(a) Percorrendo a malha, com a fonte dependente \emph{opondo-se}:
+\[
+20=2I+8I+3I=13I
+\;\Longrightarrow\;
+I=\frac{20}{13}=\SI{1.54}{\ampere}.
+\]
+\emph{(Se a fonte dependente auxiliasse, viria $20=10I-3I=7I$ e
+$I=\SI{2.86}{\ampere}$ --- o sentido da fonte dependente altera
+completamente o resultado, e por isso a convenção de polaridade precisa estar
+explícita no esquema.)}\\
+(b) \textbf{As leis de Kirchhoff decorrem de conservação de carga e de
+energia}, e nenhuma dessas conservações depende de os elementos serem lineares
+ou independentes. A LKT continua sendo "a soma das quedas em uma malha é nula";
+a LKC continua sendo "o que entra em um nó, sai".\\
+\textbf{O que muda:} a fonte dependente introduz uma \textbf{equação de
+restrição} adicional, ligando seu valor a uma variável do circuito. Essa
+equação é resolvida \emph{junto} com as de Kirchhoff.\\
+\textbf{Consequência estrutural:} o termo migra para o lado das incógnitas, o
+que pode tornar a matriz assimétrica --- como se observa na análise nodal e na
+de malhas. A reciprocidade se perde; as leis, não.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte alimenta uma carga através de um cabo de $\SI{0.3}{\ohm}$ (ida e
+volta). A fonte tem $\EMF=\SI{24}{\volt}$ e $r=\SI{0.2}{\ohm}$; a carga vale
+$\SI{9.5}{\ohm}$.
+\begin{itensq}
+\item Determine a corrente, a tensão na carga e a tensão nos terminais da
+      fonte.
+\item Determine onde a energia é perdida.
+\end{itensq}
+\resposta{$I=\SI{2.4}{\ampere}$; $V_{carga}=\SI{22.8}{\volt}$;
+$V_{fonte}=\SI{23.52}{\volt}$}
+\resolucao{(a)
+\[
+I=\frac{24}{0{,}2+0{,}3+9{,}5}=\frac{24}{10}=\SI{2.4}{\ampere};
+\]
+\[
+V_{carga}=9{,}5(2{,}4)=\SI{22.8}{\volt};
+\qquad
+V_{fonte}=24-0{,}2(2{,}4)=\SI{23.52}{\volt}.
+\]
+A diferença de $\SI{0.72}{\volt}$ entre os dois é exatamente a queda no cabo.\\
+(b) \textbf{Distribuição das perdas:}
+\begin{center}
+\begin{tabular}{lrr}
+\hline
+Elemento & Potência & Fração\\
+\hline
+Carga ($\SI{9.5}{\ohm}$) & $\SI{54.72}{\watt}$ & $95{,}0\%$\\
+Cabo ($\SI{0.3}{\ohm}$) & $\SI{1.73}{\watt}$ & $3{,}0\%$\\
+Interna ($\SI{0.2}{\ohm}$) & $\SI{1.15}{\watt}$ & $2{,}0\%$\\
+\hline
+Total & $\SI{57.6}{\watt}$ & $100\%$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Observação de diagnóstico:} medindo apenas nos terminais da fonte
+($\SI{23.52}{\volt}$), a instalação pareceria melhor do que é. A tensão que
+importa é a que chega à \emph{carga} --- e ela está $5\%$ abaixo da f.e.m.\\
+\textbf{Regra de medição:} sempre meça no ponto de uso, não na fonte. As duas
+leituras diferem exatamente pela queda no caminho.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Ensaio de caracterização.)} Descreva como obter $\EMF$ e $r$ de uma
+fonte por ensaios em vazio e em curto-circuito.
+\begin{itensq}
+\item Deduza as relações.
+\item Analise os riscos do ensaio em curto.
+\item Proponha uma alternativa segura e compare.
+\end{itensq}
+\resposta{$\EMF=V_{oc}$ e $r=V_{oc}/I_{cc}$; o curto é destrutivo em fontes de
+baixa impedância}
+\resolucao{(a) \textbf{Em vazio} ($I=0$): $V_{oc}=\EMF$ --- a leitura direta,
+desde que o voltímetro tenha impedância muito maior que $r$.\\
+\textbf{Em curto} ($V=0$): $\EMF=rI_{cc}$, logo
+\[
+r=\frac{V_{oc}}{I_{cc}}.
+\]
+(b) \textbf{Riscos do curto.}
+\begin{itemize}
+\item Uma pilha AA de $\SI{1.5}{\volt}$ com $r=\SI{0.25}{\ohm}$ entrega
+$\SI{6}{\ampere}$ e dissipa $\SI{9}{\watt}$ internamente --- aquecimento
+rápido e vazamento.
+\item Uma bateria de automóvel ($r\approx\SI{5}{\milli\ohm}$) chega a
+$\SI{2500}{\ampere}$, com centelhamento, fusão de terminais e risco de
+explosão por ignição do hidrogênio liberado.
+\item Baterias de lítio podem entrar em fuga térmica e incendiar.
+\item Além disso, $r$ \emph{aumenta} durante o curto, de modo que a leitura
+subestima a corrente inicial e superestima $r$.
+\end{itemize}
+(c) \textbf{Alternativa segura: dois pontos de carga.} Meça $(I_1,V_1)$ e
+$(I_2,V_2)$ com resistências conhecidas e moderadas, e ajuste a reta:
+\[
+r=-\frac{V_2-V_1}{I_2-I_1};
+\qquad
+\EMF=V_1+rI_1.
+\]
+\textbf{Comparação.} O método de dois pontos é seguro, não perturba a fonte, e
+com três ou mais pontos ainda \emph{testa} a linearidade do modelo --- coisa que
+o ensaio de curto não faz. O ensaio em curto só se justifica em fontes
+projetadas para suportá-lo, com limitação eletrônica de corrente.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- balanço de potência.)} Prove que a soma algébrica das
+potências de todos os elementos de um circuito é nula.
+\begin{itensq}
+\item Estabeleça a convenção de sinais.
+\item Demonstre a partir das leis de Kirchhoff.
+\item Explique por que o resultado independe da natureza dos elementos.
+\end{itensq}
+\resposta{$\sum_k v_ki_k=0$ --- consequência direta de LKC e LKT}
+\resolucao{(a) \textbf{Convenção do receptor:} para cada ramo $k$, adote a
+corrente $i_k$ entrando pelo terminal de maior potencial. A potência
+$p_k=v_ki_k$ é então \emph{positiva} se o elemento absorve e \emph{negativa} se
+fornece.\\
+(b) \textbf{Demonstração.} Escreva cada tensão de ramo como diferença de
+potenciais nodais: $v_k=V_a-V_b$, onde $a$ e $b$ são os nós do ramo $k$. Então
+\[
+\sum_k p_k=\sum_k (V_a-V_b)\,i_k.
+\]
+Reagrupando por \emph{nó} em vez de por ramo, cada potencial $V_n$ aparece
+multiplicado pela soma algébrica das correntes que chegam ao nó $n$:
+\[
+\sum_k p_k=\sum_n V_n\left(\sum_{k\in n}\pm i_k\right)=\sum_n V_n\cdot 0=0,
+\]
+pois o parêntese é exatamente a \textbf{LKC} do nó $n$.\\
+\emph{(A escrita $v_k=V_a-V_b$ já embute a \textbf{LKT}: ela pressupõe que o
+potencial é bem definido em cada nó.)}\\
+(c) \textbf{Independência da natureza dos elementos.} A demonstração usou
+\emph{apenas} as duas leis de Kirchhoff e a definição $p=vi$. Em nenhum momento
+foi preciso saber a relação entre $v_k$ e $i_k$ de cada elemento.\\
+Portanto o resultado vale para resistores, fontes, diodos, capacitores,
+indutores, elementos ativos --- lineares ou não, com ou sem memória. É o
+\textbf{teorema de Tellegen}, e sua generalidade é notável: ele é uma
+propriedade da \emph{topologia} do circuito, não dos componentes.\\
+\textbf{Uso prático:} verificar o balanço de potência é o teste de consistência
+mais completo de qualquer solução --- se ele não fecha, há erro em algum lugar.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Formulação com fonte ideal entre dois nós.)} Um circuito tem dois nós
+não referenciais, $A$ e $B$, com uma fonte ideal de tensão $\EMF$ ligada
+diretamente entre eles.
+\begin{itensq}
+\item Explique por que a LKC não pode ser escrita isoladamente em $A$ nem em
+      $B$.
+\item Formule o sistema corretamente.
+\item Determine a corrente na fonte após resolver.
+\end{itensq}
+\resposta{Usar supernó: uma LKC envolvendo $A$ e $B$, mais a restrição
+$V_A-V_B=\EMF$}
+\resolucao{(a) A corrente que atravessa uma fonte de tensão \textbf{ideal} é
+determinada pelo circuito, não pela fonte --- não existe relação
+$i=f(v)$ para ela. Ao escrever a LKC em $A$, essa corrente desconhecida aparece
+como uma incógnita a mais, e o mesmo ocorre em $B$. Duas equações, três
+incógnitas.\\
+(b) \textbf{Formulação por supernó.} Englobe $A$ e $B$ em uma única superfície
+fechada. Pela LKC generalizada, a corrente interna da fonte \emph{se cancela}
+--- ela entra em um nó e sai do outro:
+\[
+\sum_{\text{ramos que cruzam a fronteira}} i=0.
+\]
+Essa é \emph{uma} equação. A segunda vem da própria fonte:
+\[
+V_A-V_B=\EMF.
+\]
+Duas equações, duas incógnitas ($V_A$ e $V_B$). \textbf{Sistema fechado.}\\
+(c) \textbf{Corrente na fonte:} obtida \emph{depois}, aplicando a LKC a
+\emph{um} dos dois nós isoladamente. Com $V_A$ e $V_B$ já conhecidos, todas as
+demais correntes daquele nó são calculáveis, e a da fonte é o que falta para
+fechar o balanço.\\
+\textbf{Observação:} se um dos terminais da fonte for o próprio nó de
+referência, o problema desaparece --- o outro potencial fica \emph{conhecido} e
+deixa de ser incógnita. \textbf{Escolher o terra em um terminal de fonte é a
+simplificação mais barata que existe.}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de verificação experimental.)} Elabore um ensaio de laboratório
+para verificar a LKC em um nó com três ramos, considerando incertezas dos
+instrumentos.
+\begin{itensq}
+\item Descreva o procedimento.
+\item Propague as incertezas e estabeleça o critério de aceitação.
+\item Interprete um resíduo de $\SI{0.35}{\ampere}$ em correntes de alguns
+      ampères.
+\end{itensq}
+\resposta{Critério: resíduo compatível com $u_c\approx\sqrt{\sum u_k^{2}}$;
+$\SI{0.35}{\ampere}$ indica erro real}
+\resolucao{(a) \textbf{Procedimento.} Meça as três correntes
+\emph{simultaneamente}, com três amperímetros --- ou, se houver apenas um,
+faça as três medições sem alterar o circuito entre elas. Registre sentidos e
+adote uma convenção única (por exemplo, positivo entrando).\\
+\textbf{Cuidado essencial:} inserir o amperímetro \emph{altera} o circuito, pois
+acrescenta sua resistência interna ao ramo. Com três inserções sucessivas, o
+circuito muda três vezes e a verificação perde sentido. Use amperímetro de baixa
+resistência ou, melhor, alicate amperímetro, que não abre o ramo.\\
+(b) \textbf{Propagação.} Suponha
+$I_1=(5{,}02\pm0{,}05)\,\si{\ampere}$,
+$I_2=(3{,}01\pm0{,}03)\,\si{\ampere}$ entrando, e $I_3$ saindo. A previsão é
+$I_1+I_2=\SI{8.03}{\ampere}$, com incerteza combinada
+\[
+u_c=\sqrt{0{,}05^{2}+0{,}03^{2}}=\SI{0.058}{\ampere}.
+\]
+Incluindo a incerteza da própria medição de $I_3$ (digamos
+$\SI{0.08}{\ampere}$), o resíduo esperado tem incerteza
+$\sqrt{0{,}058^{2}+0{,}08^{2}}=\SI{0.099}{\ampere}$.\\
+\textbf{Critério de aceitação:} $|I_1+I_2-I_3|\le2u\approx
+\SI{0.20}{\ampere}$ (dois desvios, cerca de $95\%$ de confiança).\\
+(c) \textbf{Resíduo de $\SI{0.35}{\ampere}$} é $3{,}5$ vezes a incerteza
+combinada --- \textbf{não é compatível com erro aleatório}. Causas prováveis, em
+ordem:
+\begin{itemize}
+\item \textbf{Erro de sinal ou de sentido} em uma das leituras --- o mais comum.
+\item \textbf{Um quarto ramo não contabilizado}, inclusive uma fuga para o terra
+ou pela bancada.
+\item \textbf{Instrumento descalibrado} ou operando fora de escala.
+\item \textbf{Circuito alterado entre medições} (aquecimento, contato
+intermitente).
+\end{itemize}
+\textbf{Conclusão importante:} a LKC \emph{não} pode ser violada --- ela é
+conservação de carga. Um resíduo significativo é sempre erro de medição ou de
+modelo, nunca da lei. O ensaio, portanto, verifica o \emph{procedimento}, e não
+a física.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Baterias em série desequilibradas.)} Quatro células de
+$\SI{1.5}{\volt}$ estão em série alimentando uma carga, mas uma delas está
+gasta, com $\EMF=\SI{0.9}{\volt}$ e $r=\SI{1.5}{\ohm}$ (as demais mantêm
+$r=\SI{0.2}{\ohm}$). A carga vale $\SI{5}{\ohm}$.
+\begin{itensq}
+\item Determine a corrente e a tensão em cada célula.
+\item Identifique o que ocorre com a célula gasta.
+\item Discuta a implicação prática.
+\end{itensq}
+\resposta{$I=\SI{0.76}{\ampere}$; a célula gasta apresenta
+$\SI{-0.24}{\volt}$ --- está sendo \textbf{invertida}}
+\resolucao{(a)
+\[
+\EMF_{total}=3(1{,}5)+0{,}9=\SI{5.4}{\volt};
+\qquad
+r_{total}=3(0{,}2)+1{,}5=\SI{2.1}{\ohm};
+\]
+\[
+I=\frac{5{,}4}{2{,}1+5}=\frac{5{,}4}{7{,}1}=\SI{0.76}{\ampere}.
+\]
+\textbf{Tensão de cada célula boa:} $1{,}5-0{,}2(0{,}76)=\SI{1.35}{\volt}$.\\
+\textbf{Tensão da célula gasta:}
+$0{,}9-1{,}5(0{,}76)=0{,}9-1{,}14=\SI{-0.24}{\volt}$.\\
+(b) \textbf{A tensão da célula gasta é negativa} --- ou seja, ela está sendo
+percorrida por corrente no sentido de \emph{carga}, forçada pelas três células
+boas. Ela deixou de ser fonte e passou a ser carga, dissipando
+$1{,}5(0{,}76)^{2}=\SI{0.87}{\watt}$ internamente.\\
+\textbf{Em células não recarregáveis}, isso provoca a chamada \textbf{inversão
+de polaridade}: reações internas indesejadas, geração de gás, aquecimento e
+vazamento de eletrólito --- exatamente o que se observa quando uma pilha
+"vaza" em um controle remoto esquecido ligado.\\
+(c) \textbf{Implicações práticas.}
+\begin{itemize}
+\item \textbf{Nunca misture pilhas novas e usadas}, nem de marcas ou tecnologias
+diferentes, em série. A mais fraca será invertida pelas demais.
+\item \textbf{Substitua sempre o conjunto completo.}
+\item Em baterias de lítio em série, o problema é grave a ponto de exigir
+\textbf{circuito de balanceamento} (BMS), que monitora cada célula
+individualmente e impede que qualquer uma seja levada à inversão.
+\end{itemize}
+\textbf{Diagnóstico:} a célula gasta domina o conjunto por sua \emph{resistência
+interna}, não por sua f.e.m. --- $\SI{1.5}{\ohm}$ contra
+$\SI{0.6}{\ohm}$ das outras três somadas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Modelagem --- fonte com limitação de corrente.)} Uma fonte de bancada
+tem $\EMF=\SI{20}{\volt}$ e $r=\SI{0.1}{\ohm}$, com limitação eletrônica em
+$\SI{2}{\ampere}$.
+\begin{itensq}
+\item Descreva a característica $V\times I$ completa.
+\item Determine o ponto de operação para cargas de $\SI{50}{\ohm}$,
+      $\SI{10}{\ohm}$ e $\SI{2}{\ohm}$.
+\item Explique por que o modelo de fonte real deixa de valer.
+\end{itensq}
+\resposta{Duas regiões: fonte de tensão até $\SI{2}{\ampere}$, fonte de corrente
+depois}
+\resolucao{(a) \textbf{Característica em dois trechos.}
+\begin{itemize}
+\item \textbf{Região de tensão constante} ($I<\SI{2}{\ampere}$):
+$V=20-0{,}1I$ --- reta quase horizontal.
+\item \textbf{Região de corrente constante} ($V<\SI{19.8}{\volt}$):
+$I=\SI{2}{\ampere}$ --- reta vertical.
+\end{itemize}
+O "joelho" fica em $(\SI{2}{\ampere};\ \SI{19.8}{\volt})$, com
+$R_{joelho}=\SI{9.9}{\ohm}$.\\
+(b)
+\begin{center}
+\begin{tabular}{lccl}
+\hline
+$R_L$ & $I$ & $V$ & Região\\
+\hline
+$\SI{50}{\ohm}$ & $\SI{0.399}{\ampere}$ & $\SI{19.96}{\volt}$ & tensão\\
+$\SI{10}{\ohm}$ & $\SI{1.98}{\ampere}$ & $\SI{19.80}{\volt}$ & tensão (limite)\\
+$\SI{2}{\ohm}$ & $\SI{2.00}{\ampere}$ & $\SI{4.00}{\volt}$ & corrente\\
+\hline
+\end{tabular}
+\end{center}
+Note o terceiro caso: o modelo linear preveria
+$20/2{,}1=\SI{9.5}{\ampere}$ --- quase cinco vezes o real.\\
+(c) \textbf{Por que o modelo falha.} A fonte real é um modelo \emph{linear} de
+dois parâmetros, e sua característica é uma \emph{única} reta. A limitação
+eletrônica introduz um segundo trecho, tornando a característica
+\textbf{quebrada} --- e nenhuma reta descreve as duas regiões.\\
+\textbf{Como proceder corretamente:}
+\begin{itemize}
+\item Determinar em qual região a carga opera, comparando $R_L$ com
+$R_{joelho}=\SI{9.9}{\ohm}$.
+\item $R_L>R_{joelho}$: use o modelo de \emph{fonte de tensão} $(\EMF,r)$.
+\item $R_L<R_{joelho}$: use o modelo de \emph{fonte de corrente} ideal de
+$\SI{2}{\ampere}$, e a tensão sai de $V=R_LI$.
+\end{itemize}
+\textbf{As leis de Kirchhoff seguem válidas nas duas regiões} --- o que muda é
+apenas a relação constitutiva da fonte. É o mesmo procedimento usado com
+diodos: identificar o trecho e aplicar o modelo correspondente.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Sistema completo por Kirchhoff.)} Um circuito de duas malhas tem
+$\EMF_1=\SI{18}{\volt}$ com $r_1=\SI{1}{\ohm}$ no primeiro ramo,
+$\EMF_2=\SI{12}{\volt}$ com $r_2=\SI{2}{\ohm}$ no segundo, e
+$R=\SI{6}{\ohm}$ no ramo comum.
+\begin{itensq}
+\item Escreva as equações de Kirchhoff e resolva.
+\item Verifique o balanço de potência.
+\item Identifique o papel de cada fonte.
+\end{itensq}
+\resposta{$I_1=\SI{3.6}{\ampere}$, $I_2=\SI{-1.2}{\ampere}$,
+$I_R=\SI{2.4}{\ampere}$}
+\resolucao{(a) Chamando $V$ a tensão do nó comum:
+\[
+\frac{V-18}{1}+\frac{V-12}{2}+\frac{V}{6}=0.
+\]
+Multiplicando por $6$: $6V-108+3V-36+V=0\Rightarrow10V=144
+\Rightarrow V=\SI{14.4}{\volt}$.
+\[
+I_1=\frac{18-14{,}4}{1}=\SI{3.6}{\ampere};
+\quad
+I_2=\frac{12-14{,}4}{2}=\SI{-1.2}{\ampere};
+\quad
+I_R=\frac{14{,}4}{6}=\SI{2.4}{\ampere}.
+\]
+\textbf{LKC:} $3{,}6-1{,}2=2{,}4$ \checkmark.\\
+(b) \textbf{Balanço.}
+\begin{center}
+\begin{tabular}{lr}
+\hline
+$\EMF_1$ fornece $18(3{,}6)$ & $\SI{64.8}{\watt}$\\
+$r_1$ dissipa $1(3{,}6)^{2}$ & $\SI{12.96}{\watt}$\\
+$R$ dissipa $6(2{,}4)^{2}$ & $\SI{34.56}{\watt}$\\
+$\EMF_2$ absorve $12(1{,}2)$ & $\SI{14.4}{\watt}$\\
+$r_2$ dissipa $2(1{,}2)^{2}$ & $\SI{2.88}{\watt}$\\
+\hline
+Total consumido & $\SI{64.8}{\watt}$\\
+\hline
+\end{tabular}
+\end{center}
+Fecha exatamente \checkmark.\\
+(c) \textbf{Papéis.} A fonte 1 é a única \emph{geradora}: ela alimenta a carga
+$R$ \emph{e} carrega a fonte 2. A fonte 2 comporta-se como \textbf{receptor},
+porque sua f.e.m. ($\SI{12}{\volt}$) é menor que a tensão do nó
+($\SI{14.4}{\volt}$) --- e corrente sempre entra por onde o potencial externo é
+maior.\\
+\textbf{Critério geral:} compare a f.e.m. de cada fonte com a tensão do nó a
+que está ligada. Maior $\Rightarrow$ fornece; menor $\Rightarrow$ recebe. O
+sinal da corrente calculada confirma automaticamente.}
+\end{questao}

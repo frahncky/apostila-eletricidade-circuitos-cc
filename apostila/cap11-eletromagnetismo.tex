@@ -1,0 +1,975 @@
+% =====================================================================
+%  CAPITULO 11 - ELETROMAGNETISMO
+% =====================================================================
+\section{Eletromagnetismo}
+
+\begin{conceito}[Antes de começar]
+\textbf{Campo de um fio reto longo:}
+$B = \dfrac{\mu_0\,I}{2\pi\,r}$.\par
+\textbf{Campo no centro de uma espira circular:}
+$B = \dfrac{\mu_0\,I}{2\,R}$.\par
+\textbf{Campo no interior de um solenoide:}
+$B = \mu_0\,n\,I$, onde $n = N/\ell$ é o número de espiras por metro.\par
+\textbf{Fluxo magnético:} $\Phi = B\,A\cos\theta$, medido em webers (Wb).\par
+\textbf{Força sobre um condutor:} $F = B\,I\,\ell\sin\theta$.\par
+\textbf{Força sobre uma carga em movimento:} $F = q\,v\,B\sin\theta$.\par
+\textbf{Lei de Faraday--Lenz:} $\varepsilon = -N\,\dfrac{\mathrm{d}\Phi}{\mathrm{d}t}$;
+o sinal negativo (Lenz) indica que a corrente induzida se opõe à variação de fluxo
+que a criou. Constante: $\mu_0 = 4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$.
+\end{conceito}
+
+\legendaniveis
+
+% =====================================================================
+\subsection{Conceitos iniciais e materiais magnéticos}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+O princípio da inseparabilidade dos polos magnéticos garante que:
+\begin{alternativas}
+\item existem monopolos magnéticos isolados.
+\item ao dividir um ímã, obtêm-se dois novos ímãs, cada um com dois polos.
+\item o polo norte pode ser isolado do polo sul.
+\item as linhas de campo magnético têm início e fim.
+\item um ímã pode ter apenas um polo.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Diferentemente das cargas elétricas, não existem monopolos magnéticos:
+ao partir um ímã, cada pedaço volta a ter polos norte e sul. Por isso as linhas de
+campo magnético são sempre \emph{fechadas} (sem começo nem fim), o que elimina
+(d).}
+\end{questao}
+
+\begin{questao}[1]{}
+Quanto à permeabilidade magnética relativa $\mu_r$, um material
+\textbf{ferromagnético} caracteriza-se por:
+\begin{alternativas}
+\item $\mu_r \approx 1$.
+\item $\mu_r$ ligeiramente menor que 1.
+\item $\mu_r$ muito maior que 1 (centenas a milhares).
+\item $\mu_r = 0$.
+\item $\mu_r$ negativa.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Ferromagnéticos (ferro, níquel, cobalto) têm $\mu_r$ da ordem de
+centenas ou milhares --- por isso concentram intensamente as linhas de campo e são
+usados em núcleos de transformadores e motores. Paramagnéticos têm
+$\mu_r\gtrsim1$; diamagnéticos, $\mu_r\lesssim1$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois materiais são submetidos ao mesmo campo externo $H$. Um apresenta
+$B_1 = \SI{0.002}{\tesla}$ e o outro, $B_2 = \SI{1.8}{\tesla}$. Qual é o
+ferromagnético?
+\resposta{O de $B_2 = \SI{1.8}{\tesla}$}
+\resolucao{Como $B = \mu\,H$, para o mesmo $H$ o material com maior $B$ tem maior
+permeabilidade. O valor $B_2 = \SI{1.8}{\tesla}$ é muito superior, indicando
+$\mu$ elevado: material \textbf{ferromagnético}. O de $B_1 = \SI{0.002}{\tesla}$ é
+paramagnético ou diamagnético (resposta muito fraca ao campo).}
+\end{questao}
+
+\begin{questao}[1]{Apostila original revisada}
+Dois materiais apresentam permeabilidades relativas
+$\mu_{rA}=1{,}0005$ e $\mu_{rB}=0{,}99998$. Classifique cada material como
+paramagnético ou diamagnético e descreva, qualitativamente, como reage a um campo
+magnético externo.
+\resposta{$A$: paramagnético; $B$: diamagnético}
+\resolucao{Materiais com $\mu_r$ ligeiramente maior que 1 são paramagnéticos e são
+fracamente atraídos pelo campo. Materiais com $\mu_r$ ligeiramente menor que 1 são
+diamagnéticos e são fracamente repelidos.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Explique por que os materiais ferromagnéticos são preferidos na construção de
+núcleos de máquinas elétricas (transformadores, motores, geradores).
+\resposta{Ver comentário}
+\resolucao{Por terem $\mu_r$ muito elevado, os ferromagnéticos \emph{concentram} e
+intensificam o campo magnético para uma mesma corrente de excitação, o que aumenta
+o fluxo e, portanto, a eficiência do acoplamento magnético (mais tensão induzida,
+mais torque). Além disso, oferecem um "caminho" de baixa relutância para o fluxo,
+canalizando-o pelo núcleo em vez de dispersá-lo pelo ar. A desvantagem são as
+perdas por histerese e correntes parasitas, minimizadas usando núcleos laminados
+e ligas específicas (aço-silício).}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um mesmo enrolamento é usado com dois núcleos diferentes: um de ar
+($\mu_r \approx 1$) e outro de ferro-silício ($\mu_r = 4000$). Mantendo a mesma
+corrente:
+\begin{itensq}
+\item Qual a razão entre as induções magnéticas $B$ obtidas nos dois casos?
+\item Se o núcleo de ferro \emph{saturar} a partir de certo ponto, o que acontece
+      com essa razão ao se aumentar muito a corrente?
+\item Por que a saturação impõe um limite de projeto às máquinas elétricas?
+\end{itensq}
+\resposta{(a) $B_{\text{Fe}}/B_{\text{ar}} = 4000$;
+(b) a razão \emph{cai}; (c) ver comentário}
+\resolucao{(a) Como $B = \mu H = \mu_r\mu_0 H$, com $H$ fixo (mesma corrente e
+geometria):
+\[
+\frac{B_{\text{Fe}}}{B_{\text{ar}}}=\frac{\mu_{r,\text{Fe}}}{\mu_{r,\text{ar}}}
+=4000.
+\]
+O núcleo ferromagnético multiplica o campo por quatro mil --- é o que torna
+viáveis transformadores e motores compactos.\\
+(b) Na \textbf{saturação}, praticamente todos os domínios magnéticos já estão
+alinhados; o material não consegue mais contribuir. A partir daí, aumentos de
+corrente produzem acréscimos de $B$ apenas na proporção do ar
+($\mu_r \to 1$ incremental). A razão $B_{\text{Fe}}/B_{\text{ar}}$, portanto,
+\emph{diminui} progressivamente --- a curva $B\times H$ "achata".\\
+(c) Porque o torque de um motor e a tensão de um transformador dependem do fluxo,
+e o fluxo não pode crescer indefinidamente. Ultrapassado o joelho da curva de
+saturação:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item a corrente de magnetização dispara (aquecendo o enrolamento) sem ganho
+      proporcional de fluxo;
+\item a forma de onda distorce, gerando harmônicos;
+\item as perdas aumentam desproporcionalmente.
+\end{itemize}
+Por isso o projetista dimensiona a \emph{seção do núcleo} para operar
+\textbf{abaixo} do joelho --- tipicamente em torno de \SI{1.5}{\tesla} para
+aço-silício. \emph{Saturação é o limite físico que define o tamanho mínimo de
+uma máquina elétrica.}}
+\end{questao}
+
+\begin{questao}[3]{}
+Um material ferromagnético submetido a um campo alternado percorre um
+\textbf{ciclo de histerese}: a curva $B \times H$ não é uma reta e não retorna
+pelo mesmo caminho.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=8.2cm,height=5.6cm,xlabel={$H$ (A/m)},ylabel={$B$ (T)},
+   xmin=-3,xmax=3,ymin=-1.6,ymax=1.6,xtick=\empty,ytick=\empty,
+   axis lines=middle,axis line style={-Stealth}]
+   \addplot[Icol,very thick,smooth] coordinates
+     {(-2.6,-1.35)(-1.6,-1.25)(-0.6,-1.0)(0,-0.75)(0.5,-0.2)(1.0,0.75)(1.7,1.2)(2.6,1.35)};
+   \addplot[Vcol,very thick,smooth] coordinates
+     {(2.6,1.35)(1.6,1.25)(0.6,1.0)(0,0.75)(-0.5,0.2)(-1.0,-0.75)(-1.7,-1.2)(-2.6,-1.35)};
+   \node[font=\footnotesize,Vcol] at (axis cs:0.42,0.95) {$B_r$};
+   \node[font=\footnotesize,Icol] at (axis cs:-1.0,-0.35) {$H_c$};
+ \end{axis}
+\end{tikzpicture}}{Ciclo de histerese de um material ferromagnético.}
+
+\begin{itensq}
+\item Identifique o que representam $B_r$ (remanência) e $H_c$ (coercividade).
+\item A \emph{área} interna do ciclo tem significado físico. Qual?
+\item Compare os requisitos de um material para (i) núcleo de transformador e
+      (ii) ímã permanente. Qual deve ter ciclo "largo" e qual "estreito"?
+\end{itensq}
+\resposta{Ver análise comentada}
+\resolucao{\textbf{(a)} $B_r$ é a \textbf{remanência}: a indução que \emph{permanece}
+no material quando o campo externo é removido ($H = 0$). É o que faz um prego
+continuar magnetizado depois de encostar num ímã.\\
+$H_c$ é a \textbf{coercividade}: o campo externo, de sentido oposto, necessário
+para \emph{anular} a magnetização ($B = 0$). Mede a "teimosia" do material em
+manter seu estado magnético.
+
+\textbf{(b)} A área interna do ciclo representa a \textbf{energia dissipada por
+unidade de volume e por ciclo} --- as chamadas \emph{perdas por histerese}. Cada
+inversão do campo exige reorientar os domínios magnéticos, e esse processo é
+irreversível, gerando calor. A potência perdida é
+\[
+P_h = k\,f\,V\,(\text{área do ciclo}),
+\]
+proporcional à \emph{frequência} $f$: por isso máquinas de alta frequência exigem
+materiais especiais.
+
+\textbf{(c) Requisitos opostos.}
+\begin{center}\small\sffamily
+\begin{tabular}{@{}l l l@{}}
+\toprule
+ & \textbf{Núcleo de transformador} & \textbf{Ímã permanente}\\
+\midrule
+Ciclo desejado & \textbf{estreito} (fino) & \textbf{largo} (gordo)\\
+$H_c$ & baixa & alta\\
+$B_r$ & baixa & alta\\
+Objetivo & minimizar perdas & reter magnetização\\
+Material típico & ferro-silício, ferrite & alnico, neodímio (NdFeB)\\
+Denominação & magneticamente \emph{mole} & magneticamente \emph{duro}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Raciocínio central:} o transformador inverte o campo 50 ou 60 vezes por
+segundo --- cada inversão custa a área do ciclo em calor, logo o ciclo deve ser o
+mais estreito possível. O ímã permanente, ao contrário, precisa \emph{resistir} à
+desmagnetização: quanto mais larga a área, mais estável ele é. \emph{O mesmo
+gráfico, lido com objetivos opostos, leva a escolhas opostas de material.}}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Conceitos iniciais e materiais magnéticos
+\input{bancos/banco-conceitos-iniciais-e-materiais-magneticos.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[11.1 Conceitos iniciais e materiais magnéticos]
+
+% =====================================================================
+\subsection{Campo magnético}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+O campo magnético a uma distância $r$ de um fio retilíneo longo percorrido por
+corrente $I$:
+\begin{alternativas}
+\item é proporcional a $r$.
+\item é inversamente proporcional a $r$.
+\item é inversamente proporcional a $r^2$.
+\item independe de $r$.
+\item é proporcional a $r^2$.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Para um fio reto longo, $B = \dfrac{\mu_0 I}{2\pi r}$: o campo é
+\emph{inversamente} proporcional à distância $r$ (não ao quadrado, como no campo
+elétrico de uma carga puntiforme).}
+\end{questao}
+
+\begin{questao}[1]{}
+Um fio reto longo conduz $I = \SI{10}{\ampere}$. Determine o módulo do campo
+magnético a $\SI{5}{\centi\meter}$ do fio.
+\dados{$\mu_0 = 4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$.}
+\resposta{$B = \pot{4}{-5}\,\si{\tesla} = \SI{40}{\micro\tesla}$}
+\resolucao{$B = \dfrac{\mu_0 I}{2\pi r}
+= \dfrac{(\pot{4\pi}{-7})(10)}{2\pi(0{,}05)}
+= \dfrac{\pot{2}{-6}}{0{,}05} = \pot{4}{-5}\,\si{\tesla}$.\\
+Um atalho útil: $\dfrac{\mu_0}{2\pi} = \pot{2}{-7}$, então
+$B = \pot{2}{-7}\cdot\dfrac{I}{r}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um fio retilíneo é percorrido por corrente para cima (saindo do chão em direção ao
+teto). Usando a regra da mão direita, as linhas de campo magnético ao redor do fio:
+\begin{alternativas}
+\item apontam radialmente para fora do fio.
+\item apontam radialmente para dentro do fio.
+\item formam círculos concêntricos em torno do fio.
+\item são paralelas ao fio.
+\item não existem (fio reto não gera campo).
+\end{alternativas}
+\resposta{(c)}
+\resolucao{O campo de um fio reto forma \emph{círculos concêntricos} em planos
+perpendiculares ao fio. Pela regra da mão direita (polegar no sentido da corrente,
+dedos envolvendo o fio), determina-se o sentido dessas linhas. O campo nunca é
+radial (isso é característico do campo \emph{elétrico} de uma carga).}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um solenoide de $\SI{1000}{}$ espiras por metro é percorrido por
+$I = \SI{2}{\ampere}$. Determine o campo magnético no seu interior.
+\dados{$\mu_0 = 4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$.}
+\resposta{$B \approx \SI{2.51}{\milli\tesla}$}
+\resolucao{$B = \mu_0\,n\,I = (\pot{4\pi}{-7})(1000)(2)
+= \pot{8\pi}{-4} \approx\SI{2.51}{\milli\tesla}$. O campo no interior de um
+solenoide é \emph{uniforme} e independe do raio.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira circular de raio $R = \SI{10}{\centi\meter}$ conduz
+$I = \SI{5}{\ampere}$. Determine o campo magnético no seu centro.
+\dados{$\mu_0 = 4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$.}
+\resposta{$B \approx \SI{31.4}{\micro\tesla}$}
+\resolucao{$B = \dfrac{\mu_0 I}{2R}
+= \dfrac{(\pot{4\pi}{-7})(5)}{2(0{,}1)}
+= \dfrac{\pot{2\pi}{-6}}{0{,}2}=\pot{\pi}{-5}
+\approx\SI{31.4}{\micro\tesla}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um fio reto conduz $I = \SI{4}{\ampere}$. Determine o campo magnético a
+$\SI{2}{\centi\meter}$ do fio.
+\dados{$\mu_0 = 4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$.}
+\resposta{$B = \SI{40}{\micro\tesla}$}
+\resolucao{$B = \dfrac{\mu_0 I}{2\pi r} = \pot{2}{-7}\cdot\dfrac{4}{0{,}02}
+= \pot{4}{-5}\,\si{\tesla} = \SI{40}{\micro\tesla}$
+(usando o atalho $\mu_0/2\pi = \pot{2}{-7}$).}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Dois fios paralelos, distantes $\SI{10}{\centi\meter}$, conduzem correntes de
+$\SI{3}{\ampere}$ e $\SI{6}{\ampere}$ no \textbf{mesmo sentido}. Determine o campo
+magnético resultante no ponto médio entre eles e diga se os fios se atraem ou se
+repelem.
+\dados{$\mu_0 = 4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$.}
+\resposta{$B \approx \SI{12}{\micro\tesla}$; os fios se atraem}
+\resolucao{No ponto médio ($r = \SI{5}{\centi\meter}$ de cada fio), os campos dos
+dois fios têm \emph{sentidos opostos} (correntes no mesmo sentido), então os
+módulos se subtraem:
+\[
+B = \frac{\mu_0}{2\pi r}(I_2 - I_1)
+= \pot{2}{-7}\cdot\frac{6-3}{0{,}05}
+= \pot{2}{-7}\cdot60 = \pot{1.2}{-5}\,\si{\tesla}\approx\SI{12}{\micro\tesla}.
+\]
+Quanto à força \emph{entre} os fios: correntes de mesmo sentido se
+\textbf{atraem} (regra fundamental do eletromagnetismo, base da definição do
+ampère). Note a distinção: o \emph{campo} no ponto médio se subtrai, mas a
+\emph{força} entre os fios é atrativa --- são perguntas diferentes.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dois fios paralelos e longos, separados por $\SI{5}{\centi\meter}$, conduzem
+$\SI{10}{\ampere}$ cada, em sentidos \textbf{opostos}. Determine a força por
+unidade de comprimento entre eles e diga se é de atração ou repulsão.
+\dados{$\mu_0 = 4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$.}
+\resposta{$F/\ell = \SI{4e-4}{\newton\per\meter}$, repulsão}
+\resolucao{A força por comprimento entre dois fios paralelos é
+\[
+\frac{F}{\ell}=\frac{\mu_0 I_1 I_2}{2\pi d}
+=\pot{2}{-7}\cdot\frac{10\cdot10}{0{,}05}
+=\pot{4}{-4}\,\si{\newton\per\meter}.
+\]
+Correntes em sentidos \emph{opostos} se \textbf{repelem} (e as de mesmo sentido se
+atraem). Esta força é a base da definição do ampère no SI.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um \textbf{toroide} de raio médio $r = \SI{10}{\centi\meter}$ possui $N = 200$
+espiras percorridas por $I = \SI{3}{\ampere}$.
+\begin{itensq}
+\item Aplicando a lei de Ampère a uma circunferência de raio $r$ interna ao
+      toroide, deduza a expressão de $B$ e calcule seu valor.
+\item Mostre que o campo \emph{fora} do toroide é nulo.
+\item Compare com um solenoide reto de mesmo $N$ e comprimento igual ao
+      perímetro médio do toroide. O que se conclui?
+\end{itensq}
+\dados{$\mu_0 = 4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$.}
+\resposta{(a) $B = \dfrac{\mu_0 N I}{2\pi r} = \SI{1.2}{\milli\tesla}$;
+(b) e (c) ver comentário}
+\resolucao{\textbf{(a)} A lei de Ampère estabelece
+$\oint \vec B\cdot\mathrm{d}\vec\ell = \mu_0 I_{\text{env}}$. Escolhendo uma
+circunferência de raio $r$ concêntrica ao toroide, por simetria $B$ é constante e
+tangente ao longo dela:
+\[
+B\,(2\pi r) = \mu_0\,N I
+\;\Longrightarrow\;
+B=\frac{\mu_0 N I}{2\pi r}
+=\frac{(\pot{4\pi}{-7})(200)(3)}{2\pi(0{,}1)}
+=\pot{1.2}{-3}\,\si{\tesla}=\SI{1.2}{\milli\tesla}.
+\]
+\textbf{(b) Campo externo nulo.} Para um percurso \emph{fora} do toroide há dois
+casos: (i) circunferência de raio maior que o externo --- a corrente entra e sai
+do enrolamento, de modo que a corrente líquida envolvida é \emph{zero};
+(ii) circunferência de raio menor que o interno --- não envolve corrente alguma.
+Em ambos, $\oint \vec B\cdot\mathrm{d}\vec\ell = 0$ e, pela simetria,
+$B = 0$.\\
+\textbf{Consequência prática:} o toroide \textbf{confina} o campo em seu interior,
+praticamente sem dispersão. Por isso transformadores toroidais produzem muito
+menos interferência eletromagnética que os de núcleo E-I, e são preferidos em
+áudio e instrumentação de precisão.
+
+\textbf{(c) Comparação com o solenoide.} O perímetro médio é
+$\ell = 2\pi r = \SI{0.628}{\meter}$. Um solenoide reto com o mesmo $N$ e esse
+comprimento teria
+\[
+B = \mu_0\,\frac{N}{\ell}\,I = \frac{\mu_0 N I}{2\pi r},
+\]
+\emph{exatamente a mesma expressão}. Ou seja: o toroide é um solenoide
+"fechado sobre si mesmo". A diferença essencial é que o solenoide reto tem
+\textbf{extremidades}, onde as linhas de campo escapam (efeito de borda) e o
+campo é menos uniforme; o toroide não tem bordas, sendo o dispositivo ideal para
+estudar o comportamento magnético puro de um material --- razão pela qual as
+curvas de histerese são levantadas em amostras toroidais.}
+\end{questao}
+
+\begin{questao}[3]{Apostila original revisada}
+Duas espiras circulares, concêntricas e coplanares, têm raios
+$R_1=10\pi\,\si{\centi\metre}$ e $R_2=2{,}5\pi\,\si{\centi\metre}$. A primeira é
+percorrida por $I_1=\SI{2}{\ampere}$. Determine o valor e o sentido de $I_2$ para
+que o campo magnético resultante no centro seja nulo.
+\resposta{$I_2=\SI{0.5}{\ampere}$, em sentido oposto a $I_1$}
+\resolucao{No centro de uma espira, $B=\mu_0 I/(2R)$. Para cancelamento,
+$I_1/R_1=I_2/R_2$. Assim,
+$I_2=I_1(R_2/R_1)=2(2{,}5/10)=\SI{0.5}{\ampere}$. Os sentidos devem ser opostos.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Campo magnético
+\input{bancos/banco-campo-magnetico.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[11.2 Campo magnético]
+
+% =====================================================================
+\subsection{Fluxo magnético}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+O fluxo magnético através de uma espira é máximo quando o plano da espira está:
+\begin{alternativas}
+\item paralelo ao campo.
+\item perpendicular ao campo (campo atravessando a espira frontalmente).
+\item inclinado a $\SI{45}{\degree}$ com o campo.
+\item em qualquer orientação (o fluxo não depende do ângulo).
+\item girando rapidamente.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Como $\Phi = B\,A\cos\theta$, sendo $\theta$ o ângulo entre o campo e a
+\emph{normal} à espira, o fluxo é máximo quando $\theta = 0$ --- ou seja, quando o
+campo atravessa a espira perpendicularmente ao seu plano. Se o plano fica paralelo
+ao campo, $\theta = \SI{90}{\degree}$ e o fluxo é nulo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma espira de área $\SI{20}{\centi\meter\squared}$ é atravessada
+perpendicularmente por um campo uniforme de $\SI{0.5}{\tesla}$. Calcule o fluxo
+magnético.
+\resposta{$\Phi = \SI{1}{\milli\weber}$}
+\resolucao{Com $\theta = 0$ ($\cos\theta = 1$) e
+$A = \SI{20}{\centi\meter\squared} = \pot{20}{-4}\,\si{\meter\squared}$:
+\[
+\Phi = B\,A = 0{,}5\cdot\pot{20}{-4} = \pot{1}{-3}\,\si{\weber}=\SI{1}{\milli\weber}.
+\]}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma espira circular de raio $\SI{8}{\centi\meter}$ está imersa em um campo
+uniforme de $\SI{0.3}{\tesla}$, perpendicular ao seu plano.
+\begin{itensq}
+\item Calcule o fluxo magnético através da espira.
+\item Se o campo variar linearmente de $\SI{0.3}{}$ para $\SI{0.1}{\tesla}$ em
+      $\SI{0.5}{\second}$, qual a fem induzida?
+\end{itensq}
+\resposta{(a) $\Phi \approx \SI{6.03}{\milli\weber}$; (b) $\varepsilon \approx \SI{8.04}{\milli\volt}$}
+\resolucao{(a) A área é $A = \pi R^2 = \pi(0{,}08)^2 \approx \SI{0.0201}{\meter\squared}$:
+\[
+\Phi = B\,A = 0{,}3\cdot0{,}0201 \approx \SI{6.03}{\milli\weber}.
+\]
+(b) A fem é o módulo da taxa de variação do fluxo. Como só $B$ muda:
+\[
+\varepsilon = \left|\frac{\Delta\Phi}{\Delta t}\right|
+= A\,\frac{|\Delta B|}{\Delta t}
+= 0{,}0201\cdot\frac{0{,}2}{0{,}5}\approx\SI{8.04}{\milli\volt}.
+\]}
+\end{questao}
+
+\begin{questao}[2]{Apostila original revisada}
+Um campo magnético uniforme de módulo $B=\SI{1e-4}{\tesla}$ atravessa uma espira de
+área $A=\SI{1e-5}{\metre\squared}$. O campo forma $\SI{45}{\degree}$ com a normal
+ao plano da espira. Calcule o fluxo magnético.
+\resposta{$\Phi=\SI{7.07e-10}{\weber}$}
+\resolucao{$\Phi=BA\cos\theta=(10^{-4})(10^{-5})\cos45^\circ
+=7{,}07\times10^{-10}\,\si{\weber}$.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+O gráfico mostra a variação do fluxo magnético $\Phi(t)$ através de uma espira.
+Determine a fem induzida em cada trecho e esboce mentalmente a forma de onda da
+fem.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=10cm,height=5cm,xlabel={$t$ (s)},ylabel={$\Phi$ (mWb)},
+   xmin=0,xmax=6,ymin=0,ymax=5,xtick={0,1,2,3,4,5,6},ytick={0,2,4},
+   grid=both,axis lines=left]
+   \addplot[Icol,very thick] coordinates {(0,0)(2,4)(4,4)(6,0)};
+ \end{axis}
+\end{tikzpicture}}{Fluxo magnético em função do tempo.}
+
+\resposta{$0$--$2\,$s: $\varepsilon=\SI{2}{\milli\volt}$; $2$--$4\,$s:
+$\varepsilon=0$; $4$--$6\,$s: $\varepsilon=\SI{-2}{\milli\volt}$}
+\resolucao{A fem é a \emph{inclinação} do gráfico $\Phi \times t$ (com sinal
+trocado, por Lenz):
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item \textbf{$0$ a $\SI{2}{\second}$:} $\Phi$ sobe de $0$ a
+      \SI{4}{\milli\weber}, inclinação $\dfrac{4}{2} = \SI{2}{\milli\weber\per\second}$,
+      logo $|\varepsilon| = \SI{2}{\milli\volt}$.
+\item \textbf{$2$ a $\SI{4}{\second}$:} $\Phi$ constante, inclinação nula,
+      $\varepsilon = 0$.
+\item \textbf{$4$ a $\SI{6}{\second}$:} $\Phi$ desce de \SI{4}{} a $0$, inclinação
+      $-\SI{2}{\milli\weber\per\second}$, $\varepsilon = \SI{-2}{\milli\volt}$
+      (sentido oposto).
+\end{itemize}
+A fem só existe quando há \emph{variação} de fluxo, e seu sinal se inverte entre a
+subida e a descida --- exatamente o princípio de um gerador.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+Uma espira retangular de área $A = \SI{200}{\centi\meter\squared}$ gira com
+velocidade angular constante $\omega$ em um campo magnético uniforme
+$B = \SI{0.4}{\tesla}$, completando $\SI{1800}{}$ rotações por minuto.
+\begin{itensq}
+\item Escreva a expressão do fluxo $\Phi(t)$ e calcule seu valor máximo.
+\item Obtenha a fem induzida $\varepsilon(t)$ e seu valor de pico.
+\item Determine a frequência da tensão gerada e explique por que a saída é
+      \emph{senoidal}.
+\item Se a espira tivesse $N = 100$ voltas, o que mudaria?
+\end{itensq}
+\resposta{(a) $\Phi_{\max}=\SI{8}{\milli\weber}$;
+(b) $\varepsilon_{\text{pico}}\approx\SI{1.51}{\volt}$; (c) \SI{30}{\hertz};
+(d) tudo $\times100$}
+\resolucao{\textbf{(a)} Com a espira girando, o ângulo entre a normal e o campo
+varia: $\theta = \omega t$. Logo
+\[
+\Phi(t)=B\,A\cos(\omega t),
+\qquad
+\Phi_{\max}=B\,A=0{,}4\cdot\pot{200}{-4}=\SI{8}{\milli\weber}.
+\]
+\textbf{(b)} A velocidade angular é
+\[
+\omega = \frac{2\pi\cdot1800}{60}=60\pi\approx\SI{188.5}{\radian\per\second}.
+\]
+Pela lei de Faraday,
+\[
+\varepsilon(t)=-\frac{\mathrm{d}\Phi}{\mathrm{d}t}
+= B A\,\omega\sin(\omega t),
+\qquad
+\varepsilon_{\text{pico}}=BA\omega
+=(\pot{8}{-3})(188{,}5)\approx\SI{1.51}{\volt}.
+\]
+\textbf{(c)} A frequência é
+$f = \dfrac{1800}{60} = \SI{30}{\hertz}$ (uma volta $=$ um ciclo completo).\\
+\textbf{Por que senoidal?} Porque o \emph{fluxo} varia cossenoidalmente com o
+ângulo (projeção da área sobre a direção do campo), e a fem é sua
+\emph{derivada}. A derivada do cosseno é o seno --- daí a defasagem de
+$\SI{90}{\degree}$ entre fluxo e tensão. Este é literalmente o princípio de
+funcionamento do \textbf{alternador}: a forma de onda senoidal da rede elétrica
+nasce da geometria circular do movimento.
+
+\textbf{(d)} Com $N$ espiras, todas concatenam o mesmo fluxo e suas fem se somam
+em série:
+\[
+\varepsilon_{\text{pico}} = N B A \omega \approx 100\cdot1{,}51 = \SI{151}{\volt}.
+\]
+O fluxo \emph{por espira} não muda; o que muda é o \emph{fluxo concatenado}
+$N\Phi$. É assim que geradores reais atingem centenas de volts com campos
+modestos: aumentando $N$, $B$, $A$ ou $\omega$ --- os quatro parâmetros de
+projeto de uma máquina elétrica.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Fluxo magnético
+\input{bancos/banco-fluxo-magnetico.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[11.3 Fluxo magnético]
+
+% =====================================================================
+\subsection{Força magnética}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+A força magnética sobre uma carga em movimento é \textbf{nula} quando:
+\begin{alternativas}
+\item a velocidade é perpendicular ao campo.
+\item a velocidade é paralela (ou antiparalela) ao campo.
+\item a carga é positiva.
+\item o campo é muito intenso.
+\item a velocidade é máxima.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Como $F = qvB\sin\theta$, a força se anula quando $\sin\theta = 0$, ou
+seja, quando $\vec{v}$ é paralela (ou antiparalela) a $\vec{B}$. É máxima quando
+$\vec{v}\perp\vec{B}$ ($\theta = \SI{90}{\degree}$).}
+\end{questao}
+
+\begin{questao}[1]{}
+Um condutor retilíneo de $\SI{30}{\centi\meter}$ conduz $\SI{2}{\ampere}$
+perpendicularmente a um campo de $\SI{0.5}{\tesla}$. Determine a força sobre ele.
+\resposta{$F = \SI{0.3}{\newton}$}
+\resolucao{$F = B\,I\,\ell = 0{,}5\cdot2\cdot0{,}3 = \SI{0.3}{\newton}$
+(com $\sin\theta = 1$, pois são perpendiculares).}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma carga positiva move-se horizontalmente para a direita, em uma região onde o
+campo magnético aponta para dentro do plano da página. A força magnética sobre a
+carga aponta:
+\begin{alternativas}[2]
+\item para cima.
+\item para baixo.
+\item para a direita.
+\item para a esquerda.
+\item para dentro da página.
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Pela regra da mão direita para $\vec F = q\vec v\times\vec B$: dedos
+apontando no sentido de $\vec v$ (direita), curvando-se para $\vec B$ (para dentro
+da página), o polegar aponta para \emph{cima}. Como a carga é positiva, a força
+tem esse mesmo sentido. (Se fosse negativa, seria para baixo.)}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma carga de $\SI{1.6e-19}{\coulomb}$ move-se a
+$\SI{e6}{\meter\per\second}$, perpendicularmente a um campo de $\SI{0.2}{\tesla}$.
+Determine o módulo da força magnética e descreva a trajetória resultante.
+\resposta{$F = \SI{3.2e-14}{\newton}$; trajetória circular}
+\resolucao{$F = q\,v\,B = \pot{1.6}{-19}\cdot\pot{1}{6}\cdot0{,}2
+= \pot{3.2}{-14}\,\si{\newton}$.\\
+Como a força é sempre \emph{perpendicular} à velocidade, ela não altera o módulo
+de $v$ (não realiza trabalho), apenas curva a trajetória: o resultado é um
+\textbf{movimento circular uniforme}. É o princípio dos cíclotrons e dos
+espectrômetros de massa.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira retangular percorrida por corrente é colocada em um campo magnético
+uniforme. Explique por que ela tende a \textbf{girar}, e não a se deslocar, e
+relacione isso com o funcionamento de um motor elétrico.
+\resposta{Ver comentário}
+\resolucao{Em um campo uniforme, os dois lados opostos da espira conduzem corrente
+em sentidos \emph{contrários}, sofrendo forças magnéticas iguais e opostas
+($\vec F = B I \ell$). Essas forças formam um \textbf{binário} (conjugado): a
+resultante é nula (não há translação), mas o \emph{torque} não é --- a espira
+gira. Esse é exatamente o princípio do \textbf{motor de corrente contínua}: o
+torque $\tau = N B I A \sin\theta$ faz o rotor girar, e o comutador inverte a
+corrente a cada meia-volta para manter a rotação no mesmo sentido.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um próton ($q = \SI{1.6e-19}{\coulomb}$, $m = \SI{1.67e-27}{\kilogram}$) entra
+perpendicularmente em um campo uniforme de $\SI{0.5}{\tesla}$ com velocidade
+$\SI{2e6}{\meter\per\second}$. Determine o raio da trajetória circular descrita.
+\resposta{$r \approx \SI{4.2}{\centi\meter}$}
+\resolucao{A força magnética atua como resultante centrípeta:
+$qvB = \dfrac{mv^2}{r}$. Isolando $r$:
+\[
+r=\frac{mv}{qB}
+=\frac{(\pot{1.67}{-27})(\pot{2}{6})}{(\pot{1.6}{-19})(0{,}5)}
+\approx\pot{4.2}{-2}\,\si{\meter}=\SI{4.2}{\centi\meter}.
+\]
+O raio cresce com a quantidade de movimento ($mv$) e diminui com a carga e o
+campo. Medindo $r$ conhece-se a razão carga/massa da partícula --- é assim que
+funciona o espectrômetro de massa.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um seletor de velocidades é formado por campos elétrico e magnético
+\textbf{cruzados} (perpendiculares entre si e à velocidade). Partículas
+carregadas entram com velocidades variadas e apenas as de uma velocidade
+específica atravessam sem desviar.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ \draw[cinza!50,fill=cinza!8] (0,-1.2) rectangle (5.4,1.2);
+ % campo E (setas para baixo)
+ \foreach \x in {0.7,1.6,2.5,3.4,4.3}
+   \draw[->,Vcol!70] (\x,1.05)--(\x,-1.05);
+ \node[Vcol,font=\footnotesize] at (5.05,0.9) {$\vec E$};
+ % campo B (para dentro da pagina)
+ \foreach \x in {1.15,2.05,2.95,3.85}
+   \foreach \y in {-0.6,0,0.6}
+     {\node[Icol,font=\scriptsize] at (\x,\y) {$\otimes$};}
+ \node[Icol,font=\footnotesize] at (0.35,-0.9) {$\vec B$};
+ % particula
+ \draw[->,laranja,line width=1.2pt] (-1.3,0)--(0,0)
+       node[midway,above,font=\footnotesize]{$v$};
+ \draw[->,laranja,line width=1.2pt] (5.4,0)--(6.5,0);
+ \fill[laranja] (-1.3,0) circle (0.1);
+\end{tikzpicture}}{Seletor de velocidades com campos cruzados.}
+
+\begin{itensq}
+\item Deduza a condição para que a partícula atravesse sem desvio.
+\item Mostre que essa condição \emph{não depende} da carga nem da massa da
+      partícula.
+\item Com $E = \SI{3e5}{\volt\per\meter}$ e $B = \SI{0.15}{\tesla}$, qual a
+      velocidade selecionada?
+\item Após o seletor, coloca-se um campo magnético $B'$ que curva a trajetória.
+      Explique como essa combinação permite medir a razão $q/m$.
+\end{itensq}
+\resposta{(a) $qE = qvB \Rightarrow v = E/B$; (c) $v = \SI{2e6}{\meter\per\second}$;
+(b) e (d) ver comentário}
+\resolucao{\textbf{(a)} Sobre a partícula atuam duas forças perpendiculares à
+trajetória e \emph{opostas} entre si:
+\[
+F_e = qE \quad(\text{para baixo, se } q>0),
+\qquad
+F_m = qvB \quad(\text{para cima, pela regra da mão direita}).
+\]
+Para não haver desvio, a resultante deve ser nula:
+\[
+qE = qvB
+\;\Longrightarrow\;
+\boxed{\,v=\frac{E}{B}\,}
+\]
+\textbf{(b)} A carga $q$ \textbf{cancela-se} nos dois lados da igualdade, e a
+massa sequer aparece --- não há aceleração, logo a segunda lei de Newton não é
+invocada. Consequência notável: o seletor filtra por \emph{velocidade}, e apenas
+por ela. Elétrons, prótons e íons pesados com a mesma $v$ atravessam igualmente.
+Partículas mais rápidas são desviadas pela força magnética (que cresce com $v$);
+mais lentas, pela força elétrica.
+
+\textbf{(c)} $v = \dfrac{E}{B} = \dfrac{\pot{3}{5}}{0{,}15}
+= \pot{2}{6}\,\si{\meter\per\second}$.
+
+\textbf{(d) O espectrômetro de massa.} Com a velocidade agora \emph{conhecida e
+uniforme}, a partícula entra em uma região de campo $B'$ puro, onde a força
+magnética atua como centrípeta:
+\[
+qvB' = \frac{mv^{2}}{r}
+\;\Longrightarrow\;
+\frac{q}{m}=\frac{v}{B'r}=\frac{E}{B\,B'\,r}.
+\]
+Medindo o raio $r$ da trajetória (pela marca deixada no detector) e conhecendo
+$E$, $B$ e $B'$, obtém-se $q/m$ diretamente. Íons de massas diferentes descrevem
+raios diferentes e se separam espacialmente --- daí o nome
+\emph{espectrômetro}.\\
+\textbf{Impacto histórico:} foi com esse arranjo que Thomson mediu $q/m$ do
+elétron (1897) e que Aston descobriu os \textbf{isótopos} (1919), rendendo-lhe o
+Nobel. Hoje é ferramenta padrão em química analítica, datação e antidoping.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Força magnética
+\input{bancos/banco-forca-magnetica.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[11.4 Força magnética]
+
+% =====================================================================
+\subsection{Lei de Lenz e indução eletromagnética}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Segundo a lei de Lenz, a corrente induzida em uma espira tem sentido tal que:
+\begin{alternativas}
+\item reforça a variação do fluxo que a originou.
+\item se opõe à variação do fluxo que a originou.
+\item é sempre horária.
+\item independe do sentido da variação do fluxo.
+\item é proporcional ao fluxo, e não à sua variação.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A lei de Lenz é uma manifestação da conservação de energia: a corrente
+induzida cria um campo que \emph{se opõe} à variação de fluxo que a gerou. Se
+reforçasse a variação (alternativa a), teríamos energia criada do nada.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um campo magnético variável atravessa perpendicularmente uma espira, com fluxo
+$\Phi(t) = 0{,}02\,t$ (em Wb, com $t$ em segundos). Determine a fem induzida.
+\resposta{$\varepsilon = \SI{20}{\milli\volt}$}
+\resolucao{A fem é a taxa de variação do fluxo:
+\[
+\varepsilon=\left|\frac{\mathrm{d}\Phi}{\mathrm{d}t}\right|
+=\SI{0.02}{\weber\per\second}=\SI{20}{\milli\volt}.
+\]
+Como o fluxo cresce linearmente, a fem é \emph{constante}.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+O campo magnético no interior de uma bobina aumenta linearmente de $0$ a
+$\SI{0.5}{\tesla}$ em $\SI{2}{\second}$. A bobina tem $\SI{50}{}$ espiras e área de
+$\SI{20}{\centi\meter\squared}$. Calcule a fem induzida.
+\resposta{$\varepsilon = \SI{25}{\milli\volt}$}
+\resolucao{Com $N = 50$ espiras e
+$A = \pot{20}{-4}\,\si{\meter\squared}$:
+\[
+\varepsilon = N\,A\,\frac{\Delta B}{\Delta t}
+= 50\cdot\pot{20}{-4}\cdot\frac{0{,}5}{2}
+= 50\cdot\pot{20}{-4}\cdot0{,}25 = \SI{25}{\milli\volt}.
+\]}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bobina de $\SI{100}{}$ espiras e área $\SI{30}{\centi\meter\squared}$ está em
+um campo que varia segundo $B(t) = 0{,}5 - 0{,}1\,t$ (em T). Calcule a fem induzida
+e diga se a corrente induzida cresce, decresce ou é constante.
+\resposta{$\varepsilon = \SI{30}{\milli\volt}$, constante}
+\resolucao{A taxa de variação do campo é
+$\dfrac{\mathrm{d}B}{\mathrm{d}t} = \SI{-0.1}{\tesla\per\second}$ (constante):
+\[
+|\varepsilon| = N\,A\,\left|\frac{\mathrm{d}B}{\mathrm{d}t}\right|
+= 100\cdot\pot{30}{-4}\cdot0{,}1 = \SI{30}{\milli\volt}.
+\]
+Como a taxa de variação é constante, a fem é constante --- e, num circuito de
+resistência fixa, a corrente induzida também é \emph{constante}. O fluxo está
+diminuindo, então a corrente induzida atua no sentido de \emph{reforçá-lo}
+(Lenz).}
+\end{questao}
+
+\begin{questao}[2]{}
+Um ímã é aproximado, com o polo norte à frente, de uma espira condutora, como na
+figura. Determine o sentido da corrente induzida e a natureza da força entre o
+ímã e a espira.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=0.9,line width=0.8pt,>=Stealth]
+ % ima
+ \draw[fill=Icol!20,draw=Icol] (-4,-0.35) rectangle (-2.4,0.35);
+ \node at (-3.5,0){\footnotesize S}; \node at (-2.7,0){\footnotesize N};
+ \draw[->,Vcol,thick] (-2.2,0)--(-1.2,0); \node[Vcol,font=\footnotesize] at (-1.7,0.3){$v$};
+ % espira
+ \draw[azulprof,very thick] (0,0) ellipse (0.35 and 1.1);
+ \node[azulprof,font=\footnotesize] at (0,-1.4){espira};
+\end{tikzpicture}}{Ímã aproximando-se de uma espira.}
+
+\begin{alternativas}
+\item A corrente induzida cria um polo norte voltado para o ímã, repelindo-o.
+\item A corrente induzida cria um polo sul voltado para o ímã, atraindo-o.
+\item Não há corrente induzida, pois o ímã não toca a espira.
+\item A corrente induzida não gera força sobre o ímã.
+\item A espira é atraída, acelerando o ímã.
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Ao aproximar o polo norte, o fluxo através da espira \emph{aumenta}.
+Pela lei de Lenz, a corrente induzida se opõe a esse aumento, criando um campo que
+\emph{repele} o ímã --- ou seja, a face da espira voltada para o ímã se comporta
+como um polo \textbf{norte}. Consequentemente, surge uma força de \emph{repulsão}
+que dificulta a aproximação. É a manifestação da conservação de energia: para
+aproximar o ímã é preciso realizar trabalho, que se converte na energia elétrica
+da corrente induzida.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um transformador ideal tem no primário uma bobina onde o fluxo magnético varia à
+taxa de $\SI{0.01}{\weber\per\second}$. Se o enrolamento tem $\SI{200}{}$ espiras,
+qual a fem induzida?
+\resposta{$\varepsilon = \SI{2}{\volt}$}
+\resolucao{$\varepsilon = N\dfrac{\mathrm{d}\Phi}{\mathrm{d}t}
+= 200\cdot0{,}01 = \SI{2}{\volt}$. É assim que o transformador transfere energia:
+o fluxo variável criado pelo primário induz tensão no secundário,
+proporcionalmente ao número de espiras de cada lado.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+O fluxo magnético em uma espira varia senoidalmente:
+$\Phi(t) = \Phi_0\cos(\omega t)$, com $\Phi_0 = \SI{0.01}{\weber}$ e
+$\omega = \SI{100}{\radian\per\second}$.
+\begin{itensq}
+\item Obtenha a expressão da fem induzida.
+\item Qual o valor máximo da fem?
+\end{itensq}
+\resposta{(a) $\varepsilon(t) = \Phi_0\omega\sin(\omega t)$;
+(b) $\varepsilon_{\max} = \SI{1}{\volt}$}
+\resolucao{(a) A fem é a derivada do fluxo (com sinal trocado):
+\[
+\varepsilon = -\frac{\mathrm{d}\Phi}{\mathrm{d}t}
+= -\Phi_0\cdot(-\omega\sin(\omega t)) = \Phi_0\,\omega\sin(\omega t).
+\]
+(b) O valor máximo ocorre quando $\sin(\omega t) = 1$:
+\[
+\varepsilon_{\max} = \Phi_0\,\omega = 0{,}01\cdot100 = \SI{1}{\volt}.
+\]
+\textbf{Observação:} um fluxo cossenoidal gera uma fem \emph{senoidal} --- há uma
+defasagem de $\SI{90}{\degree}$ entre eles. É exatamente o que ocorre em um
+gerador de corrente alternada: a espira girando em campo uniforme produz fluxo
+senoidal e, portanto, tensão senoidal.}
+\end{questao}
+
+\begin{questao}[3]{Apostila original revisada}
+A corrente induzida em um circuito puramente resistivo é
+$i(t)=I_0\sin(\omega t)$. Determine a expressão da fem induzida e indique em quais
+instantes a corrente muda de sentido durante um período.
+\resposta{$\mathcal{E}(t)=RI_0\sin(\omega t)$; inversões em $t=0$, $\pi/\omega$ e $2\pi/\omega$}
+\resolucao{Como o circuito é resistivo, $\mathcal{E}=Ri$. O sinal da senoide muda a
+cada múltiplo de $\pi$, portanto o sentido da corrente se inverte a cada meio período.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+Uma barra condutora de comprimento $\ell = \SI{40}{\centi\meter}$ desliza sem
+atrito, com velocidade constante $v = \SI{3}{\meter\per\second}$, sobre dois
+trilhos paralelos fechados por um resistor $R = \SI{2}{\ohm}$. O conjunto está
+imerso em campo magnético uniforme $B = \SI{0.5}{\tesla}$, perpendicular ao plano
+dos trilhos.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ % trilhos
+ \draw[cinza,line width=1.4pt] (0,0)--(6,0);
+ \draw[cinza,line width=1.4pt] (0,2.2)--(6,2.2);
+ % resistor
+ \draw (0,0) to[R,l_={$R$}] (0,2.2);
+ % barra
+ \draw[Vcol,line width=2.2pt] (3.6,-0.15)--(3.6,2.35);
+ \node[Vcol,font=\footnotesize,above] at (3.6,2.4) {barra};
+ \draw[->,laranja,line width=1.3pt] (3.9,1.1)--(5.1,1.1)
+       node[midway,above,font=\footnotesize]{$v$};
+ % campo B saindo
+ \foreach \x in {1.0,1.8,2.6}
+   \foreach \y in {0.55,1.1,1.65}
+     {\node[Icol,font=\scriptsize] at (\x,\y) {$\odot$};}
+ \node[Icol,font=\footnotesize] at (1.8,0.15) {$\vec B$ (saindo)};
+ \draw[<->,cinza] (6.3,0)--(6.3,2.2) node[midway,right,font=\footnotesize]{$\ell$};
+\end{tikzpicture}}{Barra deslizante sobre trilhos --- fem de movimento.}
+
+\begin{itensq}
+\item Calcule a fem induzida e a corrente no circuito.
+\item Determine a força magnética que atua sobre a barra e seu sentido.
+\item Calcule a potência dissipada no resistor e a potência mecânica necessária
+      para manter a barra em movimento uniforme. Compare-as.
+\item Interprete o resultado à luz da lei de Lenz e da conservação de energia.
+\end{itensq}
+\resposta{(a) $\varepsilon=\SI{0.6}{\volt}$, $i=\SI{0.3}{\ampere}$;
+(b) $F=\SI{0.06}{\newton}$, opondo-se ao movimento;
+(c) ambas $=\SI{0.18}{\watt}$; (d) ver comentário}
+\resolucao{\textbf{(a) Fem de movimento.} À medida que a barra avança, a área do
+circuito aumenta a uma taxa $\dfrac{\mathrm{d}A}{\mathrm{d}t} = \ell v$. Logo
+\[
+\varepsilon=\left|\frac{\mathrm{d}\Phi}{\mathrm{d}t}\right|
+= B\,\ell\,v = 0{,}5\cdot0{,}4\cdot3=\SI{0.6}{\volt},
+\qquad
+i=\frac{\varepsilon}{R}=\frac{0{,}6}{2}=\SI{0.3}{\ampere}.
+\]
+\textbf{(b) Força sobre a barra.} A barra, agora percorrida por corrente,
+encontra-se no campo $B$ e sofre
+\[
+F = B\,i\,\ell = 0{,}5\cdot0{,}3\cdot0{,}4=\SI{0.06}{\newton}.
+\]
+Pela lei de Lenz, essa força \textbf{opõe-se ao movimento} --- ela freia a barra.
+(Se favorecesse o movimento, teríamos aceleração espontânea e energia criada do
+nada.)
+
+\textbf{(c) Balanço de potência.}
+\[
+P_{\text{dissipada}} = R\,i^{2} = 2(0{,}3)^{2}=\SI{0.18}{\watt},
+\]
+\[
+P_{\text{mecânica}} = F\,v = 0{,}06\cdot3 = \SI{0.18}{\watt}.
+\]
+\textbf{São exatamente iguais.}
+
+\textbf{(d) Interpretação.} O resultado não é coincidência: é a
+\textbf{conservação de energia} em ação. Para manter a barra em movimento
+\emph{uniforme}, um agente externo deve aplicar uma força igual e oposta à força
+magnética de frenagem, realizando trabalho a uma taxa $Fv$. Toda essa potência
+mecânica é convertida em potência elétrica e, finalmente, dissipada como calor no
+resistor. Nada se perde, nada se cria:
+\[
+\underbrace{P_{\text{mec}}}_{\text{trabalho externo}}
+\;\longrightarrow\;
+\underbrace{\varepsilon\,i}_{\text{potência elétrica}}
+\;\longrightarrow\;
+\underbrace{R i^{2}}_{\text{calor}}.
+\]
+Verificando pela via elétrica: $\varepsilon\,i = 0{,}6\cdot0{,}3
+= \SI{0.18}{\watt}$ \checkmark\\
+\textbf{Este é o princípio do gerador elétrico} --- e, invertendo o raciocínio, o
+do \emph{freio eletromagnético} usado em trens e em esteiras de academia: quanto
+maior a velocidade, maior a corrente induzida e maior a frenagem, sem contato
+mecânico nem desgaste.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Lei de Lenz e indução eletromagnética
+\input{bancos/banco-lei-de-lenz-e-inducao-eletromagnetica.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[11.5 Lei de Lenz e indução eletromagnética]

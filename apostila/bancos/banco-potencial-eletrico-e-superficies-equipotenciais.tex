@@ -1,0 +1,611 @@
+% =====================================================================
+%  Banco complementar --- Potencial Eletrico e Superficies
+%  Equipotenciais  (REVISADO)
+%  Substitui a versao gerada por template: as 6 questoes N1 eram o
+%  mesmo enunciado ("determine V a r de uma carga Q") com numeros
+%  trocados, as 5 N2 eram "carga q atravessa uma ddp" repetido, e as
+%  4 N3 eram "no ponto P as distancias as cargas q1 e q2 sao..."
+%  igualmente clonado. As 6 N4 eram frases conceituais de uma linha.
+%  O cap01c ja cobre: equipotenciais (MC), campo uniforme entre A e B,
+%  tres equipotenciais, dipolo com linhas, linhas de forca com
+%  equipotenciais, carga puntiforme, duas particulas A e B, campo a
+%  20 cm, campo atmosferico, cargas +-2 uC, trabalho, eletron
+%  acelerado, grafico V x d, superficies A/B/C, esfera condutora de
+%  R=10 cm, tres cargas trazidas do infinito, duas esferas ligadas por
+%  fio, quadrado de quatro cargas e esfera oca com carga central.
+%  Distribuicao mantida: 6 N1 + 5 N2 + 4 N3 + 6 N4 = 21
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Potencial elétrico e superfícies equipotenciais}
+
+\begin{atencao}[Organização do banco]
+O potencial é \textbf{escalar}: contribuições de várias cargas somam-se
+algebricamente, com sinal, sem decomposição vetorial --- o que torna $V$ muito
+mais fácil de calcular que $\vec E$. Em compensação, $V$ carrega menos
+informação: pontos de $V=0$ podem ter campo intenso, e é o \emph{gradiente},
+não o valor, que determina a força. O N4 explora essa distinção, a
+independência do caminho e a estabilidade.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Determine o potencial a $\SI{30}{\centi\meter}$ de uma carga
+$Q=+\SI{2}{\micro\coulomb}$, adotando $V(\infty)=0$.
+\dados{$\ke=\SI{9e9}{\newton\meter\squared\per\coulomb\squared}$}
+\resposta{$V=\SI{60}{\kilo\volt}$}
+\resolucao{
+\[
+V=\frac{\ke Q}{r}=\frac{\pot{9}{9}\times\pot{2}{-6}}{0{,}30}
+=\frac{\pot{1.8}{4}}{0{,}30}=\pot{6}{4}\,\si{\volt}=\SI{60}{\kilo\volt}.
+\]
+\textbf{Atenção à potência de $r$:} o potencial cai com $1/r$, enquanto o campo
+cai com $1/r^{2}$. Confundir as duas é o erro mais comum do tópico --- e o
+resultado sai com a dimensão errada.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o potencial a $\SI{60}{\centi\meter}$ de uma carga
+$Q=-\SI{4}{\micro\coulomb}$.
+\resposta{$V=\SI{-60}{\kilo\volt}$}
+\resolucao{
+\[
+V=\frac{\pot{9}{9}\times(-\pot{4}{-6})}{0{,}60}=-\pot{6}{4}\,\si{\volt}
+=\SI{-60}{\kilo\volt}.
+\]
+\textbf{O sinal é do potencial, não do módulo.} Diferentemente do campo --- cuja
+\emph{orientação} é dada por um vetor --- o potencial é um escalar com sinal
+próprio. Cargas negativas produzem potencial negativo em toda parte.}
+\end{questao}
+
+\begin{questao}[1]{}
+A que distância de $Q=+\SI{3}{\micro\coulomb}$ o potencial vale
+$\SI{45}{\kilo\volt}$?
+\resposta{$r=\SI{0.6}{\meter}$}
+\resolucao{
+\[
+r=\frac{\ke Q}{V}=\frac{\pot{9}{9}\times\pot{3}{-6}}{\pot{4.5}{4}}
+=\frac{\pot{2.7}{4}}{\pot{4.5}{4}}=\SI{0.6}{\meter}.
+\]
+\textbf{Superfície equipotencial:} \emph{todos} os pontos a
+$\SI{0.6}{\meter}$ da carga estão a $\SI{45}{\kilo\volt}$. Em torno de uma
+carga puntiforme, as equipotenciais são esferas concêntricas.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine a carga que produz $\SI{-18}{\kilo\volt}$ a
+$\SI{0.5}{\meter}$ de distância.
+\resposta{$Q=-\SI{1}{\micro\coulomb}$}
+\resolucao{
+\[
+Q=\frac{Vr}{\ke}=\frac{(-\pot{1.8}{4})(0{,}5)}{\pot{9}{9}}
+=-\pot{1}{-6}\,\si{\coulomb}=-\SI{1}{\micro\coulomb}.
+\]
+O sinal negativo do potencial revelou diretamente o sinal da carga --- vantagem
+prática de trabalhar com uma grandeza escalar.}
+\end{questao}
+
+\begin{questao}[1]{}
+Sobre o potencial criado por várias cargas em um ponto, é correto afirmar:
+\begin{alternativas}[2]
+\item soma-se vetorialmente
+\item soma-se algebricamente, com sinal
+\item soma-se em módulo
+\item depende do caminho até o ponto
+\end{alternativas}
+\resposta{(b)}
+\resolucao{O potencial é \textbf{escalar}: basta somar as contribuições
+$\ke q_k/r_k$ com seus sinais, sem ângulos nem componentes.\\
+\textbf{Vantagem prática enorme:} calcular $V$ de dez cargas exige dez divisões
+e uma soma; calcular $\vec E$ exigiria dez vetores decompostos em componentes.\\
+A alternativa (d) descreve a propriedade oposta --- justamente por o campo
+eletrostático ser \emph{conservativo}, o potencial de um ponto independe do
+caminho, e é isso que permite defini-lo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma carga $q=+\SI{3}{\micro\coulomb}$ é colocada em um ponto onde
+$V=\SI{200}{\volt}$. Determine sua energia potencial elétrica.
+\resposta{$U=\SI{0.6}{\milli\joule}$}
+\resolucao{
+\[
+U=qV=\pot{3}{-6}\times200=\pot{6}{-4}\,\si{\joule}=\SI{0.6}{\milli\joule}.
+\]
+\textbf{Distinção essencial:} $V$ é uma propriedade \emph{do ponto} --- existe
+mesmo sem carga alguma ali. Já $U$ é uma propriedade \emph{do sistema}
+carga-campo, e só faz sentido quando a carga está presente.\\
+A relação $U=qV$ é o análogo elétrico de $E_p=mgh$: potencial faz o papel de
+$gh$, e carga faz o papel de massa.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma carga $q=+\SI{2}{\micro\coulomb}$ desloca-se de um ponto a
+$\SI{50}{\volt}$ para outro a $\SI{20}{\volt}$.
+\begin{itensq}
+\item Determine o trabalho realizado pela força elétrica.
+\item Determine a variação da energia potencial.
+\end{itensq}
+\resposta{$W=\SI{60}{\micro\joule}$; $\Delta U=\SI{-60}{\micro\joule}$}
+\resolucao{(a)
+\[
+W=q\left(V_A-V_B\right)=\pot{2}{-6}(50-20)=\pot{6}{-5}\,\si{\joule}
+=\SI{60}{\micro\joule}.
+\]
+(b) $\Delta U=-W=\SI{-60}{\micro\joule}$.\\
+\textbf{Coerência dos sinais:} a carga é positiva e foi de maior para menor
+potencial --- movimento espontâneo. A força elétrica realiza trabalho
+\emph{positivo} e a energia potencial \emph{diminui}, convertendo-se em energia
+cinética.\\
+\textbf{Regra:} cargas positivas "descem" o potencial espontaneamente; cargas
+negativas "sobem".}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas cargas estão fixas: $q_1=+\SI{3}{\micro\coulomb}$ a
+$\SI{30}{\centi\meter}$ do ponto $P$, e $q_2=-\SI{2}{\micro\coulomb}$ a
+$\SI{20}{\centi\meter}$ de $P$. Determine o potencial em $P$.
+\resposta{$V=0$}
+\resolucao{Somando algebricamente:
+\[
+V=\frac{\pot{9}{9}(\pot{3}{-6})}{0{,}30}
++\frac{\pot{9}{9}(-\pot{2}{-6})}{0{,}20}
+=\pot{9}{4}-\pot{9}{4}=\SI{0}{\volt}.
+\]
+\textbf{Cuidado:} $V=0$ \textbf{não} significa campo nulo nem ausência de força.
+As duas cargas produzem campos que \emph{não} se cancelam --- elas têm sinais
+opostos, e seus campos apontam para o mesmo lado ao longo da linha que as une.\\
+Uma carga colocada em $P$ teria energia potencial nula, mas sofreria força.
+Essa distinção é aprofundada no bloco seguinte.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em um campo uniforme de $E=\SI{500}{\volt\per\meter}$, dois pontos estão
+separados por $\SI{4}{\centi\meter}$ ao longo da direção do campo. Determine a
+diferença de potencial.
+\resposta{$U=\SI{20}{\volt}$}
+\resolucao{
+\[
+U=E\,d=500\times0{,}04=\SI{20}{\volt},
+\]
+com o ponto \emph{a montante} do campo em potencial maior --- o campo aponta
+sempre no sentido de $V$ decrescente.\\
+\textbf{Se o deslocamento fosse perpendicular} ao campo, a diferença seria
+\emph{nula}: os dois pontos estariam na mesma equipotencial. Só a componente do
+deslocamento \emph{ao longo} do campo contribui.\\
+\textbf{Unidades:} $\si{\volt\per\meter}$ e $\si{\newton\per\coulomb}$ são a
+mesma coisa --- verifique multiplicando por metro e por coulomb.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um elétron é acelerado através de uma diferença de potencial de
+$\SI{500}{\volt}$.
+\begin{itensq}
+\item Determine a energia adquirida, em joules e em elétron-volts.
+\item Determine sua velocidade final, partindo do repouso.
+\end{itensq}
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$;
+$m_e=\pot{9.11}{-31}\,\si{\kilogram}$}
+\resposta{$\SI{500}{\electronvolt}=\pot{8}{-17}\,\si{\joule}$;
+$v=\pot{1.33}{7}\,\si{\meter\per\second}$}
+\resolucao{(a)
+\[
+W=eU=\pot{1.6}{-19}(500)=\pot{8}{-17}\,\si{\joule}.
+\]
+Em elétron-volts, a leitura é imediata: $\SI{500}{\electronvolt}$ --- \emph{por
+definição}, $\SI{1}{\electronvolt}$ é a energia que a carga elementar adquire
+sob $\SI{1}{\volt}$.\\
+(b) Toda a energia vira cinética:
+\[
+v=\sqrt{\frac{2W}{m}}=\sqrt{\frac{2(\pot{8}{-17})}{\pot{9.11}{-31}}}
+=\sqrt{\pot{1.756}{14}}=\pot{1.33}{7}\,\si{\meter\per\second}.
+\]
+\textbf{Verificação de consistência:} isso é $4{,}4\%$ da velocidade da luz ---
+ainda no regime não relativístico, onde $\frac12mv^{2}$ é válido. Acima de cerca
+de $\SI{50}{\kilo\electronvolt}$, a correção relativística passa a ser
+necessária.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas cargas, $q_1=+\SI{4}{\micro\coulomb}$ em $x=0$ e
+$q_2=-\SI{1}{\micro\coulomb}$ em $x=\SI{0.5}{\meter}$, estão fixas. Determine o
+ponto do segmento entre elas onde o potencial é nulo.
+\resposta{$x=\SI{0.4}{\meter}$}
+\resolucao{Impondo $V=0$ com $x$ medido a partir de $q_1$:
+\[
+\frac{\ke(4\mu)}{x}+\frac{\ke(-1\mu)}{0{,}5-x}=0
+\;\Longrightarrow\;
+\frac{4}{x}=\frac{1}{0{,}5-x}.
+\]
+\[
+4(0{,}5-x)=x
+\;\Longrightarrow\;
+2=5x
+\;\Longrightarrow\;
+x=\SI{0.4}{\meter}.
+\]
+\textbf{Contraste importante com o campo:} o ponto de \emph{campo} nulo dessas
+mesmas cargas fica \emph{fora} do segmento (a $\SI{1}{\meter}$ de $q_1$),
+porque o campo é vetorial e só pode se cancelar onde os dois vetores forem
+opostos. Já o potencial é escalar e se anula sempre que as contribuições tiverem
+módulos iguais e sinais opostos --- o que ocorre dentro do segmento.\\
+\textbf{Existe também um segundo ponto de $V=0$} fora do segmento, do lado da
+carga menor, em $x=\SI{0.667}{\meter}$. A superfície completa de $V=0$ é uma
+esfera.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Duas cargas $+Q$ e $-Q$, com $Q=\SI{2}{\micro\coulomb}$, estão separadas por
+$\SI{40}{\centi\meter}$.
+\begin{itensq}
+\item Determine o potencial no ponto médio.
+\item Determine o campo no ponto médio.
+\item Explique a aparente contradição.
+\end{itensq}
+\resposta{$V=0$; $E=\SI{900}{\kilo\volt\per\meter}$}
+\resolucao{(a) As duas contribuições têm módulos iguais e sinais opostos:
+\[
+V=\frac{\ke Q}{0{,}20}-\frac{\ke Q}{0{,}20}=0.
+\]
+(b) Os \emph{campos}, ao contrário, apontam ambos da carga positiva para a
+negativa --- eles se \textbf{somam}:
+\[
+E=2\times\frac{\ke Q}{(0{,}20)^{2}}
+=2\times\frac{\pot{9}{9}(\pot{2}{-6})}{0{,}04}
+=\pot{9}{5}\,\si{\volt\per\meter}.
+\]
+(c) \textbf{Não há contradição.} O potencial não determina o campo --- quem o
+determina é o \emph{gradiente} do potencial:
+\[
+\vec E=-\nabla V.
+\]
+Uma função pode valer zero em um ponto e ter derivada grande ali. É exatamente o
+caso: caminhando ao longo do eixo, $V$ passa de positivo a negativo cruzando o
+zero com inclinação acentuada.\\
+\textbf{Analogia:} a altitude do nível do mar é zero, mas isso nada diz sobre a
+inclinação do terreno naquele ponto. É a inclinação --- e não a altitude --- que
+faz uma bola rolar.\\
+\textbf{Consequência:} uma carga solta no ponto médio \emph{não} fica parada,
+apesar de $V=0$ e $U=0$.}
+\end{questao}
+
+\begin{questao}[3]{}
+O potencial ao longo de um eixo é dado por
+$V(x)=\SI{200}{}-\SI{50}{}\,x$ (com $V$ em volts e $x$ em metros), no trecho
+$0\le x\le\SI{4}{\meter}$.
+\begin{itensq}
+\item Determine o campo elétrico.
+\item Determine o trabalho para levar $q=+\SI{2}{\micro\coulomb}$ de
+      $x=1$ a $x=\SI{3}{\meter}$.
+\item Identifique as superfícies equipotenciais.
+\end{itensq}
+\resposta{$E=\SI{50}{\volt\per\meter}$ no sentido $+x$;
+$W=\SI{200}{\micro\joule}$}
+\resolucao{(a)
+\[
+E_x=-\frac{\mathrm{d}V}{\mathrm{d}x}=-(-50)=\SI{+50}{\volt\per\meter}.
+\]
+Campo uniforme, apontando no sentido \emph{crescente} de $x$ --- ou seja, no
+sentido em que $V$ \emph{decresce}, como sempre.\\
+(b) $V(1)=\SI{150}{\volt}$ e $V(3)=\SI{50}{\volt}$:
+\[
+W=q\left(V_1-V_3\right)=\pot{2}{-6}(150-50)=\SI{200}{\micro\joule}.
+\]
+\emph{(Conferindo por força: $W=qE\,d=\pot{2}{-6}(50)(2)
+=\SI{200}{\micro\joule}$ \checkmark.)}\\
+(c) Como $V$ depende \emph{apenas} de $x$, as equipotenciais são
+\textbf{planos perpendiculares ao eixo} $x$. O plano $x=\SI{1}{\meter}$ é toda
+a superfície com $V=\SI{150}{\volt}$.\\
+\textbf{Regra geral:} equipotenciais são sempre \textbf{perpendiculares} às
+linhas de campo. Se não fossem, haveria componente de campo ao longo da
+superfície, e mover uma carga sobre ela exigiria trabalho --- contradizendo a
+definição de equipotencial.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma carga $q=+\SI{1}{\micro\coulomb}$ é trazida do infinito até
+$\SI{20}{\centi\meter}$ de uma carga fixa $Q=+\SI{5}{\micro\coulomb}$.
+\begin{itensq}
+\item Determine o trabalho realizado por um agente externo.
+\item Determine a energia potencial do par.
+\item Interprete o sinal.
+\end{itensq}
+\resposta{$W_{ext}=U=\SI{0.225}{\joule}$}
+\resolucao{(a) e (b) Como a carga parte do repouso no infinito e chega em
+repouso, todo o trabalho externo vira energia potencial:
+\[
+U=\frac{\ke Qq}{r}=\frac{\pot{9}{9}(\pot{5}{-6})(\pot{1}{-6})}{0{,}20}
+=\frac{\pot{4.5}{-2}}{0{,}20}=\SI{0.225}{\joule}.
+\]
+\emph{(Equivalentemente, $U=qV$ com $V=\ke Q/r=\SI{225}{\kilo\volt}$.)}\\
+(c) \textbf{Sinal positivo:} as cargas se repelem, então aproximá-las exige
+trabalho \emph{contra} a força elétrica. O agente externo gasta energia, que
+fica armazenada no sistema.\\
+\textbf{Se as cargas tivessem sinais opostos}, $U$ seria negativa: elas se
+atraem, e seria preciso \emph{segurá-las} durante a aproximação --- o agente
+externo receberia energia.\\
+\textbf{Verificação de coerência:} soltando a carga, ela é repelida e ganha
+$\SI{0.225}{\joule}$ de energia cinética ao voltar ao infinito. A energia
+potencial é integralmente recuperável --- marca de um campo conservativo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare, para duas cargas positivas iguais, o lugar geométrico dos pontos de
+potencial nulo e o dos pontos de campo nulo.
+\begin{itensq}
+\item Determine onde $V=0$.
+\item Determine onde $\vec E=\vec 0$.
+\item Explique a diferença.
+\end{itensq}
+\resposta{$V$ nunca se anula (exceto no infinito); $\vec E$ se anula no ponto
+médio}
+\resolucao{(a) Ambas as cargas são positivas, logo cada uma contribui com
+potencial \textbf{positivo} em todo ponto finito. A soma de dois positivos nunca
+é zero:
+\[
+V=\frac{\ke Q}{r_1}+\frac{\ke Q}{r_2}>0\quad\text{sempre}.
+\]
+$V\to0$ apenas no limite $r\to\infty$.\\
+(b) O campo é vetorial e \emph{pode} se cancelar. No ponto médio do segmento,
+os dois vetores têm módulos iguais e sentidos opostos:
+\[
+\vec E=\vec 0\ \text{no ponto médio}.
+\]
+(c) \textbf{A diferença é a natureza das grandezas.}
+\begin{itemize}
+\item $V$ é escalar e, para cargas de mesmo sinal, as contribuições não podem se
+cancelar --- só se somam.
+\item $\vec E$ é vetorial e se cancela sempre que os vetores forem opostos, o que
+não impõe restrição alguma sobre os sinais das cargas.
+\end{itemize}
+\textbf{Contraste com o caso de cargas opostas} ($+Q$ e $-Q$): ali ocorre
+exatamente o inverso --- $V=0$ no ponto médio, mas $\vec E\neq\vec 0$.\\
+\textbf{Síntese:} $V=0$ e $\vec E=\vec 0$ são condições \emph{independentes}.
+Nenhuma implica a outra, em nenhum sentido.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- trabalho e independência do caminho.)} Prove que o
+trabalho da força elétrica entre dois pontos independe do caminho, e deduza a
+relação com a diferença de potencial.
+\begin{itensq}
+\item Calcule o trabalho para o campo de uma carga puntiforme.
+\item Generalize para uma distribuição qualquer.
+\item Explique por que isso permite \emph{definir} o potencial.
+\end{itensq}
+\resposta{$W_{AB}=q(V_A-V_B)$, com
+$V=\ke Q/r$}
+\resolucao{(a) Para uma carga fixa $Q$ e uma carga de prova $q$, a força é
+radial: $\vec F=\dfrac{\ke Qq}{r^{2}}\hat r$. Em um deslocamento
+$\mathrm{d}\vec\ell$, apenas a componente radial contribui, pois
+$\vec F\cdot\mathrm{d}\vec\ell=F\,\mathrm{d}r$:
+\[
+W_{AB}=\int_{r_A}^{r_B}\frac{\ke Qq}{r^{2}}\,\mathrm{d}r
+=\ke Qq\left[-\frac{1}{r}\right]_{r_A}^{r_B}
+=\ke Qq\left(\frac{1}{r_A}-\frac{1}{r_B}\right).
+\]
+\textbf{O resultado depende apenas de $r_A$ e $r_B$} --- as componentes
+transversais do caminho não contribuem, por serem perpendiculares à força.\\
+(b) \textbf{Generalização:} para $n$ cargas, a força total é a soma vetorial das
+forças individuais, e o trabalho total é a soma dos trabalhos. Como cada parcela
+independe do caminho, a soma também independe.\\
+Definindo $V=\sum\ke Q_k/r_k$, obtém-se
+\[
+\boxed{W_{AB}=q\left(V_A-V_B\right)}
+\]
+(c) \textbf{Por que isso permite definir $V$.} Se o trabalho dependesse do
+caminho, não haveria como atribuir um \emph{número} a cada ponto --- o "potencial"
+seria ambíguo. A independência do caminho garante que
+$V(P)=W_{\infty\to P}/q$ é bem definido.\\
+\textbf{Formulação equivalente:} $\oint\vec E\cdot\mathrm{d}\vec\ell=0$ em
+qualquer curva fechada. O campo eletrostático é \textbf{conservativo}, e essa é
+exatamente a lei das malhas de Kirchhoff em sua forma de campo.\\
+\textbf{Ressalva importante:} isso vale para campos \emph{eletrostáticos}.
+Campos elétricos induzidos por variação de fluxo magnético \emph{não} são
+conservativos, e para eles o potencial escalar deixa de existir --- assunto da
+lei de Faraday.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto --- $V=0$ com $E\neq0$.)} Projete um par de cargas de sinais
+opostos e módulos \emph{diferentes} tal que exista um ponto do segmento onde
+$V=0$ mas $\vec E\neq\vec0$.
+\begin{itensq}
+\item Determine a condição geral.
+\item Escolha valores e localize o ponto.
+\item Verifique que o campo não é nulo ali.
+\end{itensq}
+\resposta{Condição: $|q_1|/r_1=|q_2|/r_2$; com $+4\,\si{\micro\coulomb}$ e
+$-1\,\si{\micro\coulomb}$ a $\SI{0.5}{\meter}$, o ponto é
+$x=\SI{0.4}{\meter}$}
+\resolucao{(a) \textbf{Condição para $V=0$:}
+\[
+\frac{\ke q_1}{r_1}+\frac{\ke q_2}{r_2}=0
+\;\Longrightarrow\;
+\frac{|q_1|}{r_1}=\frac{|q_2|}{r_2},
+\]
+com $q_1$ e $q_2$ de sinais \emph{opostos}.\\
+\textbf{Condição para $\vec E=\vec0$ no mesmo ponto:}
+$\dfrac{|q_1|}{r_1^{2}}=\dfrac{|q_2|}{r_2^{2}}$.\\
+As duas só coincidem se $r_1=r_2$ --- e então $|q_1|=|q_2|$, que é o caso
+excluído pelo enunciado. \textbf{Com módulos diferentes, é impossível anular
+ambos no mesmo ponto.}\\
+(b) Tome $q_1=+\SI{4}{\micro\coulomb}$ em $x=0$ e
+$q_2=-\SI{1}{\micro\coulomb}$ em $x=\SI{0.5}{\meter}$. De
+$\dfrac{4}{x}=\dfrac{1}{0{,}5-x}$ vem $x=\SI{0.4}{\meter}$.\\
+\emph{(Confira: $r_1=0{,}4$ e $r_2=0{,}1$, com
+$4/0{,}4=1/0{,}1=10$ \checkmark.)}\\
+(c) \textbf{Campo no ponto.} Ambos apontam no sentido $+x$ (afastando-se de
+$q_1$, aproximando-se de $q_2$) e portanto se somam:
+\[
+E=\frac{\pot{9}{9}(\pot{4}{-6})}{0{,}16}
++\frac{\pot{9}{9}(\pot{1}{-6})}{0{,}01}
+=\pot{2.25}{5}+\pot{9}{5}=\pot{1.125}{6}\,\si{\volt\per\meter}.
+\]
+Mais de um megavolt por metro --- longe de nulo.\\
+\textbf{Interpretação:} uma carga colocada ali teria energia potencial nula, mas
+sofreria força intensa. \textbf{$V$ e $\vec E$ carregam informações
+diferentes:} $V$ é o valor, $\vec E$ é a taxa de variação.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Estabilidade em um mínimo de potencial.)} Uma curva
+$V(x)$ apresenta mínimo local em $x_0$.
+\begin{itensq}
+\item Analise a estabilidade de uma carga positiva colocada em $x_0$.
+\item Repita para uma carga negativa.
+\item Relacione com o teorema de Earnshaw.
+\end{itensq}
+\resposta{Positiva: \textbf{instável}; negativa: estável em $x$ --- mas nenhuma
+é estável em três dimensões}
+\resolucao{(a) A energia potencial de uma carga positiva é $U=qV$, com
+$q>0$ --- ela tem a \emph{mesma} forma de $V$ e, portanto, também um mínimo em
+$x_0$. Mínimo de energia significa \textbf{equilíbrio estável}... \emph{ao longo
+de $x$}.\\
+\emph{(Atenção ao raciocínio: é o mínimo de $U$, e não o de $V$, que define
+estabilidade. Para carga positiva os dois coincidem; para negativa, invertem-se.)}\\
+(b) Para carga negativa, $U=qV$ com $q<0$ \textbf{inverte} a curva: onde $V$
+tem mínimo, $U$ tem \emph{máximo}. Equilíbrio \textbf{instável} em $x$.\\
+(c) \textbf{Teorema de Earnshaw.} Em uma região sem cargas, o potencial
+eletrostático satisfaz a equação de Laplace, $\nabla^{2}V=0$, ou seja
+\[
+\frac{\partial^{2}V}{\partial x^{2}}
++\frac{\partial^{2}V}{\partial y^{2}}
++\frac{\partial^{2}V}{\partial z^{2}}=0.
+\]
+Se $V$ tivesse um mínimo \emph{tridimensional} em $x_0$, as três segundas
+derivadas seriam positivas e a soma não poderia ser zero. \textbf{Contradição.}\\
+Logo, um mínimo em uma direção obriga a haver \emph{máximo} em outra --- todo
+ponto crítico é um \textbf{ponto de sela}.\\
+\textbf{Conclusão:} nenhuma carga pode ser mantida em equilíbrio estável apenas
+por forças eletrostáticas, seja ela positiva ou negativa. A análise
+unidimensional do item (a) é enganosa justamente por ignorar as outras duas
+direções.\\
+\textbf{Como se contorna na prática:} campos variáveis no tempo (armadilha de
+Paul), campos magnéticos, ou realimentação ativa --- todas soluções que escapam
+da hipótese eletrostática.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Condutor em equilíbrio.)} Demonstre que toda a superfície de um
+condutor em equilíbrio eletrostático é equipotencial.
+\begin{itensq}
+\item Prove a partir da condição de equilíbrio.
+\item Mostre que o interior também está no mesmo potencial.
+\item Deduza a orientação do campo na superfície.
+\end{itensq}
+\resposta{Campo interno nulo $\Rightarrow$ $V$ constante em todo o condutor; o
+campo externo é \textbf{perpendicular} à superfície}
+\resolucao{(a) \textbf{Condição de equilíbrio:} não há movimento de cargas
+livres, logo o campo dentro do metal é \textbf{nulo}. Se houvesse campo, as
+cargas se moveriam e o equilíbrio não existiria.\\
+Tomando dois pontos $A$ e $B$ quaisquer do condutor e um caminho
+\emph{interno} entre eles:
+\[
+V_A-V_B=\int_A^B\vec E\cdot\mathrm{d}\vec\ell=\int_A^B\vec 0\cdot\mathrm{d}\vec\ell=0.
+\]
+Portanto $V_A=V_B$ --- \textbf{todo o condutor é equipotencial}.\\
+(b) O argumento não distinguiu superfície de interior: ele vale para
+\emph{qualquer} par de pontos ligados por caminho dentro do metal. Superfície e
+interior estão no mesmo potencial, e o condutor inteiro é um volume
+equipotencial.\\
+(c) \textbf{Orientação do campo externo.} Se houvesse componente
+\emph{tangencial} à superfície, ela empurraria as cargas livres ao longo dela --
+contradizendo o equilíbrio. Logo o campo externo é \textbf{perpendicular} à
+superfície em todo ponto.\\
+\textbf{Consequências, todas verificáveis:}
+\begin{itemize}
+\item A carga em excesso reside \emph{integralmente} na superfície externa.
+\item A densidade superficial é maior onde a curvatura é maior (poder das
+pontas).
+\item Uma cavidade vazia dentro do condutor tem campo nulo --- é a blindagem
+eletrostática.
+\item Ligar dois condutores por fio iguala seus potenciais, e a carga se
+redistribui proporcionalmente às capacitâncias.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Do potencial ao campo.)} O potencial em uma região é
+$V(x,y)=\SI{100}{}-\SI{20}{}\,x+\SI{5}{}\,y^{2}$ (volts, com $x,y$ em metros).
+\begin{itensq}
+\item Determine $\vec E(x,y)$.
+\item Avalie em $(x,y)=(2;\,1)$.
+\item Determine a forma das equipotenciais.
+\end{itensq}
+\resposta{$\vec E=(20;\,-10y)\,\si{\volt\per\meter}$; em $(2;1)$,
+$\vec E=(20;\,-10)$ com $|E|=\SI{22.4}{\volt\per\meter}$}
+\resolucao{(a) $\vec E=-\nabla V$, componente a componente:
+\[
+E_x=-\frac{\partial V}{\partial x}=-(-20)=\SI{+20}{\volt\per\meter};
+\qquad
+E_y=-\frac{\partial V}{\partial y}=-(10y)=-10y.
+\]
+Note que $E_x$ é \emph{uniforme}, enquanto $E_y$ cresce linearmente com $y$.\\
+(b) Em $(2;\,1)$:
+\[
+\vec E=(20;\,-10)\,\si{\volt\per\meter};
+\qquad
+|E|=\sqrt{400+100}=\SI{22.4}{\volt\per\meter},
+\]
+formando $\ang{-26.6}$ com o eixo $x$.\\
+\textbf{Observe:} o valor de $V$ no ponto ($V=100-40+5=\SI{65}{\volt}$) não
+entrou no cálculo do campo. Só as \emph{derivadas} importam --- somar uma
+constante a $V$ não altera $\vec E$.\\
+(c) \textbf{Equipotenciais:} $100-20x+5y^{2}=\text{const}$, ou seja
+\[
+x=\frac{5y^{2}+100-C}{20},
+\]
+uma família de \textbf{parábolas} com eixo horizontal.\\
+\textbf{Verificação de coerência:} o vetor $\vec E$ calculado deve ser
+perpendicular à parábola que passa por $(2;1)$. A tangente à curva ali tem
+inclinação $\mathrm{d}y/\mathrm{d}x=2$, e o campo tem inclinação
+$-10/20=-1/2$ --- produto $-1$, portanto perpendiculares \checkmark.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Equipotenciais e linhas de campo.)} Compare os dois conjuntos de
+curvas para duas cargas positivas iguais.
+\begin{itensq}
+\item Descreva as equipotenciais perto de cada carga e muito longe do par.
+\item Descreva as linhas de campo, incluindo o ponto médio.
+\item Estabeleça as regras gerais que relacionam os dois conjuntos.
+\end{itensq}
+\resposta{Perto: esferas em torno de cada carga; longe: esferas em torno do par;
+o ponto médio é ponto de sela do potencial}
+\resolucao{(a) \textbf{Equipotenciais.}
+\begin{itemize}
+\item \emph{Muito perto de uma carga:} a contribuição dela domina, e as
+superfícies são praticamente \textbf{esferas} centradas nessa carga.
+\item \emph{Muito longe do par:} o sistema parece uma única carga $2Q$, e as
+superfícies voltam a ser esferas, agora centradas no \textbf{centro do par}.
+\item \emph{Na região intermediária:} as superfícies deixam de ser esferas e
+assumem forma de "amendoim", chegando a se fundir em uma única superfície que
+envolve as duas cargas.
+\end{itemize}
+(b) \textbf{Linhas de campo.} Saem radialmente de cada carga, curvam-se
+afastando-se uma da outra e seguem para o infinito. \textbf{No ponto médio o
+campo é nulo} --- as linhas não passam por ali. Não há linha ligando as duas
+cargas, pois ambas são fontes.\\
+(c) \textbf{Regras gerais.}
+\begin{enumerate}
+\item As linhas de campo são \textbf{perpendiculares} às equipotenciais em todo
+ponto.
+\item O campo aponta no sentido de $V$ \textbf{decrescente}.
+\item Onde as equipotenciais estão \textbf{mais próximas}, o campo é mais
+\textbf{intenso} --- pois $|E|=|\mathrm{d}V/\mathrm{d}n|$.
+\item Equipotenciais nunca se cruzam (um ponto teria dois potenciais); linhas de
+campo também não (haveria duas direções de força).
+\item Onde $\vec E=\vec0$, as duas regras de perpendicularidade perdem sentido:
+é um \textbf{ponto de sela} do potencial, e ali as equipotenciais podem se
+cruzar.
+\end{enumerate}
+\textbf{O ponto médio é justamente esse caso excepcional:} $V$ tem mínimo ao
+longo da linha que une as cargas e máximo na direção perpendicular --- exatamente
+a estrutura de sela exigida pelo teorema de Earnshaw.}
+\end{questao}

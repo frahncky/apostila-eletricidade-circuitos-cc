@@ -1,0 +1,309 @@
+% =====================================================================
+%  CAPITULO 8 - TEOREMAS DE THEVENIN E NORTON
+% =====================================================================
+\section{Teoremas de Thévenin e Norton}
+
+\begin{conceito}[Antes de começar]
+\textbf{Thévenin:} qualquer rede linear de dois terminais equivale a uma fonte de
+tensão $V_{\text{Th}}$ em série com uma resistência $R_{\text{Th}}$.\par
+\textbf{Norton:} a mesma rede equivale a uma fonte de corrente $I_{\text{N}}$ em
+paralelo com $R_{\text{N}}$.\par
+\textbf{Como obter:}
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item $V_{\text{Th}}$ = tensão de circuito \emph{aberto} nos terminais (retire a
+      carga).
+\item $I_{\text{N}}$ = corrente de \emph{curto-circuito} entre os terminais.
+\item $R_{\text{Th}} = R_{\text{N}}$ = resistência vista dos terminais com as fontes
+      \emph{desligadas} (tensão $\to$ curto, corrente $\to$ aberto).
+\end{itemize}
+\textbf{Relação entre eles:}
+$V_{\text{Th}} = R_{\text{Th}}\,I_{\text{N}}$ e
+$R_{\text{Th}} = R_{\text{N}}$.
+\end{conceito}
+
+\legendaniveis
+
+\blocofixacao
+
+\begin{questao}[1]{}
+A tensão de Thévenin $V_{\text{Th}}$ de uma rede é obtida medindo-se, nos
+terminais de saída:
+\begin{alternativas}
+\item a tensão de curto-circuito.
+\item a tensão de circuito aberto (sem carga).
+\item a corrente de curto-circuito.
+\item a resistência interna.
+\item a potência máxima.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{$V_{\text{Th}}$ é a tensão nos terminais \emph{sem carga} (circuito
+aberto). A corrente de curto-circuito fornece $I_{\text{N}}$, e a razão entre elas
+dá $R_{\text{Th}}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+A resistência de Thévenin de uma rede é calculada:
+\begin{alternativas}
+\item mantendo todas as fontes ativas.
+\item desligando as fontes (tensão em curto, corrente em aberto) e olhando dos
+      terminais.
+\item somando todas as resistências do circuito.
+\item medindo a tensão de saída em vazio.
+\item apenas para circuitos com uma única fonte.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Para achar $R_{\text{Th}}$, desligam-se as fontes independentes (tensão
+$\to$ curto, corrente $\to$ aberto) e calcula-se a resistência equivalente vista
+dos terminais de saída.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Para o circuito da figura, determine o equivalente de Thévenin
+($V_{\text{Th}}$ e $R_{\text{Th}}$) visto pelos terminais A--B.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$\SI{12}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{4}{\ohm}$}] (3,3) coordinate(a);
+ \draw (a) to[R,l={$R_2=\SI{4}{\ohm}$}] (3,0) coordinate(b) -- (0,0);
+ \draw (a) to[short,-o] (4.5,3) node[right,font=\bfseries]{A};
+ \draw (b) to[short,-o] (4.5,0) node[right,font=\bfseries]{B};
+\end{circuitikz}}
+
+\resposta{$V_{\text{Th}} = \SI{6}{\volt}$; $R_{\text{Th}} = \SI{2}{\ohm}$}
+\resolucao{\textbf{$V_{\text{Th}}$} (saída em aberto): sem carga, $R_1$ e $R_2$
+formam um divisor de tensão:
+\[
+V_{\text{Th}}=12\cdot\frac{R_2}{R_1+R_2}=12\cdot\frac{4}{8}=\SI{6}{\volt}.
+\]
+\textbf{$R_{\text{Th}}$} (fonte de \SI{12}{\volt} em curto): $R_1$ e $R_2$ ficam
+em paralelo, vistos de A--B:
+\[
+R_{\text{Th}}=R_1\parallel R_2=\frac{4\cdot4}{8}=\SI{2}{\ohm}.
+\]}
+\end{questao}
+
+\begin{questao}[2]{}
+Usando o equivalente de Thévenin obtido na questão anterior, calcule a tensão e a
+corrente em uma carga $R_L = \SI{6}{\ohm}$ ligada entre A e B.
+\resposta{$I_L = \SI{0.75}{\ampere}$; $U_L = \SI{4.5}{\volt}$}
+\resolucao{Com o circuito reduzido a $V_{\text{Th}} = \SI{6}{\volt}$ em série com
+$R_{\text{Th}} = \SI{2}{\ohm}$ e a carga $R_L = \SI{6}{\ohm}$:
+\[
+I_L=\frac{V_{\text{Th}}}{R_{\text{Th}}+R_L}=\frac{6}{2+6}=\SI{0.75}{\ampere},
+\qquad
+U_L=R_L\,I_L=6\cdot0{,}75=\SI{4.5}{\volt}.
+\]
+\textbf{Vantagem do método:} uma vez achado o equivalente, testar qualquer carga
+é imediato --- não é preciso reanalisar o circuito inteiro a cada valor de $R_L$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Converta o equivalente de Thévenin ($V_{\text{Th}} = \SI{6}{\volt}$,
+$R_{\text{Th}} = \SI{2}{\ohm}$) das questões anteriores em seu equivalente de
+Norton.
+\resposta{$I_{\text{N}} = \SI{3}{\ampere}$; $R_{\text{N}} = \SI{2}{\ohm}$}
+\resolucao{A resistência é a mesma, $R_{\text{N}} = R_{\text{Th}} = \SI{2}{\ohm}$.
+A corrente de Norton é a de curto-circuito:
+\[
+I_{\text{N}}=\frac{V_{\text{Th}}}{R_{\text{Th}}}=\frac{6}{2}=\SI{3}{\ampere}.
+\]
+Os dois equivalentes são intercambiáveis: uma fonte de \SI{6}{\volt} em série com
+\SI{2}{\ohm} entrega exatamente a mesma corrente e tensão a qualquer carga que uma
+fonte de \SI{3}{\ampere} em paralelo com \SI{2}{\ohm}.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine o equivalente de Norton (corrente $I_{\text{N}}$ e resistência
+$R_{\text{N}}$) visto pelos terminais A--B do circuito da figura.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$\SI{24}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{6}{\ohm}$}] (3,3) coordinate(a);
+ \draw (a) to[R,l={$R_2=\SI{3}{\ohm}$}] (3,0) coordinate(b) -- (0,0);
+ \draw (a) to[short,-o] (4.3,3) node[right,font=\bfseries]{A};
+ \draw (b) to[short,-o] (4.3,0) node[right,font=\bfseries]{B};
+\end{circuitikz}}
+
+\resposta{$I_{\text{N}} = \SI{4}{\ampere}$; $R_{\text{N}} = \SI{2}{\ohm}$}
+\resolucao{\textbf{$R_{\text{N}}$} (fonte em curto, $R_1\parallel R_2$):
+$R_{\text{N}} = \dfrac{6\cdot3}{9} = \SI{2}{\ohm}$.\\
+\textbf{$I_{\text{N}}$} (corrente de curto entre A e B): curto-circuitando a saída,
+$R_2$ fica em paralelo com o curto (não conduz), e toda a corrente passa por $R_1$:
+\[
+I_{\text{N}} = \frac{24}{R_1} = \frac{24}{6} = \SI{4}{\ampere}.
+\]
+\textbf{Conferindo pela relação com Thévenin:}
+$V_{\text{Th}} = 24\cdot\dfrac{3}{9} = \SI{8}{\volt}$ e
+$I_{\text{N}} = \dfrac{V_{\text{Th}}}{R_{\text{Th}}} = \dfrac{8}{2}
+= \SI{4}{\ampere}$. Confere.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+No circuito da figura, determine o equivalente de Thévenin visto por $R_L$ e, em
+seguida, o valor de $R_L$ que recebe a máxima potência, indicando essa potência.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$\SI{24}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{6}{\ohm}$}] (3,3) coordinate(a);
+ \draw (a) to[R,l={$R_2=\SI{3}{\ohm}$}] (3,0) coordinate(b) -- (0,0);
+ \draw (a) to[short,-o] (4.3,3) node[right,font=\bfseries]{A};
+ \draw (b) to[short,-o] (4.3,0) node[right,font=\bfseries]{B};
+ \node[right,font=\footnotesize,cinza] at (4.5,1.5) {$R_L$};
+\end{circuitikz}}
+
+\resposta{$V_{\text{Th}}=\SI{8}{\volt}$, $R_{\text{Th}}=\SI{2}{\ohm}$;
+$R_L=\SI{2}{\ohm}$, $P_{\max}=\SI{8}{\watt}$}
+\resolucao{\textbf{$V_{\text{Th}}$} (divisor sobre $R_2$, sem carga):
+\[
+V_{\text{Th}}=24\cdot\frac{3}{6+3}=24\cdot\frac13=\SI{8}{\volt}.
+\]
+\textbf{$R_{\text{Th}}$} (fonte em curto, $R_1\parallel R_2$):
+\[
+R_{\text{Th}}=\frac{6\cdot3}{9}=\SI{2}{\ohm}.
+\]
+\textbf{Máxima transferência:} $R_L = R_{\text{Th}} = \SI{2}{\ohm}$ e
+\[
+P_{\max}=\frac{V_{\text{Th}}^{\,2}}{4R_{\text{Th}}}=\frac{8^2}{4\cdot2}
+=\frac{64}{8}=\SI{8}{\watt}.
+\]
+Este exercício reúne os capítulos 5 e 8: reduzir a rede a Thévenin é justamente o
+que permite aplicar a condição $R_L = R_{\text{Th}}$ de forma direta.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um circuito foi reduzido ao equivalente de Thévenin $V_{\text{Th}}=\SI{18}{\volt}$,
+$R_{\text{Th}}=\SI{3}{\ohm}$. Deseja-se saber, sem refazer as contas para cada
+caso, a corrente na carga para $R_L = \SI{3}{\ohm}$, $\SI{6}{\ohm}$ e
+$\SI{9}{\ohm}$, e em qual delas a potência entregue é máxima.
+\resposta{$I(3)=\SI{3}{\ampere}$, $I(6)=\SI{2}{\ampere}$, $I(9)=\SI{1.5}{\ampere}$;
+$P$ máxima em $R_L=\SI{3}{\ohm}$}
+\resolucao{A vantagem do equivalente de Thévenin é justamente testar cargas
+rapidamente com $I_L = \dfrac{V_{\text{Th}}}{R_{\text{Th}}+R_L}$:
+\[
+I(3)=\frac{18}{6}=\SI{3}{\ampere},\quad
+I(6)=\frac{18}{9}=\SI{2}{\ampere},\quad
+I(9)=\frac{18}{12}=\SI{1.5}{\ampere}.
+\]
+As potências: $P(3)=3^2\cdot3=\SI{27}{\watt}$,
+$P(6)=2^2\cdot6=\SI{24}{\watt}$, $P(9)=1{,}5^2\cdot9=\SI{20.25}{\watt}$.
+A máxima ocorre em $R_L = R_{\text{Th}} = \SI{3}{\ohm}$, com \SI{27}{\watt}
+--- coerente com o teorema da máxima transferência.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine o equivalente de Thévenin visto pelos terminais A--B do circuito da
+figura, que possui \textbf{duas fontes}.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) to[\fonteV,l={$\SI{12}{\volt}$}] (0,3) -- (1,3)
+       to[R,l={$\SI{4}{\ohm}$}] (3.4,3) coordinate(n);
+ \fill (n) circle (0.07);
+ \draw (n) to[R,l={$\SI{6}{\ohm}$}] (3.4,0) coordinate(g) -- (0,0);
+ \draw (n) -- (5.6,3) to[R,l={$\SI{12}{\ohm}$}] (7.8,3)
+       to[\fonteV,l={$\SI{6}{\volt}$},invert] (7.8,0) -- (g);
+ \draw (n) -- (3.4,4.3) -- (9.4,4.3) to[short,-o] (10.2,4.3)
+       node[right,font=\bfseries]{A};
+ \draw (g) -- (3.4,-1.2) -- (9.4,-1.2) to[short,-o] (10.2,-1.2)
+       node[right,font=\bfseries]{B};
+\end{circuitikz}}
+
+\resposta{$\Vth = \SI{7}{\volt}$; $\Rth = \SI{2}{\ohm}$}
+\resolucao{\textbf{$\Vth$ --- tensão de circuito aberto.} Sem carga em A--B,
+aplica-se a lei dos nós no nó central (potencial $V$):
+\[
+\frac{12-V}{4}+\frac{6-V}{12}=\frac{V}{6}.
+\]
+Multiplicando por 12: $3(12-V)+(6-V)=2V \Rightarrow 36-3V+6-V=2V
+\Rightarrow 42 = 6V \Rightarrow V = \SI{7}{\volt}$.
+Logo $\Vth = \SI{7}{\volt}$.
+
+\textbf{$\Rth$ --- resistência com as fontes desligadas.} Curto-circuitando
+\emph{ambas} as fontes de tensão, os três resistores ficam todos ligados entre o
+nó central e o terra, ou seja, em \textbf{paralelo}:
+\[
+\frac{1}{\Rth}=\frac{1}{4}+\frac{1}{12}+\frac{1}{6}
+=\frac{3+1+2}{12}=\frac{6}{12}
+\;\Longrightarrow\;
+\Rth=\SI{2}{\ohm}.
+\]
+\textbf{Equivalente de Norton:} $\IN = \dfrac{7}{2}=\SI{3.5}{\ampere}$ em paralelo
+com \SI{2}{\ohm}.\\
+\textbf{Máxima transferência:} com $R_L = \SI{2}{\ohm}$,
+$P_{\max}=\dfrac{7^2}{4\cdot2}=\SI{6.125}{\watt}$.\\
+\textbf{Atenção ao erro comum:} ao calcular $\Rth$, é preciso curto-circuitar
+\emph{todas} as fontes de tensão --- não apenas uma. Aqui, esquecer a fonte de
+\SI{6}{\volt} levaria a $4\parallel6=\SI{2.4}{\ohm}$, resultado errado.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte real desconhecida (caixa-preta) é caracterizada experimentalmente com
+duas medições: em \emph{vazio}, o voltímetro indica $\SI{20}{\volt}$; com uma
+carga de $\SI{8}{\ohm}$, a tensão nos terminais cai para $\SI{16}{\volt}$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+ \draw[dashed,cinza,line width=0.9pt,rounded corners=6pt] (-0.4,-0.5) rectangle (2.6,3.5);
+ \node[cinza,font=\footnotesize\sffamily] at (1.1,3.75) {caixa-preta};
+ \node[cinza,font=\Large] at (1.1,1.5) {?};
+ \draw (2.6,3) to[short,-o] (4.0,3) node[right,font=\bfseries]{A};
+ \draw (2.6,0) to[short,-o] (4.0,0) node[right,font=\bfseries]{B};
+ \draw (4.3,3) to[R,l={$R_L$}] (4.3,0);
+ \draw (4.0,3)--(4.3,3); \draw (4.0,0)--(4.3,0);
+\end{circuitikz}}
+
+\begin{itensq}
+\item Determine o equivalente de Thévenin da caixa-preta.
+\item Qual a corrente de curto-circuito nos terminais?
+\item Qual carga extrairia a máxima potência, e qual seria essa potência?
+\item Um técnico sugere medir $R_{\text{Th}}$ diretamente com um ohmímetro nos
+      terminais A--B. Por que isso é um erro grave?
+\end{itensq}
+\resposta{(a) $\Vth=\SI{20}{\volt}$, $\Rth=\SI{2}{\ohm}$;
+(b) $\SI{10}{\ampere}$; (c) $R_L=\SI{2}{\ohm}$, $P_{\max}=\SI{50}{\watt}$;
+(d) ver comentário}
+\resolucao{\textbf{(a)} Em vazio não há corrente, logo não há queda interna:
+$\Vth = \SI{20}{\volt}$.\\
+Com a carga, a corrente é $I = \dfrac{16}{8} = \SI{2}{\ampere}$. A queda interna
+é $20-16 = \SI{4}{\volt}$, portanto
+\[
+\Rth=\frac{\Delta V}{I}=\frac{4}{2}=\SI{2}{\ohm}.
+\]
+\textbf{(b)} $I_{\text{cc}} = \dfrac{\Vth}{\Rth} = \dfrac{20}{2}
+= \SI{10}{\ampere}$ (esta é também a corrente de Norton, $\IN$).\\
+\textbf{(c)} Máxima transferência em $R_L = \Rth = \SI{2}{\ohm}$:
+\[
+P_{\max}=\frac{\Vth^{\,2}}{4\Rth}=\frac{400}{8}=\SI{50}{\watt}.
+\]
+\textbf{(d) Por que medir com ohmímetro é errado --- e perigoso.}
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item O ohmímetro pressupõe o circuito \textbf{despassivado}, isto é, sem fontes
+      ativas. A definição de $\Rth$ exige \emph{desligar} as fontes internas
+      (tensão $\to$ curto, corrente $\to$ aberto). Como não temos acesso ao
+      interior da caixa, isso é impossível de garantir.
+\item Com a fonte interna \emph{ativa}, o ohmímetro --- que injeta sua própria
+      corrente de teste --- lerá um valor sem significado, podendo inclusive
+      indicar valores negativos ou saturar.
+\item Além disso, aplicar um ohmímetro sobre uma fonte ativa pode \textbf{danificar
+      o instrumento}, e curto-circuitar terminais de fontes de baixa impedância
+      pode causar arco elétrico.
+\end{itemize}
+\textbf{Método correto (não invasivo):} exatamente o usado neste problema ---
+duas medições de \emph{tensão} sob condições de carga diferentes, e
+$\Rth = \dfrac{\Delta V}{\Delta I}$. Alternativamente, mede-se a tensão em vazio
+e a corrente de curto (esta última apenas se a fonte suportar), obtendo
+$\Rth = \Vth/I_{\text{cc}}$.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Teoremas de Thévenin e Norton
+\input{bancos/banco-teoremas-de-thevenin-e-norton.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[Capítulo 8 --- Thévenin e Norton]

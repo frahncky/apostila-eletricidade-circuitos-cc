@@ -1,0 +1,658 @@
+% =====================================================================
+%  CAPITULO 1 - continuacao
+%  1.4 Potencial eletrico e superficies equipotenciais
+% =====================================================================
+\subsection{Potencial elétrico e superfícies equipotenciais}
+
+\begin{conceito}[Antes de começar]
+\textbf{Potencial de uma carga puntiforme:}
+\[
+V = \ke\,\frac{q}{d}\quad(\si{\volt}),
+\]
+com o \emph{sinal} da carga (positivo para $q>0$, negativo para $q<0$).\par
+\textbf{Diferença de potencial (ddp)} e trabalho: o trabalho para levar uma carga
+$q$ entre dois pontos é $W = q\,U_{AB} = q\,(V_A - V_B)$.\par
+\textbf{Campo uniforme:} $U = E\,d$, onde $d$ é a distância medida \emph{ao longo}
+da direção do campo.\par
+\textbf{Superfície equipotencial:} conjunto de pontos com o mesmo potencial. O
+campo elétrico é sempre \textbf{perpendicular} às equipotenciais e aponta no
+sentido dos potenciais \emph{decrescentes}. Não há trabalho ao mover uma carga
+sobre uma mesma equipotencial.
+\end{conceito}
+
+\legendaniveis
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Sobre superfícies equipotenciais, é correto afirmar que:
+\begin{alternativas}
+\item o campo elétrico é tangente a elas.
+\item o campo elétrico é perpendicular a elas.
+\item o potencial varia ao longo de uma mesma superfície.
+\item é necessário realizar trabalho para mover uma carga sobre a superfície.
+\item elas sempre coincidem com as linhas de campo.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Por definição, o potencial é constante sobre uma equipotencial (isso
+elimina c). Como não há variação de potencial ao longo dela, o trabalho para mover
+uma carga sobre a superfície é nulo (elimina d). O campo, que aponta na direção de
+maior variação do potencial, é sempre \emph{perpendicular} às equipotenciais ---
+nunca tangente, o que elimina (a) e (e).}
+\end{questao}
+
+\begin{questao}[1]{}
+Considere dois pontos A e B de um campo elétrico uniforme de intensidade
+$E = \SI{e4}{\newton\per\coulomb}$, separados por $\SI{5}{\centi\meter}$ ao longo
+da direção do campo. Calcule a ddp entre A e B.
+\resposta{$U_{AB} = \SI{500}{\volt}$}
+\resolucao{Em campo uniforme, $U = E\,d = \pot{1}{4}\cdot0{,}05 = \SI{500}{\volt}$
+(com A no potencial maior, a favor do campo).}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+A figura representa três superfícies equipotenciais de um campo elétrico
+uniforme, com $V_A = \SI{60}{\volt}$, $V_B = \SI{40}{\volt}$ e
+$V_C = \SI{20}{\volt}$, igualmente espaçadas de $\SI{2}{\centi\meter}$.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ \foreach \x/\v in {0/A,2/B,4/C}{
+   \draw[azulprof,thick] (\x,-1.3) -- (\x,1.3);
+   \node[above,azulprof] at (\x,1.3) {$V_{\v}$};}
+ \node[below] at (0,-1.3) {\footnotesize$\SI{60}{\volt}$};
+ \node[below] at (2,-1.3) {\footnotesize$\SI{40}{\volt}$};
+ \node[below] at (4,-1.3) {\footnotesize$\SI{20}{\volt}$};
+ % campo (do maior para o menor potencial)
+ \foreach \y in {-0.7,0,0.7}
+   \draw[->,Vcol,thick] (0.3,\y) -- (3.7,\y);
+ \node[Vcol] at (2,1.0) {$\vec{E}$};
+ \draw[<->,cinza] (0,-1.9) -- (2,-1.9) node[midway,below]{\footnotesize$\SI{2}{\centi\meter}$};
+\end{tikzpicture}}{Superfícies equipotenciais em campo uniforme.}
+
+\begin{itensq}
+\item Determine a intensidade do campo elétrico.
+\item Qual o trabalho para levar uma carga de $\SI{5}{\micro\coulomb}$ de A até C?
+\end{itensq}
+\resposta{(a) $E = \SI{1000}{\volt\per\meter}$; (b) $W = \SI{2e-4}{\joule}$}
+\resolucao{(a) Entre superfícies adjacentes, $U = \SI{20}{\volt}$ em
+$d = \SI{2}{\centi\meter}$:
+\[
+E=\frac{U}{d}=\frac{20}{0{,}02}=\SI{1000}{\volt\per\meter}.
+\]
+(b) $U_{AC} = V_A - V_C = 60 - 20 = \SI{40}{\volt}$:
+\[
+W = q\,U_{AC} = \pot{5}{-6}\cdot40 = \pot{2}{-4}\,\si{\joule}=\SI{2e-4}{\joule}.
+\]
+O trabalho é positivo porque a carga positiva se move no sentido do campo
+(de maior para menor potencial).}
+\end{questao}
+
+\begin{questao}[2]{}
+A figura mostra linhas equipotenciais no campo gerado por duas cargas de mesmo
+módulo e sinais opostos. São dados $V_A = \SI{30}{\volt}$, $V_B = \SI{10}{\volt}$
+e $V_C = \SI{-10}{\volt}$. Calcule a ddp entre A e B, e entre B e C.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=0.85,line width=0.8pt]
+ % duas cargas
+ \shade[ball color=Vcol!25] (-3,0) circle (0.3); \node at (-3,0){\footnotesize$+$};
+ \shade[ball color=Icol!25] (3,0) circle (0.3);  \node at (3,0){\footnotesize$-$};
+ % equipotenciais (arcos estilizados)
+ \foreach \r/\lab/\x in {1.2/A/-1.6, 2.0/B/0, 1.2/C/1.6}{}
+ \draw[azulprof,thick] (-1.6,-1.6) .. controls (-2.2,0) .. (-1.6,1.6);
+ \node[azulprof] at (-1.6,1.85) {$A$};
+ \draw[azulprof,thick] (0,-1.9) -- (0,1.9);
+ \node[azulprof] at (0,2.15) {$B$};
+ \draw[azulprof,thick] (1.6,-1.6) .. controls (2.2,0) .. (1.6,1.6);
+ \node[azulprof] at (1.6,1.85) {$C$};
+ \node[below,font=\footnotesize] at (-1.6,-1.7) {$\SI{30}{\volt}$};
+ \node[below,font=\footnotesize] at (0,-2.0) {$\SI{10}{\volt}$};
+ \node[below,font=\footnotesize] at (1.6,-1.7) {$\SI{-10}{\volt}$};
+\end{tikzpicture}}{Linhas equipotenciais de um dipolo elétrico.}
+
+\resposta{$U_{AB} = \SI{20}{\volt}$; $U_{BC} = \SI{20}{\volt}$}
+\resolucao{A ddp é sempre a diferença dos potenciais:
+\[
+U_{AB}=V_A-V_B=30-10=\SI{20}{\volt},
+\qquad
+U_{BC}=V_B-V_C=10-(-10)=\SI{20}{\volt}.
+\]
+Embora $U_{AB}=U_{BC}$, note que $V_C$ é \emph{negativo}: perto da carga negativa
+o potencial fica abaixo de zero. O ponto médio B, equidistante das duas cargas de
+módulos iguais, tem potencial intermediário.}
+\end{questao}
+
+\begin{questao}[2]{}
+As linhas cheias da figura representam linhas de força de um campo eletrostático
+e as tracejadas, linhas equipotenciais, com $V_A > V_B > V_C$. Uma partícula de
+carga $q = \SI{2e-6}{\coulomb}$ é levada de A até C.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,line width=0.8pt,>=Stealth]
+ % linhas equipotenciais (verticais tracejadas)
+ \foreach \x/\lab/\v in {0/A/{V_A},2.2/B/{V_B},4.4/C/{V_C}}{
+   \draw[azulprof,dashed,thick] (\x,-1.4) -- (\x,1.4);
+   \node[azulprof,above] at (\x,1.4) {$\v$};
+   \fill[laranja] (\x,0) circle (0.07);
+   \node[below,font=\footnotesize] at (\x,-0.15) {\lab};}
+ % linhas de forca (horizontais com seta)
+ \foreach \y in {-1,0,1}
+   \draw[Vcol,->,thick] (-0.6,\y) -- (5.0,\y);
+ \node[Vcol] at (5.2,0.7) {$\vec{E}$};
+\end{tikzpicture}}{Linhas de força (cheias) e equipotenciais (tracejadas).}
+
+Sobre o trabalho da força elétrica nesse deslocamento, é correto afirmar que:
+\begin{alternativas}
+\item é nulo, pois A e C estão na mesma linha de força.
+\item é positivo, pois a carga se move no sentido do campo.
+\item é negativo, pois a carga se move contra o campo.
+\item depende do caminho seguido entre A e C.
+\item é máximo se a carga for levada de A até B.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A carga positiva se desloca de A (maior potencial) para C (menor
+potencial), ou seja, \emph{a favor} do campo elétrico. O trabalho da força
+elétrica é $W = q(V_A - V_C) > 0$. O trabalho \emph{não} depende do caminho (força
+conservativa), o que elimina (d).}
+\end{questao}
+
+\begin{questao}[2]{}
+A figura representa as linhas equipotenciais e as linhas de força do campo gerado
+por uma carga puntiforme $Q$ fixa no vácuo. As equipotenciais são círculos
+concêntricos.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=0.9,line width=0.8pt,>=Stealth]
+ \shade[ball color=Vcol!30] (0,0) circle (0.28);
+ \node at (0,0) {\footnotesize$Q$};
+ \foreach \r in {1,1.7,2.4}
+   \draw[azulprof,dashed] (0,0) circle (\r);
+ \foreach \a in {0,45,...,315}
+   \draw[Vcol,->,thick] (\a:0.35) -- (\a:2.7);
+ \fill[laranja] (0:1) circle (0.06) node[above right,font=\footnotesize]{A};
+ \fill[laranja] (0:2.4) circle (0.06) node[above right,font=\footnotesize]{C};
+\end{tikzpicture}}{Campo e equipotenciais de uma carga puntiforme positiva.}
+
+Como as linhas de força \emph{apontam para fora} de $Q$, pode-se concluir que:
+\begin{alternativas}
+\item $Q$ é negativa e o potencial aumenta com a distância.
+\item $Q$ é positiva e o potencial diminui com a distância.
+\item $Q$ é positiva e o potencial aumenta com a distância.
+\item o potencial é o mesmo em A e C.
+\item o campo é uniforme.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Linhas de força saindo indicam carga \textbf{positiva}. O potencial de
+uma carga puntiforme, $V = \ke Q/d$, \emph{diminui} à medida que a distância
+cresce: $V_A > V_C$. As equipotenciais, mais afastadas, têm menor potencial. O
+campo não é uniforme --- é radial e enfraquece com $1/d^2$.}
+\end{questao}
+
+\begin{questao}[2]{}
+A figura mostra a configuração das linhas de força do campo gerado por duas
+partículas carregadas A e B. As linhas \emph{saem} de A e \emph{entram} em B.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=0.85,line width=0.7pt,>=Stealth]
+ \shade[ball color=Vcol!25] (-2,0) circle (0.3); \node at (-2,0){\footnotesize A};
+ \shade[ball color=Icol!25] ( 2,0) circle (0.3); \node at (2,0){\footnotesize B};
+ \foreach \a in {30,60,90,120,150,-30,-60,-90,-120,-150}
+   \draw[Vcol,->] (-2,0) .. controls (\a:1.3) and ({180-\a}:1.3) .. (2,0);
+ \draw[Vcol,->] (-2,0)--(-3.3,0);
+ \draw[Vcol,->] (3.3,0)--(2,0);
+\end{tikzpicture}}{Linhas de força de duas cargas A e B.}
+
+Os sinais das cargas A e B são, respectivamente:
+\begin{alternativas}[2]
+\item positivo e positivo.
+\item positivo e negativo.
+\item negativo e positivo.
+\item negativo e negativo.
+\item ambos nulos.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{As linhas de força \emph{nascem} nas cargas positivas e \emph{morrem}
+nas negativas. Como saem de A, esta é \textbf{positiva}; como entram em B, esta é
+\textbf{negativa}. A configuração é a de um dipolo elétrico.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma carga elétrica cria, em um ponto P situado a $\SI{20}{\centi\meter}$ dela, um
+campo de intensidade $\SI{900}{\newton\per\coulomb}$. O módulo do potencial
+elétrico em P é:
+\begin{alternativas}[3]
+\item \SI{45}{\volt}
+\item \SI{90}{\volt}
+\item \SI{180}{\volt}
+\item \SI{450}{\volt}
+\item \SI{900}{\volt}
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Para uma carga puntiforme, $E = \dfrac{\ke Q}{d^2}$ e
+$V = \dfrac{\ke Q}{d}$. Dividindo, $\dfrac{V}{E} = d$, logo
+\[
+V = E\cdot d = 900\cdot0{,}20 = \SI{180}{\volt}.
+\]
+Essa relação $V = E\,d$ vale para carga puntiforme; não confundir com o campo
+uniforme, onde também $U = E\,d$, mas por outro motivo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Próximo ao solo, em um dia limpo, a atmosfera apresenta um campo elétrico
+aproximadamente uniforme, vertical, apontando para baixo, de intensidade
+$\SI{120}{\volt\per\meter}$. Considere dois pontos M (mais alto) e N (mais baixo),
+separados verticalmente por $\SI{10}{\meter}$.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=0.9,line width=0.8pt,>=Stealth]
+ \fill[cinza!25] (-2.5,-1.6) rectangle (2.5,-1.2);
+ \node[cinza,font=\footnotesize] at (0,-1.4) {solo};
+ \foreach \x in {-2,-1,0,1,2}
+   \draw[Vcol,->,thick] (\x,1.4) -- (\x,-1.1);
+ \node[Vcol] at (2.5,0.4) {$\vec{E}$};
+ \fill[laranja] (-1,1.1) circle (0.08) node[left,font=\footnotesize]{M};
+ \fill[laranja] (-1,-0.9) circle (0.08) node[left,font=\footnotesize]{N};
+ \draw[<->,cinza] (0.6,1.1)--(0.6,-0.9) node[midway,right,font=\footnotesize]{$\SI{10}{\meter}$};
+\end{tikzpicture}}{Campo elétrico atmosférico próximo ao solo.}
+
+A diferença de potencial entre M e N vale:
+\begin{alternativas}[2]
+\item \SI{12}{\volt}
+\item \SI{120}{\volt}
+\item \SI{1200}{\volt}
+\item \SI{12000}{\volt}
+\item zero
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Em campo uniforme, $U = E\,d = 120\cdot10 = \SI{1200}{\volt}$. Como o
+campo aponta para baixo (de M para N), M está a maior potencial:
+$V_M - V_N = \SI{1200}{\volt}$.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Duas cargas $Q_1 = \SI{+2}{\micro\coulomb}$ e $Q_2 = \SI{-2}{\micro\coulomb}$
+estão fixas, separadas por $\SI{20}{\centi\meter}$. Determine o potencial elétrico
+no ponto médio M do segmento que as une.
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$.}
+\resposta{$V_M = 0$}
+\resolucao{O potencial é uma grandeza \emph{escalar}: soma-se com sinal. No ponto
+médio, cada carga está a $d = \SI{10}{\centi\meter}$:
+\[
+V_M = \ke\frac{Q_1}{d}+\ke\frac{Q_2}{d}
+= \ke\frac{(+2)+(-2)}{d}\,\si{\micro\coulomb}=0.
+\]
+O potencial é nulo, mas o \emph{campo} em M \emph{não} é zero --- os vetores campo
+das duas cargas apontam no mesmo sentido e se somam. Este é o ponto central: campo
+nulo e potencial nulo são condições independentes.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma carga puntiforme $Q = \SI{+5}{\micro\coulomb}$ está fixa no vácuo. Uma segunda
+carga $q = \SI{+2}{\micro\coulomb}$ é trazida do infinito até um ponto a
+$\SI{30}{\centi\meter}$ de $Q$.
+\begin{itensq}
+\item Qual o potencial criado por $Q$ nesse ponto?
+\item Qual o trabalho realizado pela força externa para trazer $q$ (supondo-a
+      trazida lentamente)?
+\end{itensq}
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$;
+$V_\infty = 0$.}
+\resposta{(a) $V = \SI{1.5e5}{\volt}$; (b) $W = \SI{0.3}{\joule}$}
+\resolucao{(a) $V = \ke\dfrac{Q}{d}
+= 9\cdot10^9\cdot\dfrac{\pot{5}{-6}}{0{,}3}=\pot{1.5}{5}\,\si{\volt}$.\\
+(b) O trabalho da força externa iguala a energia potencial adquirida (partindo do
+infinito, onde $V=0$):
+\[
+W = q\,(V - V_\infty) = \pot{2}{-6}\cdot\pot{1.5}{5} = \SI{0.3}{\joule}.
+\]
+Como ambas as cargas são positivas, elas se repelem, e o trabalho externo é
+\emph{positivo} (precisamos empurrar $q$ contra a repulsão). Se as cargas tivessem
+sinais opostos, o trabalho externo seria negativo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um elétron ($q = \SI{-1.6e-19}{\coulomb}$, $m = \SI{9.1e-31}{\kilogram}$) parte do
+repouso e é acelerado por uma ddp de $\SI{200}{\volt}$. Determine a energia
+cinética adquirida e a velocidade final do elétron.
+\resposta{$E_c = \SI{3.2e-17}{\joule}$; $v \approx \SI{8.4e6}{\meter\per\second}$}
+\resolucao{Toda a energia potencial elétrica se converte em energia cinética:
+\[
+E_c = |q|\,U = \pot{1.6}{-19}\cdot200 = \pot{3.2}{-17}\,\si{\joule}.
+\]
+Da definição de energia cinética, $E_c = \tfrac12 m v^2$:
+\[
+v=\sqrt{\frac{2E_c}{m}}=\sqrt{\frac{2\cdot\pot{3.2}{-17}}{\pot{9.1}{-31}}}
+\approx\SI{8.4e6}{\meter\per\second}.
+\]
+É o princípio de funcionamento dos antigos tubos de raios catódicos e dos
+aceleradores de partículas: usar uma ddp para acelerar cargas.}
+\end{questao}
+
+\begin{questao}[3]{}
+O diagrama representa o potencial elétrico $V$ criado por uma carga puntiforme em
+função da distância $d$ até ela.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=9cm,height=5cm,xlabel={$d$ (m)},ylabel={$V$ (V)},
+   xmin=0,xmax=6,ymin=0,ymax=90,xtick={0,1,2,3,4},ytick={0,20,40,80},
+   grid=both,axis lines=left,domain=0.9:6,samples=100]
+   \addplot[Vcol,very thick] {80/x};
+   \addplot[only marks,mark=*,Vcol] coordinates {(1,80)(2,40)(4,20)};
+   \node[Vcol,anchor=south west,font=\footnotesize] at (axis cs:2,40){$(2,\,40)$};
+ \end{axis}
+\end{tikzpicture}}{Potencial de uma carga puntiforme em função da distância.}
+
+Sabendo que, a $\SI{2}{\meter}$, o potencial vale $\SI{40}{\volt}$, o potencial a
+$\SI{4}{\meter}$ e o campo elétrico a $\SI{2}{\meter}$ valem, respectivamente:
+\begin{alternativas}[2]
+\item \SI{20}{\volt} e \SI{20}{\volt\per\meter}
+\item \SI{20}{\volt} e \SI{40}{\volt\per\meter}
+\item \SI{10}{\volt} e \SI{10}{\volt\per\meter}
+\item \SI{40}{\volt} e \SI{40}{\volt\per\meter}
+\item \SI{10}{\volt} e \SI{20}{\volt\per\meter}
+\end{alternativas}
+\resposta{(a)}
+\resolucao{O potencial varia com $1/d$: dobrando a distância (de \SI{2}{} para
+\SI{4}{\meter}), ele cai à metade, $V(4) = \SI{20}{\volt}$.\\
+Para o campo, usamos $E = \dfrac{V}{d}$ (válido para carga puntiforme):
+$E(2) = \dfrac{40}{2} = \SI{20}{\volt\per\meter}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Na figura, uma partícula de carga $Q > 0$ está fixa em P. As superfícies A, B e C
+são equipotenciais, e um ponto D situa-se sobre uma linha de força entre B e C.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=0.9,line width=0.8pt,>=Stealth]
+ \shade[ball color=Vcol!30] (0,0) circle (0.25); \node at (0,0){\footnotesize P};
+ \foreach \r/\lab in {1.1/A,1.8/B,2.5/C}{
+   \draw[azulprof,dashed] (0,0) circle (\r);
+   \node[azulprof,font=\footnotesize] at (\r,0.28) {\lab};}
+ \draw[Vcol,->,thick] (20:0.3)--(20:2.7);
+ \fill[laranja] (20:2.15) circle (0.07) node[right,font=\footnotesize]{D};
+\end{tikzpicture}}{Equipotenciais de uma carga puntiforme positiva.}
+
+Sobre os potenciais, é correto afirmar que:
+\begin{alternativas}
+\item $V_A < V_B < V_C$.
+\item $V_A > V_B > V_C$.
+\item $V_A = V_B = V_C$.
+\item $V_C$ é o maior, por estar mais longe.
+\item nada se pode afirmar sem o valor de $Q$.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Para carga positiva, $V = \ke Q/d$ \emph{decresce} com a distância. Como
+A é a superfície mais interna (menor $d$) e C a mais externa (maior $d$):
+$V_A > V_B > V_C$. O sinal de $Q$ determina a tendência; o \emph{valor} de $Q$ não
+é necessário para ordenar os potenciais.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma esfera condutora de raio $R = \SI{10}{\centi\meter}$ está carregada com
+$Q = \SI{6}{\micro\coulomb}$, isolada no vácuo. Os gráficos mostram o campo
+elétrico e o potencial em função da distância $d$ ao centro.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=6.2cm,height=4.2cm,xlabel={$d$ (m)},ylabel={$E$ (kN/C)},
+   xmin=0,xmax=0.45,ymin=0,ymax=6200,xtick={0,0.1,0.2,0.3,0.4},
+   ytick={0,2000,4000,5400},yticklabels={0,2000,4000,5400},
+   grid=both,axis lines=left,domain=0.1:0.45,samples=80,
+   scaled y ticks=false,y tick label style={/pgf/number format/fixed}]
+   \addplot[Vcol,very thick] {9e9*6e-6/(x^2)/1000};
+   \addplot[Vcol,very thick] coordinates {(0,0)(0.1,0)};
+   \addplot[Vcol,dashed] coordinates {(0.1,0)(0.1,5400)};
+ \end{axis}
+\end{tikzpicture}\hspace{4mm}
+\begin{tikzpicture}
+ \begin{axis}[width=6.2cm,height=4.2cm,xlabel={$d$ (m)},ylabel={$V$ (kV)},
+   xmin=0,xmax=0.45,ymin=0,ymax=620,xtick={0,0.1,0.2,0.3,0.4},
+   ytick={0,180,540},grid=both,axis lines=left,domain=0.1:0.45,samples=80]
+   \addplot[Icol,very thick] {9e9*6e-6/x/1000};
+   \addplot[Icol,very thick] coordinates {(0,540)(0.1,540)};
+ \end{axis}
+\end{tikzpicture}}{Campo e potencial de uma esfera condutora carregada.}
+
+\begin{itensq}
+\item Calcule $E$ e $V$ na superfície da esfera.
+\item Determine $E$ e $V$ a $\SI{30}{\centi\meter}$ do centro.
+\item Explique por que, \emph{dentro} da esfera, $E = 0$ mas $V \neq 0$.
+\end{itensq}
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$.}
+\resposta{(a) $E=\SI{5.4e6}{\newton\per\coulomb}$, $V=\SI{540}{\kilo\volt}$;
+(b) $E=\SI{6e5}{\newton\per\coulomb}$, $V=\SI{180}{\kilo\volt}$; (c) ver comentário}
+\resolucao{(a) Fora da esfera (inclusive na superfície), ela se comporta como uma
+carga puntiforme concentrada no centro:
+\[
+E(R)=\frac{\ke Q}{R^{2}}=\frac{9\cdot10^9\cdot\pot{6}{-6}}{(0{,}1)^2}
+=\pot{5.4}{6}\,\si{\newton\per\coulomb},
+\]
+\[
+V(R)=\frac{\ke Q}{R}=\frac{9\cdot10^9\cdot\pot{6}{-6}}{0{,}1}
+=\pot{5.4}{5}\,\si{\volt}=\SI{540}{\kilo\volt}.
+\]
+(b) A $\SI{30}{\centi\meter}$ (três vezes o raio): $E$ cai com $1/d^2$ (fator 9) e
+$V$ com $1/d$ (fator 3):
+\[
+E=\frac{5{,}4\cdot10^6}{9}=\pot{6}{5}\,\si{\newton\per\coulomb},
+\qquad
+V=\frac{540}{3}=\SI{180}{\kilo\volt}.
+\]
+(c) \textbf{A distinção conceitual central.} Em um condutor em equilíbrio
+eletrostático, toda a carga se distribui na \emph{superfície} e o campo interno é
+nulo --- se não fosse, as cargas livres se moveriam e não haveria equilíbrio.\\
+Mas o potencial \emph{não} é nulo: ele é a \emph{integral} do campo desde o
+infinito até o ponto. Ao entrar na esfera, o campo passa a ser zero, então o
+potencial \textbf{para de variar} --- ele permanece constante e igual ao valor da
+superfície:
+\[
+V_{\text{interno}} = V(R) = \SI{540}{\kilo\volt}.
+\]
+Isso é coerente com $E = -\dfrac{\mathrm{d}V}{\mathrm{d}d}$: campo nulo significa
+potencial \emph{constante}, não necessariamente nulo. Todo o volume do condutor é
+uma única região equipotencial.\\
+\textbf{Aplicação:} é o princípio da \textbf{gaiola de Faraday} --- dentro de um
+condutor fechado o campo é nulo, protegendo o conteúdo, ainda que o conjunto esteja
+a um potencial elevadíssimo. É por isso que se está seguro dentro de um carro
+atingido por um raio.}
+\end{questao}
+
+\begin{questao}[3]{}
+Três cargas puntiformes iguais, $q = \SI{1}{\micro\coulomb}$, são trazidas
+\emph{uma a uma} desde o infinito até ocuparem os vértices de um triângulo
+equilátero de lado $L = \SI{10}{\centi\meter}$.
+\begin{itensq}
+\item Calcule o trabalho externo necessário para trazer cada carga.
+\item Determine a energia potencial total da configuração.
+\item Se as cargas forem liberadas simultaneamente, qual a energia cinética total
+      quando estiverem infinitamente afastadas?
+\end{itensq}
+\dados{$\ke = \SI{9e9}{\newton\meter\squared\per\coulomb\squared}$.}
+\resposta{(a) $0$, \SI{0.09}{\joule}, \SI{0.18}{\joule};
+(b) $U = \SI{0.27}{\joule}$; (c) \SI{0.27}{\joule}}
+\resolucao{\textbf{(a) Trabalho carga a carga.}
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item \textbf{1\textsuperscript{a} carga:} não há campo algum ainda, logo
+      $W_1 = 0$.
+\item \textbf{2\textsuperscript{a} carga:} vem contra o campo da primeira, a uma
+      distância final $L$:
+      \[
+      W_2=\ke\frac{q^2}{L}=9\cdot10^9\frac{(\pot{1}{-6})^2}{0{,}1}=\SI{0.09}{\joule}.
+      \]
+\item \textbf{3\textsuperscript{a} carga:} sofre a ação das \emph{duas} anteriores,
+      ambas à distância $L$:
+      \[
+      W_3=2\,\ke\frac{q^2}{L}=\SI{0.18}{\joule}.
+      \]
+\end{itemize}
+\textbf{(b) Energia total da configuração.} É a soma dos trabalhos --- ou,
+equivalentemente, a soma sobre os \emph{três pares} distintos:
+\[
+U = W_1+W_2+W_3 = 0+0{,}09+0{,}18 = \SI{0.27}{\joule}
+= 3\,\ke\frac{q^2}{L}. \checkmark
+\]
+Note que a resposta \emph{não depende} da ordem em que as cargas foram trazidas
+--- consequência de a força elétrica ser conservativa.
+
+\textbf{(c)} Ao serem liberadas, toda a energia potencial armazenada se converte
+em cinética (conservação de energia, sem dissipação):
+\[
+E_{c,\text{total}} = U = \SI{0.27}{\joule}.
+\]
+\textbf{Cuidado com o erro clássico:} a energia total \emph{não} é
+$3\times W_3$ nem a soma de "cada carga vezes o potencial das outras" sem dividir
+por 2 --- isso contaria cada par duas vezes. A fórmula geral é
+$U=\tfrac12\sum_i q_i V_i$, onde $V_i$ é o potencial criado \emph{pelas demais}
+na posição de $i$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas esferas condutoras, de raios $R$ e $3R$, estão distantes entre si e são
+ligadas por um fio condutor longo e fino. A carga total do sistema é $Q$.
+\begin{itensq}
+\item Determine a carga final de cada esfera.
+\item Compare os campos elétricos nas superfícies das duas esferas.
+\item Explique o "poder das pontas" a partir desse resultado.
+\end{itensq}
+\resposta{(a) $Q_1=Q/4$, $Q_2=3Q/4$; (b) $E_1/E_2=3$; (c) ver comentário}
+\resolucao{(a) Ligadas por um condutor, as esferas atingem o \emph{mesmo
+potencial}:
+\[
+\frac{\ke Q_1}{R}=\frac{\ke Q_2}{3R}
+\;\Longrightarrow\;
+Q_2 = 3Q_1.
+\]
+Com $Q_1+Q_2=Q$: $Q_1=\dfrac{Q}{4}$ e $Q_2=\dfrac{3Q}{4}$.\\
+(b) Campos nas superfícies:
+\[
+E_1=\frac{\ke Q_1}{R^{2}}=\frac{\ke Q}{4R^{2}},
+\qquad
+E_2=\frac{\ke Q_2}{(3R)^{2}}=\frac{3\ke Q}{4\cdot9R^{2}}=\frac{\ke Q}{12R^{2}}.
+\]
+\[
+\frac{E_1}{E_2}=3.
+\]
+A esfera \textbf{menor}, embora tenha \emph{menos} carga, apresenta campo
+\textbf{três vezes mais intenso} em sua superfície.\\
+\textbf{Relação geral:} como $V=\ke Q/R$ e $E=\ke Q/R^{2}$, tem-se
+$E = V/R$. Com $V$ comum às duas, \emph{o campo é inversamente proporcional ao
+raio}.\\
+(c) \textbf{Poder das pontas.} Uma "ponta" é uma região de raio de curvatura
+muito pequeno. Sendo $E \propto 1/R$, o campo ali fica extremamente intenso ---
+suficiente para ionizar o ar e provocar descarga, mesmo com o objeto a um
+potencial moderado.\\
+\textbf{Consequências práticas:}
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item \textbf{Para-raios} são pontiagudos \emph{de propósito}: concentram o campo
+      e induzem a descarga em local controlado.
+\item Equipamentos de alta tensão têm cantos \emph{arredondados} e cúpulas
+      polidas, justamente para \emph{evitar} campos intensos e o efeito corona.
+\end{itemize}}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+Quatro cargas iguais $q=\SI{1}{\micro\coulomb}$ ocupam os vértices de um quadrado
+de lado $a=\SI{10}{\centi\meter}$.
+\begin{itensq}
+\item Calcule a energia potencial elétrica total da configuração.
+\item Quanto trabalho externo seria necessário para trazer uma quinta carga $q$
+      desde o infinito até o centro do quadrado?
+\item Se todas fossem liberadas, qual seria a energia cinética total no infinito?
+\end{itensq}
+\dados{$\ke=\SI{9e9}{}$; $\sqrt2\approx1{,}41$.}
+\resposta{(a) $U\approx\SI{0.49}{\joule}$; (b) $W\approx\SI{0.51}{\joule}$;
+(c) $\approx\SI{0.49}{\joule}$}
+\resolucao{(a) Há $\binom{4}{2}=6$ pares: \textbf{4 lados} (distância $a$) e
+\textbf{2 diagonais} (distância $a\sqrt2$):
+\[
+U=4\cdot\frac{\ke q^{2}}{a}+2\cdot\frac{\ke q^{2}}{a\sqrt2}
+=\frac{\ke q^{2}}{a}\left(4+\frac{2}{\sqrt2}\right)
+=\frac{\ke q^{2}}{a}\left(4+\sqrt2\right).
+\]
+Com $\dfrac{\ke q^{2}}{a}=\dfrac{9\cdot10^{9}(\pot{1}{-6})^{2}}{0{,}1}
+=\SI{0.09}{\joule}$:
+\[
+U=0{,}09\,(4+1{,}41)\approx\SI{0.49}{\joule}.
+\]
+(b) A quinta carga, no centro, dista $\dfrac{a\sqrt2}{2}=\SI{0.0707}{\meter}$ de
+\emph{cada} uma das quatro. O potencial no centro é
+\[
+V_c=4\cdot\frac{\ke q}{a\sqrt2/2}
+=4\cdot\frac{9\cdot10^{9}\cdot\pot{1}{-6}}{0{,}0707}
+\approx\pot{5.09}{5}\,\si{\volt},
+\]
+e o trabalho externo é
+\[
+W=q\,V_c=\pot{1}{-6}\cdot\pot{5.09}{5}\approx\SI{0.51}{\joule}.
+\]
+(c) Sem a quinta carga, ao liberar as quatro, toda a energia potencial da
+configuração converte-se em cinética:
+\[
+E_{c}=U\approx\SI{0.49}{\joule}.
+\]
+\textbf{Atenção ao método.} Em (a) somam-se os \emph{pares} (cada par uma vez
+só); em (b) usa-se $W=qV$ porque as quatro cargas já estavam posicionadas e
+imóveis. Confundir os dois procedimentos --- contando pares duas vezes --- é o
+erro mais comum neste tipo de problema.}
+\end{questao}
+
+\begin{questao}[4]{}
+Uma esfera condutora oca de raio interno $a$ e raio externo $b$ envolve, no
+centro, uma carga puntiforme $+Q$. A casca está inicialmente \emph{neutra} e
+isolada.
+\begin{itensq}
+\item Determine as cargas induzidas nas superfícies interna e externa da casca.
+\item Esboce o comportamento de $E(r)$ nas quatro regiões ($r<a$, $a<r<b$,
+      $r>b$).
+\item Se a casca for \textbf{aterrada}, o que muda?
+\end{itensq}
+\resposta{(a) $-Q$ na interna, $+Q$ na externa; (b) e (c) ver comentário}
+\resolucao{(a) Dentro do \emph{material} do condutor ($a<r<b$) o campo deve ser
+\textbf{nulo} em equilíbrio. Aplicando a lei de Gauss a uma superfície esférica
+nessa região, a carga interna total deve ser zero:
+\[
+Q + q_{\text{int}} = 0 \;\Longrightarrow\; q_{\text{int}}=-Q.
+\]
+Como a casca é neutra no total, a superfície externa fica com
+$q_{\text{ext}}=+Q$.\\
+(b) \textbf{Comportamento do campo:}
+\begin{center}\small\sffamily
+\begin{tabular}{@{}l l l@{}}
+\toprule
+\textbf{Região} & \textbf{Carga envolvida} & \textbf{Campo}\\
+\midrule
+$r<a$      & $+Q$        & $E=\ke Q/r^{2}$ (radial, para fora)\\
+$a<r<b$    & $Q-Q=0$     & $E=0$ (dentro do condutor)\\
+$r>b$      & $Q-Q+Q=+Q$  & $E=\ke Q/r^{2}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Fora da casca, o campo é \emph{idêntico} ao que existiria sem ela --- a casca
+neutra não blinda o exterior.\\
+(c) \textbf{Aterrando a casca}, a superfície externa perde sua carga $+Q$ para a
+terra (os elétrons sobem para neutralizá-la). Resultado:
+\[
+q_{\text{int}}=-Q,\qquad q_{\text{ext}}=0
+\;\Longrightarrow\;
+E = 0 \ \text{ para } r>b.
+\]
+\textbf{Agora sim há blindagem completa}: nenhum campo escapa para fora.\\
+\textbf{Aplicação --- blindagem eletrostática.} É por isso que cabos coaxiais e
+gabinetes de equipamentos sensíveis têm sua malha metálica \textbf{aterrada}:
+uma blindagem flutuante (não aterrada) não impede o campo de vazar. O aterramento
+é o que transforma o condutor em uma verdadeira gaiola de Faraday.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Potencial elétrico e superfícies equipotenciais
+\input{bancos/banco-potencial-eletrico-e-superficies-equipotenciais.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[1.4 Potencial elétrico e superfícies equipotenciais]

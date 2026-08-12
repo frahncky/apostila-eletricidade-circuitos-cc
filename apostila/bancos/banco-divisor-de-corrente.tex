@@ -1,0 +1,921 @@
+% =====================================================================
+%  Banco complementar --- Divisor de Corrente  (REVISADO)
+%  Substitui a versao gerada por template (10 clones em N2, 9 em N3 e
+%  8 questoes conceituais marcadas como N4).
+%  RESTRICAO FORTE: o projeto de SHUNT ja aparece DUAS vezes no cap04
+%  (miliamperimetro 1 mA/50 ohm e galvanometro 1 mA/50 ohm) e mais
+%  duas vezes no banco de circuitos paralelo revisado (shunt 99 ohm e
+%  shunt de Ayrton multiescala). Este banco NAO trata de shunt.
+%  O cap04 tambem cobre: maior corrente (MC), 10 A entre 2/3, 15 A
+%  entre 3/6, 30 A em tres paralelos, tres ramos com figura e 35 A
+%  entre 5/10/20 -- de modo que a divisao basica de dois e tres ramos
+%  tambem esta excluida.
+%  Distribuicao mantida: 5 N1 + 10 N2 + 9 N3 + 8 N4 = 32
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Divisor de corrente}
+
+\begin{atencao}[Organização do banco]
+A forma correta e geral do divisor de corrente é em \textbf{condutâncias}:
+$I_k=I_T\dfrac{G_k}{\sum G_j}$. A versão com resistências,
+$I_1=I_T\dfrac{R_2}{R_1+R_2}$, é apenas o caso particular de \emph{dois} ramos
+--- e não se generaliza. O N3 trata de desequilíbrio entre condutores,
+tolerância, falhas e o contraste entre alimentação por fonte de corrente e por
+fonte de tensão; o N4 exige demonstração, projeto de balanceamento e análise de
+sensibilidade.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Três ramos com condutâncias $G_1=\SI{0.5}{\siemens}$,
+$G_2=\SI{0.3}{\siemens}$ e $G_3=\SI{0.2}{\siemens}$ recebem
+$I_T=\SI{10}{\ampere}$. Determine a corrente de cada ramo.
+\resposta{$\SI{5}{\ampere}$, $\SI{3}{\ampere}$ e $\SI{2}{\ampere}$}
+\resolucao{Com $\sum G=0{,}5+0{,}3+0{,}2=\SI{1}{\siemens}$:
+\[
+I_k=I_T\frac{G_k}{\sum G}
+\;\Longrightarrow\;
+5;\ 3;\ \SI{2}{\ampere}.
+\]
+Em condutâncias a conta é imediata: a corrente se reparte na \emph{mesma
+proporção} das condutâncias. É por isso que essa é a forma natural do divisor de
+corrente, e não a expressão com resistências.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois ramos de $\SI{4}{\ohm}$ e $\SI{12}{\ohm}$ dividem uma corrente. Determine
+a razão $I_1/I_2$.
+\resposta{$I_1/I_2=3$}
+\resolucao{Como a tensão é comum, $I=U/R$ e
+\[
+\frac{I_1}{I_2}=\frac{R_2}{R_1}=\frac{12}{4}=3.
+\]
+A razão das correntes é a \textbf{inversa} da razão das resistências --- o ramo
+de menor resistência leva a maior corrente. Compare com a série, em que a razão
+das \emph{tensões} é \emph{direta}.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um ramo de $\SI{20}{\ohm}$ de uma associação paralela conduz
+$\SI{1.5}{\ampere}$; o outro ramo vale $\SI{30}{\ohm}$. Determine a corrente
+total.
+\resposta{$I_T=\SI{2.5}{\ampere}$}
+\resolucao{A tensão comum sai do ramo conhecido:
+\[
+U=20(1{,}5)=\SI{30}{\volt}
+\;\Longrightarrow\;
+I_2=\frac{30}{30}=\SI{1}{\ampere},
+\]
+\[
+I_T=1{,}5+1=\SI{2.5}{\ampere}.
+\]
+Um único ramo conhecido determina a tensão comum e, com ela, todo o resto ---
+propriedade que torna qualquer resistor de um paralelo um sensor de corrente em
+potencial.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um dos ramos de um divisor de corrente sofre \textbf{curto-circuito}. Determine
+o que ocorre com as correntes.
+\resposta{Toda a corrente passa pelo curto; os demais ramos ficam sem corrente}
+\resolucao{O ramo em curto tem $R=0$, logo $G\to\infty$. Pelo divisor,
+\[
+I_k=I_T\frac{G_k}{\infty+\sum_{j\ne k}G_j}\to0
+\]
+para todos os ramos finitos, e $I_{curto}\to I_T$.\\
+\textbf{Fisicamente:} o curto impõe $U=0$ à associação inteira, e sem tensão
+nenhum resistor conduz. Os demais ramos continuam íntegros --- eles apenas
+deixam de funcionar, sendo vítimas e não causa do defeito.}
+\end{questao}
+
+\begin{questao}[1]{}
+Em um divisor de corrente alimentado por uma \textbf{fonte de corrente ideal},
+um dos ramos é aberto. A corrente nos ramos restantes:
+\begin{alternativas}[2]
+\item permanece a mesma
+\item aumenta
+\item diminui
+\item torna-se nula
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A fonte de corrente ideal mantém $I_T$ fixo. Com um caminho a menos,
+a mesma corrente se distribui entre menos ramos --- cada um recebe \emph{mais}.\\
+\textbf{Contraste essencial:} sob fonte de \emph{tensão} ideal, os ramos
+restantes ficariam \emph{inalterados} (a tensão comum não muda) e apenas a
+corrente total cairia. A mesma falha produz efeitos opostos conforme o tipo de
+alimentação --- ponto explorado quantitativamente no bloco de
+aprofundamento.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma corrente de $\SI{12}{\ampere}$ divide-se entre quatro ramos de
+$\SI{5}{\ohm}$, $\SI{10}{\ohm}$, $\SI{20}{\ohm}$ e $\SI{20}{\ohm}$.
+\begin{itensq}
+\item Determine a tensão da associação.
+\item Determine a corrente de cada ramo.
+\end{itensq}
+\resposta{$U=\SI{30}{\volt}$; $6$, $3$, $1{,}5$ e $\SI{1.5}{\ampere}$}
+\resolucao{
+\[
+\sum G=0{,}20+0{,}10+0{,}05+0{,}05=\SI{0.40}{\siemens}
+\;\Longrightarrow\;
+U=\frac{I_T}{\sum G}=\frac{12}{0{,}40}=\SI{30}{\volt}.
+\]
+\[
+I_k=\frac{U}{R_k}\Rightarrow 6;\ 3;\ 1{,}5;\ \SI{1.5}{\ampere}.
+\]
+\textbf{Verificação:} $6+3+1{,}5+1{,}5=\SI{12}{\ampere}$ \checkmark.\\
+\textbf{Método:} calcular a tensão comum primeiro é quase sempre mais rápido do
+que aplicar a fórmula do divisor ramo a ramo --- e produz um valor intermediário
+que serve de conferência.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito anterior, determine a fração percentual da corrente em cada ramo e
+explique por que ela não depende de $I_T$.
+\resposta{$50\%$, $25\%$, $12{,}5\%$ e $12{,}5\%$}
+\resolucao{
+\[
+\frac{I_k}{I_T}=\frac{G_k}{\sum G}
+\Rightarrow \frac{0{,}20}{0{,}40}=50\%;\quad25\%;\quad12{,}5\%;\quad12{,}5\%.
+\]
+A razão depende \emph{apenas} das condutâncias --- $I_T$ cancela. Dobrar a
+corrente total dobra todas as parcelas, preservando as proporções.\\
+\textbf{Consequência prática:} o perfil de divisão é uma propriedade fixa da
+rede. Ele só muda se algum ramo mudar de valor, for aberto ou entrar em curto
+--- o que faz da monitoração dessas frações uma técnica de diagnóstico.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma corrente de $\SI{8}{\ampere}$ deve dividir-se de modo que
+$\SI{25}{\percent}$ passe por um ramo $R$ e o restante por um ramo de
+$\SI{15}{\ohm}$. Determine $R$.
+\resposta{$R=\SI{45}{\ohm}$}
+\resolucao{As correntes são $I_R=\SI{2}{\ampere}$ e
+$I_{15}=\SI{6}{\ampere}$. A tensão é comum:
+\[
+U=15(6)=\SI{90}{\volt}
+\;\Longrightarrow\;
+R=\frac{90}{2}=\SI{45}{\ohm}.
+\]
+\textbf{Conferência pela razão:} $I_R/I_{15}=R_{15}/R=15/45=1/3$, e de fato
+$2/6=1/3$ \checkmark.\\
+Note que $R$ é o \emph{triplo} do outro ramo para conduzir um \emph{terço} da
+corrente dele --- a proporcionalidade inversa em ação.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{60}{\volt}$ com resistência série $R_s=\SI{4}{\ohm}$ alimenta
+dois ramos em paralelo de $\SI{10}{\ohm}$ e $\SI{15}{\ohm}$.
+\begin{itensq}
+\item Determine a corrente total.
+\item Determine a corrente de cada ramo.
+\end{itensq}
+\resposta{$I_T=\SI{6}{\ampere}$; $\SI{3.6}{\ampere}$ e $\SI{2.4}{\ampere}$}
+\resolucao{(a) $R_{par}=\dfrac{10\cdot15}{25}=\SI{6}{\ohm}$ e
+\[
+I_T=\frac{60}{4+6}=\SI{6}{\ampere}.
+\]
+(b) Pelo divisor de dois ramos:
+\[
+I_1=6\cdot\frac{15}{25}=\SI{3.6}{\ampere};
+\qquad
+I_2=6\cdot\frac{10}{25}=\SI{2.4}{\ampere}.
+\]
+\textbf{Ponto de atenção:} $R_s$ afeta a corrente \emph{total}, mas não a
+\emph{proporção} da divisão --- ela é determinada só pelos dois ramos. Essa
+separação entre "quanto chega" e "como se reparte" simplifica muito a análise de
+circuitos reais.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito anterior, determine a potência dissipada em cada ramo e a tensão
+sobre a associação.
+\resposta{$U=\SI{36}{\volt}$; $\SI{129.6}{\watt}$ e $\SI{86.4}{\watt}$}
+\resolucao{
+\[
+U=R_{par}I_T=6(6)=\SI{36}{\volt};
+\qquad
+P_1=\frac{36^{2}}{10}=\SI{129.6}{\watt};
+\qquad
+P_2=\frac{36^{2}}{15}=\SI{86.4}{\watt}.
+\]
+Total nos ramos: $\SI{216}{\watt}=36(6)$ \checkmark.\\
+\textbf{Observe:} o ramo de \emph{menor} resistência dissipa mais --- regra do
+paralelo ($P\propto1/R$ com $U$ comum). O resistor série dissipa ainda
+$4(36)=\SI{144}{\watt}$, e a fonte entrega $60(6)=\SI{360}{\watt}$
+\checkmark.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma corrente de $\SI{10}{\ampere}$ divide-se entre $\SI{1}{\ohm}$ e
+$\SI{1}{\kilo\ohm}$.
+\begin{itensq}
+\item Determine as duas correntes.
+\item Avalie o erro de simplesmente desprezar o ramo de alta resistência.
+\end{itensq}
+\resposta{$\SI{9.99}{\ampere}$ e $\SI{9.99}{\milli\ampere}$; erro de
+$0{,}1\%$}
+\resolucao{(a)
+\[
+I_1=10\cdot\frac{1000}{1001}=\SI{9.990}{\ampere};
+\qquad
+I_2=10\cdot\frac{1}{1001}=\SI{9.99}{\milli\ampere}.
+\]
+(b) Desprezar o segundo ramo daria $I_1=\SI{10}{\ampere}$ --- erro de
+$0{,}1\%$, muito abaixo da tolerância de qualquer resistor real.\\
+\textbf{Regra prática:} um ramo mil vezes maior desvia um milésimo da corrente.
+Se a razão for de $100{:}1$, o erro sobe para $1\%$; se for $10{:}1$, para
+$9\%$ --- aí já não se pode desprezar.\\
+\textbf{Mas atenção:} desprezar o ramo para calcular $I_1$ é legítimo;
+\emph{esquecê-lo} pode não ser, pois aqueles $\SI{10}{\milli\ampere}$ podem ser
+exatamente o sinal que interessa medir.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de corrente de $\SI{12}{\ampere}$ alimenta três ramos de
+$\SI{6}{\ohm}$, $\SI{12}{\ohm}$ e $\SI{12}{\ohm}$. O ramo de
+$\SI{6}{\ohm}$ é removido. Determine as novas correntes.
+\resposta{Antes: $6$, $3$, $\SI{3}{\ampere}$. Depois: $\SI{6}{\ampere}$ em cada}
+\resolucao{\textbf{Antes:} $\sum G=\frac16+\frac1{12}+\frac1{12}
+=\SI{0.3333}{\siemens}$, $U=12/0{,}3333=\SI{36}{\volt}$ e
+$I=6;\ 3;\ \SI{3}{\ampere}$.\\
+\textbf{Depois:} $\sum G=\SI{0.1667}{\siemens}$,
+$U=12/0{,}1667=\SI{72}{\volt}$ e $I=\SI{6}{\ampere}$ em cada.\\
+\textbf{A tensão dobrou} e a corrente de cada ramo remanescente também. Note que
+os resistores não mudaram --- foi a \emph{fonte de corrente} que, obrigada a
+manter $\SI{12}{\ampere}$, elevou a tensão para forçar a mesma corrente por
+menos caminhos.\\
+\textbf{Alerta de projeto:} em circuitos alimentados por fonte de corrente,
+abrir um ramo \emph{sobrecarrega} os demais. É o oposto do que ocorre com fonte
+de tensão.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um resistor de $\SI{10}{\ohm}$ está em paralelo com um \textbf{indutor} ideal,
+e o conjunto recebe $\SI{4}{\ampere}$ em regime permanente CC. Determine a
+corrente de cada ramo.
+\resposta{$\SI{0}{\ampere}$ no resistor; $\SI{4}{\ampere}$ no indutor}
+\resolucao{Em regime permanente CC, a corrente do indutor é constante e
+$v=L\,\mathrm{d}i/\mathrm{d}t=0$: ele se comporta como um
+\textbf{curto-circuito}.\\
+Pelo divisor, $G_L\to\infty$ e toda a corrente vai para o indutor:
+\[
+I_L=\SI{4}{\ampere};
+\qquad
+I_R=0.
+\]
+\textbf{Consequência:} um indutor em paralelo com um resistor "apaga" o resistor
+em CC. Isso é usado deliberadamente para curto-circuitar componentes em regime e
+deixá-los ativos apenas durante transitórios.\\
+\emph{(Um capacitor em paralelo faria o oposto: em CC ele é um aberto e toda a
+corrente iria ao resistor.)}}
+\end{questao}
+
+\begin{questao}[2]{}
+Um divisor de corrente tem três ramos e mediu-se $\SI{4}{\ampere}$,
+$\SI{2}{\ampere}$ e $\SI{1.33}{\ampere}$, com tensão comum de
+$\SI{20}{\volt}$. Verifique a consistência e determine as resistências.
+\resposta{Consistente; $\SI{5}{\ohm}$, $\SI{10}{\ohm}$ e $\SI{15}{\ohm}$}
+\resolucao{\textbf{Resistências:} $R_k=U/I_k$:
+\[
+\frac{20}{4}=5;\qquad \frac{20}{2}=10;\qquad \frac{20}{1{,}33}=\SI{15}{\ohm}.
+\]
+\textbf{Consistência:} $\sum G=0{,}2+0{,}1+0{,}0667=\SI{0.3667}{\siemens}$, logo
+$I_T=20(0{,}3667)=\SI{7.33}{\ampere}$, que confere com
+$4+2+1{,}33$ \checkmark.\\
+\textbf{Dois testes independentes:} a tensão comum deve ser a mesma em todos os
+ramos (senão as leituras são incompatíveis) e a LKC deve fechar. Se apenas o
+segundo fechasse, o erro estaria na leitura de tensão.}
+\end{questao}
+
+\begin{questao}[2]{}
+Explique por que a fórmula $I_1=I_T\dfrac{R_2}{R_1+R_2}$ \textbf{não} se
+generaliza para três ramos, e mostre com um contraexemplo.
+\resposta{A forma correta usa condutâncias; a versão com resistências vale só
+para dois ramos}
+\resolucao{\textbf{Contraexemplo.} Ramos de $\SI{6}{\ohm}$, $\SI{12}{\ohm}$ e
+$\SI{12}{\ohm}$ com $I_T=\SI{12}{\ampere}$.\\
+\emph{Forma correta:} $I_1=12\cdot\dfrac{1/6}{1/3}=\SI{6}{\ampere}$.\\
+\emph{"Generalização" ingênua} $I_1=I_T\dfrac{R_2+R_3}{R_1+R_2+R_3}$:
+$12\cdot\dfrac{24}{30}=\SI{9.6}{\ampere}$ --- errado, e nem sequer a soma das
+três parcelas assim calculadas daria $\SI{12}{\ampere}$.\\
+\textbf{Origem da confusão:} com \emph{dois} ramos,
+$\dfrac{G_1}{G_1+G_2}=\dfrac{1/R_1}{1/R_1+1/R_2}=\dfrac{R_2}{R_1+R_2}$ --- a
+simplificação funciona por acaso algébrico. Com três, a manipulação equivalente
+produziria $\dfrac{R_2R_3}{R_2R_3+R_1R_3+R_1R_2}$, expressão que ninguém
+memoriza.\\
+\textbf{Recomendação:} use sempre condutâncias. A fórmula com resistências é
+uma conveniência de dois ramos, não a regra geral.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Três condutores em paralelo, de resistências $\SI{0.10}{\ohm}$,
+$\SI{0.11}{\ohm}$ e $\SI{0.12}{\ohm}$, conduzem $\SI{300}{\ampere}$.
+\begin{itensq}
+\item Determine a corrente de cada um.
+\item Determine o desvio percentual em relação à divisão ideal.
+\item Comente a implicação térmica.
+\end{itensq}
+\resposta{$109{,}4$; $99{,}5$ e $\SI{91.2}{\ampere}$; desvios de
+$+9{,}4\%$, $-0{,}5\%$ e $-8{,}8\%$}
+\resolucao{(a) $\sum G=10+9{,}091+8{,}333=\SI{27.42}{\siemens}$ e
+$U=300/27{,}42=\SI{10.94}{\volt}$. As correntes valem
+\[
+109{,}4;\qquad 99{,}5;\qquad \SI{91.2}{\ampere}.
+\]
+(b) Em relação a $\SI{100}{\ampere}$ ideais: $+9{,}4\%$, $-0{,}5\%$ e
+$-8{,}8\%$.\\
+(c) \textbf{Implicação térmica.} A dissipação vai com $I^{2}$: o condutor mais
+carregado dissipa $(109{,}4/100)^{2}=1{,}20$ vezes o previsto --- $20\%$ a
+mais. Ele aquece mais que os outros dois.\\
+\textbf{E aí surge a pergunta decisiva:} o cobre tem coeficiente térmico
+\emph{positivo}. Aquecendo, sua resistência sobe, ele devolve corrente aos
+vizinhos e o sistema se \textbf{estabiliza}. Se o material tivesse coeficiente
+negativo, ocorreria o contrário --- fuga térmica.\\
+\textbf{Prática de instalação:} condutores em paralelo devem ter mesmo
+comprimento, seção, material e trajeto. Uma diferença de $\SI{20}{\percent}$ no
+comprimento produz o desequilíbrio calculado aqui, e é por isso que a norma
+exige lances idênticos.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma corrente de $\SI{12}{\ampere}$ deve dividir-se na razão $1{:}2{:}3$.
+\begin{itensq}
+\item Determine as três correntes.
+\item Determine as resistências, adotando a tensão comum de
+      $\SI{12}{\volt}$.
+\item Determine a potência de cada ramo.
+\end{itensq}
+\resposta{$2$, $4$ e $\SI{6}{\ampere}$; $\SI{6}{\ohm}$, $\SI{3}{\ohm}$ e
+$\SI{2}{\ohm}$; $24$, $48$ e $\SI{72}{\watt}$}
+\resolucao{(a) As frações são $\frac16$, $\frac26$ e $\frac36$ de
+$\SI{12}{\ampere}$: $2$, $4$ e $\SI{6}{\ampere}$.\\
+(b) Como $U$ é comum, $R_k=U/I_k$:
+\[
+\frac{12}{2}=6;\qquad \frac{12}{4}=3;\qquad \frac{12}{6}=\SI{2}{\ohm}.
+\]
+As resistências ficam na razão $6{:}3{:}2$ --- \emph{inversa} de
+$1{:}2{:}3$, como esperado.\\
+(c) $P_k=UI_k$: $24$, $48$ e $\SI{72}{\watt}$; total $\SI{144}{\watt}=12(12)$
+\checkmark.\\
+\textbf{Observação de projeto:} a tensão comum foi \emph{escolhida}. Adotando
+$\SI{1.2}{\volt}$ em vez de $\SI{12}{\volt}$, as resistências cairiam por dez
+($0{,}6$; $0{,}3$; $\SI{0.2}{\ohm}$) e a dissipação total também --- de
+$144$ para $\SI{14.4}{\watt}$. A razão de divisão é a mesma; o que muda é a
+perda. Esse grau de liberdade é explorado no bloco de desafio.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dois ramos nominalmente iguais de $\SI{10}{\ohm}$, com tolerância de
+$\pm5\%$, dividem $\SI{10}{\ampere}$.
+\begin{itensq}
+\item Determine o pior desequilíbrio de corrente.
+\item Compare o desvio percentual da corrente com o dos resistores.
+\end{itensq}
+\resposta{$5{,}25$ e $\SI{4.75}{\ampere}$; desvio de $\pm5\%$}
+\resolucao{(a) O pior caso ocorre com desvios opostos: $R_1=\SI{9.5}{\ohm}$ e
+$R_2=\SI{10.5}{\ohm}$.
+\[
+I_1=10\cdot\frac{10{,}5}{20}=\SI{5.25}{\ampere};
+\qquad
+I_2=\SI{4.75}{\ampere}.
+\]
+(b) Em relação aos $\SI{5}{\ampere}$ ideais, o desvio é de
+$\pm5\%$ --- \emph{igual} à tolerância dos resistores.\\
+\textbf{Por que dá exatamente isso:} a sensibilidade relativa da divisão é
+$\dfrac{R_1}{R_1+R_2}=0{,}5$, e o pior caso combina as duas tolerâncias:
+$0{,}5\times(5\%+5\%)=5\%$.\\
+\textbf{Generalização:} com ramos \emph{desiguais}, o fator muda. Em um divisor
+$1{:}9$, a sensibilidade do ramo pequeno é $0{,}9$ e o desequilíbrio chega a
+$9\%$ --- o ramo minoritário é sempre o mais afetado por tolerâncias.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um ramo de $\SI{0.5}{\ohm}$ de um divisor adquire resistência de contato de
+$\SI{0.05}{\ohm}$ em suas conexões. O outro ramo, também de
+$\SI{0.5}{\ohm}$, permanece íntegro, e a corrente total é
+$\SI{100}{\ampere}$.
+\begin{itensq}
+\item Determine as novas correntes.
+\item Determine o desvio e a potência adicional no contato.
+\end{itensq}
+\resposta{$\SI{47.6}{\ampere}$ e $\SI{52.4}{\ampere}$; desvio de
+$\mp4{,}8\%$; $\SI{113}{\watt}$ no contato}
+\resolucao{(a) O ramo afetado passa a $\SI{0.55}{\ohm}$:
+\[
+I_1=100\cdot\frac{0{,}50}{1{,}05}=\SI{47.6}{\ampere};
+\qquad
+I_2=100\cdot\frac{0{,}55}{1{,}05}=\SI{52.4}{\ampere}.
+\]
+(b) Desvio de $-4{,}8\%$ e $+4{,}8\%$ em relação aos
+$\SI{50}{\ampere}$ ideais.\\
+No contato: $P=0{,}05(47{,}6)^{2}=\SI{113}{\watt}$ --- concentrados em uma área
+minúscula.\\
+\textbf{Por que é grave.} A resistência de contato \emph{cresce} com a corrosão
+e com a temperatura. Mais resistência $\to$ mais aquecimento $\to$ mais
+oxidação $\to$ mais resistência: realimentação positiva que termina em falha
+térmica. Curiosamente, o desvio de corrente é \emph{estabilizador} (o ramo ruim
+conduz menos), mas a concentração de potência no ponto de contato domina o
+processo.\\
+\textbf{Conclusão:} em divisores de alta corrente, a qualidade das conexões
+importa mais que a tolerância dos resistores.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma corrente de $\SI{10}{\ampere}$ divide-se entre $\SI{5}{\ohm}$ e
+$\SI{20}{\ohm}$.
+\begin{itensq}
+\item Determine as correntes e as potências.
+\item Determine qual ramo aquece mais e por qual fator.
+\end{itensq}
+\resposta{$8$ e $\SI{2}{\ampere}$; $320$ e $\SI{80}{\watt}$ --- o menor
+resistor dissipa $4\times$ mais}
+\resolucao{(a)
+\[
+I_1=10\cdot\frac{20}{25}=\SI{8}{\ampere};
+\qquad
+I_2=\SI{2}{\ampere};
+\]
+\[
+P_1=5(8)^{2}=\SI{320}{\watt};
+\qquad
+P_2=20(2)^{2}=\SI{80}{\watt}.
+\]
+(b) O ramo de $\SI{5}{\ohm}$ dissipa quatro vezes mais.\\
+\textbf{Razão algébrica:} com $U$ comum, $P=U^{2}/R$, logo
+$P_1/P_2=R_2/R_1=4$. A razão das potências é a \emph{inversa} da razão das
+resistências --- e igual à razão das correntes ($8/2=4$).\\
+\textbf{Erro comum:} supor que o resistor maior aquece mais. Isso vale em
+\emph{série} ($P\propto R$), não em paralelo. Em um divisor de corrente, o
+componente crítico para dimensionamento térmico é sempre o de \emph{menor}
+resistência.}
+\end{questao}
+
+\begin{questao}[3]{}
+Três ramos de $\SI{10}{\ohm}$, $\SI{20}{\ohm}$ e $\SI{20}{\ohm}$ têm o
+primeiro aberto. Compare o efeito sob dois tipos de alimentação:
+\begin{itensq}
+\item fonte de corrente ideal de $\SI{12}{\ampere}$;
+\item fonte de tensão ideal de $\SI{60}{\volt}$.
+\end{itensq}
+\resposta{(a) tensão dobra ($60\to\SI{120}{\volt}$), ramos vão de $3$ a
+$\SI{6}{\ampere}$; (b) tensão e ramos inalterados, total cai de $12$ a
+$\SI{6}{\ampere}$}
+\resolucao{\textbf{(a) Fonte de corrente.} Antes:
+$\sum G=\SI{0.2}{\siemens}$, $U=\SI{60}{\volt}$,
+$I=6;3;\SI{3}{\ampere}$.\\
+Depois: $\sum G=\SI{0.1}{\siemens}$, e a fonte \emph{eleva a tensão} para
+manter $\SI{12}{\ampere}$:
+\[
+U=\frac{12}{0{,}1}=\SI{120}{\volt};
+\qquad
+I=6;\ \SI{6}{\ampere}.
+\]
+Cada ramo remanescente \textbf{dobra} de corrente, e a potência quadruplica
+(de $180$ para $\SI{720}{\watt}$ em cada).\\
+\textbf{(b) Fonte de tensão.} $U=\SI{60}{\volt}$ permanece.
+Antes: $6;3;\SI{3}{\ampere}$, total $\SI{12}{\ampere}$. Depois:
+$3;\SI{3}{\ampere}$, total $\SI{6}{\ampere}$. \textbf{Os ramos remanescentes
+não sentem nada.}\\
+\textbf{Síntese.} A mesma falha, no mesmo circuito, produz sobrecarga severa em
+um caso e nenhum efeito no outro. O que decide é a natureza da fonte:
+\begin{itemize}
+\item fonte de \emph{tensão} $\Rightarrow$ ramos desacoplados, falha localizada;
+\item fonte de \emph{corrente} $\Rightarrow$ ramos acoplados, falha propagada.
+\end{itemize}
+É por isso que instalações elétricas são alimentadas por tensão, e por que
+circuitos em série de LEDs acionados por corrente exigem proteção contra
+abertura.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um ramo fixo de $\SI{10}{\ohm}$ está em paralelo com um reostato de
+$\SI{0}{\ohm}$ a $\SI{40}{\ohm}$, sob corrente total de $\SI{5}{\ampere}$.
+\begin{itensq}
+\item Determine a faixa de corrente no ramo fixo.
+\item Determine a posição do reostato para divisão igual.
+\item Comente a linearidade do controle.
+\end{itensq}
+\resposta{(a) de $0$ a $\SI{4}{\ampere}$; (b) $R=\SI{10}{\ohm}$}
+\resolucao{(a) Com o reostato em $\SI{0}{\ohm}$, ele curto-circuita o ramo
+fixo: $I_{fixo}=0$. Com $\SI{40}{\ohm}$:
+\[
+I_{fixo}=5\cdot\frac{40}{50}=\SI{4}{\ampere}.
+\]
+A faixa é $0$ a $\SI{4}{\ampere}$ --- \emph{nunca} os $\SI{5}{\ampere}$
+completos, pois o reostato sempre desvia alguma corrente.\\
+(b) Divisão igual exige resistências iguais: $R=\SI{10}{\ohm}$, um quarto do
+curso.\\
+(c) \textbf{Fortemente não linear.} A relação
+$I_{fixo}=5R/(R+10)$ é hiperbólica:
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$R$ & posição do curso & $I_{fixo}$\\
+\hline
+$\SI{10}{\ohm}$ & $25\%$ & $\SI{2.5}{\ampere}$\\
+$\SI{20}{\ohm}$ & $50\%$ & $\SI{3.33}{\ampere}$\\
+$\SI{40}{\ohm}$ & $100\%$ & $\SI{4.0}{\ampere}$\\
+\hline
+\end{tabular}
+\end{center}
+Metade da faixa útil de corrente é percorrida no primeiro quarto do curso --- o
+ajuste é grosseiro no início e quase inerte no fim.}
+\end{questao}
+
+\begin{questao}[3]{}
+Deduza a expressão da corrente em um ramo $R_k$ quando todos os demais são
+substituídos por sua resistência equivalente $R_p$, e verifique com o divisor de
+$6$, $12$ e $\SI{12}{\ohm}$ sob $\SI{12}{\ampere}$.
+\resposta{$I_k=I_T\dfrac{R_p}{R_k+R_p}$; para $R_k=\SI{6}{\ohm}$ e
+$R_p=\SI{6}{\ohm}$, $I_k=\SI{6}{\ampere}$}
+\resolucao{\textbf{Dedução.} Agrupando todos os ramos exceto o $k$-ésimo em
+$R_p$, sobram \emph{dois} ramos em paralelo --- e aí a fórmula de dois ramos é
+válida:
+\[
+I_k=I_T\frac{R_p}{R_k+R_p},
+\qquad\text{com }
+\frac{1}{R_p}=\sum_{j\ne k}\frac{1}{R_j}.
+\]
+\textbf{Verificação.} Para $R_k=\SI{6}{\ohm}$, os demais dão
+$R_p=12\parallel12=\SI{6}{\ohm}$:
+\[
+I_k=12\cdot\frac{6}{6+6}=\SI{6}{\ampere}.\ \checkmark
+\]
+\textbf{Utilidade:} é a maneira correta de \emph{recuperar} a fórmula de dois
+ramos em uma rede com muitos ramos --- e mostra exatamente onde a
+"generalização" ingênua erra: $R_p$ é o \emph{paralelo} dos demais, não a
+\emph{soma}. No exemplo, a soma daria $\SI{24}{\ohm}$ e a corrente
+$\SI{9.6}{\ampere}$, valor incorreto.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor de corrente tem um ramo contendo uma \textbf{fonte de tensão} de
+$\SI{10}{\volt}$ em série com $\SI{5}{\ohm}$; o outro ramo é um resistor de
+$\SI{5}{\ohm}$. A corrente total injetada é $\SI{4}{\ampere}$.
+\begin{itensq}
+\item Explique por que o divisor simples não se aplica.
+\item Determine as correntes.
+\end{itensq}
+\resposta{$I_1=\SI{1}{\ampere}$ e $I_2=\SI{3}{\ampere}$}
+\resolucao{(a) O divisor de corrente pressupõe ramos \textbf{puramente
+resistivos}, submetidos à mesma tensão e obedecendo $I=UG$. Um ramo com fonte
+segue $I=(U-E)G$ --- relação \emph{afim}, não proporcional. A repartição deixa
+de depender só das condutâncias.\\
+(b) Chamando $U$ a tensão comum:
+\[
+\underbrace{\frac{U-10}{5}}_{I_1}+\underbrace{\frac{U}{5}}_{I_2}=4
+\;\Longrightarrow\;
+2U-10=20
+\;\Longrightarrow\;
+U=\SI{15}{\volt},
+\]
+\[
+I_1=\frac{15-10}{5}=\SI{1}{\ampere};
+\qquad
+I_2=\frac{15}{5}=\SI{3}{\ampere}.
+\]
+\textbf{Compare:} o divisor simples, com dois ramos iguais, preveria
+$\SI{2}{\ampere}$ em cada. A fonte de $\SI{10}{\volt}$ \emph{se opõe} à corrente
+em seu ramo e desvia $\SI{1}{\ampere}$ para o outro.\\
+\textbf{Método correto:} volte à LKC com a tensão comum como incógnita --- ou
+seja, análise nodal. O divisor de corrente é um atalho, e atalhos têm
+hipóteses.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração geral.)} Deduza a fórmula do divisor de corrente para
+$n$ ramos em paralelo.
+\begin{itensq}
+\item Obtenha $I_k$ em função das condutâncias.
+\item Mostre que a forma com resistências vale apenas para $n=2$.
+\item Verifique que $\sum I_k=I_T$ identicamente.
+\end{itensq}
+\resposta{$I_k=I_T\dfrac{G_k}{\sum_j G_j}$}
+\resolucao{(a) Todos os ramos compartilham a tensão $U$. Pela LKC,
+\[
+I_T=\sum_j I_j=\sum_j UG_j=U\sum_j G_j
+\;\Longrightarrow\;
+U=\frac{I_T}{\sum_j G_j}.
+\]
+Logo
+\[
+I_k=UG_k=I_T\frac{G_k}{\sum_j G_j}.
+\]
+(b) Para $n=2$, substituindo $G=1/R$:
+\[
+\frac{G_1}{G_1+G_2}=\frac{1/R_1}{\dfrac{R_1+R_2}{R_1R_2}}
+=\frac{R_2}{R_1+R_2}.
+\]
+A simplificação depende de o denominador ter \emph{exatamente} dois termos.
+Para $n=3$, o resultado análogo seria
+\[
+I_1=I_T\frac{R_2R_3}{R_2R_3+R_1R_3+R_1R_2},
+\]
+que não tem a forma "resistência do outro sobre a soma" --- e para $n$ geral
+envolve todos os produtos de $n-1$ resistências.\\
+(c)
+\[
+\sum_k I_k=I_T\frac{\sum_k G_k}{\sum_j G_j}=I_T.
+\]
+A LKC é satisfeita \textbf{identicamente}, para quaisquer condutâncias --- ela
+não é um resultado do cálculo, mas uma consequência da forma da expressão.
+Verificar a soma, portanto, não detecta erro nas condutâncias; ela só detecta
+erro de aritmética.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de balanceamento.)} Deve-se dividir $\SI{60}{\ampere}$
+igualmente entre três ramos, com perda total inferior a $\SI{10}{\watt}$.
+\begin{itensq}
+\item Determine a resistência de cada ramo e a queda de tensão.
+\item Verifique a perda e determine a margem.
+\item Discuta o compromisso entre precisão da divisão e perda.
+\end{itensq}
+\resposta{$R\le\SI{8.33}{\milli\ohm}$; queda de $\SI{0.167}{\volt}$;
+$\SI{3.33}{\watt}$ por ramo no limite}
+\resolucao{(a) Divisão igual exige três resistências iguais, com
+$\SI{20}{\ampere}$ cada. A perda total é
+\[
+P=3RI_k^{2}=3R(400)=1200R\le10
+\;\Longrightarrow\;
+R\le\SI{8.33}{\milli\ohm}.
+\]
+Adotando $R=\SI{8.33}{\milli\ohm}$, a queda é
+$U=8{,}33\,\mathrm{m}\times20=\SI{0.167}{\volt}$.\\
+(b) No limite, cada ramo dissipa $\SI{3.33}{\watt}$ --- exigindo resistores de
+pelo menos $\SI{10}{\watt}$ para operar com folga, e provavelmente ventilados.\\
+(c) \textbf{O compromisso central.} O desequilíbrio relativo entre os ramos é
+governado pela \emph{razão} entre a dispersão dos resistores de balanceamento e
+as resistências \emph{parasitas} (contatos, trechos de barramento, cabos):
+\begin{itemize}
+\item $R$ \textbf{grande}: as parasitas tornam-se desprezíveis em comparação, e
+a divisão fica precisa --- mas a perda cresce com $R$.
+\item $R$ \textbf{pequeno}: pouca perda, mas as parasitas passam a dominar e o
+balanceamento se degrada.
+\end{itemize}
+Com $R=\SI{8.33}{\milli\ohm}$ e contatos de $\SI{1}{\milli\ohm}$, a incerteza
+de divisão já é da ordem de $12\%$ --- o resistor de balanceamento praticamente
+não cumpre sua função.\\
+\textbf{Conclusão:} não se pode ter simultaneamente divisão precisa e perda
+desprezível com resistores passivos. Aplicações críticas usam balanceamento
+\emph{ativo} (realimentação de corrente por ramo), que rompe o compromisso.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Amplificação de desequilíbrio.)} Em $n$ condutores nominalmente
+iguais, um deles tem resistência $R(1-\delta)$.
+\begin{itensq}
+\item Deduza a fração de corrente que ele conduz.
+\item Obtenha a expressão aproximada para $\delta$ pequeno e identifique o fator
+      de amplificação.
+\item Avalie para $n=3$ e $\delta=5\%$, $10\%$ e $20\%$.
+\end{itensq}
+\resposta{Desvio relativo $\approx\dfrac{n-1}{n}\,\delta$; para $n=3$:
+$3{,}4\%$, $7{,}1\%$ e $15{,}4\%$}
+\resolucao{(a) As condutâncias são $\dfrac{1}{R(1-\delta)}$ e
+$(n-1)$ vezes $\dfrac1R$:
+\[
+\frac{I_1}{I_T}=\frac{\dfrac{1}{1-\delta}}{\dfrac{1}{1-\delta}+(n-1)}
+=\frac{1}{1+(n-1)(1-\delta)}.
+\]
+(b) Para $\delta\ll1$, expandindo em torno de $\delta=0$ (onde a fração vale
+$1/n$):
+\[
+\frac{I_1}{I_T}\approx\frac1n\left(1+\frac{n-1}{n}\,\delta\right)
+\;\Longrightarrow\;
+\frac{\Delta I_1}{I_1}\approx\frac{n-1}{n}\,\delta.
+\]
+O \textbf{fator de amplificação} é $\dfrac{n-1}{n}$: sempre menor que $1$, mas
+crescente com $n$ --- tende a $1$ para muitos condutores.\\
+(c) Com $n=3$, o fator é $2/3$:
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$\delta$ & exato & aproximado\\
+\hline
+$5\%$ & $+3{,}45\%$ & $+3{,}33\%$\\
+$10\%$ & $+7{,}14\%$ & $+6{,}67\%$\\
+$20\%$ & $+15{,}4\%$ & $+13{,}3\%$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Duas leituras.} A aproximação é boa até cerca de $10\%$ e subestima o
+desvio real --- portanto \emph{não} é conservadora, e deve ser usada com
+cuidado em verificação de projeto.\\
+E o desequilíbrio de corrente é sempre \emph{menor} que o de resistência (fator
+$<1$), o que é uma boa notícia. A má notícia é que a \textbf{potência} vai com
+$I^{2}$: um desvio de $7\%$ na corrente significa $15\%$ a mais de
+aquecimento no condutor mais carregado.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Sensibilidade.)} Para um divisor de dois ramos:
+\begin{itensq}
+\item Obtenha $\dfrac{\partial I_1}{\partial R_1}$.
+\item Obtenha a sensibilidade relativa e mostre que $|S_1|+|S_2|=1$.
+\item Interprete os casos $R_1\ll R_2$ e $R_1\gg R_2$.
+\end{itensq}
+\resposta{$S_1=-\dfrac{R_1}{R_1+R_2}$, $S_2=+\dfrac{R_2}{R_1+R_2}$}
+\resolucao{(a) De $I_1=I_T\dfrac{R_2}{R_1+R_2}$:
+\[
+\frac{\partial I_1}{\partial R_1}=-\frac{I_TR_2}{(R_1+R_2)^{2}}.
+\]
+(b) Sensibilidade relativa:
+\[
+S_1=\frac{\partial I_1}{\partial R_1}\cdot\frac{R_1}{I_1}
+=-\frac{I_TR_2}{(R_1+R_2)^{2}}\cdot\frac{R_1(R_1+R_2)}{I_TR_2}
+=-\frac{R_1}{R_1+R_2}.
+\]
+Analogamente, $S_2=+\dfrac{R_2}{R_1+R_2}$, e
+\[
+|S_1|+|S_2|=\frac{R_1+R_2}{R_1+R_2}=1.
+\]
+\textbf{Mesmo padrão} já encontrado em série, paralelo e divisor de tensão ---
+consequência de $I_1/I_T$ ser função homogênea de grau zero nas resistências.\\
+(c) \textbf{$R_1\ll R_2$:} $S_1\to0$. O ramo pequeno leva quase toda a corrente
+e é \emph{insensível} ao próprio valor --- mas $S_2\to1$, ou seja, sua corrente
+depende integralmente do ramo grande. Contraintuitivo e importante.\\
+\textbf{$R_1\gg R_2$:} $S_1\to-1$. O ramo grande conduz pouco, e essa pouca
+corrente é inteiramente determinada pelo seu próprio valor.\\
+\textbf{Regra de projeto:} para dividir corrente com precisão, aperte a
+tolerância do ramo que conduz \emph{menos} --- é ele que carrega a maior
+sensibilidade relativa.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Divisor de baixa perda para medição.)} Deseja-se medir
+$\SI{100}{\ampere}$ desviando uma fração conhecida para um instrumento, com
+perda mínima.
+\begin{itensq}
+\item Projete um divisor de razão $1000{:}1$ com ramo principal de
+      $\SI{0.1}{\milli\ohm}$.
+\item Determine a corrente de medição, a queda e a perda total.
+\item Compare com um resistor \emph{shunt} direto de $\SI{1}{\milli\ohm}$.
+\end{itensq}
+\resposta{Ramo de medição de $\SI{100}{\milli\ohm}$; $\SI{99.9}{\milli\ampere}$;
+perda de $\SI{1}{\watt}$ contra $\SI{10}{\watt}$}
+\resolucao{(a) A razão de correntes é a razão inversa das resistências:
+\[
+\frac{I_{med}}{I_{princ}}=\frac{R_{princ}}{R_{med}}=\frac{1}{1000}
+\;\Longrightarrow\;
+R_{med}=1000\times0{,}1\,\mathrm{m}=\SI{100}{\milli\ohm}.
+\]
+(b)
+\[
+G_{tot}=10^{4}+10=\SI{10010}{\siemens};
+\qquad
+I_{med}=100\cdot\frac{10}{10010}=\SI{99.9}{\milli\ampere}.
+\]
+\[
+R_{eq}=\SI{99.9}{\micro\ohm};
+\qquad
+U=100(\pot{99.9}{-6})=\SI{9.99}{\milli\volt};
+\qquad
+P=100(\pot{9.99}{-3})=\SI{0.999}{\watt}.
+\]
+(c) \textbf{Shunt direto de $\SI{1}{\milli\ohm}$:}
+$U=\SI{100}{\milli\volt}$ e $P=\SI{10}{\watt}$ --- \textbf{dez vezes} mais
+perda.\\
+\textbf{O compromisso, explicitado.} A perda vale $P=I_T^{2}R_{eq}$, e
+$R_{eq}$ é essencialmente o ramo principal. Reduzi-lo reduz a perda \emph{e} a
+tensão de medição --- que já é de apenas $\SI{10}{\milli\volt}$, exigindo
+amplificação de baixo ruído e cuidado com termopares parasitas nas junções.\\
+\textbf{Alternativa moderna:} sensores de efeito Hall ou transformadores de
+corrente medem sem inserir resistência alguma no caminho principal, eliminando a
+perda por completo --- ao custo de exatidão e de resposta em CC.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Estabilidade térmica da divisão.)} Dois ramos idênticos dividem uma
+corrente elevada. Um deles aquece mais que o outro.
+\begin{itensq}
+\item Analise a evolução para material de coeficiente térmico \emph{positivo}.
+\item Repita para coeficiente \emph{negativo}.
+\item Determine a condição de estabilidade e cite exemplos.
+\end{itensq}
+\resposta{$\alpha>0$: estável (realimentação negativa); $\alpha<0$: instável
+(fuga térmica)}
+\resolucao{(a) \textbf{Coeficiente positivo} (cobre, manganina, a maioria dos
+metais). O ramo mais quente tem sua resistência \emph{aumentada}; sua
+condutância cai e ele passa a conduzir \emph{menos}. Menos corrente significa
+menos aquecimento --- o desvio se corrige sozinho.\\
+Trata-se de \textbf{realimentação negativa}: o sistema converge para um novo
+equilíbrio, com desequilíbrio limitado.\\
+(b) \textbf{Coeficiente negativo} (semicondutores, termistores NTC, carbono). O
+ramo mais quente reduz sua resistência, atrai \emph{mais} corrente, aquece
+ainda mais --- e o ciclo se acelera. \textbf{Realimentação positiva}, ou fuga
+térmica: um ramo acaba conduzindo praticamente toda a corrente e se destrói.\\
+(c) \textbf{Condição de estabilidade:} $\alpha>0$ nos ramos, ou --- se
+$\alpha<0$ for inevitável --- resistências de balanceamento em série, de valor
+suficiente para dominar a variação térmica.\\
+\textbf{Exemplos práticos.}
+\begin{itemize}
+\item \textbf{Condutores em paralelo:} cobre tem $\alpha\approx+0{,}004/\si{\celsius}$
+--- naturalmente estáveis.
+\item \textbf{Transistores bipolares em paralelo:} o coeficiente da junção é
+\emph{negativo}, e por isso cada emissor recebe um resistor de balanceamento.
+Sem ele, um transistor assume toda a corrente e queima.
+\item \textbf{Diodos e LEDs em paralelo:} mesmo problema --- daí a exigência de
+resistor individual por ramo, e não um único resistor comum.
+\item \textbf{Resistores de precisão para divisão:} usa-se manganina, que
+combina $\alpha$ pequeno \emph{e} positivo.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Divisor com elemento ativo.)} Um dos ramos de um divisor contém uma
+fonte de corrente \textbf{dependente} que injeta $g\,U$, sendo $U$ a tensão
+comum e $g=\SI{0.05}{\siemens}$. O outro ramo é um resistor de
+$\SI{10}{\ohm}$, e a corrente total injetada é $\SI{6}{\ampere}$.
+\begin{itensq}
+\item Explique por que o divisor simples falha.
+\item Determine a tensão comum e a corrente de cada ramo.
+\item Determine o valor crítico de $g$.
+\end{itensq}
+\resposta{(b) $U=\SI{120}{\volt}$; $\SI{12}{\ampere}$ no resistor e
+$\SI{6}{\ampere}$ injetados pelo ramo ativo; (c) $g_c=\SI{0.1}{\siemens}$}
+\resolucao{(a) O divisor pressupõe que \emph{cada} ramo obedeça $I=UG$ com
+$G>0$ fixo. A fonte dependente também é proporcional a $U$, mas com sinal que
+pode \emph{retirar} corrente do nó --- ela funciona como condutância
+\textbf{negativa} de valor $-g$. A soma $\sum G$ deixa de ser a soma de
+condutâncias físicas.\\
+(b) LKC no nó, com a fonte dependente \textbf{injetando} $gU$:
+\[
+\frac{U}{10}=6+gU
+\;\Longrightarrow\;
+U(0{,}1-0{,}05)=6
+\;\Longrightarrow\;
+U=\frac{6}{0{,}05}=\SI{120}{\volt},
+\]
+\[
+I_R=\frac{120}{10}=\SI{12}{\ampere};
+\qquad
+I_{dep}=0{,}05(120)=\SI{6}{\ampere}.
+\]
+\textbf{Verificação da LKC:} entram $6$ (fonte externa) mais $6$ (fonte
+dependente), totalizando $\SI{12}{\ampere}$ --- exatamente o que sai pelo
+resistor \checkmark.\\
+\textbf{Observe o absurdo aparente:} o resistor conduz $\SI{12}{\ampere}$, o
+\textbf{dobro} da corrente injetada externamente. Nenhum divisor passivo
+produziria isso, pois nele vale sempre $I_k\le I_T$.\\
+(c) A condutância líquida é $\dfrac1{10}-g$, que se anula em
+\[
+g_c=\SI{0.1}{\siemens}.
+\]
+Nesse ponto o nó "flutua" e não há solução finita; acima dele, a resistência
+equivalente torna-se negativa e o circuito é instável.\\
+\textbf{Lição:} elementos ativos podem produzir correntes de ramo
+\emph{maiores} que a corrente total injetada, ou de sinal invertido --- ambos
+impossíveis em rede puramente passiva. O divisor de corrente é uma ferramenta
+de redes passivas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Escolha de escala.)} Um divisor deve repartir $\SI{12}{\ampere}$ na
+razão $1{:}2{:}3$. A razão fixa apenas as \emph{proporções}; resta escolher a
+escala absoluta das resistências.
+\begin{itensq}
+\item Mostre que a perda total é proporcional à escala escolhida.
+\item Determine a escala para perda de $\SI{14.4}{\watt}$ e para
+      $\SI{144}{\watt}$.
+\item Estabeleça o critério de escolha na prática.
+\end{itensq}
+\resposta{$P=I_T^{2}R_{eq}$, e $R_{eq}$ escala com o fator adotado; escalas de
+$0{,}6/0{,}3/\SI{0.2}{\ohm}$ e $6/3/\SI{2}{\ohm}$}
+\resolucao{(a) Multiplicando todas as resistências por $\lambda$, as
+\emph{frações} $G_k/\sum G$ não mudam --- a divisão é preservada. Mas
+\[
+R_{eq}=\lambda R_{eq,0}
+\;\Longrightarrow\;
+P=I_T^{2}R_{eq}=\lambda\,I_T^{2}R_{eq,0}.
+\]
+A perda é \textbf{diretamente proporcional} à escala. (É a mesma propriedade de
+homogeneidade de grau 1 já usada para tolerâncias em associações.)\\
+(b) Com $R=6/3/\SI{2}{\ohm}$: $R_{eq}=\SI{1}{\ohm}$ e
+$P=144(1)=\SI{144}{\watt}$.\\
+Com $R=0{,}6/0{,}3/\SI{0.2}{\ohm}$: $R_{eq}=\SI{0.1}{\ohm}$ e
+$P=\SI{14.4}{\watt}$ --- dez vezes menos, com \emph{exatamente} a mesma divisão
+$2{:}4{:}6$ ampères.\\
+(c) \textbf{Critério.} A escala é limitada por baixo e por cima:
+\begin{itemize}
+\item \textbf{Limite inferior:} resistências pequenas demais tornam-se
+comparáveis às parasitas (contatos, trilhas, cabos), que passam a governar a
+divisão. Regra prática: mantenha $R\ge20$ vezes a maior parasita estimada.
+\item \textbf{Limite superior:} a perda $\lambda I_T^{2}R_{eq,0}$ e a queda de
+tensão crescem linearmente, exigindo componentes maiores e comprometendo o
+rendimento.
+\end{itemize}
+\textbf{Escolha:} a menor escala que ainda domine as parasitas com folga. Com
+contatos de $\SI{1}{\milli\ohm}$, a escala de $0{,}6/0{,}3/\SI{0.2}{\ohm}$ é
+segura (o menor ramo é $200\times$ a parasita); reduzir mais dez vezes já
+deixaria a divisão à mercê da qualidade das conexões.}
+\end{questao}

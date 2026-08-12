@@ -1,0 +1,308 @@
+% =====================================================================
+%  CAPITULO 5 - POTENCIA ELETRICA E MAXIMA TRANSFERENCIA
+% =====================================================================
+\section{Potência Elétrica e Máxima Transferência}
+
+\begin{conceito}[Antes de começar]
+\textbf{Potência dissipada em um resistor:}
+$P = U\,I = R\,I^2 = \dfrac{U^2}{R}$.\par
+\textbf{Fonte fornecendo ou absorvendo:} usando a convenção do gerador, se a
+corrente sai pelo terminal positivo, a fonte \emph{fornece} potência
+($P>0$); se entra pelo positivo, a fonte \emph{absorve} (está sendo carregada,
+$P<0$).\par
+\textbf{Máxima transferência de potência:} uma fonte real (Thévenin) de tensão
+$V_{\text{Th}}$ e resistência interna $R_{\text{Th}}$ entrega a máxima potência a
+uma carga $R_L$ quando
+\[
+\boxed{\,R_L = R_{\text{Th}}\,},\qquad
+P_{\max}=\frac{V_{\text{Th}}^{\,2}}{4\,R_{\text{Th}}}.
+\]
+Nesse ponto, o rendimento é de apenas $\SI{50}{\percent}$ (metade da potência se
+perde internamente).
+\end{conceito}
+
+\legendaniveis
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um resistor de $\SI{7}{\ohm}$ é percorrido por uma corrente de $\SI{3}{\ampere}$.
+A potência dissipada é:
+\begin{alternativas}[3]
+\item \SI{21}{\watt}
+\item \SI{49}{\watt}
+\item \SI{63}{\watt}
+\item \SI{147}{\watt}
+\item \SI{441}{\watt}
+\end{alternativas}
+\resposta{(c)}
+\resolucao{$P = R\,I^2 = 7\cdot 3^2 = \SI{63}{\watt}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Na condição de máxima transferência de potência de uma fonte real para uma carga,
+a relação entre a resistência de carga $R_L$ e a resistência interna
+$R_{\text{Th}}$ da fonte é:
+\begin{alternativas}
+\item $R_L$ deve ser a menor possível.
+\item $R_L$ deve ser a maior possível.
+\item $R_L = R_{\text{Th}}$.
+\item $R_L = 2R_{\text{Th}}$.
+\item $R_L = R_{\text{Th}}/2$.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{A potência na carga é máxima quando $R_L = R_{\text{Th}}$ (casamento de
+impedância). Cargas muito pequenas recebem alta corrente mas baixa tensão; cargas
+muito grandes, o contrário. O equilíbrio ótimo está na igualdade.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um dispositivo submetido a $\SI{12}{\volt}$ é percorrido por $\SI{3}{\ampere}$. A
+potência que ele consome é:
+\begin{alternativas}[3]
+\item \SI{4}{\watt}
+\item \SI{15}{\watt}
+\item \SI{36}{\watt}
+\item \SI{4}{\watt}
+\item \SI{0.25}{\watt}
+\end{alternativas}
+\resposta{(c)}
+\resolucao{$P = U\,I = 12\cdot3 = \SI{36}{\watt}$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma fonte de Thévenin tem $V_{\text{Th}} = \SI{12}{\volt}$ e
+$R_{\text{Th}} = \SI{4}{\ohm}$.
+\begin{itensq}
+\item Qual o valor de $R_L$ para máxima transferência de potência?
+\item Qual essa potência máxima?
+\end{itensq}
+\resposta{(a) \SI{4}{\ohm}; (b) \SI{9}{\watt}}
+\resolucao{(a) $R_L = R_{\text{Th}} = \SI{4}{\ohm}$.\\
+(b) $P_{\max} = \dfrac{V_{\text{Th}}^{\,2}}{4R_{\text{Th}}}
+= \dfrac{12^2}{4\cdot4} = \dfrac{144}{16} = \SI{9}{\watt}$.\\
+\textbf{Confira:} com $R_L = R_{\text{Th}}$, a corrente é
+$I = \dfrac{12}{4+4} = \SI{1.5}{\ampere}$ e
+$P_L = R_L I^2 = 4\cdot1{,}5^2 = \SI{9}{\watt}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte com resistência interna de $\SI{6}{\ohm}$ e fem de $\SI{18}{\volt}$
+alimenta uma carga $R_L$. Determine $R_L$ para máxima transferência de potência e
+o valor dessa potência.
+\resposta{$R_L = \SI{6}{\ohm}$; $P_{\max} = \SI{13.5}{\watt}$}
+\resolucao{$R_L = R_{\text{int}} = \SI{6}{\ohm}$, e
+\[
+P_{\max}=\frac{V^2}{4R_{\text{int}}}=\frac{18^2}{4\cdot6}=\frac{324}{24}
+=\SI{13.5}{\watt}.
+\]}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito da figura, a fonte de $\SI{60}{\volt}$ está \textbf{absorvendo}
+potência (sendo carregada). Sobre a corrente $I$ indicada (que entra pelo terminal
+positivo da fonte de $\SI{60}{\volt}$), pode-se afirmar que:
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$\SI{90}{\volt}$}] (0,3)
+       to[R,l={$\SI{10}{\ohm}$}] (4,3)
+       to[battery1,l={$\SI{60}{\volt}$},invert] (4,0) -- (0,0);
+ \draw[->,Icol,line width=1pt] (0.8,3.4)--(2.0,3.4)
+       node[midway,above,font=\footnotesize]{$I$};
+\end{circuitikz}}
+
+\begin{alternativas}
+\item $I$ é positiva no sentido indicado.
+\item $I$ é nula.
+\item $I$ tem sentido tal que entra pelo $+$ da fonte de \SI{60}{\volt},
+      confirmando a absorção.
+\item a fonte de \SI{60}{\volt} nunca pode absorver potência.
+\item nada se pode afirmar sem o valor do resistor.
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Para uma fonte \emph{absorver} potência, a corrente deve entrar pelo
+seu terminal positivo (convenção do receptor). Aqui a fonte de \SI{90}{\volt}
+impõe a corrente no sentido horário, que de fato entra pelo $+$ da fonte de
+\SI{60}{\volt} --- por isso esta última é carregada.
+A corrente vale $I = \dfrac{90-60}{10} = \SI{3}{\ampere}$, e a fonte de
+\SI{60}{\volt} absorve $P = 60\cdot3 = \SI{180}{\watt}$. É exatamente o que ocorre
+ao carregar uma bateria: uma fonte de maior tensão força corrente "para dentro"
+dela.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bateria de fem $\SI{12}{\volt}$ e resistência interna $\SI{2}{\ohm}$ alimenta
+uma carga $R_L = \SI{4}{\ohm}$.
+\begin{itensq}
+\item Qual a potência entregue à carga?
+\item Compare com a potência máxima teórica (obtida quando $R_L = R_{\text{int}}$).
+\end{itensq}
+\resposta{(a) \SI{16}{\watt}; (b) máximo é \SI{18}{\watt} em $R_L=\SI{2}{\ohm}$}
+\resolucao{(a) $I = \dfrac{12}{2+4} = \SI{2}{\ampere}$;
+$P_L = R_L I^2 = 4\cdot4 = \SI{16}{\watt}$.\\
+(b) O máximo ocorreria em $R_L = R_{\text{int}} = \SI{2}{\ohm}$:
+$P_{\max} = \dfrac{12^2}{4\cdot2} = \SI{18}{\watt}$. A carga de \SI{4}{\ohm}
+entrega \SI{16}{\watt}, um pouco abaixo do máximo --- coerente com a curva suave
+de $P_L$ em torno do ponto ótimo.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma fonte real de $V_{\text{Th}} = \SI{20}{\volt}$ e $R_{\text{Th}} = \SI{10}{\ohm}$
+alimenta uma carga variável $R_L$.
+\begin{itensq}
+\item Calcule a potência na carga para $R_L = \SI{5}{\ohm}$, $\SI{10}{\ohm}$ e
+      $\SI{20}{\ohm}$.
+\item Confirme que o máximo ocorre em $R_L = R_{\text{Th}}$.
+\end{itensq}
+\resposta{$P(5)\approx\SI{8.9}{\watt}$, $P(10)=\SI{10}{\watt}$,
+$P(20)\approx\SI{8.9}{\watt}$; máximo em \SI{10}{\ohm}}
+\resolucao{A corrente é $I = \dfrac{V_{\text{Th}}}{R_{\text{Th}}+R_L}$ e a potência
+na carga, $P_L = R_L I^2 = \dfrac{V_{\text{Th}}^{\,2}\,R_L}{(R_{\text{Th}}+R_L)^2}$:
+\[
+P(5)=\frac{400\cdot5}{15^2}=\frac{2000}{225}\approx\SI{8.9}{\watt},\quad
+P(10)=\frac{400\cdot10}{20^2}=\SI{10}{\watt},\quad
+P(20)=\frac{400\cdot20}{30^2}=\frac{8000}{900}\approx\SI{8.9}{\watt}.
+\]
+O valor máximo é $P(10) = \SI{10}{\watt}$, confirmando
+$R_L = R_{\text{Th}} = \SI{10}{\ohm}$. Note a \emph{simetria}: cargas de
+\SI{5}{} e \SI{20}{\ohm} (uma metade, outra o dobro de $R_{\text{Th}}$) dão a mesma
+potência. A curva $P_L \times R_L$ tem um máximo suave em $R_L = R_{\text{Th}}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Explique por que, na condição de máxima transferência de potência
+($R_L = R_{\text{Th}}$), o rendimento do circuito é de apenas
+$\SI{50}{\percent}$, e por que, em sistemas de \emph{potência} (rede elétrica),
+essa condição \textbf{não} é desejável.
+\resposta{Ver comentário}
+\resolucao{Com $R_L = R_{\text{Th}}$, a corrente se divide igualmente e a mesma
+potência dissipada na carga é dissipada \emph{internamente} em $R_{\text{Th}}$.
+O rendimento é
+\[
+\eta=\frac{P_{\text{carga}}}{P_{\text{total}}}
+=\frac{R_L}{R_L+R_{\text{Th}}}=\frac{1}{2}=\SI{50}{\percent}.
+\]
+Metade da energia vira calor na fonte --- aceitável em sinais fracos (áudio,
+antenas, onde importa extrair o \emph{máximo} sinal), mas inaceitável na rede
+elétrica, onde se quer \emph{eficiência}. Por isso, em sistemas de potência,
+opera-se com $R_L \gg R_{\text{Th}}$ (rendimento próximo de \SI{100}{\percent}),
+sacrificando potência máxima em favor de baixo desperdício.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte de $V_{\text{Th}}=\SI{24}{\volt}$ e $R_{\text{Th}}=\SI{4}{\ohm}$
+alimenta uma carga variável $R_L$. Complete mentalmente a análise abaixo e
+responda.
+
+\begin{table}[H]
+\centering\small\sffamily
+\setlength{\arraystretch}{1.25}
+\begin{tabular}{@{}c c c c@{}}
+\toprule
+$R_L$ ($\Omega$) & $I$ (A) & $P_L$ (W) & $\eta$ (\%)\\
+\midrule
+1  & 4,8 & 23,0 & 20\\
+2  & 4,0 & 32,0 & 33\\
+\textbf{4}  & \textbf{3,0} & \textbf{36,0} & \textbf{50}\\
+8  & 2,0 & 32,0 & 67\\
+16 & 1,2 & 23,0 & 80\\
+\bottomrule
+\end{tabular}
+\caption{Potência na carga e rendimento em função de $R_L$.}
+\end{table}
+
+\begin{itensq}
+\item Verifique os valores da linha $R_L=\SI{8}{\ohm}$.
+\item Explique a \emph{simetria} observada na coluna $P_L$.
+\item Se o objetivo for \emph{eficiência energética}, qual $R_L$ escolher? E se
+      for \emph{máxima potência}? Justifique a diferença.
+\end{itensq}
+\resposta{(a) $I=\SI{2}{\ampere}$, $P_L=\SI{32}{\watt}$, $\eta=\SI{67}{\percent}$;
+(b) e (c) ver comentário}
+\resolucao{\textbf{(a)} Para $R_L=\SI{8}{\ohm}$:
+\[
+I=\frac{24}{4+8}=\SI{2}{\ampere},\quad
+P_L=R_LI^2=8\cdot4=\SI{32}{\watt},\quad
+\eta=\frac{R_L}{R_{\text{Th}}+R_L}=\frac{8}{12}\approx\SI{67}{\percent}.\ \checkmark
+\]
+\textbf{(b) A simetria.} Observe que $R_L=\SI{2}{\ohm}$ e $R_L=\SI{8}{\ohm}$ dão a
+\emph{mesma} potência (\SI{32}{\watt}); o mesmo ocorre com \SI{1}{} e
+\SI{16}{\ohm} (\SI{23}{\watt}). Isso porque cargas que são \emph{recíprocas} em
+relação a $R_{\text{Th}}$ --- isto é, $R_L$ e $R_{\text{Th}}^2/R_L$ --- produzem
+potências idênticas:
+\[
+P_L=\frac{V^2R_L}{(R_{\text{Th}}+R_L)^2}
+\quad\text{é invariante sob}\quad
+R_L \leftrightarrow \frac{R_{\text{Th}}^{2}}{R_L}.
+\]
+Verifique: $2$ e $16/2=8$ \checkmark; $1$ e $16/1=16$ \checkmark. A curva é
+simétrica em escala \emph{logarítmica}, com máximo em $R_L=R_{\text{Th}}$.
+
+\textbf{(c) O conflito central de projeto.}
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item \textbf{Máxima potência} $\Rightarrow R_L = R_{\text{Th}} = \SI{4}{\ohm}$,
+      mas com apenas \SI{50}{\percent} de rendimento --- metade da energia vira
+      calor na fonte.
+\item \textbf{Máxima eficiência} $\Rightarrow R_L$ o \emph{maior} possível
+      ($\eta \to \SI{100}{\percent}$), mas a potência entregue tende a zero.
+\end{itemize}
+\textbf{Não existe ponto que otimize ambos} --- são objetivos conflitantes.
+A escolha depende do que é escasso:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item em \emph{telecomunicações} e áudio, o sinal é fraco e a energia é barata:
+      casa-se a impedância para extrair o máximo sinal;
+\item em \emph{sistemas de potência}, a energia é o produto: opera-se com
+      $R_L \gg R_{\text{Th}}$, com rendimento acima de \SI{95}{\percent}.
+\end{itemize}
+\emph{Saber qual critério aplicar é mais importante que saber calcular ambos.}}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{Problema de síntese integrado.} Projete um circuito que satisfaça
+simultaneamente:
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
+\item alimentado por uma fonte de $\SI{24}{\volt}$ com resistência interna
+      $\SI{2}{\ohm}$;
+\item entregue \emph{máxima potência} a uma carga;
+\item a corrente total drenada da fonte não ultrapasse $\SI{6}{\ampere}$.
+\end{itemize}
+Determine o valor da carga, a potência entregue e verifique a restrição de
+corrente.
+\resposta{$R_L = \SI{2}{\ohm}$; $P = \SI{72}{\watt}$; $I = \SI{6}{\ampere}$
+(no limite)}
+\resolucao{\textbf{Condição de máxima transferência:}
+$R_L = R_{\text{int}} = \SI{2}{\ohm}$.\\
+\textbf{Corrente resultante:}
+\[
+I = \frac{24}{R_{\text{int}}+R_L}=\frac{24}{4}=\SI{6}{\ampere}.
+\]
+A restrição é atendida \emph{exatamente no limite} --- não há margem.\\
+\textbf{Potência na carga:}
+\[
+P_L = R_L I^2 = 2\cdot6^2 = \SI{72}{\watt}
+\quad\text{(confere com } P_{\max}=\tfrac{24^2}{4\cdot2}=\SI{72}{\watt}).
+\]
+\textbf{Análise crítica do projeto:} a fonte dissipa internamente os mesmos
+\SI{72}{\watt} (rendimento de \SI{50}{\percent}), totalizando \SI{144}{\watt}
+consumidos. Como a corrente está no limite especificado, qualquer tolerância
+para baixo em $R_L$ (por aquecimento, por exemplo) violaria a restrição.
+\textbf{Recomendação de engenharia:} adotar $R_L$ ligeiramente \emph{acima} de
+\SI{2}{\ohm} --- por exemplo \SI{2.2}{\ohm} --- sacrifica menos de
+\SI{1}{\percent} da potência ($\SI{71.5}{\watt}$) e traz a corrente para
+\SI{5.7}{\ampere}, criando margem de segurança. \emph{Projetar no limite exato é
+um erro clássico de quem só sabe calcular; o profissional experiente sempre
+reserva margem.}}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Potência Elétrica e Máxima Transferência
+\input{bancos/banco-potencia-eletrica-e-maxima-transferencia.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[Capítulo 5 --- Potência e máxima transferência]

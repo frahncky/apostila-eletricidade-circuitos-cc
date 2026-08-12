@@ -1,0 +1,945 @@
+% =====================================================================
+%  Banco complementar --- Capacitores  (REVISADO)
+%  Substitui a versao gerada por template (10 clones em N2, 11 em N3,
+%  10 questoes conceituais indevidamente marcadas como N4).
+%  Sem sobreposicao com o cap10, que ja traz: C de placas paralelas,
+%  Q=CV com W, serie 6/3, paralelo 4/12, energia (MC), associacao mista
+%  6||3, RC de 1 kohm/1 uF, tres de 6 uF, descarga de 2 uF/6 V, grafico
+%  v_C(t), COMPARTILHAMENTO DE CARGA entre C1 e C2 e INSERCAO DE
+%  DIELETRICO (a Q e a V constantes) --- estes dois ultimos motivaram a
+%  remocao de duas N4 do banco antigo, que os duplicavam.
+%  Distribuicao mantida: 4 N1 + 10 N2 + 11 N3 + 10 N4 = 35
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Capacitores}
+
+\begin{atencao}[Organização do banco]
+Três relações organizam o tópico: $Q=CU$, $W=\frac12CU^{2}$ e
+$i=C\dfrac{\mathrm{d}u}{\mathrm{d}t}$. Delas decorre o fato central dos
+transitórios --- a \textbf{tensão} no capacitor não pode saltar (isso exigiria
+corrente infinita), ao contrário do indutor, em que é a \emph{corrente} que é
+contínua. O N3 trata de divisão de tensão em série, fuga, ESR e extração de
+parâmetros; o N4 exige dedução da EDO, balanço energético, projeto de banco,
+filtro e temporizador.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um capacitor armazena $\SI{300}{\micro\coulomb}$ sob $\SI{20}{\volt}$.
+Determine sua capacitância.
+\resposta{$C=\SI{15}{\micro\farad}$}
+\resolucao{
+\[
+C=\frac{Q}{U}=\frac{\pot{300}{-6}}{20}=\pot{15}{-6}\,\si{\farad}
+=\SI{15}{\micro\farad}.
+\]
+A capacitância é uma propriedade \emph{geométrica} do componente: ela não
+depende de $Q$ nem de $U$, apenas da razão entre eles. Aplicar o dobro da
+tensão dobra a carga e deixa $C$ inalterada.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um capacitor de $\SI{100}{\micro\farad}$ armazena $\SI{8}{\milli\joule}$.
+Determine a tensão em seus terminais.
+\resposta{$U\approx\SI{12.6}{\volt}$}
+\resolucao{De $W=\frac12CU^{2}$,
+\[
+U=\sqrt{\frac{2W}{C}}=\sqrt{\frac{2(\pot{8}{-3})}{\pot{100}{-6}}}
+=\sqrt{160}=\SI{12.65}{\volt}.
+\]
+A raiz quadrada indica que a energia é pouco sensível à tensão em valores
+baixos e muito sensível em valores altos: dobrar a tensão \emph{quadruplica}
+a energia armazenada.}
+\end{questao}
+
+\begin{questao}[1]{}
+Sobre a tensão em um capacitor ideal, é correto afirmar que ela:
+\begin{alternativas}[2]
+\item pode variar instantaneamente
+\item não pode variar instantaneamente
+\item é sempre igual à da fonte
+\item é sempre nula em regime permanente CC
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Um salto de tensão implicaria
+$\mathrm{d}u/\mathrm{d}t\to\infty$ e, por
+$i=C\,\mathrm{d}u/\mathrm{d}t$, corrente infinita --- impossível. Logo
+$u(0^{+})=u(0^{-})$.\\
+\textbf{Dualidade com o indutor:} no capacitor é a \emph{tensão} que é
+contínua; no indutor, a \emph{corrente}. Em regime CC o capacitor tem corrente
+nula (comporta-se como circuito aberto) e tensão em geral não nula --- o que
+descarta a alternativa (d).}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine a constante de tempo de um circuito RC com
+$R=\SI{4.7}{\kilo\ohm}$ e $C=\SI{10}{\micro\farad}$.
+\resposta{$\tau=\SI{47}{\milli\second}$}
+\resolucao{
+\[
+\tau=RC=4700\cdot\pot{10}{-6}=\pot{4.7}{-2}\,\si{\second}
+=\SI{47}{\milli\second}.
+\]
+\textbf{Atenção à estrutura:} no RC, resistência \emph{maior} torna o
+transitório \emph{mais lento} ($\tau=RC$); no RL ocorre o contrário
+($\tau=L/R$). Verificar a dimensão ajuda:
+$\si{\ohm}\times\si{\farad}=\si{\second}$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Dois capacitores de $\SI{10}{\micro\farad}$ em série são associados em paralelo
+com um de $\SI{15}{\micro\farad}$. Determine $C_{eq}$.
+\resposta{$C_{eq}=\SI{20}{\micro\farad}$}
+\resolucao{\textbf{Série} (regra inversa, ao contrário dos resistores):
+\[
+C_s=\frac{10\cdot10}{20}=\SI{5}{\micro\farad}.
+\]
+\textbf{Paralelo} (soma direta):
+\[
+C_{eq}=5+15=\SI{20}{\micro\farad}.
+\]
+Memorize a inversão: capacitores em \emph{série} combinam como resistores em
+paralelo, e vice-versa. A razão física é que a série reduz a capacitância
+(equivale a afastar as placas), enquanto o paralelo a aumenta (equivale a somar
+áreas).}
+\end{questao}
+
+\begin{questao}[2]{}
+Capacitores de $\SI{1}{\micro\farad}$ e $\SI{2}{\micro\farad}$ estão em série
+sob $\SI{30}{\volt}$. Determine $C_{eq}$, a carga e a tensão em cada um.
+\resposta{$C_{eq}=\SI{0.667}{\micro\farad}$; $Q=\SI{20}{\micro\coulomb}$;
+$U_1=\SI{20}{\volt}$, $U_2=\SI{10}{\volt}$}
+\resolucao{
+\[
+C_{eq}=\frac{1\cdot2}{3}=\SI{0.667}{\micro\farad};
+\qquad
+Q=C_{eq}U=0{,}667\cdot30=\SI{20}{\micro\coulomb}.
+\]
+Em série, a \textbf{carga é a mesma} em todos (é a mesma corrente que os
+carregou):
+\[
+U_1=\frac{20}{1}=\SI{20}{\volt},
+\qquad
+U_2=\frac{20}{2}=\SI{10}{\volt}.
+\]
+\textbf{Verificação:} $20+10=\SI{30}{\volt}$ \checkmark.\\
+A tensão se reparte \emph{inversamente} à capacitância --- o capacitor
+\textbf{menor} fica com a maior tensão. É o oposto da série de resistores, e é
+a causa de um problema de projeto tratado adiante.}
+\end{questao}
+
+\begin{questao}[2]{}
+A tensão sobre um capacitor de $\SI{10}{\micro\farad}$ cresce linearmente à
+taxa de $\SI{500}{\volt\per\second}$. Determine a corrente.
+\resposta{$i=\SI{5}{\milli\ampere}$}
+\resolucao{
+\[
+i=C\frac{\mathrm{d}u}{\mathrm{d}t}=\pot{10}{-6}\cdot500
+=\pot{5}{-3}\,\si{\ampere}=\SI{5}{\milli\ampere}.
+\]
+Enquanto a rampa durar, a corrente é \emph{constante}. Se a tensão parasse de
+variar, a corrente cairia a zero instantaneamente --- o capacitor responde à
+\textbf{variação} da tensão, não ao seu valor.}
+\end{questao}
+
+\begin{questao}[2]{}
+Aplica-se a um capacitor de $\SI{2.2}{\micro\farad}$ uma tensão
+\textbf{triangular} que sobe $\SI{10}{\volt}$ em $\SI{1}{\milli\second}$ e
+desce igualmente no milissegundo seguinte. Descreva e quantifique a corrente.
+\resposta{Onda \textbf{quadrada} de $\pm\SI{22}{\milli\ampere}$}
+\resolucao{Na subida,
+$\mathrm{d}u/\mathrm{d}t=10/10^{-3}=\SI{10000}{\volt\per\second}$:
+\[
+i=2{,}2\times10^{-6}\cdot10^{4}=\SI{22}{\milli\ampere}.
+\]
+Na descida a taxa inverte e $i=\SI{-22}{\milli\ampere}$.\\
+\textbf{Resultado geral:} o capacitor \emph{deriva} a tensão --- triangular
+entra, quadrada sai. O indutor faz o oposto (integra): tensão quadrada nele
+produz corrente triangular. É a dualidade dos dois elementos em sua forma mais
+visível no osciloscópio.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito RC com $\tau=\SI{2}{\milli\second}$ é ligado a
+$\SI{20}{\volt}$ com o capacitor inicialmente descarregado. Determine
+$u_C$ em $t=\tau$, $2\tau$ e $3\tau$.
+\resposta{$\SI{12.64}{\volt}$, $\SI{17.29}{\volt}$ e $\SI{19.00}{\volt}$}
+\resolucao{Com $u_C=U\left(1-e^{-t/\tau}\right)$ e $U=\SI{20}{\volt}$:
+\[
+u(\tau)=20(0{,}632)=\SI{12.64}{\volt};
+\quad
+u(2\tau)=20(0{,}865)=\SI{17.29}{\volt};
+\quad
+u(3\tau)=20(0{,}950)=\SI{19.00}{\volt}.
+\]
+As frações $63{,}2\%$, $86{,}5\%$ e $95{,}0\%$ são as mesmas do circuito RL ---
+elas dependem só da forma exponencial, não do tipo de elemento.}
+\end{questao}
+
+\begin{questao}[2]{}
+No mesmo circuito, determine o instante em que a tensão atinge
+$\SI{15}{\volt}$.
+\resposta{$t\approx\SI{2.77}{\milli\second}$}
+\resolucao{
+\[
+15=20\left(1-e^{-t/\tau}\right)
+\;\Longrightarrow\;
+e^{-t/\tau}=0{,}25
+\;\Longrightarrow\;
+t=\tau\ln4=2(1{,}386)=\SI{2.77}{\milli\second}.
+\]
+\textbf{Atalho útil:} atingir $75\%$ leva exatamente $\ln4\approx1{,}39\tau$;
+atingir $50\%$ leva $\ln2\approx0{,}69\tau$. Esse último valor é a "meia-vida"
+do transitório e vale a pena memorizar.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{24}{\volt}$ alimenta $R_1=\SI{8}{\kilo\ohm}$ em série com
+$R_2=\SI{4}{\kilo\ohm}$. Um capacitor está ligado em paralelo com $R_2$.
+Determine a tensão no capacitor em regime permanente e a corrente que o
+atravessa.
+\resposta{$U_C=\SI{8}{\volt}$; $i_C=0$}
+\resolucao{Em regime CC o capacitor é um \textbf{circuito aberto}: não conduz.
+Toda a corrente passa pelos dois resistores, e a tensão do capacitor é a de
+$R_2$:
+\[
+U_C=24\cdot\frac{4}{8+4}=\SI{8}{\volt};
+\qquad
+i_C=0.
+\]
+\textbf{Método:} para achar o estado final de qualquer circuito CC com
+capacitores, basta \emph{removê-los} do esquema e resolver a rede resistiva
+restante. Para indutores, o procedimento dual é substituí-los por curtos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Dois capacitores armazenam a mesma energia. O primeiro tem
+$C_1=\SI{100}{\micro\farad}$ sob $\SI{10}{\volt}$. Se
+$C_2=\SI{25}{\micro\farad}$, determine sua tensão.
+\resposta{$U_2=\SI{20}{\volt}$}
+\resolucao{
+\[
+\frac12C_1U_1^{2}=\frac12C_2U_2^{2}
+\;\Longrightarrow\;
+U_2=U_1\sqrt{\frac{C_1}{C_2}}=10\sqrt{4}=\SI{20}{\volt}.
+\]
+Ambos armazenam $\SI{5}{\milli\joule}$. Reduzir $C$ por um fator $4$ exige
+\emph{dobrar} a tensão --- e a tensão é justamente o parâmetro caro e limitado
+em capacitores reais, pois exige dielétrico mais espesso, o que reduz $C$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um capacitor plano tem capacitância $C$. Determine a nova capacitância se:
+\begin{itensq}
+\item a área das placas for dobrada;
+\item a distância entre placas for reduzida à metade;
+\item ambas as alterações forem feitas.
+\end{itensq}
+\resposta{(a) $2C$; (b) $2C$; (c) $4C$}
+\resolucao{De $C=\dfrac{\varepsilon A}{d}$: $C\propto A$ e
+$C\propto1/d$.\\
+(a) $A\to2A$ dá $2C$. (b) $d\to d/2$ dá $2C$. (c) os efeitos se multiplicam:
+$4C$.\\
+\textbf{Limite prático de (b):} reduzir $d$ aumenta o campo
+$E=U/d$ para a mesma tensão. Chega-se rapidamente à rigidez dielétrica do
+material, e o capacitor perfura. Há, portanto, um teto para essa estratégia ---
+motivo pelo qual capacitores de alta capacitância usam grandes áreas
+(folhas enroladas) em vez de dielétricos ultrafinos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um capacitor carregado a $\SI{50}{\volt}$ é descarregado através de
+$R=\SI{2.2}{\kilo\ohm}$. Determine a corrente inicial e explique sua evolução.
+\resposta{$i_0=\SI{22.7}{\milli\ampere}$, decaindo exponencialmente}
+\resolucao{No instante inicial a tensão ainda é $\SI{50}{\volt}$
+(continuidade), e ela se aplica integralmente ao resistor:
+\[
+i_0=\frac{50}{2200}=\SI{22.7}{\milli\ampere}.
+\]
+À medida que o capacitor se descarrega, sua tensão cai e a corrente a acompanha:
+$i(t)=i_0e^{-t/\tau}$.\\
+\textbf{Observação:} a corrente é máxima no início e a tensão é máxima no
+início --- diferentemente do circuito RL, em que a corrente parte de zero. Essa
+diferença decorre justamente de qual grandeza é contínua em cada elemento.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+$C_1=\SI{4}{\micro\farad}$ e $C_2=\SI{12}{\micro\farad}$, ambos com tensão
+máxima de trabalho de $\SI{50}{\volt}$, são ligados em série.
+\begin{itensq}
+\item Determine $C_{eq}$ e a distribuição de tensão sob $\SI{100}{\volt}$.
+\item Determine a máxima tensão que a associação suporta.
+\item Explique por que o resultado é contraintuitivo.
+\end{itensq}
+\resposta{(a) $\SI{3}{\micro\farad}$; $\SI{75}{\volt}$ e $\SI{25}{\volt}$;
+(b) $\SI{66.7}{\volt}$}
+\resolucao{(a) $C_{eq}=\dfrac{4\cdot12}{16}=\SI{3}{\micro\farad}$. Como a carga
+é comum, $U\propto1/C$:
+\[
+U_1=100\cdot\frac{12}{16}=\SI{75}{\volt},
+\qquad
+U_2=100\cdot\frac{4}{16}=\SI{25}{\volt}.
+\]
+(b) Sob $\SI{100}{\volt}$, $C_1$ já está a $\SI{75}{\volt}$ --- $50\%$ acima do
+limite. Impondo $U_1\le\SI{50}{\volt}$:
+\[
+U_{\max}=50\cdot\frac{16}{12}=\SI{66.7}{\volt}.
+\]
+(c) \textbf{É contraintuitivo} porque associar dois componentes de
+$\SI{50}{\volt}$ em série sugere $\SI{100}{\volt}$ de capacidade --- e isso
+\emph{só} é verdade se eles forem \textbf{iguais}. Com valores diferentes, o
+menor capacitor absorve a maior parte da tensão e limita todo o conjunto.\\
+\textbf{Regra prática:} em série de capacitores, use sempre unidades idênticas
+--- e ainda assim adicione resistores de equalização, como se detalha no bloco
+de desafio.}
+\end{questao}
+
+\begin{questao}[3]{}
+Capacitores de $\SI{2}{\micro\farad}$, $\SI{3}{\micro\farad}$ e
+$\SI{5}{\micro\farad}$ estão em paralelo sob $\SI{20}{\volt}$. Determine a
+carga de cada um, a carga total e $C_{eq}$, e compare com o caso série.
+\resposta{$40$, $60$ e $\SI{100}{\micro\coulomb}$; total
+$\SI{200}{\micro\coulomb}$; $C_{eq}=\SI{10}{\micro\farad}$}
+\resolucao{Em paralelo a \textbf{tensão} é comum:
+\[
+Q_k=C_kU \Rightarrow 40,\ 60,\ \SI{100}{\micro\coulomb};
+\qquad
+Q_{tot}=\SI{200}{\micro\coulomb}.
+\]
+\[
+C_{eq}=2+3+5=\SI{10}{\micro\farad}
+\quad\text{(confere: }200/20=10\text{)}.
+\]
+\textbf{Comparação com a série:} lá, a \emph{carga} é comum e a tensão se
+divide; aqui, a \emph{tensão} é comum e a carga se divide. O paralelo soma
+capacitâncias e mantém a tensão de trabalho da menor unidade; a série reduz a
+capacitância e (idealmente) soma as tensões. São estratégias opostas para
+problemas opostos.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte de $\SI{12}{\volt}$ alimenta $R_1=\SI{6}{\kilo\ohm}$ em série com
+$R_2=\SI{3}{\kilo\ohm}$, e um capacitor de $\SI{100}{\nano\farad}$ está em
+paralelo com $R_2$.
+\begin{itensq}
+\item Determine a tensão final no capacitor.
+\item Determine $\tau$ pelo equivalente de Thévenin.
+\item Escreva $u_C(t)$.
+\end{itensq}
+\resposta{(a) $\SI{4}{\volt}$; (b) $\tau=\SI{0.2}{\milli\second}$;
+(c) $u_C=4\left(1-e^{-t/0{,}2\,\mathrm{ms}}\right)$}
+\resolucao{(a) Com o capacitor aberto em regime,
+$U_C=12\cdot\dfrac{3}{9}=\SI{4}{\volt}$.\\
+(b) Zerando a fonte, o capacitor vê $R_1\parallel R_2$:
+\[
+R_{Th}=\frac{6\cdot3}{9}=\SI{2}{\kilo\ohm}
+\;\Longrightarrow\;
+\tau=R_{Th}C=2000\cdot\pot{100}{-9}=\SI{0.2}{\milli\second}.
+\]
+(c) $u_C(t)=4\left(1-e^{-t/0{,}0002}\right)$ volts.\\
+\textbf{Erro comum:} usar $\tau=R_1C$ ou $\tau=R_2C$. A constante de tempo é
+governada pela resistência \emph{vista pelo capacitor} com as fontes zeradas
+--- aqui, o paralelo das duas, que é menor que qualquer uma delas. O transitório
+é, portanto, mais rápido do que qualquer estimativa ingênua sugeriria.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor já está a $\SI{2}{\volt}$ quando é ligado a um circuito que o
+levaria a $\SI{10}{\volt}$, com $\tau=\SI{5}{\milli\second}$.
+\begin{itensq}
+\item Escreva $u_C(t)$.
+\item Determine a tensão em $t=\SI{5}{\milli\second}$.
+\item Determine a corrente inicial, sabendo que $R=\SI{5}{\kilo\ohm}$.
+\end{itensq}
+\resposta{(a) $u_C=10-8e^{-t/\tau}$; (b) $\SI{7.06}{\volt}$;
+(c) $\SI{1.6}{\milli\ampere}$}
+\resolucao{(a) A forma geral de qualquer transitório de primeira ordem é
+\[
+u(t)=U_f+\left(U_0-U_f\right)e^{-t/\tau}=10-8e^{-t/\tau}.
+\]
+(b) $u(5\,\mathrm{ms})=10-8e^{-1}=10-2{,}94=\SI{7.06}{\volt}$.\\
+(c) Em $t=0^{+}$ a tensão do capacitor é $\SI{2}{\volt}$, e sobre o resistor
+sobram $10-2=\SI{8}{\volt}$:
+\[
+i_0=\frac{8}{5000}=\SI{1.6}{\milli\ampere}.
+\]
+\textbf{Vantagem da forma geral:} ela cobre carga ($U_0=0$), descarga
+($U_f=0$) e qualquer condição intermediária. Basta identificar os três
+parâmetros $U_0$, $U_f$ e $\tau$ --- não há três fórmulas a memorizar.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor de $\SI{470}{\micro\farad}$ tem resistência de isolação de
+$\SI{2}{\mega\ohm}$. Carregado a $\SI{100}{\volt}$ e deixado em circuito
+aberto:
+\begin{itensq}
+\item Determine a constante de tempo de autodescarga.
+\item Determine a tensão após $\SI{15}{\minute}$.
+\item Comente a implicação de segurança.
+\end{itensq}
+\resposta{(a) $\tau=\SI{940}{\second}\approx\SI{15.7}{\minute}$;
+(b) $\approx\SI{38}{\volt}$}
+\resolucao{(a) A fuga é modelada por um resistor em paralelo:
+\[
+\tau=R_{iso}C=\pot{2}{6}\cdot\pot{470}{-6}=\SI{940}{\second}.
+\]
+(b) Com $t=\SI{900}{\second}$:
+\[
+u=100\,e^{-900/940}=100\,e^{-0{,}957}=\SI{38.4}{\volt}.
+\]
+(c) \textbf{Depois de quinze minutos desligado, o capacitor ainda guarda
+$\SI{38}{\volt}$} --- e, em bancos de fonte chaveada com centenas de volts, o
+resíduo é letal por horas. É por isso que equipamentos com barramento CC trazem
+\emph{resistores de descarga} (bleeders) permanentes e o aviso de aguardar
+antes de abrir o gabinete.\\
+\textbf{Nota:} capacitores eletrolíticos ainda apresentam \emph{absorção
+dielétrica} --- após descarga completa, a tensão "ressurge" parcialmente em
+minutos. Curto-circuitar antes de manusear é procedimento obrigatório, não
+precaução exagerada.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor eletrolítico tem ESR (resistência série equivalente) de
+$\SI{0.1}{\ohm}$ e conduz corrente de ondulação de
+$\SI{1.5}{\ampere}$ eficazes.
+\begin{itensq}
+\item Determine a potência dissipada internamente.
+\item Explique por que essa dissipação limita a vida do componente.
+\item Indique duas formas de reduzi-la.
+\end{itensq}
+\resposta{(a) $P=\SI{0.225}{\watt}$}
+\resolucao{(a)
+\[
+P=\mathrm{ESR}\cdot I_{rms}^{2}=0{,}1(1{,}5)^{2}=\SI{0.225}{\watt}.
+\]
+(b) Essa potência é dissipada \emph{dentro} do capacitor, elevando a
+temperatura do eletrólito. A vida útil de eletrolíticos segue uma regra
+empírica severa: ela \textbf{cai pela metade a cada $\SI{10}{\celsius}$} de
+elevação. Um componente de $\SI{5000}{\hour}$ a $\SI{105}{\celsius}$ dura
+$\SI{20000}{\hour}$ a $\SI{85}{\celsius}$ --- e o inverso também vale.
+Pior: o eletrólito evapora, a ESR \emph{aumenta}, a dissipação cresce e o
+processo se realimenta.\\
+(c) \textbf{(i) Dividir a corrente:} usar $n$ capacitores em paralelo reduz a
+corrente por unidade a $I/n$ e a dissipação individual a $P/n^{2}$.
+Com dois, cada um dissipa $\SI{56}{\milli\watt}$ --- um quarto do original.\\
+\textbf{(ii) Escolher tecnologia de baixa ESR:} capacitores de polímero sólido
+têm ESR uma ordem de grandeza menor, ao custo de capacitância e tensão
+menores.\\
+\textbf{Consequência de diagnóstico:} em fontes chaveadas, o capacitor de saída
+é quase sempre o primeiro componente a falhar --- e a ESR crescente, não a
+perda de capacitância, é o sintoma que primeiro aparece.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor de $\SI{100}{\micro\farad}$, inicialmente descarregado, é
+carregado a $\SI{20}{\volt}$ através de um resistor.
+\begin{itensq}
+\item Determine a energia fornecida pela fonte.
+\item Determine a energia armazenada no capacitor.
+\item Determine a energia dissipada no resistor e comente.
+\end{itensq}
+\resposta{(a) $\SI{40}{\milli\joule}$; (b) $\SI{20}{\milli\joule}$;
+(c) $\SI{20}{\milli\joule}$ --- exatamente metade}
+\resolucao{(a) A fonte mantém $\SI{20}{\volt}$ enquanto entrega toda a carga
+final $Q=CU=\SI{2}{\milli\coulomb}$:
+\[
+W_{fonte}=QU=CU^{2}=\pot{100}{-6}(400)=\SI{40}{\milli\joule}.
+\]
+(b) $W_C=\frac12CU^{2}=\SI{20}{\milli\joule}$.\\
+(c) Por conservação, $W_R=40-20=\SI{20}{\milli\joule}$.\\
+\textbf{Resultado notável:} o rendimento do carregamento de um capacitor por
+fonte de tensão através de resistor é \textbf{sempre $50\%$} --- não importa o
+valor de $R$, nem de $C$, nem da tensão. Diminuir $R$ apenas acelera o
+processo; a energia perdida é a mesma. A demonstração formal por integração
+está no bloco de desafio.\\
+\textbf{Consequência prática:} carregadores eficientes não usam resistor série
+--- usam conversores chaveados, que transferem energia em pacotes através de um
+indutor e escapam desse limite de $50\%$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor plano usa dielétrico com rigidez de
+$\SI{20}{\kilo\volt\per\milli\meter}$ e espessura de
+$\SI{0.1}{\milli\meter}$.
+\begin{itensq}
+\item Determine a tensão de ruptura.
+\item Especifique a tensão nominal com margem de $50\%$.
+\item Explique por que a rigidez limita o produto capacitância-tensão.
+\end{itensq}
+\resposta{(a) $\SI{2}{\kilo\volt}$; (b) $\SI{1}{\kilo\volt}$}
+\resolucao{(a) $U_{rup}=E_{rig}\cdot d=20\cdot0{,}1=\SI{2}{\kilo\volt}$.\\
+(b) Com margem de $50\%$, especifica-se $\SI{1}{\kilo\volt}$ --- e ainda assim
+é prudente derrateá-la em alta temperatura e sob ondulação.\\
+(c) Combinando $C=\dfrac{\varepsilon A}{d}$ com
+$U_{\max}=E_{rig}d$:
+\[
+C\,U_{\max}=\varepsilon A E_{rig}
+\quad\Longrightarrow\quad
+W_{\max}=\frac12CU_{\max}^{2}=\frac12\varepsilon E_{rig}^{2}\,(A\,d).
+\]
+O termo $Ad$ é o \textbf{volume} de dielétrico. Ou seja, a energia máxima
+armazenável depende apenas do volume e das propriedades do material
+($\varepsilon$ e $E_{rig}$) --- \emph{não} da geometria escolhida.\\
+\textbf{Consequência:} não existe truque geométrico para ganhar energia. Só
+avança quem melhora o material. É por isso que o desenvolvimento de capacitores
+é, essencialmente, ciência de materiais.}
+\end{questao}
+
+\begin{questao}[3]{}
+Em um circuito RC de carga, mediu-se tensão final de $\SI{10}{\volt}$,
+corrente inicial de $\SI{2}{\milli\ampere}$ e tensão de $\SI{6.32}{\volt}$ em
+$\SI{3}{\milli\second}$. Determine $R$ e $C$.
+\resposta{$R=\SI{5}{\kilo\ohm}$; $C=\SI{0.6}{\micro\farad}$}
+\resolucao{\textbf{Resistência:} em $t=0^{+}$ o capacitor está descarregado e
+toda a tensão cai em $R$:
+\[
+R=\frac{U_f}{i_0}=\frac{10}{\pot{2}{-3}}=\SI{5}{\kilo\ohm}.
+\]
+\textbf{Constante de tempo:} $6{,}32/10=0{,}632$ --- exatamente a fração de
+$1\tau$. Logo $\tau=\SI{3}{\milli\second}$ e
+\[
+C=\frac{\tau}{R}=\frac{\pot{3}{-3}}{5000}=\pot{6}{-7}\,\si{\farad}
+=\SI{0.6}{\micro\farad}.
+\]
+\textbf{Estrutura da medição:} a corrente inicial isola $R$; o transitório
+isola $\tau$; e só a combinação entrega $C$. Nenhuma medida sozinha determina
+o capacitor --- é o mesmo padrão do circuito RL, em que o regime permanente dá
+$R$ e o transitório dá $L$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare o comportamento de capacitor e indutor preenchendo o raciocínio para os
+instantes $t=0^{+}$ e $t\to\infty$, e justifique cada equivalência.
+\resposta{Capacitor: curto em $t=0^{+}$ (se descarregado), aberto em regime;
+indutor: aberto em $t=0^{+}$ (se sem corrente), curto em regime}
+\resolucao{\textbf{Capacitor descarregado em $t=0^{+}$:} $u_C=0$, e um elemento
+com tensão nula equivale a um \textbf{curto-circuito}. Em regime CC,
+$\mathrm{d}u/\mathrm{d}t=0$ implica $i=0$: equivale a \textbf{circuito
+aberto}.\\
+\textbf{Indutor sem corrente em $t=0^{+}$:} $i_L=0$, o que equivale a
+\textbf{circuito aberto}. Em regime, $\mathrm{d}i/\mathrm{d}t=0$ implica
+$v=0$: equivale a \textbf{curto}.\\
+\textbf{Atenção à condição inicial:} as equivalências em $t=0^{+}$ pressupõem
+estado inicial nulo. Se o capacitor já estiver a $U_0$, ele equivale a uma
+\emph{fonte de tensão} $U_0$; se o indutor já conduzir $I_0$, equivale a uma
+\emph{fonte de corrente} $I_0$.\\
+\textbf{Por que isso é útil:} esses quatro substitutos permitem obter os
+valores inicial e final de qualquer transitório de primeira ordem resolvendo
+apenas circuitos \emph{resistivos}. Junto com $\tau$, eles determinam a solução
+completa sem integrar nada.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um filtro RC passa-baixas tem $R=\SI{10}{\kilo\ohm}$ e
+$C=\SI{47}{\nano\farad}$.
+\begin{itensq}
+\item Determine a frequência de corte.
+\item Relacione-a com a constante de tempo.
+\item Descreva o comportamento muito abaixo e muito acima de $f_c$.
+\end{itensq}
+\resposta{(a) $f_c\approx\SI{339}{\hertz}$; (b) $f_c=1/(2\pi\tau)$}
+\resolucao{(a)
+\[
+f_c=\frac{1}{2\pi RC}=\frac{1}{2\pi(10^{4})(\pot{47}{-9})}
+=\SI{339}{\hertz}.
+\]
+(b) Como $\tau=RC=\SI{0.47}{\milli\second}$, vale
+$f_c=\dfrac{1}{2\pi\tau}$: um circuito \emph{lento} (τ grande) filtra a partir
+de frequências \emph{baixas}. As duas descrições --- temporal e frequencial ---
+são a mesma informação.\\
+(c) \textbf{Muito abaixo de $f_c$:} o capacitor tem reatância alta, quase não
+carrega, e o sinal passa praticamente intacto (ganho $\approx1$).\\
+\textbf{Muito acima:} o capacitor não tem tempo de carregar entre as variações;
+a saída é fortemente atenuada, a $-\SI{20}{\decibel}$ por década.\\
+\textbf{Exatamente em $f_c$:} o ganho vale $1/\sqrt2\approx0{,}707$
+($-\SI{3}{\decibel}$), e a defasagem é de $\SI{45}{\degree}$. É a definição
+convencional de frequência de corte.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Dedução --- resposta do circuito RC.)} Um RC série com fonte $U$ tem a
+chave fechada em $t=0$ e $u_C(0)=0$.
+\begin{itensq}
+\item Escreva a equação diferencial e resolva por separação de variáveis.
+\item Obtenha $i(t)$ e verifique a LKT nos dois extremos.
+\item Compare a estrutura da solução com a do circuito RL.
+\end{itensq}
+\resposta{$u_C=U\left(1-e^{-t/RC}\right)$;
+$i=\dfrac{U}{R}e^{-t/RC}$}
+\resolucao{(a) Pela LKT, com $i=C\,\mathrm{d}u_C/\mathrm{d}t$:
+\[
+U=Ri+u_C=RC\frac{\mathrm{d}u_C}{\mathrm{d}t}+u_C
+\;\Longrightarrow\;
+\frac{\mathrm{d}u_C}{U-u_C}=\frac{\mathrm{d}t}{RC}.
+\]
+Integrando de $0$ a $t$:
+\[
+-\ln\!\left(\frac{U-u_C}{U}\right)=\frac{t}{RC}
+\;\Longrightarrow\;
+u_C(t)=U\left(1-e^{-t/RC}\right).
+\]
+(b)
+\[
+i=C\frac{\mathrm{d}u_C}{\mathrm{d}t}
+=CU\cdot\frac{1}{RC}e^{-t/RC}=\frac{U}{R}e^{-t/RC}.
+\]
+\emph{Em $t=0^{+}$:} $u_C=0$ e $Ri=U$; soma $=U$ \checkmark.\\
+\emph{Em $t\to\infty$:} $u_C=U$ e $Ri=0$; soma $=U$ \checkmark.\\
+(c) \textbf{Dualidade estrutural.} No RL, a \emph{corrente} sobe como
+$1-e^{-t/\tau}$ e a tensão do indutor decai como $e^{-t/\tau}$. No RC, é a
+\emph{tensão} que sobe e a corrente que decai. Trocando
+$L\leftrightarrow C$, $i\leftrightarrow u$ e $R\leftrightarrow1/R$, uma solução
+vira a outra --- razão pela qual basta dominar um dos dois casos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- rendimento do carregamento.)} Um capacitor
+descarregado é carregado por uma fonte $U$ através de $R$.
+\begin{itensq}
+\item Integre $p_R=Ri^{2}$ para obter a energia dissipada.
+\item Mostre que ela vale $\frac12CU^{2}$, independentemente de $R$.
+\item Explique como conversores chaveados contornam esse limite.
+\end{itensq}
+\resposta{$W_R=\frac12CU^{2}$; rendimento sempre $50\%$}
+\resolucao{(a) Com $i=\dfrac{U}{R}e^{-t/\tau}$ e $\tau=RC$:
+\[
+W_R=\int_0^{\infty}R\left(\frac{U}{R}\right)^{2}e^{-2t/\tau}\,\mathrm{d}t
+=\frac{U^{2}}{R}\left[-\frac{\tau}{2}e^{-2t/\tau}\right]_0^{\infty}
+=\frac{U^{2}\tau}{2R}.
+\]
+(b) Substituindo $\tau=RC$:
+\[
+W_R=\frac{U^{2}}{2R}\cdot RC=\frac12CU^{2}.
+\]
+O $R$ \textbf{cancela}: ele aparece na potência ($\propto1/R$) e desaparece na
+duração ($\tau\propto R$). Como a fonte forneceu $CU^{2}$ e o capacitor reteve
+$\frac12CU^{2}$, o rendimento é exatamente $50\%$ --- sempre.\\
+(c) \textbf{O limite decorre de forçar a tensão do capacitor a saltar de $0$
+para $U$ contra uma fonte rígida.} Conversores chaveados evitam isso: um
+indutor recebe energia da fonte em regime de corrente, e depois a entrega ao
+capacitor. Como o indutor é um elemento reativo (não dissipa), a transferência
+pode, em princípio, ser feita sem perda --- e na prática rendimentos de $90\%$
+a $95\%$ são rotineiros.\\
+\textbf{Observação:} o mesmo resultado de $50\%$ aparece no compartilhamento de
+carga entre dois capacitores e na descarga de um indutor. Em todos os casos, a
+independência em relação a $R$ tem a mesma origem: potência e duração variam
+inversamente.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de banco.)} Deseja-se um banco de $\SI{100}{\micro\farad}$
+capaz de operar em $\SI{100}{\volt}$, dispondo apenas de capacitores de
+$\SI{100}{\micro\farad}$ e $\SI{50}{\volt}$.
+\begin{itensq}
+\item Determine a associação e o número de unidades.
+\item Explique por que são necessários resistores de equalização.
+\item Dimensione-os para uma corrente de fuga de até
+      $\SI{10}{\micro\ampere}$.
+\end{itensq}
+\resposta{(a) duas séries de dois, em paralelo --- 4 unidades;
+(c) $R\le\SI{50}{\kilo\ohm}$, dissipando $\SI{50}{\milli\watt}$ cada}
+\resolucao{(a) \textbf{Série de dois:} suporta $\SI{100}{\volt}$, mas a
+capacitância cai para $\SI{50}{\micro\farad}$.\\
+\textbf{Duas dessas séries em paralelo:} $50+50=\SI{100}{\micro\farad}$,
+mantendo $\SI{100}{\volt}$. Total: \textbf{4 capacitores}.\\
+Note o custo: quadruplicou-se o número de componentes para dobrar a tensão. É o
+preço inevitável --- a energia armazenada, essa sim, quadruplicou.\\
+(b) \textbf{Sem equalização, a divisão de tensão em série é instável.} A tensão
+de repouso é fixada pelas \emph{correntes de fuga}, não pelas capacitâncias: o
+capacitor de menor fuga assume mais tensão. Como a fuga cresce com a tensão e
+com a temperatura, o desequilíbrio se realimenta e pode levar um dos capacitores
+a ultrapassar $\SI{50}{\volt}$ e perfurar --- o que joga toda a tensão no outro
+e o destrói em seguida.\\
+(c) Ligue um resistor em paralelo com cada capacitor, dimensionado para que sua
+corrente domine a fuga. Adotando um fator $100$:
+\[
+I_R=100\cdot\pot{10}{-6}=\SI{1}{\milli\ampere}
+\;\Longrightarrow\;
+R\le\frac{50}{\pot{1}{-3}}=\SI{50}{\kilo\ohm}.
+\]
+Dissipação: $P=\dfrac{50^{2}}{\pot{50}{3}}=\SI{50}{\milli\watt}$ por resistor
+--- especifique $\frac14\,\si{\watt}$.\\
+\textbf{Bônus:} esses resistores também funcionam como \emph{bleeders},
+descarregando o banco quando o equipamento é desligado. Com
+$\tau=RC=50\,\mathrm{k}\times100\,\mu=\SI{5}{\second}$, o banco fica seguro em
+menos de meio minuto.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de filtro.)} Projete um passa-baixas RC de primeira ordem com
+$f_c=\SI{100}{\hertz}$, usando $C=\SI{100}{\nano\farad}$.
+\begin{itensq}
+\item Determine $R$ e escolha o valor comercial E24.
+\item Recalcule $f_c$ e avalie o erro.
+\item Determine a atenuação em $\SI{1}{\kilo\hertz}$ e discuta a limitação da
+      primeira ordem.
+\end{itensq}
+\resposta{(a) $R=\SI{15.9}{\kilo\ohm}\to\SI{16}{\kilo\ohm}$;
+(b) $f_c=\SI{99.5}{\hertz}$, erro $0{,}5\%$;
+(c) $\approx-\SI{20}{\decibel}$}
+\resolucao{(a)
+\[
+R=\frac{1}{2\pi f_cC}=\frac{1}{2\pi(100)(\pot{100}{-9})}
+=\SI{15915}{\ohm}.
+\]
+O valor E24 mais próximo é $\SI{16}{\kilo\ohm}$.\\
+(b) $f_c=\dfrac{1}{2\pi(16000)(\pot{100}{-9})}=\SI{99.5}{\hertz}$ --- erro de
+$0{,}5\%$, muito abaixo da tolerância do próprio capacitor (tipicamente
+$\pm10\%$ ou pior). \textbf{O capacitor, e não o resistor, domina a incerteza
+do projeto.}\\
+(c) Uma década acima de $f_c$, o ganho é
+\[
+|H|=\frac{1}{\sqrt{1+(f/f_c)^{2}}}\approx\frac{1}{10}
+\;\Longrightarrow\;
+-\SI{20}{\decibel}.
+\]
+\textbf{Limitação:} $\SI{20}{\decibel}$ por década é pouco. Para atenuar
+$\SI{60}{\decibel}$ seria preciso $f=\SI{100}{\kilo\hertz}$ --- três décadas
+acima. Se a especificação exigir corte mais abrupto, é necessário aumentar a
+\emph{ordem} do filtro (cascatear seções ou usar topologia ativa), não
+apertar $R$ e $C$.\\
+\textbf{Cuidado ao cascatear:} duas seções RC ligadas diretamente
+\emph{carregam} uma à outra e o $f_c$ resultante não é o previsto. É preciso
+desacoplá-las com um buffer, ou projetar a rede como um todo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Propagação de incerteza.)} Analise o efeito das tolerâncias de $R$ e
+$C$ sobre a constante de tempo.
+\begin{itensq}
+\item Obtenha a expressão da incerteza relativa de $\tau$.
+\item Avalie para $R$ com $\pm1\%$ e $C$ eletrolítico com $\pm20\%$, nos
+      critérios de pior caso e estatístico.
+\item Conclua sobre onde investir em precisão.
+\end{itensq}
+\resposta{(a) $\dfrac{\Delta\tau}{\tau}=\dfrac{\Delta R}{R}+\dfrac{\Delta C}{C}$;
+(b) $21\%$ (pior caso) e $20{,}0\%$ (estatístico)}
+\resolucao{(a) Como $\tau=RC$ é um \emph{produto}, tome o logaritmo e
+diferencie:
+\[
+\ln\tau=\ln R+\ln C
+\;\Longrightarrow\;
+\frac{\Delta\tau}{\tau}=\frac{\Delta R}{R}+\frac{\Delta C}{C}.
+\]
+As incertezas \textbf{relativas} se somam --- diferentemente da soma, em que se
+somam as absolutas.\\
+(b) \emph{Pior caso:} $1\%+20\%=21\%$.\\
+\emph{Estatístico:} $\sqrt{1^{2}+20^{2}}=\sqrt{401}=20{,}02\%$.\\
+(c) \textbf{Os dois critérios praticamente coincidem} --- e isso é a
+informação relevante. Quando uma parcela domina de forma tão desproporcional,
+combinar em quadratura não ajuda: o resultado é essencialmente a maior
+tolerância isolada.\\
+\textbf{Conclusão de projeto:} trocar o resistor de $1\%$ por um de $0{,}1\%$
+não muda nada ($20{,}00\%$ contra $20{,}02\%$). Todo o ganho está no capacitor.
+Se a aplicação exigir temporização precisa, é preciso abandonar o eletrolítico
+--- filme de poliéster oferece $\pm5\%$, e polipropileno chega a $\pm1\%$ com
+excelente estabilidade térmica.\\
+\textbf{Regra geral:} identifique a maior contribuição \emph{antes} de
+especificar componentes. Precisão gasta em parcelas menores é dinheiro
+jogado fora.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Dedução --- força entre as placas.)} Considere um capacitor plano de
+área $A$ e separação $d$.
+\begin{itensq}
+\item Obtenha a força entre as placas pelo método da energia, com carga
+      constante.
+\item Expresse o resultado em função de $U$ e discuta o caso a tensão
+      constante.
+\item Avalie para $A=\SI{100}{\centi\meter\squared}$,
+      $d=\SI{1}{\milli\meter}$ e $U=\SI{1}{\kilo\volt}$.
+\end{itensq}
+\dados{$\varepsilon_0=\pot{8.85}{-12}\,\si{\farad\per\meter}$}
+\resposta{$F=\dfrac{\varepsilon_0AU^{2}}{2d^{2}}\approx\SI{44}{\milli\newton}$,
+atrativa}
+\resolucao{(a) Com o capacitor \textbf{isolado}, $Q$ é constante e convém usar
+\[
+W=\frac{Q^{2}}{2C}=\frac{Q^{2}d}{2\varepsilon_0A}.
+\]
+A força que o sistema exerce é
+\[
+F=-\frac{\mathrm{d}W}{\mathrm{d}d}=-\frac{Q^{2}}{2\varepsilon_0A},
+\]
+negativa, isto é, \textbf{atrativa} --- as placas tendem a se aproximar,
+reduzindo a energia.\\
+(b) Substituindo $Q=CU=\dfrac{\varepsilon_0AU}{d}$:
+\[
+F=\frac{\varepsilon_0AU^{2}}{2d^{2}}\quad\text{(em módulo)}.
+\]
+\textbf{Sutileza importante:} a tensão constante, a energia \emph{aumenta} ao
+aproximar as placas ($W=\frac12CU^{2}$ com $C$ crescendo), o que sugeriria
+força repulsiva. O paradoxo se resolve incluindo a bateria: ela fornece
+$U\,\mathrm{d}Q$, o dobro da variação de energia do campo. Feito o balanço
+completo, a força é atrativa e de \emph{mesmo módulo} --- como tem de ser, pois
+a força é uma grandeza física e não depende do que se escolhe manter
+constante.\\
+(c)
+\[
+F=\frac{(\pot{8.85}{-12})(\pot{1}{-2})(10^{6})}{2(10^{-6})}
+=\SI{44.3}{\milli\newton}.
+\]
+\textbf{Ordem de grandeza:} cerca de $\SI{4.5}{\gram}$-força para
+$\SI{1}{\kilo\volt}$ --- pequena, mas suficiente para fazer as placas vibrarem
+audivelmente sob tensão alternada. É o "zumbido" de capacitores cerâmicos
+classe 2, e o princípio de funcionamento de microfones e atuadores
+eletrostáticos de MEMS.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de temporizador.)} Um circuito deve atingir $70\%$ da tensão
+final em exatamente $\SI{1}{\second}$.
+\begin{itensq}
+\item Determine $\tau$.
+\item Escolha $C$ e determine $R$, com valores comerciais.
+\item Avalie a repetibilidade real do temporizador.
+\end{itensq}
+\resposta{(a) $\tau=\SI{0.83}{\second}$; (b) $C=\SI{100}{\micro\farad}$ e
+$R=\SI{8.2}{\kilo\ohm}$; (c) erro dominado pelo capacitor}
+\resolucao{(a) De $0{,}70=1-e^{-t/\tau}$:
+\[
+e^{-t/\tau}=0{,}30
+\;\Longrightarrow\;
+\tau=\frac{t}{\ln(1/0{,}30)}=\frac{1}{1{,}204}=\SI{0.83}{\second}.
+\]
+(b) Com $C=\SI{100}{\micro\farad}$:
+$R=\tau/C=0{,}83/\pot{100}{-6}=\SI{8306}{\ohm}$. O valor E24 mais próximo é
+$\SI{8.2}{\kilo\ohm}$, que dá $\tau=\SI{0.82}{\second}$ e
+\[
+t_{70\%}=0{,}82(1{,}204)=\SI{0.987}{\second}\quad(\text{erro de }1{,}3\%).
+\]
+(c) \textbf{O erro de $1{,}3\%$ do arredondamento é irrelevante} diante da
+tolerância do eletrolítico ($\pm20\%$), que se transfere integralmente para
+$\tau$: o tempo real ficará entre $0{,}79$ e $\SI{1.19}{\second}$. Some-se a
+deriva térmica (vários por cento entre $0$ e $\SI{60}{\celsius}$) e o
+envelhecimento.\\
+\textbf{Conclusão:} um temporizador RC com eletrolítico serve para "cerca de um
+segundo", não para "um segundo". Para precisão, as alternativas são capacitor
+de filme (levando a $R$ muito maior e $C$ menor) ou --- o caminho moderno ---
+um contador digital com oscilador a cristal, cuja estabilidade é de partes por
+milhão.\\
+\textbf{Observação de método:} note que o requisito foi dado em $70\%$, e não
+em $\tau$. Confundir os dois levaria a um erro de $20\%$ no projeto, pois
+$t_{70\%}=1{,}204\,\tau$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Modelagem --- autodescarga.)} Um capacitor real é modelado por $C$
+ideal em paralelo com uma resistência de fuga $R_f$.
+\begin{itensq}
+\item Deduza a lei de decaimento da tensão em circuito aberto.
+\item Defina a constante de tempo de autodescarga e relacione-a com a
+      especificação de "corrente de fuga" de catálogo.
+\item Avalie para $C=\SI{1000}{\micro\farad}$ e
+      $R_f=\SI{100}{\kilo\ohm}$, com tensão inicial de $\SI{300}{\volt}$.
+\end{itensq}
+\resposta{$u=U_0e^{-t/R_fC}$; $\tau=\SI{100}{\second}$; após
+$\SI{5}{\minute}$ restam $\approx\SI{15}{\volt}$}
+\resolucao{(a) Em circuito aberto, a única corrente é a de fuga:
+\[
+C\frac{\mathrm{d}u}{\mathrm{d}t}=-\frac{u}{R_f}
+\;\Longrightarrow\;
+u(t)=U_0e^{-t/R_fC}.
+\]
+(b) $\tau_f=R_fC$. Catálogos raramente informam $R_f$; informam a
+\emph{corrente de fuga} $I_f$ a uma dada tensão. A conversão é imediata:
+$R_f=U/I_f$, e portanto
+\[
+\tau_f=\frac{U\,C}{I_f}.
+\]
+Note que $\tau_f$ depende do \emph{produto} $R_fC$, e em eletrolíticos $R_f$
+cai quando $C$ cresce --- razão pela qual a autodescarga de capacitores grandes
+não é proporcionalmente mais lenta.\\
+(c) $\tau_f=\pot{100}{3}\cdot\pot{1000}{-6}=\SI{100}{\second}$. Após
+$\SI{300}{\second}$:
+\[
+u=300\,e^{-3}=300(0{,}0498)=\SI{14.9}{\volt}.
+\]
+\textbf{Leitura de segurança:} cinco minutos depois de desligado, o barramento
+ainda guarda $\SI{15}{\volt}$ --- e, o que é pior, $\SI{0.11}{\joule}$
+concentrados. Aos $\SI{60}{\second}$ ainda havia $\SI{110}{\volt}$, plenamente
+letais.\\
+\textbf{Por isso o resistor de descarga é obrigatório}, e não opcional: com um
+bleeder de $\SI{10}{\kilo\ohm}$, $\tau$ cai para $\SI{10}{\second}$ e o
+equipamento fica seguro em menos de um minuto, ao custo de
+$\SI{9}{\watt}$ apenas enquanto energizado.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(ESR e ondulação.)} Um capacitor de filtro de fonte chaveada tem
+$\mathrm{ESR}=\SI{50}{\milli\ohm}$ e deve conduzir ondulação de
+$\SI{2}{\ampere}$ eficazes.
+\begin{itensq}
+\item Determine a dissipação e a ondulação de tensão devida \emph{apenas} à
+      ESR.
+\item Compare com a ondulação devida à capacitância, para
+      $C=\SI{470}{\micro\farad}$ a $\SI{100}{\kilo\hertz}$.
+\item Conclua sobre o critério de seleção.
+\end{itensq}
+\resposta{(a) $\SI{0.2}{\watt}$ e $\approx\SI{100}{\milli\volt}$ de pico;
+(b) $\approx\SI{5}{\milli\volt}$ --- a ESR domina}
+\resolucao{(a) $P=\mathrm{ESR}\cdot I_{rms}^{2}=0{,}05(4)=\SI{0.2}{\watt}$.\\
+A ondulação de tensão que a ESR produz acompanha a corrente instantaneamente:
+\[
+\Delta u_{ESR}\approx\mathrm{ESR}\cdot I_{pico}\approx0{,}05(2)=\SI{100}{\milli\volt}.
+\]
+(b) A parcela capacitiva depende da carga transferida por semiciclo. Tomando
+$\Delta t\approx1/(2f)=\SI{5}{\micro\second}$:
+\[
+\Delta u_C\approx\frac{I\,\Delta t}{C}
+=\frac{2(\pot{5}{-6})}{\pot{470}{-6}}\approx\SI{21}{\milli\volt}.
+\]
+(c) \textbf{A ESR domina} --- ela responde por cerca de $80\%$ da ondulação
+total. Aumentar $C$ para $\SI{1000}{\micro\farad}$ reduziria $\Delta u_C$ pela
+metade e deixaria a ondulação praticamente inalterada.\\
+\textbf{Critério correto de seleção:} em fontes chaveadas de alta frequência,
+escolhe-se o capacitor pela \textbf{ESR e pela corrente de ondulação
+admissível}, não pela capacitância. É comum usar vários capacitores menores em
+paralelo --- não para somar $C$, mas para dividir a ESR por $n$ e a dissipação
+individual por $n^{2}$.\\
+\textbf{Nota:} em frequências baixas ($\SI{120}{\hertz}$ de retificação de
+rede), a relação se inverte e a capacitância volta a ser o critério dominante.
+O parâmetro decisivo depende da faixa de operação.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Comparação tecnológica.)} Um supercapacitor de $\SI{3000}{\farad}$ e
+$\SI{2.7}{\volt}$ tem massa de $\SI{0.50}{\kilogram}$.
+\begin{itensq}
+\item Determine a energia armazenada e a densidade de energia.
+\item Compare com uma bateria de íon-lítio ($\approx\SI{250}{\watt\hour\per\kilogram}$).
+\item Aponte em que aspecto o supercapacitor é superior e por quê.
+\end{itensq}
+\resposta{(a) $\SI{10.9}{\kilo\joule}=\SI{3.04}{\watt\hour}$, ou
+$\SI{6.1}{\watt\hour\per\kilogram}$; (b) cerca de $40$ vezes menos}
+\resolucao{(a)
+\[
+W=\frac12CU^{2}=\frac12(3000)(2{,}7)^{2}=\SI{10935}{\joule}
+=\frac{10935}{3600}=\SI{3.04}{\watt\hour}.
+\]
+Densidade: $3{,}04/0{,}50=\SI{6.1}{\watt\hour\per\kilogram}$.\\
+(b) A bateria armazena cerca de \textbf{40 vezes mais} energia por quilograma.
+Para igualar uma célula de íon-lítio de $\SI{20}{\gram}$, seriam necessários
+$\SI{0.8}{\kilogram}$ de supercapacitores.\\
+(c) \textbf{Potência específica e vida útil.} O supercapacitor pode ser
+carregado e descarregado em \emph{segundos}, com correntes de centenas de
+ampères, porque armazena energia \textbf{eletrostaticamente} --- sem reações
+químicas, sem difusão iônica lenta, sem degradação de eletrodos. Suporta
+centenas de milhares de ciclos, contra alguns milhares da bateria, e funciona
+bem a baixas temperaturas.\\
+\textbf{Consequência de aplicação:} baterias são \emph{reservatórios} de
+energia; supercapacitores são \emph{amortecedores} de potência. Por isso
+convivem em veículos elétricos --- o supercapacitor absorve o pico da frenagem
+regenerativa e entrega o pico da aceleração, poupando a bateria justamente dos
+regimes que mais a degradam.\\
+\textbf{Ressalva:} a tensão do supercapacitor cai linearmente com a carga
+(pois $Q=CU$), ao contrário do platô da bateria. Aproveitar mais de $75\%$ da
+energia exige um conversor CC-CC de entrada ampla.}
+\end{questao}

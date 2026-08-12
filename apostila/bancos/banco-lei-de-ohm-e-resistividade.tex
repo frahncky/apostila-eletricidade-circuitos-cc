@@ -1,0 +1,1122 @@
+% =====================================================================
+%  Banco complementar --- Lei de Ohm e Resistividade  (REVISADO)
+%  Substitui a versao gerada por template (8 clones em N2, 11 em N3 e
+%  10 questoes conceituais marcadas como N4).
+%  A secao correspondente do cap02 e densa e ja cobre: 2a lei de Ohm
+%  (MC), grafico R x L, resistor de 10 ohm com niquel-cromo, fio com
+%  L e D dobrados, grafico U x i, dois fios de mesmo material, tabela
+%  de resistividades, fio de cobre 2 m / 1 mm2, L dobrado com A
+%  dobrada, aco x cobre, cobre x aluminio, R=R0[1+alfa(T-T0)] e
+%  resistividade linear com T a partir de dados.
+%  Este banco evita esses casos e explora: projeto de resistor de fio,
+%  faixa total de R (tolerancia + deriva + autoaquecimento), R estatica
+%  x dinamica, secao de cabo por queda de tensao, fio ESTICADO a volume
+%  constante, secao variavel por integracao, sensor a corrente
+%  constante, medicao a quatro fios e estabilidade termica.
+%  Distribuicao mantida: 8 N1 + 8 N2 + 11 N3 + 10 N4 = 37
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Lei de Ohm e resistividade}
+
+\begin{atencao}[Organização do banco]
+Duas leis distintas convivem aqui. A \textbf{primeira} ($U=RI$) é uma relação
+\emph{de circuito} e vale apenas para componentes ôhmicos. A \textbf{segunda}
+($R=\rho L/A$) é uma relação \emph{de geometria e material}, e vale sempre. O N3
+trata de projeto de resistores, seção de cabos, sensores e medição; o N4 exige
+integração, demonstrações e análise de estabilidade térmica.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um resistor de $\SI{470}{\ohm}$ é percorrido por $\SI{15}{\milli\ampere}$.
+Determine a tensão em seus terminais.
+\resposta{$U=\SI{7.05}{\volt}$}
+\resolucao{
+\[
+U=RI=470\times\pot{15}{-3}=\SI{7.05}{\volt}.
+\]
+\textbf{Cuidado com o prefixo:} usar $I=\SI{15}{\ampere}$ daria
+$\SI{7050}{\volt}$ --- resultado absurdo, mas que passa despercebido se a
+conversão não for feita explicitamente.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma tensão de $\SI{9}{\volt}$ produz corrente de
+$\SI{30}{\milli\ampere}$ em um componente ôhmico. Determine sua resistência.
+\resposta{$R=\SI{300}{\ohm}$}
+\resolucao{
+\[
+R=\frac{U}{I}=\frac{9}{0{,}030}=\SI{300}{\ohm}.
+\]
+\textbf{Atenção à hipótese:} a razão $U/I$ sempre pode ser calculada, mas só se
+chama \emph{resistência} no sentido pleno se o componente for ôhmico --- isto é,
+se essa razão for a mesma para qualquer tensão aplicada. Em componentes não
+lineares ela varia, e recebe o nome de \emph{resistência estática}.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine a corrente em um resistor de $\SI{2.2}{\kilo\ohm}$ submetido a
+$\SI{12}{\volt}$.
+\resposta{$I=\SI{5.45}{\milli\ampere}$}
+\resolucao{
+\[
+I=\frac{U}{R}=\frac{12}{2200}=\pot{5.45}{-3}\,\si{\ampere}
+=\SI{5.45}{\milli\ampere}.
+\]
+\textbf{Atalho útil:} volts divididos por quilohms dão \emph{miliampères}
+diretamente --- $12/2{,}2=5{,}45$. Essa combinação de prefixos aparece o tempo
+todo em eletrônica e poupa conversões.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um condutor de cobre ($\rho=\pot{1.7}{-8}\,\si{\ohm\meter}$) tem
+$\SI{50}{\meter}$ e seção de $\SI{2.5}{\milli\meter\squared}$. Determine sua
+resistência.
+\resposta{$R=\SI{0.34}{\ohm}$}
+\resolucao{Convertendo a área para $\si{\meter\squared}$:
+$A=\SI{2.5}{\milli\meter\squared}=\pot{2.5}{-6}\,\si{\meter\squared}$.
+\[
+R=\frac{\rho L}{A}=\frac{\pot{1.7}{-8}\times50}{\pot{2.5}{-6}}
+=\SI{0.34}{\ohm}.
+\]
+\textbf{Erro clássico:} esquecer que
+$\SI{1}{\milli\meter\squared}=\pot{1}{-6}\,\si{\meter\squared}$, e não
+$\pot{1}{-3}$. A área é o \emph{quadrado} de um comprimento, logo o fator de
+conversão também é quadrático.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine a condutância de um resistor de $\SI{25}{\ohm}$.
+\resposta{$G=\SI{0.04}{\siemens}$}
+\resolucao{
+\[
+G=\frac{1}{R}=\frac{1}{25}=\SI{0.04}{\siemens}.
+\]
+A condutância mede a \emph{facilidade} de conduzir. Ela é a grandeza natural
+quando os elementos estão em paralelo (somam-se diretamente) e na análise nodal.
+Nas relações de material, define-se analogamente a \textbf{condutividade}
+$\sigma=1/\rho$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Segundo a segunda lei de Ohm, dobrar o \textbf{comprimento} de um fio, mantida
+a seção, faz a resistência:
+\begin{alternativas}[2]
+\item dobrar
+\item cair à metade
+\item quadruplicar
+\item não se alterar
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Como $R=\rho L/A$, tem-se $R\propto L$: dobrar $L$ dobra $R$.\\
+\textbf{Interpretação física:} o dobro do comprimento equivale a dois fios
+idênticos em \emph{série} --- e resistências em série se somam. A analogia
+hidráulica ajuda: um cano duas vezes mais longo oferece o dobro de oposição ao
+escoamento.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dobrar a \textbf{área} da seção de um fio, mantido o comprimento, faz a
+resistência:
+\begin{alternativas}[2]
+\item dobrar
+\item cair à metade
+\item quadruplicar
+\item não se alterar
+\end{alternativas}
+\resposta{(b)}
+\resolucao{$R\propto1/A$: dobrar $A$ divide $R$ por dois.\\
+\textbf{Interpretação:} o dobro da área equivale a dois fios idênticos em
+\emph{paralelo}, e o paralelo de dois iguais vale metade.\\
+\textbf{Cuidado com o diâmetro:} dobrar o \emph{diâmetro} quadruplica a área
+($A=\pi d^{2}/4$) e divide $R$ por \textbf{quatro} --- confundir diâmetro com
+área é o deslize mais comum aqui.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois fios de mesmo material e mesmo comprimento têm diâmetros $d$ e $2d$.
+Determine a razão entre suas resistências.
+\resposta{$R_1/R_2=4$}
+\resolucao{A área é proporcional ao quadrado do diâmetro:
+\[
+\frac{A_2}{A_1}=\left(\frac{2d}{d}\right)^{2}=4
+\;\Longrightarrow\;
+\frac{R_1}{R_2}=\frac{A_2}{A_1}=4.
+\]
+O fio mais grosso tem um quarto da resistência. É por isso que a bitola dos
+condutores é especificada em $\si{\milli\meter\squared}$ (área) e não em
+milímetros de diâmetro --- a área é o que entra linearmente na conta.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Determine o comprimento de um fio de níquel-cromo
+($\rho=\pot{1.1}{-6}\,\si{\ohm\meter}$) de seção
+$\SI{0.2}{\milli\meter\squared}$ necessário para obter
+$\SI{22}{\ohm}$.
+\resposta{$L=\SI{4}{\meter}$}
+\resolucao{Isolando $L$:
+\[
+L=\frac{RA}{\rho}=\frac{22\times\pot{0.2}{-6}}{\pot{1.1}{-6}}
+=\frac{\pot{4.4}{-6}}{\pot{1.1}{-6}}=\SI{4}{\meter}.
+\]
+\textbf{Por que níquel-cromo:} sua resistividade é cerca de $65$ vezes a do
+cobre, o que permite resistências úteis com comprimentos manejáveis. Com cobre,
+os mesmos $\SI{22}{\ohm}$ exigiriam $\SI{259}{\meter}$ de fio --- inviável.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um cabo de alumínio ($\rho=\pot{2.8}{-8}\,\si{\ohm\meter}$) de
+$\SI{200}{\meter}$ deve ter resistência de $\SI{0.5}{\ohm}$. Determine a seção
+e o diâmetro.
+\resposta{$A=\SI{11.2}{\milli\meter\squared}$; $d=\SI{3.78}{\milli\meter}$}
+\resolucao{
+\[
+A=\frac{\rho L}{R}=\frac{\pot{2.8}{-8}\times200}{0{,}5}
+=\pot{1.12}{-5}\,\si{\meter\squared}=\SI{11.2}{\milli\meter\squared}.
+\]
+\[
+d=\sqrt{\frac{4A}{\pi}}=\sqrt{\frac{4\times\pot{1.12}{-5}}{\pi}}
+=\SI{3.78}{\milli\meter}.
+\]
+\textbf{Valor comercial:} a bitola imediatamente superior é
+$\SI{16}{\milli\meter\squared}$, que daria $R=\SI{0.35}{\ohm}$ --- com folga.
+Adotar $\SI{10}{\milli\meter\squared}$ resultaria em $\SI{0.56}{\ohm}$,
+acima do especificado.}
+\end{questao}
+
+\begin{questao}[2]{}
+Mediu-se $R=\SI{2.5}{\ohm}$ em um fio de $\SI{30}{\meter}$ e seção
+$\SI{0.5}{\milli\meter\squared}$. Determine a resistividade e identifique o
+material provável.
+\resposta{$\rho=\pot{4.2}{-8}\,\si{\ohm\meter}$ --- compatível com latão ou
+zinco}
+\resolucao{
+\[
+\rho=\frac{RA}{L}=\frac{2{,}5\times\pot{0.5}{-6}}{30}
+=\pot{4.17}{-8}\,\si{\ohm\meter}.
+\]
+\textbf{Comparação:} cobre vale $\pot{1.7}{-8}$, alumínio
+$\pot{2.8}{-8}$, zinco $\pot{5.9}{-8}$ e latão em torno de
+$\pot{7}{-8}\,\si{\ohm\meter}$. O valor obtido está entre alumínio e zinco.\\
+\textbf{Ressalva honesta:} a resistividade sozinha \emph{não} identifica o
+material com segurança --- ligas de composições distintas podem coincidir. Ela
+serve para descartar hipóteses (não é cobre puro, certamente) e como um entre
+vários indícios.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um fio cilíndrico é \textbf{esticado} até dobrar seu comprimento, conservando o
+volume e o material. Determine a nova resistência.
+\resposta{$R'=4R$}
+\resolucao{\textbf{Volume constante:} $V=AL=A'L'$. Com $L'=2L$:
+\[
+A'=\frac{AL}{2L}=\frac{A}{2}.
+\]
+\textbf{Nova resistência:}
+\[
+R'=\frac{\rho L'}{A'}=\frac{\rho(2L)}{A/2}=4\,\frac{\rho L}{A}=4R.
+\]
+\textbf{Dois efeitos que se multiplicam:} o comprimento dobra (fator $2$) e a
+área cai à metade (outro fator $2$).\\
+\textbf{Não confunda} com o caso em que $L$ e $A$ são alterados
+\emph{independentemente} --- ali os fatores podem se cancelar. No estiramento,
+eles se reforçam, porque o volume amarra as duas dimensões.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um resistor de fio tem $\SI{50}{\ohm}$ a $\SI{20}{\celsius}$, com
+$\alpha=\SI{0.0039}{\per\celsius}$. Determine sua resistência a
+$\SI{80}{\celsius}$.
+\resposta{$R=\SI{61.7}{\ohm}$}
+\resolucao{
+\[
+R=R_0\left[1+\alpha(T-T_0)\right]=50\left[1+0{,}0039(60)\right]
+=50(1{,}234)=\SI{61.7}{\ohm}.
+\]
+Aumento de $23{,}4\%$ --- nada desprezível.\\
+\textbf{Consequência para medição:} um ohmímetro que aplique corrente suficiente
+para aquecer o componente lerá um valor \emph{maior} que o real a temperatura
+ambiente. É por isso que medições de precisão especificam a corrente de teste e
+a temperatura.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um estudante mediu, em um componente, os pares
+$(\SI{2}{\volt};\SI{20}{\milli\ampere})$,
+$(\SI{4}{\volt};\SI{40}{\milli\ampere})$ e
+$(\SI{6}{\volt};\SI{57}{\milli\ampere})$. O componente é ôhmico?
+\resposta{Não --- a razão $U/I$ cresce de $100$ para $\SI{105}{\ohm}$}
+\resolucao{Calculando $R=U/I$ em cada ponto:
+\[
+\frac{2}{0{,}020}=100;
+\qquad
+\frac{4}{0{,}040}=100;
+\qquad
+\frac{6}{0{,}057}=\SI{105}{\ohm}.
+\]
+Os dois primeiros pontos são consistentes; o terceiro destoa em $5\%$.\\
+\textbf{Diagnóstico provável: autoaquecimento.} Em $\SI{6}{\volt}$ a potência é
+$\SI{0.34}{\watt}$, contra $\SI{0.04}{\watt}$ no primeiro ponto --- oito vezes
+mais. Se o material tiver coeficiente positivo, a resistência sobe com a
+temperatura.\\
+\textbf{Como confirmar:} refaça o terceiro ponto \emph{rapidamente}, antes que o
+componente aqueça. Se a leitura voltar a $\SI{100}{\ohm}$, o material é ôhmico
+--- e o desvio era térmico, não uma propriedade elétrica intrínseca.}
+\end{questao}
+
+\begin{questao}[2]{}
+Compare a seção necessária para obter a mesma resistência com cobre
+($\rho=\pot{1.7}{-8}$) e com alumínio ($\pot{2.8}{-8}\,\si{\ohm\meter}$),
+mantido o comprimento.
+\resposta{$A_{Al}/A_{Cu}=1{,}65$}
+\resolucao{Para $R$ e $L$ iguais, $A\propto\rho$:
+\[
+\frac{A_{Al}}{A_{Cu}}=\frac{\rho_{Al}}{\rho_{Cu}}=\frac{2{,}8}{1{,}7}=1{,}65.
+\]
+O alumínio exige $65\%$ mais seção.\\
+\textbf{Por que ainda assim se usa alumínio:} sua densidade é
+$\SI{2.7}{\gram\per\centi\meter\cubed}$ contra $\SI{8.9}{}$ do cobre. Para a
+mesma resistência, o cabo de alumínio pesa
+$1{,}65\times(2{,}7/8{,}9)=0{,}50$ --- \textbf{metade} do peso, e custa bem
+menos. É por isso que linhas de transmissão aéreas são de alumínio, onde o peso
+é crítico, enquanto instalações prediais são de cobre, onde o espaço nos
+eletrodutos é que limita.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um fio de cobre de $\SI{100}{\meter}$ e $\SI{1.5}{\milli\meter\squared}$
+conduz $\SI{10}{\ampere}$. Determine a resistência, a queda de tensão e a
+potência dissipada.
+\resposta{$R=\SI{1.13}{\ohm}$; $\Delta U=\SI{11.3}{\volt}$;
+$P=\SI{113}{\watt}$}
+\resolucao{
+\[
+R=\frac{\pot{1.7}{-8}\times100}{\pot{1.5}{-6}}=\SI{1.13}{\ohm};
+\qquad
+\Delta U=RI=\SI{11.3}{\volt};
+\qquad
+P=RI^{2}=\SI{113}{\watt}.
+\]
+\textbf{Avaliação:} em uma rede de $\SI{220}{\volt}$, essa queda representa
+$5{,}2\%$ --- acima do limite usual de $4\%$ para circuitos terminais. E
+$\SI{113}{\watt}$ dissipados ao longo do cabo é aquecimento real, que exige
+verificação de capacidade de condução.\\
+\textbf{Conclusão:} a bitola está subdimensionada para esse comprimento. O
+critério de queda de tensão, e não o de corrente admissível, é que domina em
+circuitos longos.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Projete um resistor de fio de $\SI{10}{\ohm}$ usando material de
+$\rho=\pot{5}{-7}\,\si{\ohm\meter}$ e fio de $\SI{0.5}{\milli\meter}$ de
+diâmetro.
+\begin{itensq}
+\item Determine o comprimento necessário.
+\item Determine a corrente máxima para $\SI{5}{\watt}$ de dissipação.
+\item Comente a construção.
+\end{itensq}
+\resposta{(a) $L=\SI{3.93}{\meter}$; (b) $I=\SI{0.707}{\ampere}$}
+\resolucao{(a) Seção:
+$A=\dfrac{\pi d^{2}}{4}=\dfrac{\pi(\pot{5}{-4})^{2}}{4}
+=\pot{1.963}{-7}\,\si{\meter\squared}$.
+\[
+L=\frac{RA}{\rho}=\frac{10\times\pot{1.963}{-7}}{\pot{5}{-7}}
+=\SI{3.93}{\meter}.
+\]
+(b) $I=\sqrt{P/R}=\sqrt{5/10}=\SI{0.707}{\ampere}$, com
+$U=\SI{7.07}{\volt}$.\\
+(c) \textbf{Construção.} Quase quatro metros de fio precisam ser enrolados
+sobre um corpo cerâmico. Três cuidados:
+\begin{itemize}
+\item \textbf{Espaçamento entre espiras}, para evitar curtos e permitir
+circulação de ar.
+\item \textbf{Área de dissipação suficiente} --- $\SI{5}{\watt}$ exigem corpo de
+alguns centímetros, e a temperatura de superfície pode passar de
+$\SI{100}{\celsius}$.
+\item \textbf{Indutância parasita}: um enrolamento simples de $\SI{3.93}{\meter}$
+comporta-se como bobina. Em corrente contínua isso é irrelevante, mas em sinais
+rápidos é preciso enrolamento \emph{bifilar}, em que a ida e a volta se
+cancelam.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[3]{}
+Um resistor nominal de $\SI{100}{\ohm}$ tem tolerância de $\SI{5}{\percent}$ e
+coeficiente térmico de $400\,\mathrm{ppm/^{\circ}C}$, especificado a
+$\SI{20}{\celsius}$. Determine a faixa total de resistência na operação entre
+$\SI{0}{\celsius}$ e $\SI{70}{\celsius}$.
+\resposta{de $\SI{94.2}{\ohm}$ a $\SI{107.1}{\ohm}$ ($-5{,}8\%$ a
+$+7{,}1\%$)}
+\resolucao{\textbf{Deriva térmica:} $400\,\mathrm{ppm}=\pot{4}{-4}$ por
+$\si{\celsius}$.
+\[
+\SI{70}{\celsius}:\ \Delta T=+50 \Rightarrow +2{,}0\%;
+\qquad
+\SI{0}{\celsius}:\ \Delta T=-20 \Rightarrow -0{,}8\%.
+\]
+\textbf{Combinação de pior caso} (os dois efeitos no mesmo sentido):
+\[
+R_{\max}=100(1{,}05)(1{,}020)=\SI{107.1}{\ohm};
+\qquad
+R_{\min}=100(0{,}95)(0{,}992)=\SI{94.2}{\ohm}.
+\]
+\textbf{Observações de projeto.}
+\begin{itemize}
+\item A tolerância de fabricação domina --- ela responde por $5$ dos
+$7{,}1$ pontos.
+\item A faixa é \emph{assimétrica}, porque a temperatura de operação se afasta
+mais para cima que para baixo do valor de referência.
+\item Se $7\%$ for demais, apertar a tolerância para $1\%$ traria a faixa a
+$-1{,}8\%$/$+3{,}0\%$; trocar o coeficiente para
+$25\,\mathrm{ppm}$ traria a $-5{,}0\%$/$+5{,}1\%$. \textbf{Ataque primeiro a
+maior parcela.}
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma lâmpada incandescente apresenta $\SI{2.00}{\ampere}$ a
+$\SI{12.0}{\volt}$ e $\SI{2.02}{\ampere}$ a $\SI{12.5}{\volt}$.
+\begin{itensq}
+\item Determine a resistência estática no primeiro ponto.
+\item Determine a resistência dinâmica.
+\item Explique a diferença.
+\end{itensq}
+\resposta{$R_{est}=\SI{6}{\ohm}$; $r_{din}=\SI{25}{\ohm}$}
+\resolucao{(a) $R_{est}=\dfrac{U}{I}=\dfrac{12{,}0}{2{,}00}=\SI{6}{\ohm}$.\\
+(b) $r_{din}=\dfrac{\Delta U}{\Delta I}=\dfrac{0{,}5}{0{,}02}=\SI{25}{\ohm}$.\\
+(c) \textbf{A dinâmica é mais de quatro vezes maior.} A razão é o
+\textbf{autoaquecimento}: aumentar a tensão eleva a potência, o filamento
+esquenta e sua resistência sobe --- de modo que a corrente cresce muito menos
+que proporcionalmente.\\
+\textbf{Cada grandeza responde a uma pergunta diferente:}
+\begin{itemize}
+\item $R_{est}$ governa o \emph{balanço de potência} no ponto de operação:
+$P=U^{2}/R_{est}=\SI{24}{\watt}$ \checkmark.
+\item $r_{din}$ governa a \emph{resposta a pequenas variações} --- é ela que
+entra em qualquer modelo incremental.
+\end{itemize}
+\textbf{A lâmpada não é ôhmica em regime}, mas é aproximadamente ôhmica a
+temperatura constante. É o acoplamento térmico, e não a física da condução, que
+quebra a linearidade.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um cabo de cobre deve alimentar uma carga de $\SI{20}{\ampere}$ a
+$\SI{220}{\volt}$, a $\SI{40}{\meter}$ de distância, com queda de tensão
+inferior a $\SI{3}{\percent}$.
+\begin{itensq}
+\item Determine a resistência máxima admissível do cabo.
+\item Determine a seção mínima.
+\item Escolha a bitola comercial.
+\end{itensq}
+\resposta{$R\le\SI{0.33}{\ohm}$; $A\ge\SI{4.12}{\milli\meter\squared}$;
+adotar $\SI{6}{\milli\meter\squared}$}
+\resolucao{(a) Queda admissível: $0{,}03\times220=\SI{6.6}{\volt}$.
+\[
+R_{\max}=\frac{6{,}6}{20}=\SI{0.33}{\ohm}.
+\]
+(b) \textbf{Atenção ao comprimento:} a corrente percorre \emph{ida e volta},
+logo $L=2\times40=\SI{80}{\meter}$.
+\[
+A\ge\frac{\rho L}{R_{\max}}=\frac{\pot{1.7}{-8}\times80}{0{,}33}
+=\pot{4.12}{-6}\,\si{\meter\squared}=\SI{4.12}{\milli\meter\squared}.
+\]
+(c) A bitola comercial imediatamente superior é
+$\SI{6}{\milli\meter\squared}$, que dá $R=\SI{0.227}{\ohm}$ e queda de
+$\SI{4.5}{\volt}$ ($2{,}1\%$) --- dentro da especificação com folga.\\
+\textbf{Verificação obrigatória do outro critério:} $\SI{6}{\milli\meter\squared}$
+suporta cerca de $\SI{41}{\ampere}$ em eletroduto, bem acima dos
+$\SI{20}{\ampere}$ da carga. \textbf{Aqui a queda de tensão é o critério
+dominante} --- e é o que costuma ocorrer em circuitos longos. Em circuitos
+curtos, a corrente admissível é que decide.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um fio é esticado até que seu comprimento fique $n$ vezes maior, conservando o
+volume.
+\begin{itensq}
+\item Deduza a nova resistência em função de $n$.
+\item Avalie para $n=3$ e $n=5$.
+\item Determine a redução do diâmetro em cada caso.
+\end{itensq}
+\resposta{$R'=n^{2}R$; $9R$ e $25R$; $d'/d=1/\sqrt{n}$}
+\resolucao{(a) Volume constante: $AL=A'L'$ com $L'=nL$, logo
+$A'=A/n$.
+\[
+R'=\frac{\rho(nL)}{A/n}=n^{2}\frac{\rho L}{A}=n^{2}R.
+\]
+(b) $n=3\Rightarrow9R$; $n=5\Rightarrow25R$.\\
+(c) Como $A\propto d^{2}$ e $A'=A/n$:
+\[
+\frac{d'}{d}=\frac{1}{\sqrt{n}}
+\Rightarrow
+n=3:\ 0{,}577;
+\qquad
+n=5:\ 0{,}447.
+\]
+\textbf{Aplicação prática --- o extensômetro.} Um fio colado a uma peça que se
+deforma sofre exatamente esse efeito. Para pequenas deformações
+$\varepsilon=\Delta L/L$, a expansão de $n^{2}$ dá
+\[
+\frac{\Delta R}{R}\approx2\varepsilon,
+\]
+ou seja, o fio funciona como sensor de deformação com \emph{fator de
+sensibilidade} próximo de $2$. É o princípio das células de carga e das balanças
+eletrônicas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma barra condutora de comprimento $L=\SI{1}{\meter}$ tem seção que varia
+linearmente segundo $A(x)=A_0\left(1+x/L\right)$, com
+$A_0=\SI{1}{\milli\meter\squared}$ e $\rho=\pot{1.7}{-8}\,\si{\ohm\meter}$.
+\begin{itensq}
+\item Determine a resistência total.
+\item Compare com uma barra uniforme de seção $A_0$ e com uma de seção média.
+\end{itensq}
+\resposta{$R=\dfrac{\rho L\ln2}{A_0}=\SI{11.8}{\milli\ohm}$}
+\resolucao{(a) Somando as resistências de fatias infinitesimais em série:
+\[
+R=\int_0^{L}\frac{\rho\,\mathrm{d}x}{A(x)}
+=\frac{\rho}{A_0}\int_0^{L}\frac{\mathrm{d}x}{1+x/L}
+=\frac{\rho L}{A_0}\Big[\ln(1+x/L)\Big]_0^{L}
+=\frac{\rho L\ln2}{A_0}.
+\]
+\[
+R=\frac{\pot{1.7}{-8}\times1\times0{,}693}{\pot{1}{-6}}
+=\SI{11.8}{\milli\ohm}.
+\]
+(b)
+\begin{center}
+\begin{tabular}{lc}
+\hline
+Modelo & $R$\\
+\hline
+uniforme com $A_0$ (menor seção) & $\SI{17.0}{\milli\ohm}$\\
+\textbf{seção variável (exato)} & $\SI{11.8}{\milli\ohm}$\\
+uniforme com $\bar A=1{,}5A_0$ & $\SI{11.3}{\milli\ohm}$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{O valor exato é maior que o da seção média} --- porque a resistência
+depende de $1/A$, e a média de $1/A$ é maior que $1/\bar A$ (desigualdade das
+médias). O erro de usar a seção média é de $4{,}3\%$, para menos.\\
+\textbf{Regra:} em seções variáveis, integrar $\rho\,\mathrm{d}x/A(x)$. Usar a
+seção média subestima; usar a seção mínima superestima. As duas aproximações
+servem como limites.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um sensor Pt100 tem $R_0=\SI{100}{\ohm}$ a $\SI{0}{\celsius}$ e
+$\alpha=\SI{0.00385}{\per\celsius}$, alimentado por corrente constante de
+$\SI{1}{\milli\ampere}$.
+\begin{itensq}
+\item Determine a tensão a $\SI{0}{\celsius}$ e a sensibilidade em
+      $\si{\milli\volt\per\celsius}$.
+\item Explique a vantagem da alimentação por corrente constante.
+\item Verifique o autoaquecimento.
+\end{itensq}
+\resposta{$U_0=\SI{100}{\milli\volt}$;
+$\SI{0.385}{\milli\volt\per\celsius}$}
+\resolucao{(a) $U_0=IR_0=\pot{1}{-3}(100)=\SI{100}{\milli\volt}$.
+\[
+\frac{\mathrm{d}U}{\mathrm{d}T}=I\,R_0\,\alpha
+=\pot{1}{-3}(100)(0{,}00385)=\SI{0.385}{\milli\volt\per\celsius}.
+\]
+(b) \textbf{Vantagem decisiva: linearidade exata.} Com $I$ constante,
+$U=IR$ é \emph{proporcional} a $R$, e como $R$ é linear em $T$, a tensão também
+é. Não há distorção alguma.\\
+Com \emph{tensão} constante em um divisor, a saída seria
+$U\,R/(R+R_{fixo})$ --- uma função \textbf{não linear} de $R$, exigindo
+linearização posterior.\\
+(c) \textbf{Autoaquecimento:} $P=RI^{2}=100(\pot{1}{-6})=\SI{0.1}{\milli\watt}$.
+Com resistência térmica típica de $\SI{100}{\celsius\per\watt}$ ao ar, a
+elevação é de $\SI{0.01}{\celsius}$ --- desprezível.\\
+\textbf{Mas cuidado:} elevar a corrente para $\SI{10}{\milli\ampere}$ (para
+ganhar sinal) multiplicaria a potência por $100$, levando o erro a
+$\SI{1}{\celsius}$. \textbf{A corrente de excitação é um compromisso entre
+relação sinal-ruído e erro de autoaquecimento} --- e $\SI{1}{\milli\ampere}$ é
+o valor de consenso para Pt100.}
+\end{questao}
+
+\begin{questao}[3]{}
+Mede-se um resistor de $\SI{0.1}{\ohm}$ com um ohmímetro cujos cabos têm
+$\SI{0.2}{\ohm}$ cada.
+\begin{itensq}
+\item Determine a leitura pelo método de \textbf{dois fios}.
+\item Determine o erro.
+\item Explique como o método de \textbf{quatro fios} o elimina.
+\end{itensq}
+\resposta{Leitura de $\SI{0.5}{\ohm}$ --- erro de $400\%$}
+\resolucao{(a) O instrumento mede tudo o que está em série:
+\[
+R_{lido}=0{,}1+2(0{,}2)=\SI{0.5}{\ohm}.
+\]
+(b) Erro de $\SI{0.4}{\ohm}$, ou $400\%$ --- a leitura é \emph{cinco vezes} o
+valor real. Para resistências pequenas, o método de dois fios é simplesmente
+inutilizável.\\
+(c) \textbf{Método de quatro fios (Kelvin).} Usam-se dois pares independentes:
+\begin{itemize}
+\item Um par \textbf{injeta} a corrente conhecida $I$. A queda nesses cabos
+existe, mas é irrelevante --- ela apenas exige um pouco mais de tensão da fonte.
+\item O outro par \textbf{mede} a tensão diretamente sobre o resistor, com um
+voltímetro de altíssima impedância. Como praticamente não circula corrente
+nesses cabos, sua resistência \emph{não produz queda}.
+\end{itemize}
+Assim $R=U_{medido}/I$ devolve exatamente $\SI{0.1}{\ohm}$.\\
+\textbf{Quando usar:} sempre que $R$ for comparável ou menor que a resistência
+dos cabos --- tipicamente abaixo de alguns ohms. É o método obrigatório para
+shunts, enrolamentos de motor e contatos.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dois resistores têm o mesmo valor nominal de $\SI{100}{\ohm}$, mas potências de
+$\frac14\,\si{\watt}$ e $\SI{5}{\watt}$.
+\begin{itensq}
+\item Determine a tensão e a corrente máximas de cada um.
+\item Ambos obedecem igualmente à lei de Ohm?
+\item Explique o que a especificação de potência realmente limita.
+\end{itensq}
+\resposta{$\SI{5}{\volt}$/$\SI{50}{\milli\ampere}$ e
+$\SI{22.4}{\volt}$/$\SI{224}{\milli\ampere}$; ambos são ôhmicos}
+\resolucao{(a)
+\[
+U_{\max}=\sqrt{PR}:\quad \sqrt{0{,}25(100)}=\SI{5}{\volt};
+\qquad \sqrt{5(100)}=\SI{22.4}{\volt};
+\]
+\[
+I_{\max}=\sqrt{P/R}:\quad \SI{50}{\milli\ampere}
+\quad\text{e}\quad \SI{224}{\milli\ampere}.
+\]
+(b) \textbf{Sim, ambos obedecem igualmente.} A lei de Ohm relaciona $U$ e $I$
+através de $R$ --- e $R$ é o mesmo. A potência nominal \emph{não} aparece na
+lei.\\
+(c) \textbf{A potência nominal limita a faixa de validade}, não a relação em
+si. Ela informa até onde o componente pode operar \emph{antes de se
+autodestruir ou sair da linearidade por aquecimento}.\\
+\textbf{Analogia útil:} a lei de Ohm é como a relação entre força e deformação
+em uma mola; a potência nominal é o limite de escoamento do material. Duas
+molas de mesma constante e materiais diferentes obedecem à mesma lei --- até que
+uma delas se rompa.\\
+\textbf{Diferença física:} o resistor de $\SI{5}{\watt}$ é maior, com mais área
+de troca térmica. Mesma resistência, mesma lei, capacidade de dissipação
+$20$ vezes maior.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um resistor de $\SI{100}{\ohm}$ com $\alpha=\SI{+0.004}{\per\celsius}$ dissipa
+$\SI{1}{\watt}$ e tem resistência térmica de
+$\SI{100}{\celsius\per\watt}$.
+\begin{itensq}
+\item Determine a elevação de temperatura e a nova resistência.
+\item Analise o efeito sob tensão constante e sob corrente constante.
+\end{itensq}
+\resposta{$\Delta T=\SI{100}{\celsius}$; $R=\SI{140}{\ohm}$}
+\resolucao{(a)
+\[
+\Delta T=R_{térm}P=100(1)=\SI{100}{\celsius};
+\qquad
+R=100\left[1+0{,}004(100)\right]=\SI{140}{\ohm}.
+\]
+Aumento de $40\%$ apenas por autoaquecimento --- muito acima da tolerância
+típica de fabricação.\\
+(b) \textbf{Sob tensão constante:} $P=U^{2}/R$ \emph{diminui} quando $R$ sobe.
+Menos potência, menos aquecimento, $R$ estabiliza. \textbf{Realimentação
+negativa --- estável.}\\
+\textbf{Sob corrente constante:} $P=RI^{2}$ \emph{aumenta} quando $R$ sobe.
+Mais potência, mais aquecimento, $R$ cresce ainda mais.
+\textbf{Realimentação positiva.}\\
+\textbf{Condição de estabilidade} no caso de corrente constante: o incremento de
+potência por grau, $\alpha R I^{2}$, deve ser menor que a capacidade de
+escoar calor, $1/R_{térm}$:
+\[
+\alpha R I^{2}R_{térm}<1.
+\]
+Aqui, $0{,}004(100)(0{,}01)(100)=0{,}4<1$ \checkmark --- estável, mas com apenas
+$2{,}5$ vezes de margem. Dobrar a corrente levaria o produto a $1{,}6$ e
+provocaria fuga térmica.\\
+\textbf{Materiais com $\alpha<0$} (termistores NTC, carbono) invertem os dois
+casos --- e são instáveis justamente sob \emph{tensão} constante.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um resistor de $\SI{100}{\ohm}$ e $\frac14\,\si{\watt}$ deve ser testado quanto
+à ohmicidade. Projete o ensaio.
+\begin{itensq}
+\item Determine a faixa segura de tensão.
+\item Proponha os pontos de medição e o critério de decisão.
+\item Indique os cuidados experimentais.
+\end{itensq}
+\resposta{Até $\SI{5}{\volt}$; usar $20\%$ da potência nominal como teto
+prático}
+\resolucao{(a) $U_{\max}=\sqrt{PR}=\SI{5}{\volt}$ no limite absoluto. Para
+evitar autoaquecimento --- que é justamente o que falsearia o ensaio --- adote
+$20\%$ da potência nominal:
+\[
+P_{ensaio}=\SI{50}{\milli\watt}
+\;\Longrightarrow\;
+U_{\max}=\sqrt{0{,}05(100)}=\SI{2.24}{\volt}.
+\]
+(b) \textbf{Pontos:} cinco valores igualmente espaçados entre $0{,}5$ e
+$\SI{2.2}{\volt}$, medindo $U$ e $I$ em cada um.\\
+\textbf{Critério:} calcular $R=U/I$ em todos os pontos. O componente é ôhmico se
+a dispersão dos valores ficar dentro da incerteza combinada dos instrumentos
+(tipicamente $1$ a $2\%$). Alternativamente, ajustar uma reta a $U\times I$ e
+verificar se o intercepto é nulo dentro da incerteza --- intercepto não nulo
+indica tensão de limiar, como em diodos.\\
+(c) \textbf{Cuidados.}
+\begin{itemize}
+\item \textbf{Medir rápido} e desligar entre pontos, para o componente não
+aquecer cumulativamente.
+\item \textbf{Ordem aleatória} dos pontos, e não crescente --- assim um eventual
+aquecimento progressivo aparece como dispersão, e não como tendência que
+poderia ser confundida com não linearidade real.
+\item \textbf{Método de quatro fios} se $R$ for pequeno.
+\item \textbf{Repetir o primeiro ponto ao final:} se o valor mudou, houve
+aquecimento e o ensaio precisa ser refeito com potência menor.
+\end{itemize}}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- deformação e resistência.)} Um fio de comprimento $L$
+e seção $A$ sofre pequena deformação axial $\varepsilon=\Delta L/L$, a volume
+constante.
+\begin{itensq}
+\item Deduza $\Delta R/R$ em primeira ordem.
+\item Determine o fator de sensibilidade.
+\item Discuta o efeito de a resistividade também variar com a deformação.
+\end{itensq}
+\resposta{$\Delta R/R\approx2\varepsilon$; fator $\approx2$}
+\resolucao{(a) Com volume constante, $L'=L(1+\varepsilon)$ e
+$A'=A/(1+\varepsilon)$:
+\[
+R'=\frac{\rho L(1+\varepsilon)}{A/(1+\varepsilon)}
+=R(1+\varepsilon)^{2}\approx R(1+2\varepsilon),
+\]
+para $\varepsilon\ll1$. Logo
+\[
+\frac{\Delta R}{R}\approx2\varepsilon.
+\]
+(b) O \textbf{fator de sensibilidade} (\emph{gauge factor}) é
+$k=\dfrac{\Delta R/R}{\varepsilon}\approx2$.\\
+\textbf{Ordem de grandeza prática:} uma deformação de
+$\SI{1000}{\micro\meter\per\meter}$ ($\varepsilon=\pot{1}{-3}$) produz
+$\Delta R/R=0{,}2\%$ --- em um extensômetro de $\SI{350}{\ohm}$, apenas
+$\SI{0.7}{\ohm}$. Daí a necessidade de ponte de Wheatstone e amplificação de
+instrumentação.\\
+(c) \textbf{Efeito piezorresistivo.} Em metais, $\rho$ varia pouco com a
+deformação e $k\approx2$ decorre quase só da geometria. Em
+\textbf{semicondutores}, a deformação altera fortemente a mobilidade dos
+portadores, e $k$ chega a $100$ ou mais --- ganho enorme de sensibilidade.\\
+\textbf{Contrapartida:} extensômetros semicondutores são muito mais sensíveis à
+temperatura e menos lineares. \textbf{A escolha entre metal e semicondutor é um
+compromisso entre sensibilidade e estabilidade} --- e por isso células de carga
+de precisão ainda usam extensômetros metálicos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Integração --- seção variável.)} Uma barra tem seção
+$A(x)=A_0\left(1+x/L\right)$.
+\begin{itensq}
+\item Deduza $R$ por integração.
+\item Generalize para $A(x)=A_0(1+kx/L)$.
+\item Analise os limites $k\to0$ e $k\to\infty$.
+\end{itensq}
+\resposta{$R=\dfrac{\rho L}{A_0}\cdot\dfrac{\ln(1+k)}{k}$; para $k=1$,
+$\ln2$}
+\resolucao{(a) Fatias de espessura $\mathrm{d}x$ estão em série:
+\[
+R=\int_0^{L}\frac{\rho\,\mathrm{d}x}{A_0(1+x/L)}
+=\frac{\rho L}{A_0}\ln 2.
+\]
+(b) Com $A(x)=A_0(1+kx/L)$:
+\[
+R=\frac{\rho}{A_0}\int_0^{L}\frac{\mathrm{d}x}{1+kx/L}
+=\frac{\rho L}{A_0k}\Big[\ln(1+kx/L)\Big]_0^{L}
+=\frac{\rho L}{A_0}\cdot\frac{\ln(1+k)}{k}.
+\]
+(c) \textbf{Limite $k\to0$} (seção uniforme). Usando
+$\ln(1+k)\approx k-k^{2}/2$:
+\[
+\frac{\ln(1+k)}{k}\to1
+\;\Longrightarrow\;
+R\to\frac{\rho L}{A_0}.\ \checkmark
+\]
+Recupera-se a fórmula elementar --- teste obrigatório de qualquer generalização.\\
+\textbf{Limite $k\to\infty$} (seção crescendo muito rápido):
+\[
+\frac{\ln(1+k)}{k}\to0
+\;\Longrightarrow\;
+R\to0.
+\]
+A barra fica tão larga na maior parte de seu comprimento que sua resistência se
+concentra apenas na região inicial estreita --- e o total tende a zero, embora
+\emph{logaritmicamente devagar}. Mesmo com $k=1000$, o fator ainda vale
+$0{,}0069$, e não zero.\\
+\textbf{Leitura geral:} a resistência é dominada pela região de \emph{menor}
+seção. É por isso que um estrangulamento local em um condutor concentra
+praticamente toda a queda de tensão --- e todo o aquecimento.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Ponto de operação com fonte não ideal.)} Um resistor de
+$\SI{100}{\ohm}$ é ligado a uma fonte cuja característica é
+$U=24-8I$ (com $U$ em volts e $I$ em ampères).
+\begin{itensq}
+\item Determine o ponto de operação.
+\item Determine a potência no resistor e o rendimento.
+\item Repita para um resistor de $\SI{8}{\ohm}$ e compare.
+\end{itensq}
+\resposta{$I=\SI{0.222}{\ampere}$, $U=\SI{22.2}{\volt}$;
+$P=\SI{4.94}{\watt}$, $\eta=92{,}6\%$}
+\resolucao{(a) A fonte impõe $U=24-8I$ e o resistor impõe $U=100I$. Igualando:
+\[
+100I=24-8I
+\;\Longrightarrow\;
+108I=24
+\;\Longrightarrow\;
+I=\SI{0.222}{\ampere};
+\qquad
+U=\SI{22.2}{\volt}.
+\]
+(b) $P_L=UI=22{,}2(0{,}222)=\SI{4.94}{\watt}$.\\
+Rendimento: $\eta=\dfrac{R_L}{R_L+R_{Th}}=\dfrac{100}{108}=92{,}6\%$.\\
+(c) \textbf{Com $\SI{8}{\ohm}$:} $8I=24-8I\Rightarrow I=\SI{1.5}{\ampere}$ e
+$U=\SI{12}{\volt}$.
+\[
+P_L=12(1{,}5)=\SI{18}{\watt};
+\qquad
+\eta=\frac{8}{16}=50\%.
+\]
+\textbf{Comparação reveladora.} O resistor de $\SI{8}{\ohm}$ está \emph{casado}
+com a fonte e recebe a potência máxima ($\SI{18}{\watt}$, quase quatro vezes
+mais), mas desperdiça metade da energia internamente. O de
+$\SI{100}{\ohm}$ recebe pouco, porém com rendimento de $92{,}6\%$.\\
+\textbf{Ponto de método:} o problema é a interseção de duas características
+$U\times I$ --- uma reta de fonte e uma reta de carga. Se a carga fosse não
+linear (um diodo, por exemplo), o procedimento seria idêntico: basta trocar a
+segunda reta pela curva do dispositivo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Estabilidade térmica.)} Um resistor de resistência $R$, coeficiente
+$\alpha$ e resistência térmica $R_{térm}$ é alimentado por corrente constante
+$I$.
+\begin{itensq}
+\item Deduza a condição de estabilidade térmica.
+\item Avalie para $R=\SI{100}{\ohm}$, $\alpha=\SI{0.004}{\per\celsius}$,
+      $R_{térm}=\SI{100}{\celsius\per\watt}$ e $I=\SI{100}{\milli\ampere}$.
+\item Determine a corrente crítica.
+\end{itensq}
+\resposta{Condição: $\alpha R I^{2}R_{térm}<1$; aqui $0{,}4$ --- estável;
+$I_c=\SI{158}{\milli\ampere}$}
+\resolucao{(a) Em equilíbrio, $\Delta T=R_{térm}P=R_{térm}RI^{2}$ e
+$R=R_0(1+\alpha\Delta T)$. Substituindo,
+\[
+R=R_0\left(1+\alpha R_{térm}RI^{2}\right)
+\;\Longrightarrow\;
+R\left(1-\alpha R_{térm}R_0I^{2}\right)=R_0.
+\]
+Existe solução finita e estável se, e somente se, o parênteses for positivo:
+\[
+\boxed{\alpha\,R_0\,I^{2}\,R_{térm}<1}
+\]
+Fisicamente: o acréscimo de potência por grau de aquecimento deve ser
+\emph{menor} que a capacidade de escoar calor. Caso contrário, cada grau
+adicional gera mais calor do que consegue dissipar --- \textbf{fuga térmica}.\\
+(b)
+\[
+0{,}004\times100\times(0{,}1)^{2}\times100=0{,}4<1\ \checkmark
+\]
+Estável, com margem de $2{,}5$ vezes. A resistência de equilíbrio é
+$R=100/(1-0{,}4)=\SI{167}{\ohm}$, e a elevação, $\SI{167}{\celsius}$ ---
+elevada, mas estável.\\
+(c) Corrente crítica:
+\[
+I_c=\sqrt{\frac{1}{\alpha R_0R_{térm}}}=\sqrt{\frac{1}{0{,}004(100)(100)}}
+=\sqrt{0{,}025}=\SI{158}{\milli\ampere}.
+\]
+\textbf{Margem estreita:} apenas $58\%$ acima da corrente de operação. E note
+que a estabilidade \emph{matemática} não garante a \emph{sobrevivência} --- a
+$\SI{167}{\celsius}$ o componente já pode estar além de sua temperatura máxima.\\
+\textbf{Sob tensão constante} o problema não existe: $P=U^{2}/R$ decresce com
+$R$, e a realimentação é sempre negativa.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Dois critérios de dimensionamento.)} Um cabo deve alimentar
+$\SI{30}{\ampere}$ a $\SI{220}{\volt}$, com queda máxima de
+$\SI{4}{\percent}$.
+\begin{itensq}
+\item Determine a seção exigida pelo critério de queda de tensão, para
+      $\SI{20}{\meter}$ e para $\SI{80}{\meter}$.
+\item Sabendo que $\SI{6}{\milli\meter\squared}$ suporta cerca de
+      $\SI{41}{\ampere}$, determine qual critério domina em cada caso.
+\item Formule a regra geral.
+\end{itensq}
+\resposta{$\SI{3.87}{\milli\meter\squared}$ e
+$\SI{15.5}{\milli\meter\squared}$; a corrente domina no cabo curto, a queda no
+longo}
+\resolucao{(a) Queda admissível: $0{,}04(220)=\SI{8.8}{\volt}$, logo
+$R_{\max}=8{,}8/30=\SI{0.293}{\ohm}$.
+\[
+\SI{20}{\meter}:\ A\ge\frac{\pot{1.7}{-8}(40)}{0{,}293}
+=\SI{2.32}{\milli\meter\squared};
+\]
+\[
+\SI{80}{\meter}:\ A\ge\frac{\pot{1.7}{-8}(160)}{0{,}293}
+=\SI{9.28}{\milli\meter\squared}.
+\]
+(lembrando o fator $2$ de ida e volta).\\
+(b) \textbf{Cabo de $\SI{20}{\meter}$:} a queda exige
+$\SI{2.32}{\milli\meter\squared}$, mas a corrente de $\SI{30}{\ampere}$ exige
+pelo menos $\SI{6}{\milli\meter\squared}$. \textbf{O critério de corrente
+domina.}\\
+\textbf{Cabo de $\SI{80}{\meter}$:} a queda exige
+$\SI{9.28}{\milli\meter\squared}$, acima do que a corrente pediria.
+\textbf{O critério de queda domina}, e adota-se
+$\SI{10}{\milli\meter\squared}$.\\
+(c) \textbf{Regra geral.} Os dois critérios escalam de formas diferentes:
+\begin{itemize}
+\item \textbf{Corrente admissível:} depende só de $I$ --- \emph{independe do
+comprimento}. É um critério de segurança térmica do próprio cabo.
+\item \textbf{Queda de tensão:} $A\propto IL/\Delta U$ --- cresce
+\emph{linearmente} com o comprimento. É um critério de qualidade da energia
+entregue.
+\end{itemize}
+Existe um \textbf{comprimento de cruzamento} em que os dois coincidem; abaixo
+dele manda a corrente, acima manda a queda. Aqui, com
+$\SI{6}{\milli\meter\squared}$, o cruzamento ocorre por volta de
+$\SI{52}{\meter}$.\\
+\textbf{Procedimento correto:} calcular os \emph{dois} e adotar a maior seção.
+Verificar apenas um deles é a origem mais comum de instalações que "funcionam"
+mas apresentam tensão baixa na ponta.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Sensor a corrente constante.)} Compare duas formas de converter a
+variação de um sensor resistivo em tensão.
+\begin{itensq}
+\item Obtenha $U(R)$ para excitação por corrente constante e para divisor de
+      tensão.
+\item Compare a linearidade das duas.
+\item Determine a sensibilidade de cada uma no ponto de operação
+      $R=R_{fixo}$.
+\end{itensq}
+\resposta{Corrente constante: $U=IR$, exatamente linear; divisor:
+$U=U_0R/(R+R_f)$, não linear}
+\resolucao{(a) \textbf{Corrente constante:} $U=IR$ --- proporcional a $R$.\\
+\textbf{Divisor:} $U=U_0\dfrac{R}{R+R_f}$ --- função racional de $R$.\\
+(b) \textbf{Linearidade.} A primeira é \emph{exatamente} linear, sempre. A
+segunda só é aproximadamente linear para pequenas variações; expandindo em torno
+de $R=R_f$:
+\[
+U\approx\frac{U_0}{2}\left[1+\frac{\Delta R}{2R_f}
+-\frac{1}{4}\left(\frac{\Delta R}{R_f}\right)^{2}+\cdots\right].
+\]
+O termo quadrático produz erro de linearidade. Para
+$\Delta R/R_f=10\%$, ele vale $0{,}25\%$ da leitura --- pequeno, mas suficiente
+para limitar a exatidão em medições finas.\\
+(c) \textbf{Sensibilidades.}
+\[
+\text{corrente constante:}\quad \frac{\mathrm{d}U}{\mathrm{d}R}=I;
+\qquad
+\text{divisor:}\quad \frac{\mathrm{d}U}{\mathrm{d}R}
+=\frac{U_0R_f}{(R+R_f)^{2}}\bigg|_{R=R_f}=\frac{U_0}{4R_f}.
+\]
+Ambas podem ser ajustadas ao mesmo valor escolhendo $I=U_0/(4R_f)$ --- a
+sensibilidade não distingue os métodos no ponto de operação.\\
+\textbf{O que decide é o resto.}
+\begin{itemize}
+\item \textbf{Corrente constante:} linearidade exata, mas exige fonte de
+corrente estável e o sinal parte de zero apenas se $R\to0$.
+\item \textbf{Divisor:} circuito trivial e barato, e a saída pode ser centrada
+em meia alimentação --- conveniente para conversores A/D. Em contrapartida,
+carrega o erro de linearidade e a deriva de $R_f$ e de $U_0$.
+\end{itemize}
+\textbf{Solução de compromisso muito usada:} a \emph{ponte} de Wheatstone, que
+cancela a componente comum e entrega diretamente o desequilíbrio --- combinando
+boa linearidade com circuito passivo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Resistividade e temperatura.)} A resistividade de um metal varia como
+$\rho(T)=\rho_0\left[1+\alpha(T-T_0)\right]$.
+\begin{itensq}
+\item Mostre que a mesma lei vale para $R$, e identifique a hipótese oculta.
+\item Determine o erro cometido ao ignorar a dilatação térmica das dimensões.
+\item Avalie para cobre entre $\SI{20}{\celsius}$ e
+      $\SI{120}{\celsius}$.
+\end{itensq}
+\resposta{A hipótese oculta é dimensões constantes; o erro é da ordem de
+$\SI{0.05}{\percent}$ --- desprezível}
+\resolucao{(a) De $R=\rho L/A$, se $L$ e $A$ forem constantes, então
+$R\propto\rho$ e a lei se transfere diretamente. \textbf{A hipótese oculta é
+justamente essa}: que a geometria não muda com a temperatura --- o que é falso,
+pois todo metal se dilata.\\
+(b) Com coeficiente de dilatação linear $\lambda$:
+$L'=L(1+\lambda\Delta T)$ e $A'=A(1+\lambda\Delta T)^{2}$, logo
+\[
+\frac{L'}{A'}=\frac{L}{A}\cdot\frac{1}{1+\lambda\Delta T}.
+\]
+Assim
+\[
+R=\frac{\rho_0(1+\alpha\Delta T)}{1+\lambda\Delta T}\cdot\frac{L}{A}
+\approx R_0\left[1+(\alpha-\lambda)\Delta T\right].
+\]
+\textbf{O efeito da dilatação é subtrair $\lambda$ de $\alpha$} --- a peça fica
+mais longa (aumentando $R$) mas também mais grossa (reduzindo $R$), e o segundo
+efeito predomina por ser quadrático na área.\\
+(c) Para o cobre, $\alpha\approx\SI{3.9e-3}{\per\celsius}$ e
+$\lambda\approx\SI{1.7e-5}{\per\celsius}$:
+\[
+\frac{\lambda}{\alpha}=\frac{1{,}7\times10^{-5}}{3{,}9\times10^{-3}}
+=0{,}0044=0{,}44\%.
+\]
+Com $\Delta T=\SI{100}{\celsius}$, $R$ aumenta $39\%$ pela resistividade e
+diminui $0{,}17\%$ pela dilatação --- efeito líquido de $38{,}8\%$.\\
+\textbf{Conclusão:} ignorar a dilatação introduz erro de cerca de
+$0{,}4\%$ \emph{do efeito térmico}, ou $0{,}17\%$ do valor de $R$. Desprezível
+em quase toda aplicação --- mas não em padrões de resistência de laboratório,
+onde se buscam partes por milhão.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Medição a quatro fios.)} Quantifique a vantagem do método de Kelvin.
+\begin{itensq}
+\item Deduza o erro relativo do método de dois fios em função de
+      $R_{cabo}/R_x$.
+\item Determine a partir de qual valor de $R_x$ o método de dois fios dá erro
+      inferior a $\SI{1}{\percent}$, com cabos de $\SI{0.2}{\ohm}$ cada.
+\item Explique por que o método de quatro fios não elimina \emph{todos} os
+      erros.
+\end{itensq}
+\resposta{Erro $=2R_{cabo}/R_x$; é preciso $R_x\ge\SI{40}{\ohm}$}
+\resolucao{(a) O instrumento lê $R_x+2R_{cabo}$, logo
+\[
+\varepsilon=\frac{2R_{cabo}}{R_x}.
+\]
+(b) Impondo $\varepsilon\le0{,}01$ com $R_{cabo}=\SI{0.2}{\ohm}$:
+\[
+R_x\ge\frac{2(0{,}2)}{0{,}01}=\SI{40}{\ohm}.
+\]
+\textbf{Regra prática:} o método de dois fios só é aceitável para resistências
+de dezenas de ohms ou mais. Abaixo disso, o erro cresce rapidamente --- em
+$\SI{1}{\ohm}$ ele já é de $40\%$.\\
+(c) \textbf{O que o método de quatro fios \emph{não} elimina.}
+\begin{itemize}
+\item \textbf{Tensões termoelétricas.} Junções entre metais diferentes nos
+contatos geram forças eletromotrizes de dezenas de microvolts --- comparáveis ao
+sinal quando se mede miliohms. Combate-se invertendo o sentido da corrente e
+tomando a média das duas leituras.
+\item \textbf{Autoaquecimento} pela corrente de excitação, que altera o próprio
+$R_x$.
+\item \textbf{Localização dos contatos de tensão.} Eles devem estar
+\emph{entre} os de corrente, e a distribuição de corrente na peça influencia o
+que se mede. Em amostras curtas, a definição do que é "o resistor" torna-se
+ambígua.
+\item \textbf{Ruído e deriva} do amplificador, agravados porque o sinal é de
+poucos milivolts.
+\end{itemize}
+\textbf{Síntese:} o método de quatro fios elimina o erro \emph{sistemático e
+dominante} --- a resistência dos cabos. Os erros remanescentes são de outra
+natureza e exigem outras técnicas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Condutor composto.)} Um cabo de alta tensão tem alma de aço
+($\rho_{aço}=\pot{1.5}{-7}\,\si{\ohm\meter}$, $A=\SI{20}{\milli\meter\squared}$)
+envolvida por alumínio ($\rho_{Al}=\pot{2.8}{-8}\,\si{\ohm\meter}$,
+$A=\SI{100}{\milli\meter\squared}$), com $\SI{1}{\kilo\meter}$ de comprimento.
+\begin{itensq}
+\item Determine a resistência de cada material e a do conjunto.
+\item Determine a fração de corrente em cada um.
+\item Explique a função da alma de aço.
+\end{itensq}
+\resposta{$R_{aço}=\SI{7.5}{\ohm}$, $R_{Al}=\SI{0.28}{\ohm}$,
+$R_{eq}=\SI{0.270}{\ohm}$; o aço conduz $3{,}6\%$}
+\resolucao{(a) Os dois materiais estão em \textbf{paralelo} (mesmo comprimento,
+mesmos terminais):
+\[
+R_{aço}=\frac{\pot{1.5}{-7}(1000)}{\pot{20}{-6}}=\SI{7.5}{\ohm};
+\qquad
+R_{Al}=\frac{\pot{2.8}{-8}(1000)}{\pot{100}{-6}}=\SI{0.28}{\ohm};
+\]
+\[
+R_{eq}=\frac{7{,}5(0{,}28)}{7{,}78}=\SI{0.270}{\ohm}.
+\]
+(b) Pelo divisor de corrente em condutâncias:
+\[
+\frac{I_{Al}}{I_T}=\frac{1/0{,}28}{1/0{,}28+1/7{,}5}=96{,}4\%;
+\qquad
+\frac{I_{aço}}{I_T}=3{,}6\%.
+\]
+(c) \textbf{A alma de aço praticamente não conduz --- e não é essa a sua
+função.} Ela existe por razões \textbf{mecânicas}:
+\begin{itemize}
+\item O alumínio tem resistência à tração baixa e escoa sob carga permanente. O
+aço sustenta o peso próprio do cabo entre torres, que podem distar centenas de
+metros.
+\item Reduz a flecha (o "barrigamento") do vão e, com ela, a altura necessária
+das torres.
+\item Suporta os esforços de vento e de acúmulo de gelo.
+\end{itemize}
+\textbf{Observe a divisão de papéis:} o alumínio conduz $96\%$ da corrente e o
+aço sustenta praticamente toda a carga mecânica. É o princípio do cabo
+\textbf{ACSR} (\emph{aluminium conductor steel-reinforced}), padrão em linhas de
+transmissão aéreas --- um caso em que a análise elétrica revela que o componente
+"elétrico" está ali por outro motivo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Limites da lei de Ohm.)} Discuta situações em que a relação
+$U=RI$ deixa de descrever o comportamento de um condutor.
+\begin{itensq}
+\item Enumere ao menos quatro mecanismos, com exemplos.
+\item Explique por que a lei de Ohm não é uma lei fundamental.
+\item Indique como se procede quando ela falha.
+\end{itensq}
+\resposta{Autoaquecimento, não linearidade intrínseca, efeitos de alta
+frequência e ruptura do meio}
+\resolucao{(a) \textbf{Quatro mecanismos.}
+\begin{enumerate}
+\item \textbf{Autoaquecimento.} A resistência depende da temperatura, que
+depende da potência dissipada. Exemplo: lâmpada incandescente, cuja resistência
+a frio é cerca de dez vezes menor que a quente.
+\item \textbf{Não linearidade intrínseca.} Junções semicondutoras seguem
+relação exponencial, não linear. Exemplo: diodo, cuja "resistência" varia
+ordens de grandeza em uma década de tensão.
+\item \textbf{Efeitos de frequência.} O efeito pelicular concentra a corrente na
+superfície do condutor, aumentando a resistência efetiva; somam-se indutância e
+capacitância parasitas. Exemplo: um fio que tem $\SI{1}{\milli\ohm}$ em CC pode
+apresentar dezenas de miliohms em megahertz.
+\item \textbf{Ruptura do meio.} Acima da rigidez dielétrica, um isolante
+torna-se condutor abruptamente. Exemplo: arco elétrico, cuja característica
+$U\times I$ tem inclinação \emph{negativa}.
+\end{enumerate}
+\emph{(Acrescente-se ainda a saturação de velocidade dos portadores em campos
+muito intensos e a supercondutividade, em que $R$ colapsa a zero.)}\\
+(b) \textbf{A lei de Ohm é uma lei empírica e aproximada}, não fundamental. Ela
+descreve o comportamento de \emph{certos} materiais (metais, em faixa limitada
+de temperatura e frequência) e emerge de um modelo estatístico de colisões dos
+portadores --- não de um princípio de conservação.\\
+Compare com as leis de Kirchhoff, que decorrem da conservação de carga e de
+energia e valem \emph{sempre}, para qualquer componente, linear ou não.\\
+(c) \textbf{Quando a lei falha, procede-se assim:}
+\begin{itemize}
+\item Substituir $R$ pela \textbf{característica $U\times I$} completa do
+dispositivo, obtida por medição ou por modelo.
+\item Resolver o circuito por \textbf{interseção de características} (reta de
+carga), como se faz com diodos.
+\item Para pequenos sinais, linearizar em torno do ponto de operação usando a
+\textbf{resistência dinâmica} --- e aí toda a maquinaria linear volta a valer.
+\end{itemize}
+\textbf{As leis de Kirchhoff continuam válidas em todos esses casos} --- é
+sempre por elas que se começa.}
+\end{questao}

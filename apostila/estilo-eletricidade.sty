@@ -1,0 +1,354 @@
+% =====================================================================
+%  estilo-eletricidade.sty
+%  Pacote de estilo para "Eletricidade Basica, Circuitos Eletricos
+%  e Eletromagnetismo" - Prof. Francisco Viana
+%
+%  Recursos:
+%   * identidade visual unificada (cores, titulos, cabecalhos)
+%   * ambiente {questao} com numeracao continua, nivel de dificuldade
+%     e fonte/banca opcional
+%   * ambiente {alternativas} (1, 2 ou 3 colunas)
+%   * caixas didaticas: conceito, dados, atencao, exemplo
+%   * GABARITO AUTOMATICO ao final de cada secao/subsecao
+%       \resposta{...}   -> chave de respostas
+%       \resolucao{...}  -> resolucao comentada
+%       \gabarito        -> imprime e zera o acumulador
+% =====================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{estilo-eletricidade}[2026/07/21 v1.0 Estilo didatico]
+
+% ------------------------------ base ---------------------------------
+
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+% babel em portugues; se a distribuicao nao tiver babel-portuges,
+% o pacote segue funcionando com os nomes traduzidos manualmente.
+\IfFileExists{brazil.ldf}
+  {\RequirePackage[brazil]{babel}}
+  {\PackageWarningNoLine{estilo-eletricidade}%
+     {babel-portuges nao encontrado: usando traducoes manuais.
+      Instale o pacote `babel-portuges' para hifenizacao correta}%
+   \AtBeginDocument{%
+     \renewcommand{\figurename}{Figura}%
+     \renewcommand{\tablename}{Tabela}%
+     \renewcommand{\contentsname}{Sum\'ario}%
+     \renewcommand{\refname}{Refer\^encias}}}
+\RequirePackage{mathpazo}
+\RequirePackage[scaled=0.92]{helvet}
+\RequirePackage{microtype}
+\RequirePackage{textcomp}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{etoolbox}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{multicol}
+\RequirePackage{enumitem}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{tabularx}
+\RequirePackage{caption}
+\RequirePackage{float}
+\RequirePackage{tikz}
+\RequirePackage[siunitx,RPvoltages]{circuitikz}
+\RequirePackage{pgfplots}
+\RequirePackage{tcolorbox}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{tocloft}
+\usetikzlibrary{calc,arrows.meta,decorations.pathmorphing,patterns,positioning,shapes.geometric}
+\pgfplotsset{compat=1.18}
+\tcbuselibrary{skins,breakable}
+\RequirePackage[colorlinks=true,linkcolor=azulprof,citecolor=azulprof,
+                urlcolor=azulprof,linktoc=all]{hyperref}
+
+% ---------------------------- paleta ---------------------------------
+\definecolor{azulprof}{HTML}{14496B}   % titulos e estrutura
+\definecolor{azulclaro}{HTML}{E8F0F6}  % fundos suaves
+\definecolor{laranja}{HTML}{C8531B}    % destaques / atencao
+\definecolor{verdeq}{HTML}{1F7A5C}     % gabarito
+\definecolor{cinza}{HTML}{5B6770}
+\definecolor{cinzaclaro}{HTML}{F2F4F6}
+\definecolor{Icol}{HTML}{1B4F9C}       % correntes nos circuitos
+\definecolor{Rcol}{HTML}{2E7D32}       % resistores
+\definecolor{Vcol}{HTML}{B3261E}       % tensoes / malhas
+\definecolor{loopcol}{HTML}{C0392B}    % correntes de malha (Maxwell)
+\definecolor{Ccol}{HTML}{7A4F9E}       % capacitores / curvas RC
+
+% ---------- Cores ----------
+\definecolor{myE}{RGB}{170,20,30}
+\definecolor{myB}{RGB}{110,160,175}
+\definecolor{myGray}{RGB}{70,70,70}
+
+
+% ------------------------ unidades (pt-BR) ---------------------------
+\sisetup{
+  output-decimal-marker = {,},
+  per-mode              = symbol,
+  separate-uncertainty  = true,
+  exponent-product      = \times,
+  range-phrase          = { a },
+  list-final-separator  = { e },
+  list-pair-separator   = { e },
+  detect-weight         = true
+}
+% atalhos frequentes
+\newcommand{\ohm}{\si{\ohm}}
+\newcommand{\uC}{\si{\micro\coulomb}}
+\newcommand{\nC}{\si{\nano\coulomb}}
+\newcommand{\pot}[2]{#1\times 10^{#2}}
+\newcommand{\ke}{k_{0}}
+\newcommand{\EMF}{\mathcal{E}}          % forca eletromotriz
+\newcommand{\Req}{R_{\mathrm{eq}}}
+\newcommand{\Ceq}{C_{\mathrm{eq}}}
+\newcommand{\Leq}{L_{\mathrm{eq}}}
+\newcommand{\Vth}{V_{\mathrm{Th}}}
+\newcommand{\Rth}{R_{\mathrm{Th}}}
+\newcommand{\IN}{I_{\mathrm{N}}}
+\newcommand{\RN}{R_{\mathrm{N}}}
+
+% --------------------- titulos de secao ------------------------------
+\titleformat{\section}[display]
+  {\normalfont\sffamily\bfseries\Large\color{azulprof}}
+  {\raisebox{0pt}{\tikz{\node[fill=azulprof,text=white,rounded corners=2pt,
+     inner xsep=8pt,inner ysep=4pt,font=\sffamily\bfseries\normalsize]
+     {CAPÍTULO \thesection};}}}
+  {8pt}
+  {}[{\vspace{2pt}\color{azulprof}\titlerule[1.2pt]}]
+
+\titleformat{\subsection}
+  {\normalfont\sffamily\bfseries\large\color{azulprof}}
+  {\thesubsection}{0.7em}{}
+\titlespacing*{\subsection}{0pt}{2.2ex plus 1ex minus .2ex}{1.2ex plus .2ex}
+
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\bfseries\normalsize\color{cinza}}
+  {\thesubsubsection}{0.6em}{}
+
+% ------------------------ cabecalho/rodape ---------------------------
+\newcommand{\tituloobra}{Eletricidade Básica, Circuitos Elétricos e Eletromagnetismo}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\footnotesize\sffamily\color{cinza}\nouppercase{\leftmark}}
+\fancyhead[R]{\footnotesize\sffamily\color{cinza}Prof. Francisco Viana}
+\fancyfoot[C]{\small\sffamily\color{azulprof}\thepage}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+
+% ------------------------------ sumario ------------------------------
+\renewcommand{\cftsecfont}{\sffamily\bfseries\color{azulprof}}
+\renewcommand{\cftsecpagefont}{\sffamily\bfseries\color{azulprof}}
+\renewcommand{\cftsubsecfont}{\sffamily}
+\setlength{\cftbeforesecskip}{6pt}
+
+% =====================================================================
+%  NIVEL DE DIFICULDADE
+% =====================================================================
+\newcommand{\estrelacheia}{%
+  \tikz[baseline=-0.35ex]\node[star,star points=5,star point ratio=2.3,
+    fill=laranja,draw=laranja,inner sep=1.15pt]{};}
+\newcommand{\estrelavazia}{%
+  \tikz[baseline=-0.35ex]\node[star,star points=5,star point ratio=2.3,
+    fill=white,draw=laranja!55,line width=0.35pt,inner sep=1.15pt]{};}
+
+\newcommand{\nivelmarca}[1]{%
+  \ifcase#1\relax
+    \or \estrelacheia\estrelavazia\estrelavazia\estrelavazia
+    \or \estrelacheia\estrelacheia\estrelavazia\estrelavazia
+    \or \estrelacheia\estrelacheia\estrelacheia\estrelavazia
+    \or \estrelacheia\estrelacheia\estrelacheia\estrelacheia
+  \fi}
+
+% legenda dos niveis (para a abertura do capitulo)
+\newcommand{\legendaniveis}{%
+  \begin{center}\small\sffamily
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}l@{\hspace{3pt}}l@{\hspace{11pt}}l@{\hspace{3pt}}l@{\hspace{11pt}}l@{\hspace{3pt}}l@{\hspace{11pt}}l@{\hspace{3pt}}l@{}}
+   \nivelmarca{1} & Fixação & \nivelmarca{2} & Aplicação &
+   \nivelmarca{3} & Aprofundamento & \nivelmarca{4} & Desafio\\
+  \end{tabular}
+  \end{center}}
+
+% cabecalhos de bloco de dificuldade dentro da secao
+\newcommand{\blocofixacao}{\subsubsection*{\normalfont\sffamily\bfseries
+  \color{cinza}Nível 1 --- Fixação de conceitos}}
+\newcommand{\blocoaplicacao}{\subsubsection*{\normalfont\sffamily\bfseries
+  \color{cinza}Nível 2 --- Aplicação}}
+\newcommand{\blocoaprofundamento}{\subsubsection*{\normalfont\sffamily\bfseries
+  \color{cinza}Nível 3 --- Aprofundamento}}
+\newcommand{\blocodesafio}{\subsubsection*{\normalfont\sffamily\bfseries
+  \color{laranja}Nível 4 --- Desafio (alta complexidade)}}
+
+% =====================================================================
+%  AMBIENTE DE QUESTAO
+%  \begin{questao}[nivel][fonte]  ... \end{questao}
+% =====================================================================
+\newcounter{questao}
+\renewcommand{\thequestao}{\arabic{questao}}
+
+\newcommand{\selodaquestao}[2]{%
+  \tikz[baseline=(txt.base)]{
+    \node[draw=azulprof,fill=azulclaro,rounded corners=2.5pt,
+          inner xsep=5pt,inner ysep=2.2pt,line width=0.5pt]
+         (txt) {\sffamily\bfseries\small\color{azulprof}#1};}%
+  \hspace{4pt}\nivelmarca{#2}%
+  \ifstrempty{\questaofonte}{}{\hspace{4pt}{\footnotesize\sffamily\color{cinza}(\questaofonte)}}%
+}
+
+\newcommand{\questaofonte}{}
+\newenvironment{questao}[2][1]{%
+  \renewcommand{\questaofonte}{#2}%
+  \par\addvspace{1.15em}\penalty-100%
+  \refstepcounter{questao}%
+  \begin{list}{}{%
+     \setlength{\leftmargin}{2.9em}%
+     \setlength{\itemindent}{-2.9em}%
+     \setlength{\labelwidth}{0pt}\setlength{\labelsep}{0pt}%
+     \setlength{\topsep}{0pt}\setlength{\partopsep}{0pt}%
+     \setlength{\parsep}{0.45em}\setlength{\itemsep}{0pt}}%
+  \item\selodaquestao{\thequestao}{#1}\hspace{0.55em}\ignorespaces
+}{%
+  \end{list}\par\addvspace{0.2em}%
+}
+
+% ------------------------- alternativas ------------------------------
+% \begin{alternativas}        -> 1 coluna
+% \begin{alternativas}[2]     -> 2 colunas   (use para itens curtos)
+\newenvironment{alternativas}[1][1]{%
+  \def\@altcols{#1}%
+  \ifnum#1>1\relax
+    \setlength{\multicolsep}{4pt}%
+    \begin{multicols}{#1}\raggedcolumns
+  \fi
+  \begin{enumerate}[label=\textbf{\alph*)},leftmargin=1.9em,
+      itemsep=0.25em,parsep=0pt,topsep=0.35em,partopsep=0pt]
+}{%
+  \end{enumerate}%
+  \ifnum\@altcols>1\relax\end{multicols}\fi
+}
+
+% subitens (a), b), ...) de questoes discursivas
+\newenvironment{itensq}{%
+  \begin{enumerate}[label=\textbf{\alph*)},leftmargin=1.9em,
+      itemsep=0.3em,parsep=0pt,topsep=0.35em]}{\end{enumerate}}
+
+% =====================================================================
+%  CAIXAS DIDATICAS
+% =====================================================================
+\newtcolorbox{conceito}[1][Lembrete teórico]{
+  enhanced,breakable,colback=azulclaro,colframe=azulprof,
+  boxrule=0.7pt,arc=3pt,left=8pt,right=8pt,top=6pt,bottom=6pt,
+  fonttitle=\sffamily\bfseries\small,title={#1},
+  attach boxed title to top left={xshift=8pt,yshift=-8pt},
+  boxed title style={colback=azulprof,arc=2pt,boxrule=0pt}}
+
+\newtcolorbox{atencao}[1][Atenção]{
+  enhanced,breakable,colback=laranja!6,colframe=laranja,
+  boxrule=0.7pt,arc=3pt,left=8pt,right=8pt,top=6pt,bottom=6pt,
+  fonttitle=\sffamily\bfseries\small,title={#1},
+  attach boxed title to top left={xshift=8pt,yshift=-8pt},
+  boxed title style={colback=laranja,arc=2pt,boxrule=0pt}}
+
+% dados do enunciado (compacto, dentro da questao)
+\newcommand{\dados}[1]{%
+  \par\vspace{0.35em}\noindent
+  \colorbox{cinzaclaro}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
+   \small\textbf{\sffamily Dados:} #1}}\par\vspace{0.25em}}
+
+% legenda padronizada de figuras
+\captionsetup[figure]{font={small,sf},labelfont={bf,color=azulprof},
+                      labelsep=endash,justification=centering,skip=5pt}
+\captionsetup[table]{font={small,sf},labelfont={bf,color=azulprof},
+                      labelsep=endash,justification=centering,skip=5pt}
+
+% ------------------- simbolos de fonte (atalhos) ---------------------
+% Padrao AMERICANO: circulo com polaridade (+/-) dentro
+%   uso:  to[\fonteV, l={$E$}]      tensao
+%         to[\fonteI, l={$I$}]      corrente
+% Padrao de bateria (tracos):  to[battery1, l={$E$}]
+\newcommand{\fonteV}{american voltage source}
+\newcommand{\fonteI}{american current source}
+\newcommand{\fonteVsin}{sinusoidal voltage source}
+
+% figura padrao (conteudo, legenda, rotulo)
+\newcommand{\figuraq}[3]{%
+  \begin{figure}[H]\centering #1 \caption{#2}\label{#3}\end{figure}}
+
+% circuito da questao corrente, com legenda e rotulo automaticos
+\newcommand{\circuitoq}[1]{%
+  \begin{figure}[H]\centering #1
+   \caption{Circuito da questão \thequestao.}\label{fig:q\thequestao}\end{figure}}
+
+% mesmo, com legenda personalizada
+\newcommand{\circuitoqq}[2]{%
+  \begin{figure}[H]\centering #1
+   \caption{#2}\label{fig:q\thequestao}\end{figure}}
+
+% item de circuito dentro de uma grade a) b) c) d)
+\newcommand{\subcirc}[2]{%
+  \begin{minipage}[t]{0.48\linewidth}\centering
+    \textbf{\sffamily #1)}\\[0.4em] #2
+  \end{minipage}}
+
+% =====================================================================
+%  GABARITO AUTOMATICO
+% =====================================================================
+\newcommand{\ChaveLista}{}
+\newcommand{\ResolLista}{}
+\newif\ifhaveresol \haveresolfalse
+
+\newcommand{\resposta}[1]{%
+  \begingroup
+  \edef\x{\endgroup
+    \noexpand\gappto\noexpand\ChaveLista{%
+       \noexpand\chaveitem{\arabic{questao}}{\unexpanded{#1}}}%
+    \noexpand\gappto\noexpand\ResolLista{%
+       \noexpand\resolhead{\arabic{questao}}{\unexpanded{#1}}}%
+  }\x}
+
+\newcommand{\resolucao}[1]{%
+  \global\haveresoltrue
+  \begingroup
+  \edef\x{\endgroup
+    \noexpand\gappto\noexpand\ResolLista{\noexpand\resolbody{\unexpanded{#1}}}%
+  }\x}
+
+% --- renderizacao dos itens ------------------------------------------
+\newcommand{\chaveitem}[2]{%
+  \par\noindent\makebox[2.1em][l]{\bfseries\sffamily\color{verdeq}#1.}#2\par}
+
+\newcommand{\resolhead}[2]{%
+  \par\addvspace{0.9em}\noindent
+  \tikz[baseline=(t.base)]{\node[fill=verdeq,text=white,rounded corners=2pt,
+     inner xsep=5pt,inner ysep=2pt] (t)
+     {\sffamily\bfseries\small #1};}\hspace{5pt}%
+  \textbf{\sffamily\small #2}\par\nobreak\vspace{0.15em}}
+
+\newcommand{\resolbody}[1]{\par\noindent\small #1\par}
+
+% --- comando de impressao --------------------------------------------
+\newcommand{\gabaritotitulo}{Gabarito}
+\newcommand{\gabarito}[1][]{%
+  \par\addvspace{1.6em}
+  \noindent{\color{verdeq}\rule{\linewidth}{1.2pt}}\par\vspace{2pt}
+  \noindent{\sffamily\bfseries\large\color{verdeq}\gabaritotitulo
+    \ifstrempty{#1}{}{ \textmd{---} \textmd{#1}}}\par
+  \noindent{\color{verdeq}\rule{\linewidth}{0.5pt}}\par\vspace{0.7em}
+  \addcontentsline{toc}{subsection}{Gabarito\ifstrempty{#1}{}{ --- #1}}%
+  {\sffamily\small\color{cinza}Chave de respostas}\par\vspace{0.35em}
+  \begin{multicols}{3}\small\raggedcolumns
+    \ChaveLista
+  \end{multicols}
+  \ifhaveresol
+    \vspace{0.6em}
+    {\sffamily\small\color{cinza}Resoluções comentadas}\par
+    \ResolLista
+  \fi
+  \gdef\ChaveLista{}\gdef\ResolLista{}\global\haveresolfalse
+  \par\addvspace{1em}}
+
+\endinput

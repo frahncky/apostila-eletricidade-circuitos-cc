@@ -1,0 +1,872 @@
+% =====================================================================
+%  Banco complementar --- Circuitos Mistos  (REVISADO)
+%  Substitui a versao gerada por template (13 clones em N2, 9 em N3,
+%  5 questoes conceituais indevidamente marcadas como N4).
+%  Sem sobreposicao com o cap03, que ja traz: redes em escada finita e
+%  infinita, R-2R, escada generalizada, cubo de resistores (duas
+%  versoes), ponte com resistor central e simetria, projeto de valores
+%  a partir de resistores de 10 ohm e reducao com fio ideal.
+%  Sem transformacao estrela-triangulo (banco proprio).
+%  Distribuicao mantida: 8 N1 + 13 N2 + 9 N3 + 5 N4 = 35
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Circuitos mistos}
+
+\begin{atencao}[Organização do banco]
+Toda rede mista se resolve com o mesmo procedimento: identificar os blocos
+puramente série ou puramente paralelo, reduzir \textbf{dos mais internos para
+os mais externos} até chegar a $R_{eq}$, e depois \emph{expandir} de volta para
+recuperar tensões e correntes de cada elemento. O N3 trata de carregamento,
+falhas e saturação térmica; o N4 aborda projeto sob restrição, enumeração de
+topologias, diagnóstico e redução por simetria.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+$R_1=\SI{10}{\ohm}$ está em série com o paralelo de $R_2=\SI{20}{\ohm}$ e
+$R_3=\SI{20}{\ohm}$. Determine $R_{eq}$.
+\resposta{$R_{eq}=\SI{20}{\ohm}$}
+\resolucao{Reduza primeiro o bloco \emph{interno} (o paralelo):
+\[
+R_{23}=\frac{20\cdot20}{40}=\SI{10}{\ohm}.
+\]
+Depois o bloco externo (a série):
+\[
+R_{eq}=10+10=\SI{20}{\ohm}.
+\]
+A ordem importa: somar os três de uma vez daria $\SI{50}{\ohm}$, resultado sem
+sentido físico.}
+\end{questao}
+
+\begin{questao}[1]{}
+Calcule $R_{eq}$ de $(\SI{10}{\ohm}\parallel\SI{10}{\ohm})$ em série com
+$(\SI{30}{\ohm}\parallel\SI{60}{\ohm})$.
+\resposta{$R_{eq}=\SI{25}{\ohm}$}
+\resolucao{Dois blocos paralelos independentes, depois somados:
+\[
+R_{a}=\frac{10}{2}=\SI{5}{\ohm},
+\qquad
+R_{b}=\frac{30\cdot60}{90}=\SI{20}{\ohm},
+\]
+\[
+R_{eq}=5+20=\SI{25}{\ohm}.
+\]
+Blocos que não compartilham nós podem ser reduzidos em qualquer ordem entre si
+--- só a hierarquia interna de cada um é obrigatória.}
+\end{questao}
+
+\begin{questao}[1]{}
+Dois resistores estão ligados \emph{aos mesmos dois nós} do circuito. Eles
+estão:
+\begin{alternativas}[2]
+\item em série
+\item em paralelo
+\item em série ou paralelo, conforme o desenho
+\item nem em série nem em paralelo
+\end{alternativas}
+\resposta{(b)}
+\resolucao{O critério é \textbf{topológico}, não gráfico: dois elementos ligados
+ao mesmo par de nós estão submetidos à mesma tensão --- definição de paralelo.
+Já a série exige que compartilhem \emph{um} nó \emph{e} que nenhum outro
+elemento se conecte a ele, garantindo a mesma corrente.\\
+Não se guie pelo desenho: resistores que "parecem" em série no esquema podem
+estar em paralelo se um fio os ligar pelos dois lados.}
+\end{questao}
+
+\begin{questao}[1]{}
+A estratégia correta para reduzir uma rede mista é:
+\begin{alternativas}[2]
+\item começar sempre pelos resistores mais próximos da fonte
+\item reduzir dos blocos mais internos para os mais externos
+\item somar todas as resistências e depois corrigir
+\item reduzir os paralelos antes de qualquer série, sempre
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Reduz-se sempre \emph{de dentro para fora}, isto é, partindo do
+bloco mais distante da fonte (ou mais aninhado) em direção aos terminais. Não
+existe regra fixa de "paralelo antes de série": a ordem é ditada pela
+hierarquia da própria rede.\\
+A alternativa (d) falha, por exemplo, em $R_1+(R_2+R_3)\parallel R_4$, onde a
+\emph{série} $R_2+R_3$ precisa ser feita antes do paralelo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine $R_{eq}$ de $(\SI{10}{\ohm}+\SI{20}{\ohm})$ em paralelo com
+$(\SI{15}{\ohm}+\SI{15}{\ohm})$.
+\resposta{$R_{eq}=\SI{15}{\ohm}$}
+\resolucao{Cada ramo é reduzido primeiro:
+$R_a=10+20=\SI{30}{\ohm}$ e $R_b=15+15=\SI{30}{\ohm}$. Depois o paralelo:
+\[
+R_{eq}=\frac{30}{2}=\SI{15}{\ohm}.
+\]
+Aqui a série \emph{obrigatoriamente} vem antes: só depois de reduzidos os dois
+ramos é que eles ficam ligados ao mesmo par de nós.}
+\end{questao}
+
+\begin{questao}[1]{}
+$R_1=\SI{12}{\ohm}$ está em série com o paralelo entre $R_2=\SI{6}{\ohm}$ e a
+série $R_3=\SI{4}{\ohm}$ com $R_4=\SI{8}{\ohm}$. Determine $R_{eq}$.
+\resposta{$R_{eq}=\SI{16}{\ohm}$}
+\resolucao{Três níveis, do mais interno ao mais externo:
+\[
+R_{34}=4+8=\SI{12}{\ohm};
+\qquad
+R_{234}=\frac{6\cdot12}{18}=\SI{4}{\ohm};
+\qquad
+R_{eq}=12+4=\SI{16}{\ohm}.
+\]}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte de $\SI{24}{\volt}$ alimenta a rede
+$\SI{10}{\ohm}+(\SI{20}{\ohm}\parallel\SI{20}{\ohm})$. Determine a corrente
+total e a tensão sobre o bloco paralelo.
+\resposta{$I=\SI{1.2}{\ampere}$; $U_{par}=\SI{12}{\volt}$}
+\resolucao{Já se sabe que $R_{eq}=\SI{20}{\ohm}$, logo
+\[
+I=\frac{24}{20}=\SI{1.2}{\ampere}.
+\]
+Toda a corrente atravessa $R_1$, e depois o bloco paralelo:
+\[
+U_{par}=R_{23}\,I=10\cdot1{,}2=\SI{12}{\volt}.
+\]
+\textbf{Conferência (LKT):} $U_1=10\cdot1{,}2=\SI{12}{\volt}$, e
+$12+12=\SI{24}{\volt}$ \checkmark.}
+\end{questao}
+
+\begin{questao}[1]{}
+Em uma rede mista, a corrente que atravessa o resistor imediatamente ligado ao
+terminal da fonte é:
+\begin{alternativas}[2]
+\item igual à corrente total
+\item metade da corrente total
+\item dividida entre os ramos internos
+\item indeterminada sem mais dados
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Se esse resistor está \emph{em série} com a fonte --- isto é, se não
+há bifurcação antes dele --- toda a corrente que sai da fonte passa por ele.
+Por isso ele é o primeiro a ser recuperado na etapa de expansão, e costuma ser
+também o mais solicitado termicamente.\\
+Note a ressalva: se houver um nó entre a fonte e o resistor, a alternativa (c)
+passaria a valer. O critério é sempre topológico.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{24}{\volt}$ alimenta $R_1=\SI{10}{\ohm}$ em série com
+$R_2=\SI{20}{\ohm}$ e $R_3=\SI{20}{\ohm}$ em paralelo. Determine todas as
+correntes e tensões.
+\resposta{$I_t=\SI{1.2}{\ampere}$; $U_1=\SI{12}{\volt}$;
+$U_{23}=\SI{12}{\volt}$; $I_2=I_3=\SI{0.6}{\ampere}$}
+\resolucao{\textbf{Redução:} $R_{23}=\SI{10}{\ohm}$, $R_{eq}=\SI{20}{\ohm}$,
+$I_t=24/20=\SI{1.2}{\ampere}$.\\
+\textbf{Expansão:} $U_1=10(1{,}2)=\SI{12}{\volt}$;
+$U_{23}=24-12=\SI{12}{\volt}$;
+\[
+I_2=I_3=\frac{12}{20}=\SI{0.6}{\ampere}.
+\]
+\textbf{Verificação (LKC):} $0{,}6+0{,}6=\SI{1.2}{\ampere}$ \checkmark.
+Como $R_2=R_3$, a corrente se divide igualmente --- resultado que a simetria
+antecipa sem nenhum cálculo.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito anterior, $R_3$ é trocado por $\SI{60}{\ohm}$. Recalcule
+$R_{eq}$, a corrente total e as correntes de ramo.
+\resposta{$R_{eq}=\SI{25}{\ohm}$; $I_t=\SI{0.96}{\ampere}$;
+$I_2=\SI{0.72}{\ampere}$, $I_3=\SI{0.24}{\ampere}$}
+\resolucao{$R_{23}=\dfrac{20\cdot60}{80}=\SI{15}{\ohm}$ e
+$R_{eq}=10+15=\SI{25}{\ohm}$, logo $I_t=24/25=\SI{0.96}{\ampere}$.\\
+$U_{23}=15(0{,}96)=\SI{14.4}{\volt}$, e daí
+\[
+I_2=\frac{14{,}4}{20}=\SI{0.72}{\ampere},
+\qquad
+I_3=\frac{14{,}4}{60}=\SI{0.24}{\ampere}.
+\]
+\textbf{Divisor de corrente (alternativa):}
+$I_2=0{,}96\cdot\frac{60}{80}=\SI{0.72}{\ampere}$ \checkmark. Note que a razão
+$I_2/I_3=3$ é exatamente $R_3/R_2$ --- inversa das resistências.}
+\end{questao}
+
+\begin{questao}[2]{}
+Na rede $\SI{10}{\ohm}+(\SI{20}{\ohm}\parallel\SI{20}{\ohm})$ sob
+$\SI{24}{\volt}$, calcule a potência de cada resistor e confronte com a
+potência da fonte.
+\resposta{$\SI{14.4}{\watt}$; $\SI{7.2}{\watt}$; $\SI{7.2}{\watt}$; total
+$\SI{28.8}{\watt}$}
+\resolucao{
+\[
+P_1=R_1I_t^{2}=10(1{,}2)^{2}=\SI{14.4}{\watt};
+\qquad
+P_2=P_3=\frac{U_{23}^{2}}{20}=\frac{144}{20}=\SI{7.2}{\watt}.
+\]
+Fonte: $P=24(1{,}2)=\SI{28.8}{\watt}=14{,}4+7{,}2+7{,}2$ \checkmark.\\
+\textbf{Observação:} $R_1$ dissipa exatamente metade de toda a potência, embora
+seja o menor resistor da rede --- porque é o único que conduz a corrente
+inteira. Em redes mistas, "quem aquece mais" depende da posição, não apenas do
+valor.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $R_{eq}$ de $(\SI{5}{\ohm}+\SI{15}{\ohm})$ em paralelo com
+$(\SI{10}{\ohm}+\SI{10}{\ohm})$, e a corrente de cada ramo sob
+$\SI{30}{\volt}$.
+\resposta{$R_{eq}=\SI{10}{\ohm}$; $I_t=\SI{3}{\ampere}$; $\SI{1.5}{\ampere}$
+em cada ramo}
+\resolucao{Ramos: $R_a=\SI{20}{\ohm}$ e $R_b=\SI{20}{\ohm}$, logo
+$R_{eq}=\SI{10}{\ohm}$ e $I_t=30/10=\SI{3}{\ampere}$.\\
+Ambos os ramos estão sob os mesmos $\SI{30}{\volt}$:
+$I_a=I_b=30/20=\SI{1.5}{\ampere}$.\\
+\textbf{Cuidado:} apesar de $R_a=R_b$, as \emph{quedas internas} diferem. No
+ramo $a$: $\SI{7.5}{\volt}$ e $\SI{22.5}{\volt}$; no ramo $b$:
+$\SI{15}{\volt}$ e $\SI{15}{\volt}$. Ramos equivalentes nos terminais não são
+equivalentes internamente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma rede é formada por $R_1=\SI{8}{\ohm}$ em série com o paralelo de
+$\SI{24}{\ohm}$ e $R$. Sabendo que $R_{eq}=\SI{24}{\ohm}$, determine $R$.
+\resposta{$R=\SI{48}{\ohm}$}
+\resolucao{O bloco paralelo deve valer $24-8=\SI{16}{\ohm}$. Em condutâncias:
+\[
+\frac{1}{R}=\frac{1}{16}-\frac{1}{24}=\frac{3-2}{48}
+\;\Longrightarrow\;
+R=\SI{48}{\ohm}.
+\]
+\textbf{Conferência:} $24\parallel48=\dfrac{24\cdot48}{72}=\SI{16}{\ohm}$ e
+$8+16=\SI{24}{\ohm}$ \checkmark.\\
+Note que a subtração foi feita em \emph{condutâncias}: tentar subtrair
+resistências ($16-24$) daria valor negativo, sinal claro de método errado.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $R_{eq}$ de $R_1=\SI{10}{\ohm}$ em série com o paralelo entre
+$(\SI{20}{\ohm}+\SI{20}{\ohm})$ e $\SI{10}{\ohm}$.
+\resposta{$R_{eq}=\SI{18}{\ohm}$}
+\resolucao{
+\[
+R_{23}=20+20=\SI{40}{\ohm};
+\qquad
+R_{234}=\frac{40\cdot10}{50}=\SI{8}{\ohm};
+\qquad
+R_{eq}=10+8=\SI{18}{\ohm}.
+\]
+O bloco paralelo resultou em $\SI{8}{\ohm}$ --- menor que o menor dos dois
+($\SI{10}{\ohm}$), como sempre deve ocorrer. Esse teste de sanidade a cada
+etapa evita que um erro se propague por toda a redução.}
+\end{questao}
+
+\begin{questao}[2]{}
+Na rede $\SI{10}{\ohm}+(\SI{20}{\ohm}\parallel\SI{20}{\ohm})$ sob
+$\SI{24}{\volt}$, o nó entre $R_1$ e o bloco paralelo é chamado $A$, e o
+terminal negativo da fonte é o terra. Determine $V_A$.
+\resposta{$V_A=\SI{12}{\volt}$}
+\resolucao{O potencial de $A$ em relação ao terra é a tensão sobre o bloco
+paralelo, pois é ele que separa $A$ do terra:
+\[
+V_A=U_{23}=\SI{12}{\volt}.
+\]
+\textbf{Alternativamente,} descendo da fonte: $V_A=24-U_1=24-12=\SI{12}{\volt}$
+\checkmark.\\
+Os dois caminhos precisam concordar --- é a LKT em ação. Se discordassem,
+haveria erro na redução.}
+\end{questao}
+
+\begin{questao}[2]{}
+Na mesma rede, um dos resistores de $\SI{20}{\ohm}$ sofre
+\textbf{curto-circuito}. Recalcule $R_{eq}$, a corrente total e a potência de
+$R_1$.
+\resposta{$R_{eq}=\SI{10}{\ohm}$; $I_t=\SI{2.4}{\ampere}$;
+$P_1=\SI{57.6}{\watt}$}
+\resolucao{Um curto no bloco paralelo anula o bloco inteiro: o outro resistor
+de $\SI{20}{\ohm}$ fica em paralelo com $\SI{0}{\ohm}$ e deixa de conduzir.
+\[
+R_{eq}=10+0=\SI{10}{\ohm},
+\qquad
+I_t=\frac{24}{10}=\SI{2.4}{\ampere},
+\qquad
+P_1=10(2{,}4)^{2}=\SI{57.6}{\watt}.
+\]
+$P_1$ saltou de $14{,}4$ para $\SI{57.6}{\watt}$ --- fator \textbf{quatro},
+pois a corrente dobrou. Se $R_1$ fosse especificado para
+$\SI{25}{\watt}$, queimaria em seguida.\\
+\textbf{Padrão de falha:} o curto em um ramo interno transfere toda a
+solicitação para o elemento em série --- e o defeito "migra" da causa para a
+vítima, dificultando o diagnóstico.}
+\end{questao}
+
+\begin{questao}[2]{}
+Na mesma rede, agora um dos resistores de $\SI{20}{\ohm}$ \textbf{abre}.
+Recalcule $R_{eq}$, a corrente total e a potência do resistor remanescente.
+\resposta{$R_{eq}=\SI{30}{\ohm}$; $I_t=\SI{0.8}{\ampere}$;
+$P=\SI{12.8}{\watt}$}
+\resolucao{Sem um dos ramos, o bloco paralelo passa a valer $\SI{20}{\ohm}$:
+\[
+R_{eq}=10+20=\SI{30}{\ohm},
+\qquad
+I_t=\frac{24}{30}=\SI{0.8}{\ampere},
+\qquad
+U_{par}=20(0{,}8)=\SI{16}{\volt},
+\]
+\[
+P=\frac{16^{2}}{20}=\SI{12.8}{\watt}.
+\]
+\textbf{Contraste com o curto:} aqui a corrente total \emph{caiu} (de $1{,}2$
+para $\SI{0.8}{\ampere}$), mas o resistor sobrevivente passou a dissipar
+$12{,}8$ em vez de $\SI{7.2}{\watt}$ --- $78\%$ mais, porque agora assume
+sozinho a corrente antes dividida. Falhas de abertura em blocos paralelos
+\emph{sobrecarregam} os ramos irmãos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas redes têm $R_{eq}=\SI{20}{\ohm}$: (A) $\SI{10}{\ohm}$ em série com
+$\SI{20}{\ohm}\parallel\SI{20}{\ohm}$; (B) $\SI{30}{\ohm}\parallel\SI{60}{\ohm}$.
+Sob $\SI{60}{\volt}$, compare a potência total e a do componente mais
+solicitado.
+\resposta{Total $\SI{180}{\watt}$ em ambas; pior componente:
+$\SI{90}{\watt}$ em (A) e $\SI{120}{\watt}$ em (B)}
+\resolucao{$I_t=60/20=\SI{3}{\ampere}$ e $P_{tot}=60(3)=\SI{180}{\watt}$ nas
+duas.\\
+\textbf{(A)} $P_{10}=10(3)^{2}=\SI{90}{\watt}$; bloco sob
+$\SI{30}{\volt}$, cada $\SI{20}{\ohm}$ com $\SI{45}{\watt}$. Soma:
+$90+45+45=\SI{180}{\watt}$ \checkmark.\\
+\textbf{(B)} $P_{30}=\dfrac{3600}{30}=\SI{120}{\watt}$;
+$P_{60}=\dfrac{3600}{60}=\SI{60}{\watt}$. Soma $\SI{180}{\watt}$ \checkmark.\\
+\textbf{Conclusão:} resistência equivalente idêntica, potência total idêntica,
+mas o ponto quente difere em $33\%$. A escolha da topologia é decisão térmica,
+não elétrica.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\EMF=\SI{24}{\volt}$ e $r=\SI{2}{\ohm}$ alimenta a rede mista de
+$\SI{10}{\ohm}$. Determine a corrente, a tensão nos terminais e a potência
+entregue à rede.
+\resposta{$I=\SI{2}{\ampere}$; $V=\SI{20}{\volt}$; $P=\SI{40}{\watt}$}
+\resolucao{
+\[
+I=\frac{24}{2+10}=\SI{2}{\ampere};
+\qquad
+V=24-2(2)=\SI{20}{\volt};
+\qquad
+P_{rede}=20(2)=\SI{40}{\watt}.
+\]
+A fonte gera $24(2)=\SI{48}{\watt}$, dos quais $2(2)^{2}=\SI{8}{\watt}$ se
+perdem internamente. Rendimento: $40/48=83{,}3\%$.\\
+\textbf{Regra útil:} o rendimento é $R_{rede}/(R_{rede}+r)$ --- aqui
+$10/12$. Ele depende apenas dessa razão, não da topologia interna da rede.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma rede mista de $R_{eq}=\SI{16}{\ohm}$ sob $\SI{32}{\volt}$, verificou-se
+$P_{total}=\SI{64}{\watt}$. A medição é consistente? Justifique de duas
+maneiras.
+\resposta{Sim: $P=V^{2}/R_{eq}=VI=\SI{64}{\watt}$}
+\resolucao{\textbf{Primeiro caminho:}
+$P=\dfrac{V^{2}}{R_{eq}}=\dfrac{32^{2}}{16}=\SI{64}{\watt}$ \checkmark.\\
+\textbf{Segundo caminho:} $I=32/16=\SI{2}{\ampere}$ e
+$P=VI=32(2)=\SI{64}{\watt}$ \checkmark.\\
+\textbf{Terceiro (se os elementos forem conhecidos):} somar $R_kI_k^{2}$ de
+cada resistor deve devolver os mesmos $\SI{64}{\watt}$. Essa terceira
+verificação é a mais forte, porque testa a \emph{expansão} da rede --- as duas
+primeiras só testam $R_{eq}$ e passariam mesmo se a distribuição interna
+estivesse errada.}
+\end{questao}
+
+\begin{questao}[2]{}
+Na rede $R_1=\SI{12}{\ohm}$ em série com $R_2=\SI{6}{\ohm}\parallel
+(R_3=\SI{4}{\ohm}+R_4=\SI{8}{\ohm})$, sob $\SI{32}{\volt}$, determine a
+corrente em $R_3$.
+\resposta{$I_3=\SI{0.667}{\ampere}$}
+\resolucao{\textbf{Redução:} $R_{34}=\SI{12}{\ohm}$;
+$R_{234}=6\parallel12=\SI{4}{\ohm}$; $R_{eq}=12+4=\SI{16}{\ohm}$.\\
+\textbf{Expansão:} $I_t=32/16=\SI{2}{\ampere}$;
+$U_{234}=4(2)=\SI{8}{\volt}$.\\
+Esse é o mesmo $\SI{8}{\volt}$ aplicado ao ramo $R_3+R_4$:
+\[
+I_3=\frac{8}{12}=\SI{0.667}{\ampere}.
+\]
+\textbf{Conferência pelo divisor:}
+$I_3=I_t\cdot\dfrac{6}{6+12}=2\cdot\dfrac13=\SI{0.667}{\ampere}$ \checkmark. E
+$I_2=8/6=\SI{1.333}{\ampere}$, com $0{,}667+1{,}333=\SI{2}{\ampere}$
+\checkmark.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma rede consiste em $(R_1+R_2)$ em paralelo com $(R_3+R_4)$.
+\begin{itensq}
+\item Obtenha a expressão de $R_{eq}$.
+\item Avalie para $R_1=\SI{8}{\ohm}$, $R_2=\SI{16}{\ohm}$,
+      $R_3=R_4=\SI{12}{\ohm}$.
+\item Analise o caso-limite $R_3+R_4\gg R_1+R_2$.
+\end{itensq}
+\resposta{(a) $R_{eq}=\dfrac{(R_1+R_2)(R_3+R_4)}{R_1+R_2+R_3+R_4}$;
+(b) $\SI{12}{\ohm}$; (c) $R_{eq}\to R_1+R_2$}
+\resolucao{(a) Reduzindo cada ramo e aplicando produto pela soma:
+\[
+R_{eq}=\frac{(R_1+R_2)(R_3+R_4)}{(R_1+R_2)+(R_3+R_4)}.
+\]
+(b) $R_a=\SI{24}{\ohm}$, $R_b=\SI{24}{\ohm}$, logo
+$R_{eq}=\dfrac{24\cdot24}{48}=\SI{12}{\ohm}$.\\
+(c) Se $R_b\gg R_a$, divida numerador e denominador por $R_b$:
+\[
+R_{eq}=\frac{R_a}{\dfrac{R_a}{R_b}+1}\longrightarrow R_a=R_1+R_2.
+\]
+O ramo de alta resistência comporta-se como circuito aberto e não participa.
+\textbf{Uso prático:} é essa aproximação que justifica desprezar a resistência
+de um voltímetro ligado em paralelo a um trecho de circuito --- desde que ela
+seja, digamos, cem vezes maior que o trecho medido.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um divisor formado por $R_1=\SI{140}{\ohm}$ e $R_2=\SI{100}{\ohm}$ é alimentado
+por $\SI{12}{\volt}$.
+\begin{itensq}
+\item Determine a tensão de saída em vazio.
+\item Recalcule com uma carga de $\SI{1}{\kilo\ohm}$ conectada à saída.
+\item Determine o erro percentual introduzido pela carga.
+\end{itensq}
+\resposta{(a) $\SI{5.00}{\volt}$; (b) $\SI{4.72}{\volt}$; (c) $-5{,}5\%$}
+\resolucao{(a) $U_{2}=12\cdot\dfrac{100}{240}=\SI{5.00}{\volt}$.\\
+(b) A carga entra em \textbf{paralelo} com $R_2$:
+\[
+R_2'=\frac{100\cdot1000}{1100}=\SI{90.91}{\ohm},
+\qquad
+U_2=12\cdot\frac{90{,}91}{140+90{,}91}=\SI{4.72}{\volt}.
+\]
+(c) Erro $=(4{,}72-5{,}00)/5{,}00=-5{,}5\%$.\\
+\textbf{Diagnóstico:} a carga de $\SI{1}{\kilo\ohm}$ é apenas $10\times$ maior
+que $R_2$ --- insuficiente. A regra de bolso exige
+$R_L\ge10R_2$ para erro em torno de $5\%$, e $R_L\ge100R_2$ para erro em torno
+de $0{,}5\%$. Um divisor resistivo não é fonte de tensão: ele tem resistência
+interna $R_1\parallel R_2=\SI{58.3}{\ohm}$, e é ela que produz a queda ao
+ser carregada. O projeto para uma carga \emph{conhecida} é feito no bloco de
+desafio.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma rede tem $R_1=\SI{6}{\ohm}$ em série com $(\SI{12}{\ohm}\parallel
+\SI{12}{\ohm})$, e este em série com $(\SI{8}{\ohm}\parallel\SI{8}{\ohm})$, sob
+$\SI{32}{\volt}$. Determine a potência de cada um dos cinco resistores.
+\resposta{$\SI{24}{\watt}$ em $R_1$; $\SI{12}{\watt}$ em cada
+$\SI{12}{\ohm}$; $\SI{8}{\watt}$ em cada $\SI{8}{\ohm}$}
+\resolucao{\textbf{Redução:} $12\parallel12=\SI{6}{\ohm}$;
+$8\parallel8=\SI{4}{\ohm}$; $R_{eq}=6+6+4=\SI{16}{\ohm}$ e
+$I_t=32/16=\SI{2}{\ampere}$.\\
+\textbf{Expansão:}
+\begin{itemize}
+\item $R_1$: conduz $\SI{2}{\ampere}$ $\Rightarrow$
+      $P=6(4)=\SI{24}{\watt}$.
+\item Bloco de $\SI{12}{\ohm}$: $U=6(2)=\SI{12}{\volt}$; cada ramo com
+      $\SI{1}{\ampere}$ $\Rightarrow$ $P=12(1)=\SI{12}{\watt}$.
+\item Bloco de $\SI{8}{\ohm}$: $U=4(2)=\SI{8}{\volt}$; cada ramo com
+      $\SI{1}{\ampere}$ $\Rightarrow$ $P=8(1)=\SI{8}{\watt}$.
+\end{itemize}
+\textbf{Balanço:} $24+12+12+8+8=\SI{64}{\watt}=32(2)$ \checkmark.\\
+Observe que $R_1$, sendo o menor resistor da rede, é o que mais dissipa ---
+porque conduz o dobro da corrente dos demais e a potência vai com $I^{2}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um reostato de $\SI{0}{\ohm}$ a $\SI{60}{\ohm}$ está em paralelo com
+$\SI{30}{\ohm}$, e o conjunto em série com $\SI{20}{\ohm}$, sob
+$\SI{60}{\volt}$.
+\begin{itensq}
+\item Determine a faixa de $R_{eq}$.
+\item Determine a faixa da corrente total.
+\item Explique por que a faixa é limitada.
+\end{itensq}
+\resposta{(a) de $\SI{20}{\ohm}$ a $\SI{40}{\ohm}$; (b) de $\SI{1.5}{\ampere}$
+a $\SI{3}{\ampere}$}
+\resolucao{(a) Com o reostato em $\SI{0}{\ohm}$, o bloco paralelo é
+curto-circuitado e vale $\SI{0}{\ohm}$: $R_{eq}=\SI{20}{\ohm}$.\\
+Com o reostato em $\SI{60}{\ohm}$: $30\parallel60=\SI{20}{\ohm}$ e
+$R_{eq}=\SI{40}{\ohm}$.\\
+(b) $I_{\max}=60/20=\SI{3}{\ampere}$ e
+$I_{\min}=60/40=\SI{1.5}{\ampere}$: faixa de $2{:}1$.\\
+(c) Dois limites atuam. O resistor \emph{série} de $\SI{20}{\ohm}$ impõe um
+teto à corrente ($\SI{3}{\ampere}$), por mais que o bloco paralelo seja
+anulado. E o resistor de $\SI{30}{\ohm}$ \emph{em paralelo} com o reostato
+impõe um piso a $R_{eq}$: mesmo com o reostato em $\infty$, o bloco não
+passaria de $\SI{30}{\ohm}$, e $R_{eq}$ de $\SI{50}{\ohm}$.\\
+\textbf{Consequência de projeto:} para ampliar a faixa de controle, é preciso
+reduzir o resistor série \emph{e} aumentar o resistor em paralelo --- alterar
+apenas o reostato tem efeito saturante.}
+\end{questao}
+
+\begin{questao}[3]{}
+Na rede $\SI{10}{\ohm}+(\SI{20}{\ohm}\parallel\SI{20}{\ohm})$, todos os
+resistores têm potência nominal de $\SI{10}{\watt}$. Determine a tensão máxima
+aplicável e identifique o componente crítico.
+\resposta{$V_{\max}=\SI{20}{\volt}$; o crítico é $R_1$}
+\resolucao{Expresse cada potência em função da corrente total $I$:
+\[
+P_1=10I^{2};
+\qquad
+P_2=P_3=20\left(\frac{I}{2}\right)^{2}=5I^{2}.
+\]
+$R_1$ dissipa \textbf{o dobro} de cada ramo paralelo --- é ele que satura
+primeiro:
+\[
+10I^{2}=10 \;\Longrightarrow\; I=\SI{1}{\ampere}
+\;\Longrightarrow\;
+V_{\max}=R_{eq}I=20(1)=\SI{20}{\volt}.
+\]
+Nessa condição os ramos paralelos operam a $\SI{5}{\watt}$ --- metade do
+nominal, ou seja, subutilizados.\\
+\textbf{Melhoria possível:} trocar $R_1$ por dois de $\SI{20}{\ohm}$ em
+paralelo (mesmos $\SI{10}{\ohm}$, mas $\SI{20}{\watt}$ de capacidade) elevaria
+$V_{\max}$ para o limite imposto pelos ramos:
+$5I^{2}=10\Rightarrow I=\SI{1.41}{\ampere}$ e
+$V_{\max}=\SI{28.3}{\volt}$. Identificar o componente crítico é o primeiro
+passo para melhorar qualquer rede.}
+\end{questao}
+
+\begin{questao}[3]{}
+Obtenha $\SI{24}{\ohm}$ dispondo apenas de resistores de $\SI{36}{\ohm}$.
+Determine a associação de \textbf{menor} número de unidades e prove que não há
+solução com duas.
+\resposta{Três unidades: $(\SI{36}{\ohm}+\SI{36}{\ohm})\parallel\SI{36}{\ohm}$}
+\resolucao{\textbf{Com duas unidades} só existem dois valores possíveis:
+$36+36=\SI{72}{\ohm}$ e $36\parallel36=\SI{18}{\ohm}$. Nenhum é
+$\SI{24}{\ohm}$ --- logo duas são insuficientes.\\
+\textbf{Com três:}
+\[
+(36+36)\parallel36=\frac{72\cdot36}{108}=\SI{24}{\ohm}.\ \checkmark
+\]
+\textbf{Verificação por outro caminho:} três em paralelo dariam
+$\SI{12}{\ohm}$; três em série, $\SI{108}{\ohm}$; e
+$36+(36\parallel36)=\SI{54}{\ohm}$. Das quatro topologias possíveis com três
+unidades, apenas a indicada resolve.\\
+\textbf{Observação:} $24=\frac23\cdot36$, e a razão $2/3$ é característica da
+combinação "dois em série contra um em paralelo" --- padrão útil de memorizar,
+pois $\dfrac{2R\cdot R}{3R}=\dfrac{2R}{3}$ para qualquer $R$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Em uma rede mista alimentada por fonte ideal, um resistor de um ramo paralelo
+abre. Descreva um procedimento sistemático para localizar a falha usando apenas
+um voltímetro, e aplique-o à rede
+$\SI{10}{\ohm}+(\SI{20}{\ohm}\parallel\SI{20}{\ohm})$ sob $\SI{24}{\volt}$.
+\resposta{Comparar as tensões medidas com as previstas; o bloco defeituoso
+apresenta tensão \emph{maior} que a esperada}
+\resolucao{\textbf{Procedimento.} \emph{(i)} Calcule as tensões esperadas em
+operação normal. \emph{(ii)} Meça, bloco a bloco, a partir da fonte.
+\emph{(iii)} Compare: um aumento de tensão indica bloco com resistência
+\emph{maior} que a prevista (abertura); uma queda indica resistência
+\emph{menor} (curto).\\
+\textbf{Aplicação.} Previsto: $U_1=\SI{12}{\volt}$ e
+$U_{par}=\SI{12}{\volt}$. Com um ramo aberto,
+$R_{eq}=\SI{30}{\ohm}$, $I=\SI{0.8}{\ampere}$ e:
+\[
+U_1=10(0{,}8)=\SI{8}{\volt}\ (\downarrow),
+\qquad
+U_{par}=20(0{,}8)=\SI{16}{\volt}\ (\uparrow).
+\]
+O voltímetro acusa $\SI{16}{\volt}$ onde se esperavam $\SI{12}{\volt}$ ---
+o bloco paralelo é o suspeito.\\
+\textbf{Confirmação:} isolando o bloco, um ohmímetro leria
+$\SI{20}{\ohm}$ em vez de $\SI{10}{\ohm}$. E \emph{qual} dos dois ramos
+abriu se identifica medindo cada um separadamente --- a tensão sozinha não
+distingue ramos idênticos em paralelo.\\
+\textbf{Por que $U_1$ cai:} a corrente total diminuiu. Note a assinatura
+característica: em uma abertura, as tensões se \emph{redistribuem} com soma
+constante ($8+16=24$), enquanto em um curto elas colapsam localmente.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma rede mista de $R_{eq}=\SI{20}{\ohm}$ é alimentada por fonte de
+$\EMF=\SI{60}{\volt}$ com $r=\SI{5}{\ohm}$.
+\begin{itensq}
+\item Determine a corrente, a tensão na rede e o rendimento.
+\item Determine o valor de $R_{eq}$ que maximizaria a potência na rede.
+\item Compare o rendimento nas duas situações.
+\end{itensq}
+\resposta{(a) $\SI{2.4}{\ampere}$, $\SI{48}{\volt}$, $80\%$;
+(b) $R_{eq}=\SI{5}{\ohm}$; (c) $80\%$ contra $50\%$}
+\resolucao{(a) $I=\dfrac{60}{25}=\SI{2.4}{\ampere}$;
+$V=20(2{,}4)=\SI{48}{\volt}$;
+$P_{rede}=48(2{,}4)=\SI{115.2}{\watt}$; rendimento
+$=20/25=80\%$.\\
+(b) A potência na rede é máxima quando $R_{eq}=r=\SI{5}{\ohm}$. Então
+$I=60/10=\SI{6}{\ampere}$, $V=\SI{30}{\volt}$ e
+$P=\SI{180}{\watt}$.\\
+(c) Rendimento na condição de casamento: $5/10=50\%$. A fonte passa a
+gerar $\SI{360}{\watt}$, dos quais $\SI{180}{\watt}$ se perdem internamente.\\
+\textbf{Conflito de objetivos:} entregar \emph{mais} potência
+($180$ contra $\SI{115.2}{\watt}$) custa despachar $\SI{360}{\watt}$ em vez de
+$\SI{144}{\watt}$ --- e aquecer a fonte com $\SI{180}{\watt}$. Em eletrônica de
+sinal, o casamento vale a pena; em eletrotécnica de potência, jamais.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte de \textbf{corrente} de $\SI{3}{\ampere}$ alimenta $R_1=\SI{20}{\ohm}$
+em paralelo com o ramo formado por $R_2=\SI{10}{\ohm}$ em série com
+$(\SI{20}{\ohm}\parallel\SI{20}{\ohm})$.
+\begin{itensq}
+\item Determine $R_{eq}$ e a tensão da associação.
+\item Obtenha a corrente em cada um dos cinco resistores.
+\item Verifique o balanço de potência.
+\end{itensq}
+\resposta{(a) $\SI{10}{\ohm}$ e $\SI{30}{\volt}$;
+(b) $\SI{1.5}{\ampere}$ em $R_1$ e em $R_2$, $\SI{0.75}{\ampere}$ em cada
+$\SI{20}{\ohm}$ do bloco; (c) $\SI{90}{\watt}$}
+\resolucao{(a) O ramo vale $10+(20\parallel20)=10+10=\SI{20}{\ohm}$, e
+\[
+R_{eq}=20\parallel20=\SI{10}{\ohm}
+\;\Longrightarrow\;
+U=I_tR_{eq}=3(10)=\SI{30}{\volt}.
+\]
+\textbf{Diferença essencial em relação à fonte de tensão:} aqui $U$ é
+\emph{resultado}, não dado. Se a rede mudar, a tensão muda --- a corrente é que
+permanece fixa.\\
+(b) Os dois ramos estão sob $\SI{30}{\volt}$ e têm $\SI{20}{\ohm}$ cada:
+$I_{R_1}=I_{ramo}=\SI{1.5}{\ampere}$. Dentro do ramo,
+$U_{R_2}=10(1{,}5)=\SI{15}{\volt}$ e restam $\SI{15}{\volt}$ para o bloco
+paralelo:
+\[
+I=\frac{15}{20}=\SI{0.75}{\ampere}\ \text{em cada}.
+\]
+\textbf{LKC:} $0{,}75+0{,}75=\SI{1.5}{\ampere}$ \checkmark; e
+$1{,}5+1{,}5=\SI{3}{\ampere}$ \checkmark.\\
+(c) $P_1=\dfrac{30^{2}}{20}=45$; $P_2=10(1{,}5)^{2}=22{,}5$; e
+$20(0{,}75)^{2}=\SI{11.25}{\watt}$ em cada resistor do bloco:
+\[
+45+22{,}5+11{,}25+11{,}25=\SI{90}{\watt}=30(3)\ \checkmark
+\]
+\textbf{Observação:} a potência da fonte de corrente só pôde ser calculada
+\emph{depois} de obtida a tensão. Com fonte de tensão ocorre o inverso --- é a
+corrente que precisa ser encontrada primeiro.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Projeto de divisor carregado.)} Deseja-se obter $\SI{5}{\volt}$ a
+partir de $\SI{12}{\volt}$ para alimentar uma carga fixa de
+$\SI{1}{\kilo\ohm}$.
+\begin{itensq}
+\item Deduza o critério de "corrente de sangria" e determine $R_1,R_2$ para
+      erro inferior a $2\%$.
+\item Projete o divisor \emph{compensado}, que entregue exatamente
+      $\SI{5}{\volt}$ com a carga presente.
+\item Compare as duas soluções em potência dissipada e em robustez.
+\end{itensq}
+\resposta{(a) $R_2\approx\SI{25}{\ohm}$, $R_1=\SI{35}{\ohm}$ (erro $1{,}4\%$);
+(b) $R_1=\SI{140}{\ohm}$, $R_2=\SI{111}{\ohm}$;
+(c) a compensada dissipa muito menos, mas só é exata para aquela carga}
+\resolucao{(a) A \textbf{corrente de sangria} é a que circula por $R_2$ sem
+passar pela carga. Se ela for muito maior que a da carga, conectar a carga
+perturba pouco o divisor. Com $I_L=5/1000=\SI{5}{\milli\ampere}$, exigir
+sangria $\ge20I_L=\SI{100}{\milli\ampere}$ dá
+$R_2\le5/0{,}1=\SI{50}{\ohm}$. Testando valores (com
+$R_1=1{,}4R_2$ para manter a razão $5/12$ em vazio):
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+$R_2$ & $R_1$ & $U_{saída}$ & erro\\
+\hline
+$\SI{100}{\ohm}$ & $\SI{140}{\ohm}$ & $\SI{4.72}{\volt}$ & $-5{,}5\%$\\
+$\SI{50}{\ohm}$  & $\SI{70}{\ohm}$  & $\SI{4.86}{\volt}$ & $-2{,}8\%$\\
+$\SI{25}{\ohm}$  & $\SI{35}{\ohm}$  & $\SI{4.93}{\volt}$ & $-1{,}4\%$\\
+\hline
+\end{tabular}
+\end{center}
+Escolha $R_2=\SI{25}{\ohm}$, $R_1=\SI{35}{\ohm}$.\\
+(b) \textbf{Compensação:} projete com a carga \emph{já incluída}. Exigindo
+$12\cdot\dfrac{x}{R_1+x}=5$ com $x=R_2\parallel1000$, vem $x=\dfrac{5R_1}{7}$.
+Tomando $R_1=\SI{140}{\ohm}$: $x=\SI{100}{\ohm}$ e
+\[
+\frac{1}{R_2}=\frac{1}{100}-\frac{1}{1000}
+\;\Longrightarrow\;
+R_2=\SI{111}{\ohm}.
+\]
+Verificação: $111\parallel1000=\SI{100}{\ohm}$ e
+$12\cdot100/240=\SI{5.00}{\volt}$ \checkmark.\\
+(c) \emph{Potência:} na solução (a), a corrente do divisor é
+$\approx\SI{200}{\milli\ampere}$ e a dissipação total
+$\approx\SI{2.4}{\watt}$; na (b), $\approx\SI{50}{\milli\ampere}$ e
+$\approx\SI{0.6}{\watt}$ --- quatro vezes menos.\\
+\emph{Robustez:} a solução (b) é exata \textbf{apenas} para
+$R_L=\SI{1}{\kilo\ohm}$; se a carga for retirada, a saída sobe para
+$12\cdot111/251=\SI{5.31}{\volt}$ ($+6\%$). A solução (a) é menos precisa,
+porém quase indiferente à carga. \textbf{A escolha depende de a carga ser fixa
+e conhecida ou variável} --- e, se for variável, nenhuma das duas serve:
+o caso pede um regulador.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Enumeração de topologias.)} Dispõe-se de quatro resistores iguais de
+$\SI{100}{\ohm}$.
+\begin{itensq}
+\item Determine todos os valores distintos de $R_{eq}$ obteníveis usando os
+      quatro.
+\item Identifique os dois arranjos que resultam em $\SI{100}{\ohm}$ e
+      compare a potência do componente mais solicitado sob
+      $\SI{100}{\volt}$.
+\item Justifique por que os extremos são $\SI{25}{\ohm}$ e
+      $\SI{400}{\ohm}$.
+\end{itensq}
+\resposta{(a) $25$, $40$, $60$, $75$, $100$, $133{,}3$, $166{,}7$, $250$ e
+$\SI{400}{\ohm}$; (b) $\SI{25}{\watt}$ em ambos}
+\resolucao{(a) Enumerando as topologias possíveis:
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Arranjo & $R_{eq}$\\
+\hline
+4 em paralelo & $\SI{25}{\ohm}$\\
+$(2\text{ série})\parallel(2\text{ paralelo})$ & $\SI{40}{\ohm}$\\
+$[(2\parallel)+1]\parallel 1$ & $\SI{60}{\ohm}$\\
+$(3\text{ série})\parallel 1$ & $\SI{75}{\ohm}$\\
+$(2\text{ série})\parallel(2\text{ série})$ & $\SI{100}{\ohm}$\\
+$(2\parallel)+(2\parallel)$ & $\SI{100}{\ohm}$\\
+$(3\parallel)+1$ & $\SI{133.3}{\ohm}$\\
+$1+[(2\text{ série})\parallel 1]$ & $\SI{166.7}{\ohm}$\\
+$(2\parallel)+2\text{ série}$ & $\SI{250}{\ohm}$\\
+4 em série & $\SI{400}{\ohm}$\\
+\hline
+\end{tabular}
+\end{center}
+Nove valores distintos.\\
+(b) Sob $\SI{100}{\volt}$, ambos os arranjos de $\SI{100}{\ohm}$ dão
+$I_t=\SI{1}{\ampere}$ e $P_{tot}=\SI{100}{\watt}$.\\
+\emph{Dois ramos de dois em série:} cada ramo conduz $\SI{0.5}{\ampere}$
+$\Rightarrow$ $P=100(0{,}25)=\SI{25}{\watt}$ por resistor.\\
+\emph{Dois blocos paralelos em série:} cada bloco sob $\SI{50}{\volt}$, cada
+resistor com $\SI{0.5}{\ampere}$ $\Rightarrow$ também
+$\SI{25}{\watt}$.\\
+Os dois arranjos são \textbf{topologicamente distintos, mas termicamente
+equivalentes} --- ambos distribuem a dissipação em quatro partes iguais. É o
+melhor aproveitamento possível dos componentes.\\
+(c) O mínimo é o paralelo total, pois cada resistor acrescentado em paralelo só
+pode \emph{reduzir} $R_{eq}$; o máximo é a série total, pela razão simétrica.
+Qualquer topologia mista fica necessariamente entre $R/n$ e $nR$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto sob duas restrições.)} Uma rede deve apresentar
+$R_{eq}=\SI{20}{\ohm}$ e dissipar $\SI{45}{\watt}$.
+\begin{itensq}
+\item Determine a tensão e a corrente nominais.
+\item Compare três topologias quanto à potência do componente mais solicitado.
+\item Escolha a melhor e justifique.
+\end{itensq}
+\resposta{(a) $\SI{30}{\volt}$ e $\SI{1.5}{\ampere}$; (b) pior componente:
+$\SI{30}{\watt}$, $\SI{22.5}{\watt}$ e $\SI{11.25}{\watt}$;
+(c) a matriz $2\times2$ de $\SI{20}{\ohm}$}
+\resolucao{(a) De $P=V^{2}/R_{eq}$ e $P=RI^{2}$:
+\[
+V=\sqrt{PR_{eq}}=\sqrt{45\cdot20}=\SI{30}{\volt},
+\qquad
+I=\sqrt{P/R_{eq}}=\sqrt{2{,}25}=\SI{1.5}{\ampere}.
+\]
+(b) Três topologias que dão $\SI{20}{\ohm}$:
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Topologia & Potências & Pior\\
+\hline
+$\SI{30}{\ohm}\parallel\SI{60}{\ohm}$ & $30$; $\SI{15}{\watt}$
+  & $\SI{30}{\watt}$\\
+$\SI{10}{\ohm}+(\SI{20}{\ohm}\parallel\SI{20}{\ohm})$
+  & $22{,}5$; $11{,}25$; $\SI{11.25}{\watt}$ & $\SI{22.5}{\watt}$\\
+$(\SI{20}{\ohm}+\SI{20}{\ohm})\parallel(\SI{20}{\ohm}+\SI{20}{\ohm})$
+  & $11{,}25\times4$ & $\SI{11.25}{\watt}$\\
+\hline
+\end{tabular}
+\end{center}
+Em todas, o total é $\SI{45}{\watt}$ --- como tem de ser, pois $R_{eq}$ e $V$
+são os mesmos.\\
+(c) \textbf{A matriz $2\times2$} de resistores de $\SI{20}{\ohm}$. Ela reparte
+a dissipação em quatro parcelas \emph{iguais} de $\SI{11.25}{\watt}$,
+permitindo componentes de $\SI{25}{\watt}$ (fator $2$ de folga) e um único
+valor de estoque. As alternativas exigiriam um componente de $\SI{50}{\watt}$
+ou de $\SI{50}{\watt}$/$\SI{25}{\watt}$ mistos, com ponto quente concentrado.\\
+\textbf{Princípio geral:} para uma dada $R_{eq}$ e potência total, a topologia
+ótima é a que \textbf{equaliza} a dissipação --- matrizes $n\times n$ de
+resistores idênticos são o caso limite dessa ideia.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Diagnóstico quantitativo.)} Uma rede
+$R_1=\SI{10}{\ohm}+(R_2=\SI{20}{\ohm}\parallel R_3=\SI{20}{\ohm})$ opera sob
+$\SI{24}{\volt}$. Mediu-se $I_t=\SI{2.4}{\ampere}$.
+\begin{itensq}
+\item Mostre que a rede está defeituosa e identifique o tipo de falha.
+\item Localize o componente e prove que a localização é única.
+\item Proponha uma medição de confirmação.
+\end{itensq}
+\resposta{$R_{eq}$ medida $=\SI{10}{\ohm}$ contra $\SI{20}{\ohm}$ prevista;
+o bloco paralelo está em curto}
+\resolucao{(a) $R_{eq}^{med}=24/2{,}4=\SI{10}{\ohm}$, contra
+$\SI{20}{\ohm}$ previstos. Resistência \emph{menor} que a nominal
+$\Rightarrow$ falha do tipo \textbf{curto}. (Se fosse maior, seria abertura.)\\
+(b) A diferença é de exatamente $\SI{10}{\ohm}$, que é o valor do bloco
+paralelo --- ele está anulado. \emph{Unicidade:} $R_1$ não pode estar em curto,
+pois isso daria $R_{eq}=\SI{10}{\ohm}$ também... \textbf{e aqui está o ponto:}
+as duas hipóteses são numericamente idênticas! Um curto em $R_1$ deixaria
+$R_{eq}=0+10=\SI{10}{\ohm}$, exatamente o medido.\\
+Logo a medição de corrente \textbf{não} distingue as duas falhas --- e afirmar
+localização única com esse único dado seria erro de método. O item (c) é
+obrigatório, não opcional.\\
+(c) \textbf{Medição decisiva:} um voltímetro sobre $R_1$.
+\begin{itemize}
+\item Se o bloco paralelo está em curto: $U_1=10(2{,}4)=\SI{24}{\volt}$
+      (toda a fonte).
+\item Se $R_1$ está em curto: $U_1=\SI{0}{\volt}$, e os
+      $\SI{24}{\volt}$ aparecem sobre o bloco paralelo.
+\end{itemize}
+\textbf{Lição de diagnóstico:} uma única medição escalar raramente identifica
+uma falha em rede mista, porque topologias diferentes podem produzir a mesma
+$R_{eq}$. É preciso pelo menos uma medida de \emph{distribuição} --- uma
+tensão interna --- para quebrar a ambiguidade.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Redução por simetria.)} Seis resistores de $\SI{6}{\ohm}$ formam as
+arestas de um \textbf{tetraedro} regular (quatro vértices, todos ligados dois a
+dois).
+\begin{itensq}
+\item Determine $R_{AB}$ entre dois vértices quaisquer, usando simetria.
+\item Determine a corrente em cada aresta para $I_t=\SI{4}{\ampere}$.
+\item Recalcule $R_{AB}$ se a aresta $AB$ for removida.
+\end{itensq}
+\resposta{(a) $R_{AB}=\SI{3}{\ohm}$; (c) $\SI{6}{\ohm}$}
+\resolucao{(a) Sejam $A$ e $B$ os terminais e $C$, $D$ os outros dois vértices.
+Como $C$ e $D$ ocupam posições \textbf{simétricas} em relação ao par $A$--$B$
+(cada um ligado a $A$, a $B$ e ao outro, com resistências iguais), tem-se
+$V_C=V_D$. A aresta $CD$ não conduz e pode ser \textbf{removida}.\\
+Restam três caminhos em paralelo: a aresta direta $AB$ ($\SI{6}{\ohm}$), o
+percurso $A$--$C$--$B$ ($\SI{12}{\ohm}$) e o percurso $A$--$D$--$B$
+($\SI{12}{\ohm}$):
+\[
+R_{AB}=6\parallel12\parallel12=6\parallel6=\SI{3}{\ohm}=\frac{R}{2}.
+\]
+(b) Com $I_t=\SI{4}{\ampere}$, $U_{AB}=3(4)=\SI{12}{\volt}$:
+\begin{itemize}
+\item aresta $AB$: $12/6=\SI{2}{\ampere}$;
+\item cada percurso lateral: $12/12=\SI{1}{\ampere}$;
+\item aresta $CD$: $\SI{0}{\ampere}$.
+\end{itemize}
+Soma: $2+1+1=\SI{4}{\ampere}$ \checkmark. A aresta direta leva metade da
+corrente total.\\
+(c) Sem a aresta $AB$, a simetria $C\leftrightarrow D$ \emph{persiste} --- ela
+não dependia daquela aresta. Logo $V_C=V_D$ ainda, e $CD$ continua sem
+conduzir:
+\[
+R_{AB}=12\parallel12=\SI{6}{\ohm}=R.
+\]
+\textbf{Resultado elegante:} remover uma aresta dobra a resistência
+($3\to\SI{6}{\ohm}$), porque justamente essa aresta carregava metade da
+corrente.\\
+\textbf{Por que a simetria funciona:} a solução de uma rede resistiva é
+\emph{única}; se permutar $C$ com $D$ devolve o mesmo circuito, a solução
+permutada é a mesma solução --- e isso exige $V_C=V_D$. O argumento é o mesmo
+que resolve a ponte equilibrada e o cubo de resistores, e dispensa qualquer
+sistema de equações.}
+\end{questao}

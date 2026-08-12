@@ -1,0 +1,1206 @@
+% =====================================================================
+%  CAPITULO 2 - CONCEITOS INICIAIS
+%  Leis de Ohm, Potencia, Fontes e Leis de Kirchhoff (versao revisada)
+% =====================================================================
+\section{Conceitos Iniciais: Leis de Ohm, Potência, Fontes e Kirchhoff}
+
+\begin{conceito}[Antes de começar]
+\textbf{Corrente elétrica:} $I = \dfrac{Q}{t}$, medida em ampères
+($\SI{1}{\ampere}=\SI{1}{\coulomb\per\second}$). Como $Q = n\,e$, o número de
+elétrons é $n = Q/e$, com $e=\SI{1.6e-19}{\coulomb}$.\par
+\textbf{1\textsuperscript{a} lei de Ohm:} $U = R\,I$.\par
+\textbf{2\textsuperscript{a} lei de Ohm (resistividade):}
+$R = \rho\,\dfrac{L}{A}$, onde $\rho$ é a resistividade do material, $L$ o
+comprimento e $A$ a área da seção.\par
+\textbf{Potência elétrica:}
+$P = U\,I = R\,I^2 = \dfrac{U^2}{R}$.\par
+\textbf{Fonte real:} $U = \EMF - r\,I$, onde $r$ é a resistência interna.\par
+\textbf{Leis de Kirchhoff:} \emph{dos nós} --- a soma das correntes que entram é
+igual à soma das que saem; \emph{das malhas} --- a soma algébrica das tensões ao
+longo de uma malha fechada é nula.
+\end{conceito}
+
+\legendaniveis
+
+% =====================================================================
+\subsection{Corrente elétrica e carga}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Se uma corrente de $\SI{3}{\ampere}$ percorre um fio durante $\SI{2}{\minute}$, a
+carga que atravessa sua seção reta, em coulombs, vale:
+\begin{alternativas}[3]
+\item 60
+\item 110
+\item 360
+\item 220
+\item 180
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Convertendo o tempo para segundos, $t = 2\cdot 60 = \SI{120}{\second}$:
+\[
+Q = I\,t = 3\cdot 120 = \SI{360}{\coulomb}.
+\]
+O erro típico (alternativa e) é usar $t = \SI{2}{\minute}$ diretamente, sem
+converter para segundos.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma carga de $\SI{120}{\coulomb}$ passa uniformemente pela seção de um fio durante
+$\SI{1}{\minute}$. A intensidade da corrente é:
+\begin{alternativas}[3]
+\item $\tfrac{1}{30}\,\si{\ampere}$
+\item $\tfrac{1}{2}\,\si{\ampere}$
+\item \SI{2}{\ampere}
+\item \SI{30}{\ampere}
+\item \SI{120}{\ampere}
+\end{alternativas}
+\resposta{(c)}
+\resolucao{$I = \dfrac{Q}{t} = \dfrac{120}{60} = \SI{2}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma lâmpada permanece acesa durante $\SI{5}{\minute}$ sob corrente de
+$\SI{2}{\ampere}$. A carga total que circula, em coulombs, é:
+\begin{alternativas}[3]
+\item 0,4
+\item 2,5
+\item 10
+\item 150
+\item 600
+\end{alternativas}
+\resposta{(e)}
+\resolucao{$Q = I\,t = 2\cdot(5\cdot60) = 2\cdot 300 = \SI{600}{\coulomb}$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um condutor metálico é percorrido por uma corrente contínua e constante de
+$\SI{32}{\milli\ampere}$. Determine:
+\begin{itensq}
+\item a carga que atravessa uma seção reta por segundo;
+\item o número de elétrons correspondente.
+\end{itensq}
+\dados{$e = \SI{1.6e-19}{\coulomb}$.}
+\resposta{(a) \SI{32}{\milli\coulomb}; (b) $n = \pot{2.0}{17}$ elétrons}
+\resolucao{(a) Em $t = \SI{1}{\second}$:
+$Q = I\,t = \pot{32}{-3}\cdot 1 = \SI{32}{\milli\coulomb}$.\\
+(b) $n = \dfrac{Q}{e} = \dfrac{\pot{32}{-3}}{\pot{1.6}{-19}} = \pot{2.0}{17}$
+elétrons por segundo.}
+\end{questao}
+
+\begin{questao}[2]{}
+O gráfico mostra a intensidade da corrente $i$ em um condutor em função do tempo.
+Determine a carga que atravessa uma seção do condutor nos cinco primeiros
+segundos.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=9cm,height=5cm,xlabel={$t$ (s)},ylabel={$i$ (A)},
+   xmin=0,xmax=5.5,ymin=0,ymax=5,xtick={0,1,2,3,4,5},ytick={0,1,2,3,4},
+   grid=both,axis lines=left]
+   \addplot[Icol,very thick] coordinates {(0,4)(5,4)};
+   \addplot[Icol!30] coordinates {(0,0)(0,4)};
+ \end{axis}
+\end{tikzpicture}}{Corrente constante em função do tempo.}
+
+\resposta{$Q = \SI{20}{\coulomb}$}
+\resolucao{A carga é a \emph{área} sob o gráfico $i \times t$. Como a corrente é
+constante e igual a $\SI{4}{\ampere}$ durante $\SI{5}{\second}$, a área é um
+retângulo:
+\[
+Q = i\,t = 4\cdot 5 = \SI{20}{\coulomb}.
+\]
+Essa interpretação por área vale mesmo quando a corrente varia --- basta calcular
+a área da figura correspondente.}
+\end{questao}
+
+\begin{questao}[2]{}
+O gráfico representa a corrente elétrica $i$ que atravessa um condutor em função
+do tempo. Determine a carga total que passa por uma seção reta entre $t=0$ e
+$t=\SI{6}{\second}$.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=9.5cm,height=5cm,xlabel={$t$ (s)},ylabel={$i$ (A)},
+   xmin=0,xmax=6.5,ymin=0,ymax=5,xtick={0,1,2,3,4,5,6},ytick={0,2,4},
+   grid=both,axis lines=left]
+   \addplot[Icol,very thick] coordinates {(0,4)(2,4)(6,0)};
+   \addplot[Icol!12] coordinates {(0,0)(0,4)};
+ \end{axis}
+\end{tikzpicture}}{Corrente variável em função do tempo.}
+
+\resposta{$Q = \SI{16}{\coulomb}$}
+\resolucao{A carga é a \emph{área} sob o gráfico $i \times t$. A figura é composta
+de um retângulo (de $0$ a \SI{2}{\second}) e um triângulo (de $2$ a \SI{6}{\second}):
+\[
+Q = \underbrace{4\cdot2}_{\text{retângulo}}
+  + \underbrace{\tfrac12\cdot4\cdot4}_{\text{triângulo}}
+  = 8 + 8 = \SI{16}{\coulomb}.
+\]
+Mesmo com corrente variável, a área continua valendo como carga total.}
+\end{questao}
+
+\begin{questao}[2]{}
+Qual a carga elétrica que atravessa, durante $\SI{10}{\hour}$, a seção de um
+condutor percorrido por corrente constante de $\SI{5}{\ampere}$?
+\begin{alternativas}[3]
+\item \SI{50}{\coulomb}
+\item \SI{1000}{\coulomb}
+\item \SI{90000}{\coulomb}
+\item \SI{180000}{\coulomb}
+\item \SI{360000}{\coulomb}
+\end{alternativas}
+\resposta{(d)}
+\resolucao{Convertendo o tempo: $\SI{10}{\hour} = 10\cdot3600 = \SI{36000}{\second}$.
+\[
+Q = I\,t = 5\cdot36000 = \SI{180000}{\coulomb}.
+\]
+O erro comum é esquecer de converter horas em segundos.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+O gráfico mostra a corrente em um condutor variando linearmente de
+$\SI{6}{\ampere}$ a $\SI{2}{\ampere}$ entre $t=0$ e $t=\SI{8}{\second}$.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=9cm,height=4.6cm,xlabel={$t$ (s)},ylabel={$i$ (A)},
+   xmin=0,xmax=9,ymin=0,ymax=7,xtick={0,2,4,6,8},ytick={0,2,4,6},
+   grid=both,axis lines=left]
+   \addplot[Icol,very thick] coordinates {(0,6)(8,2)};
+ \end{axis}
+\end{tikzpicture}}{Corrente decrescente em função do tempo.}
+
+\begin{itensq}
+\item Determine a carga total que atravessa o condutor nesse intervalo.
+\item Calcule a corrente \emph{média} e verifique a coerência com o item (a).
+\item Em que instante a corrente instantânea iguala a média?
+\end{itensq}
+\resposta{(a) $Q = \SI{32}{\coulomb}$; (b) $i_m = \SI{4}{\ampere}$;
+(c) $t = \SI{4}{\second}$}
+\resolucao{(a) A carga é a área sob o gráfico --- aqui, um trapézio de bases
+\SI{6}{} e \SI{2}{\ampere} e altura \SI{8}{\second}:
+\[
+Q=\frac{(6+2)}{2}\cdot 8 = \SI{32}{\coulomb}.
+\]
+(b) $i_m = \dfrac{Q}{\Delta t} = \dfrac{32}{8} = \SI{4}{\ampere}$, que coincide
+com a média aritmética $\dfrac{6+2}{2}$ --- válido \emph{porque} a variação é
+linear.\\
+(c) Como a reta decresce uniformemente, ela cruza o valor médio exatamente no
+\emph{meio} do intervalo: $t = \SI{4}{\second}$.
+Conferindo pela equação da reta $i(t) = 6 - 0{,}5t$:
+$i(4) = 6-2 = \SI{4}{\ampere}$. \checkmark\\
+\textbf{Cuidado:} se a corrente variasse de forma \emph{não} linear (por exemplo,
+exponencialmente), a corrente média \textbf{não} seria a média dos extremos ---
+seria preciso calcular a área real sob a curva.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um fio de cobre de seção $A = \SI{1}{\milli\meter\squared}$ conduz corrente
+constante de $\SI{10}{\ampere}$. O cobre possui aproximadamente
+$n = \SI{8.5e28}{}$ elétrons livres por metro cúbico.
+\begin{itensq}
+\item Determine a \emph{velocidade de deriva} dos elétrons.
+\item Quanto tempo um elétron leva para percorrer $\SI{1}{\meter}$ de fio?
+\item Como conciliar esse resultado com o fato de uma lâmpada acender
+      \emph{instantaneamente} ao acionarmos o interruptor?
+\end{itensq}
+\dados{$e = \SI{1.6e-19}{\coulomb}$.}
+\resposta{(a) $v_d \approx \SI{0.74}{\milli\meter\per\second}$;
+(b) $\approx\SI{1360}{\second}$ ($\approx\SI{23}{\minute}$); (c) ver comentário}
+\resolucao{\textbf{(a)} A corrente relaciona-se com a velocidade de deriva por
+$I = n\,e\,A\,v_d$. Isolando:
+\[
+v_d=\frac{I}{n\,e\,A}
+=\frac{10}{(\pot{8.5}{28})(\pot{1.6}{-19})(\pot{1}{-6})}
+\approx\pot{7.4}{-4}\,\si{\meter\per\second}=\SI{0.74}{\milli\meter\per\second}.
+\]
+\textbf{(b)} $t = \dfrac{1}{\pot{7.4}{-4}} \approx \SI{1360}{\second}
+\approx \SI{23}{\minute}$ --- um elétron leva quase meia hora para andar um metro!
+
+\textbf{(c) A resolução do aparente paradoxo.} A lâmpada acende
+instantaneamente porque \textbf{não é preciso que um elétron viaje da chave até a
+lâmpada}. O que se propaga rapidamente é o \emph{campo elétrico} ao longo do
+condutor, a uma velocidade próxima à da luz ($\sim\SI{2e8}{\meter\per\second}$
+em cabos reais). Esse campo põe em movimento, quase simultaneamente,
+\emph{todos} os elétrons livres ao longo de todo o fio --- inclusive os que já
+estavam dentro do filamento da lâmpada.\\
+\textbf{Analogia:} é como um tubo já cheio de água. Ao empurrar na entrada, sai
+água na saída imediatamente, embora cada molécula individual se desloque
+lentamente. A informação (pressão) viaja rápido; a matéria, devagar.\\
+\textbf{Ordens de grandeza envolvidas:} deriva $\sim\SI{e-4}{\meter\per\second}$;
+agitação térmica dos elétrons $\sim\SI{e6}{\meter\per\second}$; sinal elétrico
+$\sim\SI{e8}{\meter\per\second}$ --- doze ordens de grandeza separando a mais
+lenta da mais rápida.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Corrente elétrica e carga
+\input{bancos/banco-corrente-eletrica-e-carga.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[2.1 Corrente elétrica e carga]
+
+% =====================================================================
+\subsection{Lei de Ohm e resistividade}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+De acordo com a segunda lei de Ohm, a resistência de um fio condutor:
+\begin{alternativas}
+\item aumenta com a área da seção e diminui com o comprimento.
+\item aumenta com o comprimento e diminui com a área da seção.
+\item depende apenas do material.
+\item independe da temperatura.
+\item é sempre igual para todos os materiais.
+\end{alternativas}
+\resposta{(b)}
+\resolucao{De $R = \rho\dfrac{L}{A}$: a resistência é \emph{diretamente}
+proporcional ao comprimento $L$ e \emph{inversamente} proporcional à área $A$.
+O material entra pela resistividade $\rho$, que por sua vez varia com a
+temperatura --- o que torna (c) e (d) incorretas.}
+\end{questao}
+
+\begin{questao}[1]{}
+O gráfico mostra a resistência de um fio em função de seu comprimento, mantida a
+área constante.
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=9cm,height=5cm,xlabel={Comprimento (m)},
+   ylabel={$R$ ($\Omega$)},xmin=0,xmax=4,ymin=0,ymax=7,
+   xtick={0,1,2,3},ytick={0,2,4,6},grid=major,axis lines=left]
+   \addplot[Rcol,very thick,domain=0:3] {2*x};
+   \addplot[only marks,mark=*,Rcol] coordinates {(1,2)(2,4)(3,6)};
+ \end{axis}
+\end{tikzpicture}}{Resistência proporcional ao comprimento.}
+
+\begin{itensq}
+\item Qual a constante de proporcionalidade $k$ da reta $R = kL$?
+\item Qual seria a resistência de um fio de $\SI{5}{\meter}$ do mesmo tipo?
+\item Que lei essa proporcionalidade confirma?
+\end{itensq}
+\resposta{(a) $k=\SI{2}{\ohm\per\meter}$; (b) \SI{10}{\ohm}; (c) 2ª lei de Ohm}
+\resolucao{(a) A reta passa por $(3, 6)$, logo
+$k = \dfrac{R}{L} = \dfrac{6}{3} = \SI{2}{\ohm\per\meter}$.\\
+(b) $R = kL = 2\cdot 5 = \SI{10}{\ohm}$.\\
+(c) A proporcionalidade direta entre $R$ e $L$ (com $A$ e material fixos) confirma
+a segunda lei de Ohm, $R = \rho\dfrac{L}{A}$, em que $k = \dfrac{\rho}{A}$.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um estudante quer construir um resistor de $\SI{10}{\ohm}$ com fio de
+níquel-cromo, de resistividade $\rho = \SI{1.1e-6}{\ohm\meter}$ e seção
+$A = \SI{0.5}{\milli\meter\squared}$. Qual o comprimento necessário?
+\resposta{$L \approx \SI{4.55}{\meter}$}
+\resolucao{Isolando $L$ na segunda lei de Ohm (com
+$A = \SI{0.5}{\milli\meter\squared} = \pot{0.5}{-6}\,\si{\meter\squared}$):
+\[
+L=\frac{R\,A}{\rho}=\frac{10\cdot\pot{0.5}{-6}}{\pot{1.1}{-6}}
+=\frac{\pot{5}{-6}}{\pot{1.1}{-6}}\approx\SI{4.55}{\meter}.
+\]}
+\end{questao}
+
+\begin{questao}[2]{}
+Um fio condutor de comprimento $L$, diâmetro $D$ e resistência $R$ tem seu
+comprimento \textbf{e} seu diâmetro \emph{duplicados}. A nova resistência será:
+\begin{alternativas}[3]
+\item $R$
+\item $2R$
+\item $R/2$
+\item $4R$
+\item $R/4$
+\end{alternativas}
+\resposta{(c)}
+\resolucao{A área da seção é proporcional ao quadrado do diâmetro, $A \propto D^2$.
+Ao dobrar $D$, a área quadruplica ($A' = 4A$); ao dobrar $L$, o comprimento
+duplica ($L' = 2L$):
+\[
+R'=\rho\frac{L'}{A'}=\rho\frac{2L}{4A}=\frac{1}{2}\,\rho\frac{L}{A}=\frac{R}{2}.
+\]
+A armadilha (alternativa b) é considerar só o efeito do comprimento e esquecer que
+a área cresce com o \emph{quadrado} do diâmetro.}
+\end{questao}
+
+\begin{questao}[2]{}
+O gráfico representa a diferença de potencial $U$ entre dois pontos de um fio em
+função da corrente $i$. A resistência do trecho, em ohms, vale:
+
+\circuitoqq{%
+\begin{tikzpicture}
+ \begin{axis}[width=9cm,height=5cm,xlabel={$i$ (A)},ylabel={$U$ (V)},
+   xmin=0,xmax=5,ymin=0,ymax=22,xtick={0,1,2,3,4},ytick={0,4,8,12,16,20},
+   grid=major,axis lines=left]
+   \addplot[Vcol,very thick,domain=0:4] {4*x};
+   \addplot[only marks,mark=*,Vcol] coordinates {(1,4)(2,8)(3,12)(4,16)};
+ \end{axis}
+\end{tikzpicture}}{Curva característica $U \times i$ de um resistor ôhmico.}
+
+\begin{alternativas}[3]
+\item 0,05
+\item 4
+\item 20
+\item 80
+\item 160
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Para um condutor ôhmico, $U = R\,i$: a resistência é a \emph{inclinação}
+da reta. Tomando o ponto $(4, 16)$:
+\[
+R=\frac{U}{i}=\frac{16}{4}=\SI{4}{\ohm}.
+\]
+A reta passar pela origem confirma que o resistor obedece à lei de Ohm.}
+\end{questao}
+
+\begin{questao}[2]{}
+Dois fios do mesmo material têm resistências $R_1 = \SI{6}{\ohm}$ e
+$R_2 = \SI{3}{\ohm}$; o fio 1 tem o dobro do comprimento do fio 2. Qual a relação
+entre as áreas das seções transversais, $A_1/A_2$?
+\resposta{$A_1/A_2 = 1$ (áreas iguais)}
+\resolucao{Como o material é o mesmo, $\rho$ é comum. De $R = \rho L/A$:
+\[
+\frac{R_1}{R_2}=\frac{L_1/A_1}{L_2/A_2}=\frac{L_1}{L_2}\cdot\frac{A_2}{A_1}.
+\]
+Com $\dfrac{R_1}{R_2}=\dfrac{6}{3}=2$ e $\dfrac{L_1}{L_2}=2$:
+\[
+2 = 2\cdot\frac{A_2}{A_1}\ \Rightarrow\ \frac{A_2}{A_1}=1
+\ \Rightarrow\ A_1 = A_2.
+\]
+Ou seja, dobrar o comprimento já explica a resistência dobrada; as seções são
+iguais.}
+\end{questao}
+
+\begin{questao}[2]{}
+A tabela apresenta a resistividade de alguns materiais a $\SI{20}{\celsius}$.
+
+\begin{table}[H]
+\centering\small\sffamily
+\begin{tabular}{@{}l c@{}}
+\toprule
+\textbf{Material} & \textbf{$\rho$ ($\times10^{-8}\,\si{\ohm\meter}$)}\\
+\midrule
+Prata      & 1,6\\
+Cobre      & 1,7\\
+Alumínio   & 2,8\\
+Ferro      & 10\\
+Níquel-cromo & 110\\
+\bottomrule
+\end{tabular}
+\caption{Resistividade de materiais condutores.}
+\end{table}
+
+Dois fios de mesmo comprimento e mesma seção, um de cobre e outro de alumínio,
+têm resistências $R_{\text{Cu}}$ e $R_{\text{Al}}$. A razão
+$R_{\text{Al}}/R_{\text{Cu}}$ vale aproximadamente:
+\begin{alternativas}[3]
+\item 0,6
+\item 1,0
+\item 1,6
+\item 2,8
+\item 4,4
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Com $L$ e $A$ iguais, $R = \rho\dfrac{L}{A}$ é proporcional a $\rho$:
+\[
+\frac{R_{\text{Al}}}{R_{\text{Cu}}}=\frac{\rho_{\text{Al}}}{\rho_{\text{Cu}}}
+=\frac{2{,}8}{1{,}7}\approx1{,}6.
+\]
+Por isso, para a mesma resistência, um fio de alumínio precisa ser mais grosso
+que um de cobre --- o que se compensa por ele ser mais leve e barato, motivo do
+seu uso em linhas de transmissão.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um fio de cobre tem comprimento $L = \SI{2}{\meter}$ e seção transversal
+$A = \SI{1}{\milli\meter\squared}$. Calcule sua resistência.
+\dados{$\rho_{\text{Cu}} = \SI{1.7e-8}{\ohm\meter}$.}
+\resposta{$R = \SI{34}{\milli\ohm}$}
+\resolucao{Com $A = \SI{1}{\milli\meter\squared} = \pot{1}{-6}\,\si{\meter\squared}$:
+\[
+R=\rho\frac{L}{A}=\pot{1.7}{-8}\cdot\frac{2}{\pot{1}{-6}}
+=\pot{3.4}{-2}\,\si{\ohm}=\SI{34}{\milli\ohm}.
+\]
+Resistência bem baixa, como esperado de um bom condutor em curto comprimento.}
+\end{questao}
+
+\begin{questao}[2]{Apostila original revisada}
+Um fio possui resistência elétrica $R$. Mantendo o mesmo material, seu comprimento é
+duplicado e sua área de seção transversal é reduzida à metade. Determine a nova
+resistência em função de $R$.
+\resposta{$R'=4R$}
+\resolucao{Pela segunda lei de Ohm, $R=\rho L/A$. Logo,
+\[
+R'=\rho\frac{2L}{A/2}=4\rho\frac{L}{A}=4R.
+\]}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um fio de aço e um de cobre, de mesmo comprimento e mesma área, são ligados
+individualmente à mesma tensão. Sabendo que
+$\rho_{\text{aço}} = 10\,\rho_{\text{cobre}}$, compare:
+\begin{itensq}
+\item as correntes em cada fio;
+\item as potências dissipadas em cada um.
+\end{itensq}
+\resposta{(a) $I_{\text{cobre}} = 10\,I_{\text{aço}}$;
+(b) $P_{\text{cobre}} = 10\,P_{\text{aço}}$}
+\resolucao{Como $L$ e $A$ são iguais, $R = \rho L/A \Rightarrow
+R_{\text{aço}} = 10\,R_{\text{cobre}}$.\\
+(a) Sob a mesma tensão, $I = U/R$, logo a corrente é inversamente proporcional a
+$R$:
+\[
+\frac{I_{\text{cobre}}}{I_{\text{aço}}}
+=\frac{R_{\text{aço}}}{R_{\text{cobre}}}=10
+\ \Rightarrow\ I_{\text{cobre}}=10\,I_{\text{aço}}.
+\]
+(b) $P = U^2/R$; com $U$ igual, a potência também é inversamente proporcional a
+$R$:
+\[
+\frac{P_{\text{cobre}}}{P_{\text{aço}}}=\frac{R_{\text{aço}}}{R_{\text{cobre}}}=10.
+\]
+O cobre, menos resistivo, conduz mais corrente e dissipa mais potência sob a mesma
+tensão --- por isso é preferido em condutores.}
+\end{questao}
+
+\begin{questao}[3]{}
+Dois fios de \emph{mesmo comprimento} e \emph{mesma seção}, um de cobre
+($\rho_{\text{Cu}}=\SI{1.7e-8}{\ohm\meter}$) e outro de alumínio
+($\rho_{\text{Al}}=\SI{2.8e-8}{\ohm\meter}$), são emendados em série e ligados a
+$\SI{12}{\volt}$.
+\begin{itensq}
+\item Determine a razão entre as tensões em cada trecho.
+\item Calcule a tensão em cada fio.
+\item Em qual dos dois há maior dissipação de calor? Justifique.
+\end{itensq}
+\resposta{(a) $U_{\text{Al}}/U_{\text{Cu}}\approx1{,}65$;
+(b) $\SI{4.53}{\volt}$ e $\SI{7.47}{\volt}$; (c) no alumínio}
+\resolucao{(a) Com $L$ e $A$ iguais, $R \propto \rho$; e como estão em série
+(mesma corrente), $U = RI \propto \rho$:
+\[
+\frac{U_{\text{Al}}}{U_{\text{Cu}}}=\frac{\rho_{\text{Al}}}{\rho_{\text{Cu}}}
+=\frac{2{,}8}{1{,}7}\approx1{,}65.
+\]
+(b) Pelo divisor de tensão, a repartição segue as resistividades:
+\[
+U_{\text{Cu}}=12\cdot\frac{1{,}7}{4{,}5}\approx\SI{4.53}{\volt},
+\qquad
+U_{\text{Al}}=12\cdot\frac{2{,}8}{4{,}5}\approx\SI{7.47}{\volt}.
+\]
+(c) A potência é $P = UI$ com $I$ comum, logo \emph{maior tensão implica maior
+potência}: o \textbf{alumínio} aquece mais. Fisicamente, sendo mais resistivo,
+ele opõe mais resistência à mesma corrente.\\
+\textbf{Implicação prática:} emendas entre metais diferentes são pontos críticos
+em instalações --- além do aquecimento desigual, os coeficientes de dilatação
+distintos afrouxam o contato com o tempo, aumentando a resistência local e
+realimentando o aquecimento. É a causa clássica de incêndios em conexões
+Cu--Al, razão pela qual normas exigem conectores bimetálicos específicos.}
+\end{questao}
+
+\begin{questao}[3]{}
+A resistência de um condutor metálico varia com a temperatura segundo
+$R = R_0\big[1+\alpha(T-T_0)\big]$, onde $\alpha$ é o coeficiente de temperatura.
+Para o cobre, $\alpha \approx \SI{4e-3}{\per\celsius}$.
+
+Um enrolamento de cobre de um motor mede $\SI{10}{\ohm}$ a $\SI{20}{\celsius}$
+(motor frio). Após operar em regime, sua resistência sobe para
+$\SI{12.4}{\ohm}$.
+\begin{itensq}
+\item Determine a temperatura do enrolamento em operação.
+\item Se a tensão aplicada for mantida em $\SI{220}{\volt}$, qual a variação
+      percentual da potência dissipada entre o motor frio e o quente?
+\item Explique como esse efeito é usado, na prática, para medir a temperatura
+      interna de máquinas elétricas sem sensores.
+\end{itensq}
+\resposta{(a) $T = \SI{80}{\celsius}$; (b) a potência cai $\approx\SI{19}{\percent}$;
+(c) ver comentário}
+\resolucao{\textbf{(a)} Isolando a temperatura:
+\[
+12{,}4 = 10\big[1+\pot{4}{-3}(T-20)\big]
+\;\Rightarrow\;
+1{,}24 = 1+\pot{4}{-3}(T-20)
+\;\Rightarrow\;
+T-20 = \frac{0{,}24}{\pot{4}{-3}} = 60,
+\]
+logo $T = \SI{80}{\celsius}$.
+
+\textbf{(b)} Com tensão fixa, $P = \dfrac{U^2}{R}$ é inversamente proporcional a
+$R$:
+\[
+\frac{P_{\text{quente}}}{P_{\text{frio}}}=\frac{R_{\text{frio}}}{R_{\text{quente}}}
+=\frac{10}{12{,}4}=0{,}806,
+\]
+ou seja, a potência dissipada \emph{cai} cerca de \SI{19.4}{\percent}.
+
+\textbf{(c) Método da variação de resistência.} Como $\alpha$ do cobre é bem
+conhecido e estável, mede-se a resistência do enrolamento a frio (com o motor
+parado e em temperatura ambiente conhecida) e novamente logo após o desligamento.
+Invertendo a fórmula:
+\[
+T = T_0 + \frac{1}{\alpha}\left(\frac{R}{R_0}-1\right),
+\]
+obtém-se a temperatura \emph{média} de todo o enrolamento --- justamente o que
+importa para a vida útil do isolamento --- sem instalar nenhum sensor interno.
+Esse é o procedimento normalizado em ensaios de elevação de temperatura de
+motores e transformadores.\\
+\textbf{Observação crítica:} o método fornece a média, não o \emph{ponto quente}.
+Como a degradação do isolante segue uma lei exponencial com a temperatura, o ponto
+mais quente pode falhar antes do que a média sugeriria --- por isso as normas
+aplicam margens de segurança sobre esse valor.}
+\end{questao}
+
+\begin{questao}[3]{Apostila original revisada}
+A resistividade de um material varia aproximadamente de forma linear com a
+temperatura. Foram medidos os valores
+$\rho(\SI{0}{\celsius})=\SI{1.5e-8}{\ohm\metre}$ e
+$\rho(\SI{100}{\celsius})=\SI{2.5e-8}{\ohm\metre}$.
+\begin{itensq}
+\item Determine a taxa de variação da resistividade por grau Celsius.
+\item Estime a resistividade a $\SI{150}{\celsius}$, mantendo o modelo linear.
+\end{itensq}
+\resposta{(a) $\SI{1.0e-10}{\ohm\metre\per\celsius}$; (b) $\SI{3.0e-8}{\ohm\metre}$}
+\resolucao{A inclinação é
+\[
+\frac{\Delta\rho}{\Delta T}=\frac{(2.5-1.5)\times10^{-8}}{100}
+=\SI{1.0e-10}{\ohm\metre\per\celsius}.
+\]
+Extrapolando até $\SI{150}{\celsius}$:
+$\rho=1.5\times10^{-8}+150\times10^{-10}=\SI{3.0e-8}{\ohm\metre}$.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Lei de Ohm e resistividade
+\input{bancos/banco-lei-de-ohm-e-resistividade.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[2.2 Lei de Ohm e resistividade]
+
+% =====================================================================
+\subsection{Potência elétrica e energia}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+A tensão nos terminais de um condutor é $\SI{12}{\volt}$ e ele dissipa
+$\SI{24}{\watt}$.
+\begin{itensq}
+\item Qual a corrente que o percorre?
+\item Qual o valor de sua resistência?
+\end{itensq}
+\resposta{(a) \SI{2}{\ampere}; (b) \SI{6}{\ohm}}
+\resolucao{(a) De $P = U\,I$: $I = \dfrac{P}{U} = \dfrac{24}{12} = \SI{2}{\ampere}$.\\
+(b) $R = \dfrac{U}{I} = \dfrac{12}{2} = \SI{6}{\ohm}$
+(ou $R = \dfrac{U^2}{P} = \dfrac{144}{24} = \SI{6}{\ohm}$).}
+\end{questao}
+
+\begin{questao}[1]{}
+Um aparelho opera em $\SI{220}{\volt}$ e consome $\SI{440}{\watt}$.
+\begin{itensq}
+\item Qual a corrente que ele consome?
+\item Qual sua resistência equivalente?
+\end{itensq}
+\resposta{(a) \SI{2}{\ampere}; (b) \SI{110}{\ohm}}
+\resolucao{(a) $I = \dfrac{P}{U} = \dfrac{440}{220} = \SI{2}{\ampere}$.\\
+(b) $R = \dfrac{U^2}{P} = \dfrac{220^2}{440} = \SI{110}{\ohm}$.}
+\end{questao}
+
+\begin{questao}[1]{Apostila original revisada}
+Uma fonte fornece $\SI{100}{\watt}$ a um circuito, mas somente
+$\SI{95}{\watt}$ são aproveitados pela carga. Determine o rendimento do circuito
+e a potência dissipada em perdas.
+\resposta{$\eta=95\%$; perdas de $\SI{5}{\watt}$}
+\resolucao{$\eta=P_{\mathrm{útil}}/P_{\mathrm{entrada}}=95/100=0{,}95$.
+A diferença, $100-95=\SI{5}{\watt}$, é dissipada em fios, contatos e outros elementos.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma lâmpada de especificação $\SI{60}{\watt}$/$\SI{220}{\volt}$ é ligada, por
+engano, a uma rede de $\SI{110}{\volt}$. Sua potência dissipada passa a ser:
+\begin{alternativas}
+\item inalterada.
+\item reduzida à metade.
+\item duplicada.
+\item reduzida à quarta parte.
+\item aumentada quatro vezes.
+\end{alternativas}
+\resposta{(d)}
+\resolucao{A resistência da lâmpada é fixa, determinada por seus valores nominais:
+$R = \dfrac{U_{\text{nom}}^2}{P_{\text{nom}}} = \dfrac{220^2}{60} \approx
+\SI{807}{\ohm}$. Sob a nova tensão, $P' = \dfrac{U'^2}{R}$. Como a tensão caiu à
+metade e $P \propto U^2$:
+\[
+P' = \frac{(110)^2}{R} = \frac{60}{4} = \SI{15}{\watt},
+\]
+ou seja, a quarta parte. Meia tensão dissipa um quarto da potência.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um chuveiro elétrico tem especificações $\SI{220}{\volt}$/$\SI{4400}{\watt}$. Se
+for ligado a uma rede de $\SI{110}{\volt}$, a potência dissipada será:
+\begin{alternativas}[2]
+\item \SI{550}{\watt}
+\item \SI{1100}{\watt}
+\item \SI{2200}{\watt}
+\item \SI{4400}{\watt}
+\item \SI{8800}{\watt}
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Mesma ideia da questão anterior: metade da tensão dissipa um quarto da
+potência:
+\[
+P' = \frac{4400}{4} = \SI{1100}{\watt}.
+\]
+Por isso um chuveiro projetado para \SI{220}{\volt} "esquenta pouco" em rede de
+\SI{110}{\volt}.}
+\end{questao}
+
+\begin{questao}[2]{}
+Dois resistores $R_1 = \SI{10}{\ohm}$ e $R_2 = \SI{20}{\ohm}$ estão em série sob
+uma tensão total de $\SI{60}{\volt}$.
+\begin{itensq}
+\item Qual a corrente do circuito?
+\item Qual a potência dissipada em cada resistor?
+\end{itensq}
+\resposta{(a) \SI{2}{\ampere}; (b) $P_1=\SI{40}{\watt}$, $P_2=\SI{80}{\watt}$}
+\resolucao{(a) $I = \dfrac{60}{10+20} = \SI{2}{\ampere}$.\\
+(b) Com a mesma corrente, $P = R\,I^2$:
+\[
+P_1 = 10\cdot 2^2 = \SI{40}{\watt},\qquad
+P_2 = 20\cdot 2^2 = \SI{80}{\watt}.
+\]
+\textbf{Verificação:} $P_{\text{total}} = U\,I = 60\cdot2 = \SI{120}{\watt}
+= 40+80$. Na série, o maior resistor dissipa a maior potência.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um chuveiro elétrico de $\SI{5500}{\watt}$ opera em $\SI{220}{\volt}$.
+\begin{itensq}
+\item Qual a corrente que ele exige da rede?
+\item Qual a resistência da sua resistência de aquecimento?
+\item O disjuntor do circuito é de $\SI{20}{\ampere}$. Ele suporta esse chuveiro?
+\end{itensq}
+\resposta{(a) \SI{25}{\ampere}; (b) \SI{8.8}{\ohm}; (c) não}
+\resolucao{(a) $I = \dfrac{P}{U} = \dfrac{5500}{220} = \SI{25}{\ampere}$.\\
+(b) $R = \dfrac{U^2}{P} = \dfrac{220^2}{5500} = \SI{8.8}{\ohm}$.\\
+(c) A corrente exigida (\SI{25}{\ampere}) \emph{excede} os \SI{20}{\ampere} do
+disjuntor, que desarmaria. Seria necessário um disjuntor de pelo menos
+\SI{25}{\ampere} (na prática, \SI{32}{\ampere}) e fiação compatível --- por isso
+chuveiros exigem circuito exclusivo.}
+\end{questao}
+
+\begin{questao}[2]{Apostila original revisada}
+Em uma residência, a tarifa média foi obtida de uma conta de
+R\$~80,00 para um consumo de $\SI{200}{\kilo\watt\hour}$. Um chuveiro de
+$\SI{3}{\kilo\watt}$ é utilizado durante $\SI{30}{\minute}$ por dia, ao longo de
+30 dias. Calcule a energia mensal consumida pelo chuveiro e seu custo.
+\resposta{$\SI{45}{\kilo\watt\hour}$; R\$~18,00}
+\resolucao{A tarifa é $80/200=\text{R\$ }0{,}40/\si{\kilo\watt\hour}$.
+O tempo mensal é $0{,}5\times30=\SI{15}{\hour}$, então
+$E=3\times15=\SI{45}{\kilo\watt\hour}$ e o custo é $45\times0{,}40=\text{R\$ }18{,}00$.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Em uma residência permanecem ligados, durante $\SI{2}{\hour}$, um ferro elétrico
+de $\SI{1440}{\watt}$/$\SI{120}{\volt}$ e duas lâmpadas de
+$\SI{60}{\watt}$/$\SI{120}{\volt}$. Mantida a tensão em $\SI{120}{\volt}$,
+determine a corrente total no fusível e a energia elétrica consumida.
+\resposta{$I = \SI{13}{\ampere}$; $E = \SI{3.12}{\kilo\watt\hour}$}
+\resolucao{Potência total: $P = 1440 + 2\cdot60 = \SI{1560}{\watt}$.\\
+Corrente no fusível (todos em paralelo, sob \SI{120}{\volt}):
+\[
+I = \frac{P}{U} = \frac{1560}{120} = \SI{13}{\ampere}.
+\]
+Energia em $\SI{2}{\hour}$:
+\[
+E = P\,t = 1{,}560\,\si{\kilo\watt}\cdot2\,\si{\hour} = \SI{3.12}{\kilo\watt\hour}.
+\]
+O kWh é a unidade da conta de luz: potência (em kW) vezes tempo (em h).}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma residência utiliza, por dia: uma lâmpada de $\SI{100}{\watt}$ acesa
+$\SI{5}{\hour}$, um chuveiro de $\SI{4400}{\watt}$ ligado $\SI{0.5}{\hour}$ e uma
+geladeira de $\SI{200}{\watt}$ que funciona, em média, $\SI{8}{\hour}$ por dia.
+Calcule o consumo mensal de energia (30 dias) e o custo, considerando a tarifa de
+$\SI{0.80}{\text{R\$}\per\kilo\watt\hour}$.
+\resposta{$E \approx \SI{127.5}{\kilo\watt\hour}$; custo $\approx$ R\$\,102,00}
+\resolucao{Energia diária de cada aparelho ($E = P\,t$, em kWh):
+\[
+\text{lâmpada: } 0{,}1\cdot5 = \SI{0.5}{\kilo\watt\hour};\quad
+\text{chuveiro: } 4{,}4\cdot0{,}5 = \SI{2.2}{\kilo\watt\hour};\quad
+\text{geladeira: } 0{,}2\cdot8 = \SI{1.6}{\kilo\watt\hour}.
+\]
+Total diário: $0{,}5 + 2{,}2 + 1{,}6 = \SI{4.3}{\kilo\watt\hour}$. Em 30 dias:
+\[
+E = 4{,}3\cdot30 = \SI{129}{\kilo\watt\hour}
+\quad\Rightarrow\quad
+\text{custo} = 129\cdot0{,}80 \approx \text{R\$}\,103{,}00.
+\]
+(Valores próximos de \SI{127.5}{\kilo\watt\hour} conforme arredondamentos.) É
+assim que se estima a conta de luz --- e fica claro que o chuveiro, apesar de
+usado poucos minutos, é um dos maiores vilões pelo seu alto \emph{potência}.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas lâmpadas incandescentes de especificações $\SI{60}{\watt}$/$\SI{220}{\volt}$
+e $\SI{100}{\watt}$/$\SI{220}{\volt}$ são ligadas \textbf{em série} à rede de
+$\SI{220}{\volt}$.
+\begin{itensq}
+\item Calcule a resistência de cada lâmpada (suposta constante).
+\item Determine a potência dissipada por cada uma nessa ligação.
+\item \textbf{Qual delas brilha mais?} O resultado contraria a intuição?
+      Explique.
+\end{itensq}
+\resposta{(a) $\SI{806.7}{\ohm}$ e $\SI{484}{\ohm}$;
+(b) $\SI{23.4}{\watt}$ e $\SI{14.1}{\watt}$; (c) a de \SI{60}{\watt}}
+\resolucao{\textbf{(a)} Das especificações nominais, $R = \dfrac{U^2}{P}$:
+\[
+R_{60}=\frac{220^2}{60}\approx\SI{806.7}{\ohm},
+\qquad
+R_{100}=\frac{220^2}{100}=\SI{484}{\ohm}.
+\]
+Note: \emph{a lâmpada de menor potência tem MAIOR resistência.}
+
+\textbf{(b)} Em série, a corrente é comum:
+\[
+I=\frac{220}{806{,}7+484}=\frac{220}{1290{,}7}\approx\SI{0.170}{\ampere}.
+\]
+Com $P = R I^2$:
+\[
+P_{60}=806{,}7\,(0{,}170)^2\approx\SI{23.4}{\watt},
+\qquad
+P_{100}=484\,(0{,}170)^2\approx\SI{14.1}{\watt}.
+\]
+\textbf{Verificação:} $23{,}4+14{,}1 = \SI{37.5}{\watt} = 220\cdot0{,}170$.
+\checkmark
+
+\textbf{(c) A lâmpada de \SI{60}{\watt} brilha MAIS} --- resultado que contraria
+a intuição de quem associa "100 W" a "mais brilhante".\\
+\textbf{Por quê:} as especificações valem \emph{apenas} na tensão nominal, com
+cada lâmpada recebendo os \SI{220}{\volt} completos. Em série, elas
+\textbf{compartilham} a mesma corrente, e quem dita a potência passa a ser a
+resistência: $P = RI^2$. A de \SI{60}{\watt}, tendo maior $R$, fica com maior
+parcela da tensão e dissipa mais.\\
+\textbf{Regra geral:}
+\begin{center}\small\sffamily
+\begin{tabular}{@{}l l l@{}}
+\toprule
+\textbf{Ligação} & \textbf{Grandeza comum} & \textbf{Brilha mais}\\
+\midrule
+Série    & corrente $I$ & a de \emph{maior} $R$ (menor potência nominal)\\
+Paralelo & tensão $U$   & a de \emph{menor} $R$ (maior potência nominal)\\
+\bottomrule
+\end{tabular}
+\end{center}
+Observe ainda que \emph{ambas} ficam muito abaixo do nominal (\SI{37.5}{\watt} no
+total contra \SI{160}{\watt} se ligadas corretamente em paralelo).}
+\end{questao}
+
+\begin{questao}[3]{}
+Um chuveiro elétrico de $\SI{220}{\volt}$ possui uma resistência de aquecimento
+com uma \emph{derivação central}, permitindo duas posições: na posição "verão",
+usa-se a resistência inteira ($\SI{8.8}{\ohm}$); na posição "inverno", apenas
+\emph{metade} dela.
+\begin{itensq}
+\item Calcule a potência em cada posição.
+\item Determine a corrente em cada caso e verifique se um disjuntor de
+      $\SI{40}{\ampere}$ é adequado.
+\item Sabendo que a água entra a $\SI{20}{\celsius}$ com vazão de
+      $\SI{3}{\liter\per\minute}$, estime a temperatura de saída no inverno.
+\end{itensq}
+\dados{$c_{\text{água}}=\SI{4180}{\joule\per\kilogram\per\celsius}$;
+$\rho_{\text{água}}=\SI{1}{\kilogram\per\liter}$.}
+\resposta{(a) \SI{5500}{\watt} e \SI{11000}{\watt}; (b) \SI{25}{\ampere} e
+\SI{50}{\ampere} --- disjuntor insuficiente; (c) $\approx\SI{72}{\celsius}$}
+\resolucao{\textbf{(a)} Com $P = \dfrac{U^2}{R}$:
+\[
+P_{\text{verão}}=\frac{220^2}{8{,}8}=\SI{5500}{\watt},
+\qquad
+P_{\text{inverno}}=\frac{220^2}{4{,}4}=\SI{11000}{\watt}.
+\]
+\emph{Metade da resistência dobra a potência} --- e não a reduz, como a intuição
+poderia sugerir.
+
+\textbf{(b)} $I = \dfrac{P}{U}$:
+$I_{\text{verão}} = \SI{25}{\ampere}$ e $I_{\text{inverno}} = \SI{50}{\ampere}$.
+O disjuntor de \SI{40}{\ampere} \textbf{não é adequado} --- ele desarmaria na
+posição inverno. Seria necessário um de \SI{63}{\ampere} com fiação
+de $\SI{10}{\milli\meter\squared}$.
+
+\textbf{(c) Balanço térmico.} A vazão mássica é
+\[
+\dot m = \SI{3}{\liter\per\minute} = \frac{3}{60}=\SI{0.05}{\kilogram\per\second}.
+\]
+Toda a potência elétrica vira calor na água:
+\[
+P = \dot m\,c\,\Delta T
+\;\Rightarrow\;
+\Delta T=\frac{P}{\dot m\,c}=\frac{11000}{0{,}05\cdot4180}\approx\SI{52.6}{\celsius}.
+\]
+Logo a saída fica a $20+52{,}6 \approx \SI{72}{\celsius}$ --- alta demais para
+banho, o que na prática é ajustado aumentando a vazão.\\
+\textbf{Síntese de engenharia:} este exercício conecta \emph{três} domínios ---
+circuito elétrico (lei de Ohm), proteção (dimensionamento de disjuntor) e
+termodinâmica (balanço de energia). É exatamente esse tipo de integração que
+caracteriza o trabalho profissional real.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Potência elétrica e energia
+\input{bancos/banco-potencia-eletrica-e-energia.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[{2.3 Potência elétrica e energia}]
+
+% =====================================================================
+\subsection{Fontes reais e Leis de Kirchhoff}
+% =====================================================================
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um circuito tem duas fontes ideais de $\SI{6}{\volt}$ e $\SI{4}{\volt}$ ligadas em
+série e em \textbf{oposição}.
+\begin{itensq}
+\item Qual a tensão total fornecida ao circuito?
+\item Se a resistência total for $\SI{5}{\ohm}$, qual a corrente?
+\end{itensq}
+\resposta{(a) \SI{2}{\volt}; (b) \SI{0.4}{\ampere}}
+\resolucao{(a) Em oposição, as fem se subtraem:
+$U = 6 - 4 = \SI{2}{\volt}$.\\
+(b) $I = \dfrac{U}{R} = \dfrac{2}{5} = \SI{0.4}{\ampere}$.
+Se estivessem em série \emph{concordante}, teríamos $6+4 = \SI{10}{\volt}$ e
+$I = \SI{2}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+No nó da figura, as correntes $I_1 = \SI{5}{\ampere}$ e $I_2 = \SI{3}{\ampere}$
+entram, e $I_3$ sai. Pela lei dos nós de Kirchhoff, $I_3$ vale:
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \coordinate (o) at (0,0);
+ \draw[->,Icol,line width=1.1pt] (-2,0.6) -- (o) node[midway,above]{$I_1$};
+ \draw[->,Icol,line width=1.1pt] (-2,-0.6) -- (o) node[midway,below]{$I_2$};
+ \draw[->,Icol,line width=1.1pt] (o) -- (2,0) node[midway,above]{$I_3$};
+ \fill (o) circle (0.06);
+\end{circuitikz}}
+
+\resposta{$I_3 = \SI{8}{\ampere}$}
+\resolucao{A lei dos nós afirma que a soma das correntes que entram é igual à das
+que saem:
+\[
+I_3 = I_1 + I_2 = 5 + 3 = \SI{8}{\ampere}.
+\]
+Ela expressa a conservação da carga: o nó não acumula carga.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma bateria de fem $\EMF = \SI{12}{\volt}$ e resistência interna
+$r = \SI{0.5}{\ohm}$ alimenta um resistor externo $R = \SI{5.5}{\ohm}$. Determine
+a corrente e a tensão nos terminais da bateria.
+\resposta{$I = \SI{2}{\ampere}$; $U = \SI{11}{\volt}$}
+\resolucao{A resistência interna está em série com a carga:
+\[
+I=\frac{\EMF}{R+r}=\frac{12}{5{,}5+0{,}5}=\SI{2}{\ampere}.
+\]
+A tensão nos terminais é a fem menos a queda interna:
+\[
+U=\EMF - r\,I = 12 - 0{,}5\cdot2 = \SI{11}{\volt}.
+\]
+A diferença de \SI{1}{\volt} "some" dentro da bateria --- é a queda em $r$. Quanto
+maior a corrente, menor a tensão entregue: por isso baterias velhas (com $r$
+elevado) fornecem menos tensão sob carga.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma bateria de fem $\EMF$ e resistência interna $r = \SI{0.4}{\ohm}$ apresenta
+tensão de $\SI{12}{\volt}$ em seus terminais quando fornece
+$\SI{5}{\ampere}$. Determine a fem e a tensão em vazio (corrente nula).
+\resposta{$\EMF = \SI{14}{\volt}$; em vazio, $U = \SI{14}{\volt}$}
+\resolucao{Da equação da fonte real, $U = \EMF - r\,I$:
+\[
+\EMF = U + r\,I = 12 + 0{,}4\cdot5 = \SI{14}{\volt}.
+\]
+Em vazio ($I = 0$), não há queda interna: $U = \EMF = \SI{14}{\volt}$. A tensão de
+circuito aberto de uma fonte é sempre igual à sua fem.}
+\end{questao}
+
+\begin{questao}[2]{}
+No nó da figura, são conhecidas quatro das cinco correntes. Determine $I_5$,
+indicando se entra ou sai do nó.
+
+\circuitoq{%
+\begin{tikzpicture}[scale=1,transform shape,line width=0.9pt,>=Stealth]
+ \coordinate (o) at (0,0);
+ \draw[->,Icol] (-2,0.8) -- (o) node[midway,above]{$\SI{6}{\ampere}$};
+ \draw[->,Icol] (-2,-0.8) -- (o) node[midway,below]{$\SI{4}{\ampere}$};
+ \draw[->,Icol] (o) -- (2,0.8) node[midway,above]{$\SI{3}{\ampere}$};
+ \draw[->,Icol] (o) -- (2,-0.8) node[midway,below]{$\SI{5}{\ampere}$};
+ \draw[->,Vcol,thick] (o) -- (0,-1.8) node[midway,right]{$I_5$};
+ \fill (o) circle (0.07);
+\end{tikzpicture}}{Nó com cinco ramos.}
+
+\resposta{$I_5 = \SI{2}{\ampere}$, saindo do nó}
+\resolucao{Pela lei dos nós, a soma das que entram é igual à soma das que saem.
+Entram $6 + 4 = \SI{10}{\ampere}$; saem $3 + 5 = \SI{8}{\ampere}$ pelos ramos
+conhecidos. Para equilibrar, $I_5$ deve \emph{sair} com:
+\[
+I_5 = 10 - 8 = \SI{2}{\ampere}.
+\]
+Como o sentido adotado na figura já era de saída, o valor positivo confirma essa
+suposição.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+No circuito de duas malhas da figura, aplique as leis de Kirchhoff para determinar
+as correntes $I_1$, $I_2$ e a corrente $I_3$ no resistor central.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ % malha esquerda
+ \draw (0,0) to[battery1,l_={$E_1=\SI{18}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{2}{\ohm}$}] (3,3) coordinate(top);
+ \draw (top) to[R,l={$R_2=\SI{6}{\ohm}$},i>_={$I_3$}] (3,0) coordinate(bot) -- (0,0);
+ % malha direita
+ \draw (top) to[R,l={$R_3=\SI{6}{\ohm}$}] (6,3)
+       to[battery1,l={$E_2=\SI{6}{\volt}$},invert] (6,0) -- (bot);
+ \draw[->,Icol,line width=1pt] (0.6,3.4)--(1.5,3.4) node[midway,above,font=\footnotesize]{$I_1$};
+ \draw[->,Icol,line width=1pt] (5.4,3.4)--(4.5,3.4) node[midway,above,font=\footnotesize]{$I_2$};
+\end{circuitikz}}
+
+\resposta{$I_1 = \SI{3}{\ampere}$, $I_2 = \SI{1}{\ampere}$, $I_3 = \SI{2}{\ampere}$}
+\resolucao{\textbf{Lei dos nós} (no topo): $I_1 = I_2 + I_3$, logo $I_3 = I_1 - I_2$.\\
+\textbf{Malha esquerda} ($E_1$, $R_1$, $R_2$):
+\[
+E_1 = R_1 I_1 + R_2 I_3 \;\Rightarrow\; 18 = 2I_1 + 6(I_1 - I_2).
+\]
+\textbf{Malha direita} ($E_2$, $R_3$, $R_2$):
+\[
+E_2 = R_3 I_2 + R_2 I_3 \;\Rightarrow\; 6 = 6I_2 + 6(I_1 - I_2)\cdot(-1)?
+\]
+Organizando o sistema (com $I_3 = I_1 - I_2$):
+\[
+\begin{cases}
+8I_1 - 6I_2 = 18\\[2pt]
+-6I_1 + 12I_2 = -6
+\end{cases}
+\;\Rightarrow\;
+I_1 = \SI{3}{\ampere},\ I_2 = \SI{1}{\ampere}.
+\]
+Logo $I_3 = 3 - 1 = \SI{2}{\ampere}$.\\
+\textbf{Verificação} pela malha esquerda: $2\cdot3 + 6\cdot2 = 6+12 =
+\SI{18}{\volt} = E_1$. Confere.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito de duas malhas da figura, determine as três correntes de ramo
+($I_1$, $I_2$, $I_3$) aplicando as leis de Kirchhoff.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$E_1=\SI{12}{\volt}$}] (0,3)
+       to[R,l={$R_1=\SI{2}{\ohm}$}] (3,3) coordinate(top);
+ \draw (top) to[R,l={$R_2=\SI{4}{\ohm}$},i>_={$I_3$}] (3,0) coordinate(bot) -- (0,0);
+ \draw (top) to[R,l={$R_3=\SI{2}{\ohm}$}] (6,3)
+       to[battery1,l={$E_2=\SI{6}{\volt}$}] (6,0) -- (bot);
+ \draw[->,Icol,line width=1pt] (0.6,3.4)--(1.5,3.4) node[midway,above,font=\footnotesize]{$I_1$};
+ \draw[->,Icol,line width=1pt] (5.4,3.4)--(4.5,3.4) node[midway,above,font=\footnotesize]{$I_2$};
+\end{circuitikz}}
+
+\resposta{$I_1 = \SI{2.4}{\ampere}$, $I_2 = \SI{-0.6}{\ampere}$, $I_3 = \SI{1.8}{\ampere}$}
+\resolucao{\textbf{Nó superior:} $I_1 + I_2 = I_3$.\\
+\textbf{Malha esquerda:} $E_1 = R_1 I_1 + R_2 I_3
+\Rightarrow 12 = 2I_1 + 4I_3$.\\
+\textbf{Malha direita:} $E_2 = R_3 I_2 + R_2 I_3
+\Rightarrow 6 = 2I_2 + 4I_3$.\\
+Resolvendo o sistema (com $I_3 = I_1 + I_2$):
+\[
+I_1 = \SI{2.4}{\ampere},\quad I_2 = \SI{-0.6}{\ampere},\quad
+I_3 = \SI{1.8}{\ampere}.
+\]
+O sinal \emph{negativo} de $I_2$ significa que a corrente real nesse ramo é
+\emph{oposta} ao sentido adotado: a fonte $E_2$, mais fraca, na verdade
+\textbf{recebe} corrente (está sendo carregada) em vez de fornecer.\\
+\textbf{Verificação} (malha esquerda): $2\cdot2{,}4 + 4\cdot1{,}8 = 4{,}8+7{,}2
+= \SI{12}{\volt} = E_1$. Confere. Este é um bom lembrete: adotar um sentido
+errado não invalida a solução --- o sinal negativo se encarrega de corrigi-lo.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito da figura, quatro fontes ideais de tensão estão interligadas, e os
+terminais $a$, $b$ e $c$ estão \textbf{abertos} (nenhuma carga conectada).
+Observe atentamente a \emph{polaridade} indicada dentro de cada fonte.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1.05,transform shape,line width=0.9pt]
+ % barramento vertical
+ \coordinate (N1) at (0,4.2);      % no superior
+ \coordinate (N2) at (0,2.2);      % no inferior (referencia)
+ \draw (N1) -- (0,4.2);
+ % fonte 5V vertical (+ em cima, - embaixo)
+ \draw (N2) to[\fonteV,l_={$\SI{5}{\volt}$},invert] (N1);
+ % ramo superior -> a  (4V com '-' a esquerda, '+' a direita)
+ \draw (N1) -- (0.9,4.2) to[\fonteV,l={$\SI{4}{\volt}$}] (2.9,4.2)
+       to[short,-o] (4.0,4.2) node[right,font=\Large]{$a$};
+ % barramento inferior
+ \draw (N2) -- (0,0.2);
+ % ramo do meio -> b  (5V com '+' a esquerda, '-' a direita)
+ \draw (0,1.4) -- (0.9,1.4) to[\fonteV,l_={$\SI{5}{\volt}$},invert] (2.9,1.4)
+       to[short,-o] (4.0,1.4) node[right,font=\Large]{$b$};
+ \fill (0,1.4) circle (0.07);
+ % ramo inferior -> c  (3V com '-' a esquerda, '+' a direita)
+ \draw (0,0.2) -- (0.9,0.2) to[\fonteV,l_={$\SI{3}{\volt}$}] (2.9,0.2)
+       to[short,-o] (4.0,0.2) node[right,font=\Large]{$c$};
+\end{circuitikz}}
+
+\begin{itensq}
+\item Determine $V_{ac}$.
+\item Determine também $V_{ab}$ e $V_{bc}$, e verifique a consistência
+      ($V_{ab}+V_{bc}=V_{ac}$).
+\item Por que os valores \emph{não} dependem das resistências dos fios?
+\end{itensq}
+\resposta{(a) $V_{ac}=\SI{6}{\volt}$; (b) $V_{ab}=\SI{14}{\volt}$,
+$V_{bc}=\SI{-8}{\volt}$; (c) ver comentário}
+\resolucao{\textbf{Estratégia.} Como os terminais estão abertos, \emph{não circula
+corrente} em nenhum ramo. Sem corrente, não há queda em resistência alguma: os
+potenciais são determinados exclusivamente pelas fem, somadas com o \emph{sinal}
+correto. Basta adotar uma referência e "caminhar" pelo circuito.
+
+\medskip
+\textbf{Passo 1 --- adotar a referência.} Seja o nó inferior do barramento
+(ao qual se ligam os ramos de $b$ e $c$) o nó de referência: $V_{N_2}=0$.
+
+\textbf{Passo 2 --- subir pela fonte de \SI{5}{\volt} vertical.} Ela tem o
+terminal $+$ \emph{em cima} e $-$ embaixo. Indo de $N_2$ para $N_1$, entramos
+pelo $-$ e saímos pelo $+$: \emph{ganhamos} \SI{5}{\volt}.
+\[
+V_{N_1}=V_{N_2}+5=\SI{5}{\volt}.
+\]
+
+\textbf{Passo 3 --- percorrer cada ramo até seu terminal.}
+\begin{itemize}[leftmargin=1.7em,itemsep=2pt,topsep=3pt]
+\item \textbf{Ramo de $a$} (fonte \SI{4}{\volt}, com $-$ à esquerda e $+$ à
+      direita): indo de $N_1$ para $a$, entramos pelo $-$ e saímos pelo $+$,
+      ganhando \SI{4}{\volt}:
+      \[V_a = V_{N_1}+4 = 5+4=\SI{9}{\volt}.\]
+\item \textbf{Ramo de $b$} (fonte \SI{5}{\volt}, com $+$ à esquerda e $-$ à
+      direita): indo de $N_2$ para $b$, entramos pelo $+$ e saímos pelo $-$,
+      \emph{perdendo} \SI{5}{\volt}:
+      \[V_b = V_{N_2}-5 = \SI{-5}{\volt}.\]
+\item \textbf{Ramo de $c$} (fonte \SI{3}{\volt}, com $-$ à esquerda e $+$ à
+      direita): ganhamos \SI{3}{\volt}:
+      \[V_c = V_{N_2}+3 = \SI{3}{\volt}.\]
+\end{itemize}
+
+\textbf{Passo 4 --- calcular as diferenças.}
+\[
+\boxed{\;V_{ac}=V_a-V_c = 9-3 = \SI{6}{\volt}\;}
+\]
+\[
+V_{ab}=V_a-V_b = 9-(-5)=\SI{14}{\volt},
+\qquad
+V_{bc}=V_b-V_c = -5-3=\SI{-8}{\volt}.
+\]
+\textbf{Consistência:} $V_{ab}+V_{bc} = 14+(-8) = \SI{6}{\volt} = V_{ac}$
+\checkmark --- como deve ser, pois a diferença de potencial é uma função de
+estado (independe do caminho).
+
+\medskip
+\textbf{(c) Por que os fios não importam?} A queda em um resistor é $U=RI$. Com
+$I=0$ em todos os ramos (terminais abertos), \emph{qualquer} resistência produz
+queda nula. Os potenciais dos terminais dependem só das fem e de suas
+polaridades.\\
+\textbf{Atenção ao erro mais comum:} somar as fontes ignorando a polaridade
+(obtendo, por exemplo, $4+5+3=12$). O sinal de cada fonte é determinado pelo
+\emph{sentido em que a percorremos}: entrando pelo $-$ e saindo pelo $+$, soma-se;
+o contrário, subtrai-se. \emph{Sempre marque a polaridade antes de escrever a
+primeira equação.}}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+Duas baterias de fem $\EMF_1 = \SI{12}{\volt}$ ($r_1=\SI{0.2}{\ohm}$) e
+$\EMF_2 = \SI{12.6}{\volt}$ ($r_2=\SI{0.1}{\ohm}$) são ligadas em
+\textbf{paralelo} para alimentar uma carga $R_L = \SI{2}{\ohm}$ --- situação
+comum em bancos de baterias e em sistemas com gerador e bateria em paralelo.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+ \draw (0,0) to[battery1,l_={$\EMF_1$}] (0,1.6) to[R,l_={$r_1$},color=Vcol] (0,3);
+ \draw (2.4,0) to[battery1,l_={$\EMF_2$}] (2.4,1.6) to[R,l_={$r_2$},color=Vcol] (2.4,3);
+ \draw (0,3) -- (2.4,3) -- (5,3) to[R,l={$R_L=\SI{2}{\ohm}$}] (5,0) -- (2.4,0) -- (0,0);
+ \node[above,Vcol] at (3.6,3.1) {$V$};
+ \fill (2.4,3) circle (0.07); \fill (2.4,0) circle (0.07);
+\end{circuitikz}}
+
+\begin{itensq}
+\item Determine a tensão $V$ sobre a carga (use análise nodal).
+\item Calcule a corrente fornecida por \emph{cada} bateria.
+\item Interprete o sinal obtido e explique o risco prático dessa associação.
+\end{itensq}
+\resposta{(a) $V = \SI{12}{\volt}$; (b) $I_1 = 0$, $I_2 = \SI{6}{\ampere}$;
+(c) ver comentário}
+\resolucao{\textbf{(a)} Tomando o nó superior com potencial $V$ e o inferior como
+terra, a lei dos nós exige que a soma das correntes que \emph{chegam} ao nó seja
+igual à que sai pela carga:
+\[
+\frac{\EMF_1-V}{r_1}+\frac{\EMF_2-V}{r_2}=\frac{V}{R_L}.
+\]
+Substituindo:
+\[
+\frac{12-V}{0{,}2}+\frac{12{,}6-V}{0{,}1}=\frac{V}{2}.
+\]
+Multiplicando por 2: $10(12-V)+20(12{,}6-V)=V$, ou seja,
+\[
+120-10V+252-20V=V
+\;\Longrightarrow\;
+372 = 31V
+\;\Longrightarrow\;
+V = \SI{12}{\volt}.
+\]
+
+\textbf{(b)} As correntes de cada fonte:
+\[
+I_1=\frac{12-12}{0{,}2}=\SI{0}{\ampere},
+\qquad
+I_2=\frac{12{,}6-12}{0{,}1}=\SI{6}{\ampere},
+\qquad
+I_L=\frac{12}{2}=\SI{6}{\ampere}.\ \checkmark
+\]
+\textbf{(c) Interpretação e risco.} A bateria de \emph{maior} fem assume
+praticamente toda a carga, enquanto a de menor fem fica ociosa. Se a diferença de
+fem fosse maior --- por exemplo, uma bateria descarregada em paralelo com uma
+carregada --- a corrente na bateria mais fraca ficaria \textbf{negativa}: ela
+seria \emph{carregada} pela outra, com corrente limitada apenas pelas
+resistências internas, tipicamente muito pequenas.\\
+\textbf{Consequência prática:} correntes de circulação elevadíssimas, aquecimento
+e risco de dano ou explosão. Por isso o paralelismo de baterias exige unidades
+\emph{idênticas em fem, tecnologia e estado de carga}, ou o uso de diodos de
+isolamento e controladores de balanceamento --- prática obrigatória em bancos de
+baterias e sistemas fotovoltaicos.}
+\end{questao}
+
+% BEGIN BANCO COMPLEMENTAR Fontes reais e Leis de Kirchhoff
+\input{bancos/banco-fontes-reais-e-leis-de-kirchhoff.tex}
+% END BANCO COMPLEMENTAR
+
+\gabarito[2.4 Fontes reais e Leis de Kirchhoff]

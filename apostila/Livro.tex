@@ -1,0 +1,173 @@
+% =====================================================================
+%  Eletricidade Basica, Circuitos Eletricos e Eletromagnetismo
+%  Prof. Francisco Viana - 3a Edicao, Volume 1
+%  Arquivo principal
+%
+
+%  Compilar com: pdflatex Livro.tex  (duas vezes, para o sumario)
+% =====================================================================
+\documentclass[11pt,a4paper,oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textgreek}
+\usepackage{etoolbox}
+\usepackage[left=2.2cm,right=2.2cm,top=2.4cm,bottom=2.2cm,headsep=12pt]{geometry}
+\usepackage{estilo-eletricidade}
+\DeclareSIUnit{\gauss}{G}
+
+\begin{document}
+
+% ------------------------------ CAPA ---------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  % fundo
+  \fill[azulprof] (current page.north west) rectangle
+       ($(current page.south east)+(0,0)$);
+  \fill[white] ($(current page.north west)+(0,-7.2cm)$) rectangle
+       ($(current page.south east)+(0,4.6cm)$);
+  % faixa decorativa: senoide + circuito estilizado
+  \begin{scope}[shift={($(current page.north west)+(2.2cm,-4.4cm)$)}]
+     \draw[white,line width=1.2pt,opacity=0.55]
+        plot[domain=0:16,samples=200] (\x,{0.75*sin(\x*40)});
+     \foreach \x in {0,4,8,12,16}
+        \fill[laranja,opacity=0.9] (\x,{0.75*sin(\x*40)}) circle (3.5pt);
+  \end{scope}
+  % titulo
+  \node[anchor=north west,text=white,align=left,inner sep=0]
+       at ($(current page.north west)+(2.2cm,-1.6cm)$)
+       {\sffamily\bfseries\Huge Eletricidade Básica,\\[2mm]
+        Circuitos Elétricos\\[2mm] e Eletromagnetismo};
+  % bloco central
+  \node[anchor=north,align=center,inner sep=0]
+       at ($(current page.north)+(0,-9.5cm)$)
+       {\sffamily\LARGE\color{azulprof}\bfseries Coletânea de Exercícios
+        Resolvidos\\[4mm]
+        \sffamily\large\color{cinza} Volume 1 --- Corrente Contínua};
+  % icones de circuito
+  \node[anchor=north] at ($(current page.north)+(0,-13.2cm)$) {
+    \begin{circuitikz}[scale=0.95,transform shape,line width=0.9pt]
+      \draw (0,0) to[battery1,l_=$\EMF$] (0,2.4)
+                  to[R,l=$R_1$,color=Rcol] (3.2,2.4)
+                  to[R,l=$R_2$,color=Rcol] (3.2,0) -- (0,0);
+      \draw (3.2,2.4) -- (5.4,2.4) to[C,l=$C$] (5.4,0) -- (3.2,0);
+      \draw[->,Icol,line width=1pt] (0.8,2.75) -- (2.0,2.75)
+            node[midway,above,font=\footnotesize\sffamily]{$I$};
+    \end{circuitikz}};
+  % rodape
+  \node[anchor=south west,text=white,align=left,inner sep=0]
+       at ($(current page.south west)+(2.2cm,2.0cm)$)
+       {\sffamily\LARGE\bfseries Prof. Francisco Viana\\[2mm]
+        \sffamily\normalsize 3\textsuperscript{a} Edição};
+\end{tikzpicture}
+\end{titlepage}
+
+% -------------------------- APRESENTACAO -----------------------------
+\newpage
+\section*{Apresentação}
+\addcontentsline{toc}{section}{Apresentação}
+\thispagestyle{fancy}
+
+Este material foi desenvolvido como ferramenta prática de apoio ao ensino e à
+formação técnica de estudantes e profissionais da área elétrica, especialmente
+daqueles envolvidos com \textbf{Eletricidade Básica}, \textbf{Análise de
+Circuitos Elétricos} e \textbf{Eletromagnetismo}.
+
+A proposta desta coletânea é oferecer uma base sólida e progressiva de
+conhecimentos por meio da resolução de problemas contextualizados, que auxiliam
+na fixação dos conceitos teóricos e no desenvolvimento do raciocínio aplicado à
+eletricidade e ao magnetismo.
+
+\begin{conceito}[Como usar este material]
+\textbf{1. Níveis de dificuldade.} Cada questão traz uma marcação de nível:
+\nivelmarca{1}~\emph{fixação} (aplicação direta de uma definição),
+\nivelmarca{2}~\emph{aplicação} (exige interpretação e uma ou duas etapas de
+cálculo), \nivelmarca{3}~\emph{aprofundamento} (várias etapas ou combinação de
+conceitos) e \nivelmarca{4}~\emph{desafio} (síntese, demonstração, otimização ou
+modelagem não rotineira). O Nível 4 é usado apenas quando a complexidade realmente
+justifica essa classificação. Dentro de cada seção as questões estão
+\textbf{ordenadas em ordem crescente de dificuldade}.
+
+\smallskip
+\textbf{2. Gabarito comentado.} Ao final de cada seção há a chave de respostas
+seguida das \emph{resoluções comentadas}. Resolva primeiro; consulte depois.
+
+\smallskip
+\textbf{3. Lembretes teóricos.} As caixas azuis no início de cada seção reúnem as
+fórmulas e os princípios necessários para resolver as questões daquele bloco.
+\end{conceito}
+
+\vspace{1em}
+\begin{flushright}
+\textit{Desejo a todos uma excelente jornada de estudos.}\\[2mm]
+\textit{Prof. Francisco}
+\end{flushright}
+
+% ---------------------------- SUMARIO --------------------------------
+\newpage
+\renewcommand{\contentsname}{\sffamily\color{azulprof}Sumário}
+\tableofcontents
+
+% --------------------------- CAPITULOS -------------------------------
+% A numeracao dos capitulos segue a estrutura final da obra (12 capitulos).
+% Cada arquivo de capitulo NAO deve conter \setcounter: o controle fica aqui,
+% para que capitulos ainda nao migrados nao quebrem a sequencia.
+\newpage
+
+% Cap. 1 -------------------------------------------------------------
+\input{cap01-eletrostatica}          % (parcial: 1.1 Cargas eletricas migrada)
+
+% Cap. 2 -------------------------------------------------------------
+\setcounter{section}{1}
+\input{cap02-conceitos-iniciais}     % Ohm, Potencia, Fontes, Kirchhoff
+
+% Cap. 3 -------------------------------------------------------------
+\setcounter{section}{2}
+\input{cap03-associacao-resistores}  % completo
+
+% Cap. 4 -------------------------------------------------------------
+\setcounter{section}{3}
+\input{cap04-divisores}              % completo
+
+% Cap. 5 -------------------------------------------------------------
+\setcounter{section}{4}
+\input{cap05-potencia}               % Potencia e maxima transferencia
+
+% Cap. 6 -------------------------------------------------------------
+\setcounter{section}{5}
+\input{cap06-superposicao}           % Teorema da Superposicao
+
+% Cap. 7 -------------------------------------------------------------
+\setcounter{section}{6}
+\input{cap07-analise-nodal}          % Analise nodal
+
+% Cap. 8 -------------------------------------------------------------
+\setcounter{section}{7}
+\input{cap08-thevenin-norton}        % Thevenin e Norton
+
+% Cap. 9 -------------------------------------------------------------
+\setcounter{section}{8}
+\input{cap09-maxwell}                % Metodo de Maxwell / malhas
+
+% Cap. 10 ------------------------------------------------------------
+\setcounter{section}{9}
+\input{cap10-capacitores-indutores} % Capacitores e indutores
+
+% Cap. 11 ------------------------------------------------------------
+\setcounter{section}{10}
+\input{cap11-eletromagnetismo}      % Eletromagnetismo
+
+
+% Cap. 12 ------------------------------------------------------------
+% REMOVIDO: "Medicoes Eletricas e Propagacao de Incertezas".
+% O capitulo e o banco complementar correspondente foram retirados da obra.
+% O tratamento de incertezas NAO se perdeu: ele permanece distribuido nos
+% blocos de Nivel 4 dos capitulos e bancos que o utilizam de fato --
+% tolerancia em associacoes (serie e paralelo), tolerancia de razao em
+% divisores e em Thevenin, propagacao em RC, incerteza na verificacao
+% experimental da LKC e no metodo das duas cargas.
+
+% Nota: o conteudo avancado (redes infinitas, superno, supermalha,
+% solucao matricial e sintese) foi DISTRIBUIDO nas secoes correspondentes,
+% como blocos de "Nivel 4 - Desafio".
+
+\end{document}

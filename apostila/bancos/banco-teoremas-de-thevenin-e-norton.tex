@@ -1,0 +1,1089 @@
+% =====================================================================
+%  Banco complementar --- Teoremas de Thevenin e Norton  (REVISADO)
+%  Substitui a versao gerada por template (11 clones em N2, 11 em N3 --
+%  estes ultimos com o mesmo enunciado repetido e uma "Extensao
+%  orientada" colada ao final -- e 10 questoes conceituais
+%  indevidamente marcadas como N4).
+%  Sem sobreposicao com o cap08, que ja traz: definicoes de Vth e Rth
+%  (MC), Thevenin e Norton de circuitos com figura, conversao entre os
+%  modelos, Thevenin visto por RL com maxima transferencia,
+%  dimensionamento para corrente desejada, rede com duas fontes e
+%  caracterizacao de caixa-preta por medida em VAZIO + carga.
+%  Maxima transferencia de potencia tem banco proprio: aqui ela so
+%  aparece como contraponto a uma restricao de projeto.
+%  Distribuicao mantida: 8 N1 + 11 N2 + 11 N3 + 10 N4 = 40
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Teoremas de Thévenin e Norton}
+
+\begin{atencao}[Organização do banco]
+Duas grandezas resumem qualquer rede linear vista por uma porta:
+$V_{Th}$ (tensão de circuito aberto) e $R_{Th}$ (resistência com as fontes
+\emph{independentes} zeradas). Norton é a mesma informação em outra forma,
+com $I_N=V_{Th}/R_{Th}$. O N3 trata de fontes dependentes, caracterização
+experimental, múltiplas portas e tolerância; o N4 exige demonstração,
+projeto de ensaio, otimização sob restrição e interpretação de
+$R_{Th}<0$.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Uma rede linear apresenta $V_{oc}=\SI{6}{\volt}$ e $I_{sc}=\SI{1.5}{\ampere}$.
+Determine seu equivalente de Thévenin.
+\resposta{$V_{Th}=\SI{6}{\volt}$; $R_{Th}=\SI{4}{\ohm}$}
+\resolucao{Por definição, $V_{Th}=V_{oc}=\SI{6}{\volt}$. E como o curto impõe
+$V=0$, toda a tensão interna cai sobre $R_{Th}$:
+\[
+R_{Th}=\frac{V_{oc}}{I_{sc}}=\frac{6}{1{,}5}=\SI{4}{\ohm}.
+\]
+Este é o método mais geral --- funciona inclusive com fontes dependentes, em
+que zerar fontes não é possível.}
+\end{questao}
+
+\begin{questao}[1]{}
+Converta o equivalente de Thévenin $V_{Th}=\SI{20}{\volt}$,
+$R_{Th}=\SI{5}{\ohm}$ em equivalente de Norton.
+\resposta{$I_N=\SI{4}{\ampere}$; $R_N=\SI{5}{\ohm}$}
+\resolucao{
+\[
+I_N=\frac{V_{Th}}{R_{Th}}=\frac{20}{5}=\SI{4}{\ampere};
+\qquad
+R_N=R_{Th}=\SI{5}{\ohm}.
+\]
+A resistência é a \emph{mesma} nos dois modelos --- ela descreve a rede
+passiva, que não muda. O que muda é a forma de representar a fonte: em
+Thévenin, tensão \emph{em série}; em Norton, corrente \emph{em paralelo}.}
+\end{questao}
+
+\begin{questao}[1]{}
+Converta o equivalente de Norton $I_N=\SI{250}{\milli\ampere}$,
+$R_N=\SI{80}{\ohm}$ em equivalente de Thévenin.
+\resposta{$V_{Th}=\SI{20}{\volt}$; $R_{Th}=\SI{80}{\ohm}$}
+\resolucao{
+\[
+V_{Th}=I_NR_N=0{,}250\cdot80=\SI{20}{\volt};
+\qquad
+R_{Th}=\SI{80}{\ohm}.
+\]
+Note que $V_{Th}$ é exatamente a tensão que a fonte de corrente produz sobre
+$R_N$ quando a porta está \emph{aberta} --- toda a corrente é obrigada a passar
+por $R_N$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Ao calcular $R_{Th}$ pelo método de zerar as fontes, as fontes
+\textbf{dependentes} devem ser:
+\begin{alternativas}[2]
+\item zeradas junto com as independentes
+\item mantidas ativas
+\item substituídas por resistores
+\item removidas do circuito
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Fontes dependentes fazem parte da \emph{rede}, não da excitação:
+seu valor é determinado por variáveis internas do circuito. Zerá-las
+descaracterizaria a rede.\\
+\textbf{Consequência prática:} com fontes dependentes, zerar as independentes
+deixa um circuito que ainda pode responder --- e $R_{Th}$ precisa ser obtida
+aplicando uma \textbf{fonte de teste} na porta e medindo $V/I$, ou pela razão
+$V_{oc}/I_{sc}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um equivalente com $V_{Th}=\SI{18}{\volt}$ e $R_{Th}=\SI{6}{\ohm}$ alimenta
+$R_L=\SI{12}{\ohm}$. Determine a corrente.
+\resposta{$I=\SI{1}{\ampere}$}
+\resolucao{
+\[
+I=\frac{V_{Th}}{R_{Th}+R_L}=\frac{18}{6+12}=\SI{1}{\ampere}.
+\]
+O equivalente reduz qualquer rede, por mais complexa, a um circuito série de
+dois elementos. É essa economia que torna o teorema valioso.}
+\end{questao}
+
+\begin{questao}[1]{}
+No mesmo equivalente, determine a tensão sobre a carga de $\SI{12}{\ohm}$.
+\resposta{$U_L=\SI{12}{\volt}$}
+\resolucao{Por divisor de tensão:
+\[
+U_L=V_{Th}\frac{R_L}{R_{Th}+R_L}=18\cdot\frac{12}{18}=\SI{12}{\volt}.
+\]
+\textbf{Conferência:} $U_L=R_LI=12(1)=\SI{12}{\volt}$ \checkmark. A queda
+interna é $18-12=\SI{6}{\volt}$, coerente com $R_{Th}I=6(1)$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Sobre o equivalente de Thévenin, é correto afirmar que ele reproduz:
+\begin{alternativas}[2]
+\item o comportamento da rede apenas nos terminais da porta
+\item todas as tensões e correntes internas da rede
+\item a rede somente para uma carga específica
+\item a rede somente em circuito aberto
+\end{alternativas}
+\resposta{(a)}
+\resolucao{O equivalente é \textbf{externo}: ele reproduz a relação
+$U\times I$ na porta para \emph{qualquer} carga --- o que descarta (c) e (d).
+Mas ele descarta completamente o interior: a potência dissipada em $R_{Th}$
+não corresponde à potência real dissipada dentro da rede, e nenhuma corrente
+interna é recuperável a partir dele.\\
+\textbf{Regra:} use o equivalente para analisar a carga; volte ao circuito
+original se precisar de qualquer grandeza interna.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma rede consiste em uma fonte ideal de $\SI{30}{\volt}$ em série com
+$\SI{10}{\ohm}$, tendo $\SI{40}{\ohm}$ em paralelo com a porta. Determine
+$R_{Th}$.
+\resposta{$R_{Th}=\SI{8}{\ohm}$}
+\resolucao{Zerando a fonte ideal de tensão (substituída por \textbf{curto}), a
+porta enxerga $\SI{10}{\ohm}$ em paralelo com $\SI{40}{\ohm}$:
+\[
+R_{Th}=\frac{10\cdot40}{50}=\SI{8}{\ohm}.
+\]
+\textbf{Lembre das duas regras de zerar:} fonte de \emph{tensão} ideal vira
+curto; fonte de \emph{corrente} ideal vira circuito aberto. Trocá-las é o erro
+mais frequente do método.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{24}{\volt}$ alimenta $R_1=\SI{6}{\kilo\ohm}$ em série com
+$R_2=\SI{3}{\kilo\ohm}$. Determine o equivalente de Thévenin visto sobre
+$R_2$.
+\resposta{$V_{Th}=\SI{8}{\volt}$; $R_{Th}=\SI{2}{\kilo\ohm}$}
+\resolucao{\textbf{Tensão:} com a porta aberta, o divisor entrega
+\[
+V_{Th}=24\cdot\frac{3}{6+3}=\SI{8}{\volt}.
+\]
+\textbf{Resistência:} zerando a fonte (curto), $R_1$ e $R_2$ ficam em paralelo:
+\[
+R_{Th}=\frac{6\cdot3}{9}=\SI{2}{\kilo\ohm}.
+\]
+\textbf{Interpretação:} um divisor resistivo \emph{não} é fonte de tensão --- ele
+tem resistência interna $R_1\parallel R_2$, e é ela que provoca a queda quando
+uma carga é conectada.}
+\end{questao}
+
+\begin{questao}[2]{}
+Converta o equivalente da questão anterior em Norton e verifique por
+$I_{sc}$ calculada diretamente no circuito original.
+\resposta{$I_N=\SI{4}{\milli\ampere}$; $R_N=\SI{2}{\kilo\ohm}$}
+\resolucao{\textbf{Pela conversão:}
+$I_N=\dfrac{8}{2000}=\SI{4}{\milli\ampere}$.\\
+\textbf{Verificação direta:} curto-circuitando a porta, $R_2$ fica em paralelo
+com o curto e não conduz; toda a corrente vem da fonte por $R_1$:
+\[
+I_{sc}=\frac{24}{6000}=\SI{4}{\milli\ampere}.\ \checkmark
+\]
+A concordância confirma o equivalente. Calcular $I_{sc}$ de forma independente
+é o teste de consistência mais barato do método.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de corrente de $\SI{3}{\milli\ampere}$ alimenta $R_1=\SI{4}{\kilo\ohm}$
+ao terra, e a porta é acessada através de $R_2=\SI{2}{\kilo\ohm}$ em série.
+Determine o equivalente de Thévenin.
+\resposta{$V_{Th}=\SI{12}{\volt}$; $R_{Th}=\SI{6}{\kilo\ohm}$}
+\resolucao{\textbf{Tensão:} com a porta aberta, nenhuma corrente passa por
+$R_2$ --- logo não há queda nele, e $V_{Th}$ é a tensão sobre $R_1$:
+\[
+V_{Th}=(\pot{3}{-3})(4000)=\SI{12}{\volt}.
+\]
+\textbf{Resistência:} zerando a fonte de corrente (circuito \textbf{aberto}),
+sobra $R_2$ em série com $R_1$:
+\[
+R_{Th}=2+4=\SI{6}{\kilo\ohm}.
+\]
+\textbf{Atenção:} zerar uma fonte de corrente \emph{abre} o ramo --- e por isso
+$R_1$ e $R_2$ ficam em série, não em paralelo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas fontes aterradas alimentam a mesma porta: $\SI{20}{\volt}$ através de
+$\SI{5}{\kilo\ohm}$ e $\SI{10}{\volt}$ através de $\SI{5}{\kilo\ohm}$.
+Determine o equivalente de Thévenin.
+\resposta{$V_{Th}=\SI{15}{\volt}$; $R_{Th}=\SI{2.5}{\kilo\ohm}$}
+\resolucao{\textbf{Tensão (Millman):}
+\[
+V_{Th}=\frac{20/5+10/5}{1/5+1/5}=\frac{4+2}{0{,}4}=\SI{15}{\volt}.
+\]
+\textbf{Resistência:} zerando ambas as fontes, os dois resistores ficam em
+paralelo:
+\[
+R_{Th}=\frac{5}{2}=\SI{2.5}{\kilo\ohm}.
+\]
+\textbf{Observação:} $V_{Th}$ é a média \emph{ponderada} das duas fontes, com
+pesos dados pelas condutâncias. Como aqui os resistores são iguais, saiu a média
+aritmética simples.}
+\end{questao}
+
+\begin{questao}[2]{}
+Com $V_{Th}=\SI{8}{\volt}$ e $R_{Th}=\SI{2}{\kilo\ohm}$, complete a tabela de
+tensão e corrente para $R_L=\SI{2}{\kilo\ohm}$, $\SI{6}{\kilo\ohm}$ e
+$\SI{18}{\kilo\ohm}$.
+\resposta{$(\SI{4}{\volt};\SI{2}{\milli\ampere})$,
+$(\SI{6}{\volt};\SI{1}{\milli\ampere})$,
+$(\SI{7.2}{\volt};\SI{0.4}{\milli\ampere})$}
+\resolucao{Com $I=\dfrac{8}{2+R_L}$ (em $\si{\milli\ampere}$, com $R_L$ em
+$\si{\kilo\ohm}$) e $U=R_LI$:
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$R_L$ & $I$ & $U$\\
+\hline
+$\SI{2}{\kilo\ohm}$ & $\SI{2}{\milli\ampere}$ & $\SI{4}{\volt}$\\
+$\SI{6}{\kilo\ohm}$ & $\SI{1}{\milli\ampere}$ & $\SI{6}{\volt}$\\
+$\SI{18}{\kilo\ohm}$ & $\SI{0.4}{\milli\ampere}$ & $\SI{7.2}{\volt}$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Leitura:} conforme $R_L$ cresce, $U\to V_{Th}$ e $I\to0$. Os três
+pontos são \emph{colineares} no plano $U\times I$ --- eles pertencem à reta
+$U=8-2I$, que é a assinatura do equivalente. Essa reta é a "reta de carga da
+fonte", retomada no bloco de desafio.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma rede tem $V_{oc}=\SI{45}{\volt}$ e, sob carga de $\SI{20}{\ohm}$, entrega
+$\SI{36}{\volt}$. Determine $R_{Th}$ e $I_{sc}$.
+\resposta{$R_{Th}=\SI{5}{\ohm}$; $I_{sc}=\SI{9}{\ampere}$}
+\resolucao{A corrente na carga é $I=36/20=\SI{1.8}{\ampere}$, e a queda interna
+é $45-36=\SI{9}{\volt}$:
+\[
+R_{Th}=\frac{9}{1{,}8}=\SI{5}{\ohm};
+\qquad
+I_{sc}=\frac{45}{5}=\SI{9}{\ampere}.
+\]
+\textbf{Observação:} $I_{sc}$ foi obtida \emph{sem} curto-circuitar a rede ---
+o que é essencial quando o curto seria destrutivo. O bloco de desafio
+generaliza esse raciocínio.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine o equivalente de Norton de uma fonte de $\SI{3}{\ampere}$ em paralelo
+com $\SI{12}{\ohm}$, tendo ainda $\SI{6}{\ohm}$ em paralelo com a porta.
+\resposta{$I_N=\SI{3}{\ampere}$; $R_N=\SI{4}{\ohm}$}
+\resolucao{\textbf{Resistência:} zerando a fonte de corrente (aberto), sobram
+os dois resistores em paralelo:
+\[
+R_N=\frac{12\cdot6}{18}=\SI{4}{\ohm}.
+\]
+\textbf{Corrente:} curto-circuitando a porta, os dois resistores ficam em
+paralelo com o curto e não conduzem --- toda a corrente da fonte vai ao curto:
+\[
+I_N=\SI{3}{\ampere}.
+\]
+\textbf{Conferência:} $V_{Th}=I_NR_N=3(4)=\SI{12}{\volt}$, que também é a
+tensão da associação $12\parallel6$ percorrida por $\SI{3}{\ampere}$
+\checkmark.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um equivalente com $V_{Th}=\SI{12}{\volt}$ e $R_{Th}=\SI{4}{\ohm}$ alimenta
+$R_L=\SI{8}{\ohm}$. Determine a potência na carga e a dissipada internamente.
+\resposta{$P_L=\SI{8}{\watt}$; $P_{int}=\SI{4}{\watt}$}
+\resolucao{$I=\dfrac{12}{12}=\SI{1}{\ampere}$, logo
+\[
+P_L=R_LI^{2}=8(1)=\SI{8}{\watt};
+\qquad
+P_{int}=R_{Th}I^{2}=4(1)=\SI{4}{\watt}.
+\]
+Total: $\SI{12}{\watt}=V_{Th}I$ \checkmark.\\
+\textbf{Ressalva importante:} os $\SI{4}{\watt}$ \emph{não} são necessariamente
+a potência realmente dissipada dentro da rede original --- $R_{Th}$ é um
+artifício de modelagem externa. Para a potência interna verdadeira, é preciso
+voltar ao circuito completo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{12}{\volt}$ alimenta $R_1=\SI{6}{\kilo\ohm}$ até o nó $A$; de
+$A$ saem $R_2=\SI{3}{\kilo\ohm}$ ao terra e $R_3=\SI{6}{\kilo\ohm}$ até o nó
+$B$. Determine o equivalente de Thévenin visto de $B$.
+\resposta{$V_{Th}=\SI{4}{\volt}$; $R_{Th}=\SI{8}{\kilo\ohm}$}
+\resolucao{\textbf{Tensão:} com $B$ aberto, $R_3$ não conduz e não cai tensão
+nele. Logo $V_B=V_A$, dado pelo divisor:
+\[
+V_{Th}=12\cdot\frac{3}{6+3}=\SI{4}{\volt}.
+\]
+\textbf{Resistência:} zerando a fonte, de $B$ enxerga-se $R_3$ em série com
+$R_1\parallel R_2$:
+\[
+R_{Th}=6+\frac{6\cdot3}{9}=6+2=\SI{8}{\kilo\ohm}.
+\]
+Compare com a porta em $A$ ($R_{Th}=\SI{2}{\kilo\ohm}$): \textbf{mesma tensão,
+resistência quatro vezes maior}. A porta escolhida altera o equivalente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma rede tem $I_N=\SI{5}{\ampere}$ e $R_N=\SI{3}{\ohm}$. Determine a tensão na
+porta em aberto e a corrente em uma carga de $\SI{2}{\ohm}$.
+\resposta{$V_{oc}=\SI{15}{\volt}$; $I_L=\SI{3}{\ampere}$}
+\resolucao{\textbf{Em aberto:} toda a corrente passa por $R_N$:
+$V_{oc}=5(3)=\SI{15}{\volt}$.\\
+\textbf{Com carga:} pelo divisor de corrente,
+\[
+I_L=I_N\frac{R_N}{R_N+R_L}=5\cdot\frac{3}{5}=\SI{3}{\ampere}.
+\]
+\textbf{Conferência por Thévenin:} $V_{Th}=\SI{15}{\volt}$,
+$I_L=15/(3+2)=\SI{3}{\ampere}$ \checkmark. Os dois modelos são intercambiáveis
+--- escolha o que simplifica a conta.}
+\end{questao}
+
+\begin{questao}[2]{}
+Explique por que o equivalente de Thévenin \textbf{não} pode ser usado para
+calcular o rendimento interno de uma fonte real, e ilustre com o caso
+$V_{Th}=\SI{10}{\volt}$, $R_{Th}=\SI{2}{\ohm}$, $R_L=\SI{8}{\ohm}$.
+\resposta{$R_{Th}$ agrega efeitos que não correspondem a dissipação real
+localizada}
+\resolucao{No exemplo, $I=\SI{1}{\ampere}$,
+$P_L=\SI{8}{\watt}$ e $P_{R_{Th}}=\SI{2}{\watt}$ --- aparentemente $80\%$ de
+rendimento.\\
+\textbf{Por que isso pode ser falso:} $R_{Th}$ resulta da \emph{combinação} de
+todos os resistores da rede com as fontes zeradas. Se a rede original for, por
+exemplo, um divisor, boa parte da potência é consumida por um caminho que
+conduz corrente \emph{mesmo em circuito aberto} --- corrente que o modelo de
+Thévenin simplesmente não representa.\\
+\textbf{Caso extremo:} um divisor $6\,\mathrm{k}/3\,\mathrm{k}$ sob
+$\SI{24}{\volt}$ consome $\SI{64}{\milli\watt}$ da fonte \emph{sem nenhuma
+carga}, enquanto seu equivalente de Thévenin ($\SI{8}{\volt}$,
+$\SI{2}{\kilo\ohm}$) prevê consumo nulo em aberto.\\
+\textbf{Conclusão:} Thévenin é exato para tudo o que ocorre \emph{na porta} e
+inútil para balanços energéticos internos.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma rede contém apenas uma fonte \textbf{dependente}: um nó $A$ ligado ao terra
+por $R=\SI{1}{\kilo\ohm}$, com uma fonte de corrente controlada por tensão
+injetando $g\,V_A$ no próprio nó, com $g=\SI{0.75}{\milli\siemens}$.
+\begin{itensq}
+\item Explique por que $V_{oc}$ e $I_{sc}$ são ambos nulos.
+\item Determine $R_{Th}$ pelo método da fonte de teste.
+\end{itensq}
+\resposta{(a) sem fonte independente, não há excitação; (b)
+$R_{Th}=\SI{4}{\kilo\ohm}$}
+\resolucao{(a) Fontes dependentes não excitam nada por si só --- seu valor é
+proporcional a uma variável do circuito. Sem fonte independente, a única
+solução é a trivial: todas as tensões e correntes nulas. Logo
+$V_{oc}=0$ e $I_{sc}=0$, e a razão $V_{oc}/I_{sc}$ é indeterminada
+($0/0$).\\
+(b) Aplique uma \textbf{fonte de teste} de $I_t=\SI{1}{\milli\ampere}$ na porta
+e escreva a LKC no nó $A$:
+\[
+\frac{V_A}{1000}-\pot{0.75}{-3}V_A=\pot{1}{-3}
+\;\Longrightarrow\;
+V_A\left(\pot{1}{-3}-\pot{0.75}{-3}\right)=\pot{1}{-3},
+\]
+\[
+V_A=\frac{\pot{1}{-3}}{\pot{0.25}{-3}}=\SI{4}{\volt}
+\;\Longrightarrow\;
+R_{Th}=\frac{V_A}{I_t}=\SI{4}{\kilo\ohm}.
+\]
+\textbf{Leitura:} a fonte dependente cancela $75\%$ da condutância do resistor,
+quadruplicando a resistência vista. Redes com elementos ativos podem apresentar
+$R_{Th}$ muito diferente de qualquer resistor físico presente nelas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Agora a rede tem \emph{também} uma fonte independente: $\SI{12}{\volt}$ através
+de $R_1=\SI{2}{\kilo\ohm}$ até o nó $A$, com $R_2=\SI{2}{\kilo\ohm}$ de $A$ ao
+terra e a mesma fonte dependente injetando $gV_A$ em $A$, com
+$g=\SI{0.5}{\milli\siemens}$.
+\begin{itensq}
+\item Determine $V_{oc}$.
+\item Determine $I_{sc}$.
+\item Obtenha $R_{Th}$ e confirme pelo método da fonte de teste.
+\end{itensq}
+\resposta{(a) $\SI{12}{\volt}$; (b) $\SI{6}{\milli\ampere}$;
+(c) $R_{Th}=\SI{2}{\kilo\ohm}$}
+\resolucao{(a) Porta aberta, LKC em $A$:
+\[
+\frac{V_A-12}{2000}+\frac{V_A}{2000}-\pot{0.5}{-3}V_A=0
+\;\Longrightarrow\;
+V_A(\pot{1}{-3}-\pot{0.5}{-3})=\pot{6}{-3},
+\]
+\[
+V_A=\frac{\pot{6}{-3}}{\pot{0.5}{-3}}=\SI{12}{\volt}=V_{oc}.
+\]
+(b) Com a porta em curto, $V_A=0$: a fonte dependente entrega
+$gV_A=0$ e $R_2$ não conduz. Resta a corrente da fonte independente:
+\[
+I_{sc}=\frac{12}{2000}=\SI{6}{\milli\ampere}.
+\]
+(c) $R_{Th}=\dfrac{12}{\pot{6}{-3}}=\SI{2}{\kilo\ohm}$.\\
+\textbf{Confirmação:} zerando só a fonte independente e aplicando teste,
+$G=\pot{1}{-3}-\pot{0.5}{-3}=\pot{0.5}{-3}\,\si{\siemens}$, logo
+$R_{Th}=\SI{2}{\kilo\ohm}$ \checkmark.\\
+\textbf{Nota:} $V_{oc}=\SI{12}{\volt}$ é igual à fonte --- a dependente
+compensou exatamente a queda em $R_1$. Coincidência numérica, mas ilustra que
+elementos ativos podem "anular" resistências.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma rede é caracterizada com \textbf{duas cargas} conhecidas:
+$R_{L1}=\SI{2}{\kilo\ohm}$ dá $\SI{6}{\volt}$ e
+$R_{L2}=\SI{6}{\kilo\ohm}$ dá $\SI{9}{\volt}$.
+\begin{itensq}
+\item Determine $V_{Th}$ e $R_{Th}$.
+\item Explique a vantagem sobre a medição em vazio.
+\end{itensq}
+\resposta{(a) $V_{Th}=\SI{12}{\volt}$, $R_{Th}=\SI{2}{\kilo\ohm}$}
+\resolucao{(a) De $U=V_{Th}\dfrac{R_L}{R_L+R_{Th}}$, escreva
+$V_{Th}=U\dfrac{R_L+R_{Th}}{R_L}$ para as duas medidas e iguale:
+\[
+R_{Th}=\frac{R_{L1}R_{L2}(U_2-U_1)}{U_1R_{L2}-U_2R_{L1}}
+=\frac{(2)(6)(3)}{6(6)-9(2)}=\frac{36}{18}=\SI{2}{\kilo\ohm},
+\]
+(valores em $\si{\kilo\ohm}$ e $\si{\volt}$), e então
+\[
+V_{Th}=6\cdot\frac{2+2}{2}=\SI{12}{\volt}.
+\]
+\textbf{Verificação com a segunda medida:}
+$12\cdot6/8=\SI{9}{\volt}$ \checkmark.\\
+(b) A medição em \emph{vazio} exige voltímetro de impedância muito maior que
+$R_{Th}$; se a rede for de alta impedância, o próprio instrumento carrega o
+circuito e a leitura não é $V_{Th}$. Além disso, algumas fontes não podem
+operar sem carga mínima.\\
+O método das duas cargas \textbf{extrapola} para $R_L\to\infty$ sem precisar
+chegar lá --- e é o mesmo raciocínio usado para obter $\EMF$ e $r$ de uma
+bateria por dois pontos de carga.}
+\end{questao}
+
+\begin{questao}[3]{}
+Para a rede da questão anterior, avalie a sensibilidade do método: suponha que
+a segunda leitura tenha sido $\SI{9.1}{\volt}$ em vez de $\SI{9}{\volt}$
+($+1{,}1\%$).
+\begin{itensq}
+\item Recalcule $R_{Th}$ e $V_{Th}$.
+\item Comente o resultado.
+\end{itensq}
+\resposta{$R_{Th}\approx\SI{2.09}{\kilo\ohm}$ ($+4{,}5\%$),
+$V_{Th}\approx\SI{12.27}{\volt}$ ($+2{,}3\%$)}
+\resolucao{(a) Com $U_2=\SI{9.1}{\volt}$, o denominador passa a
+$U_1R_{L2}-U_2R_{L1}=6(6)-9{,}1(2)=36-18{,}2=17{,}8$, e
+\[
+R_{Th}=\frac{(2)(6)(3{,}1)}{17{,}8}=\frac{37{,}2}{17{,}8}
+=\SI{2.09}{\kilo\ohm},
+\qquad
+V_{Th}=6\cdot\frac{2+2{,}09}{2}=\SI{12.27}{\volt}.
+\]
+(b) Um erro de $1{,}1\%$ na tensão produziu $4{,}5\%$ em $R_{Th}$ e
+$2{,}3\%$ em $V_{Th}$ --- \textbf{amplificação de cerca de quatro vezes}.\\
+\textbf{Origem do problema:} o denominador $U_1R_{L2}-U_2R_{L1}$ é uma
+\emph{diferença de valores próximos} ($36$ contra $18$, mas que se aproximam
+conforme as cargas se parecem), situação numericamente mal condicionada.\\
+\textbf{Correção de método:} escolha cargas \textbf{bem separadas} (por
+exemplo, $R_{L2}\ge10R_{L1}$), o que afasta os dois termos e reduz a
+amplificação. E, sempre que possível, use três ou mais pontos com regressão
+linear em vez de dois pontos isolados.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma mesma rede é observada por duas portas: em $A$, obtém-se
+$V_{Th}=\SI{4}{\volt}$ e $R_{Th}=\SI{2}{\kilo\ohm}$; em $B$,
+$V_{Th}=\SI{4}{\volt}$ e $R_{Th}=\SI{8}{\kilo\ohm}$.
+\begin{itensq}
+\item Determine a corrente de curto em cada porta.
+\item Determine, em cada porta, a tensão sobre uma carga de
+      $\SI{4}{\kilo\ohm}$.
+\item Interprete.
+\end{itensq}
+\resposta{(a) $\SI{2}{\milli\ampere}$ e $\SI{0.5}{\milli\ampere}$;
+(b) $\SI{2.67}{\volt}$ e $\SI{1.33}{\volt}$}
+\resolucao{(a) $I_{sc}=V_{Th}/R_{Th}$:
+$4/2\mathrm{k}=\SI{2}{\milli\ampere}$ e
+$4/8\mathrm{k}=\SI{0.5}{\milli\ampere}$.\\
+(b) $U=4\cdot\dfrac{4}{4+R_{Th}}$:
+\[
+\text{porta }A:\ 4\cdot\frac{4}{6}=\SI{2.67}{\volt};
+\qquad
+\text{porta }B:\ 4\cdot\frac{4}{12}=\SI{1.33}{\volt}.
+\]
+(c) \textbf{Tensão em vazio idêntica, comportamento sob carga completamente
+diferente.} A porta $A$ é "forte" (baixa impedância) e sustenta melhor a
+tensão; a porta $B$ é "fraca" e colapsa.\\
+\textbf{Consequência prática:} especificar apenas a tensão de saída de um
+circuito é insuficiente --- é a resistência de saída que determina se ele serve
+para a carga pretendida. Duas fontes de $\SI{5}{\volt}$ podem ser
+completamente diferentes.}
+\end{questao}
+
+\begin{questao}[3]{}
+No divisor $R_1=\SI{6}{\kilo\ohm}$ e $R_2=\SI{3}{\kilo\ohm}$ sob
+$\SI{12}{\volt}$, ambos com tolerância de $\pm5\%$:
+\begin{itensq}
+\item Determine a faixa de $V_{Th}$.
+\item Determine a faixa de $R_{Th}$.
+\item Explique por que as duas se comportam de modo diferente.
+\end{itensq}
+\resposta{(a) $\SI{4}{\volt}$, de $3{,}74$ a $\SI{4.27}{\volt}$
+($\approx\pm6{,}8\%$); (b) $\SI{2}{\kilo\ohm}$, de $1{,}90$ a
+$\SI{2.10}{\kilo\ohm}$ ($\pm5\%$ exato)}
+\resolucao{(a) $V_{Th}=12\dfrac{R_2}{R_1+R_2}$ é máxima com $R_2$ no máximo e
+$R_1$ no mínimo:
+\[
+V_{Th}^{\max}=12\cdot\frac{3{,}15}{5{,}70+3{,}15}=\SI{4.271}{\volt};
+\qquad
+V_{Th}^{\min}=12\cdot\frac{2{,}85}{6{,}30+2{,}85}=\SI{3.738}{\volt}.
+\]
+Desvios de $+6{,}8\%$ e $-6{,}6\%$ --- \textbf{maiores que a tolerância dos
+componentes}.\\
+(b) $R_{Th}=R_1\parallel R_2$ é \textbf{homogênea de grau 1}: multiplicar ambos
+por $1{,}05$ multiplica o resultado por $1{,}05$. Extremos:
+$5{,}70\parallel2{,}85=\SI{1.90}{\kilo\ohm}$ e
+$6{,}30\parallel3{,}15=\SI{2.10}{\kilo\ohm}$ --- exatamente $\pm5\%$.\\
+(c) \textbf{A diferença está na estrutura.} $R_{Th}$ escala com os resistores;
+$V_{Th}$ depende de uma \emph{razão}, e razões pioram quando numerador e
+denominador desviam em sentidos opostos. Formalmente,
+\[
+\frac{\Delta V_{Th}}{V_{Th}}=\frac{R_1}{R_1+R_2}
+\left(\frac{\Delta R_2}{R_2}-\frac{\Delta R_1}{R_1}\right),
+\]
+e com $R_1/(R_1+R_2)=2/3$ e desvios opostos de $5\%$, obtém-se
+$\frac23(10\%)=6{,}7\%$ \checkmark.\\
+\textbf{Regra:} para $V_{Th}$ preciso, use resistores \emph{casados} (mesmo
+lote, mesma rede integrada) --- desvios correlacionados se cancelam na razão.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte de laboratório não pode ser curto-circuitada. Duas medições foram
+feitas: com $R_{L1}=\SI{5.5}{\ohm}$ obteve-se $\SI{10}{\ampere}$; com
+$R_{L2}=\SI{2.5}{\ohm}$, $\SI{20}{\ampere}$.
+\begin{itensq}
+\item Determine $V_{Th}$ e $R_{Th}$.
+\item Determine o equivalente de Norton.
+\item Comente a validade da extrapolação.
+\end{itensq}
+\resposta{(a) $\SI{60}{\volt}$ e $\SI{0.5}{\ohm}$;
+(b) $I_N=\SI{120}{\ampere}$}
+\resolucao{(a) As tensões medidas são $U_1=5{,}5(10)=\SI{55}{\volt}$ e
+$U_2=2{,}5(20)=\SI{50}{\volt}$. Como $U=V_{Th}-R_{Th}I$:
+\[
+R_{Th}=-\frac{\Delta U}{\Delta I}=-\frac{50-55}{20-10}=\SI{0.5}{\ohm};
+\qquad
+V_{Th}=55+0{,}5(10)=\SI{60}{\volt}.
+\]
+(b) $I_N=V_{Th}/R_{Th}=60/0{,}5=\SI{120}{\ampere}$, com
+$R_N=\SI{0.5}{\ohm}$.\\
+(c) \textbf{Obtivemos $\SI{120}{\ampere}$ sem jamais aplicar um curto} --- o
+que teria sido destrutivo. Mas a extrapolação pressupõe \textbf{linearidade até
+o curto}, hipótese frágil: fontes reais entram em limitação de corrente,
+aquecem (com $R_{Th}$ crescendo) e podem desarmar proteções.\\
+\textbf{Uso correto do número:} $\SI{120}{\ampere}$ serve para
+\emph{dimensionar proteção} e avaliar risco --- é um limite superior. Não deve
+ser lido como previsão do que o instrumento realmente entregaria.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um equivalente $V_{Th}=\SI{5}{\volt}$, $R_{Th}=\SI{200}{\ohm}$ alimenta um LED
+cuja queda direta é praticamente constante em $\SI{2}{\volt}$.
+\begin{itensq}
+\item Determine graficamente o ponto de operação (reta de carga).
+\item Calcule a corrente.
+\item Explique por que o método funciona com dispositivo não linear.
+\end{itensq}
+\resposta{$I=\SI{15}{\milli\ampere}$ em $\SI{2}{\volt}$}
+\resolucao{(a) A rede impõe $U=5-200I$ --- uma \textbf{reta} no plano
+$U\times I$, com intercepto $\SI{5}{\volt}$ e corrente de curto
+$\SI{25}{\milli\ampere}$. O LED impõe sua própria curva, aqui aproximada pela
+vertical $U=\SI{2}{\volt}$. O ponto de operação é a \textbf{interseção}.\\
+(b)
+\[
+2=5-200I \;\Longrightarrow\; I=\frac{3}{200}=\SI{15}{\milli\ampere}.
+\]
+(c) \textbf{Thévenin exige linearidade apenas da rede, não da carga.} A rede
+foi substituída por sua reta característica; a carga pode ter qualquer curva
+$U\times I$. A solução é a interseção das duas características --- e existirá e
+será única sempre que a curva da carga for monotônica.\\
+\textbf{Poder do método:} sem ele, seria preciso resolver simultaneamente a
+rede inteira e a equação não linear do dispositivo. Com ele, sobra uma
+interseção de duas curvas --- técnica padrão para diodos, transistores e
+células fotovoltaicas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um equivalente tem $V_{Th}=\SI{24}{\volt}$ e $R_{Th}=\SI{8}{\ohm}$. A carga
+deve receber \textbf{no mínimo} $\SI{20}{\volt}$.
+\begin{itensq}
+\item Determine a faixa admissível de $R_L$.
+\item Determine a potência entregue no limite.
+\item Compare com a potência máxima teórica.
+\end{itensq}
+\resposta{(a) $R_L\ge\SI{40}{\ohm}$; (b) $\SI{10}{\watt}$;
+(c) $\SI{18}{\watt}$, porém a $\SI{12}{\volt}$}
+\resolucao{(a)
+\[
+24\frac{R_L}{R_L+8}\ge20
+\;\Longrightarrow\;
+24R_L\ge20R_L+160
+\;\Longrightarrow\;
+R_L\ge\SI{40}{\ohm}.
+\]
+(b) Em $R_L=\SI{40}{\ohm}$: $U=\SI{20}{\volt}$,
+$I=\SI{0.5}{\ampere}$, $P=\SI{10}{\watt}$.\\
+(c) A potência máxima ocorreria em $R_L=R_{Th}=\SI{8}{\ohm}$, valendo
+\[
+P_{\max}=\frac{V_{Th}^{2}}{4R_{Th}}=\frac{576}{32}=\SI{18}{\watt},
+\]
+mas nessa condição $U=\SI{12}{\volt}$ --- \textbf{metade} de $V_{Th}$, violando
+a restrição por larga margem.\\
+\textbf{Conflito de objetivos:} maximizar potência e manter tensão são metas
+incompatíveis em uma fonte de $R_{Th}$ fixa. A restrição de tensão vence
+sempre que a carga for um circuito eletrônico, que simplesmente não funciona
+abaixo de sua tensão mínima. A saída de engenharia é \emph{reduzir}
+$R_{Th}$, não escolher outro $R_L$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma rede deve ser analisada com \textbf{oito} cargas diferentes.
+\begin{itensq}
+\item Compare o esforço de resolver a rede completa oito vezes com o de obter o
+      equivalente uma vez.
+\item Quantifique, supondo que a rede exija um sistema nodal $4\times4$.
+\item Indique a limitação dessa estratégia.
+\end{itensq}
+\resposta{Duas soluções da rede contra oito; ganho cresce com o número de
+cargas}
+\resolucao{(a) \textbf{Sem Thévenin:} para cada carga, monta-se e resolve-se a
+rede inteira --- oito sistemas.\\
+\textbf{Com Thévenin:} resolve-se a rede \emph{duas} vezes (uma para
+$V_{oc}$, outra para $R_{Th}$) e, em seguida, oito divisões triviais.\\
+(b) Um sistema $4\times4$ por eliminação exige da ordem de $n^{3}/3\approx21$
+operações de ponto flutuante estruturais. Oito resoluções custam
+$\approx170$; duas custam $\approx43$, seguidas de oito contas de uma linha.
+\textbf{Redução de cerca de $75\%$} --- e o ganho cresce com o número de cargas
+e com o tamanho da rede.\\
+(c) \textbf{Limitação:} o equivalente vale para \emph{uma} porta. Se as cargas
+forem conectadas em portas diferentes, ou se houver duas cargas
+simultaneamente, é preciso um equivalente por porta --- e, no caso de portas
+que interagem, um modelo de dois acessos (matriz de resistências), não um
+Thévenin isolado.\\
+\textbf{E vale lembrar:} nenhuma grandeza interna é recuperável pelo
+equivalente. Se o projeto exigir a corrente em um ramo interno para cada carga,
+o ganho desaparece.}
+\end{questao}
+
+\begin{questao}[3]{}
+Valide o equivalente do divisor ($\SI{24}{\volt}$, $\SI{6}{\kilo\ohm}$,
+$\SI{3}{\kilo\ohm}$) com carga $R_L=\SI{2}{\kilo\ohm}$ por \textbf{três}
+caminhos independentes: Thévenin, Norton e análise nodal.
+\resposta{$U_L=\SI{4}{\volt}$ pelos três métodos}
+\resolucao{\textbf{Thévenin} ($\SI{8}{\volt}$, $\SI{2}{\kilo\ohm}$):
+\[
+U_L=8\cdot\frac{2}{2+2}=\SI{4}{\volt}.
+\]
+\textbf{Norton} ($\SI{4}{\milli\ampere}$, $\SI{2}{\kilo\ohm}$): a corrente se
+divide entre $R_N$ e $R_L$, iguais, logo $\SI{2}{\milli\ampere}$ em cada:
+\[
+U_L=(\pot{2}{-3})(2000)=\SI{4}{\volt}.
+\]
+\textbf{Nodal} (nó $A$, com $R_2$ e $R_L$ ao terra):
+\[
+\frac{V_A-24}{6}+\frac{V_A}{3}+\frac{V_A}{2}=0
+\;\Longrightarrow\;
+V_A(1+2+3)=24 \;\Longrightarrow\; V_A=\SI{4}{\volt}.
+\]
+\textbf{Valor da validação cruzada:} os três métodos usam caminhos algébricos
+distintos; concordância tripla torna erro aritmético muito improvável.
+Discordância localiza o problema --- se Thévenin e Norton concordam entre si mas
+divergem do nodal, o erro está no equivalente; se divergem entre si, o erro está
+na conversão.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração do teorema.)} Prove o teorema de Thévenin usando o
+princípio da superposição.
+\begin{itensq}
+\item Conecte uma fonte de corrente $I$ à porta e aplique superposição.
+\item Identifique cada parcela e conclua a forma da relação $U\times I$.
+\item Aponte exatamente onde a hipótese de linearidade é usada.
+\end{itensq}
+\resposta{$U=V_{oc}-R_{Th}I$, com $V_{oc}$ da parcela interna e $R_{Th}$ da
+parcela externa}
+\resolucao{(a) Seja $\mathcal{N}$ uma rede linear com uma porta. Conecte a ela
+uma fonte de corrente ideal $I$ e chame de $U$ a tensão resultante na porta. O
+circuito tem agora dois grupos de excitação: as fontes \emph{internas} de
+$\mathcal{N}$ e a fonte de teste $I$. Por superposição,
+\[
+U=U'+U'',
+\]
+onde $U'$ é a resposta às fontes internas com $I=0$, e $U''$ é a resposta a $I$
+com as fontes internas zeradas.\\
+(b) \textbf{Parcela $U'$:} com $I=0$, a fonte de corrente é um circuito aberto
+--- a porta está em vazio. Logo $U'=V_{oc}$, por definição.\\
+\textbf{Parcela $U''$:} com as fontes internas zeradas, $\mathcal{N}$ reduz-se a
+uma rede puramente passiva, que apresenta na porta uma resistência única; chame-a
+$R_{Th}$. A fonte $I$ injeta corrente \emph{para dentro} da rede, produzindo
+$U''=-R_{Th}I$.\\
+Somando:
+\[
+\boxed{U=V_{oc}-R_{Th}\,I}
+\]
+--- que é exatamente a relação de uma fonte $V_{oc}$ em série com $R_{Th}$.
+Como a relação vale para \emph{todo} $I$, os dois circuitos são
+indistinguíveis do lado de fora.\\
+(c) \textbf{A linearidade é usada em três pontos.} \emph{(i)} A superposição só
+vale em redes lineares --- é o passo central. \emph{(ii)} A rede passiva
+resultante só pode ser caracterizada por um \emph{único} número $R_{Th}$ porque
+sua relação $U\times I$ é proporcional. \emph{(iii)} A soma $U'+U''$ pressupõe
+que as parcelas não interagem.\\
+\textbf{Consequência:} a demonstração explica por que fontes \emph{dependentes}
+não invalidam o teorema (elas são lineares e permanecem na rede passiva,
+afetando $R_{Th}$), enquanto um diodo o invalida (não é linear, e nenhuma das
+três etapas se sustenta).}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- equivalência dos modelos.)} Prove que os equivalentes
+de Thévenin e Norton descrevem exatamente a mesma porta.
+\begin{itensq}
+\item Escreva a relação $U\times I$ de cada modelo.
+\item Mostre que elas coincidem se e somente se $I_N=V_{Th}/R_{Th}$ e
+      $R_N=R_{Th}$.
+\item Identifique o caso em que a conversão é impossível.
+\end{itensq}
+\resposta{Ambos produzem a reta $U=V_{Th}-R_{Th}I$; a conversão falha para
+fontes ideais ($R_{Th}=0$ ou $R_N\to\infty$)}
+\resolucao{(a) \textbf{Thévenin:} $U=V_{Th}-R_{Th}I$.\\
+\textbf{Norton:} a corrente da fonte se reparte entre $R_N$ e a saída, ou seja
+$I=I_N-U/R_N$, isto é
+\[
+U=R_N\left(I_N-I\right)=I_NR_N-R_NI.
+\]
+(b) Duas retas coincidem quando têm o mesmo intercepto e a mesma inclinação:
+\[
+I_NR_N=V_{Th}
+\quad\text{e}\quad
+R_N=R_{Th}
+\;\Longrightarrow\;
+I_N=\frac{V_{Th}}{R_{Th}}.
+\]
+Como o teorema de Thévenin garante que \emph{qualquer} rede linear vista por uma
+porta produz uma relação $U\times I$ afim, e como toda reta afim de inclinação
+negativa admite as duas representações, os modelos são intercambiáveis.\\
+(c) \textbf{Fontes ideais.} Se $R_{Th}=0$ (fonte de tensão ideal), a reta é
+vertical --- $I_N=V_{Th}/0$ diverge e não existe Norton equivalente. Se
+$R_N\to\infty$ (fonte de corrente ideal), a reta é horizontal e não existe
+Thévenin equivalente.\\
+\textbf{Interpretação:} os dois modelos são equivalentes para toda rede
+\emph{real} (com $0<R_{Th}<\infty$). A impossibilidade nos extremos não é falha
+do teorema --- é a constatação de que uma fonte ideal de tensão simplesmente não
+tem análogo em corrente.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Método experimental generalizado.)} Deduza a caracterização de uma
+rede linear a partir de $n\ge2$ pares $(I_k,U_k)$ obtidos com cargas
+diferentes.
+\begin{itensq}
+\item Escreva o modelo e identifique a forma de reta.
+\item Obtenha $V_{Th}$ e $R_{Th}$ por mínimos quadrados.
+\item Explique como os resíduos revelam falha de linearidade.
+\end{itensq}
+\resposta{$U=V_{Th}-R_{Th}I$: intercepto e coeficiente angular de uma
+regressão linear}
+\resolucao{(a) O modelo é $U=V_{Th}-R_{Th}I$: uma reta com intercepto
+$V_{Th}$ e coeficiente angular $-R_{Th}$. Cada medição sob carga fornece um
+ponto.\\
+(b) Por mínimos quadrados, com médias $\bar I$ e $\bar U$:
+\[
+-R_{Th}=\frac{\sum(I_k-\bar I)(U_k-\bar U)}{\sum(I_k-\bar I)^{2}},
+\qquad
+V_{Th}=\bar U+R_{Th}\bar I.
+\]
+Com dois pontos, a regressão degenera na fórmula de dois pontos --- que é o
+caso particular, não o método geral.\\
+(c) \textbf{Diagnóstico pelos resíduos.} Se a rede for linear, os resíduos
+$U_k-\hat U_k$ se distribuem \emph{aleatoriamente} em torno de zero. Se
+apresentarem \textbf{padrão sistemático} --- por exemplo, curvatura, com
+resíduos negativos nas extremidades e positivos no centro --- a rede não é
+linear na faixa ensaiada.\\
+\textbf{Causas típicas:} aquecimento (resistência crescendo com a corrente),
+entrada em limitação de corrente da fonte, ou saturação de um elemento
+magnético.\\
+\textbf{Vantagem decisiva sobre dois pontos:} com dois pontos \emph{sempre}
+passa uma reta, e a não linearidade fica invisível. É preciso um terceiro ponto,
+no mínimo, para que o modelo possa ser \emph{testado} --- e não apenas
+ajustado.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de ensaio seguro.)} Deve-se obter o equivalente de Norton de
+uma fonte de $\SI{60}{\volt}$ cuja corrente de curto é estimada em
+$\SI{120}{\ampere}$, usando instrumentos que suportam no máximo
+$\SI{25}{\ampere}$.
+\begin{itensq}
+\item Determine as cargas de ensaio e justifique a escolha.
+\item Determine a potência dissipada em cada carga.
+\item Especifique um procedimento com proteção.
+\end{itensq}
+\resposta{(a) $\SI{5.5}{\ohm}$ e $\SI{2.5}{\ohm}$ ($10$ e
+$\SI{20}{\ampere}$); (b) $\SI{550}{\watt}$ e $\SI{1000}{\watt}$}
+\resolucao{(a) Exige-se $I\le\SI{25}{\ampere}$, ou seja
+$R_{Th}+R_L\ge60/25=\SI{2.4}{\ohm}$. Com $R_{Th}\approx\SI{0.5}{\ohm}$
+estimado, escolhem-se
+\[
+R_{L1}=\SI{5.5}{\ohm}\ (\SI{10}{\ampere})
+\qquad\text{e}\qquad
+R_{L2}=\SI{2.5}{\ohm}\ (\SI{20}{\ampere}).
+\]
+\textbf{Critério de separação:} as duas correntes devem diferir bastante ---
+aqui, fator $2$ --- para que o denominador da regressão não seja uma diferença
+de valores próximos, problema de mau condicionamento identificado no bloco
+anterior.\\
+(b) $P_1=5{,}5(10)^{2}=\SI{550}{\watt}$;
+$P_2=2{,}5(20)^{2}=\SI{1000}{\watt}$. São cargas de potência --- resistores de
+fio ventilados ou banco de água, jamais componentes de bancada comuns.\\
+(c) \textbf{Procedimento.}
+\begin{itemize}
+\item Fusível ou disjuntor de $\SI{25}{\ampere}$ em série, sempre.
+\item Começar pela carga \emph{maior} ($\SI{5.5}{\ohm}$), de menor corrente.
+\item Medir $U$ e $I$ \emph{simultaneamente}, com o voltímetro nos terminais da
+      carga (para não incluir a queda dos cabos de ensaio).
+\item Leituras rápidas, antes que o aquecimento altere as resistências.
+\item Registrar um terceiro ponto para verificar linearidade.
+\end{itemize}
+\textbf{Resultado:} $I_N=\SI{120}{\ampere}$ obtido sem que qualquer instrumento
+veja mais que $\SI{20}{\ampere}$. A extrapolação substitui o ensaio
+destrutivo --- este é o valor prático do teorema.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Múltiplas portas.)} Uma rede com duas portas $A$ e $B$ tem, do lado
+externo, comportamento descrito por
+\[
+\begin{bmatrix}U_A\\U_B\end{bmatrix}
+=\begin{bmatrix}V_{A0}\\V_{B0}\end{bmatrix}
+-\begin{bmatrix}R_{AA}&R_{AB}\\R_{BA}&R_{BB}\end{bmatrix}
+\begin{bmatrix}I_A\\I_B\end{bmatrix}.
+\]
+\begin{itensq}
+\item Explique por que um Thévenin isolado por porta é insuficiente.
+\item Determine em que condição os dois equivalentes independentes bastam.
+\item Relacione $R_{AB}$ e $R_{BA}$ com a reciprocidade.
+\end{itensq}
+\resposta{Basta um Thévenin por porta apenas se $R_{AB}=R_{BA}=0$ (portas
+desacopladas)}
+\resolucao{(a) Um equivalente de Thévenin isolado descreve
+$U_A=V_{A0}-R_{AA}I_A$, ignorando o termo $R_{AB}I_B$. Se uma carga for
+conectada em $B$, ela drena $I_B\ne0$ e \emph{altera} a tensão em $A$ --- efeito
+que o modelo isolado não prevê. Caracterizar $A$ com $B$ aberto e depois usar
+esse equivalente com $B$ carregado produz erro.\\
+(b) Os equivalentes independentes bastam se, e somente se,
+$R_{AB}=R_{BA}=0$: nenhuma corrente em uma porta afeta a outra. Isso ocorre
+quando não há caminho resistivo comum --- por exemplo, portas alimentadas por
+fontes separadas e sem terra compartilhado.\\
+\textbf{Na prática}, um critério útil é $R_{AB}\ll R_{AA}$: o acoplamento existe,
+mas é desprezível para a precisão desejada.\\
+(c) Em rede \textbf{passiva}, a reciprocidade garante $R_{AB}=R_{BA}$ --- a
+matriz é simétrica, como já visto na matriz de condutâncias nodal. Isso reduz de
+quatro para três os parâmetros a determinar.\\
+Com fontes \textbf{dependentes}, a simetria se perde e $R_{AB}\ne R_{BA}$: a
+rede transmite preferencialmente em um sentido. Essa assimetria é exatamente o
+que caracteriza um \emph{amplificador} --- e é medida como isolação reversa.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Propagação de tolerância.)} Para o divisor $R_1$, $R_2$ sob $V$, com
+tolerâncias relativas $t_1$ e $t_2$:
+\begin{itensq}
+\item Deduza a expressão da incerteza relativa de $V_{Th}$.
+\item Deduza a de $R_{Th}$ e explique por que ela nunca excede
+      $\max(t_1,t_2)$.
+\item Avalie para $R_1=\SI{6}{\kilo\ohm}$, $R_2=\SI{3}{\kilo\ohm}$ e
+      $t_1=t_2=5\%$, e proponha como reduzir a incerteza de $V_{Th}$.
+\end{itensq}
+\resposta{(a) $\dfrac{R_1}{R_1+R_2}(t_1+t_2)$ no pior caso;
+(b) média ponderada das tolerâncias; (c) $6{,}7\%$ e $5\%$}
+\resolucao{(a) De $V_{Th}=V\dfrac{R_2}{R_1+R_2}$, tomando o logaritmo e
+diferenciando:
+\[
+\frac{\Delta V_{Th}}{V_{Th}}
+=\frac{\Delta R_2}{R_2}-\frac{\Delta R_2+\Delta R_1}{R_1+R_2}
+=\frac{R_1}{R_1+R_2}\left(\frac{\Delta R_2}{R_2}-\frac{\Delta R_1}{R_1}\right).
+\]
+No pior caso (desvios opostos), o módulo vale
+$\dfrac{R_1}{R_1+R_2}(t_1+t_2)$.\\
+(b) $R_{Th}=R_1\parallel R_2$ é homogênea de grau 1, e vale a combinação com
+$\sum S_k=1$:
+\[
+t_{R_{Th}}=\frac{G_1t_1+G_2t_2}{G_1+G_2},
+\]
+uma \textbf{média ponderada} --- que, por construção, fica entre
+$\min(t_1,t_2)$ e $\max(t_1,t_2)$ e nunca os ultrapassa.\\
+(c) Com $R_1/(R_1+R_2)=2/3$:
+$t_{V_{Th}}=\frac23(10\%)=6{,}7\%$, enquanto
+$t_{R_{Th}}=5\%$.\\
+\textbf{Como reduzir a incerteza de $V_{Th}$.}
+\begin{itemize}
+\item \textbf{Resistores casados:} em rede resistiva integrada, os desvios são
+      \emph{correlacionados} ($\Delta R_1/R_1\approx\Delta R_2/R_2$) e o termo
+      entre parênteses tende a zero --- a razão fica muito mais precisa que os
+      valores absolutos. É o princípio que torna viáveis conversores
+      analógico-digitais de alta resolução.
+\item \textbf{Reduzir $R_1/(R_1+R_2)$}, isto é, trabalhar com razões de divisão
+      próximas de $1$ --- nem sempre possível.
+\item \textbf{Selecionar por medição} apenas o resistor crítico.
+\end{itemize}
+\textbf{Ponto central:} $V_{Th}$ depende de uma \emph{razão} e pode ser pior que
+os componentes; $R_{Th}$ é homogênea e nunca é pior. Estruturas diferentes
+propagam incerteza de modos diferentes.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Resistência negativa.)} Uma rede ativa apresenta
+$R_{Th}=\SI{-4}{\kilo\ohm}$.
+\begin{itensq}
+\item Interprete fisicamente o sinal.
+\item Determine a condição sobre $R_L$ para que o circuito tenha solução
+      estável.
+\item Indique uma aplicação prática.
+\end{itensq}
+\resposta{(b) $R_L<\SI{4}{\kilo\ohm}$ em módulo, para que a resistência total
+seja positiva}
+\resolucao{(a) $R_{Th}<0$ significa que a tensão na porta \emph{aumenta} quando
+a corrente drenada aumenta --- a rede \textbf{fornece} energia ao circuito
+externo em resposta à perturbação, em vez de se opor a ela. Só é possível com
+elementos ativos: a fonte dependente entrega mais corrente do que o resistor
+consome, invertendo o sinal da condutância líquida.\\
+(b) Com carga $R_L$, a resistência total da malha é $R_{Th}+R_L$. Para que a
+solução seja estável, ela deve ser \textbf{positiva}:
+\[
+R_L+(-4\,\mathrm{k})>0
+\;\Longrightarrow\;
+R_L>\SI{4}{\kilo\ohm}.
+\]
+Com $R_L<\SI{4}{\kilo\ohm}$, qualquer perturbação cresce em vez de decair: o
+circuito satura em um extremo ou oscila. E em $R_L=\SI{4}{\kilo\ohm}$
+exatamente, a matriz do sistema torna-se singular --- não há solução finita.\\
+\emph{(Observação: o critério depende da topologia; em configuração paralela o
+sentido da desigualdade se inverte. O princípio é sempre o mesmo: a resistência
+líquida vista pela malha deve ser positiva.)}\\
+(c) \textbf{Aplicações.} A resistência negativa cancela perdas: em osciladores,
+ela compensa exatamente a resistência do tanque LC e sustenta oscilação senoidal
+permanente. Diodos túnel e diodos Gunn exibem trechos de resistência negativa em
+suas curvas e são usados como osciladores de micro-ondas.\\
+\textbf{Conexão com o diagnóstico:} um determinante que se anula em rede com
+elementos ativos é o mesmo fenômeno visto na análise nodal --- não é problema
+numérico, é aviso de instabilidade.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Otimização sob duas restrições.)} Uma fonte com
+$V_{Th}=\SI{24}{\volt}$ e $R_{Th}=\SI{8}{\ohm}$ deve alimentar uma carga que
+exige, simultaneamente, $U\ge\SI{20}{\volt}$ e $P\ge\SI{12}{\watt}$.
+\begin{itensq}
+\item Mostre que as duas exigências são incompatíveis.
+\item Determine o menor $R_{Th}$ que as tornaria compatíveis.
+\item Proponha uma solução de engenharia.
+\end{itensq}
+\resposta{(a) $U\ge20$ exige $R_L\ge\SI{40}{\ohm}$, mas então
+$P\le\SI{10}{\watt}$; (b) $R_{Th}\le\SI{6.67}{\ohm}$}
+\resolucao{(a) A restrição de tensão dá $R_L\ge\SI{40}{\ohm}$. Nessa região, a
+potência é
+\[
+P=\frac{U^{2}}{R_L}\le\frac{24^{2}R_L}{(R_L+8)^{2}},
+\]
+função \emph{decrescente} para $R_L>R_{Th}$. Seu valor máximo na região
+admissível ocorre em $R_L=\SI{40}{\ohm}$, valendo
+$P=20^{2}/40=\SI{10}{\watt}<\SI{12}{\watt}$. \textbf{Incompatível.}\\
+(b) Impondo as duas condições no ponto crítico $U=\SI{20}{\volt}$ e
+$P=\SI{12}{\watt}$: $I=P/U=\SI{0.6}{\ampere}$ e
+$R_L=20/0{,}6=\SI{33.3}{\ohm}$. Da malha,
+\[
+R_{Th}=\frac{V_{Th}-U}{I}=\frac{24-20}{0{,}6}=\SI{6.67}{\ohm}.
+\]
+Qualquer $R_{Th}\le\SI{6.67}{\ohm}$ torna o par de requisitos atendível.\\
+(c) \textbf{Soluções, em ordem de preferência.}
+\begin{itemize}
+\item \textbf{Reduzir $R_{Th}$} --- fio de maior seção, conexões melhores,
+      fonte mais robusta. Ataca a causa.
+\item \textbf{Elevar $V_{Th}$} --- com $\SI{28}{\volt}$, os
+      $\SI{8}{\ohm}$ passam a ser aceitáveis.
+\item \textbf{Regulador entre fonte e carga} --- desacopla completamente as
+      duas restrições, ao custo de rendimento e complexidade.
+\end{itemize}
+\textbf{Lição de método:} quando duas especificações se mostram
+incompatíveis, o cálculo não apenas revela o impasse --- ele quantifica
+\emph{exatamente} o quanto um parâmetro precisa melhorar. Aqui, reduzir
+$R_{Th}$ em $17\%$ resolve o problema.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Reta de carga e ponto de operação.)} Uma fonte com
+$V_{Th}=\SI{5}{\volt}$ e $R_{Th}=\SI{200}{\ohm}$ alimenta um dispositivo cuja
+característica é $I=\SI{10}{\milli\ampere}\cdot\left(e^{U/0{,}5}-1\right)$, com
+$U$ em volts.
+\begin{itensq}
+\item Descreva o método gráfico e obtenha o ponto de operação por iteração.
+\item Determine a resistência \emph{dinâmica} do dispositivo nesse ponto.
+\item Explique a diferença entre resistência estática e dinâmica.
+\end{itensq}
+\resposta{$U\approx\SI{0.90}{\volt}$, $I\approx\SI{20.5}{\milli\ampere}$;
+$r_d\approx\SI{24}{\ohm}$}
+\resolucao{(a) A reta de carga é $I=(5-U)/200$, indo de
+$(0;\ \SI{25}{\milli\ampere})$ a $(\SI{5}{\volt};\ 0)$. O ponto de operação é a
+interseção com a exponencial.\\
+\emph{Iteração:} com $U=\SI{0.9}{\volt}$, o dispositivo pede
+$10(e^{1{,}8}-1)=\SI{50.5}{\milli\ampere}$, enquanto a reta oferece
+$\SI{20.5}{\milli\ampere}$ --- é preciso baixar $U$. Com
+$U=\SI{0.80}{\volt}$: dispositivo $\SI{39.6}{\milli\ampere}$, reta
+$\SI{21}{\milli\ampere}$. Com $U=\SI{0.70}{\volt}$: dispositivo
+$\SI{30.2}{\milli\ampere}$, reta $\SI{21.5}{\milli\ampere}$. Com
+$U=\SI{0.60}{\volt}$: dispositivo $\SI{23.2}{\milli\ampere}$, reta
+$\SI{22}{\milli\ampere}$. Convergência próxima de
+$U\approx\SI{0.59}{\volt}$, $I\approx\SI{22}{\milli\ampere}$.\\
+(b) A resistência dinâmica é a inclinação local:
+\[
+r_d=\left(\frac{\mathrm{d}I}{\mathrm{d}U}\right)^{-1}
+=\frac{0{,}5}{I+\SI{10}{\milli\ampere}}
+\approx\frac{0{,}5}{\pot{32}{-3}}\approx\SI{16}{\ohm}.
+\]
+(c) \textbf{Estática:} $R=U/I\approx0{,}59/0{,}022\approx\SI{27}{\ohm}$ --- a
+razão entre os valores no ponto.\\
+\textbf{Dinâmica:} $r_d\approx\SI{16}{\ohm}$ --- a resposta a uma
+\emph{pequena variação} em torno do ponto.\\
+São grandezas distintas e, em dispositivos não lineares, sempre diferentes. A
+estática governa o balanço de potência CC; a \textbf{dinâmica} governa a resposta
+a sinais pequenos, e é ela que entra em qualquer modelo de pequenos sinais ---
+razão pela qual o mesmo transistor tem "resistências" diferentes conforme a
+pergunta.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Limites do teorema.)} Analise se Thévenin se aplica em cada caso e
+justifique.
+\begin{itensq}
+\item Rede com resistor dependente da temperatura, aquecendo com a corrente.
+\item Rede contendo um diodo em série com a saída.
+\item Rede linear observada em torno de um ponto de operação fixo.
+\end{itensq}
+\resposta{(a) não; (b) não; (c) sim, como modelo incremental}
+\resolucao{(a) \textbf{Não se aplica.} A resistência depende da corrente, o que
+torna a relação $U\times I$ não linear --- a característica deixa de ser uma
+reta e passa a curvar-se. Dois pontos de medição dariam um "equivalente" que
+falharia em qualquer terceiro ponto.\\
+\emph{Ressalva útil:} se a variação térmica for pequena na faixa de interesse, o
+modelo linear é uma boa aproximação local --- e os \emph{resíduos} da regressão
+denunciariam o desvio.\\
+(b) \textbf{Não se aplica à rede como um todo.} O diodo é não linear e, pior,
+\emph{assimétrico}: a rede conduz em um sentido e bloqueia no outro. Nenhum par
+$(V_{Th},R_{Th})$ reproduz esse comportamento.\\
+\emph{Uso correto:} aplique Thévenin à parte \textbf{linear} da rede e trate o
+diodo como carga externa, resolvendo por reta de carga. É exatamente o
+procedimento das questões anteriores.\\
+(c) \textbf{Aplica-se, na forma incremental.} Em torno de um ponto de operação,
+qualquer rede suave se comporta linearmente para pequenas variações. Obtém-se
+um equivalente de Thévenin \emph{de pequenos sinais}, com $R_{Th}$ construída a
+partir das resistências \textbf{dinâmicas} --- não das estáticas.\\
+\textbf{Síntese:} o teorema exige linearidade, mas linearidade
+\emph{local} basta. É essa observação que sustenta toda a análise de pequenos
+sinais em eletrônica: circuitos essencialmente não lineares são analisados com
+as ferramentas lineares deste capítulo, desde que o sinal seja pequeno o
+bastante.}
+\end{questao}

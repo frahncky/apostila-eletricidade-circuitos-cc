@@ -1,0 +1,938 @@
+% =====================================================================
+%  Banco complementar --- Campo Eletrico  (REVISADO)
+%  Substitui a versao gerada por template (8 clones em N1, 11 em N2,
+%  7 em N3 e 8 questoes conceituais marcadas como N4).
+%  O cap01b e denso e ja cobre: E de carga puntiforme, proporcionalidade
+%  com a distancia, carga de prova com forca dada, direcao e sentido do
+%  campo, PONTO DE CAMPO NULO (tres vezes: Q e 4Q; 9 e 4 uC; -Q e +4Q),
+%  duas cargas de mesmo modulo a 20 cm, grafico E x d, ELETRON ENTRE
+%  PLACAS PARALELAS com deflexao, quadrado de quatro cargas, anel
+%  isolante no eixo, haste finita por integracao (N4) e momento dipolar
+%  (N4).
+%  Este banco evita esses casos e explora: E=0 com V nao nulo, linhas de
+%  campo e por que nao se cruzam, PROJETO de placas paralelas, cavidade
+%  em condutor, tracado numerico de linhas, esfera isolante macica por
+%  Gauss, par de placas com +-sigma e o limite imposto pela rigidez
+%  dieletrica.
+%  Distribuicao mantida: 8 N1 + 11 N2 + 7 N3 + 8 N4 = 34
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Campo elétrico}
+
+\begin{atencao}[Organização do banco]
+O campo é \textbf{vetorial}: contribuições somam-se por componentes, e podem
+cancelar-se. Ele é definido por $\vec E=\vec F/q_0$, mas \emph{não depende} da
+carga de prova --- é propriedade do ponto. Duas expressões dominam o tópico:
+$E=\ke Q/r^{2}$ para carga puntiforme e $E=\sigma/\varepsilon_0$ para plano
+carregado, esta última \emph{independente da distância}. O N4 trata de projeto,
+condutores, distribuições contínuas e limites físicos.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Determine o módulo do campo elétrico produzido por $Q=+\SI{3}{\micro\coulomb}$
+a $\SI{30}{\centi\meter}$ de distância.
+\dados{$\ke=\SI{9e9}{\newton\meter\squared\per\coulomb\squared}$}
+\resposta{$E=\SI{300}{\kilo\newton\per\coulomb}$}
+\resolucao{
+\[
+E=\frac{\ke Q}{r^{2}}=\frac{\pot{9}{9}\times\pot{3}{-6}}{(0{,}30)^{2}}
+=\frac{\pot{2.7}{4}}{0{,}09}=\pot{3}{5}\,\si{\newton\per\coulomb}.
+\]
+O campo aponta \textbf{para longe} da carga, por ela ser positiva.\\
+\textbf{Atenção à potência:} o campo cai com $1/r^{2}$, o potencial com
+$1/r$. Dobrar a distância divide $E$ por quatro e $V$ por dois.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o campo produzido por $Q=-\SI{5}{\micro\coulomb}$ a
+$\SI{50}{\centi\meter}$, indicando o sentido.
+\resposta{$E=\SI{180}{\kilo\newton\per\coulomb}$, apontando \emph{para} a carga}
+\resolucao{
+\[
+E=\frac{\pot{9}{9}\times\pot{5}{-6}}{0{,}25}
+=\pot{1.8}{5}\,\si{\newton\per\coulomb}.
+\]
+\textbf{Sentido:} cargas negativas \emph{atraem} cargas de prova positivas, logo
+o campo aponta \textbf{para} a carga fonte.\\
+\textbf{Regra mnemônica:} o campo \emph{sai} do positivo e \emph{entra} no
+negativo --- é a mesma regra que orienta as linhas de campo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma carga $q=+\SI{2}{\micro\coulomb}$ é colocada em um ponto onde
+$E=\SI{5000}{\newton\per\coulomb}$. Determine a força sobre ela.
+\resposta{$F=\SI{10}{\milli\newton}$, no sentido do campo}
+\resolucao{
+\[
+F=qE=\pot{2}{-6}\times5000=\pot{1}{-2}\,\si{\newton}=\SI{10}{\milli\newton}.
+\]
+Como a carga é positiva, a força tem o \emph{mesmo} sentido de $\vec E$. Se
+fosse negativa, teria sentido oposto --- e apenas o sentido mudaria, não o
+módulo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine a carga que produz $E=\SI{2000}{\newton\per\coulomb}$ a
+$\SI{30}{\centi\meter}$.
+\resposta{$Q=\SI{20}{\nano\coulomb}$}
+\resolucao{
+\[
+Q=\frac{Er^{2}}{\ke}=\frac{2000\times0{,}09}{\pot{9}{9}}
+=\pot{2}{-8}\,\si{\coulomb}=\SI{20}{\nano\coulomb}.
+\]
+Uma carga de nanocoulombs --- ordem de grandeza típica da eletrização por
+atrito --- já produz milhares de newtons por coulomb a trinta centímetros.}
+\end{questao}
+
+\begin{questao}[1]{}
+A que distância de $Q=+\SI{8}{\micro\coulomb}$ o campo vale
+$\SI{200}{\kilo\newton\per\coulomb}$?
+\resposta{$r=\SI{0.6}{\meter}$}
+\resolucao{
+\[
+r=\sqrt{\frac{\ke Q}{E}}=\sqrt{\frac{\pot{9}{9}\times\pot{8}{-6}}{\pot{2}{5}}}
+=\sqrt{0{,}36}=\SI{0.6}{\meter}.
+\]
+\textbf{Superfície de campo constante:} todos os pontos a
+$\SI{0.6}{\meter}$ da carga têm o mesmo \emph{módulo} de campo --- mas
+\emph{direções} diferentes, pois o campo é radial. Diferentemente das
+equipotenciais, essas superfícies não têm significado especial.}
+\end{questao}
+
+\begin{questao}[1]{}
+O campo elétrico em um ponto, medido com carga de prova $q_0$, vale $E$. Se a
+carga de prova for \textbf{dobrada}, o valor medido:
+\begin{alternativas}[2]
+\item dobra
+\item cai à metade
+\item não se altera
+\item depende do sinal de $q_0$
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Por definição, $\vec E=\vec F/q_0$. Dobrar $q_0$ dobra a força
+\emph{e} o denominador --- a razão permanece.\\
+\textbf{Ponto conceitual:} o campo é uma propriedade \textbf{do ponto do
+espaço}, criada pelas cargas-fonte. A carga de prova apenas o \emph{revela};
+ela não o cria nem o modifica.\\
+\textbf{Ressalva real:} se $q_0$ for grande demais, ela perturba as
+cargas-fonte (por indução, em condutores) e a medida deixa de valer. Daí a
+definição rigorosa usar o limite $q_0\to0$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Mostre que $\si{\newton\per\coulomb}$ e $\si{\volt\per\meter}$ são a mesma
+unidade.
+\resposta{$\si{\volt}=\si{\joule\per\coulomb}$ e
+$\si{\joule}=\si{\newton\meter}$}
+\resolucao{
+\[
+\frac{\si{\volt}}{\si{\meter}}
+=\frac{\si{\joule}}{\si{\coulomb}\cdot\si{\meter}}
+=\frac{\si{\newton}\cdot\si{\meter}}{\si{\coulomb}\cdot\si{\meter}}
+=\frac{\si{\newton}}{\si{\coulomb}}.\ \checkmark
+\]
+\textbf{As duas leituras do campo.} $\si{\newton\per\coulomb}$ enfatiza a
+\emph{força} por unidade de carga; $\si{\volt\per\meter}$ enfatiza a
+\emph{taxa de queda do potencial} por unidade de comprimento. São descrições
+equivalentes de $\vec E=-\nabla V$.\\
+Na prática, usa-se $\si{\volt\per\meter}$ quando há tensões envolvidas (placas,
+cabos) e $\si{\newton\per\coulomb}$ em problemas de dinâmica de partículas.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma carga negativa é colocada em uma região de campo elétrico uniforme. Sobre
+seu movimento inicial, é correto afirmar que ela:
+\begin{alternativas}[2]
+\item acelera no sentido do campo
+\item acelera no sentido oposto ao campo
+\item permanece em repouso
+\item move-se perpendicularmente ao campo
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A força vale $\vec F=q\vec E$ com $q<0$, logo $\vec F$ é
+\textbf{antiparalela} a $\vec E$.\\
+\textbf{Consequência energética:} a carga negativa move-se espontaneamente no
+sentido de $V$ \emph{crescente} --- o oposto de uma carga positiva. Em ambos os
+casos, a energia potencial $U=qV$ \emph{diminui}, como deve ocorrer em qualquer
+movimento espontâneo.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma carga $q_0=-\SI{1}{\micro\coulomb}$ é colocada em um campo uniforme de
+$E=\SI{2000}{\newton\per\coulomb}$.
+\begin{itensq}
+\item Determine a força.
+\item Determine sua aceleração, se a massa for $\SI{4}{\gram}$.
+\end{itensq}
+\resposta{$F=\SI{2}{\milli\newton}$, oposta a $\vec E$;
+$a=\SI{0.5}{\meter\per\second\squared}$}
+\resolucao{(a) $F=|q|E=\pot{1}{-6}(2000)=\pot{2}{-3}\,\si{\newton}$, com sentido
+\emph{oposto} ao campo.\\
+(b)
+\[
+a=\frac{F}{m}=\frac{\pot{2}{-3}}{\pot{4}{-3}}=\SI{0.5}{\meter\per\second\squared}.
+\]
+\textbf{Comparação com a gravidade:} $a$ é apenas $5\%$ de $g$. Para objetos
+macroscópicos, a força elétrica só compete com o peso se a carga for
+relativamente grande ou a massa muito pequena --- daí os experimentos
+eletrostáticos clássicos usarem pedaços de papel e gotas de óleo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um próton é abandonado em um campo uniforme de
+$E=\SI{1e4}{\newton\per\coulomb}$. Determine sua aceleração.
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$; $m_p=\pot{1.67}{-27}\,\si{\kilogram}$}
+\resposta{$a=\pot{9.6}{11}\,\si{\meter\per\second\squared}$}
+\resolucao{
+\[
+a=\frac{eE}{m_p}=\frac{(\pot{1.6}{-19})(\pot{1}{4})}{\pot{1.67}{-27}}
+=\pot{9.58}{11}\,\si{\meter\per\second\squared}.
+\]
+\textbf{Cerca de $10^{11}$ vezes $g$} --- a gravidade é completamente
+desprezível na dinâmica de partículas carregadas.\\
+\textbf{Para o elétron}, a aceleração seria $1836$ vezes maior
+($\pot{1.76}{15}\,\si{\meter\per\second\squared}$), pela razão das massas. É por
+isso que, em tubos e aceleradores, são os elétrons que respondem primeiro.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas cargas estão sobre o eixo $x$: $+\SI{4}{\micro\coulomb}$ em $x=0$ e
+$-\SI{2}{\micro\coulomb}$ em $x=\SI{0.30}{\meter}$. Determine o campo em
+$x=\SI{0.60}{\meter}$.
+\resposta{$E=\SI{100}{\kilo\newton\per\coulomb}$, no sentido $-x$}
+\resolucao{
+\[
+E_1=\frac{\pot{9}{9}(\pot{4}{-6})}{(0{,}60)^{2}}
+=\pot{1}{5}\,\si{\newton\per\coulomb}\ (\text{sentido }+x);
+\]
+\[
+E_2=\frac{\pot{9}{9}(\pot{2}{-6})}{(0{,}30)^{2}}
+=\pot{2}{5}\,\si{\newton\per\coulomb}\ (\text{sentido }-x).
+\]
+\[
+E=2\times10^{5}-1\times10^{5}=\pot{1}{5}\,\si{\newton\per\coulomb}\ (-x).
+\]
+\textbf{Observe:} a carga \emph{menor} produziu o campo \emph{maior}, por estar
+duas vezes mais próxima --- e $1/r^{2}$ vence o fator $2$ de carga.
+Compare os fatores: carga $\times\frac12$, distância$^{2}$
+$\times\frac14$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas cargas iguais $Q=+\SI{2}{\micro\coulomb}$ estão em
+$(\pm\SI{0.30}{\meter},\,0)$. Determine o campo no ponto
+$(0,\ \SI{0.40}{\meter})$.
+\resposta{$E=\SI{115.2}{\kilo\newton\per\coulomb}$, ao longo de $+y$}
+\resolucao{Cada carga dista $r=\sqrt{0{,}30^{2}+0{,}40^{2}}=\SI{0.5}{\meter}$
+(triângulo $3$--$4$--$5$):
+\[
+E_1=E_2=\frac{\pot{9}{9}(\pot{2}{-6})}{0{,}25}
+=\pot{7.2}{4}\,\si{\newton\per\coulomb}.
+\]
+\textbf{Por simetria}, as componentes horizontais se cancelam e as verticais se
+somam, cada uma multiplicada por $\cos\theta=0{,}40/0{,}50=0{,}8$:
+\[
+E=2(\pot{7.2}{4})(0{,}8)=\pot{1.152}{5}\,\si{\newton\per\coulomb}.
+\]
+\textbf{Uso da simetria:} reconhecê-la elimina metade do trabalho. Sempre que a
+configuração for simétrica em relação ao ponto de interesse, identifique quais
+componentes se anulam \emph{antes} de calcular.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas placas paralelas separadas por $\SI{2}{\milli\meter}$ estão submetidas a
+$\SI{600}{\volt}$. Determine o campo entre elas.
+\resposta{$E=\SI{300}{\kilo\volt\per\meter}$}
+\resolucao{
+\[
+E=\frac{U}{d}=\frac{600}{\pot{2}{-3}}=\pot{3}{5}\,\si{\volt\per\meter}.
+\]
+\textbf{Campo uniforme:} entre placas extensas e próximas, $E$ é praticamente o
+mesmo em todos os pontos --- e independe da posição. É a configuração de
+referência para acelerar e defletir partículas.\\
+\textbf{Verificação de segurança:} $\SI{300}{\kilo\volt\per\meter}$ é um décimo
+da rigidez do ar ($\SI{3}{\mega\volt\per\meter}$) --- há folga confortável.
+Reduzir a separação para $\SI{0.2}{\milli\meter}$ com a mesma tensão provocaria
+ruptura.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma placa condutora extensa tem densidade superficial de carga
+$\sigma=\SI{2}{\micro\coulomb\per\meter\squared}$. Determine o campo próximo à
+sua superfície.
+\dados{$\varepsilon_0=\pot{8.85}{-12}\,\si{\farad\per\meter}$}
+\resposta{$E=\SI{226}{\kilo\newton\per\coulomb}$}
+\resolucao{Para um condutor em equilíbrio,
+\[
+E=\frac{\sigma}{\varepsilon_0}=\frac{\pot{2}{-6}}{\pot{8.85}{-12}}
+=\pot{2.26}{5}\,\si{\newton\per\coulomb}.
+\]
+\textbf{Fato notável:} o campo \textbf{não depende da distância} à placa (desde
+que ela seja extensa e o ponto próximo). Diferentemente da carga puntiforme, não
+há queda com $1/r^{2}$.\\
+\textbf{Cuidado com a fórmula:} para um \emph{plano isolante} com carga nas duas
+faces, o campo vale $\sigma/2\varepsilon_0$ --- metade. A diferença é que no
+condutor toda a carga fica em uma face, e o campo interno é nulo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Compare o campo produzido por $Q_1=+\SI{9}{\micro\coulomb}$ a
+$\SI{30}{\centi\meter}$ com o de $Q_2=+\SI{4}{\micro\coulomb}$ a
+$\SI{20}{\centi\meter}$.
+\resposta{$E_1=E_2=\SI{900}{\kilo\newton\per\coulomb}$ --- iguais}
+\resolucao{
+\[
+E_1=\frac{\pot{9}{9}(\pot{9}{-6})}{0{,}09}=\pot{9}{5};
+\qquad
+E_2=\frac{\pot{9}{9}(\pot{4}{-6})}{0{,}04}=\pot{9}{5}\,\si{\newton\per\coulomb}.
+\]
+\textbf{Coincidência não é acaso:} as razões $Q/r^{2}$ são iguais, pois
+$9/9=4/4$. Sempre que $Q\propto r^{2}$, o campo se mantém.\\
+\textbf{Consequência:} se essas duas cargas estivessem em lados opostos de um
+ponto, o campo resultante ali seria \emph{nulo} --- e essa é exatamente a
+condição do "ponto de campo nulo" entre cargas de mesmo sinal.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma carga em um ponto sofre campos de $\SI{3}{\kilo\newton\per\coulomb}$ na
+direção $x$ e $\SI{4}{\kilo\newton\per\coulomb}$ na direção $y$, produzidos por
+duas fontes distintas. Determine o campo resultante.
+\resposta{$E=\SI{5}{\kilo\newton\per\coulomb}$, a $\ang{53.1}$ do eixo $x$}
+\resolucao{Sendo perpendiculares, compõem-se por Pitágoras:
+\[
+E=\sqrt{3^{2}+4^{2}}=\SI{5}{\kilo\newton\per\coulomb};
+\qquad
+\theta=\arctan\frac{4}{3}=\ang{53.1}.
+\]
+\textbf{Contraste com o potencial:} se esses mesmos pontos tivessem potenciais
+de $3$ e $\SI{4}{\kilo\volt}$, o total seria simplesmente
+$\SI{7}{\kilo\volt}$ --- soma algébrica, sem geometria.\\
+É essa diferença que torna o potencial a ferramenta preferida para cálculos, e o
+campo a ferramenta preferida para entender forças e movimento.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma representação por linhas de campo, o que indica uma região onde as
+linhas estão mais próximas entre si?
+\begin{alternativas}[2]
+\item potencial maior
+\item campo mais intenso
+\item carga maior naquele ponto
+\item ausência de campo
+\end{alternativas}
+\resposta{(b)}
+\resolucao{A \textbf{densidade de linhas} é proporcional ao módulo do campo ---
+essa é a convenção que dá utilidade quantitativa ao desenho.\\
+\textbf{Três regras das linhas de campo:}
+\begin{enumerate}
+\item Nascem em cargas positivas e morrem em negativas (ou no infinito).
+\item São tangentes a $\vec E$ em cada ponto.
+\item \textbf{Nunca se cruzam} --- em um cruzamento, o campo teria duas
+direções, o que é impossível.
+\end{enumerate}
+\textbf{Cuidado com (a):} potencial e campo são grandezas distintas. Linhas
+próximas indicam campo intenso, o que corresponde a equipotenciais próximas ---
+mas não diz nada sobre o \emph{valor} de $V$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma carga produz campo de $\SI{8}{\kilo\newton\per\coulomb}$ no vácuo. O
+conjunto é imerso em um dielétrico de $\varepsilon_r=4$. Determine o novo campo.
+\resposta{$E=\SI{2}{\kilo\newton\per\coulomb}$}
+\resolucao{
+\[
+E_{meio}=\frac{E_{vácuo}}{\varepsilon_r}=\frac{8}{4}
+=\SI{2}{\kilo\newton\per\coulomb}.
+\]
+\textbf{Mecanismo:} o dielétrico se \emph{polariza} --- suas moléculas se
+orientam e criam um campo interno oposto, que cancela parcialmente o campo
+original.\\
+\textbf{Consequência tecnológica:} o dielétrico reduz o campo para a mesma
+carga, o que permite armazenar \emph{mais} carga para a mesma tensão --- é
+exatamente por isso que $C=\varepsilon_r C_0$ em capacitores.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma gota de massa $\SI{2}{\milli\gram}$ e carga $\SI{1}{\nano\coulomb}$ deve
+ficar suspensa em repouso. Determine o campo elétrico necessário.
+\dados{$g=\SI{9.8}{\meter\per\second\squared}$}
+\resposta{$E=\SI{19.6}{\kilo\newton\per\coulomb}$}
+\resolucao{Equilíbrio entre peso e força elétrica:
+\[
+qE=mg
+\;\Longrightarrow\;
+E=\frac{mg}{q}=\frac{(\pot{2}{-6})(9{,}8)}{\pot{1}{-9}}
+=\pot{1.96}{4}\,\si{\newton\per\coulomb}.
+\]
+\textbf{Orientação:} o campo deve produzir força \emph{para cima}. Se a gota for
+positiva, $\vec E$ aponta para cima; se negativa, para baixo.\\
+\textbf{Este é o princípio do experimento de Millikan}, que determinou a carga
+elementar. Medindo $E$ e $m$ de gotas suspensas, ele encontrou que todas as
+cargas eram múltiplas inteiras de $\pot{1.6}{-19}\,\si{\coulomb}$ --- a
+primeira evidência direta da quantização.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Duas cargas iguais $Q=+\SI{1}{\micro\coulomb}$ ocupam
+$(\pm\SI{0.20}{\meter},\,0)$.
+\begin{itensq}
+\item Determine o campo em $(0,\ \SI{0.20}{\meter})$.
+\item Determine o campo no ponto médio e justifique.
+\end{itensq}
+\resposta{(a) $E=\SI{159}{\kilo\newton\per\coulomb}$ ao longo de $+y$;
+(b) $\vec E=\vec0$}
+\resolucao{(a) Cada carga dista
+$r=\sqrt{2}\,(0{,}20)=\SI{0.283}{\meter}$:
+\[
+E_1=E_2=\frac{\pot{9}{9}(\pot{1}{-6})}{0{,}08}
+=\pot{1.125}{5}\,\si{\newton\per\coulomb}.
+\]
+As componentes em $x$ cancelam; as em $y$ somam-se, cada uma multiplicada por
+$\cos\ang{45}=0{,}707$:
+\[
+E=2(\pot{1.125}{5})(0{,}707)=\pot{1.59}{5}\,\si{\newton\per\coulomb}.
+\]
+(b) \textbf{No ponto médio}, as duas contribuições têm módulos iguais e sentidos
+\emph{opostos} (cada carga empurra para longe de si):
+\[
+\vec E=\vec 0.
+\]
+\textbf{Mas o potencial ali não é nulo:}
+$V=2\ke Q/0{,}20=\SI{90}{\kilo\volt}$. É o caso complementar ao do dipolo, em
+que $V=0$ e $\vec E\ne\vec0$ --- e mostra novamente que as duas condições são
+independentes.\\
+\textbf{Estabilidade:} uma carga positiva no ponto médio está em equilíbrio, mas
+\emph{instável} na direção perpendicular ao eixo --- conforme o teorema de
+Earnshaw.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um dipolo é formado por $+q$ e $-q$ separadas por $2a$. Considere um ponto do
+eixo perpendicular à linha que as une, a distância $y$ do centro.
+\begin{itensq}
+\item Deduza a expressão exata do campo.
+\item Obtenha a forma assintótica para $y\gg a$.
+\item Compare a queda com a de uma carga isolada.
+\end{itensq}
+\resposta{$E=\dfrac{2\ke qa}{(y^{2}+a^{2})^{3/2}}\to\dfrac{2\ke qa}{y^{3}}$}
+\resolucao{(a) Cada carga dista $r=\sqrt{y^{2}+a^{2}}$ e produz
+$\ke q/r^{2}$. Por simetria, as componentes ao longo de $y$ se cancelam (uma
+aponta para cima, a outra para baixo) e restam as componentes \emph{paralelas ao
+eixo do dipolo}, cada uma multiplicada por $a/r$:
+\[
+E=2\cdot\frac{\ke q}{y^{2}+a^{2}}\cdot\frac{a}{\sqrt{y^{2}+a^{2}}}
+=\frac{2\ke qa}{(y^{2}+a^{2})^{3/2}}.
+\]
+(b) Para $y\gg a$, $(y^{2}+a^{2})^{3/2}\to y^{3}$:
+\[
+E\approx\frac{2\ke qa}{y^{3}}=\frac{\ke p}{y^{3}},
+\]
+com $p=2qa$ o momento dipolar.\\
+(c) \textbf{O campo do dipolo cai com $1/y^{3}$}, muito mais rápido que o
+$1/r^{2}$ de uma carga isolada.\\
+\textbf{Razão física:} de longe, as duas cargas quase se cancelam --- o sistema
+é \emph{globalmente neutro}. O que sobra é o efeito de sua \emph{separação},
+uma correção de ordem superior.\\
+\textbf{Padrão geral:} carga isolada $\sim1/r^{2}$; dipolo
+$\sim1/r^{3}$; quadrupolo $\sim1/r^{4}$. Quanto mais neutra a distribuição, mais
+rápido o campo se extingue --- e é por isso que a matéria comum, neutra, não
+exerce força elétrica a distância.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas placas condutoras extensas e paralelas têm densidades superficiais
+$+\sigma$ e $-\sigma$, com
+$\sigma=\SI{1}{\micro\coulomb\per\meter\squared}$.
+\begin{itensq}
+\item Determine o campo entre as placas.
+\item Determine o campo fora delas.
+\item Justifique fisicamente.
+\end{itensq}
+\resposta{Entre: $E=\SI{113}{\kilo\newton\per\coulomb}$; fora: $E=0$}
+\resolucao{(a) Cada plano contribui com $\sigma/2\varepsilon_0$, e
+\textbf{entre} as placas as duas contribuições têm o \emph{mesmo} sentido (do
+positivo para o negativo):
+\[
+E=2\cdot\frac{\sigma}{2\varepsilon_0}=\frac{\sigma}{\varepsilon_0}
+=\frac{\pot{1}{-6}}{\pot{8.85}{-12}}=\pot{1.13}{5}\,\si{\newton\per\coulomb}.
+\]
+(b) \textbf{Fora}, as duas contribuições têm sentidos \emph{opostos} e módulos
+iguais:
+\[
+E=\frac{\sigma}{2\varepsilon_0}-\frac{\sigma}{2\varepsilon_0}=0.
+\]
+(c) \textbf{Justificativa:} o campo de um plano infinito é uniforme e aponta
+para longe dele (se positivo) ou para ele (se negativo). Na região externa,
+qualquer ponto está do mesmo lado das duas placas --- e os campos se opõem.
+Entre elas, o ponto está "depois" da positiva e "antes" da negativa, e os campos
+se somam.\\
+\textbf{Consequência: blindagem natural.} O par de placas confina completamente
+seu campo na região interna --- não há campo escapando para fora. É por isso que
+um capacitor de placas paralelas não interfere no circuito vizinho, e por que a
+energia armazenada está inteiramente entre as armaduras.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma esfera condutora de raio $R=\SI{10}{\centi\meter}$ tem carga
+$Q=\SI{5}{\micro\coulomb}$.
+\begin{itensq}
+\item Determine o campo no interior, na superfície e a $\SI{30}{\centi\meter}$
+      do centro.
+\item Avalie se a configuração é fisicamente sustentável no ar.
+\end{itensq}
+\resposta{$0$; $\SI{4.5}{\mega\volt\per\meter}$;
+$\SI{500}{\kilo\volt\per\meter}$ --- \textbf{insustentável}}
+\resolucao{(a) \textbf{Interior:} $E=0$, condição de equilíbrio de qualquer
+condutor.\\
+\textbf{Superfície:} toda a carga se comporta como concentrada no centro, para
+pontos externos:
+\[
+E=\frac{\ke Q}{R^{2}}=\frac{\pot{9}{9}(\pot{5}{-6})}{0{,}01}
+=\pot{4.5}{6}\,\si{\volt\per\meter}.
+\]
+\textbf{A $\SI{30}{\centi\meter}$:}
+$E=\dfrac{\pot{4.5}{4}}{0{,}09}=\pot{5}{5}\,\si{\volt\per\meter}$.\\
+(b) \textbf{Insustentável.} O campo na superfície,
+$\SI{4.5}{\mega\volt\per\meter}$, excede a rigidez dielétrica do ar
+($\SI{3}{\mega\volt\per\meter}$) em $50\%$. O ar ioniza e a carga escapa por
+descarga corona.\\
+\textbf{Carga máxima real:}
+$Q_{\max}=E_{rup}R^{2}/\ke=\SI{3.33}{\micro\coulomb}$. A esfera simplesmente
+\emph{não consegue} reter os $\SI{5}{\micro\coulomb}$ enunciados.\\
+\textbf{Lição de método:} sempre verifique se o resultado é fisicamente
+possível. Um problema pode ser aritmeticamente consistente e descrever uma
+situação inexistente.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um elétron parte do repouso em um campo uniforme de
+$E=\SI{1000}{\volt\per\meter}$ e percorre $\SI{2}{\centi\meter}$.
+\begin{itensq}
+\item Determine a aceleração e o tempo de percurso.
+\item Determine a velocidade final e a energia adquirida.
+\end{itensq}
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$; $m_e=\pot{9.11}{-31}\,\si{\kilogram}$}
+\resposta{$a=\pot{1.76}{14}\,\si{\meter\per\second\squared}$;
+$t=\SI{15.1}{\nano\second}$; $v=\pot{2.65}{6}\,\si{\meter\per\second}$;
+$\SI{20}{\electronvolt}$}
+\resolucao{(a)
+\[
+a=\frac{eE}{m_e}=\frac{(\pot{1.6}{-19})(1000)}{\pot{9.11}{-31}}
+=\pot{1.756}{14}\,\si{\meter\per\second\squared};
+\]
+\[
+t=\sqrt{\frac{2d}{a}}=\sqrt{\frac{2(0{,}02)}{\pot{1.756}{14}}}
+=\pot{1.51}{-8}\,\si{\second}=\SI{15.1}{\nano\second}.
+\]
+(b) $v=at=(\pot{1.756}{14})(\pot{1.51}{-8})
+=\pot{2.65}{6}\,\si{\meter\per\second}$.\\
+\textbf{Energia:} o mais rápido é usar a tensão percorrida,
+$U=Ed=1000(0{,}02)=\SI{20}{\volt}$:
+\[
+W=eU=\SI{20}{\electronvolt}=\pot{3.2}{-18}\,\si{\joule}.
+\]
+\emph{(Conferindo: $\frac12m_ev^{2}=\frac12(\pot{9.11}{-31})(\pot{2.65}{6})^{2}
+=\pot{3.2}{-18}\,\si{\joule}$ \checkmark.)}\\
+\textbf{Verificação relativística:} $v/c=0{,}9\%$ --- plenamente no regime
+clássico.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare a queda do campo com a distância para três configurações: carga
+puntiforme, fio infinito carregado e plano infinito carregado.
+\begin{itensq}
+\item Escreva a dependência de cada uma.
+\item Explique a origem geométrica das diferenças.
+\end{itensq}
+\resposta{$1/r^{2}$, $1/r$ e constante}
+\resolucao{(a)
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Distribuição & Campo & Queda\\
+\hline
+Carga puntiforme & $\dfrac{\ke Q}{r^{2}}$ & $1/r^{2}$\\[6pt]
+Fio infinito ($\lambda$) & $\dfrac{\lambda}{2\pi\varepsilon_0 r}$ & $1/r$\\[6pt]
+Plano infinito ($\sigma$) & $\dfrac{\sigma}{2\varepsilon_0}$ & constante\\
+\hline
+\end{tabular}
+\end{center}
+(b) \textbf{Origem geométrica.} Pela lei de Gauss, o fluxo total é fixo pela
+carga envolvida, e o campo é o fluxo dividido pela área da superfície:
+\begin{itemize}
+\item \textbf{Ponto:} a superfície é uma \emph{esfera}, de área
+$4\pi r^{2}$ --- o campo cai com $1/r^{2}$.
+\item \textbf{Fio:} a superfície é um \emph{cilindro}, de área lateral
+$2\pi r\ell$ --- cresce apenas com $r$, e o campo cai com $1/r$.
+\item \textbf{Plano:} a superfície é um \emph{prisma} cuja área \emph{não
+depende} de $r$ --- e o campo não cai.
+\end{itemize}
+\textbf{Regra unificadora:} o campo cai como $1/r^{n}$, onde $n$ é o número de
+dimensões em que a fonte é \emph{limitada}. Ponto: limitado em três
+($n=2$). Fio: em duas ($n=1$). Plano: em uma ($n=0$).\\
+\textbf{Consequência prática:} perto de uma placa carregada extensa, afastar-se
+não ajuda --- o campo permanece. É o oposto da intuição formada com cargas
+puntiformes.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma haste isolante fina é carregada de modo que produz, em certo ponto, campo
+de $\SI{600}{\newton\per\coulomb}$. A haste é então partida ao meio, e apenas
+uma das metades permanece.
+\begin{itensq}
+\item O campo cai à metade? Justifique.
+\item Determine em que condição isso valeria.
+\end{itensq}
+\resposta{Não necessariamente --- só vale se a metade removida contribuísse com
+exatamente metade do campo}
+\resolucao{(a) \textbf{Não, em geral.} O campo é a soma \emph{vetorial} das
+contribuições de todos os elementos da haste, e cada elemento contribui com
+módulo e direção diferentes, dependendo de sua distância e posição angular em
+relação ao ponto.\\
+Se o ponto estiver \emph{sobre a mediatriz} da haste, as duas metades
+contribuem igualmente e o campo de fato cai à metade --- mas a \emph{direção}
+resultante também muda, pois as componentes que antes se cancelavam agora não
+se cancelam mais.\\
+Se o ponto estiver \emph{sobre o prolongamento} da haste, a metade mais próxima
+contribui muito mais que a distante, e remover a distante reduz o campo bem
+menos que $50\%$.\\
+(b) \textbf{A queda é exatamente à metade quando:}
+\begin{itemize}
+\item as duas metades contribuem com vetores \emph{idênticos} --- o que exige
+simetria completa em relação ao ponto; \emph{e}
+\item essa condição só se realiza em pontos muito distantes, onde a haste inteira
+se comporta como carga puntiforme e a divisão é simplesmente $Q\to Q/2$.
+\end{itemize}
+\textbf{Lição:} a superposição vale \emph{sempre}, mas ela é vetorial. Reduzir
+a fonte pela metade não reduz o campo pela metade, exceto em casos de simetria
+particular.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Campo nulo com potencial não nulo.)} Construa uma configuração em que
+$\vec E=\vec0$ em um ponto onde $V\ne0$.
+\begin{itensq}
+\item Proponha o arranjo mais simples e determine os valores.
+\item Explique por que isso é possível.
+\item Determine se o inverso ($V=0$ com $\vec E\ne\vec0$) também ocorre.
+\end{itensq}
+\resposta{Duas cargas iguais $+Q$; no ponto médio $\vec E=\vec0$ e
+$V=2\ke Q/a$}
+\resolucao{(a) \textbf{Arranjo:} duas cargas iguais $Q=+\SI{2}{\micro\coulomb}$
+em $(\pm\SI{0.20}{\meter},\,0)$. No ponto médio:
+\[
+\vec E=\vec 0
+\quad\text{(contribuições opostas)};
+\]
+\[
+V=2\cdot\frac{\ke Q}{0{,}20}
+=2\cdot\frac{\pot{9}{9}(\pot{2}{-6})}{0{,}20}
+=\pot{1.8}{5}\,\si{\volt}=\SI{180}{\kilo\volt}.
+\]
+Campo nulo, potencial de cento e oitenta mil volts.\\
+(b) \textbf{Por que é possível.} As duas grandezas se relacionam por
+$\vec E=-\nabla V$: o campo é a \emph{taxa de variação} de $V$, não seu valor.
+Uma função pode ter valor grande e derivada nula --- é exatamente o que ocorre
+em um ponto \emph{estacionário}.\\
+No ponto médio, $V$ tem um mínimo ao longo do eixo que une as cargas: o valor é
+alto, mas a inclinação é zero.\\
+(c) \textbf{Sim, o inverso também ocorre.} Substituindo uma das cargas por
+$-Q$, o ponto médio passa a ter $V=0$ (contribuições opostas se cancelam
+algebricamente) e $\vec E\ne\vec0$ (os vetores apontam para o mesmo lado e se
+somam).\\
+\textbf{Síntese:} $V=0$ e $\vec E=\vec0$ são condições \textbf{logicamente
+independentes}. Nenhuma implica a outra, em nenhum dos dois sentidos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Linhas de campo.)} Analise as linhas de campo de um dipolo elétrico.
+\begin{itensq}
+\item Descreva seu traçado.
+\item Demonstre que linhas de campo nunca se cruzam.
+\item Explique o que ocorre em pontos de campo nulo.
+\end{itensq}
+\resposta{Saem de $+q$ e entram em $-q$; não se cruzam porque $\vec E$ tem
+direção única em cada ponto}
+\resolucao{(a) \textbf{Traçado.} As linhas saem radialmente de $+q$, curvam-se e
+entram em $-q$. A linha que segue o eixo do dipolo é reta; as demais formam
+arcos progressivamente mais abertos. Algumas partem para o infinito e retornam.\\
+A densidade de linhas é máxima entre as cargas --- onde o campo é mais intenso
+--- e decresce com $1/r^{3}$ ao se afastar, conforme demonstrado antes.\\
+(b) \textbf{Demonstração.} Suponha, por absurdo, que duas linhas se cruzem em
+um ponto $P$. Por definição, a linha de campo é \emph{tangente} a $\vec E$ em
+cada ponto. Se duas linhas distintas passam por $P$, elas têm tangentes
+distintas ali --- e portanto $\vec E(P)$ teria \textbf{duas direções}
+simultaneamente.\\
+Mas $\vec E$ é uma função vetorial \emph{bem definida}: a cada ponto do espaço
+corresponde \emph{um} vetor. Contradição. Logo, as linhas não se cruzam.\\
+\textbf{Corolário:} o mesmo argumento vale para linhas de corrente, linhas de
+campo magnético e qualquer outro campo vetorial.\\
+(c) \textbf{Pontos de campo nulo são a exceção.} Onde $\vec E=\vec0$, não há
+direção definida --- e ali as linhas \emph{podem} se encontrar, sem contradição.
+São os \textbf{pontos de sela} do potencial.\\
+Em um dipolo ($+q$ e $-q$) não existe tal ponto no espaço finito. Mas em duas
+cargas \emph{iguais}, o ponto médio é exatamente um ponto de campo nulo --- e
+ali as linhas se aproximam de todos os lados sem se tocarem, definindo uma
+separatriz.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de acelerador de placas.)} Projete um arranjo de placas
+paralelas que imprima aceleração de
+$a=\pot{2}{12}\,\si{\meter\per\second\squared}$ a um elétron.
+\begin{itensq}
+\item Determine o campo necessário.
+\item Determine a tensão para separação de $\SI{1}{\centi\meter}$.
+\item Determine o tempo de trânsito e a velocidade de saída.
+\end{itensq}
+\dados{$e=\pot{1.6}{-19}\,\si{\coulomb}$; $m_e=\pot{9.11}{-31}\,\si{\kilogram}$}
+\resposta{$E=\SI{11.4}{\volt\per\meter}$; $U=\SI{0.114}{\volt}$;
+$t=\SI{100}{\nano\second}$; $v=\pot{2}{5}\,\si{\meter\per\second}$}
+\resolucao{(a)
+\[
+E=\frac{m_ea}{e}=\frac{(\pot{9.11}{-31})(\pot{2}{12})}{\pot{1.6}{-19}}
+=\SI{11.4}{\volt\per\meter}.
+\]
+(b) $U=Ed=11{,}4(0{,}01)=\SI{0.114}{\volt}$.\\
+(c)
+\[
+t=\sqrt{\frac{2d}{a}}=\sqrt{\frac{0{,}02}{\pot{2}{12}}}
+=\pot{1}{-7}\,\si{\second}=\SI{100}{\nano\second};
+\]
+\[
+v=at=(\pot{2}{12})(\pot{1}{-7})=\pot{2}{5}\,\si{\meter\per\second}.
+\]
+\textbf{O resultado é surpreendente e instrutivo.} Uma aceleração de
+$\pot{2}{12}\,\si{\meter\per\second\squared}$ --- duzentos bilhões de vezes
+$g$ --- exige apenas $\SI{0.114}{\volt}$, tensão menor que a de uma pilha
+descarregada.\\
+\textbf{Razão:} a razão carga/massa do elétron é enorme
+($\pot{1.76}{11}\,\si{\coulomb\per\kilogram}$). Campos elétricos modestos
+produzem acelerações colossais em partículas leves.\\
+\textbf{Ressalva prática:} com tensão tão baixa, o projeto seria dominado por
+efeitos parasitas --- diferenças de função-trabalho entre os metais das placas
+(décimos de volt), cargas superficiais e ruído térmico. Um projeto real usaria
+tensões de dezenas de volts e aceleração proporcionalmente maior.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Cavidade em condutor.)} Uma carga puntiforme $+q$ é colocada no
+interior de uma cavidade vazia dentro de um condutor \emph{neutro} e isolado.
+\begin{itensq}
+\item Determine a carga induzida em cada superfície.
+\item Determine o campo dentro do metal e fora do condutor.
+\item Analise o que muda se o condutor for aterrado.
+\end{itensq}
+\resposta{$-q$ na parede da cavidade, $+q$ na superfície externa; campo nulo no
+metal e não nulo fora}
+\resolucao{(a) \textbf{Parede da cavidade:} aplicando a lei de Gauss a uma
+superfície inteiramente dentro do metal (onde $\vec E=\vec0$), o fluxo é nulo e
+a carga envolvida também. Como a superfície envolve $+q$ e a parede interna:
+\[
+q+q_{interna}=0
+\;\Longrightarrow\;
+q_{interna}=-q.
+\]
+\textbf{Superfície externa:} o condutor era neutro, então a carga total deve
+permanecer nula:
+\[
+q_{externa}=+q.
+\]
+(b) \textbf{Dentro do metal:} $\vec E=\vec0$, por equilíbrio.\\
+\textbf{Fora:} a carga $+q$ da superfície externa produz campo --- e ele é
+\textbf{esfericamente simétrico} se a superfície externa for esférica,
+\emph{independentemente} de onde a carga esteja dentro da cavidade.\\
+\textbf{Consequência notável:} de fora, é impossível saber a posição da carga
+interna, nem a forma da cavidade. O condutor "apaga" essa informação.\\
+(c) \textbf{Se o condutor for aterrado:} a carga $+q$ da superfície externa
+escoa para a terra. Resta apenas $-q$ na parede da cavidade, e
+\[
+\vec E=\vec 0\quad\text{em todo o exterior}.
+\]
+\textbf{A blindagem torna-se completa nos dois sentidos.} É exatamente esse o
+princípio da gaiola de Faraday aterrada --- e a diferença entre blindar contra
+campos externos (que dispensa aterramento) e impedir que fontes internas
+irradiem (que o exige).}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Esfera isolante uniformemente carregada.)} Uma esfera isolante maciça
+de raio $R$ tem carga $Q$ distribuída uniformemente em seu \emph{volume}.
+\begin{itensq}
+\item Determine o campo para $r<R$ e para $r>R$.
+\item Identifique onde o campo é máximo.
+\item Compare com a esfera \emph{condutora} de mesma carga.
+\end{itensq}
+\resposta{$E=\dfrac{\ke Qr}{R^{3}}$ dentro e $\dfrac{\ke Q}{r^{2}}$ fora;
+máximo na superfície}
+\resolucao{(a) \textbf{Fora ($r>R$):} pela lei de Gauss com superfície esférica,
+toda a carga está envolvida:
+\[
+E=\frac{\ke Q}{r^{2}},
+\]
+idêntico ao de uma carga puntiforme no centro.\\
+\textbf{Dentro ($r<R$):} apenas a fração de carga interna à superfície gaussiana
+conta. Como a densidade é uniforme, essa fração é $(r/R)^{3}$:
+\[
+E=\frac{\ke\,Q(r/R)^{3}}{r^{2}}=\frac{\ke Q\,r}{R^{3}},
+\]
+\textbf{proporcional a $r$} --- cresce linearmente do centro à superfície.\\
+(b) \textbf{Máximo na superfície} ($r=R$), onde as duas expressões coincidem em
+$E=\ke Q/R^{2}$. O campo é contínuo ali, embora com derivadas diferentes de
+cada lado.\\
+\emph{No centro, $E=0$ por simetria.}\\
+(c) \textbf{Comparação com a esfera condutora.}
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Região & Isolante & Condutora\\
+\hline
+$r<R$ & $\ke Qr/R^{3}$ & $0$\\
+$r=R$ & $\ke Q/R^{2}$ & $\ke Q/R^{2}$\\
+$r>R$ & $\ke Q/r^{2}$ & $\ke Q/r^{2}$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{São indistinguíveis do lado de fora} --- a lei de Gauss só "enxerga" a
+carga total envolvida, não sua distribuição. A diferença está inteiramente no
+interior: no condutor a carga migra para a superfície e o campo interno é nulo;
+no isolante ela permanece onde foi colocada.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Traçado numérico de linhas de campo.)} Descreva um procedimento
+computacional para traçar linhas de campo a partir de uma expressão conhecida de
+$\vec E(x,y)$.
+\begin{itensq}
+\item Formule o algoritmo.
+\item Indique como escolher os pontos de partida.
+\item Aponte as dificuldades numéricas e como contorná-las.
+\end{itensq}
+\resposta{Integrar $\dfrac{\mathrm{d}\vec r}{\mathrm{d}s}
+=\dfrac{\vec E}{|\vec E|}$ a partir de pontos distribuídos em torno das cargas}
+\resolucao{(a) \textbf{Algoritmo.} A linha de campo é, por definição, tangente a
+$\vec E$. Parametrizando pelo comprimento de arco $s$:
+\[
+\frac{\mathrm{d}\vec r}{\mathrm{d}s}=\frac{\vec E(\vec r)}{|\vec E(\vec r)|}.
+\]
+Numericamente, com passo $h$:
+\begin{enumerate}
+\item Escolha um ponto inicial $\vec r_0$.
+\item Calcule $\vec E(\vec r_n)$ e normalize.
+\item Avance: $\vec r_{n+1}=\vec r_n+h\,\hat E$ (Euler) ou, melhor, por
+Runge--Kutta de quarta ordem.
+\item Repita até sair do domínio ou atingir uma carga negativa.
+\end{enumerate}
+\textbf{Normalizar é essencial:} sem isso, o passo seria proporcional a
+$|\vec E|$ e a linha "voaria" perto das cargas e travaria longe delas.\\
+(b) \textbf{Pontos de partida.} Distribua-os em pequenos círculos ao redor de
+cada carga \emph{positiva}, com espaçamento angular uniforme. Para que a
+densidade de linhas represente corretamente a intensidade, o número de linhas
+por carga deve ser \emph{proporcional a $|q|$} --- oito linhas para $+q$,
+dezesseis para $+2q$.\\
+(c) \textbf{Dificuldades e soluções.}
+\begin{itemize}
+\item \textbf{Singularidades:} $|\vec E|\to\infty$ nas cargas. Solução: iniciar
+a uma distância pequena mas finita, e interromper a integração ao entrar em um
+raio mínimo em torno de uma carga negativa.
+\item \textbf{Pontos de campo nulo:} ali $\hat E$ é indefinido e o algoritmo
+trava ou oscila. Solução: detectar $|\vec E|<\epsilon$ e encerrar a linha.
+\item \textbf{Acúmulo de erro:} o método de Euler desvia sistematicamente em
+regiões de curvatura alta. Solução: Runge--Kutta e passo adaptativo, menor onde
+o campo varia rápido.
+\item \textbf{Linhas que escapam:} defina um domínio e encerre ao ultrapassá-lo.
+\end{itemize}
+\textbf{Verificação do resultado:} as linhas traçadas devem ser perpendiculares
+às equipotenciais calculadas independentemente --- teste que detecta quase todo
+erro de implementação.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Limite de campo em capacitor.)} Um capacitor de placas paralelas com
+$d=\SI{0.1}{\milli\meter}$ usa dielétrico de rigidez
+$\SI{20}{\kilo\volt\per\milli\meter}$ e $\varepsilon_r=3$.
+\begin{itensq}
+\item Determine a tensão máxima e o campo correspondente.
+\item Determine a densidade superficial de carga no limite.
+\item Discuta o compromisso entre capacitância e tensão.
+\end{itensq}
+\dados{$\varepsilon_0=\pot{8.85}{-12}\,\si{\farad\per\meter}$}
+\resposta{$U_{\max}=\SI{2}{\kilo\volt}$;
+$E=\SI{2e7}{\volt\per\meter}$;
+$\sigma=\SI{531}{\micro\coulomb\per\meter\squared}$}
+\resolucao{(a)
+\[
+U_{\max}=E_{rup}\,d=20\times0{,}1=\SI{2}{\kilo\volt};
+\qquad
+E=\pot{2}{7}\,\si{\volt\per\meter}.
+\]
+(b) No dielétrico, $E=\dfrac{\sigma}{\varepsilon_r\varepsilon_0}$, logo
+\[
+\sigma=\varepsilon_r\varepsilon_0E
+=3(\pot{8.85}{-12})(\pot{2}{7})
+=\pot{5.31}{-4}\,\si{\coulomb\per\meter\squared}.
+\]
+(c) \textbf{O compromisso.} A capacitância por unidade de área é
+$C/A=\varepsilon_r\varepsilon_0/d$: reduzir $d$ \emph{aumenta} $C$. Mas
+$U_{\max}=E_{rup}d$: reduzir $d$ \emph{diminui} a tensão suportável.\\
+O produto revela o que realmente importa:
+\[
+\frac{C\,U_{\max}}{A}=\varepsilon_r\varepsilon_0E_{rup},
+\]
+que \textbf{não depende de $d$}. E a energia por unidade de volume,
+\[
+u=\frac12\varepsilon_r\varepsilon_0E_{rup}^{2},
+\]
+também não. \textbf{A geometria não decide nada} --- só o material.\\
+\textbf{Consequência:} não existe truque de projeto que aumente a energia
+armazenada por volume. Todo avanço em capacitores vem de materiais com
+$\varepsilon_r$ ou $E_{rup}$ maiores --- e esses dois parâmetros costumam ser
+antagônicos, o que torna o problema difícil.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Superposição vetorial em anel.)} Um anel de raio $R$ tem carga
+$Q$ uniformemente distribuída.
+\begin{itensq}
+\item Explique por que o campo é nulo no centro.
+\item Determine, sem integrar, o campo em um ponto muito distante no eixo.
+\item Discuta o que ocorre se metade do anel for removida.
+\end{itensq}
+\resposta{Centro: $\vec E=\vec0$ por simetria; longe: $E\to\ke Q/x^{2}$;
+com meio anel, campo não nulo no centro}
+\resolucao{(a) \textbf{No centro,} para cada elemento de carga existe outro
+diametralmente oposto, à mesma distância $R$. Suas contribuições têm módulos
+iguais e sentidos opostos, cancelando-se aos pares:
+\[
+\vec E_{centro}=\vec 0.
+\]
+\textbf{Note:} o \emph{potencial} no centro não é nulo --- vale
+$V=\ke Q/R$, pois potenciais somam-se sem cancelamento entre contribuições de
+mesmo sinal. Mais um caso de $\vec E=\vec0$ com $V\ne0$.\\
+(b) \textbf{Muito longe} ($x\gg R$), todos os elementos estão praticamente à
+mesma distância $x$ e praticamente na mesma direção. O anel se comporta como uma
+carga puntiforme:
+\[
+E\to\frac{\ke Q}{x^{2}}.
+\]
+\textbf{Este é o teste que toda expressão deve passar:} qualquer distribuição
+finita, vista de longe, deve reproduzir a lei de Coulomb.\\
+(c) \textbf{Com meio anel}, a simetria de cancelamento se perde. Cada elemento
+não tem mais seu par oposto, e o campo no centro \textbf{deixa de ser nulo}.\\
+Pelo argumento da superposição ao contrário: como o anel inteiro dá campo nulo,
+o campo do semianel restante é o \emph{negativo} do campo do semianel removido
+--- ou seja, os dois têm o mesmo módulo. Integrando (como no caso do fio
+semicircular), obtém-se
+\[
+E=\frac{2\ke Q'}{\pi R^{2}},
+\]
+com $Q'=Q/2$ a carga de cada metade, dirigido ao longo do eixo de simetria.}
+\end{questao}

@@ -1,0 +1,870 @@
+% =====================================================================
+%  Banco complementar --- Campo Magnetico  (REVISADO)
+%  Substitui a versao gerada por template (5 clones em N1, 9 em N2,
+%  8 em N3 e 8 questoes conceituais marcadas como N4).
+%  O cap11 ja cobre: B proporcional a 1/r (MC), fio de 10 A a 5 cm,
+%  regra da mao direita, solenoide de 1000 esp/m, ESPIRA CIRCULAR de
+%  R=10 cm no centro, fio de 4 A a 2 cm, DOIS FIOS PARALELOS (mesmo
+%  sentido e sentidos opostos), TOROIDE e duas espiras concentricas.
+%  Este banco evita esses casos e explora: fio de secao finita por
+%  lei de Ampere, cabo coaxial, campo no eixo de espira, dipolo
+%  magnetico a grande distancia, projeto de solenoide, mapeamento com
+%  sensor Hall, blindagem magnetica e os limites praticos de eletroimas.
+%  Distribuicao mantida: 5 N1 + 9 N2 + 8 N3 + 8 N4 = 30
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Campo magnético}
+
+\begin{atencao}[Organização do banco]
+Três resultados cobrem quase tudo: fio retilíneo longo
+($B=\mu_0I/2\pi r$), centro de espira ($B=\mu_0I/2R$) e solenoide longo
+($B=\mu_0nI$, \emph{independente} do raio). Note que apenas o primeiro decai com
+a distância --- dentro do solenoide o campo é uniforme. O N3 trata de condutores
+de seção finita, cabo coaxial e campo fora do eixo; o N4 exige dedução por
+Biot--Savart, projeto, blindagem e limites físicos.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um fio retilíneo longo conduz $\SI{2}{\ampere}$. Determine o campo magnético a
+$\SI{1}{\centi\meter}$ dele.
+\dados{$\mu_0=4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$}
+\resposta{$B=\SI{40}{\micro\tesla}$}
+\resolucao{
+\[
+B=\frac{\mu_0 I}{2\pi r}=\frac{(4\pi\times10^{-7})(2)}{2\pi(0{,}01)}
+=\frac{\pot{2}{-7}\times2}{0{,}01}=\pot{4}{-5}\,\si{\tesla}.
+\]
+\textbf{Atalho útil:} $\dfrac{\mu_0}{2\pi}=\pot{2}{-7}$ exatamente, de modo que
+$B=\pot{2}{-7}\dfrac{I}{r}$ --- evita carregar $\pi$ pela conta toda.\\
+\textbf{Ordem de grandeza:} $\SI{40}{\micro\tesla}$ é comparável ao campo
+magnético da Terra ($\approx\SI{50}{\micro\tesla}$). Uma bússola perto desse fio
+já seria perturbada.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um solenoide tem $\SI{2000}{}$ espiras por metro e conduz
+$\SI{3}{\ampere}$. Determine o campo em seu interior.
+\resposta{$B=\SI{7.54}{\milli\tesla}$}
+\resolucao{
+\[
+B=\mu_0 nI=(4\pi\times10^{-7})(2000)(3)=\pot{7.54}{-3}\,\si{\tesla}.
+\]
+\textbf{Note o que \emph{não} aparece na fórmula:} o raio do solenoide e o
+número total de espiras. Só importa a \textbf{densidade linear}
+$n=N/L$.\\
+Dois solenoides, um fino e um grosso, com a mesma densidade de espiras e a mesma
+corrente, produzem o \emph{mesmo} campo interno.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine a corrente necessária para que um fio retilíneo produza
+$B=\SI{100}{\micro\tesla}$ a $\SI{2}{\centi\meter}$.
+\resposta{$I=\SI{10}{\ampere}$}
+\resolucao{
+\[
+I=\frac{2\pi rB}{\mu_0}=\frac{rB}{\pot{2}{-7}}
+=\frac{(0{,}02)(\pot{1}{-4})}{\pot{2}{-7}}=\SI{10}{\ampere}.
+\]
+\textbf{Leitura prática:} são necessários $\SI{10}{\ampere}$ para produzir, a
+dois centímetros, apenas o dobro do campo terrestre. Campos magnéticos
+intensos exigem correntes altas --- ou muitas espiras.}
+\end{questao}
+
+\begin{questao}[1]{}
+Sobre o campo magnético de um solenoide longo, é correto afirmar:
+\begin{alternativas}[2]
+\item é uniforme no interior e praticamente nulo no exterior
+\item é maior no exterior
+\item aumenta com a distância ao eixo, no interior
+\item é nulo no interior
+\end{alternativas}
+\resposta{(a)}
+\resolucao{Aplicando a lei de Ampère a um retângulo com um lado dentro e outro
+fora, obtém-se $B_{int}=\mu_0nI$ e $B_{ext}\approx0$ para um solenoide
+\emph{ideal} (infinitamente longo).\\
+\textbf{Por que o campo externo quase se anula:} as linhas que saem de uma
+extremidade retornam pela outra, espalhando-se por um volume enorme --- a
+densidade de linhas fora é desprezível diante da interna.\\
+\textbf{Em solenoides reais}, o campo externo não é exatamente nulo, e nas
+extremidades o campo interno cai para cerca de \emph{metade} do valor central.}
+\end{questao}
+
+\begin{questao}[1]{}
+O campo magnético da Terra vale aproximadamente $\SI{50}{\micro\tesla}$.
+Expresse-o em gauss.
+\dados{$\SI{1}{\tesla}=10^{4}\,\si{\gauss}$}
+\resposta{$\SI{0.5}{\gauss}$}
+\resolucao{
+\[
+B=\pot{5}{-5}\,\si{\tesla}\times10^{4}=\SI{0.5}{\gauss}.
+\]
+\textbf{Escala de referência para o tópico:}
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Situação & Tesla & Gauss\\
+\hline
+Campo terrestre & $\pot{5}{-5}$ & $0{,}5$\\
+Ímã de geladeira & $\pot{5}{-3}$ & $50$\\
+Ímã de neodímio (superfície) & $0{,}5$ & $5000$\\
+Ressonância magnética & $1{,}5$ a $3$ & $\pot{1.5}{4}$ a $\pot{3}{4}$\\
+\hline
+\end{tabular}
+\end{center}
+O tesla é uma unidade \emph{grande}: campos de laboratório raramente passam de
+alguns tesla, e o gauss continua em uso justamente por ser mais próximo dos
+valores cotidianos.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um solenoide de $100$ espiras e $\SI{10}{\centi\meter}$ de comprimento conduz
+$\SI{1}{\ampere}$, com núcleo de ar.
+\begin{itensq}
+\item Determine a densidade de espiras.
+\item Determine o campo interno.
+\end{itensq}
+\resposta{$n=\SI{1000}{\per\meter}$; $B=\SI{1.26}{\milli\tesla}$}
+\resolucao{(a) $n=\dfrac{100}{0{,}10}=\SI{1000}{\per\meter}$.\\
+(b) $B=\mu_0nI=(4\pi\times10^{-7})(1000)(1)
+=\pot{1.257}{-3}\,\si{\tesla}$.\\
+\textbf{Comparação instrutiva:} isso é apenas $25$ vezes o campo terrestre ---
+um solenoide modesto produz campo modesto. Para chegar a
+$\SI{0.1}{\tesla}$ seriam necessários $\SI{80}{\ampere}$ com a mesma
+geometria, o que exigiria refrigeração.\\
+\textbf{Caminho alternativo:} inserir núcleo ferromagnético, que multiplica
+$B$ por $\mu_r$ --- centenas ou milhares de vezes.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um fio conduz corrente constante. Compare o campo a $\SI{4}{\centi\meter}$ com
+o campo a $\SI{12}{\centi\meter}$.
+\resposta{$B_1/B_2=3$}
+\resolucao{Como $B\propto1/r$:
+\[
+\frac{B_1}{B_2}=\frac{r_2}{r_1}=\frac{12}{4}=3.
+\]
+\textbf{Contraste importante com o campo elétrico:} o campo de uma carga
+puntiforme cai com $1/r^{2}$, mas o de um fio \emph{infinito} cai com
+$1/r$.\\
+A razão é a mesma da eletrostática: o fio é uma fonte \emph{estendida} em uma
+dimensão, e a superfície amperiana (um cilindro) tem área proporcional a $r$,
+não a $r^{2}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma espira circular de raio $\SI{5}{\centi\meter}$ deve produzir
+$\SI{100}{\micro\tesla}$ em seu centro. Determine a corrente.
+\resposta{$I\approx\SI{7.96}{\ampere}$}
+\resolucao{Do campo no centro de uma espira, $B=\dfrac{\mu_0I}{2R}$:
+\[
+I=\frac{2RB}{\mu_0}=\frac{2(0{,}05)(\pot{1}{-4})}{4\pi\times10^{-7}}
+=\SI{7.96}{\ampere}.
+\]
+\textbf{Comparação com o fio reto:} um fio retilíneo a
+$\SI{5}{\centi\meter}$ precisaria de $\SI{25}{\ampere}$ para o mesmo campo. A
+espira é mais eficiente porque \emph{todos} os seus elementos contribuem no
+mesmo sentido no centro --- a razão entre as duas fórmulas é exatamente
+$\pi$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um solenoide tem $N$ espiras e comprimento $L$. Determine o que ocorre com o
+campo interno se $N$ e $L$ forem \textbf{ambos dobrados}.
+\resposta{O campo não se altera}
+\resolucao{Como $B=\mu_0\dfrac{N}{L}I$, dobrar $N$ e $L$ mantém a razão
+$N/L$ inalterada:
+\[
+B'=\mu_0\frac{2N}{2L}I=B.
+\]
+\textbf{Interpretação:} o solenoide dobrado equivale a dois solenoides
+originais colocados em sequência. Cada trecho "enxerga" a mesma vizinhança de
+espiras, e o campo local não muda.\\
+\textbf{O que muda:} a região de campo uniforme fica mais longa, e a resistência
+do enrolamento dobra --- exigindo o dobro da tensão para a mesma corrente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Dois fios longos e paralelos, distantes $\SI{8}{\centi\meter}$, conduzem
+$\SI{4}{\ampere}$ cada, no \textbf{mesmo} sentido. Determine o campo no ponto
+médio entre eles.
+\resposta{$B=0$}
+\resolucao{Cada fio produz, no ponto médio,
+\[
+B=\pot{2}{-7}\frac{4}{0{,}04}=\pot{2}{-5}\,\si{\tesla}.
+\]
+Pela regra da mão direita, com as correntes no \emph{mesmo} sentido, os dois
+campos têm sentidos \textbf{opostos} no ponto médio --- e módulos iguais.
+Cancelam-se:
+\[
+B_{total}=0.
+\]
+\textbf{Cuidado com a intuição:} correntes de mesmo sentido \emph{atraem-se},
+mas seus campos se \emph{cancelam} entre elas. Força e campo são coisas
+diferentes.\\
+\textbf{Fora do par}, ao contrário, os campos se somam --- e é por isso que dois
+fios juntos conduzindo no mesmo sentido produzem, de longe, o campo de um único
+fio de corrente $2I$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um fio reto é imerso em um meio de permeabilidade relativa $\mu_r=200$.
+Determine o efeito sobre o campo, comparado ao ar.
+\resposta{O campo fica $200$ vezes maior}
+\resolucao{Em meio linear,
+\[
+B=\frac{\mu_r\mu_0I}{2\pi r},
+\]
+de modo que $B$ é multiplicado por $\mu_r=200$.\\
+\textbf{Mecanismo:} o material se \emph{magnetiza}, e seus dipolos alinhados
+somam sua própria contribuição ao campo aplicado. Diferentemente do dielétrico
+--- que \emph{reduz} o campo elétrico --- o material ferromagnético o
+\textbf{amplifica}.\\
+\textbf{Ressalva séria:} $\mu_r$ não é constante. Ele cai drasticamente quando o
+material satura, e a relação $B\times H$ deixa de ser linear. A fórmula acima
+vale apenas em campos baixos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine a distância a que um fio de $\SI{50}{\ampere}$ produz campo igual ao
+terrestre ($\SI{50}{\micro\tesla}$).
+\resposta{$r=\SI{20}{\centi\meter}$}
+\resolucao{
+\[
+r=\frac{\pot{2}{-7}I}{B}=\frac{(\pot{2}{-7})(50)}{\pot{5}{-5}}
+=\SI{0.20}{\meter}.
+\]
+\textbf{Consequência prática:} a menos de $\SI{20}{\centi\meter}$ de um
+condutor de $\SI{50}{\ampere}$, uma bússola aponta mais para o fio do que para
+o norte.\\
+É por isso que instrumentos magnéticos sensíveis --- e monitores de tubo, na
+época em que existiam --- precisam ficar afastados de cabos de potência.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um toroide e um solenoide têm a mesma densidade de espiras e a mesma corrente.
+Compare seus campos internos e externos.
+\resposta{Campo interno praticamente igual; o toroide tem campo externo
+\emph{rigorosamente} nulo}
+\resolucao{\textbf{Campo interno:} ambos valem $\approx\mu_0nI$. No toroide,
+$n=N/(2\pi r)$ varia ligeiramente com o raio, de modo que o campo não é
+perfeitamente uniforme na seção --- mas para toroides finos a diferença é
+pequena.\\
+\textbf{Campo externo:} aqui está a diferença essencial.
+\begin{itemize}
+\item \textbf{Solenoide:} as linhas precisam retornar por fora, e o campo
+externo, embora fraco, \emph{existe}.
+\item \textbf{Toroide:} as linhas fecham-se \emph{inteiramente} dentro do
+núcleo. Aplicando a lei de Ampère a um círculo externo, a corrente líquida
+envolvida é \textbf{zero} --- e o campo também.
+\end{itemize}
+\textbf{Consequência de projeto:} indutores toroidais praticamente não irradiam
+nem captam interferência, e podem ser montados lado a lado sem acoplamento
+mútuo. É por isso que dominam aplicações de filtragem em fontes chaveadas.}
+\end{questao}
+
+\begin{questao}[2]{}
+Dois fios perpendiculares entre si, ambos no mesmo plano da folha, conduzem
+$\SI{6}{\ampere}$ e $\SI{8}{\ampere}$. Determine o campo resultante em um
+ponto a $\SI{3}{\centi\meter}$ do primeiro e $\SI{4}{\centi\meter}$ do
+segundo.
+\resposta{$B=\SI{56.6}{\micro\tesla}$}
+\resolucao{Cada fio produz campo perpendicular ao plano definido por ele e pelo
+ponto. Como os fios são perpendiculares entre si e coplanares, ambos os campos
+saem (ou entram) \emph{perpendicularmente à folha} --- portanto são
+\textbf{paralelos} e se somam algebricamente:
+\[
+B_1=\pot{2}{-7}\frac{6}{0{,}03}=\SI{40}{\micro\tesla};
+\qquad
+B_2=\pot{2}{-7}\frac{8}{0{,}04}=\SI{40}{\micro\tesla}.
+\]
+Se os sentidos coincidirem: $B=\SI{80}{\micro\tesla}$; se forem opostos,
+$B=0$.\\
+\textbf{Atenção ao caso geral:} se os fios \emph{não} fossem coplanares, os
+campos teriam direções diferentes e a soma seria vetorial --- com
+$\SI{40}{\micro\tesla}$ perpendiculares, o resultado seria
+$40\sqrt2=\SI{56.6}{\micro\tesla}$. \textbf{A geometria decide se a soma é
+algébrica ou vetorial}, e é ela que precisa ser estabelecida antes de qualquer
+conta.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um condutor cilíndrico maciço de raio $a=\SI{2}{\milli\meter}$ conduz
+$\SI{100}{\ampere}$ uniformemente distribuídos na seção.
+\begin{itensq}
+\item Determine o campo a $\SI{1}{\milli\meter}$, na superfície e a
+      $\SI{5}{\milli\meter}$ do eixo.
+\item Identifique onde o campo é máximo.
+\end{itensq}
+\resposta{$5$, $10$ e $\SI{4}{\milli\tesla}$; máximo na superfície}
+\resolucao{\textbf{Dentro ($r<a$):} a superfície amperiana envolve apenas a
+fração $(r/a)^{2}$ da corrente:
+\[
+B=\frac{\mu_0 I r}{2\pi a^{2}}
+=\pot{2}{-7}\frac{100\,r}{(0{,}002)^{2}}.
+\]
+Em $r=\SI{1}{\milli\meter}$: $B=\SI{5}{\milli\tesla}$.\\
+\textbf{Fora ($r>a$):} toda a corrente é envolvida, e vale a fórmula do fio
+fino:
+\[
+B=\pot{2}{-7}\frac{100}{r}.
+\]
+Em $r=\SI{5}{\milli\meter}$: $B=\SI{4}{\milli\tesla}$.\\
+\textbf{Na superfície ($r=a$):} as duas expressões coincidem em
+$B=\SI{10}{\milli\tesla}$ --- o campo é contínuo.\\
+(b) \textbf{O máximo está na superfície.} Dentro, $B$ cresce linearmente com
+$r$; fora, decai com $1/r$. O pico ocorre exatamente em $r=a$.\\
+\textbf{Analogia com a esfera isolante carregada:} lá o campo elétrico também
+cresce linearmente dentro e cai com $1/r^{2}$ fora, com máximo na superfície. A
+estrutura matemática é a mesma --- muda apenas a lei de Gauss ou de Ampère
+aplicada.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um cabo coaxial tem condutor central de raio $a$ conduzindo $I$ e blindagem
+externa conduzindo $I$ em sentido \textbf{oposto}, com $I=\SI{5}{\ampere}$.
+\begin{itensq}
+\item Determine o campo entre os condutores, a $\SI{2}{\milli\meter}$ do eixo.
+\item Determine o campo fora do cabo.
+\item Explique a consequência prática.
+\end{itensq}
+\resposta{$B=\SI{0.5}{\milli\tesla}$ entre os condutores; $B=0$ fora}
+\resolucao{(a) Entre os condutores, a superfície amperiana envolve apenas a
+corrente central:
+\[
+B=\pot{2}{-7}\frac{5}{0{,}002}=\pot{5}{-4}\,\si{\tesla}=\SI{0.5}{\milli\tesla}.
+\]
+(b) \textbf{Fora do cabo}, a superfície amperiana envolve $+I$ e $-I$ --- a
+corrente líquida é \textbf{zero}:
+\[
+\oint\vec B\cdot\mathrm{d}\vec\ell=\mu_0(0)=0
+\;\Longrightarrow\;
+B=0.
+\]
+(c) \textbf{Consequência prática: o cabo coaxial não irradia nem capta campo
+magnético.} Todo o campo fica confinado entre os condutores.\\
+Isso o torna a escolha padrão para transmitir sinais em ambientes com
+interferência --- e explica por que um cabo paralelo comum, cujos condutores
+estão afastados, é muito pior: ali as correntes opostas não se cancelam
+perfeitamente e o par forma uma espira que irradia.\\
+\textbf{Mesma ideia, outra forma:} o par trançado obtém efeito semelhante ao
+inverter a orientação da espira a cada torção, de modo que as contribuições
+sucessivas se anulem.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma espira de raio $R=\SI{10}{\centi\meter}$ conduz $\SI{5}{\ampere}$.
+\begin{itensq}
+\item Determine o campo no centro.
+\item Determine o campo no eixo, a $\SI{10}{\centi\meter}$ e a
+      $\SI{20}{\centi\meter}$ do centro.
+\item Comente a taxa de queda.
+\end{itensq}
+\resposta{$31{,}4$; $11{,}1$ e $\SI{2.81}{\micro\tesla}$}
+\resolucao{(a) $B_0=\dfrac{\mu_0I}{2R}=\dfrac{(4\pi\times10^{-7})(5)}{0{,}20}
+=\pot{3.14}{-5}\,\si{\tesla}$.\\
+(b) No eixo,
+\[
+B=\frac{\mu_0IR^{2}}{2\left(R^{2}+x^{2}\right)^{3/2}}.
+\]
+Em $x=R=\SI{0.10}{\meter}$:
+$B=\pot{1.11}{-5}\,\si{\tesla}$, ou seja
+$B_0/2^{3/2}=0{,}354\,B_0$.\\
+Em $x=2R=\SI{0.20}{\meter}$: $B=\pot{2.81}{-6}\,\si{\tesla}$, cerca de
+$0{,}089\,B_0$.\\
+(c) \textbf{A queda é rápida.} A apenas um raio de distância, o campo já caiu
+para $35\%$; a dois raios, para $9\%$.\\
+Para $x\gg R$, a expressão tende a
+$B\to\dfrac{\mu_0IR^{2}}{2x^{3}}$ --- decaimento com $1/x^{3}$, típico de
+\textbf{dipolo}. É o mesmo expoente do dipolo elétrico, e pela mesma razão: a
+espira não tem "monopolo magnético" para produzir termo $1/x^{2}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare o campo no centro de um solenoide \emph{finito} com o do solenoide
+ideal, e determine o campo em sua extremidade.
+\begin{itensq}
+\item Indique a condição para a aproximação ideal.
+\item Determine o campo na extremidade.
+\item Discuta a consequência para projeto.
+\end{itensq}
+\resposta{Na extremidade, $B\approx\mu_0nI/2$ --- metade do valor central}
+\resolucao{(a) \textbf{Condição:} $L\gg D$, isto é, comprimento muito maior que
+o diâmetro. Na prática, $L/D>10$ garante erro inferior a $1\%$ no centro.\\
+(b) \textbf{Na extremidade}, apenas "metade" do solenoide contribui --- as
+espiras estão todas de um lado. O resultado exato para solenoide longo é
+\[
+B_{extremidade}=\frac{\mu_0nI}{2},
+\]
+exatamente \textbf{metade} do valor central.\\
+(c) \textbf{Consequências de projeto.}
+\begin{itemize}
+\item A região de campo verdadeiramente uniforme é \emph{menor} que o
+solenoide: ela se restringe à parte central, tipicamente à metade do
+comprimento.
+\item Para uniformidade melhor que $1\%$ em uma região de comprimento
+$\ell$, o solenoide precisa ter comprimento bem maior que $\ell$ --- ou usar
+enrolamento com densidade \emph{corrigida} nas extremidades.
+\item A alternativa clássica é o par de \textbf{bobinas de Helmholtz}: duas
+bobinas iguais separadas por uma distância igual ao raio, arranjo que anula a
+segunda derivada do campo no centro e produz região uniforme com pouco
+material.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[3]{}
+Três fios longos e paralelos, coplanares e igualmente espaçados de
+$\SI{5}{\centi\meter}$, conduzem $\SI{10}{\ampere}$ cada, todos no mesmo
+sentido. Determine o campo no fio central.
+\resposta{$B=0$ no fio central}
+\resolucao{O fio central não produz campo sobre si mesmo. Restam as
+contribuições dos dois vizinhos, ambos a $\SI{5}{\centi\meter}$:
+\[
+B_1=B_2=\pot{2}{-7}\frac{10}{0{,}05}=\SI{40}{\micro\tesla}.
+\]
+Pela regra da mão direita, com os dois vizinhos conduzindo no mesmo sentido e
+estando em \emph{lados opostos} do fio central, seus campos ali têm sentidos
+\textbf{contrários}:
+\[
+B=40-40=0.
+\]
+\textbf{Mas a força não é nula --- ela também é.} Como $\vec F=I\vec\ell\times
+\vec B$ e $\vec B=\vec 0$ no fio central, a força sobre ele é zero: as atrações
+dos dois vizinhos se equilibram.\\
+\textbf{Nos fios externos, porém}, a situação é diferente: cada um sofre atração
+resultante para o centro. O conjunto tende a se \emph{comprimir} --- efeito real
+em barramentos de alta corrente, que precisam de espaçadores mecânicos.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um eletroímã deve produzir $\SI{0.1}{\tesla}$ com núcleo de ar, usando
+solenoide de $\SI{20}{\centi\meter}$.
+\begin{itensq}
+\item Determine o produto $NI$ necessário.
+\item Avalie a viabilidade com $N=1000$ espiras.
+\item Proponha alternativa.
+\end{itensq}
+\resposta{$NI=\SI{15.9}{\kilo\ampere}$-espira; exigiria $\SI{15.9}{\ampere}$
+com $1000$ espiras}
+\resolucao{(a) De $B=\mu_0NI/L$:
+\[
+NI=\frac{BL}{\mu_0}=\frac{(0{,}1)(0{,}20)}{4\pi\times10^{-7}}
+=\pot{1.59}{4}\ \text{A-espira}.
+\]
+(b) Com $N=1000$: $I=\SI{15.9}{\ampere}$.\\
+\textbf{Viável, mas problemático.} Mil espiras conduzindo
+$\SI{16}{\ampere}$ exigem fio grosso (a densidade de corrente admissível limita
+a seção), o que aumenta o volume do enrolamento. E a dissipação é considerável:
+com resistência de apenas $\SI{1}{\ohm}$, seriam
+$\SI{256}{\watt}$ --- exigindo refrigeração.\\
+(c) \textbf{Alternativa: núcleo ferromagnético.} Com $\mu_r=1000$, a mesma
+corrente produziria $\SI{100}{\tesla}$ --- valor impossível, porque o material
+\textbf{satura} em torno de $1{,}5$ a $\SI{2}{\tesla}$.\\
+\textbf{O que o núcleo realmente entrega:} os $\SI{0.1}{\tesla}$ pedidos com
+corrente cerca de mil vezes menor ($\SI{16}{\milli\ampere}$), enquanto o
+material permanecer na região linear.\\
+\textbf{Limite físico:} acima da saturação, o núcleo deixa de ajudar e o
+eletroímã volta a se comportar como se fosse de ar. É por isso que campos acima
+de $\SI{2}{\tesla}$ exigem bobinas supercondutoras, sem núcleo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um cabo de par paralelo tem condutores separados por $\SI{2}{\milli\meter}$,
+conduzindo $\SI{1}{\ampere}$ em sentidos opostos.
+\begin{itensq}
+\item Determine o campo no ponto médio entre eles.
+\item Determine o campo a $\SI{10}{\centi\meter}$ do par.
+\item Compare com um fio único.
+\end{itensq}
+\resposta{$\SI{400}{\micro\tesla}$ no meio; $\approx\SI{0.04}{\micro\tesla}$ a
+$\SI{10}{\centi\meter}$}
+\resolucao{(a) No ponto médio, cada fio dista $\SI{1}{\milli\meter}$, e com
+correntes \emph{opostas} os campos se \textbf{somam}:
+\[
+B=2\times\pot{2}{-7}\frac{1}{0{,}001}=\SI{400}{\micro\tesla}.
+\]
+(b) A $\SI{10}{\centi\meter}$, os dois fios estão praticamente à mesma
+distância e seus campos quase se cancelam. O resultado é aproximadamente o de um
+\textbf{dipolo}:
+\[
+B\approx\frac{\mu_0 I d}{2\pi r^{2}}
+=\pot{2}{-7}\frac{(1)(0{,}002)}{(0{,}10)^{2}}
+=\pot{4}{-8}\,\si{\tesla}.
+\]
+(c) \textbf{Um fio único} de $\SI{1}{\ampere}$ produziria, a
+$\SI{10}{\centi\meter}$:
+$B=\pot{2}{-6}\,\si{\tesla}$ --- \textbf{cinquenta vezes mais}.\\
+\textbf{Conclusão:} manter os condutores de ida e volta \emph{juntos} reduz
+drasticamente o campo irradiado, porque o par se comporta como dipolo
+($1/r^{2}$) em vez de fio isolado ($1/r$). Quanto menor a separação $d$, melhor
+--- e é exatamente por isso que se recomenda não separar os condutores de um
+mesmo circuito.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um sensor Hall indica $\SI{2.5}{\milli\volt}$ quando exposto a
+$\SI{100}{\milli\tesla}$, com resposta linear e tensão de repouso nula.
+\begin{itensq}
+\item Determine a sensibilidade.
+\item Determine o campo correspondente a uma leitura de
+      $\SI{0.6}{\milli\volt}$.
+\item Discuta as fontes de erro.
+\end{itensq}
+\resposta{$\SI{25}{\micro\volt\per\milli\tesla}$; $B=\SI{24}{\milli\tesla}$}
+\resolucao{(a)
+\[
+S=\frac{2{,}5\,\si{\milli\volt}}{100\,\si{\milli\tesla}}
+=\SI{25}{\micro\volt\per\milli\tesla}.
+\]
+(b) $B=\dfrac{0{,}6}{0{,}025}=\SI{24}{\milli\tesla}$.\\
+(c) \textbf{Fontes de erro, em ordem de importância.}
+\begin{itemize}
+\item \textbf{Tensão de \emph{offset}:} sensores reais indicam algo mesmo com
+$B=0$, por assimetria construtiva. Valores de dezenas de microvolts são comuns
+--- comparáveis ao sinal de alguns militesla. \emph{Correção:} medir com o
+sensor blindado e subtrair.
+\item \textbf{Deriva térmica:} tanto o \emph{offset} quanto a sensibilidade
+variam com a temperatura.
+\item \textbf{Orientação:} o sensor responde apenas à componente
+\emph{perpendicular} à sua face. Um erro angular $\theta$ introduz fator
+$\cos\theta$ --- desprezível para ângulos pequenos, mas $13\%$ a
+$\ang{30}$.
+\item \textbf{Campo terrestre} somado à medida, se não for compensado.
+\end{itemize}
+\textbf{Procedimento robusto:} medir com o sensor em uma orientação, depois
+girá-lo $\ang{180}$ e medir de novo. A média das duas leituras cancela o
+\emph{offset}, e a semidiferença dá o campo.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Dedução por Biot--Savart.)} Deduza o campo magnético no centro de uma
+espira circular de raio $R$ percorrida por corrente $I$.
+\begin{itensq}
+\item Aplique a lei de Biot--Savart a um elemento de corrente.
+\item Integre e obtenha o resultado.
+\item Explique por que a integração é simples neste caso.
+\end{itensq}
+\resposta{$B=\dfrac{\mu_0 I}{2R}$}
+\resolucao{(a) A lei de Biot--Savart estabelece que um elemento
+$I\,\mathrm{d}\vec\ell$ produz, a uma distância $\vec r$,
+\[
+\mathrm{d}\vec B=\frac{\mu_0}{4\pi}\,
+\frac{I\,\mathrm{d}\vec\ell\times\hat r}{r^{2}}.
+\]
+Para o \textbf{centro} da espira, todo elemento está à mesma distância $R$, e
+$\mathrm{d}\vec\ell$ é sempre \emph{perpendicular} a $\hat r$ --- logo
+$|\mathrm{d}\vec\ell\times\hat r|=\mathrm{d}\ell$.\\
+(b) Além disso, todos os $\mathrm{d}\vec B$ apontam na \emph{mesma} direção
+(perpendicular ao plano da espira), de modo que a integral vetorial vira
+escalar:
+\[
+B=\frac{\mu_0I}{4\pi R^{2}}\oint\mathrm{d}\ell
+=\frac{\mu_0I}{4\pi R^{2}}(2\pi R)
+=\frac{\mu_0 I}{2R}.
+\]
+(c) \textbf{Três simplificações coincidiram:} distância constante, produto
+vetorial de módulo máximo (ângulo reto) e contribuições todas paralelas. É a
+combinação mais favorável possível.\\
+\textbf{Fora do centro isso se perde:} no eixo, a distância deixa de ser $R$ e
+as contribuições ganham componentes radiais que se cancelam --- exigindo
+projeção. Fora do eixo, a integral não tem forma fechada elementar e recorre-se a
+métodos numéricos ou a funções elípticas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Ampère contra Biot--Savart.)} Compare os dois métodos de cálculo de
+campo magnético.
+\begin{itensq}
+\item Enuncie cada lei e sua condição de uso.
+\item Determine quando a lei de Ampère é praticável.
+\item Classifique quatro configurações quanto ao método adequado.
+\end{itensq}
+\resposta{Ampère exige simetria suficiente para tirar $B$ da integral;
+Biot--Savart é geral mas trabalhoso}
+\resolucao{(a) \textbf{Biot--Savart:}
+$\mathrm{d}\vec B=\dfrac{\mu_0}{4\pi}
+\dfrac{I\,\mathrm{d}\vec\ell\times\hat r}{r^{2}}$ --- vale \emph{sempre}, para
+qualquer distribuição de corrente. É a lei fundamental.\\
+\textbf{Ampère:} $\oint\vec B\cdot\mathrm{d}\vec\ell=\mu_0I_{env}$ --- também
+sempre verdadeira, mas só \emph{útil} para calcular $B$ em casos especiais.\\
+(b) \textbf{Ampère é praticável quando} existe uma curva fechada ao longo da
+qual $|\vec B|$ é constante e $\vec B$ é paralelo (ou perpendicular) ao
+caminho. Só assim $B$ pode ser retirado da integral:
+\[
+\oint\vec B\cdot\mathrm{d}\vec\ell=B\oint\mathrm{d}\ell=B\,\ell.
+\]
+Isso exige \textbf{simetria} --- cilíndrica, plana ou toroidal --- que precisa
+ser \emph{conhecida de antemão}, por argumento físico.\\
+(c)
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Configuração & Método & Motivo\\
+\hline
+Fio retilíneo infinito & Ampère & simetria cilíndrica\\
+Solenoide/toroide ideal & Ampère & simetria evidente\\
+Espira circular (centro) & Biot--Savart & sem curva de $B$ constante\\
+Segmento finito de fio & Biot--Savart & sem simetria alguma\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Erro comum:} tentar aplicar Ampère a uma espira circular usando a
+própria espira como caminho. O campo \emph{não} é constante nem tangente ao
+longo dela --- a integral existe, mas não permite isolar $B$.\\
+\textbf{Analogia com a eletrostática:} Gauss está para Coulomb assim como
+Ampère está para Biot--Savart. Em ambos os casos, a lei integral é elegante e
+poderosa \emph{apenas} quando a simetria coopera.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de solenoide.)} Projete um solenoide de $500$ espiras e
+$\SI{25}{\centi\meter}$ para produzir $\SI{1}{\milli\tesla}$.
+\begin{itensq}
+\item Determine a corrente necessária.
+\item Determine a potência dissipada, para fio de resistência total
+      $\SI{2}{\ohm}$.
+\item Avalie a uniformidade do campo.
+\end{itensq}
+\resposta{$I=\SI{0.398}{\ampere}$; $P=\SI{0.32}{\watt}$}
+\resolucao{(a) $n=\dfrac{500}{0{,}25}=\SI{2000}{\per\meter}$, e
+\[
+I=\frac{B}{\mu_0 n}=\frac{\pot{1}{-3}}{(4\pi\times10^{-7})(2000)}
+=\SI{0.398}{\ampere}.
+\]
+(b) $P=RI^{2}=2(0{,}398)^{2}=\SI{0.32}{\watt}$ --- desprezível, sem necessidade
+de refrigeração.\\
+(c) \textbf{Uniformidade.} Supondo diâmetro de $\SI{4}{\centi\meter}$, a razão
+$L/D=6{,}25$ --- razoável, mas não excelente. Consequências:
+\begin{itemize}
+\item No \textbf{centro}, o campo fica cerca de $1$ a $2\%$ abaixo do valor
+ideal $\mu_0nI$.
+\item Nas \textbf{extremidades}, cai para aproximadamente metade.
+\item A região com uniformidade melhor que $1\%$ limita-se ao terço central,
+cerca de $\SI{8}{\centi\meter}$.
+\end{itemize}
+\textbf{Se for necessária melhor uniformidade:} alongar o solenoide (mantendo
+$n$, o que exige mais espiras e mais tensão), ou adotar bobinas de Helmholtz.\\
+\textbf{Verificação de coerência:} $\SI{1}{\milli\tesla}$ é vinte vezes o campo
+terrestre --- o experimento precisa ser orientado ou compensado, sob pena de o
+campo ambiente introduzir erro de $5\%$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Dipolo magnético.)} Uma espira de raio $R$ e corrente $I$ é observada
+no eixo, a distância $x\gg R$.
+\begin{itensq}
+\item Obtenha a forma assintótica do campo.
+\item Defina o momento de dipolo magnético e reescreva o resultado.
+\item Compare com o dipolo elétrico e comente a ausência de monopolos.
+\end{itensq}
+\resposta{$B\to\dfrac{\mu_0 m}{2\pi x^{3}}$, com $m=I\pi R^{2}$}
+\resolucao{(a) Partindo de
+$B=\dfrac{\mu_0IR^{2}}{2(R^{2}+x^{2})^{3/2}}$ e fazendo $x\gg R$:
+\[
+B\to\frac{\mu_0IR^{2}}{2x^{3}}.
+\]
+(b) Definindo o \textbf{momento de dipolo magnético}
+$m=I\,A=I\pi R^{2}$:
+\[
+B=\frac{\mu_0 m}{2\pi x^{3}}.
+\]
+\textbf{Verificação numérica:} para $R=\SI{10}{\centi\meter}$ e
+$I=\SI{5}{\ampere}$, tem-se $m=\SI{0.157}{\ampere\meter\squared}$ e, a
+$\SI{1}{\meter}$, $B=\pot{3.14}{-8}\,\si{\tesla}$. O valor exato é
+$\pot{3.10}{-8}$ --- a aproximação erra $1{,}5\%$ a dez raios de distância.\\
+(c) \textbf{Comparação com o dipolo elétrico.} Ambos decaem com $1/r^{3}$, e as
+expressões são formalmente análogas ($p=2qa$ lá, $m=IA$ aqui).\\
+\textbf{Mas há uma diferença fundamental.} O dipolo elétrico é feito de duas
+cargas que \emph{podem} ser separadas --- e então cada uma produz campo
+$1/r^{2}$. Já o dipolo magnético \textbf{não pode} ser separado: não existem
+monopolos magnéticos.\\
+\textbf{Consequência:} o dipolo é o termo \emph{dominante} de qualquer fonte
+magnética estacionária. Não há termo $1/r^{2}$ em magnetostática --- e é por isso
+que $\nabla\cdot\vec B=0$ figura entre as equações de Maxwell, sem análogo
+elétrico.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Blindagem magnética.)} Compare a blindagem de campos magnéticos com a
+de campos elétricos.
+\begin{itensq}
+\item Explique por que uma gaiola metálica não blinda campo magnético estático.
+\item Descreva os dois mecanismos disponíveis.
+\item Discuta a dependência com a frequência.
+\end{itensq}
+\resposta{Não há "cargas magnéticas" a redistribuir; usa-se desvio por material
+de alto $\mu_r$ ou correntes induzidas}
+\resolucao{(a) \textbf{Por que a gaiola falha.} A blindagem elétrica funciona
+porque o condutor possui \emph{cargas livres} que se redistribuem até anular o
+campo interno. Não existe equivalente magnético: \textbf{não há monopolos
+magnéticos livres} para migrar.\\
+Um campo magnético \emph{estático} atravessa o cobre e o alumínio praticamente
+sem atenuação.\\
+(b) \textbf{Dois mecanismos disponíveis.}
+\begin{itemize}
+\item \textbf{Desvio de fluxo} (campos estáticos ou lentos). Um invólucro de
+material de alto $\mu_r$ --- \emph{mu-metal}, com $\mu_r$ de dezenas de
+milhares --- oferece caminho de baixa relutância. O fluxo prefere circular pelo
+material e "contorna" a região protegida. Não há cancelamento: há \emph{desvio}.
+\item \textbf{Correntes induzidas} (campos variáveis). Pela lei de Lenz, um
+campo alternado induz correntes em um invólucro condutor, e essas correntes
+geram campo oposto. A atenuação cresce com a frequência e com a condutividade.
+\end{itemize}
+(c) \textbf{Dependência com a frequência.}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Faixa & Mecanismo eficaz & Material\\
+\hline
+Estático (CC) & desvio de fluxo & mu-metal\\
+Baixa (dezenas de Hz) & desvio, pouca indução & mu-metal\\
+Alta (kHz e acima) & correntes induzidas & cobre, alumínio\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Consequência prática:} blindar campo elétrico é fácil e barato --- basta
+qualquer metal aterrado. Blindar campo magnético estático é caro, exige material
+especial, e a atenuação típica fica em uma ou duas ordens de grandeza, contra
+muitas ordens no caso elétrico.\\
+É por isso que salas de ressonância magnética têm blindagem magnética de
+toneladas, enquanto a blindagem elétrica de um cabo é uma malha fina.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Mapeamento experimental.)} Elabore um procedimento para mapear o campo
+magnético de uma bobina usando sensor Hall.
+\begin{itensq}
+\item Descreva o procedimento e o tratamento do \emph{offset}.
+\item Indique como obter as três componentes do campo.
+\item Estabeleça o critério de validação dos dados.
+\end{itensq}
+\resposta{Medir com inversão de orientação para cancelar \emph{offset};
+três orientações ortogonais para as componentes}
+\resolucao{(a) \textbf{Procedimento.}
+\begin{enumerate}
+\item \textbf{Caracterizar o zero:} com a bobina \emph{desligada}, registrar a
+leitura em cada ponto. Isso captura tanto o \emph{offset} do sensor quanto o
+campo ambiente (terrestre e de equipamentos próximos).
+\item \textbf{Medir com a bobina ligada} nos mesmos pontos.
+\item \textbf{Subtrair} ponto a ponto. O resultado é o campo da bobina,
+livre de \emph{offset} e de campo ambiente.
+\end{enumerate}
+\textbf{Alternativa mais robusta:} inverter o sentido da corrente na bobina e
+tomar a \emph{semidiferença} das duas leituras. Isso cancela tudo o que não
+depende da corrente.\\
+(b) \textbf{Três componentes.} O sensor Hall responde apenas à componente
+perpendicular à sua face. Para obter $\vec B$ completo, meça em três orientações
+ortogonais no mesmo ponto:
+\[
+|\vec B|=\sqrt{B_x^{2}+B_y^{2}+B_z^{2}}.
+\]
+Um sensor triaxial faz isso simultaneamente e evita erros de reposicionamento.\\
+(c) \textbf{Critérios de validação.}
+\begin{itemize}
+\item \textbf{Linearidade com a corrente:} $B$ deve ser proporcional a $I$.
+Meça em três correntes e verifique --- desvio indica saturação de núcleo ou
+não linearidade do sensor.
+\item \textbf{Simetria:} pontos simétricos em relação ao eixo devem dar valores
+iguais. Discrepância revela desalinhamento do sensor ou da bobina.
+\item \textbf{Valor central:} deve concordar com $\mu_0nI$ dentro da incerteza,
+descontada a correção de comprimento finito.
+\item \textbf{Reprodutibilidade:} repita o primeiro ponto ao final. Diferença
+indica deriva térmica do sensor.
+\end{itemize}
+\textbf{Registre sempre a temperatura} --- a sensibilidade Hall varia
+tipicamente algumas centenas de ppm por grau.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Limites de eletroímãs.)} Analise o que limita, na prática, o campo
+magnético alcançável.
+\begin{itensq}
+\item Determine o limite imposto pela saturação do núcleo.
+\item Determine o limite térmico de bobinas de cobre.
+\item Descreva as soluções empregadas para superá-los.
+\end{itensq}
+\resposta{Núcleos saturam entre $1{,}5$ e $\SI{2}{\tesla}$; acima disso é
+preciso bobina sem núcleo, com corrente muito alta}
+\resolucao{(a) \textbf{Saturação.} Materiais ferromagnéticos alinham seus
+domínios completamente em torno de $1{,}5$ a $\SI{2}{\tesla}$ (ferro-silício,
+$\approx\SI{2}{\tesla}$; ferrites, bem menos). Acima disso, $\mu_r$ cai para
+próximo de $1$ e o núcleo deixa de contribuir --- \textbf{acrescentar corrente
+passa a render tão pouco quanto no ar}.\\
+Este é um limite \emph{de material}, não de projeto: nenhuma geometria o
+contorna.\\
+(b) \textbf{Limite térmico.} Sem núcleo, $B=\mu_0nI$ exige corrente enorme. A
+potência dissipada vai com $I^{2}$, e a densidade de corrente admissível em
+cobre refrigerado a água fica em torno de
+$\SI{20}{\ampere\per\milli\meter\squared}$.\\
+Eletroímãs resistivos de laboratório atingem $1$ a $\SI{2}{\tesla}$ consumindo
+\emph{megawatts} --- e boa parte do custo operacional é a refrigeração.\\
+(c) \textbf{Soluções empregadas.}
+\begin{itemize}
+\item \textbf{Supercondutores:} resistência nula elimina o limite térmico.
+Bobinas de NbTi e $\mathrm{Nb_3Sn}$ chegam a $\SI{20}{\tesla}$ e são a base de
+equipamentos de ressonância magnética e de aceleradores. O custo passa a ser a
+criogenia.
+\item \textbf{Campos pulsados:} correntes altíssimas por milissegundos, antes
+que o calor se acumule. Alcançam $\SI{100}{\tesla}$, com a bobina
+frequentemente destruída no processo.
+\item \textbf{Ímãs híbridos:} bobina supercondutora externa somada a uma
+resistiva interna --- combinação que detém os recordes de campo contínuo, acima
+de $\SI{45}{\tesla}$.
+\end{itemize}
+\textbf{Limite último:} acima de algumas dezenas de tesla, a \emph{pressão
+magnética} $B^{2}/2\mu_0$ supera a resistência mecânica de qualquer material. A
+$\SI{100}{\tesla}$ ela vale cerca de $\SI{4}{\giga\pascal}$ --- a bobina
+literalmente se rompe.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Superposição e simetria.)} Um condutor cilíndrico de raio $a$ possui
+uma cavidade cilíndrica de raio $b$, paralela ao eixo e deslocada de $d$.
+A corrente $I$ distribui-se uniformemente na seção restante.
+\begin{itensq}
+\item Formule a estratégia de solução por superposição.
+\item Determine o campo dentro da cavidade.
+\item Interprete o resultado.
+\end{itensq}
+\resposta{O campo na cavidade é \textbf{uniforme}, de módulo
+$\mu_0Jd/2$}
+\resolucao{(a) \textbf{Estratégia.} O condutor furado equivale à
+\emph{superposição} de:
+\begin{itemize}
+\item um cilindro \textbf{maciço} de raio $a$ com densidade de corrente
+$+J$; \emph{mais}
+\item um cilindro de raio $b$, na posição da cavidade, com densidade
+$-J$.
+\end{itemize}
+A soma reproduz corrente $J$ na região sólida e zero na cavidade --- exatamente
+a situação real.\\
+(b) Dentro de um cilindro maciço de densidade $J$, a lei de Ampère dá
+$B=\dfrac{\mu_0 J r}{2}$, ou vetorialmente
+$\vec B=\dfrac{\mu_0}{2}\,\vec J\times\vec r$, com $\vec r$ medido a partir do
+\emph{eixo daquele} cilindro.\\
+Somando as duas contribuições em um ponto da cavidade, com $\vec r_1$ e
+$\vec r_2$ medidos a partir de cada eixo:
+\[
+\vec B=\frac{\mu_0}{2}\vec J\times\vec r_1
+-\frac{\mu_0}{2}\vec J\times\vec r_2
+=\frac{\mu_0}{2}\vec J\times(\vec r_1-\vec r_2)
+=\frac{\mu_0}{2}\vec J\times\vec d.
+\]
+\textbf{O vetor $\vec d$ é constante} --- ele liga os dois eixos e não depende do
+ponto.\\
+(c) \textbf{Interpretação: o campo na cavidade é rigorosamente uniforme}, de
+módulo $\mu_0Jd/2$ e direção perpendicular a $\vec d$.\\
+Isso é notável: uma geometria sem simetria evidente produz, na região vazia, o
+campo mais simples possível.\\
+\textbf{Aplicação:} o mesmo resultado, com $\vec J$ substituído por densidade de
+carga, dá campo elétrico uniforme na cavidade de uma esfera carregada --- e é
+usado no projeto de aceleradores e de ímãs de deflexão, em que se busca campo
+uniforme em uma região de acesso.}
+\end{questao}

@@ -1,0 +1,823 @@
+% =====================================================================
+%  Banco complementar --- Potencia Eletrica e Energia  (REVISADO)
+%  Substitui a versao gerada por template (7 clones em N2, 8 em N3 e
+%  8 questoes conceituais marcadas como N4).
+%  O conteudo de ENERGIA esta no cap02, que ja cobre: rendimento
+%  100 W/95 W, tarifa media a partir de conta de R\$ 80 / 200 kWh,
+%  ferro eletrico e outros aparelhos por 2 h, e o consumo diario
+%  residencial (lampada, chuveiro etc.). O cap05 cobre P=RI^2, P=VI
+%  e maxima transferencia. O banco de circuitos serie revisado ja usa
+%  um calculo de custo mensal (300 W, 6 h/dia, 30 dias).
+%  Este banco explora: potencia MEDIA x valor eficaz, regime pulsado
+%  e constante termica, rendimento em cascata, tensao errada de
+%  alimentacao, energia em transitorio exponencial, payback e o
+%  dimensionamento economico de condutor.
+%  Distribuicao mantida: 5 N1 + 7 N2 + 8 N3 + 8 N4 = 28
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Potência elétrica e energia}
+
+\begin{atencao}[Organização do banco]
+As três formas de $P$ ($UI$, $RI^{2}$ e $U^{2}/R$) são equivalentes apenas
+quando vale a lei de Ohm; escolha a que usa os dados disponíveis sem passos
+intermediários. Para \emph{energia}, lembre que $\SI{1}{\kilo\watt\hour}
+=\SI{3.6}{\mega\joule}$. O N3 trata de regime pulsado, rendimento em cascata e
+tensão incorreta de alimentação; o N4 exige integração, demonstração de que a
+potência média usa o valor \emph{eficaz}, e análises de retorno econômico.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um resistor de $\SI{8}{\ohm}$ é percorrido por $\SI{2.5}{\ampere}$. Determine a
+potência dissipada.
+\resposta{$P=\SI{50}{\watt}$}
+\resolucao{
+\[
+P=RI^{2}=8(2{,}5)^{2}=8(6{,}25)=\SI{50}{\watt}.
+\]
+\textbf{Escolha da fórmula:} conhecendo $R$ e $I$, use $RI^{2}$ diretamente.
+Calcular $U=RI=\SI{20}{\volt}$ e depois $P=UI$ dá o mesmo resultado, mas
+acrescenta um passo e uma oportunidade de erro.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um resistor de $\SI{44}{\ohm}$ é submetido a $\SI{220}{\volt}$. Determine a
+potência.
+\resposta{$P=\SI{1100}{\watt}$}
+\resolucao{
+\[
+P=\frac{U^{2}}{R}=\frac{220^{2}}{44}=\frac{48400}{44}=\SI{1100}{\watt}.
+\]
+Note a dependência \emph{quadrática} na tensão: uma queda de $10\%$ na rede
+($\SI{198}{\volt}$) reduziria a potência para
+$\SI{891}{\watt}$ --- $19\%$ a menos. É por isso que chuveiros "esquentam
+menos" em horários de pico.}
+\end{questao}
+
+\begin{questao}[1]{}
+Converta $\SI{250}{\watt\hour}$ para joules.
+\resposta{$\SI{900}{\kilo\joule}$}
+\resolucao{
+\[
+E=Pt=250\,\si{\watt}\times3600\,\si{\second}=\SI{900000}{\joule}
+=\SI{900}{\kilo\joule}.
+\]
+\textbf{Fator de conversão útil:}
+$\SI{1}{\kilo\watt\hour}=\SI{3.6}{\mega\joule}$. O joule é pequeno demais para
+contas de energia elétrica --- daí o uso do quilowatt-hora, que é uma unidade
+de energia, não de potência. Confundir os dois é o erro mais comum do tópico.}
+\end{questao}
+
+\begin{questao}[1]{}
+Conhecendo apenas a tensão sobre um resistor e o valor de sua resistência, a
+expressão adequada para a potência é:
+\begin{alternativas}[2]
+\item $P=UI$
+\item $P=RI^{2}$
+\item $P=U^{2}/R$
+\item $P=U/R$
+\end{alternativas}
+\resposta{(c)}
+\resolucao{As alternativas (a) e (b) exigiriam calcular $I$ antes. A (d) está
+dimensionalmente errada: $\si{\volt}/\si{\ohm}$ é ampère, não watt.\\
+\textbf{Verificação dimensional rápida:} $U^{2}/R$ dá
+$\si{\volt\squared}/\si{\ohm}=\si{\volt}\cdot\si{\ampere}=\si{\watt}$
+\checkmark. Sempre que houver dúvida entre fórmulas parecidas, confira a
+dimensão --- ela elimina a maioria das alternativas erradas.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um dispositivo de $\SI{60}{\watt}$ opera por $\SI{5}{\minute}$. Determine a
+energia consumida em joules.
+\resposta{$E=\SI{18}{\kilo\joule}$}
+\resolucao{Convertendo o tempo para segundos:
+\[
+E=Pt=60\times(5\times60)=60(300)=\SI{18000}{\joule}=\SI{18}{\kilo\joule}.
+\]
+\textbf{Cuidado com as unidades:} $P$ em watts exige $t$ em \emph{segundos}
+para obter joules. Se o tempo ficar em minutos, o resultado sai
+$60\times$ menor --- erro silencioso, porque o número parece plausível.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um chuveiro de $\SI{5500}{\watt}$ opera em $\SI{220}{\volt}$. Determine a
+corrente e a resistência.
+\resposta{$I=\SI{25}{\ampere}$; $R=\SI{8.8}{\ohm}$}
+\resolucao{
+\[
+I=\frac{P}{U}=\frac{5500}{220}=\SI{25}{\ampere};
+\qquad
+R=\frac{U^{2}}{P}=\frac{48400}{5500}=\SI{8.8}{\ohm}.
+\]
+\textbf{Conferência:} $R=U/I=220/25=\SI{8.8}{\ohm}$ \checkmark.\\
+\textbf{Implicação de instalação:} $\SI{25}{\ampere}$ é uma corrente elevada.
+Ela exige circuito exclusivo, condutor de seção adequada e disjuntor de
+$\SI{32}{\ampere}$ --- e é por isso que chuveiro nunca compartilha circuito com
+tomadas.}
+\end{questao}
+
+\begin{questao}[2]{}
+Projete a resistência de um aquecedor de $\SI{1200}{\watt}$ para
+$\SI{220}{\volt}$ e determine a corrente nominal e o disjuntor adequado.
+\resposta{$R=\SI{40.3}{\ohm}$; $I=\SI{5.45}{\ampere}$; disjuntor de
+$\SI{10}{\ampere}$}
+\resolucao{
+\[
+R=\frac{U^{2}}{P}=\frac{48400}{1200}=\SI{40.3}{\ohm};
+\qquad
+I=\frac{1200}{220}=\SI{5.45}{\ampere}.
+\]
+\textbf{Disjuntor:} o valor comercial imediatamente acima é
+$\SI{10}{\ampere}$, que oferece folga de $83\%$ --- adequado, pois aquecedores
+resistivos não têm corrente de partida elevada.\\
+\textbf{Nota sobre o material:} $\SI{40.3}{\ohm}$ deve ser obtido com fio de
+liga resistiva (níquel-cromo) de comprimento e seção calculados. E como a
+resistência desses materiais varia pouco com a temperatura, a potência
+permanece próxima do nominal em regime.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas lâmpadas incandescentes de $\SI{60}{\watt}$ são fabricadas para
+$\SI{127}{\volt}$ e para $\SI{220}{\volt}$. Determine a resistência de cada
+uma.
+\resposta{$\SI{268.8}{\ohm}$ e $\SI{806.7}{\ohm}$}
+\resolucao{
+\[
+R_{127}=\frac{127^{2}}{60}=\SI{268.8}{\ohm};
+\qquad
+R_{220}=\frac{220^{2}}{60}=\SI{806.7}{\ohm}.
+\]
+A lâmpada de tensão maior tem resistência \textbf{três vezes} maior --- razão
+$(220/127)^{2}=3{,}0$.\\
+\textbf{Consequência construtiva:} para a mesma potência, o filamento de
+$\SI{220}{\volt}$ é mais longo e mais fino. Ele é, portanto, mais frágil
+mecanicamente --- fato que se observa na prática, com lâmpadas de tensão maior
+tendendo a durar menos sob vibração.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um aparelho opera em dois modos: $\SI{1500}{\watt}$ durante
+$\SI{20}{\minute}$ e $\SI{600}{\watt}$ durante $\SI{40}{\minute}$, todos os
+dias. Determine o consumo mensal ($\SI{30}{\day}$) e o custo a
+$\mathrm{R\$}\,0{,}95$ por $\si{\kilo\watt\hour}$.
+\resposta{$\SI{27}{\kilo\watt\hour}$; $\mathrm{R\$}\,25{,}65$}
+\resolucao{Energia diária, com os tempos em horas:
+\[
+E=1{,}5\left(\tfrac13\right)+0{,}6\left(\tfrac23\right)
+=0{,}50+0{,}40=\SI{0.90}{\kilo\watt\hour}.
+\]
+\[
+E_{mês}=0{,}90(30)=\SI{27}{\kilo\watt\hour};
+\qquad
+\text{custo}=27(0{,}95)=\mathrm{R\$}\,25{,}65.
+\]
+\textbf{Observação:} o modo de $\SI{600}{\watt}$, embora tenha menos da metade
+da potência, responde por $44\%$ do consumo --- porque funciona o dobro do
+tempo. Em energia, \textbf{potência sozinha não decide}; o produto pelo tempo é
+que conta.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um resistor é submetido a pulsos de $\SI{50}{\watt}$ com ciclo de trabalho de
+$\SI{10}{\percent}$. Determine a potência média.
+\resposta{$P_{média}=\SI{5}{\watt}$}
+\resolucao{
+\[
+P_{média}=P_{pico}\times D=50(0{,}10)=\SI{5}{\watt}.
+\]
+\textbf{Mas cuidado:} isso \emph{não} significa que um resistor de
+$\SI{5}{\watt}$ sirva. Se a duração do pulso for comparável ou maior que a
+constante térmica do componente, ele atinge temperaturas próximas às de
+$\SI{50}{\watt}$ contínuos e pode falhar.\\
+A questão de quando a potência média basta é retomada quantitativamente no bloco
+de aprofundamento.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte com rendimento de $\SI{90}{\percent}$ alimenta um conversor de
+$\SI{85}{\percent}$. Determine o rendimento global e a potência de entrada
+necessária para entregar $\SI{100}{\watt}$ úteis.
+\resposta{$\eta=76{,}5\%$; $P_{entrada}=\SI{130.7}{\watt}$}
+\resolucao{Rendimentos em cascata \textbf{multiplicam-se}:
+\[
+\eta=0{,}90\times0{,}85=0{,}765=76{,}5\%.
+\]
+\[
+P_{entrada}=\frac{100}{0{,}765}=\SI{130.7}{\watt}.
+\]
+\textbf{Erro comum:} \emph{somar} ou fazer a média dos rendimentos, o que daria
+$87{,}5\%$ --- valor otimista demais. Cada estágio desperdiça uma fração do que
+recebe, e as perdas se compõem multiplicativamente.\\
+\textbf{Perdas:} $\SI{13.1}{\watt}$ na fonte e $\SI{17.6}{\watt}$ no
+conversor, totalizando $\SI{30.7}{\watt}$ dissipados.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma carga alterna entre $\SI{500}{\watt}$ por $\SI{5}{\minute}$ e
+$\SI{100}{\watt}$ por $\SI{15}{\minute}$, em ciclos de
+$\SI{20}{\minute}$. Determine a potência média e a energia por ciclo.
+\resposta{$P_{média}=\SI{200}{\watt}$; $E=\SI{66.7}{\watt\hour}$}
+\resolucao{A potência média é a \textbf{média ponderada pelo tempo}:
+\[
+P_{média}=\frac{500(5)+100(15)}{20}=\frac{2500+1500}{20}=\SI{200}{\watt}.
+\]
+\[
+E_{ciclo}=P_{média}\times t_{ciclo}=200\times\frac{20}{60}
+=\SI{66.7}{\watt\hour}.
+\]
+\textbf{Atenção:} a média \emph{aritmética} das potências ($300\,\si{\watt}$)
+estaria errada --- ela ignoraria que o patamar baixo dura três vezes mais.
+Média de potência é sempre ponderada pelo tempo.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um resistor de $\SI{10}{\ohm}$ conduz $\SI{4}{\ampere}$ durante
+$\SI{25}{\percent}$ do tempo e nada nos $\SI{75}{\percent}$ restantes.
+\begin{itensq}
+\item Determine a corrente média e a potência calculada a partir dela.
+\item Determine a potência média verdadeira.
+\item Explique a discrepância.
+\end{itensq}
+\resposta{(a) $\SI{1}{\ampere}$ e $\SI{10}{\watt}$ (errado); (b)
+$\SI{40}{\watt}$; (c) a potência depende de $\langle i^{2}\rangle$}
+\resolucao{(a) $I_{média}=0{,}25(4)+0{,}75(0)=\SI{1}{\ampere}$, e
+$RI_{média}^{2}=10(1)=\SI{10}{\watt}$.\\
+(b) A potência instantânea vale $\SI{160}{\watt}$ durante $25\%$ do tempo e
+zero no resto:
+\[
+P_{média}=0{,}25(160)+0{,}75(0)=\SI{40}{\watt}.
+\]
+\textbf{Quatro vezes} o valor obtido em (a).\\
+(c) A potência é \emph{quadrática} na corrente, e a média de um quadrado não é
+o quadrado da média:
+\[
+P_{média}=R\left\langle i^{2}\right\rangle
+\ne R\left\langle i\right\rangle^{2}.
+\]
+Define-se então o \textbf{valor eficaz}
+$I_{rms}=\sqrt{\langle i^{2}\rangle}=\sqrt{0{,}25(16)}=\SI{2}{\ampere}$, com o
+qual $P=RI_{rms}^{2}=\SI{40}{\watt}$ \checkmark.\\
+\textbf{Definição operacional do valor eficaz:} é a corrente contínua que
+produziria o \emph{mesmo aquecimento}. Aqui, $\SI{2}{\ampere}$ contínuos
+aqueceriam tanto quanto o regime pulsado --- e é por isso que multímetros de
+qualidade medem "true RMS".}
+\end{questao}
+
+\begin{questao}[3]{}
+Um resistor com potência nominal de $\SI{10}{\watt}$ recebe pulsos de
+$\SI{50}{\watt}$ com ciclo de trabalho de $\SI{10}{\percent}$.
+\begin{itensq}
+\item Determine a potência média e compare com o nominal.
+\item Estabeleça o critério para decidir se o componente sobrevive.
+\item Analise dois casos: pulsos de $\SI{1}{\milli\second}$ e de
+      $\SI{10}{\second}$.
+\end{itensq}
+\resposta{$P_{média}=\SI{5}{\watt}$; a decisão depende da constante térmica}
+\resolucao{(a) $P_{média}=\SI{5}{\watt}$, metade do nominal --- aparentemente
+seguro.\\
+(b) \textbf{O critério é a comparação entre a duração do pulso e a constante
+térmica $\tau_t$ do componente} (tipicamente de segundos a dezenas de segundos
+para resistores de fio; menos para os de filme).
+\begin{itemize}
+\item Se $t_{pulso}\ll\tau_t$, a massa térmica \emph{integra} os pulsos: a
+temperatura acompanha a potência \textbf{média}, e o critério de
+$\SI{5}{\watt}$ vale.
+\item Se $t_{pulso}\gg\tau_t$, o resistor atinge o equilíbrio térmico
+\emph{durante} cada pulso: a temperatura corresponde a $\SI{50}{\watt}$
+contínuos, e o componente queima.
+\end{itemize}
+(c) \textbf{Pulsos de $\SI{1}{\milli\second}$:} muito menores que qualquer
+$\tau_t$ realista --- o resistor "enxerga" $\SI{5}{\watt}$. \textbf{Seguro.}\\
+\textbf{Pulsos de $\SI{10}{\second}$:} comparáveis ou maiores que $\tau_t$ --- o
+resistor esquenta como se recebesse $\SI{50}{\watt}$ por dez segundos.
+\textbf{Falha provável.}\\
+\textbf{Consequência prática:} fabricantes publicam curvas de \emph{potência de
+pulso} justamente porque o valor nominal contínuo não responde a essa pergunta.
+Nunca dimensione regime pulsado apenas pela média.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um sistema tem uma fonte de $\SI{92}{\percent}$ em cascata com um conversor de
+$\SI{85}{\percent}$.
+\begin{itensq}
+\item Determine o rendimento global.
+\item Compare o ganho de melhorar o estágio pior (de $85$ para
+      $\SI{92}{\percent}$) com o de melhorar o melhor (de $92$ para
+      $\SI{97}{\percent}$).
+\item Formule a regra geral.
+\end{itensq}
+\resposta{(a) $78{,}2\%$; (b) $84{,}6\%$ contra $82{,}5\%$ --- melhorar o pior
+rende mais}
+\resolucao{(a) $\eta=0{,}92(0{,}85)=0{,}782=78{,}2\%$.\\
+(b) \textbf{Melhorando o pior:} $0{,}92(0{,}92)=84{,}6\%$ --- ganho de
+$6{,}4$ pontos.\\
+\textbf{Melhorando o melhor:} $0{,}97(0{,}85)=82{,}5\%$ --- ganho de
+$4{,}3$ pontos.\\
+E note que o segundo caso exigiu uma melhoria maior em pontos absolutos
+($5$ contra $7$) para render \emph{menos}.\\
+(c) \textbf{Regra geral.} Como $\eta=\prod\eta_k$, o ganho relativo global é a
+soma dos ganhos relativos:
+\[
+\frac{\Delta\eta}{\eta}=\sum_k\frac{\Delta\eta_k}{\eta_k}.
+\]
+Um mesmo acréscimo \emph{absoluto} rende mais no estágio de menor $\eta_k$,
+pois ali representa maior acréscimo relativo. \textbf{Ataque sempre o elo mais
+fraco} --- e é também nele que a margem de melhoria costuma ser maior e mais
+barata.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um aparelho consome $\SI{4}{\watt}$ em espera, permanentemente.
+\begin{itensq}
+\item Determine o consumo anual e o custo a
+      $\mathrm{R\$}\,0{,}95/\si{\kilo\watt\hour}$.
+\item Estime o impacto de dez aparelhos semelhantes.
+\item Proponha uma decisão de engenharia.
+\end{itensq}
+\resposta{$\SI{35}{\kilo\watt\hour}$ e $\mathrm{R\$}\,33{,}29$ por aparelho;
+$\mathrm{R\$}\,333$ para dez}
+\resolucao{(a) Um ano tem $\SI{8760}{\hour}$:
+\[
+E=4\times8760=\SI{35040}{\watt\hour}=\SI{35.04}{\kilo\watt\hour};
+\]
+\[
+\text{custo}=35{,}04(0{,}95)=\mathrm{R\$}\,33{,}29.
+\]
+(b) Dez aparelhos: $\SI{350}{\kilo\watt\hour}$ e cerca de
+$\mathrm{R\$}\,333$ por ano --- comparável ao consumo anual de uma geladeira
+eficiente.\\
+(c) \textbf{Decisões possíveis, com seus custos.}
+\begin{itemize}
+\item \textbf{Filtro com chave} para desligar grupos de aparelhos: custo de
+dezenas de reais, retorno em poucos meses. Melhor relação custo-benefício.
+\item \textbf{Redesenho do produto:} normas modernas exigem espera abaixo de
+$\SI{0.5}{\watt}$, o que reduziria o custo a menos de
+$\mathrm{R\$}\,4{,}20$ por ano.
+\item \textbf{Não fazer nada:} defensável para um aparelho isolado, insustentável
+em escala --- o consumo agregado de espera responde por vários por cento do
+consumo residencial nacional.
+\end{itemize}
+\textbf{O ponto de engenharia:} $\SI{4}{\watt}$ parecem irrelevantes porque a
+potência é pequena. Mas energia é potência \emph{vezes tempo}, e
+$\SI{8760}{\hour}$ é um multiplicador enorme.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um aparelho projetado para $\SI{220}{\volt}$ e $\SI{1000}{\watt}$ é ligado por
+engano em $\SI{127}{\volt}$.
+\begin{itensq}
+\item Determine a potência resultante, supondo resistência constante.
+\item Analise o caso inverso: aparelho de $\SI{127}{\volt}$ em
+      $\SI{220}{\volt}$.
+\end{itensq}
+\resposta{(a) $\SI{333}{\watt}$ ($33\%$); (b) potência \emph{triplicada} ---
+destruição}
+\resolucao{(a) $R=\dfrac{220^{2}}{1000}=\SI{48.4}{\ohm}$, e em
+$\SI{127}{\volt}$:
+\[
+P=\frac{127^{2}}{48{,}4}=\SI{333}{\watt}
+=\left(\frac{127}{220}\right)^{2}\times1000=33{,}3\%.
+\]
+\textbf{Consequência:} o aparelho funciona, mas com um terço da potência --- um
+chuveiro esquenta pouco, um aquecedor não aquece. Situação incômoda, porém
+\emph{segura}.\\
+(b) $P'=\left(\dfrac{220}{127}\right)^{2}P=3{,}0\,P$ --- a potência
+\textbf{triplica}, e a corrente quase dobra.\\
+\textbf{Resultado:} superaquecimento imediato, fumaça e, muitas vezes, incêndio.
+O disjuntor pode nem atuar, pois a corrente ($\SI{13.6}{\ampere}$ para um
+aparelho de $\SI{1000}{\watt}$/$\SI{127}{\volt}$) fica abaixo do valor de
+disparo --- a proteção existe para o \emph{circuito}, não para o aparelho.\\
+\textbf{Assimetria fundamental:} subtensão é inconveniente; sobretensão é
+destrutiva. Por isso a etiqueta de tensão merece conferência antes de ligar
+qualquer aparelho resistivo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um resistor de $\SI{4}{\ohm}$ é percorrido por
+$i(t)=\SI{5}{\ampere}\cdot e^{-t/\tau}$, com $\tau=\SI{20}{\milli\second}$.
+\begin{itensq}
+\item Determine a potência inicial.
+\item Determine a energia total dissipada.
+\item Determine o instante em que metade da energia já foi dissipada.
+\end{itensq}
+\resposta{(a) $\SI{100}{\watt}$; (b) $\SI{1}{\joule}$; (c)
+$t=\SI{6.93}{\milli\second}$}
+\resolucao{(a) $P_0=RI_0^{2}=4(25)=\SI{100}{\watt}$.\\
+(b) A potência decai como $e^{-2t/\tau}$:
+\[
+E=\int_0^{\infty}RI_0^{2}e^{-2t/\tau}\,\mathrm{d}t
+=RI_0^{2}\cdot\frac{\tau}{2}
+=100\times\frac{0{,}020}{2}=\SI{1}{\joule}.
+\]
+\textbf{Regra útil:} a energia equivale à potência inicial mantida por
+$\tau/2$. A "constante de tempo da potência" é metade da constante de tempo da
+corrente, porque a potência vai com o quadrado.\\
+(c) Metade da energia:
+\[
+\int_0^{t}e^{-2s/\tau}\mathrm{d}s=\frac12\int_0^{\infty}
+\;\Longrightarrow\;
+1-e^{-2t/\tau}=\frac12
+\;\Longrightarrow\;
+t=\frac{\tau\ln2}{2}=\SI{6.93}{\milli\second}.
+\]
+\textbf{Interpretação:} metade de toda a energia é liberada em apenas
+$0{,}35\,\tau$ --- o transitório é fortemente concentrado no início. É o pico
+inicial, e não a duração, que dimensiona o componente.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare uma lâmpada incandescente de $\SI{60}{\watt}$ com uma de LED de
+$\SI{9}{\watt}$ e mesmo fluxo luminoso, usadas $\SI{5}{\hour}$ por dia.
+\begin{itensq}
+\item Determine o consumo e o custo anual de cada uma, a
+      $\mathrm{R\$}\,0{,}95/\si{\kilo\watt\hour}$.
+\item Determine o tempo de retorno se a lâmpada de LED custar
+      $\mathrm{R\$}\,15{,}00$ a mais.
+\end{itensq}
+\resposta{(a) $\mathrm{R\$}\,104{,}02$ contra $\mathrm{R\$}\,15{,}60$;
+(b) cerca de $\SI{2}{\month}$}
+\resolucao{(a) Horas anuais: $5\times365=\SI{1825}{\hour}$.
+\[
+E_{inc}=0{,}060(1825)=\SI{109.5}{\kilo\watt\hour}
+\Rightarrow \mathrm{R\$}\,104{,}02;
+\]
+\[
+E_{LED}=0{,}009(1825)=\SI{16.4}{\kilo\watt\hour}
+\Rightarrow \mathrm{R\$}\,15{,}60.
+\]
+Economia anual: $\mathrm{R\$}\,88{,}42$.\\
+(b)
+\[
+t=\frac{15{,}00}{88{,}42}=0{,}17\ \text{ano}\approx\SI{2}{\month}.
+\]
+\textbf{Retorno excepcional} --- poucos investimentos em engenharia se pagam em
+dois meses.\\
+\textbf{E há mais:} a lâmpada de LED dura tipicamente $\SI{25000}{\hour}$
+contra $\SI{1000}{\hour}$ da incandescente, evitando cerca de $24$ trocas ao
+longo da vida. Somando o custo das lâmpadas substituídas e da mão de obra, a
+vantagem cresce ainda mais.\\
+\textbf{Nota física:} a incandescente converte cerca de $95\%$ da energia em
+calor e apenas $5\%$ em luz --- ela é, essencialmente, um aquecedor que
+ilumina de lado.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma instalação alimenta uma carga de $\SI{10}{\kilo\watt}$ por um cabo de
+resistência total $\SI{0.2}{\ohm}$, em $\SI{220}{\volt}$.
+\begin{itensq}
+\item Determine a corrente e a perda no cabo.
+\item Determine a fração da energia perdida.
+\item Repita para $\SI{440}{\volt}$ e comente.
+\end{itensq}
+\resposta{(a) $\SI{45.5}{\ampere}$, $\SI{414}{\watt}$; (b) $4{,}1\%$;
+(c) $\SI{103}{\watt}$, $1{,}0\%$}
+\resolucao{(a) $I=\dfrac{10000}{220}=\SI{45.5}{\ampere}$ e
+\[
+P_{cabo}=RI^{2}=0{,}2(45{,}5)^{2}=\SI{414}{\watt}.
+\]
+(b) $414/10000=4{,}1\%$ da potência útil vira calor no cabo.\\
+(c) Em $\SI{440}{\volt}$: $I=\SI{22.7}{\ampere}$ e
+$P_{cabo}=0{,}2(22{,}7)^{2}=\SI{103}{\watt}$, ou $1{,}0\%$.\\
+\textbf{Dobrar a tensão reduziu a perda a um quarto.} A razão é direta: para a
+mesma potência, $I\propto1/U$, e a perda vai com $I^{2}$ --- logo
+$P_{perda}\propto1/U^{2}$.\\
+\textbf{É esta a razão de existir a alta tensão na transmissão.} Linhas de
+$\SI{500}{\kilo\volt}$ transportam gigawatts com perdas de poucos por cento; nas
+mesmas linhas em baixa tensão, a energia não chegaria ao destino. O preço é o
+isolamento e os transformadores nas duas pontas.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- potência média e valor eficaz.)} Prove que a potência
+média em um resistor depende do valor \emph{eficaz} da corrente.
+\begin{itensq}
+\item Deduza $P_{média}=R\,I_{rms}^{2}$ a partir da definição.
+\item Mostre que $I_{rms}\ge I_{média}$, com igualdade apenas para corrente
+      constante.
+\item Aplique a uma onda quadrada de $\SI{0}{\ampere}$ e
+      $\SI{4}{\ampere}$ com ciclo de $\SI{25}{\percent}$.
+\end{itensq}
+\resposta{$I_{rms}=\SI{2}{\ampere}$ contra $I_{média}=\SI{1}{\ampere}$;
+$P=R I_{rms}^{2}$}
+\resolucao{(a) Por definição, a potência média em um período $T$ é
+\[
+P_{média}=\frac{1}{T}\int_0^{T}R\,i^{2}(t)\,\mathrm{d}t
+=R\left[\frac{1}{T}\int_0^{T}i^{2}\,\mathrm{d}t\right]
+=R\,I_{rms}^{2},
+\]
+onde a definição de valor eficaz é justamente
+$I_{rms}=\sqrt{\frac1T\int_0^{T}i^{2}\mathrm{d}t}$ --- a
+\emph{raiz} da \emph{média} do \emph{quadrado}.\\
+(b) Pela desigualdade de Cauchy--Schwarz (ou pelo fato de a variância ser não
+negativa):
+\[
+\left\langle i^{2}\right\rangle-\left\langle i\right\rangle^{2}
+=\operatorname{Var}(i)\ge0
+\;\Longrightarrow\;
+I_{rms}^{2}\ge I_{média}^{2}.
+\]
+A igualdade vale se e somente se a variância é nula, isto é, se $i(t)$ é
+\textbf{constante}.\\
+\textbf{Leitura:} qualquer flutuação da corrente aumenta o aquecimento em
+relação ao que a média sugeriria. Corrente ondulada aquece mais que corrente
+contínua de mesmo valor médio --- resultado com consequências diretas em
+retificadores e conversores.\\
+(c) $\langle i\rangle=0{,}25(4)=\SI{1}{\ampere}$;
+$\langle i^{2}\rangle=0{,}25(16)=\SI{4}{\ampere\squared}$, logo
+$I_{rms}=\SI{2}{\ampere}$.\\
+Com $R=\SI{10}{\ohm}$: $P=10(4)=\SI{40}{\watt}$, e não os
+$\SI{10}{\watt}$ que a corrente média sugeriria. Fator $4$ --- exatamente
+$(I_{rms}/I_{média})^{2}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Integração --- energia em transitório.)} Um resistor $R$ conduz
+$i(t)=I_0e^{-t/\tau}$.
+\begin{itensq}
+\item Deduza a energia total dissipada.
+\item Determine a "potência média equivalente" ao longo de $5\tau$.
+\item Compare com a energia de um pulso retangular de mesma amplitude e
+      duração $\tau$.
+\end{itensq}
+\resposta{$E=\dfrac{RI_0^{2}\tau}{2}$; equivale à potência inicial mantida por
+$\tau/2$}
+\resolucao{(a)
+\[
+E=\int_0^{\infty}R\,I_0^{2}e^{-2t/\tau}\,\mathrm{d}t
+=RI_0^{2}\left[-\frac{\tau}{2}e^{-2t/\tau}\right]_0^{\infty}
+=\frac{RI_0^{2}\tau}{2}.
+\]
+\textbf{Observe o fator $\tau/2$, e não $\tau$:} a potência decai com constante
+$\tau/2$ porque é proporcional a $i^{2}$, e o quadrado de uma exponencial tem
+metade da constante de tempo.\\
+(b) Distribuindo $E$ por $5\tau$:
+\[
+P_{média}=\frac{RI_0^{2}\tau/2}{5\tau}=\frac{RI_0^{2}}{10}=\frac{P_0}{10}.
+\]
+Apenas um décimo da potência inicial --- confirmando que o transitório é curto
+diante da janela considerada.\\
+(c) \textbf{Pulso retangular} de amplitude $I_0$ e duração $\tau$:
+$E_{ret}=RI_0^{2}\tau$, exatamente o \textbf{dobro}.\\
+\textbf{Consequência de dimensionamento:} substituir o decaimento real por um
+pulso retangular equivalente de duração $\tau$ é uma aproximação
+\emph{conservadora} --- ela superestima a energia por um fator $2$. Útil como
+estimativa rápida e segura, desde que se saiba que há folga embutida.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de proteção.)} Um resistor de $\SI{100}{\ohm}$ e
+$\frac14\,\si{\watt}$ deve ser protegido contra sobrecarga.
+\begin{itensq}
+\item Determine a tensão e a corrente máximas admissíveis.
+\item Projete um resistor limitador em série, para uma fonte de
+      $\SI{24}{\volt}$.
+\item Verifique a potência do limitador.
+\end{itensq}
+\resposta{$U_{\max}=\SI{5}{\volt}$, $I_{\max}=\SI{50}{\milli\ampere}$;
+limitador de $\SI{380}{\ohm}$}
+\resolucao{(a)
+\[
+U_{\max}=\sqrt{PR}=\sqrt{0{,}25(100)}=\SI{5}{\volt};
+\qquad
+I_{\max}=\sqrt{\frac{P}{R}}=\sqrt{0{,}0025}=\SI{50}{\milli\ampere}.
+\]
+(b) Com $\SI{24}{\volt}$ e a exigência $I\le\SI{50}{\milli\ampere}$:
+\[
+R_{total}\ge\frac{24}{0{,}050}=\SI{480}{\ohm}
+\;\Longrightarrow\;
+R_{lim}\ge480-100=\SI{380}{\ohm}.
+\]
+O valor E24 imediatamente superior é $\SI{390}{\ohm}$, que dá
+$I=24/490=\SI{49}{\milli\ampere}$ \checkmark.\\
+(c) $P_{lim}=390(0{,}049)^{2}=\SI{0.94}{\watt}$ --- especifique
+$\SI{2}{\watt}$.\\
+\textbf{Observação incômoda:} o limitador dissipa \emph{quatro vezes} mais que o
+resistor protegido, e o conjunto consome $\SI{1.18}{\watt}$ para entregar
+$\SI{0.24}{\watt}$ ao componente de interesse.\\
+\textbf{Quando isso se justifica:} apenas se o resistor de
+$\SI{100}{\ohm}$ tiver função específica (sensor, elemento de calibração) que o
+torne insubstituível. Caso contrário, redimensionar o próprio resistor para uma
+potência maior é mais simples e mais eficiente.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Análise de retorno.)} Dois equipamentos entregam a mesma energia útil
+de $\SI{1000}{\kilo\watt\hour}$ por ano: o modelo A tem rendimento de
+$\SI{80}{\percent}$ e o B, de $\SI{92}{\percent}$.
+\begin{itensq}
+\item Determine a energia de entrada de cada um e a diferença.
+\item Determine o tempo de retorno se B custar $\mathrm{R\$}\,800$ a mais, com
+      tarifa de $\mathrm{R\$}\,0{,}95/\si{\kilo\watt\hour}$.
+\item Discuta os fatores que a análise simples ignora.
+\end{itensq}
+\resposta{(a) $1250$ e $\SI{1087}{\kilo\watt\hour}$, diferença de
+$\SI{163}{\kilo\watt\hour}$; (b) cerca de $\SI{5.2}{year}$}
+\resolucao{(a)
+\[
+E_A=\frac{1000}{0{,}80}=\SI{1250}{\kilo\watt\hour};
+\qquad
+E_B=\frac{1000}{0{,}92}=\SI{1087}{\kilo\watt\hour};
+\]
+diferença de $\SI{163}{\kilo\watt\hour}$ por ano.\\
+(b) Economia anual: $163(0{,}95)=\mathrm{R\$}\,154{,}89$.
+\[
+t=\frac{800}{154{,}89}=\SI{5.2}{year}.
+\]
+(c) \textbf{O que a conta simples ignora.}
+\begin{itemize}
+\item \textbf{Reajuste da tarifa:} se a energia subir acima da inflação, o
+retorno acelera. Historicamente é o que ocorre.
+\item \textbf{Custo do capital:} $\mathrm{R\$}\,800$ aplicados renderiam algo
+--- o retorno real é mais longo que o nominal.
+\item \textbf{Vida útil:} se o equipamento durar $\SI{10}{year}$, B gera lucro
+nos últimos cinco. Se durar $\SI{4}{year}$, a troca não se paga.
+\item \textbf{Custo do calor rejeitado:} A dissipa $\SI{250}{\kilo\watt\hour}$
+contra $\SI{87}{\kilo\watt\hour}$ de B. Em ambiente climatizado, esse calor
+extra precisa ser \emph{removido} --- o que pode dobrar a economia efetiva.
+\item \textbf{Regime de uso:} rendimentos variam com a carga, e o valor de
+catálogo costuma ser o de plena carga.
+\end{itemize}
+\textbf{Conclusão:} $\SI{5.2}{year}$ é aceitável para equipamento industrial de
+vida longa e uso contínuo; é ruim para uso intermitente ou equipamento de
+substituição rápida. \textbf{A resposta depende do horizonte, não apenas do
+número.}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Restrição orçamentária.)} Deseja-se limitar a
+$\mathrm{R\$}\,90{,}00$ o custo mensal de um aquecedor de
+$\SI{1.5}{\kilo\watt}$, com tarifa de
+$\mathrm{R\$}\,1{,}00/\si{\kilo\watt\hour}$.
+\begin{itensq}
+\item Determine o tempo de uso admissível.
+\item Determine a potência que permitiria uso de $\SI{4}{\hour}$ diárias dentro
+      do mesmo orçamento.
+\item Discuta qual das duas soluções é preferível.
+\end{itensq}
+\resposta{(a) $\SI{60}{\hour}$ por mês, ou $\SI{2}{\hour}$ por dia;
+(b) $\SI{750}{\watt}$}
+\resolucao{(a) O orçamento permite $\SI{90}{\kilo\watt\hour}$ por mês:
+\[
+t=\frac{90}{1{,}5}=\SI{60}{\hour\per month}
+=\SI{2}{\hour\per day}.
+\]
+(b) Para $4\times30=\SI{120}{\hour}$ mensais dentro dos mesmos
+$\SI{90}{\kilo\watt\hour}$:
+\[
+P=\frac{90}{120}=\SI{0.75}{\kilo\watt}=\SI{750}{\watt}.
+\]
+(c) \textbf{Depende do objetivo térmico.} As duas soluções entregam a
+\emph{mesma energia} --- e portanto o mesmo calor total no mês.
+\begin{itemize}
+\item \textbf{$\SI{1.5}{\kilo\watt}$ por $\SI{2}{\hour}$:} aquece rápido e
+atinge temperatura mais alta, mas o ambiente esfria nas outras
+$\SI{22}{\hour}$.
+\item \textbf{$\SI{750}{\watt}$ por $\SI{4}{\hour}$:} aquecimento mais suave e
+prolongado, com temperatura média mais estável.
+\end{itemize}
+\textbf{Para conforto térmico, a segunda costuma ser superior} --- o ambiente
+tem inércia térmica, e potência menor por mais tempo reduz as oscilações.\\
+\textbf{E há uma terceira solução, melhor que ambas:} melhorar o
+\emph{isolamento} do ambiente. Isso reduz a energia necessária, e não apenas a
+redistribui --- atacando a causa em vez do sintoma.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Otimização econômica de condutor.)} Um cabo alimenta uma carga de
+$\SI{40}{\ampere}$ por $\SI{4000}{\hour}$ ao ano. O custo do cabo é
+proporcional à seção, e a resistência é inversamente proporcional a ela.
+\begin{itensq}
+\item Escreva o custo total como função da seção.
+\item Determine a condição de mínimo.
+\item Interprete o resultado.
+\end{itensq}
+\resposta{No ótimo, o custo anualizado do cabo iguala o custo anual da energia
+perdida}
+\resolucao{(a) Sejam $S$ a seção, $k_1$ o custo anualizado do cabo por unidade
+de seção e $R=\rho\ell/S$. O custo total anual é
+\[
+C(S)=\underbrace{k_1S}_{\text{investimento}}
++\underbrace{\frac{\rho\ell}{S}I^{2}\,t\,c_E}_{\text{energia perdida}}
+=k_1S+\frac{k_2}{S},
+\]
+com $k_2=\rho\ell I^{2}t\,c_E$.\\
+(b) Derivando e anulando:
+\[
+\frac{\mathrm{d}C}{\mathrm{d}S}=k_1-\frac{k_2}{S^{2}}=0
+\;\Longrightarrow\;
+S^{*}=\sqrt{\frac{k_2}{k_1}}.
+\]
+A segunda derivada, $2k_2/S^{3}>0$, confirma o mínimo.\\
+(c) \textbf{Substituindo $S^{*}$ nas duas parcelas:}
+\[
+k_1S^{*}=\sqrt{k_1k_2}
+\qquad\text{e}\qquad
+\frac{k_2}{S^{*}}=\sqrt{k_1k_2}.
+\]
+As duas são \textbf{iguais} no ótimo --- resultado conhecido como \emph{lei de
+Kelvin}: \textbf{a seção econômica é aquela em que o custo anualizado do
+condutor iguala o custo anual das perdas}.\\
+\textbf{Leituras práticas.}
+\begin{itemize}
+\item Cabos usados \emph{muitas horas} por ano ($t$ grande) justificam seções
+maiores --- $S^{*}\propto\sqrt{t}$.
+\item Correntes maiores também: $S^{*}\propto I$.
+\item Energia mais cara empurra a seção para cima: $S^{*}\propto\sqrt{c_E}$.
+\end{itemize}
+\textbf{Importante:} a seção econômica é frequentemente \emph{maior} que a
+mínima exigida pela norma (que garante apenas segurança térmica e queda de
+tensão). Dimensionar pelo mínimo normativo é seguro, mas costuma ser
+economicamente subótimo em instalações de uso intenso.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Balanço energético de um chuveiro.)} Um chuveiro de
+$\SI{5500}{\watt}$ aquece água de $\SI{20}{\celsius}$ a
+$\SI{40}{\celsius}$.
+\begin{itensq}
+\item Determine a vazão máxima, supondo rendimento de $\SI{100}{\percent}$.
+\item Determine o custo de um banho de $\SI{8}{\minute}$ a
+      $\mathrm{R\$}\,0{,}95/\si{\kilo\watt\hour}$.
+\item Discuta por que o rendimento é tão alto neste caso.
+\end{itensq}
+\dados{$c_{\text{água}}=\SI{4180}{\joule\per\kilogram\per\kelvin}$}
+\resposta{(a) $\SI{0.0658}{\kilogram\per\second}\approx
+\SI{3.9}{\liter\per\minute}$; (b) $\mathrm{R\$}\,0{,}70$}
+\resolucao{(a) A potência necessária para aquecer uma vazão mássica $\dot m$
+por $\Delta T=\SI{20}{\kelvin}$ é $P=\dot m\,c\,\Delta T$:
+\[
+\dot m=\frac{P}{c\,\Delta T}=\frac{5500}{4180(20)}
+=\SI{0.0658}{\kilogram\per\second}\approx\SI{3.9}{\liter\per\minute}.
+\]
+Vazão modesta --- e é exatamente por isso que abrir demais o registro faz a água
+esfriar: a potência é fixa, e mais vazão significa menor $\Delta T$.\\
+(b)
+\[
+E=5{,}5\,\si{\kilo\watt}\times\frac{8}{60}\,\si{\hour}
+=\SI{0.733}{\kilo\watt\hour}
+\;\Longrightarrow\;
+\text{custo}=0{,}733(0{,}95)=\mathrm{R\$}\,0{,}70.
+\]
+Um banho diário custa cerca de $\mathrm{R\$}\,21$ por mês --- e para uma
+família de quatro pessoas, mais de $\mathrm{R\$}\,80$.\\
+(c) \textbf{Por que o rendimento é quase $100\%$.} A resistência está
+\emph{imersa} na água, e \textbf{toda} a energia dissipada por efeito Joule vira
+calor exatamente onde ele é desejado. Não há conversão intermediária, nem calor
+"desperdiçado" --- o que seria perda em outro contexto é aqui o produto.\\
+\textbf{Contraste instrutivo:} uma lâmpada incandescente tem os mesmos
+$\approx100\%$ de conversão em calor, mas rendimento \emph{luminoso} de $5\%$.
+O rendimento só se define em relação ao \emph{objetivo}: a mesma física é
+excelente para aquecer e péssima para iluminar.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Diagnóstico por consumo.)} A conta de energia de uma residência subiu
+de $\SI{180}{\kilo\watt\hour}$ para $\SI{320}{\kilo\watt\hour}$ mensais, sem
+mudança de hábitos.
+\begin{itensq}
+\item Determine a potência contínua equivalente ao acréscimo.
+\item Levante hipóteses compatíveis com esse valor.
+\item Proponha um procedimento de investigação.
+\end{itensq}
+\resposta{Acréscimo de $\SI{140}{\kilo\watt\hour}$, equivalente a
+$\SI{194}{\watt}$ contínuos}
+\resolucao{(a) O mês tem cerca de $\SI{720}{\hour}$:
+\[
+P=\frac{140000}{720}=\SI{194}{\watt}\ \text{contínuos}.
+\]
+(b) \textbf{Hipóteses compatíveis com $\approx\SI{200}{\watt}$ permanentes.}
+\begin{itemize}
+\item \textbf{Fuga para o terra} por isolamento danificado --- especialmente em
+resistência de chuveiro ou aquecedor de água. Uma fuga de
+$\SI{0.88}{\ampere}$ em $\SI{220}{\volt}$ dá exatamente
+$\SI{194}{\watt}$.
+\item \textbf{Geladeira com vedação ruim ou gás insuficiente}, operando em
+regime quase contínuo em vez de ciclado.
+\item \textbf{Bomba ou motor} funcionando sem parar por falha de boia ou
+pressostato.
+\item \textbf{Ligação clandestina} a jusante do medidor.
+\end{itemize}
+(c) \textbf{Procedimento de investigação, em ordem.}
+\begin{enumerate}
+\item \textbf{Desligar o disjuntor geral} e verificar se o medidor continua
+girando. Se sim, o problema está \emph{antes} do quadro --- ligação irregular ou
+medidor defeituoso.
+\item \textbf{Religar circuito por circuito}, observando o medidor a cada
+etapa, para isolar o ramo responsável.
+\item \textbf{Medir a corrente} de cada circuito suspeito com alicate
+amperímetro, com todos os aparelhos desligados. Corrente não nula indica fuga.
+\item \textbf{Testar o dispositivo DR}, se houver --- fuga acima de
+$\SI{30}{\milli\ampere}$ deveria ter provocado desarme. A ausência de desarme
+com fuga confirmada indica DR defeituoso, e é problema de segurança, não apenas
+de conta.
+\end{enumerate}
+\textbf{Prioridade:} uma fuga de $\SI{0.88}{\ampere}$ é risco de choque e de
+incêndio. O custo na conta é o sintoma menos grave.}
+\end{questao}

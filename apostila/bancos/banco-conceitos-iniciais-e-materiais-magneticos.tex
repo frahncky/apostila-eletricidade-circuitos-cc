@@ -1,0 +1,1201 @@
+% =====================================================================
+%  Banco complementar --- Conceitos Iniciais e Materiais Magneticos
+%  REVISADO. Substitui a versao gerada por template (10 clones em N2,
+%  9 em N3 e 8 questoes conceituais de uma linha marcadas como N4).
+%  O cap11 ja cobre: inseparabilidade dos polos (MC), definicao de
+%  ferromagnetico por mu_r (MC), comparacao de dois materiais por B sob
+%  mesmo H, classificacao para/diamagnetica a partir de mu_r, por que
+%  ferromagneticos sao usados em nucleos, comparacao ar x ferro-silicio
+%  no mesmo enrolamento e a descricao qualitativa do ciclo de histerese.
+%  A LAMINACAO ja foi tratada quantitativamente no banco de Lenz, e o
+%  ENTREFERRO no banco de fluxo -- por isso as N4 antigas sobre esses
+%  dois temas foram removidas daqui.
+%  Este banco explora: H, B e M como grandezas distintas, curva de
+%  magnetizacao inicial e mu diferencial, temperatura de Curie, energia
+%  do ciclo, materiais moles x duros com numeros, ponto de operacao em
+%  nucleo nao linear, circuito magnetico com dois materiais e ensaio
+%  experimental do ciclo.
+%  Distribuicao mantida: 4 N1 + 11 N2 + 10 N3 + 8 N4 = 33
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Conceitos iniciais e materiais magnéticos}
+
+\begin{atencao}[Organização do banco]
+Três grandezas convivem e são frequentemente confundidas. $\vec H$
+($\si{\ampere\per\meter}$) é o campo \emph{aplicado}, determinado apenas pelas
+correntes de condução; $\vec M$ é a \emph{magnetização} do material; e
+$\vec B=\mu_0(\vec H+\vec M)$ é o que efetivamente age sobre cargas e produz
+fluxo. Em materiais lineares, $\vec B=\mu_r\mu_0\vec H$ --- mas ferromagnéticos
+\textbf{não} são lineares, e neles $\mu_r$ é uma função, não uma constante. O N4
+trata de energia do ciclo, ponto de operação e ensaio.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um material linear tem $\mu_r=500$ e é submetido a
+$H=\SI{100}{\ampere\per\meter}$. Determine $B$.
+\dados{$\mu_0=4\pi\times10^{-7}\,\si{\tesla\meter\per\ampere}$}
+\resposta{$B=\SI{62.8}{\milli\tesla}$}
+\resolucao{
+\[
+B=\mu_r\mu_0H=(500)(4\pi\times10^{-7})(100)=\pot{6.28}{-2}\,\si{\tesla}.
+\]
+\textbf{Sem o material} ($\mu_r=1$), o mesmo $H$ produziria apenas
+$\SI{126}{\micro\tesla}$. O material multiplicou $B$ por $500$ --- e é
+exatamente esse o papel de um núcleo magnético.\\
+\textbf{Atenção:} $H$ é fixado pelas correntes; $B$ é o que o material
+\emph{responde}. Trocar o núcleo muda $B$, mas não muda $H$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine a magnetização $M$ do material da questão anterior.
+\resposta{$M=\SI{49.9}{\kilo\ampere\per\meter}$}
+\resolucao{De $B=\mu_0(H+M)$:
+\[
+M=\frac{B}{\mu_0}-H=\mu_rH-H=(\mu_r-1)H
+=(499)(100)=\pot{4.99}{4}\,\si{\ampere\per\meter}.
+\]
+\textbf{Interpretação:} a magnetização do material equivale a uma corrente
+superficial de $\SI{49.9}{\kilo\ampere\per\meter}$ --- quinhentas vezes maior
+que a corrente de condução que a provocou.\\
+\textbf{É por isso que o núcleo "amplifica":} ele não cria energia, apenas
+alinha os momentos magnéticos já existentes no material, cujo efeito somado
+supera em muito o do enrolamento.}
+\end{questao}
+
+\begin{questao}[1]{}
+Define-se a suscetibilidade magnética como $\chi=\mu_r-1$. Classifique os
+materiais com $\chi=+\pot{5}{-4}$ e $\chi=-\pot{2}{-5}$.
+\resposta{Paramagnético e diamagnético, respectivamente}
+\resolucao{\textbf{Paramagnético} ($\chi>0$, pequeno): os momentos atômicos
+alinham-se \emph{fracamente} com o campo, reforçando-o de forma quase
+imperceptível. Exemplos: alumínio, platina, oxigênio líquido.\\
+\textbf{Diamagnético} ($\chi<0$): o campo induz momentos \emph{opostos}, e o
+material é levemente repelido. Exemplos: cobre, água, bismuto, grafite. Todo
+material tem componente diamagnética; ela só é observável quando não há
+efeito maior a mascará-la.\\
+\textbf{Ordens de grandeza:} $|\chi|\sim10^{-5}$ a $10^{-4}$ nesses dois casos,
+contra $\chi\sim10^{3}$ em ferromagnéticos --- diferença de sete ordens de
+grandeza.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um enrolamento de $500$ espiras percorrido por $\SI{0.4}{\ampere}$ envolve um
+núcleo de caminho médio $\SI{25}{\centi\meter}$. Determine $H$.
+\resposta{$H=\SI{800}{\ampere\per\meter}$}
+\resolucao{Da lei de Ampère aplicada ao caminho médio,
+\[
+H=\frac{NI}{\ell}=\frac{500(0{,}4)}{0{,}25}=\SI{800}{\ampere\per\meter}.
+\]
+\textbf{Observação central:} $H$ \textbf{não depende do material}. Ele é
+determinado exclusivamente pelas correntes e pela geometria.\\
+Trocar o núcleo de ar por ferro não altera $H$ --- altera $B$, e portanto o
+fluxo. É essa separação que torna útil distinguir as duas grandezas.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Um núcleo de $\SI{10}{\centi\meter}$ de caminho médio, seção
+$\SI{1}{\centi\meter\squared}$ e $\mu_r=1000$ recebe $\SI{200}{}$
+ampère-espiras.
+\begin{itensq}
+\item Determine a relutância.
+\item Determine o fluxo e a densidade de fluxo.
+\item Avalie o resultado.
+\end{itensq}
+\resposta{$\mathcal{R}=\pot{7.96}{5}\,\si{\per\henry}$;
+$\Phi=\SI{0.251}{\milli\weber}$; $B=\SI{2.51}{\tesla}$ --- \textbf{saturado}}
+\resolucao{(a)
+\[
+\mathcal{R}=\frac{\ell}{\mu_r\mu_0A}
+=\frac{0{,}10}{(1000)(4\pi\times10^{-7})(\pot{1}{-4})}
+=\pot{7.96}{5}\,\si{\per\henry}.
+\]
+(b)
+\[
+\Phi=\frac{NI}{\mathcal{R}}=\frac{200}{\pot{7.96}{5}}
+=\pot{2.51}{-4}\,\si{\weber};
+\qquad
+B=\frac{\Phi}{A}=\SI{2.51}{\tesla}.
+\]
+(c) \textbf{Resultado impossível.} Nenhum aço comum sustenta
+$\SI{2.51}{\tesla}$ --- todos saturam entre $1{,}5$ e $\SI{2}{\tesla}$.\\
+\textbf{O que realmente ocorreria:} conforme $B$ se aproxima da saturação,
+$\mu_r$ desaba de $1000$ para valores próximos de $1$. A relutância dispara e o
+fluxo estaciona em torno de $B_{sat}A=\SI{0.15}{\milli\weber}$.\\
+\textbf{Regra de método:} calcular com $\mu_r$ constante e \emph{depois}
+verificar $B$ contra $B_{sat}$. Se o valor exceder, o modelo linear não se
+aplica e é preciso recorrer à curva $B\times H$ real.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um mesmo enrolamento produz $H=\SI{500}{\ampere\per\meter}$. Determine $B$ para
+núcleo de ar, de alumínio ($\mu_r=1{,}00002$) e de ferro-silício
+($\mu_r=4000$).
+\resposta{$\SI{628}{\micro\tesla}$; $\SI{628}{\micro\tesla}$;
+$\SI{2.51}{\tesla}$}
+\resolucao{
+\[
+\text{ar}:\ B=\mu_0(500)=\SI{628}{\micro\tesla};
+\]
+\[
+\text{alumínio}:\ B=(1{,}00002)\mu_0(500)=\SI{628}{\micro\tesla};
+\]
+\[
+\text{ferro-silício}:\ B=(4000)\mu_0(500)=\SI{2.51}{\tesla}
+\ \text{(saturaria antes)}.
+\]
+\textbf{Duas leituras.}\\
+\emph{(i)} O alumínio é \emph{indistinguível} do ar para fins práticos --- sua
+suscetibilidade de $\pot{2}{-5}$ altera $B$ na quinta casa decimal. É por isso
+que se pode enrolar bobinas em carretéis de alumínio sem consequência magnética.\\
+\emph{(ii)} O ferro-silício produziria $\SI{2.51}{\tesla}$ \emph{se fosse
+linear} --- mas ele satura antes. Com $H=\SI{500}{\ampere\per\meter}$, um
+ferro-silício real já está bem dentro do joelho da curva, com $B$ real em torno
+de $1{,}5$ a $\SI{1.7}{\tesla}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um material apresenta $B=\SI{1.2}{\tesla}$ para $H=\SI{400}{\ampere\per\meter}$
+e $B=\SI{1.5}{\tesla}$ para $H=\SI{1200}{\ampere\per\meter}$.
+\begin{itensq}
+\item Determine $\mu_r$ em cada ponto.
+\item Interprete a variação.
+\end{itensq}
+\resposta{$\mu_r=2390$ e $995$}
+\resolucao{(a)
+\[
+\mu_r=\frac{B}{\mu_0H}:\quad
+\frac{1{,}2}{(4\pi\times10^{-7})(400)}=2390;
+\qquad
+\frac{1{,}5}{(4\pi\times10^{-7})(1200)}=995.
+\]
+(b) \textbf{A permeabilidade caiu para menos da metade} enquanto $H$
+triplicou.\\
+\textbf{Interpretação:} o material está entrando na região de \emph{joelho} da
+curva de magnetização. Os domínios já estão em boa parte alinhados, e cada
+acréscimo de $H$ produz cada vez menos acréscimo de $B$.\\
+\textbf{Consequência prática:} triplicar a corrente aumentou o fluxo em apenas
+$25\%$. Operar nessa região é ineficiente --- o cobre gasta muito para
+render pouco.\\
+\textbf{Lição de fundo:} $\mu_r$ de catálogo é sempre um valor \emph{para uma
+condição específica}. Usá-lo fora dessa condição é um erro comum e silencioso.}
+\end{questao}
+
+\begin{questao}[2]{}
+Explique a diferença entre a permeabilidade \textbf{normal}
+($\mu=B/H$) e a permeabilidade \textbf{diferencial}
+($\mu_d=\mathrm{d}B/\mathrm{d}H$), e indique quando cada uma se aplica.
+\resposta{Normal para o ponto de operação; diferencial para pequenos sinais
+sobrepostos}
+\resolucao{\textbf{Permeabilidade normal:} razão entre $B$ e $H$ no ponto de
+operação. Ela governa o \emph{fluxo total} e, portanto, a relutância e o
+dimensionamento do núcleo.\\
+\textbf{Permeabilidade diferencial:} inclinação da curva naquele ponto. Ela
+governa a resposta a \emph{pequenas variações} sobrepostas --- e portanto a
+indutância incremental.\\
+\textbf{Onde diferem drasticamente:} perto da saturação, $B/H$ ainda é grande
+(centenas), mas $\mathrm{d}B/\mathrm{d}H$ já caiu para quase $\mu_0$. Um
+indutor com corrente contínua elevada pode ter indutância incremental dezenas
+de vezes menor que a nominal.\\
+\textbf{Consequência de projeto:} em filtros com componente contínua --- muito
+comuns em fontes chaveadas --- é a permeabilidade \emph{diferencial} que
+determina o desempenho, e é ela que precisa ser consultada no catálogo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Compare a temperatura de Curie do ferro ($\SI{770}{\celsius}$), do níquel
+($\SI{358}{\celsius}$) e de uma ferrite típica
+($\approx\SI{250}{\celsius}$), e explique o que ocorre acima dela.
+\resposta{Acima de $T_C$ o material torna-se paramagnético e perde
+praticamente toda a permeabilidade}
+\resolucao{\textbf{O que ocorre acima de $T_C$.} A agitação térmica supera a
+interação de troca que mantém os momentos atômicos alinhados dentro dos
+domínios. A estrutura de domínios se desfaz, e o material passa de
+\textbf{ferromagnético} a \textbf{paramagnético}:
+\[
+\mu_r:\ 10^{3}\text{--}10^{4}\ \longrightarrow\ \approx1.
+\]
+\textbf{A transição é abrupta} --- trata-se de uma transição de fase de segunda
+ordem, e $\mu_r$ despenca em poucos graus em torno de $T_C$.\\
+\textbf{Consequências práticas.}
+\begin{itemize}
+\item \textbf{Ferrites são as mais vulneráveis.} Com $T_C$ próxima de
+$\SI{250}{\celsius}$, e temperatura de operação já em torno de
+$\SI{100}{\celsius}$, a margem é pequena. Um transformador de fonte chaveada
+que superaqueça perde indutância, a corrente dispara e ele se destrói --- fuga
+térmica.
+\item \textbf{Aplicação deliberada:} panelas de indução com fundo cuja $T_C$ é
+próxima da temperatura desejada param de aquecer sozinhas ao atingi-la. É um
+termostato sem sensor.
+\item \textbf{Desmagnetização por aquecimento:} aquecer um ímã acima de
+$T_C$ e resfriá-lo sem campo o deixa completamente desmagnetizado.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[2]{}
+Um ímã permanente de ferrite tem coeficiente de temperatura de
+$\SI{-0.2}{\percent\per\celsius}$ para a remanência. Determine a variação de
+$B_r$ entre $\SI{20}{\celsius}$ e $\SI{120}{\celsius}$.
+\resposta{Redução de $20\%$}
+\resolucao{
+\[
+\frac{\Delta B_r}{B_r}=(-0{,}002)(100)=-0{,}20=-20\%.
+\]
+\textbf{Reversível ou não?} Até certo limite, a perda é \textbf{reversível} --- o
+ímã recupera a magnetização ao esfriar. Acima de uma temperatura crítica
+(bem abaixo de $T_C$), parte da perda torna-se \textbf{irreversível}, porque
+domínios se reorientam permanentemente.\\
+\textbf{Comparação entre materiais:}
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Material & Coef. de $B_r$ & $T_{\max}$ típica\\
+\hline
+Ferrite & $\SI{-0.2}{\percent\per\celsius}$ & $\SI{250}{\celsius}$\\
+Neodímio (NdFeB) & $\SI{-0.12}{\percent\per\celsius}$ & $\SI{80}{}$ a
+ $\SI{200}{\celsius}$\\
+Samário-cobalto & $\SI{-0.03}{\percent\per\celsius}$ & $\SI{300}{\celsius}$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Compromisso revelador:} o neodímio tem a maior densidade de energia mas
+péssima estabilidade térmica; o samário-cobalto é bem mais estável e mais caro.
+Em motores que aquecem, a escolha raramente é o material mais forte.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um núcleo de aço-silício dissipa perdas por histerese proporcionais à área do
+ciclo. Com área de $\SI{200}{\joule\per\meter\cubed}$ por ciclo e volume de
+$\SI{1000}{\centi\meter\cubed}$, determine a potência a $\SI{60}{\hertz}$ e a
+$\SI{400}{\hertz}$.
+\resposta{$\SI{12}{\watt}$ e $\SI{80}{\watt}$}
+\resolucao{
+\[
+P_h=f\times(\text{área})\times V:
+\quad
+60(200)(\pot{1}{-3})=\SI{12}{\watt};
+\qquad
+400(200)(\pot{1}{-3})=\SI{80}{\watt}.
+\]
+\textbf{Proporcionalidade linear com $f$} --- cada ciclo custa a mesma energia,
+e mais ciclos por segundo significam mais potência.\\
+\textbf{Contraste com as correntes parasitas}, cujas perdas vão com
+$f^{2}$. Em baixa frequência a histerese domina; em alta, as parasitas.\\
+\textbf{Consequência:} o mesmo núcleo que funciona bem em $\SI{60}{\hertz}$
+pode ser inviável em $\SI{400}{\hertz}$ --- e é por isso que equipamentos
+aeronáuticos, que operam nessa frequência, usam ligas especiais de lâminas
+finíssimas.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um material magnético \textbf{mole} tem $H_c=\SI{50}{\ampere\per\meter}$ e um
+material \textbf{duro} tem $H_c=\SI{500}{\kilo\ampere\per\meter}$. Compare-os
+e indique aplicações.
+\resposta{Razão de $10^{4}$ na coercividade; moles para núcleos, duros para ímãs
+permanentes}
+\resolucao{\textbf{Coercividade $H_c$} é o campo necessário para \emph{anular} a
+magnetização remanente. Ela mede o quanto o material "resiste" a mudar de
+estado.
+\begin{center}
+\begin{tabular}{lccl}
+\hline
+Tipo & $H_c$ & Área do ciclo & Aplicação\\
+\hline
+Mole & baixa & pequena & núcleos de transformador e motor\\
+Duro & alta & grande & ímãs permanentes\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Materiais moles} (ferro-silício, permalloy, ferrites moles):
+magnetizam e desmagnetizam facilmente, com pouca perda por ciclo. É o que se
+quer em algo que inverte a magnetização $120$ vezes por segundo.\\
+\textbf{Materiais duros} (alnico, ferrite dura, NdFeB): resistem à
+desmagnetização, mantendo o campo sem corrente alguma.\\
+\textbf{O critério é a área do ciclo:} pequena para quem vai percorrê-lo muitas
+vezes, grande para quem precisa permanecer magnetizado.}
+\end{questao}
+
+\begin{questao}[2]{}
+Explique por que a curva de magnetização \textbf{inicial} de um material
+virgem difere do ciclo de histerese subsequente.
+\resposta{A curva inicial parte da origem; o ciclo nunca mais passa por ela}
+\resolucao{\textbf{Material virgem:} os domínios estão orientados
+aleatoriamente, e a magnetização líquida é nula. Aplicando $H$ crescente, a
+curva parte da \textbf{origem} e sobe até a saturação --- é a \emph{curva de
+magnetização inicial}.\\
+\textbf{Ao reduzir $H$ a zero}, a magnetização \emph{não} retorna a zero: resta
+a \textbf{remanência} $B_r$. Os domínios que se reorientaram não voltam
+espontaneamente.\\
+\textbf{A partir daí}, ciclando $H$ entre $\pm H_{\max}$, o material percorre
+um laço fechado que \textbf{nunca mais passa pela origem}.\\
+\textbf{Como voltar ao estado virgem:} aplicar campo alternado de amplitude
+decrescente até zero (desmagnetização por ciclos decrescentes), ou aquecer acima
+de $T_C$ e resfriar sem campo.\\
+\textbf{Importância prática:} ao levantar experimentalmente a curva
+$B\times H$, é preciso desmagnetizar o material antes --- caso contrário, os
+primeiros pontos refletem a história anterior, não a propriedade do material.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um transformador é desligado no pico da corrente de magnetização. Explique o
+que ocorre na religação e por que a corrente de \emph{inrush} pode ser elevada.
+\resposta{O fluxo remanente soma-se ao fluxo imposto, podendo levar o núcleo a
+saturação profunda}
+\resolucao{\textbf{Ao desligar}, o núcleo retém fluxo remanente
+$\Phi_r$ --- consequência direta da histerese.\\
+\textbf{Ao religar}, o fluxo evolui a partir desse valor. No pior caso, a tensão
+é aplicada no instante em que exigiria fluxo de mesma polaridade, e o fluxo
+total pode chegar a
+\[
+\Phi\approx\Phi_r+2\Phi_{\max},
+\]
+muito além da saturação.\\
+\textbf{Consequência:} saturado, o núcleo perde permeabilidade, a indutância
+desaba e a corrente é limitada apenas pela resistência do enrolamento. A
+corrente de \emph{inrush} pode atingir dez a vinte vezes a nominal, por alguns
+ciclos.\\
+\textbf{Soluções empregadas:}
+\begin{itemize}
+\item \textbf{Chaveamento sincronizado:} energizar no instante correto da onda
+de tensão.
+\item \textbf{Resistor ou NTC de pré-carga}, curto-circuitado após alguns
+ciclos.
+\item \textbf{Proteção com curva temporizada}, que tolera o transitório sem
+atuar.
+\end{itemize}
+\textbf{Note a conexão:} este fenômeno só existe \emph{porque} há histerese ---
+um núcleo hipotético sem remanência não teria \emph{inrush} por essa causa.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito magnético tem dois trechos em série: ferro
+($\ell_1=\SI{30}{\centi\meter}$, $\mu_r=2000$) e ar
+($\ell_2=\SI{2}{\milli\meter}$), ambos com seção
+$\SI{5}{\centi\meter\squared}$. Determine a relutância total e a fração de cada
+trecho.
+\resposta{$\mathcal{R}_{fe}=\pot{2.39}{5}$, $\mathcal{R}_{ar}=\pot{3.18}{6}$;
+o ar responde por $93\%$}
+\resolucao{
+\[
+\mathcal{R}_{fe}=\frac{0{,}30}{(2000)\mu_0(\pot{5}{-4})}
+=\pot{2.39}{5}\,\si{\per\henry};
+\]
+\[
+\mathcal{R}_{ar}=\frac{\pot{2}{-3}}{\mu_0(\pot{5}{-4})}
+=\pot{3.18}{6}\,\si{\per\henry}.
+\]
+\[
+\mathcal{R}_{tot}=\pot{3.42}{6};
+\qquad
+\frac{\mathcal{R}_{ar}}{\mathcal{R}_{tot}}=93\%.
+\]
+\textbf{Dois milímetros de ar dominam trinta centímetros de ferro} --- porque a
+razão de permeabilidades ($2000$) supera de longe a razão de comprimentos
+($150$).\\
+\textbf{As relutâncias somam-se em série}, exatamente como resistências. E o
+fluxo é o mesmo nos dois trechos, o que garante $B$ igual --- já que a seção
+também é a mesma.\\
+\textbf{Consequência:} o comportamento do circuito é governado quase
+inteiramente pelo entreferro, e a não linearidade do ferro fica mascarada. É
+esse efeito que \emph{lineariza} indutores com entreferro.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Distinga rigorosamente $\vec H$, $\vec B$ e $\vec M$.
+\begin{itensq}
+\item Escreva a relação entre elas e as unidades.
+\item Determine qual delas muda ao inserir um núcleo em um solenoide, mantida a
+      corrente.
+\item Explique qual é "mais fundamental" e por quê.
+\end{itensq}
+\resposta{$\vec B=\mu_0(\vec H+\vec M)$; ao inserir o núcleo, $H$ não muda e
+$B$ aumenta}
+\resolucao{(a)
+\[
+\vec B=\mu_0\left(\vec H+\vec M\right),
+\]
+com $[H]=[M]=\si{\ampere\per\meter}$ e $[B]=\si{\tesla}$.\\
+\emph{($H$ é às vezes chamado "intensidade de campo magnético" e $B$
+"densidade de fluxo" --- nomenclatura infeliz, porque sugere que $H$ é o campo
+principal.)}\\
+(b) \textbf{Ao inserir o núcleo com corrente constante:}
+\begin{itemize}
+\item $H=NI/\ell$ \textbf{não muda} --- ele depende só das correntes de
+condução.
+\item $M$ \textbf{passa de zero a $(\mu_r-1)H$} --- o material se magnetiza.
+\item $B$ \textbf{aumenta por} $\mu_r$ --- consequência das duas anteriores.
+\end{itemize}
+(c) \textbf{Qual é mais fundamental: $\vec B$.} Argumentos:
+\begin{itemize}
+\item É $\vec B$ que aparece na força de Lorentz
+($\vec F=q\vec v\times\vec B$) --- é ele que age sobre cargas.
+\item É $\vec B$ que aparece na lei de Faraday --- é seu fluxo que induz f.e.m.
+\item $\nabla\cdot\vec B=0$ é lei universal; $\nabla\cdot\vec H=-\nabla\cdot
+\vec M$ não é nula em geral.
+\end{itemize}
+\textbf{Para que serve $\vec H$, então:} ele é conveniente porque sua circulação
+depende \emph{apenas} das correntes de condução ($\oint\vec H\cdot
+\mathrm{d}\vec\ell=NI$), sem precisar contabilizar as correntes de
+magnetização do material. É uma grandeza \emph{auxiliar} de enorme utilidade
+prática --- mas auxiliar.}
+\end{questao}
+
+\begin{questao}[3]{}
+A curva $B\times H$ de um material apresenta três regiões distintas.
+\begin{itensq}
+\item Descreva cada uma em termos de domínios.
+\item Identifique onde $\mu_r$ é máxima.
+\item Indique a região de operação recomendada.
+\end{itensq}
+\resposta{Deslocamento reversível, deslocamento irreversível e rotação;
+$\mu_r$ máxima no trecho intermediário}
+\resolucao{(a) \textbf{Três regiões.}
+\begin{enumerate}
+\item \textbf{Campos baixos --- deslocamento reversível de paredes.} As paredes
+entre domínios deslocam-se ligeiramente, favorecendo os domínios alinhados com
+$H$. Removido o campo, elas retornam. A curva é pouco inclinada.
+\item \textbf{Campos médios --- deslocamento irreversível (saltos de
+Barkhausen).} As paredes superam obstáculos (impurezas, contornos de grão) em
+saltos abruptos. É aqui que a curva é mais \textbf{íngreme} e onde nasce a
+histerese, pois os saltos não se desfazem ao reduzir $H$.
+\item \textbf{Campos altos --- rotação dos domínios.} Já não há paredes a
+mover; os momentos giram progressivamente até se alinharem com $H$. A curva
+achata-se: é o \emph{joelho} e depois a saturação.
+\end{enumerate}
+(b) \textbf{$\mu_r$ é máxima na região intermediária}, onde
+$\mathrm{d}B/\mathrm{d}H$ é maior. Nem no início (paredes presas) nem no fim
+(domínios já alinhados).\\
+\textbf{Consequência contraintuitiva:} a permeabilidade em campos muito baixos é
+\emph{menor} que a máxima --- daí catálogos especificarem $\mu_i$ (inicial) e
+$\mu_{\max}$ separadamente.\\
+(c) \textbf{Região recomendada:} abaixo do joelho, tipicamente com
+$B_{\max}$ entre $60$ e $80\%$ de $B_{sat}$. Isso aproveita a alta
+permeabilidade sem risco de saturação em transitórios.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um núcleo tem curva $B\times H$ não linear, e é preciso determinar o ponto de
+operação com entreferro.
+\begin{itensq}
+\item Formule o problema.
+\item Descreva o método gráfico da reta de entreferro.
+\item Explique por que o entreferro estabiliza o ponto de operação.
+\end{itensq}
+\resposta{Interseção da curva $B\times H$ do material com a reta imposta pelo
+entreferro}
+\resolucao{(a) \textbf{Formulação.} A lei de Ampère no circuito magnético dá
+\[
+NI=H_{fe}\,\ell_{fe}+H_g\,g,
+\]
+e no entreferro $H_g=B/\mu_0$ (com $B$ igual ao do ferro, por conservação do
+fluxo e seção constante). Então
+\[
+NI=H_{fe}\ell_{fe}+\frac{B}{\mu_0}g.
+\]
+Duas incógnitas ($B$ e $H_{fe}$) e uma equação --- a segunda relação é a
+\emph{curva do material}, que não tem forma algébrica simples.\\
+(b) \textbf{Método gráfico.} Reescrevendo,
+\[
+B=\frac{\mu_0\,NI}{g}-\frac{\mu_0\ell_{fe}}{g}\,H_{fe},
+\]
+que é uma \textbf{reta} no plano $B\times H$ --- a \emph{reta de entreferro} ou
+\emph{reta de carga magnética}.\\
+Traçando-a sobre a curva $B\times H$ do material, o \textbf{ponto de operação} é
+a interseção.\\
+\emph{(É exatamente o mesmo procedimento da reta de carga usada com diodos: uma
+característica não linear do dispositivo e uma reta imposta pelo circuito.)}\\
+(c) \textbf{Por que o entreferro estabiliza.} A inclinação da reta é
+$-\mu_0\ell_{fe}/g$: quanto \emph{maior} o entreferro, mais \textbf{deitada} a
+reta.\\
+Uma reta deitada cruza a curva do material em uma região de inclinação
+comparável --- e ali a interseção é \emph{pouco sensível} a variações de
+$\mu_r$ do material. Trocar o lote de ferro, ou aquecê-lo, quase não desloca o
+ponto.\\
+\textbf{Sem entreferro}, a reta é quase vertical e a interseção depende
+inteiramente da curva do material --- que varia com temperatura, lote e
+história magnética. \textbf{O entreferro compra previsibilidade ao custo de mais
+ampère-espiras.}}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare aço-silício e ferrite para aplicação em transformadores.
+\begin{itensq}
+\item Compare $B_{sat}$, resistividade e faixa de frequência.
+\item Determine em qual faixa cada um é preferível.
+\item Justifique fisicamente.
+\end{itensq}
+\resposta{Aço-silício: alto $B_{sat}$, baixa resistividade, até
+$\si{\kilo\hertz}$; ferrite: baixo $B_{sat}$, altíssima resistividade,
+até $\si{\mega\hertz}$}
+\resolucao{(a)
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Propriedade & Aço-silício & Ferrite (MnZn)\\
+\hline
+$B_{sat}$ & $1{,}5$--$\SI{2}{\tesla}$ & $0{,}3$--$\SI{0.5}{\tesla}$\\
+Resistividade & $\approx\pot{5}{-7}\,\si{\ohm\meter}$ &
+ $10^{-1}$ a $\SI{10}{\ohm\meter}$\\
+$\mu_r$ típica & $2000$--$8000$ & $1000$--$5000$\\
+Faixa útil & até $\approx\SI{1}{\kilo\hertz}$ & $\SI{20}{\kilo\hertz}$ a
+ $\si{\mega\hertz}$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Note a resistividade:} a ferrite é um \emph{cerâmico}, com
+resistividade até $10^{7}$ vezes maior que a do aço.\\
+(b) \textbf{Baixa frequência} ($\SI{50}{}$--$\SI{400}{\hertz}$): aço-silício.
+Seu $B_{sat}$ elevado permite núcleos menores para a mesma potência, e as perdas
+parasitas são controladas por laminação.\\
+\textbf{Alta frequência} ($>\SI{20}{\kilo\hertz}$): ferrite. Nenhuma laminação
+seria fina o bastante para conter as correntes parasitas no aço.\\
+(c) \textbf{Justificativa física.} As perdas por correntes parasitas vão com
+\[
+P_F\propto\frac{B^{2}f^{2}t^{2}}{\rho}.
+\]
+Em alta frequência, o termo $f^{2}$ explode. Há duas formas de compensar:
+reduzir $t$ (laminação) ou aumentar $\rho$.\\
+A ferrite ataca $\rho$ --- e ganha por muitas ordens de grandeza, o que nenhuma
+laminação alcança.\\
+\textbf{O preço:} $B_{sat}$ baixo obriga a usar seção maior ou aceitar menos
+fluxo. \textbf{Mas em alta frequência isso não importa}, porque
+$V=4{,}44Nf\Phi_{\max}$ --- com $f$ mil vezes maior, o fluxo necessário é mil
+vezes menor. \textbf{É a alta frequência que torna a ferrite viável, e a ferrite
+que torna a alta frequência viável.}}
+\end{questao}
+
+\begin{questao}[3]{}
+Um ímã permanente é retirado de seu circuito magnético e deixado com os polos
+livres ao ar.
+\begin{itensq}
+\item Explique o que ocorre com seu ponto de operação.
+\item Determine o efeito de aproximar uma peça de ferro.
+\item Justifique a prática de armazenar ímãs com "quebra-fluxo".
+\end{itensq}
+\resposta{Ao ar, o ponto de operação desce na curva de desmagnetização; o ferro
+o eleva}
+\resolucao{(a) \textbf{Ao ar livre.} O ímã precisa "empurrar" o fluxo por um
+caminho de alta relutância --- o próprio ar em torno dele. Isso equivale a um
+entreferro enorme, e a reta de carga fica muito deitada.\\
+O ponto de operação desce na \emph{curva de desmagnetização} (segundo quadrante
+do laço), afastando-se de $B_r$. O ímã fica submetido a campo desmagnetizante
+produzido por ele mesmo.\\
+(b) \textbf{Aproximando ferro.} O ferro oferece caminho de baixa relutância, e a
+reta de carga se levanta. O ponto de operação sobe, aproximando-se de
+$B_r$ --- o ímã fica "mais forte".\\
+É por isso que um ímã em ferradura fechado por uma armadura de ferro sustenta
+muito mais peso que aberto.\\
+(c) \textbf{Quebra-fluxo (\emph{keeper}).} É uma peça de ferro doce colocada
+entre os polos durante o armazenamento. Ela:
+\begin{itemize}
+\item mantém o ponto de operação alto, evitando desmagnetização progressiva;
+\item protege contra campos externos adversos;
+\item reduz a atração de limalha e detritos.
+\end{itemize}
+\textbf{Ressalva histórica:} a prática era essencial com alnico, cuja curva de
+desmagnetização é frágil. Com neodímio moderno --- cuja curva é praticamente
+reta no segundo quadrante --- o efeito é bem menor, embora o quebra-fluxo
+continue útil por outras razões.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um material tem $B_r=\SI{1.2}{\tesla}$ e $H_c=\SI{900}{\kilo\ampere\per\meter}$.
+\begin{itensq}
+\item Estime o produto de energia máximo.
+\item Compare com ferrite ($B_r=\SI{0.4}{\tesla}$,
+      $H_c=\SI{250}{\kilo\ampere\per\meter}$).
+\item Explique o significado do produto de energia.
+\end{itensq}
+\resposta{$(BH)_{\max}\approx\SI{270}{\kilo\joule\per\meter\cubed}$ contra
+$\SI{25}{\kilo\joule\per\meter\cubed}$}
+\resolucao{(a) Para curva de desmagnetização aproximadamente \emph{reta} (caso
+do neodímio), o produto máximo ocorre no ponto médio:
+\[
+(BH)_{\max}\approx\frac{B_rH_c}{4}
+=\frac{(1{,}2)(\pot{9}{5})}{4}
+=\SI{270}{\kilo\joule\per\meter\cubed}.
+\]
+(b) Para a ferrite:
+\[
+(BH)_{\max}\approx\frac{(0{,}4)(\pot{2.5}{5})}{4}
+=\SI{25}{\kilo\joule\per\meter\cubed},
+\]
+cerca de \textbf{onze vezes menor}.\\
+(c) \textbf{Significado.} O produto de energia mede a energia magnética
+disponível \emph{por unidade de volume} do ímã. Ele é a figura de mérito que
+determina quão pequeno o ímã pode ser para produzir dado campo em dado
+entreferro.\\
+\textbf{Consequência prática:} para o mesmo desempenho, um ímã de neodímio ocupa
+cerca de um décimo do volume de um de ferrite. Isso é o que viabilizou
+servomotores compactos, fones de ouvido pequenos e discos rígidos.\\
+\textbf{Contrapartida:} o neodímio é caro, oxida (precisa de revestimento),
+desmagnetiza acima de $\SI{80}{}$--$\SI{200}{\celsius}$ e depende de
+terras-raras. A ferrite é barata, quimicamente estável e térmicamente mais
+tolerante --- e por isso continua dominando em volume de produção.}
+\end{questao}
+
+\begin{questao}[3]{}
+Explique a diferença entre desmagnetização por \textbf{aquecimento} e por
+\textbf{campo alternado decrescente}.
+\begin{itensq}
+\item Descreva cada processo.
+\item Compare eficácia e aplicabilidade.
+\end{itensq}
+\resposta{Aquecimento acima de $T_C$ desordena os domínios; campo alternado os
+distribui simetricamente}
+\resolucao{(a) \textbf{Aquecimento acima de $T_C$.} A agitação térmica destrói o
+alinhamento dentro dos domínios. Resfriando \emph{sem campo aplicado}, os
+domínios se reformam em orientações aleatórias, e a magnetização líquida é
+nula.\\
+\textbf{Campo alternado decrescente.} Aplica-se campo alternado de amplitude
+inicialmente alta (o bastante para saturar) e reduz-se lentamente a zero. O
+material percorre laços de histerese cada vez menores, espiralando até a origem.
+Ao final, tantos domínios apontam em um sentido quanto no outro.\\
+(b) \textbf{Comparação.}
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+& Aquecimento & Campo alternado\\
+\hline
+Eficácia & completa & muito boa\\
+Danifica a peça? & possivelmente & não\\
+Aplicável a peça montada? & raramente & sim\\
+Rapidez & lento & segundos\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Na prática industrial, usa-se campo alternado} --- em desmagnetizadores
+de ferramentas, de peças usinadas e de fitas magnéticas. O aquecimento é
+inviável para peças que não toleram $\SI{770}{\celsius}$.\\
+\textbf{Cuidado essencial:} a redução do campo deve ser \emph{lenta} em relação
+ao período. Desligar bruscamente o desmagnetizador pode deixar a peça
+magnetizada no valor correspondente à última meia-onda --- pior que antes.\\
+\textbf{Alternativa equivalente:} afastar lentamente a peça de um campo
+alternado fixo, o que produz o mesmo decaimento gradual.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um núcleo opera com $B_{\max}=\SI{1.2}{\tesla}$ a $\SI{60}{\hertz}$. Analise o
+efeito de elevar $B_{\max}$ para $\SI{1.5}{\tesla}$.
+\begin{itensq}
+\item Determine o efeito sobre o número de espiras.
+\item Determine o efeito sobre as perdas.
+\item Avalie o compromisso.
+\end{itensq}
+\resposta{$N$ cai $20\%$; perdas por histerese sobem cerca de $60\%$ e
+parasitas $56\%$}
+\resolucao{(a) De $V=4{,}44Nf\Phi_{\max}=4{,}44NfB_{\max}A$, com $V$, $f$ e
+$A$ fixos:
+\[
+N\propto\frac{1}{B_{\max}}
+\;\Longrightarrow\;
+\frac{N'}{N}=\frac{1{,}2}{1{,}5}=0{,}80.
+\]
+\textbf{Vinte por cento menos espiras} --- menos cobre, menos resistência, menos
+perdas no enrolamento.\\
+(b) \textbf{Perdas no núcleo aumentam.}
+\begin{itemize}
+\item \textbf{Parasitas:} $P_F\propto B_{\max}^{2}$, logo
+$(1{,}5/1{,}2)^{2}=1{,}56$ --- aumento de $56\%$.
+\item \textbf{Histerese:} $P_h\propto B_{\max}^{n}$ com $n\approx1{,}6$ a
+$2$ (expoente de Steinmetz), dando aumento de $60$ a $56\%$.
+\end{itemize}
+(c) \textbf{O compromisso.}
+\begin{center}
+\begin{tabular}{lc}
+\hline
+Elevar $B_{\max}$ & Efeito\\
+\hline
+Espiras & $-20\%$\\
+Perdas no cobre & diminuem\\
+Perdas no núcleo & $+\approx58\%$\\
+Volume e custo & diminuem\\
+Margem para saturação & \textbf{diminui}\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Existe um ótimo econômico}, em que a soma das perdas é mínima --- e ele
+depende do custo relativo do cobre e do aço e do regime de carga.\\
+\textbf{Mas há um limite duro:} $\SI{1.5}{\tesla}$ já está próximo do joelho. A
+margem para sobretensões e para o transitório de energização encolhe, e o risco
+de \emph{inrush} severo cresce. \textbf{Projetar perto da saturação economiza
+material e compra problemas operacionais.}}
+\end{questao}
+
+\begin{questao}[3]{}
+Explique por que a permeabilidade de um material ferromagnético não é uma
+constante, e quais parâmetros a afetam.
+\resposta{$\mu$ depende de $H$, da temperatura, da frequência e da história
+magnética}
+\resolucao{\textbf{Quatro dependências, todas relevantes.}
+\begin{enumerate}
+\item \textbf{Da intensidade $H$.} É a mais óbvia: $\mu_r$ parte de um valor
+inicial, cresce até um máximo e despenca na saturação. Variação de uma ordem de
+grandeza ou mais.
+\item \textbf{Da temperatura.} $\mu_r$ tende a \emph{crescer} ao se aproximar de
+$T_C$ (efeito Hopkinson) e depois colapsa abruptamente. Isso torna o
+comportamento térmico não monotônico e difícil de prever.
+\item \textbf{Da frequência.} Em alta frequência, as paredes de domínio não
+conseguem acompanhar o campo --- há \emph{relaxação}. A permeabilidade efetiva
+cai, e aparece uma componente de perda. Catálogos de ferrite trazem
+$\mu$ complexo, com parte real e imaginária.
+\item \textbf{Da história magnética.} Por causa da histerese, o mesmo $H$ pode
+corresponder a diferentes $B$, conforme o material esteja subindo ou descendo o
+laço.
+\end{enumerate}
+\textbf{Consequência para o projetista.} Um valor único de $\mu_r$ em catálogo é
+sempre uma \emph{simplificação} referida a condições específicas --- geralmente
+campo baixo, temperatura ambiente e baixa frequência.\\
+\textbf{Prática correta:} usar $\mu_r$ para estimativas iniciais, e recorrer às
+\emph{curvas} do fabricante (de $B\times H$, de perdas por frequência, de
+$\mu$ por temperatura) para o dimensionamento final. Projetos de fontes
+chaveadas que ignoram isso costumam funcionar na bancada e falhar em campo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um sensor de proximidade indutivo detecta metais pela variação de indutância.
+\begin{itensq}
+\item Explique o princípio para metais ferromagnéticos.
+\item Explique para metais não ferromagnéticos (alumínio, cobre).
+\item Determine por que o alcance difere entre eles.
+\end{itensq}
+\resposta{Ferromagnéticos aumentam $L$ por permeabilidade; não ferromagnéticos
+reduzem $L$ e o fator de qualidade por correntes parasitas}
+\resolucao{(a) \textbf{Ferromagnéticos.} A aproximação do material oferece
+caminho de menor relutância, aumentando a indutância da bobina sensora. A
+variação de $L$ é detectada pelo circuito.\\
+Simultaneamente, correntes parasitas no aço amortecem o oscilador.\\
+(b) \textbf{Não ferromagnéticos.} Alumínio e cobre têm $\mu_r\approx1$ --- não
+alteram a relutância. Mas são \emph{bons condutores}, e o campo alternado induz
+neles correntes parasitas intensas.\\
+Pela lei de Lenz, essas correntes criam campo oposto, o que \textbf{reduz} a
+indutância efetiva e, sobretudo, \textbf{drena energia} do oscilador, reduzindo
+seu fator de qualidade.\\
+(c) \textbf{Por que o alcance difere.} Sensores indutivos comuns são
+especificados para aço, e apresentam \emph{fatores de correção}:
+\begin{center}
+\begin{tabular}{lc}
+\hline
+Material & Fator de alcance\\
+\hline
+Aço & $1{,}00$\\
+Aço inoxidável & $\approx0{,}70$\\
+Latão & $\approx0{,}50$\\
+Alumínio & $\approx0{,}40$\\
+Cobre & $\approx0{,}30$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Razão:} no aço, os dois efeitos (permeabilidade e parasitas) somam-se.
+Nos não ferromagnéticos, resta apenas o segundo --- e ele é tanto mais fraco
+quanto \emph{melhor} o condutor, porque as correntes se concentram numa
+película superficial cada vez mais fina.\\
+\textbf{Consequência de aplicação:} um sensor ajustado para detectar peças de
+aço a $\SI{10}{\milli\meter}$ só detectará cobre a $\SI{3}{\milli\meter}$ ---
+erro de projeto frequente em linhas de montagem com peças mistas.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Energia do ciclo de histerese.)} Demonstre que a área do laço
+$B\times H$ representa energia dissipada por unidade de volume e por ciclo.
+\begin{itensq}
+\item Deduza a expressão.
+\item Determine a potência dissipada em função da frequência.
+\item Explique a origem microscópica da perda.
+\end{itensq}
+\resposta{$w=\oint H\,\mathrm{d}B$ por ciclo; $P=fVw$}
+\resolucao{(a) \textbf{Dedução.} A potência instantânea fornecida ao núcleo pela
+fonte é $p=\varepsilon i$. Com $\varepsilon=NA\,\mathrm{d}B/\mathrm{d}t$ e
+$i=H\ell/N$:
+\[
+p=NA\frac{\mathrm{d}B}{\mathrm{d}t}\cdot\frac{H\ell}{N}
+=(A\ell)\,H\,\frac{\mathrm{d}B}{\mathrm{d}t}
+=V\,H\,\frac{\mathrm{d}B}{\mathrm{d}t}.
+\]
+A energia por ciclo é
+\[
+W=\int p\,\mathrm{d}t=V\oint H\,\mathrm{d}B,
+\]
+e $\oint H\,\mathrm{d}B$ é precisamente a \textbf{área do laço} no plano
+$B\times H$, com unidade $\si{\joule\per\meter\cubed}$.\\
+\textbf{Se o material fosse sem histerese}, o laço colapsaria em uma curva
+única, a integral de ida cancelaria a de volta e a energia por ciclo seria
+\textbf{zero} --- toda a energia magnética seria devolvida.\\
+(b)
+\[
+P_h=f\,V\oint H\,\mathrm{d}B,
+\]
+\textbf{linear em $f$}. (As perdas por correntes parasitas, distintas destas,
+vão com $f^{2}$.)\\
+(c) \textbf{Origem microscópica.} A perda vem dos \textbf{saltos de Barkhausen}:
+as paredes de domínio ficam presas em impurezas, defeitos e contornos de grão, e
+se libertam abruptamente quando o campo cresce o suficiente.\\
+Cada salto é um processo \textbf{irreversível} --- a energia elástica acumulada
+converte-se em vibração da rede, ou seja, em \textbf{calor}.\\
+\textbf{Consequência de engenharia:} materiais mais puros e com grãos maiores e
+melhor orientados têm menos obstáculos, laços mais estreitos e menores perdas.
+É exatamente isso que o processo de \emph{grão orientado} do aço-silício
+persegue.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Circuito magnético com dois materiais.)} Um circuito tem trecho de
+ferro ($\ell_1$, $\mu_1$) em série com trecho de ferrite ($\ell_2$,
+$\mu_2$), mesma seção.
+\begin{itensq}
+\item Formule as equações.
+\item Determine $B$ e $H$ em cada trecho.
+\item Explique qual grandeza é contínua na interface e por quê.
+\end{itensq}
+\resposta{$B$ é contínuo; $H$ é descontínuo, na razão inversa das
+permeabilidades}
+\resolucao{(a) \textbf{Duas equações.}\\
+\emph{Conservação do fluxo} (equivalente à LKC):
+\[
+\Phi_1=\Phi_2
+\;\Longrightarrow\;
+B_1A=B_2A
+\;\Longrightarrow\;
+B_1=B_2=B.
+\]
+\emph{Lei de Ampère} (equivalente à LKT):
+\[
+NI=H_1\ell_1+H_2\ell_2.
+\]
+(b) Com $H_i=B/\mu_i$:
+\[
+NI=B\left(\frac{\ell_1}{\mu_1}+\frac{\ell_2}{\mu_2}\right)
+\;\Longrightarrow\;
+B=\frac{NI}{\dfrac{\ell_1}{\mu_1}+\dfrac{\ell_2}{\mu_2}}.
+\]
+\[
+H_1=\frac{B}{\mu_1};
+\qquad
+H_2=\frac{B}{\mu_2};
+\qquad
+\frac{H_1}{H_2}=\frac{\mu_2}{\mu_1}.
+\]
+(c) \textbf{Qual grandeza é contínua --- e por quê.}
+\begin{itemize}
+\item \textbf{$B$ é contínuo} através da interface (na componente normal),
+porque $\nabla\cdot\vec B=0$: o fluxo que chega precisa continuar. Não há
+"acúmulo de fluxo" possível.
+\item \textbf{$H$ é descontínuo}, na razão inversa das permeabilidades. O
+material de menor $\mu$ exige \emph{muito mais} $H$ para sustentar o mesmo
+$B$.
+\end{itemize}
+\textbf{Exemplo numérico revelador.} Com $\mu_{r1}=2000$ (ferro) e
+$\mu_{r2}=2$ (um material quase não magnético), $H_2$ seria \emph{mil vezes}
+$H_1$ --- e praticamente toda a força magnetomotriz seria consumida naquele
+trecho, ainda que ele fosse curtíssimo.\\
+\textbf{É exatamente o que acontece no entreferro} ($\mu_r=1$), e por isso ele
+domina o circuito. Um entreferro não é um caso especial: é apenas o caso extremo
+deste problema de dois materiais.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Ensaio do ciclo de histerese.)} Projete um experimento para levantar o
+laço $B\times H$ de um material em osciloscópio.
+\begin{itensq}
+\item Descreva o circuito e o que cada canal mede.
+\item Determine as constantes de conversão.
+\item Aponte os cuidados experimentais.
+\end{itensq}
+\resposta{Canal horizontal $\propto H$ (corrente por shunt); vertical
+$\propto B$ (f.e.m. integrada)}
+\resolucao{(a) \textbf{Circuito.} Um núcleo toroidal com dois enrolamentos:
+primário $N_1$ excitado por fonte alternada e secundário $N_2$ para medição.
+\begin{itemize}
+\item \textbf{Canal horizontal ($X$):} tensão sobre um resistor \emph{shunt}
+$R_s$ em série com o primário. Como $H=N_1i_1/\ell$, essa tensão é proporcional
+a $H$.
+\item \textbf{Canal vertical ($Y$):} a f.e.m. do secundário passa por um
+\textbf{integrador} $RC$. Como
+$\varepsilon_2=N_2A\,\mathrm{d}B/\mathrm{d}t$, sua integral é proporcional a
+$B$.
+\end{itemize}
+Em modo $XY$, o osciloscópio traça diretamente o laço.\\
+(b) \textbf{Constantes de conversão.}
+\[
+H=\frac{N_1}{\ell R_s}\,v_X;
+\qquad
+B=\frac{R_iC_i}{N_2A}\,v_Y,
+\]
+com $R_iC_i$ os componentes do integrador.\\
+\textbf{Condição do integrador:} $R_iC_i\gg1/f$, para que ele integre de fato em
+vez de apenas atenuar. Com $f=\SI{60}{\hertz}$, adote
+$R_iC_i\ge\SI{0.1}{\second}$.\\
+(c) \textbf{Cuidados experimentais.}
+\begin{itemize}
+\item \textbf{Desmagnetizar antes} --- caso contrário os primeiros ciclos
+refletem a história anterior. Comece com amplitude alta e reduza.
+\item \textbf{$R_s$ pequeno} (fração de ohm), para não distorcer a corrente nem
+dissipar demais. Use quatro fios se possível.
+\item \textbf{Núcleo toroidal}, que garante $H$ uniforme e caminho médio bem
+definido --- em núcleos em E o caminho é ambíguo.
+\item \textbf{Deriva do integrador:} qualquer \emph{offset} faz o laço "subir"
+lentamente na tela. Use acoplamento CA ou integrador com realimentação CC.
+\item \textbf{Varrer a amplitude} para obter a família de laços e localizar a
+curva de magnetização normal, que é o lugar geométrico dos vértices.
+\end{itemize}
+\textbf{O que se extrai:} $B_r$ (interseção com o eixo vertical), $H_c$
+(interseção com o horizontal), $B_{sat}$ e a área --- e daí as perdas por
+ciclo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Domínios magnéticos.)} Explique a estrutura de domínios e sua relação
+com as propriedades macroscópicas.
+\begin{itensq}
+\item Explique por que os domínios existem.
+\item Relacione a estrutura com $B_r$, $H_c$ e $\mu_r$.
+\item Explique a diferença entre materiais moles e duros nesse nível.
+\end{itensq}
+\resposta{Domínios minimizam a energia magnetostática; a mobilidade das paredes
+determina $\mu_r$ e $H_c$}
+\resolucao{(a) \textbf{Por que existem.} Um cristal ferromagnético
+uniformemente magnetizado criaria campo externo intenso, com alta energia
+magnetostática armazenada no espaço.\\
+Dividir-se em \textbf{domínios} de orientações opostas faz esse campo externo
+quase desaparecer --- as linhas se fecham internamente. O custo é a energia das
+\emph{paredes de domínio} (paredes de Bloch), onde os momentos giram
+gradualmente.\\
+\textbf{O equilíbrio} entre esses dois termos fixa o tamanho típico dos
+domínios, tipicamente de micrômetros a dezenas de micrômetros.\\
+(b) \textbf{Relação com as propriedades macroscópicas.}
+\begin{itemize}
+\item \textbf{$\mu_r$ alta} exige paredes \emph{móveis} --- material puro, sem
+tensões internas, com grãos grandes e bem orientados.
+\item \textbf{$H_c$ baixa} tem a mesma origem: paredes que deslizam facilmente
+não resistem à inversão.
+\item \textbf{$B_r$ alta} exige que os domínios permaneçam alinhados após a
+retirada do campo --- o que requer \emph{anisotropia} cristalina forte,
+"ancorando" a magnetização em direções preferenciais.
+\end{itemize}
+(c) \textbf{Moles contra duros, no nível microscópico.}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+& Moles & Duros\\
+\hline
+Paredes & muito móveis & fixadas ou inexistentes\\
+Impurezas & minimizadas & introduzidas de propósito\\
+Anisotropia & baixa & alta\\
+Grãos & grandes, orientados & finos, monodomínio\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{O contraste é elegante:} ímãs modernos de neodímio são feitos de
+partículas tão pequenas que cada uma é um \textbf{monodomínio} --- não há
+paredes para mover, e inverter a magnetização exige girar todos os momentos
+contra a anisotropia. Daí a coercividade enorme.\\
+\textbf{Já o aço-silício de grão orientado} persegue o oposto: grãos grandes,
+alinhados por laminação a frio, com paredes livres para deslizar.\\
+\textbf{Mesma física, objetivos opostos --- e processos de fabricação
+inteiramente diferentes.}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto sob restrição de perdas.)} Um transformador de
+$\SI{60}{\hertz}$ deve ter perdas no núcleo inferiores a $\SI{2}{\watt}$, com
+material cuja perda específica é
+$\SI{1.5}{\watt\per\kilogram}$ a $\SI{1.5}{\tesla}$ e
+$\SI{0.9}{\watt\per\kilogram}$ a $\SI{1.2}{\tesla}$.
+\begin{itensq}
+\item Determine a massa admissível em cada condição.
+\item Determine o efeito sobre o número de espiras.
+\item Estabeleça o critério de escolha.
+\end{itensq}
+\resposta{$\SI{1.33}{\kilogram}$ a $\SI{1.5}{\tesla}$;
+$\SI{2.22}{\kilogram}$ a $\SI{1.2}{\tesla}$}
+\resolucao{(a)
+\[
+m\le\frac{2}{1{,}5}=\SI{1.33}{\kilogram}\ \text{a } \SI{1.5}{\tesla};
+\qquad
+m\le\frac{2}{0{,}9}=\SI{2.22}{\kilogram}\ \text{a } \SI{1.2}{\tesla}.
+\]
+(b) De $V=4{,}44NfB_{\max}A$, com tensão e frequência fixas,
+\[
+N\,B_{\max}A=\text{const}.
+\]
+Reduzir $B_{\max}$ de $1{,}5$ para $\SI{1.2}{\tesla}$ exige aumentar
+$NA$ em $25\%$ --- mais espiras, ou seção maior, ou ambos.\\
+(c) \textbf{Critério de escolha.} As duas opções levam a projetos diferentes:
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+& $B=\SI{1.5}{\tesla}$ & $B=\SI{1.2}{\tesla}$\\
+\hline
+Massa de núcleo & menor & maior ($+67\%$)\\
+Espiras & menos & mais ($+25\%$)\\
+Perdas no cobre & menores & maiores\\
+Margem para saturação & pequena & confortável\\
+Corrente de \emph{inrush} & severa & moderada\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Note o conflito:} operar em $B$ alto economiza \emph{ferro} mas gasta
+mais \emph{cobre} por unidade de perda; operar em $B$ baixo faz o inverso.\\
+\textbf{Decisão:}
+\begin{itemize}
+\item \textbf{Se o custo de material dominar} (transformadores de baixo custo,
+uso intermitente), escolha $B$ alto.
+\item \textbf{Se o custo de energia dominar} (operação contínua por décadas),
+escolha $B$ baixo --- as perdas em vazio existem $\SI{8760}{\hour}$ por ano.
+\item \textbf{Se houver risco de sobretensão}, escolha $B$ baixo por segurança:
+um transformador operando a $\SI{1.5}{\tesla}$ satura com apenas $10\%$ de
+sobretensão.
+\end{itemize}}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Anisotropia e grão orientado.)} Explique o que é o aço-silício de grão
+orientado e por que ele é usado em transformadores mas não em motores.
+\begin{itensq}
+\item Explique o processo e o efeito.
+\item Compare as perdas nas duas direções.
+\item Justifique a diferença de aplicação.
+\end{itensq}
+\resposta{Grãos alinhados numa direção preferencial; excelente ao longo dela,
+ruim transversalmente}
+\resolucao{(a) \textbf{Processo e efeito.} O aço-silício é laminado a frio e
+recozido de modo que os grãos cristalinos se alinhem com o eixo de fácil
+magnetização do ferro (a direção $\langle100\rangle$ da célula cúbica) paralelo
+à direção de laminação.\\
+\textbf{Resultado:} nessa direção, magnetizar é muito mais fácil --- as paredes
+de domínio se movem livremente, $\mu_r$ é altíssima e as perdas caem
+drasticamente.\\
+(b) \textbf{Comparação por direção.}
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+& Direção de laminação & Transversal\\
+\hline
+Perdas específicas & $\approx\SI{1}{\watt\per\kilogram}$ &
+ $2$ a $3\times$ maiores\\
+$\mu_r$ & muito alta & bem menor\\
+$B$ para dado $H$ & alto & reduzido\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{A anisotropia é grande} --- o material é excelente em uma direção e
+medíocre nas outras.\\
+(c) \textbf{Por que serve a transformadores e não a motores.}
+\begin{itemize}
+\item \textbf{Transformador:} o fluxo percorre um caminho \emph{fixo e
+conhecido} --- as colunas e as culatras do núcleo. É possível cortar as lâminas
+de modo que o fluxo siga sempre a direção favorável. \emph{(Nos cantos, onde o
+fluxo precisa dobrar, usam-se juntas em $\ang{45}$ para minimizar a
+transição.)}
+\item \textbf{Motor:} o fluxo no estator \textbf{gira}, percorrendo todas as
+direções ao longo de cada revolução. Não existe direção preferencial a
+privilegiar --- metade do tempo o fluxo estaria na direção ruim.
+\end{itemize}
+\textbf{Por isso motores usam aço de grão \emph{não} orientado}, deliberadamente
+\textbf{isotrópico}: pior que o grão orientado em sua melhor direção, mas
+uniforme em todas --- e portanto melhor \emph{na média} sobre uma rotação
+completa.\\
+\textbf{Princípio geral:} otimizar para o caso médio quando a solicitação é
+variável, e para o caso específico quando ela é fixa.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Blindagem magnética com material de alta permeabilidade.)} Analise
+quantitativamente a blindagem de campo estático por invólucro de mu-metal.
+\begin{itensq}
+\item Explique o mecanismo por relutância.
+\item Estime o fator de blindagem para invólucro cilíndrico.
+\item Aponte as limitações práticas.
+\end{itensq}
+\resposta{Fator $\approx\mu_r t/D$; o mecanismo é desvio de fluxo, não
+cancelamento}
+\resolucao{(a) \textbf{Mecanismo.} Ao contrário da blindagem elétrica --- que
+\emph{cancela} o campo por redistribuição de cargas --- a blindagem magnética
+\textbf{desvia} o fluxo.\\
+O invólucro de alta $\mu_r$ oferece caminho de relutância muito menor que o ar
+interno. O fluxo "prefere" circular pela parede e contorna a região protegida.\\
+\textbf{Analogia:} é um divisor de fluxo, em que o material é o ramo de baixa
+relutância e a cavidade, o de alta.\\
+(b) \textbf{Fator de blindagem.} Para um cilindro de diâmetro $D$ e parede
+$t$, com $t\ll D$, a estimativa clássica é
+\[
+S\approx\frac{\mu_r\,t}{D}.
+\]
+Com $\mu_r=20000$ (mu-metal recozido), $t=\SI{1}{\milli\meter}$ e
+$D=\SI{100}{\milli\meter}$:
+\[
+S\approx\frac{20000(1)}{100}=200,
+\]
+ou seja, atenuação de cerca de $\SI{46}{\decibel}$.\\
+\textbf{Compare com a blindagem elétrica}, que atinge muitas ordens de grandeza
+com uma folha fina de qualquer metal. A magnética é \emph{muito} mais modesta.\\
+(c) \textbf{Limitações práticas.}
+\begin{itemize}
+\item \textbf{Saturação.} Se o campo externo for intenso, a parede satura,
+$\mu_r$ desaba e a blindagem falha justamente quando mais se precisa dela.
+\emph{Solução:} camadas múltiplas, com a externa de material de alto
+$B_{sat}$ (aço comum) e a interna de mu-metal.
+\item \textbf{Sensibilidade mecânica.} O mu-metal perde permeabilidade se for
+dobrado, cortado ou submetido a choque. Exige \textbf{recozimento após a
+conformação}, em atmosfera de hidrogênio --- processo caro.
+\item \textbf{Aberturas.} Furos e fendas quebram o caminho de baixa relutância e
+degradam a blindagem muito mais que no caso elétrico.
+\item \textbf{Custo e peso}, ambos elevados.
+\end{itemize}
+\textbf{Conclusão:} blindar campo magnético estático é caro, frágil e de eficácia
+limitada. Sempre que possível, é preferível \emph{afastar} a fonte, reduzir a
+área das espiras ou compensar ativamente o campo com bobinas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Ponto de operação de ímã permanente.)} Determine o ponto de operação
+de um ímã em um circuito magnético com entreferro.
+\begin{itensq}
+\item Formule a equação da reta de carga.
+\item Determine a condição de máximo aproveitamento.
+\item Explique o efeito de aumentar o entreferro.
+\end{itensq}
+\resposta{A reta de carga tem inclinação
+$-\dfrac{\ell_m A_g}{g A_m}$; o aproveitamento é máximo em
+$(BH)_{\max}$}
+\resolucao{(a) \textbf{Reta de carga.} Duas condições:
+\emph{conservação do fluxo} ($B_mA_m=B_gA_g$) e \emph{lei de Ampère}
+($H_m\ell_m+H_gg=0$, pois não há corrente).\\
+Da segunda, $H_m\ell_m=-H_gg=-\dfrac{B_g}{\mu_0}g$. Combinando com a primeira:
+\[
+B_m=-\mu_0\,\frac{\ell_m A_g}{g\,A_m}\,H_m.
+\]
+É uma reta pela \textbf{origem} no segundo quadrante ($H_m<0$, $B_m>0$) ---
+a chamada \emph{linha de carga} do ímã.\\
+\textbf{Note:} o ímã opera com $H$ \emph{negativo} --- ele está sujeito ao
+próprio campo desmagnetizante. Sem entreferro ($g\to0$), a reta seria vertical e
+o ponto de operação estaria em $B_r$.\\
+(b) \textbf{Máximo aproveitamento.} A energia disponível no entreferro é
+proporcional ao produto $B_mH_m$. O ponto ótimo é aquele em que
+$|B_mH_m|$ é \textbf{máximo} --- o já mencionado $(BH)_{\max}$.\\
+Dimensiona-se o circuito \emph{para que a reta de carga passe por esse ponto},
+escolhendo a razão $\dfrac{\ell_m A_g}{g A_m}$ adequada. Isso minimiza o volume
+de ímã necessário.\\
+(c) \textbf{Efeito de aumentar o entreferro.} A inclinação
+$-\mu_0\ell_mA_g/(gA_m)$ diminui em módulo --- a reta \textbf{deita}. O ponto de
+operação desce na curva de desmagnetização:
+\begin{itemize}
+\item $B_m$ diminui (menos fluxo);
+\item $|H_m|$ aumenta (mais campo desmagnetizante sobre o próprio ímã);
+\item se o entreferro for grande demais, o ponto pode ultrapassar o
+\textbf{joelho} da curva de desmagnetização --- e aí ocorre perda
+\textbf{irreversível} de magnetização.
+\end{itemize}
+\textbf{Consequência prática decisiva:} desmontar um circuito magnético com ímã
+de alnico pode danificá-lo permanentemente, pois o ponto de operação despenca.
+Ímãs de neodímio, cuja curva de desmagnetização é praticamente reta até o
+segundo quadrante inteiro, toleram isso muito melhor --- e é uma das razões de
+sua popularidade, além do produto de energia.}
+\end{questao}

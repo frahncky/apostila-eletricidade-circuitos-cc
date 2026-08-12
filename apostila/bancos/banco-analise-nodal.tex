@@ -1,0 +1,988 @@
+% =====================================================================
+%  Banco complementar --- Analise Nodal  (REVISADO)
+%  Substitui a versao gerada por template (13 clones em N2, 11 em N3,
+%  10 questoes conceituais indevidamente marcadas como N4).
+%  Distribuicao mantida: 8 N1 + 13 N2 + 12 N3 + 10 N4 = 43
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Análise Nodal}
+
+\begin{atencao}[Organização do banco]
+As topologias são descritas por extenso: identifique os nós essenciais,
+escolha a referência e escreva uma LKC por nó desconhecido antes de
+substituir números. O N1 trabalha um nó isolado; o N2 introduz sistemas
+$2\times2$, transformação de fontes e balanço de potência; o N3 traz supernó,
+fontes dependentes, ponte e sistemas $3\times3$; o N4 exige demonstração,
+formulação matricial, recorrência ou otimização.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Um circuito possui $5$ nós. O número de equações nodais independentes
+necessárias para resolvê-lo é:
+\begin{alternativas}[4]
+\item 3
+\item 4
+\item 5
+\item 6
+\end{alternativas}
+\resposta{(b)}
+\resolucao{Escolhido um nó como referência (terra), seu potencial é fixado em
+zero e deixa de ser incógnita. Restam $n-1=5-1=4$ potenciais desconhecidos,
+logo $4$ equações de LKC independentes. Escrever a LKC também no nó de
+referência forneceria uma equação \emph{redundante} --- ela é a soma das
+demais, com sinal trocado.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte de corrente de $\SI{3}{\ampere}$ injeta corrente em um nó $A$, que
+se liga ao terra por $R_1=\SI{10}{\ohm}$ e $R_2=\SI{15}{\ohm}$ em paralelo.
+Determine $V_A$.
+\resposta{$V_A=\SI{18}{\volt}$}
+\resolucao{LKC no nó $A$ (correntes que saem $=$ corrente que entra):
+\[
+\frac{V_A}{10}+\frac{V_A}{15}=3
+\;\Longrightarrow\;
+V_A\left(0{,}10+0{,}0667\right)=3
+\;\Longrightarrow\;
+V_A=\frac{3}{0{,}1667}=\SI{18}{\volt}.
+\]
+Equivalente: $V_A=I\cdot R_{eq}=3\cdot(10\parallel15)=3\cdot 6=\SI{18}{\volt}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um nó $A$ recebe corrente $I_1$ de uma fonte, perde corrente $I_2$ para outra
+fonte, e liga-se ao terra por $R_1$ e por $R_2$. \textbf{Escreva} a equação
+nodal (não resolva).
+\resposta{$\dfrac{V_A}{R_1}+\dfrac{V_A}{R_2}=I_1-I_2$}
+\resolucao{Convenção usual: \emph{correntes que saem do nó pelos resistores}
+no lado esquerdo, \emph{correntes injetadas pelas fontes} no direito.
+\[
+\frac{V_A}{R_1}+\frac{V_A}{R_2}=I_1-I_2
+\quad\text{ou}\quad
+V_A\,(G_1+G_2)=I_1-I_2 .
+\]
+Uma fonte que \emph{retira} corrente entra com sinal negativo no termo
+independente. O padrão é sempre o mesmo:
+$(\text{soma das condutâncias do nó})\times V = (\text{corrente líquida injetada})$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Converta $R_1=\SI{4}{\ohm}$, $R_2=\SI{5}{\ohm}$ e $R_3=\SI{20}{\ohm}$ em
+condutâncias, some-as e obtenha a resistência equivalente.
+\resposta{$G=\SI{0.5}{\siemens}$; $R_{eq}=\SI{2}{\ohm}$}
+\resolucao{
+\[
+G_1=\tfrac14=\SI{0.25}{\siemens},\quad
+G_2=\tfrac15=\SI{0.20}{\siemens},\quad
+G_3=\tfrac1{20}=\SI{0.05}{\siemens}.
+\]
+\[
+G=0{,}25+0{,}20+0{,}05=\SI{0.5}{\siemens}
+\;\Longrightarrow\;
+R_{eq}=\frac{1}{G}=\SI{2}{\ohm}.
+\]
+A análise nodal trabalha naturalmente com condutâncias porque elementos em
+paralelo --- que é como os ramos chegam a um nó --- \emph{somam} em $G$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Ao montar a equação de um nó, uma fonte de corrente ideal que \textbf{sai} do
+nó deve ser lançada:
+\begin{alternativas}[2]
+\item no lado das condutâncias, com sinal positivo
+\item no termo independente, com sinal positivo
+\item no termo independente, com sinal negativo
+\item ignorada, por ser ideal
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Fontes de corrente ideais não têm condutância associada --- elas
+nunca aparecem na matriz $\mathbf{G}$, apenas no vetor independente. Escrevendo
+$\mathbf{G}\mathbf{V}=\mathbf{I}$ com $\mathbf{I}$ representando a corrente
+\emph{injetada} no nó, uma fonte que retira corrente contribui com sinal
+negativo. Trocar esse sinal é o erro mais comum do método.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um nó $A$ liga-se a uma fonte ideal de $\SI{24}{\volt}$ (com terminal negativo
+aterrado) por $R_1=\SI{6}{\ohm}$, e ao terra por $R_2=\SI{12}{\ohm}$.
+Determine $V_A$.
+\resposta{$V_A=\SI{16}{\volt}$}
+\resolucao{
+\[
+\frac{V_A-24}{6}+\frac{V_A}{12}=0
+\;\Longrightarrow\;
+2V_A-48+V_A=0
+\;\Longrightarrow\;
+V_A=\SI{16}{\volt}.
+\]
+O resultado coincide com o divisor de tensão $24\cdot\frac{12}{6+12}=16$ ---
+esperado, já que só há um caminho de corrente. A análise nodal generaliza o
+divisor para topologias em que ele não se aplica.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um circuito é formado por: uma fonte de corrente ligada entre o terra e o nó
+$A$; um resistor de $A$ ao terra; um resistor de $A$ ao nó $B$; e dois
+resistores de $B$ ao terra. Quantos nós \textbf{essenciais} existem e quantas
+equações nodais serão necessárias?
+\resposta{3 nós essenciais ($A$, $B$ e o terra); 2 equações}
+\resolucao{Nó essencial é aquele em que se encontram \emph{três ou mais}
+elementos. Aqui: $A$ (fonte $+$ dois resistores), $B$ (três resistores) e o nó
+de terra (fonte $+$ três resistores) --- total $3$. Com o terra como
+referência, sobram $2$ incógnitas, $V_A$ e $V_B$, e portanto $2$ equações.
+Os dois resistores de $B$ ao terra estão em paralelo e podem ser combinados
+\emph{antes} de montar o sistema, sem alterar a contagem.}
+\end{questao}
+
+\begin{questao}[1]{}
+Resolvido um circuito, obteve-se $V_A=\SI{18}{\volt}$. Determine a corrente no
+resistor de $\SI{15}{\ohm}$ que liga $A$ ao terra e indique seu sentido.
+\resposta{$I=\SI{1.2}{\ampere}$, de $A$ para o terra}
+\resolucao{Depois de obtidos os potenciais, \textbf{toda} corrente sai de uma
+lei de Ohm aplicada ao ramo:
+\[
+I=\frac{V_A-V_{\text{terra}}}{R}=\frac{18-0}{15}=\SI{1.2}{\ampere}.
+\]
+O sinal positivo confirma o sentido admitido (do maior para o menor potencial).
+Este passo de \emph{pós-processamento} é parte do método: a análise nodal
+entrega potenciais, não correntes.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{5}{\ampere}$ injeta corrente no nó $A$, ligado ao terra por
+três resistores: $\SI{10}{\ohm}$, $\SI{20}{\ohm}$ e $\SI{20}{\ohm}$. Determine
+$V_A$ e a corrente em cada ramo.
+\resposta{$V_A=\SI{25}{\volt}$; $\SI{2.5}{\ampere}$, $\SI{1.25}{\ampere}$ e
+$\SI{1.25}{\ampere}$}
+\resolucao{
+\[
+V_A\left(\tfrac1{10}+\tfrac1{20}+\tfrac1{20}\right)=5
+\;\Longrightarrow\;
+V_A\cdot 0{,}20=5 \;\Longrightarrow\; V_A=\SI{25}{\volt}.
+\]
+Correntes: $25/10=\SI{2.5}{\ampere}$ e $25/20=\SI{1.25}{\ampere}$ (duas vezes).
+\textbf{Verificação:} $2{,}5+1{,}25+1{,}25=\SI{5}{\ampere}$ --- fecha a LKC.}
+\end{questao}
+
+\begin{questao}[2]{}
+No nó $A$, uma fonte injeta $\SI{6}{\ampere}$ e outra retira
+$\SI{2}{\ampere}$. Dois resistores de $\SI{8}{\ohm}$ ligam $A$ ao terra.
+Determine $V_A$.
+\resposta{$V_A=\SI{16}{\volt}$}
+\resolucao{Corrente líquida injetada: $6-2=\SI{4}{\ampere}$.
+\[
+V_A\left(\tfrac18+\tfrac18\right)=4
+\;\Longrightarrow\;
+V_A\cdot 0{,}25=4 \;\Longrightarrow\; V_A=\SI{16}{\volt}.
+\]
+Fontes de corrente no mesmo nó combinam-se algebricamente antes de resolver ---
+por isso a análise nodal é tão eficiente quando o circuito é rico em fontes de
+corrente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um nó $A$ recebe duas fontes de tensão aterradas: $\SI{12}{\volt}$ através de
+$\SI{4}{\ohm}$ e $\SI{6}{\volt}$ através de $\SI{6}{\ohm}$. Além disso, $A$ se
+liga ao terra por $\SI{12}{\ohm}$. Determine $V_A$.
+\resposta{$V_A=\SI{8}{\volt}$}
+\resolucao{
+\[
+\frac{V_A-12}{4}+\frac{V_A-6}{6}+\frac{V_A}{12}=0.
+\]
+Multiplicando por $12$: $3V_A-36+2V_A-12+V_A=0\Rightarrow 6V_A=48
+\Rightarrow V_A=\SI{8}{\volt}$.\\
+Na forma de \textbf{Millman}:
+\[
+V_A=\frac{\sum V_k/R_k}{\sum 1/R_k}
+=\frac{12/4+6/6+0/12}{1/4+1/6+1/12}=\frac{4}{0{,}5}=\SI{8}{\volt}.
+\]
+O ramo aterrado entra como uma fonte de $\SI{0}{\volt}$ --- ele não contribui
+para o numerador, mas contribui para o denominador.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{3}{\ampere}$ injeta corrente no nó $1$. O nó $1$ liga-se ao
+terra por $\SI{10}{\ohm}$ e ao nó $2$ por $\SI{10}{\ohm}$; o nó $2$ liga-se ao
+terra por $\SI{10}{\ohm}$. Determine $V_1$ e $V_2$.
+\resposta{$V_1=\SI{20}{\volt}$, $V_2=\SI{10}{\volt}$}
+\resolucao{
+\[
+\begin{cases}
+0{,}2V_1-0{,}1V_2=3\\[2pt]
+-0{,}1V_1+0{,}2V_2=0
+\end{cases}
+\]
+Da segunda: $V_1=2V_2$. Substituindo na primeira:
+$0{,}4V_2-0{,}1V_2=3\Rightarrow V_2=\SI{10}{\volt}$ e $V_1=\SI{20}{\volt}$.\\
+\textbf{Verificação:} pelo ramo de $\SI{10}{\ohm}$ ao terra do nó 1 passam
+$\SI{2}{\ampere}$; pelo ramo $1\to2$ passa $(20-10)/10=\SI{1}{\ampere}$; total
+$\SI{3}{\ampere}$ --- confere.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas fontes aterradas alimentam o nó $A$: $\SI{12}{\volt}$ por
+$\SI{6}{\ohm}$ e $\SI{24}{\volt}$ por $\SI{12}{\ohm}$. Um terceiro resistor de
+$\SI{12}{\ohm}$ liga $A$ ao terra. Determine $V_A$ pelo teorema de Millman.
+\resposta{$V_A=\SI{12}{\volt}$}
+\resolucao{
+\[
+V_A=\frac{\dfrac{12}{6}+\dfrac{24}{12}+\dfrac{0}{12}}
+          {\dfrac16+\dfrac1{12}+\dfrac1{12}}
+   =\frac{2+2}{0{,}3333}=\SI{12}{\volt}.
+\]
+Millman \emph{é} a equação nodal de um único nó, reescrita. Observe que
+$V_A=\SI{12}{\volt}$ coincide com a fonte de $\SI{12}{\volt}$: por isso o ramo
+de $\SI{6}{\ohm}$ não conduz corrente nenhuma nesta configuração particular.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{30}{\volt}$ em série com $\SI{10}{\ohm}$ alimenta um nó $A$,
+que também se liga ao terra por $\SI{15}{\ohm}$. Aplique transformação de
+fontes e resolva por análise nodal.
+\resposta{$V_A=\SI{18}{\volt}$}
+\resolucao{\textbf{Passo 1.} A fonte real $(\SI{30}{\volt}, \SI{10}{\ohm})$
+equivale a uma fonte de corrente $I=30/10=\SI{3}{\ampere}$ em paralelo com
+$\SI{10}{\ohm}$.\\
+\textbf{Passo 2.} O nó $A$ passa a receber $\SI{3}{\ampere}$ e a ver
+$\SI{10}{\ohm}$ e $\SI{15}{\ohm}$ ao terra:
+\[
+V_A\left(\tfrac1{10}+\tfrac1{15}\right)=3
+\;\Longrightarrow\;
+V_A=\frac{3}{0{,}1667}=\SI{18}{\volt}.
+\]
+Transformar fontes \emph{antes} de montar o sistema elimina termos
+$V_k/R_k$ do lado direito e costuma reduzir erros de sinal.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma rede puramente resistiva, o termo $G_{12}$ (fora da diagonal) da matriz
+de condutâncias é:
+\begin{alternativas}[2]
+\item a soma das condutâncias ligadas ao nó 1
+\item a condutância entre os nós 1 e 2, com sinal positivo
+\item a condutância entre os nós 1 e 2, com sinal negativo
+\item sempre nulo
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Na LKC do nó 1, o ramo para o nó 2 contribui com
+$(V_1-V_2)G_{12}$. O coeficiente de $V_2$ é, portanto, $-G_{12}$. A regra
+prática: \emph{diagonal} $=$ soma de todas as condutâncias que tocam o nó
+(positiva); \emph{fora da diagonal} $=$ negativo da condutância entre os dois
+nós. Se não houver ligação direta, o termo é zero.}
+\end{questao}
+
+\begin{questao}[2]{}
+O nó $A$ liga-se a uma fonte de $\SI{20}{\volt}$ aterrada por
+$\SI{5}{\ohm}$, ao terra por $\SI{20}{\ohm}$, e recebe $\SI{2}{\ampere}$ de
+uma fonte de corrente. Determine $V_A$ e a corrente no ramo de
+$\SI{5}{\ohm}$.
+\resposta{$V_A=\SI{24}{\volt}$; $I=\SI{0.8}{\ampere}$, de $A$ \emph{para} a fonte}
+\resolucao{
+\[
+\frac{V_A-20}{5}+\frac{V_A}{20}=2
+\;\Longrightarrow\;
+4V_A-80+V_A=40
+\;\Longrightarrow\;
+V_A=\SI{24}{\volt}.
+\]
+No ramo de $\SI{5}{\ohm}$: $I=(24-20)/5=\SI{0.8}{\ampere}$, positiva no sentido
+$A\to$ fonte. A fonte de tensão está \textbf{absorvendo} potência
+($0{,}8\cdot20=\SI{16}{\watt}$) --- comportamento de carga, não de gerador.
+Nada impede isso: quem determina o papel de cada elemento é a solução, não a
+aparência do símbolo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Verificou-se que um circuito tem $V_1=\SI{20}{\volt}$ e $V_2=\SI{10}{\volt}$,
+com $\SI{10}{\ohm}$ do nó 1 ao terra, $\SI{10}{\ohm}$ entre os nós e
+$\SI{10}{\ohm}$ do nó 2 ao terra. Confira a LKC nos dois nós e determine a
+corrente da fonte que alimenta o nó 1.
+\resposta{LKC satisfeita; $I=\SI{3}{\ampere}$}
+\resolucao{\textbf{Nó 2} (sem fontes): entra $(20-10)/10=\SI{1}{\ampere}$; sai
+$10/10=\SI{1}{\ampere}$. Fecha.\\
+\textbf{Nó 1}: saem $20/10=\SI{2}{\ampere}$ (terra) e $\SI{1}{\ampere}$ (para o
+nó 2), total $\SI{3}{\ampere}$. Logo a fonte injeta $\SI{3}{\ampere}$.\\
+Conferir a LKC nó a nó é o teste de consistência mais barato e detecta
+praticamente todo erro de sinal ou de aritmética.}
+\end{questao}
+
+\begin{questao}[2]{}
+Sobre a escolha do nó de referência, é correto afirmar:
+\begin{alternativas}[2]
+\item alterá-la muda as correntes dos ramos
+\item alterá-la muda os potenciais nodais, mas não as diferenças de potencial
+\item ela deve ser sempre o nó de menor potencial
+\item ela deve ser sempre um terminal de fonte
+\end{alternativas}
+\resposta{(b)}
+\resolucao{O potencial absoluto é arbitrário; apenas \emph{diferenças} têm
+significado físico. Mudar a referência desloca todos os $V_k$ de uma mesma
+constante, deixando $V_i-V_j$ --- e portanto todas as correntes e potências ---
+inalteradas. A escolha é livre, mas há escolhas \emph{convenientes}: o nó com
+mais ramos reduz a densidade da matriz, e um nó que seja terminal de fonte de
+tensão elimina uma incógnita e evita um supernó.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito da questão em que $V_A=\SI{25}{\volt}$ com uma fonte de
+$\SI{5}{\ampere}$ e resistores de $\SI{10}{\ohm}$, $\SI{20}{\ohm}$ e
+$\SI{20}{\ohm}$, verifique o balanço de potência.
+\resposta{$P_{\text{fonte}}=P_{\text{dissipada}}=\SI{125}{\watt}$}
+\resolucao{
+\[
+P_{\text{fonte}}=V_A\,I=25\cdot5=\SI{125}{\watt}.
+\]
+\[
+P_{\text{diss}}=\frac{25^{2}}{10}+\frac{25^{2}}{20}+\frac{25^{2}}{20}
+=62{,}5+31{,}25+31{,}25=\SI{125}{\watt}.
+\]
+Note que a potência da fonte de corrente exige conhecer $V_A$ --- ela não é
+dado de entrada, e sim resultado. O balanço fechando é a segunda verificação
+independente do resultado (a primeira é a LKC).}
+\end{questao}
+
+\begin{questao}[2]{}
+Um nó $A$ liga-se ao terra por $\SI{10}{\ohm}$, recebe $\SI{4}{\ampere}$ de
+uma fonte independente e perde corrente para uma fonte \textbf{dependente} que
+drena $0{,}10\,V_A$ ampères (com $V_A$ em volts). Determine $V_A$.
+\resposta{$V_A=\SI{20}{\volt}$}
+\resolucao{A fonte dependente é controlada pela própria tensão do nó, então
+seu termo migra para o lado das condutâncias:
+\[
+\frac{V_A}{10}+0{,}10\,V_A=4
+\;\Longrightarrow\;
+V_A(0{,}10+0{,}10)=4
+\;\Longrightarrow\;
+V_A=\SI{20}{\volt}.
+\]
+\textbf{Leitura:} a fonte dependente comporta-se como uma condutância adicional
+de $\SI{0.1}{\siemens}$ --- um resistor "sintético" de $\SI{10}{\ohm}$. Se o
+coeficiente fosse negativo, ela agiria como \emph{resistência negativa}.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito tem $6$ nós e $8$ ramos. Compare o número de equações exigidas pela
+análise nodal e pela análise de malhas, e indique o método preferível.
+\resposta{Nodal: 5 equações; malhas: 3 equações --- malhas é preferível}
+\resolucao{Nodal: $n-1=6-1=5$ equações.\\
+Malhas: $b-n+1=8-6+1=3$ equações.\\
+Como $3<5$, o método das malhas produz o sistema menor. \textbf{Mas a contagem
+não é o único critério:} circuitos dominados por fontes de corrente favorecem a
+nodal (cada uma entra direto no vetor independente), enquanto fontes de tensão
+favorecem malhas. Faça a contagem \emph{e} olhe o tipo de fonte antes de
+escolher.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Uma fonte ideal de $\SI{20}{\volt}$ está \textbf{flutuante} entre os nós 1 e 2
+(terminal $+$ no nó 1). O nó 1 liga-se ao terra por $\SI{10}{\ohm}$ e recebe
+$\SI{4}{\ampere}$ de uma fonte de corrente; o nó 2 liga-se ao terra por
+$\SI{10}{\ohm}$. Determine $V_1$, $V_2$ e a corrente que atravessa a fonte de
+tensão.
+\resposta{$V_1=\SI{30}{\volt}$, $V_2=\SI{10}{\volt}$, $I=\SI{1}{\ampere}$
+(do nó 2 para o nó 1, internamente)}
+\resolucao{A corrente na fonte ideal é desconhecida, então não se pode escrever
+a LKC de cada nó isoladamente. Envolva ambos em um \textbf{supernó}:
+\[
+\frac{V_1}{10}+\frac{V_2}{10}=4
+\qquad\text{(a corrente interna se cancela)}
+\]
+mais a \textbf{equação de restrição} imposta pela fonte:
+\[
+V_1-V_2=20.
+\]
+Substituindo $V_1=V_2+20$:
+$\frac{V_2+20}{10}+\frac{V_2}{10}=4\Rightarrow 2V_2=20\Rightarrow
+V_2=\SI{10}{\volt}$, $V_1=\SI{30}{\volt}$.\\
+\textbf{Corrente na fonte:} agora que os potenciais são conhecidos, aplique a
+LKC a \emph{um} dos nós. No nó 2: entra $I$ pela fonte, sai
+$10/10=\SI{1}{\ampere}$ pelo resistor $\Rightarrow I=\SI{1}{\ampere}$.
+Confira no nó 1: $4=30/10+1$ --- fecha.}
+\end{questao}
+
+\begin{questao}[3]{}
+Três nós em cascata: cada um ligado ao terra por $\SI{10}{\ohm}$; o nó 1 ao nó
+2 por $\SI{10}{\ohm}$ e o nó 2 ao nó 3 por $\SI{10}{\ohm}$. Uma fonte de
+$\SI{4}{\ampere}$ injeta corrente no nó 1. Determine os três potenciais e a
+resistência vista pela fonte.
+\resposta{$V_1=\SI{25}{\volt}$, $V_2=\SI{10}{\volt}$, $V_3=\SI{5}{\volt}$;
+$R_{in}=\SI{6.25}{\ohm}$}
+\resolucao{Matriz de condutâncias (em siemens):
+\[
+\begin{bmatrix}
+0{,}2 & -0{,}1 & 0\\
+-0{,}1 & 0{,}3 & -0{,}1\\
+0 & -0{,}1 & 0{,}2
+\end{bmatrix}
+\begin{bmatrix}V_1\\V_2\\V_3\end{bmatrix}
+=\begin{bmatrix}4\\0\\0\end{bmatrix}.
+\]
+Observe a estrutura \textbf{tridiagonal}: cada nó só "enxerga" os vizinhos.
+Da terceira linha, $V_3=V_2/2$. Levando à segunda:
+$-0{,}1V_1+0{,}3V_2-0{,}05V_2=0\Rightarrow V_1=2{,}5\,V_2$. Na primeira:
+$0{,}5V_2-0{,}1V_2=4\Rightarrow V_2=\SI{10}{\volt}$, e daí
+$V_1=\SI{25}{\volt}$, $V_3=\SI{5}{\volt}$.\\
+$R_{in}=V_1/I=25/4=\SI{6.25}{\ohm}$. Note a atenuação progressiva
+($25\to10\to5$): é o comportamento típico de uma linha em escada.}
+\end{questao}
+
+\begin{questao}[3]{}
+O nó 1 recebe $\SI{6}{\ampere}$ e liga-se ao terra por $\SI{5}{\ohm}$ e ao nó 2
+por $\SI{5}{\ohm}$. O nó 2 liga-se ao terra por $\SI{10}{\ohm}$ e, além disso,
+uma fonte de corrente \textbf{dependente} drena $g\,V_1$ do nó 2 para o terra,
+com $g=\SI{0.1}{\siemens}$. Determine $V_1$ e $V_2$.
+\resposta{$V_1=\SI{18}{\volt}$, $V_2=\SI{6}{\volt}$}
+\resolucao{Nó 1: $0{,}4V_1-0{,}2V_2=6$.\\
+Nó 2: $-0{,}2V_1+0{,}3V_2+0{,}1V_1=0$, ou seja $-0{,}1V_1+0{,}3V_2=0$.\\
+Da segunda, $V_1=3V_2$. Na primeira:
+$1{,}2V_2-0{,}2V_2=6\Rightarrow V_2=\SI{6}{\volt}$ e $V_1=\SI{18}{\volt}$.\\
+\textbf{Ponto central:} a fonte dependente é controlada por $V_1$, uma variável
+do próprio sistema, então seu coeficiente vai para a \emph{matriz}, na coluna
+de $V_1$ e na linha do nó 2. Isso quebra a simetria de $\mathbf{G}$
+($G_{12}=-0{,}2$ mas $G_{21}=-0{,}1$) --- perda de reciprocidade que sempre
+acompanha elementos ativos.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma ponte é alimentada por $\SI{60}{\volt}$ (fonte aterrada, nó $S$). Do nó $S$
+partem $R_1=\SI{5}{\ohm}$ até $A$ e $R_3=\SI{10}{\ohm}$ até $B$. Do nó $A$ sai
+$R_2=\SI{10}{\ohm}$ ao terra; do nó $B$, $R_4=\SI{20}{\ohm}$ ao terra. Um
+galvanômetro de $\SI{25}{\ohm}$ liga $A$ a $B$. Mostre por análise nodal que a
+corrente no galvanômetro é nula.
+\resposta{$V_A=V_B=\SI{40}{\volt}$; $I_g=0$}
+\resolucao{Sistema (com $V_S=\SI{60}{\volt}$ conhecido):
+\[
+\begin{cases}
+V_A(0{,}2+0{,}1+0{,}04)-0{,}04V_B=60\cdot0{,}2=12\\
+-0{,}04V_A+V_B(0{,}1+0{,}05+0{,}04)=60\cdot0{,}1=6
+\end{cases}
+\]
+Resolvendo: $V_A=V_B=\SI{40}{\volt}$, logo
+$I_g=(V_A-V_B)/25=0$.\\
+\textbf{Por que dá zero:} a condição de equilíbrio é $R_1/R_2=R_3/R_4$, aqui
+$5/10=10/20=0{,}5$. Com o galvanômetro sem corrente, cada braço funciona como
+divisor independente: $60\cdot\frac{10}{15}=40$ e $60\cdot\frac{20}{30}=40$.
+Em equilíbrio, o valor de $R_g$ é irrelevante --- fato que fundamenta o uso da
+ponte como instrumento de \emph{zero}, imune à calibração do galvanômetro.}
+\end{questao}
+
+\begin{questao}[3]{}
+Na ponte anterior, $R_4$ é trocado de $\SI{20}{\ohm}$ para $\SI{10}{\ohm}$.
+Determine $V_A$, $V_B$ e a corrente no galvanômetro.
+\resposta{$V_A=\SI{39}{\volt}$, $V_B=\SI{31.5}{\volt}$, $I_g=\SI{0.30}{\ampere}$
+de $A$ para $B$}
+\resolucao{Agora $R_1/R_2=0{,}5$ e $R_3/R_4=1{,}0$: a ponte está desequilibrada.
+\[
+\begin{cases}
+0{,}34\,V_A-0{,}04\,V_B=12\\
+-0{,}04\,V_A+0{,}24\,V_B=6
+\end{cases}
+\]
+Determinante: $0{,}34\cdot0{,}24-0{,}04^{2}=0{,}0800$. Por Cramer:
+\[
+V_A=\frac{12\cdot0{,}24+0{,}04\cdot6}{0{,}08}=\frac{3{,}12}{0{,}08}=\SI{39}{\volt},
+\quad
+V_B=\frac{0{,}34\cdot6+0{,}04\cdot12}{0{,}08}=\frac{2{,}52}{0{,}08}=\SI{31.5}{\volt}.
+\]
+\[
+I_g=\frac{39-31{,}5}{25}=\SI{0.30}{\ampere}\ (A\to B).
+\]
+\textbf{Compare com a questão anterior:} agora o galvanômetro conduz, e seu
+valor \emph{afeta} $V_A$ e $V_B$. Fora do equilíbrio a ponte deixa de ser um
+instrumento de zero e passa a exigir o circuito completo.}
+\end{questao}
+
+\begin{questao}[3]{}
+Monte e resolva \textbf{por regra de Cramer} o sistema de um circuito em que
+$G_{11}=\SI{0.3}{\siemens}$, $G_{22}=\SI{0.2}{\siemens}$,
+$G_{12}=G_{21}=\SI{-0.1}{\siemens}$, com $\SI{4}{\ampere}$ injetados no nó 1 e
+$\SI{1}{\ampere}$ no nó 2.
+\resposta{$V_1=\SI{18}{\volt}$, $V_2=\SI{14}{\volt}$}
+\resolucao{
+\[
+\Delta=\begin{vmatrix}0{,}3&-0{,}1\\-0{,}1&0{,}2\end{vmatrix}
+=0{,}06-0{,}01=0{,}05.
+\]
+\[
+V_1=\frac{1}{\Delta}\begin{vmatrix}4&-0{,}1\\1&0{,}2\end{vmatrix}
+=\frac{0{,}8+0{,}1}{0{,}05}=\SI{18}{\volt},
+\qquad
+V_2=\frac{1}{\Delta}\begin{vmatrix}0{,}3&4\\-0{,}1&1\end{vmatrix}
+=\frac{0{,}3+0{,}4}{0{,}05}=\SI{14}{\volt}.
+\]
+\textbf{Sanidade:} $\Delta>0$ e a matriz é simétrica com diagonal positiva ---
+como deve ser em rede passiva. Um determinante nulo ou negativo aqui indicaria
+erro de montagem.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito da questão anterior, use a \textbf{linearidade} para separar a
+contribuição de cada fonte, e verifique a superposição.
+\begin{itensq}
+\item Resolva com apenas $I_1=\SI{4}{\ampere}$ ativa.
+\item Resolva com apenas $I_2=\SI{1}{\ampere}$ ativa.
+\item Some e compare com o resultado completo.
+\end{itensq}
+\resposta{(a) $(16;\,8)\,\si{\volt}$; (b) $(2;\,6)\,\si{\volt}$;
+(c) $(18;\,14)\,\si{\volt}$ --- confere}
+\resolucao{(a) Com $\mathbf{I}=(4;0)$: $V_1=\frac{4\cdot0{,}2}{0{,}05}=16$,
+$V_2=\frac{0{,}1\cdot4}{0{,}05}=8$.\\
+(b) Com $\mathbf{I}=(0;1)$: $V_1=\frac{0{,}1\cdot1}{0{,}05}=2$,
+$V_2=\frac{0{,}3\cdot1}{0{,}05}=6$.\\
+(c) $16+2=18$ e $8+6=14$ --- idênticos ao resultado direto.\\
+\textbf{Por que funciona:} $\mathbf{V}=\mathbf{G}^{-1}\mathbf{I}$ é uma função
+linear de $\mathbf{I}$. Os elementos de $\mathbf{G}^{-1}$ são exatamente as
+\emph{resistências de transferência}: $R_{12}=\partial V_1/\partial I_2=
+\SI{2}{\ohm}$. A simetria $R_{12}=R_{21}=\SI{2}{\ohm}$ é o teorema da
+reciprocidade --- e só vale porque não há fontes dependentes.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine a resistência vista entre o nó $A$ e o terra de uma rede passiva
+usando análise nodal, sabendo que uma fonte de teste de $\SI{1}{\ampere}$
+aplicada em $A$ produz $V_A=\SI{7.5}{\volt}$. Em seguida, explique por que o
+método falharia se a rede contivesse fontes independentes ativas.
+\resposta{$R_{in}=\SI{7.5}{\ohm}$; com fontes independentes ativas, $V_A$
+conteria uma parcela não proporcional a $I_{teste}$}
+\resolucao{Por definição, $R_{in}=V_A/I_{teste}=7{,}5/1=\SI{7.5}{\ohm}$.\\
+Se houvesse fontes independentes, a linearidade daria
+$V_A=R_{in}I_{teste}+V_{oc}$ --- uma reta com \emph{intercepto}. A razão
+$V_A/I_{teste}$ deixaria de ser a resistência: ela dependeria do valor da
+corrente de teste. Por isso o procedimento correto exige \textbf{zerar} as
+fontes independentes primeiro (tensão $\to$ curto, corrente $\to$ aberto).
+Fontes \emph{dependentes}, ao contrário, devem permanecer ativas: elas fazem
+parte da rede, não da excitação.}
+\end{questao}
+
+\begin{questao}[3]{}
+Explique por que uma fonte de tensão ideal \textbf{aterrada} não gera supernó,
+e quantifique a economia: um circuito com $6$ nós tem duas fontes de tensão
+aterradas. Quantas incógnitas restam?
+\resposta{Restam 3 incógnitas}
+\resolucao{Se um terminal da fonte é o próprio nó de referência, o potencial do
+outro terminal fica \emph{conhecido} e igual à tensão da fonte. Esse nó deixa
+de ser incógnita --- sua LKC não precisa ser escrita, e nas equações dos
+vizinhos ele entra como termo constante, migrando para o lado direito.\\
+Contagem: $6$ nós $\Rightarrow$ $5$ incógnitas a princípio; duas fontes
+aterradas fixam dois potenciais $\Rightarrow$ $5-2=3$ incógnitas.\\
+O supernó só é necessário quando \emph{nenhum} terminal da fonte é a
+referência, pois aí ambos os potenciais permanecem desconhecidos e a corrente
+interna da fonte não pode ser expressa por lei de Ohm. \textbf{Consequência
+prática:} escolher como terra um terminal de fonte quase sempre simplifica o
+problema.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um circuito é perfeitamente simétrico em relação a um eixo, e dois nós $A$ e
+$B$ ocupam posições espelhadas. Justifique por que $V_A=V_B$ e explique como
+usar isso para simplificar o sistema nodal.
+\resposta{Por unicidade da solução; o ramo entre $A$ e $B$ pode ser removido
+(ou curto-circuitado, se preferível), reduzindo a ordem do sistema}
+\resolucao{\textbf{Argumento.} A solução de $\mathbf{G}\mathbf{V}=\mathbf{I}$ é
+\emph{única} (a matriz de uma rede passiva conectada é não singular). Se
+trocarmos $A$ por $B$, obtemos um circuito idêntico ao original --- logo a
+solução trocada também é solução. Pela unicidade, ela é a \emph{mesma}, o que
+exige $V_A=V_B$.\\
+\textbf{Uso.} Como $V_A-V_B=0$, qualquer resistor ligando $A$ a $B$ não conduz
+corrente e pode ser \textbf{retirado} sem alterar nada. Alternativamente, $A$ e
+$B$ podem ser \emph{fundidos} em um único nó (curto), já que estão no mesmo
+potencial. Ambas as operações reduzem a ordem do sistema; escolha a que
+produzir associações série/paralelo mais simples.\\
+É exatamente esse raciocínio que resolve a ponte equilibrada sem nenhum
+sistema.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um mesmo circuito tem $4$ nós, $6$ ramos, três fontes de corrente e uma fonte
+de tensão flutuante. Compare o esforço da análise nodal e da análise de malhas
+e justifique a escolha.
+\resposta{Nodal: $3-1=2$ equações efetivas (após o supernó); malhas: $3$
+equações e uma corrente incógnita adicional --- nodal é preferível}
+\resolucao{\textbf{Nodal.} $n-1=3$ incógnitas; a fonte flutuante gera um
+supernó, que substitui duas LKC por uma LKC $+$ uma restrição algébrica ---
+resultado líquido: ainda $3$ equações, mas duas delas triviais de eliminar,
+deixando um sistema $2\times2$. As três fontes de corrente entram diretamente
+no vetor independente, \emph{sem} nenhuma manipulação.\\
+\textbf{Malhas.} $b-n+1=6-4+1=3$ equações. Porém cada fonte de corrente exige
+uma supermalha ou uma corrente de malha imposta, e são \emph{três} delas.\\
+\textbf{Conclusão.} A regra prática: circuitos ricos em fontes de \emph{corrente}
+pedem análise nodal; ricos em fontes de \emph{tensão} pedem malhas. A contagem
+bruta de equações é apenas o primeiro critério --- o tipo de fonte costuma
+pesar mais.}
+\end{questao}
+
+\begin{questao}[3]{}
+Ao resolver um circuito por análise nodal, um estudante obteve
+$V_1=\SI{18}{\volt}$ e $V_2=\SI{14}{\volt}$ para o sistema
+$0{,}3V_1-0{,}1V_2=4$ e $-0{,}1V_1+0{,}2V_2=1$. Elabore \textbf{três} testes
+independentes de consistência e aplique-os.
+\resposta{Substituição direta, balanço de potência e verificação de sinal da
+matriz --- todos aprovados}
+\resolucao{\textbf{Teste 1 --- substituição.}
+$0{,}3(18)-0{,}1(14)=5{,}4-1{,}4=4$ \checkmark;
+$-0{,}1(18)+0{,}2(14)=-1{,}8+2{,}8=1$ \checkmark.\\
+\textbf{Teste 2 --- balanço de potência.} As fontes fornecem
+$4(18)+1(14)=\SI{86}{\watt}$. Reconstituindo os ramos: $G_{11}+G_{12}=0{,}2$
+(condutância do nó 1 ao terra), $G_{22}+G_{21}=0{,}1$ (nó 2 ao terra) e
+$\SI{0.1}{\siemens}$ entre os nós:
+\[
+P=0{,}2(18)^2+0{,}1(14)^2+0{,}1(18-14)^2=64{,}8+19{,}6+1{,}6=\SI{86}{\watt}
+\ \checkmark
+\]
+\textbf{Teste 3 --- estrutura da matriz.} Simétrica, diagonal positiva, termos
+fora da diagonal negativos, e diagonal dominante ($0{,}3>0{,}1$; $0{,}2>0{,}1$)
+--- compatível com uma rede passiva. Se algum desses sinais estivesse invertido,
+o erro estaria na montagem, não na álgebra.\\
+Os três testes são independentes: o primeiro valida a álgebra, o segundo a
+física, o terceiro a modelagem.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração --- estrutura da matriz.)} Considere uma rede puramente
+resistiva, conectada, com o terra escolhido como referência.
+\begin{itensq}
+\item Mostre que $\mathbf{G}$ é simétrica.
+\item Mostre que $G_{kk}\ge\sum_{j\neq k}|G_{kj}|$, com desigualdade estrita em
+      pelo menos um nó.
+\item Conclua que $\mathbf{G}$ é não singular e que a solução é única.
+\end{itensq}
+\resposta{(a) $G_{kj}=G_{jk}=-1/R_{kj}$; (b) a folga é a condutância ao terra;
+(c) matriz irredutivelmente diagonal dominante $\Rightarrow$ não singular}
+\resolucao{(a) O resistor entre os nós $k$ e $j$ contribui com $-1/R_{kj}$ tanto
+em $G_{kj}$ quanto em $G_{jk}$, pois $(V_k-V_j)/R_{kj}$ e $(V_j-V_k)/R_{kj}$
+usam o \emph{mesmo} $R$. Logo $\mathbf{G}=\mathbf{G}^{\!\top}$. Essa simetria é
+a forma matricial do teorema da reciprocidade --- e se perde na presença de
+fontes dependentes.\\
+(b) Por construção,
+\[
+G_{kk}=\underbrace{\sum_{j\neq k}\frac{1}{R_{kj}}}_{=\sum_{j\neq k}|G_{kj}|}
++\underbrace{\frac{1}{R_{k0}}}_{\ge 0},
+\]
+onde $R_{k0}$ é a resistência do nó $k$ ao terra. A desigualdade é estrita
+exatamente nos nós que possuem ligação direta à referência --- e, sendo a rede
+conectada ao terra, ao menos um nó a possui.\\
+(c) Uma matriz \emph{irredutivelmente} diagonal dominante (dominância larga em
+todas as linhas, estrita em pelo menos uma, com o grafo conectado) é não
+singular --- resultado clássico de álgebra linear. Portanto
+$\mathbf{V}=\mathbf{G}^{-1}\mathbf{I}$ existe e é única.\\
+\textbf{Significado físico:} a unicidade traduz o fato de que uma rede
+resistiva com excitação dada assume \emph{um} estado, e não vários. É também o
+que autoriza os argumentos de simetria usados para simplificar circuitos.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Formulação --- análise nodal modificada.)} Uma fonte ideal de tensão
+$V_s$ liga os nós 1 e 2 (nenhum aterrado). Em vez do supernó, trate a corrente
+$i_s$ da fonte como \emph{incógnita adicional}.
+\begin{itensq}
+\item Escreva o sistema aumentado em forma matricial.
+\item Explique por que a matriz deixa de ser definida positiva.
+\item Aponte a vantagem dessa formulação para implementação computacional.
+\end{itensq}
+\resposta{Sistema $3\times3$ com bloco de zeros na diagonal; matriz simétrica,
+mas indefinida}
+\resolucao{(a) Sejam $G_1$ e $G_2$ as condutâncias dos nós 1 e 2 ao terra. As
+duas LKC ganham o termo $\pm i_s$, e a fonte impõe uma terceira equação:
+\[
+\begin{bmatrix}
+G_1 & 0 & +1\\
+0 & G_2 & -1\\
++1 & -1 & 0
+\end{bmatrix}
+\begin{bmatrix}V_1\\V_2\\i_s\end{bmatrix}
+=\begin{bmatrix}I_1\\I_2\\V_s\end{bmatrix}.
+\]
+(b) O elemento $(3,3)$ é \textbf{zero}: a fonte ideal não tem condutância
+própria. A matriz permanece simétrica, mas perde a dominância diagonal e a
+definição positiva --- é do tipo \emph{ponto de sela}, com autovalores de ambos
+os sinais. Consequência prática: não se pode usar decomposição de Cholesky;
+exige-se pivotamento (LU com pivô parcial).\\
+(c) A vantagem é a \textbf{sistematização}: cada tipo de elemento tem um
+"carimbo" fixo (\emph{stamp}) que é somado à matriz, sem que o programa precise
+reconhecer topologias especiais como supernós. É exatamente assim que o SPICE
+monta o sistema --- e a razão pela qual indutores e fontes controladas por
+corrente também recebem linhas extras.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Recorrência --- escada infinita.)} Uma escada infinita repete
+indefinidamente a célula: um resistor série de $\SI{10}{\ohm}$ seguido de um
+resistor de $\SI{10}{\ohm}$ ao terra.
+\begin{itensq}
+\item Obtenha a resistência de entrada $R_\infty$.
+\item Determine a razão de atenuação entre nós consecutivos.
+\item Compare com o valor de $\SI{6.25}{\ohm}$ obtido para $3$ seções e comente
+      a convergência.
+\end{itensq}
+\resposta{(a) $R_\infty=5(\sqrt5-1)\approx\SI{6.180}{\ohm}$;
+(b) $V_{k+1}/V_k=(3-\sqrt5)/2\approx0{,}382$;
+(c) convergência muito rápida}
+\resolucao{(a) A chave é a \textbf{autossimilaridade}: remover a primeira célula
+deixa uma escada idêntica à original. Portanto o resistor de $\SI{10}{\ohm}$ ao
+terra está em paralelo com (série de $\SI{10}{\ohm}$ $+$ a própria escada):
+\[
+R_\infty=10\parallel(10+R_\infty)
+=\frac{10\,(10+R_\infty)}{20+R_\infty}.
+\]
+\[
+R_\infty(20+R_\infty)=100+10R_\infty
+\;\Longrightarrow\;
+R_\infty^{2}+10R_\infty-100=0
+\;\Longrightarrow\;
+R_\infty=5(\sqrt5-1)\approx\SI{6.180}{\ohm}
+\]
+(descartada a raiz negativa, sem sentido físico).\\
+(b) Cada nó vê $R_\infty$ à sua frente, atrás de um resistor série de
+$\SI{10}{\ohm}$ --- um divisor de tensão:
+\[
+\frac{V_{k+1}}{V_k}=\frac{R_\infty}{10+R_\infty}
+=\frac{6{,}180}{16{,}180}=0{,}38197=\frac{3-\sqrt5}{2}.
+\]
+Curiosamente, $R_\infty/10=\varphi-1$ e a razão de atenuação é $1/\varphi^{2}$,
+com $\varphi=(1+\sqrt5)/2$ a razão áurea.\\
+(c) A sequência de $R_{in}$ com $1,2,3,4,5$ seções é
+$10;\;6{,}667;\;6{,}250;\;6{,}190;\;6{,}182$. Com apenas $3$ seções o erro já é
+de $1{,}1\%$; com $5$, de $0{,}03\%$. \textbf{Interpretação:} como cada seção
+atenua por $0{,}382$, o efeito das seções distantes decai geometricamente ---
+uma escada "longa" é indistinguível de uma infinita, o que justifica terminar
+linhas reais com sua impedância característica.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Otimização com restrição.)} Uma fonte de $\SI{2}{\ampere}$ alimenta um
+nó que já possui $\SI{30}{\ohm}$ ao terra. Deseja-se acrescentar um resistor
+$R$, também do nó ao terra, de modo que a tensão nodal não ultrapasse
+$\SI{24}{\volt}$.
+\begin{itensq}
+\item Determine a faixa admissível de $R$.
+\item Calcule a potência dissipada em $R$ no limite.
+\item Discuta o custo dessa solução.
+\end{itensq}
+\resposta{(a) $R\le\SI{20}{\ohm}$; (b) $P_R=\SI{28.8}{\watt}$;
+(c) desperdício: a corrente desviada não realiza trabalho útil}
+\resolucao{(a) Sem $R$, $V=2\cdot30=\SI{60}{\volt}$ --- bem acima do limite. Com
+$R$ em paralelo:
+\[
+V=2\left(\frac{30R}{30+R}\right)\le24
+\;\Longrightarrow\;
+\frac{30R}{30+R}\le12
+\;\Longrightarrow\;
+30R\le360+12R
+\;\Longrightarrow\;
+R\le\SI{20}{\ohm}.
+\]
+(b) No limite $R=\SI{20}{\ohm}$: $V=\SI{24}{\volt}$ e
+$P_R=V^{2}/R=576/20=\SI{28.8}{\watt}$. No ramo de $\SI{30}{\ohm}$,
+$P=576/30=\SI{19.2}{\watt}$; total $\SI{48}{\watt}=24\cdot2$ \checkmark.\\
+(c) A fonte de corrente entrega \emph{sempre} $\SI{2}{\ampere}$; limitar a
+tensão significa oferecer um caminho alternativo, e os $\SI{28.8}{\watt}$
+desviados viram calor --- $60\%$ da potência total. \textbf{Alternativa
+melhor:} um limitador ativo (regulador shunt ou diodo zener) atua apenas
+quando necessário, em vez de dissipar continuamente. A solução puramente
+resistiva é simples e robusta, mas ineficiente por construção.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Síntese --- Thévenin por análise nodal.)} Uma fonte de
+$\SI{4}{\ampere}$ injeta corrente no nó 1, que se liga ao terra por
+$\SI{10}{\ohm}$ e ao nó 2 (porta de saída) por $\SI{20}{\ohm}$.
+\begin{itensq}
+\item Determine $V_{Th}$ na porta.
+\item Determine $R_{Th}$ por fonte de teste, com a fonte independente zerada.
+\item Verifique o resultado calculando a tensão sobre $R_L=\SI{30}{\ohm}$ pelos
+      dois caminhos.
+\end{itensq}
+\resposta{(a) $V_{Th}=\SI{40}{\volt}$; (b) $R_{Th}=\SI{30}{\ohm}$;
+(c) $V_L=\SI{20}{\volt}$ pelos dois métodos}
+\resolucao{(a) Com a porta \textbf{aberta}, nenhuma corrente atravessa o
+resistor de $\SI{20}{\ohm}$, logo $V_2=V_1$. E toda a corrente da fonte vai ao
+terra pelo ramo de $\SI{10}{\ohm}$:
+\[
+V_1=4\cdot10=\SI{40}{\volt}\;\Longrightarrow\;V_{Th}=V_2=\SI{40}{\volt}.
+\]
+(b) Zerando a fonte de corrente (substituída por um \emph{aberto}), a porta vê
+$\SI{20}{\ohm}$ em série com $\SI{10}{\ohm}$:
+$R_{Th}=20+10=\SI{30}{\ohm}$.\\
+(c) \emph{Pelo equivalente:} $V_L=40\cdot\frac{30}{30+30}=\SI{20}{\volt}$.\\
+\emph{Pelo circuito completo:} com $R_L$ conectado,
+\[
+\begin{cases}
+0{,}15V_1-0{,}05V_2=4\\
+-0{,}05V_1+(0{,}05+0{,}0333)V_2=0
+\end{cases}
+\Longrightarrow V_1=\SI{30}{\volt},\ V_2=\SI{20}{\volt}.\ \checkmark
+\]
+\textbf{Observação:} o equivalente de Thévenin descreve corretamente a porta
+para \emph{qualquer} carga, mas $V_1$ mudou de $40$ para $\SI{30}{\volt}$ --- o
+interior do circuito \emph{não} é preservado pela equivalência.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Estabilidade --- resistência negativa.)} Um nó liga-se ao terra por
+$R=\SI{20}{\ohm}$ e recebe, de uma fonte dependente, uma corrente $g\,V$
+\emph{injetada no próprio nó}. Uma fonte independente de $\SI{1}{\ampere}$
+também alimenta o nó.
+\begin{itensq}
+\item Obtenha $V(g)$.
+\item Determine o valor crítico $g_c$ e interprete-o.
+\item Discuta o significado físico de $g>g_c$.
+\end{itensq}
+\resposta{(a) $V=\dfrac{1}{1/R-g}$; (b) $g_c=1/R=\SI{0.05}{\siemens}$;
+(c) condutância equivalente negativa --- o modelo linear deixa de descrever o
+circuito}
+\resolucao{(a) LKC: $\dfrac{V}{R}-gV=1$, portanto
+\[
+V=\frac{1}{\dfrac{1}{R}-g}=\frac{1}{0{,}05-g}.
+\]
+(b) Em $g_c=1/R=\SI{0.05}{\siemens}$ o denominador se anula: a matriz
+($1\times1$) torna-se \textbf{singular} e não há solução finita. Fisicamente, a
+fonte dependente passa a fornecer exatamente a corrente que o resistor consome,
+e o nó "flutua". Valores próximos: $g=\SI{0.02}{\siemens}\Rightarrow
+V=\SI{33.3}{\volt}$; $g=\SI{0.049}{\siemens}\Rightarrow V=\SI{1000}{\volt}$ ---
+sensibilidade explosiva.\\
+(c) Para $g>g_c$ a condutância equivalente $1/R-g$ é \textbf{negativa} e a
+fórmula devolve $V<0$: um resultado matematicamente correto, porém fisicamente
+vazio. Nenhum circuito real produz tensão infinita; o que ocorre é que o
+elemento ativo sai de sua região linear (satura) ou o circuito entra em
+oscilação. \textbf{Lição:} um determinante que se aproxima de zero em rede com
+elementos ativos é um alerta de instabilidade, não um mero problema numérico ---
+é exatamente esse mecanismo que se explora para construir osciladores.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Simetria --- bissecção.)} Retome a ponte equilibrada
+($\SI{60}{\volt}$; $R_1=\SI{5}{\ohm}$, $R_2=\SI{10}{\ohm}$,
+$R_3=\SI{10}{\ohm}$, $R_4=\SI{20}{\ohm}$, $R_g=\SI{25}{\ohm}$).
+\begin{itensq}
+\item Determine a resistência vista pela fonte \textbf{sem} resolver o sistema.
+\item Calcule a corrente total.
+\item Explique por que $R_g$ não aparece no resultado.
+\end{itensq}
+\resposta{(a) $R_{eq}=\SI{10}{\ohm}$; (b) $I=\SI{6}{\ampere}$; (c) o ramo do
+galvanômetro não conduz}
+\resolucao{(a) Em equilíbrio, $V_A=V_B$ e o galvanômetro não conduz --- pode ser
+\textbf{removido}. Sobram dois divisores independentes:
+\[
+R_{eq}=(R_1+R_2)\parallel(R_3+R_4)=15\parallel30
+=\frac{15\cdot30}{45}=\SI{10}{\ohm}.
+\]
+(b) $I=60/10=\SI{6}{\ampere}$, distribuídos como
+$60/15=\SI{4}{\ampere}$ e $60/30=\SI{2}{\ampere}$.\\
+(c) Porque a diferença $V_A-V_B$ é nula \emph{independentemente} de $R_g$: o
+equilíbrio é fixado apenas pela razão $R_1/R_2=R_3/R_4$. Um ramo sem corrente
+pode ser aberto sem alterar nada --- e, como suas extremidades estão no mesmo
+potencial, ele também pode ser \emph{curto-circuitado}. As duas operações levam
+ao mesmo $R_{eq}$: um teste rápido de que o raciocínio de simetria está
+correto.\\
+\textbf{Contraste:} na versão desequilibrada ($R_4=\SI{10}{\ohm}$), $R_g$ passa
+a conduzir $\SI{0.30}{\ampere}$ e nenhuma das duas simplificações vale --- é
+preciso o sistema completo.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Modelagem --- amplificador operacional ideal.)} Um amp-op ideal tem a
+entrada não inversora aterrada. Um sinal $V_{in}$ chega à entrada inversora
+através de $R_1$, e $R_2$ realimenta da saída para a mesma entrada.
+\begin{itensq}
+\item Enuncie as duas restrições do amp-op ideal e explique por que a LKC não
+      pode ser escrita no nó de saída.
+\item Deduza $V_{out}$ por análise nodal.
+\item Calcule para $R_1=\SI{10}{\kilo\ohm}$, $R_2=\SI{47}{\kilo\ohm}$ e
+      $V_{in}=\SI{0.2}{\volt}$.
+\end{itensq}
+\resposta{(b) $V_{out}=-\dfrac{R_2}{R_1}V_{in}$; (c) $V_{out}=\SI{-0.94}{\volt}$}
+\resolucao{(a) \emph{Corrente de entrada nula} (impedância de entrada infinita)
+e \emph{curto virtual} ($V_+=V_-$). Com $V_+=0$, segue $V_-=0$: o nó inversor é
+um \textbf{terra virtual} --- potencial nulo, mas sem ligação física ao terra.\\
+A LKC não pode ser escrita no nó de saída porque a saída é uma \emph{fonte de
+tensão ideal controlada}: a corrente que ela entrega é desconhecida e não se
+expressa por lei de Ohm --- exatamente a situação que, em circuitos passivos,
+exigiria um supernó.\\
+(b) Escrevendo a LKC apenas no nó inversor, onde toda a corrente é conhecida:
+\[
+\frac{0-V_{in}}{R_1}+\frac{0-V_{out}}{R_2}=0
+\;\Longrightarrow\;
+V_{out}=-\frac{R_2}{R_1}\,V_{in}.
+\]
+(c) $V_{out}=-\dfrac{47}{10}\cdot0{,}2=\SI{-0.94}{\volt}$.\\
+\textbf{Observe} que o ganho depende só da \emph{razão} entre resistores --- não
+de seus valores absolutos nem dos parâmetros do amp-op. É essa insensibilidade,
+obtida pela realimentação, que torna o circuito previsível e reprodutível.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Condicionamento numérico.)} Ao simular uma rede, obtém-se a matriz
+\[
+\mathbf{G}=\begin{bmatrix}
+1{,}0001 & -1{,}0000\\
+-1{,}0000 & 1{,}0001
+\end{bmatrix}\si{\siemens}.
+\]
+\begin{itensq}
+\item Calcule $\det\mathbf{G}$ e estime a amplificação de erros.
+\item Aponte a configuração física que produz esse quadro.
+\item Proponha duas providências.
+\end{itensq}
+\resposta{(a) $\det\mathbf{G}=\pot{2.0001}{-4}$, número de condição
+$\approx 10^{4}$; (b) dois nós fortemente acoplados e quase isolados do terra;
+(c) reescalar unidades e/ou fundir os nós}
+\resolucao{(a) $\det=(1{,}0001)^2-(1{,}0000)^2=\pot{2.0001}{-4}$. Os autovalores
+são $\lambda_1=\pot{1}{-4}$ e $\lambda_2=2{,}0001$, de modo que o número de
+condição vale $\kappa=\lambda_2/\lambda_1\approx\pot{2}{4}$. Um erro relativo de
+$10^{-8}$ nos dados pode crescer até $\approx10^{-4}$ na solução --- perda de
+cerca de quatro algarismos significativos.\\
+(b) O acoplamento entre os nós ($\SI{1}{\siemens}$, ou $\SI{1}{\ohm}$) é
+$10^{4}$ vezes maior que a condutância ao terra ($\SI{1e-4}{\siemens}$, ou
+$\SI{10}{\kilo\ohm}$). Eletricamente, os dois nós são quase o \emph{mesmo} nó,
+e o sistema mal consegue distingui-los: um circuito quase degenerado.\\
+(c) \textbf{(i) Reformular:} se o resistor de $\SI{1}{\ohm}$ for parasita
+(trilha, contato), funda os dois nós em um só --- o sistema cai para $1\times1$ e
+o mau condicionamento desaparece. \textbf{(ii) Reescalar:} trabalhar em
+$\si{\milli\siemens}$ e $\si{\kilo\ohm}$ equilibra as ordens de grandeza da
+matriz. \textbf{(iii)} Se ambos os efeitos forem reais e necessários, usar
+pivotamento parcial e precisão dupla.\\
+\textbf{Regra geral:} mau condicionamento raramente é um problema de
+\emph{álgebra} --- quase sempre é um problema de \emph{modelagem}, avisando que
+elementos de escalas muito diferentes foram misturados sem necessidade.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Generalização --- matriz de resistências de transferência.)} Para uma
+rede passiva de dois nós com
+$\mathbf{G}=\begin{bmatrix}0{,}3&-0{,}1\\-0{,}1&0{,}2\end{bmatrix}\si{\siemens}$:
+\begin{itensq}
+\item Calcule $\mathbf{R}=\mathbf{G}^{-1}$ e interprete cada elemento.
+\item Enuncie e verifique o teorema da reciprocidade.
+\item Explique o que muda se a rede contiver uma fonte dependente.
+\end{itensq}
+\resposta{(a) $\mathbf{R}=\begin{bmatrix}4&2\\2&6\end{bmatrix}\si{\ohm}$;
+(b) $R_{12}=R_{21}=\SI{2}{\ohm}$; (c) $\mathbf{G}$ deixa de ser simétrica e a
+reciprocidade se perde}
+\resolucao{(a) Com $\det\mathbf{G}=0{,}05$:
+\[
+\mathbf{R}=\frac{1}{0{,}05}\begin{bmatrix}0{,}2&0{,}1\\0{,}1&0{,}3\end{bmatrix}
+=\begin{bmatrix}4&2\\2&6\end{bmatrix}\si{\ohm}.
+\]
+$R_{11}=\SI{4}{\ohm}$ é a resistência vista no nó 1 (tensão em 1 por corrente
+injetada em 1). $R_{12}=\SI{2}{\ohm}$ é uma \textbf{resistência de
+transferência}: a tensão que aparece no nó 1 por ampère injetado no nó 2.\\
+(b) \emph{Reciprocidade:} em rede passiva, injetar $I$ em $B$ e medir a tensão
+em $A$ dá o mesmo resultado que injetar $I$ em $A$ e medir em $B$. Aqui,
+$R_{12}=R_{21}=\SI{2}{\ohm}$ --- verificado. Isso decorre diretamente da
+simetria de $\mathbf{G}$: a inversa de uma matriz simétrica é simétrica.\\
+(c) Uma fonte dependente insere um termo assimétrico (o coeficiente aparece na
+linha do nó controlado, mas não na do nó de controle). Com
+$\mathbf{G}\ne\mathbf{G}^{\!\top}$, também $\mathbf{R}\ne\mathbf{R}^{\!\top}$, e
+$R_{12}\ne R_{21}$: o circuito passa a ser \textbf{não recíproco}. Essa é a
+assinatura matemática de um dispositivo com \emph{direção preferencial} de
+transmissão --- ou seja, de um amplificador. Reciprocidade e ganho são
+propriedades mutuamente exclusivas.}
+\end{questao}

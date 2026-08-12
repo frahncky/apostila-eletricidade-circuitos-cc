@@ -1,0 +1,15 @@
+APOSTILA DE ELETRICIDADE BÁSICA E CIRCUITOS CC — BANCO AMPLIADO
+
+Arquivo principal: Livro.tex
+PDF compilado: Apostila_Circuitos_CC_Banco_Ampliado.pdf
+Relatório: RELATORIO-BANCO-AMPLIADO.md
+Bancos complementares: pasta bancos/
+
+Distribuição final:
+N1: 239
+N2: 358
+N3: 357
+N4: 238
+Total: 1.192 questões
+
+Nenhuma questão anterior foi removida.

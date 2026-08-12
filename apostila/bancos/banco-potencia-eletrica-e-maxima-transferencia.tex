@@ -1,0 +1,838 @@
+% =====================================================================
+%  Banco complementar --- Potencia Eletrica e Maxima Transferencia
+%  REVISADO. Substitui a versao gerada por template (8 clones em N2,
+%  9 em N3 e 7 questoes conceituais marcadas como N4).
+%  O cap05 ja cobre: P=RI^2 e P=VI (MC), a condicao R_L=R_Th (MC),
+%  Thevenin 12 V/4 ohm, fonte 18 V/6 ohm, fonte ABSORVENDO potencia,
+%  bateria 12 V/2 ohm com R_L=4 ohm, DUAS tabelas de carga variavel
+%  (20 V/10 ohm e 24 V/4 ohm), a explicacao de POR QUE o rendimento
+%  vale 50% no ponto otimo, e um problema de sintese integrado.
+%  Este banco evita todos esses casos e explora: a SIMETRIA dos pares
+%  reciprocos de carga, a faixa de tolerancia em torno do otimo, o
+%  otimo sob restricao de rendimento e de corrente, e o caso em que o
+%  parametro livre e R_Th (onde nao ha otimo interior).
+%  Distribuicao mantida: 5 N1 + 8 N2 + 9 N3 + 7 N4 = 29
+% =====================================================================
+
+\subsubsection*{Banco complementar --- Potência elétrica e máxima transferência}
+
+\begin{atencao}[Organização do banco]
+Duas expressões governam o tópico:
+$P_L=\dfrac{V_{Th}^{2}R_L}{(R_L+R_{Th})^{2}}$ e
+$P_{\max}=\dfrac{V_{Th}^{2}}{4R_{Th}}$ em $R_L=R_{Th}$. Convém trabalhar com a
+variável adimensional $x=R_L/R_{Th}$, pois
+$\dfrac{P_L}{P_{\max}}=\dfrac{4x}{(1+x)^{2}}$ e
+$\eta=\dfrac{x}{1+x}$ --- duas curvas universais, independentes dos valores
+absolutos. O N3 explora simetria, tolerância e casos de contorno; o N4 trata de
+demonstração, projeto e otimização sob restrição.
+\end{atencao}
+
+\blocofixacao
+
+\begin{questao}[1]{}
+Uma fonte tem $V_{Th}=\SI{24}{\volt}$ e $R_{Th}=\SI{6}{\ohm}$. Determine
+$R_L$ para máxima transferência e a potência correspondente.
+\resposta{$R_L=\SI{6}{\ohm}$; $P_{\max}=\SI{24}{\watt}$}
+\resolucao{A condição é $R_L=R_{Th}=\SI{6}{\ohm}$, e então
+\[
+P_{\max}=\frac{V_{Th}^{2}}{4R_{Th}}=\frac{576}{24}=\SI{24}{\watt}.
+\]
+\textbf{Guarde a fórmula do máximo:} ela dispensa calcular corrente e tensão, e
+mostra que a potência máxima disponível de uma fonte depende \emph{apenas} de
+$V_{Th}$ e $R_{Th}$ --- é uma característica da fonte, não da carga.}
+\end{questao}
+
+\begin{questao}[1]{}
+Na condição anterior, determine a corrente e a tensão sobre a carga.
+\resposta{$I=\SI{2}{\ampere}$; $U_L=\SI{12}{\volt}$}
+\resolucao{Com $R_L=R_{Th}$, a resistência total é $2R_{Th}$:
+\[
+I=\frac{V_{Th}}{2R_{Th}}=\frac{24}{12}=\SI{2}{\ampere};
+\qquad
+U_L=R_LI=6(2)=\SI{12}{\volt}=\frac{V_{Th}}{2}.
+\]
+\textbf{Regra do ponto ótimo:} a tensão na carga é sempre \emph{metade} da
+tensão em vazio, e a corrente é metade da corrente de curto-circuito. Esses dois
+fatos identificam o ponto ótimo em qualquer medição de bancada.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte entrega no máximo $\SI{50}{\watt}$, com $R_{Th}=\SI{8}{\ohm}$.
+Determine $V_{Th}$.
+\resposta{$V_{Th}=\SI{40}{\volt}$}
+\resolucao{De $P_{\max}=\dfrac{V_{Th}^{2}}{4R_{Th}}$:
+\[
+V_{Th}=\sqrt{4R_{Th}P_{\max}}=\sqrt{4(8)(50)}=\sqrt{1600}=\SI{40}{\volt}.
+\]
+\textbf{Conferência:} $\dfrac{40^{2}}{4(8)}=\dfrac{1600}{32}=\SI{50}{\watt}$
+\checkmark.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte de $\SI{24}{\volt}$ entrega no máximo $\SI{24}{\watt}$. Determine
+$R_{Th}$.
+\resposta{$R_{Th}=\SI{6}{\ohm}$}
+\resolucao{
+\[
+R_{Th}=\frac{V_{Th}^{2}}{4P_{\max}}=\frac{576}{96}=\SI{6}{\ohm}.
+\]
+\textbf{Método experimental:} medindo $V_{oc}$ e a potência máxima entregue a
+uma carga ajustável, obtém-se $R_{Th}$ sem nunca curto-circuitar a fonte ---
+alternativa útil quando o curto seria destrutivo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Se $R_L$ for ajustado para o \textbf{dobro} do valor ótimo, a potência
+entregue:
+\begin{alternativas}[2]
+\item dobra
+\item cai à metade
+\item cai para $\SI{89}{\percent}$ do máximo
+\item permanece máxima
+\end{alternativas}
+\resposta{(c)}
+\resolucao{Com $x=R_L/R_{Th}=2$:
+\[
+\frac{P_L}{P_{\max}}=\frac{4x}{(1+x)^{2}}=\frac{8}{9}=88{,}9\%.
+\]
+\textbf{Fato importante:} o máximo é \textbf{achatado}. Errar a carga por um
+fator $2$ custa apenas $11\%$ da potência --- o que torna o casamento muito
+mais tolerante do que se costuma supor. A quantificação completa dessa
+tolerância está no bloco de aprofundamento.}
+\end{questao}
+
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Uma fonte com $V_{Th}=\SI{24}{\volt}$ e $R_{Th}=\SI{6}{\ohm}$ alimenta
+sucessivamente $R_L=\SI{3}{\ohm}$ e $R_L=\SI{12}{\ohm}$. Determine a potência
+em cada caso e comente.
+\resposta{$\SI{21.33}{\watt}$ nos dois casos}
+\resolucao{
+\[
+R_L=\SI{3}{\ohm}:\quad I=\frac{24}{9}=\SI{2.667}{\ampere},\quad
+P=3(2{,}667)^{2}=\SI{21.33}{\watt};
+\]
+\[
+R_L=\SI{12}{\ohm}:\quad I=\frac{24}{18}=\SI{1.333}{\ampere},\quad
+P=12(1{,}333)^{2}=\SI{21.33}{\watt}.
+\]
+\textbf{Potências idênticas} --- e note que $3\times12=36=R_{Th}^{2}$. Cargas
+que são \emph{recíprocas} em relação a $R_{Th}$ recebem exatamente a mesma
+potência. A demonstração está no bloco de desafio.\\
+\textbf{Mas os dois casos não são equivalentes:} com $\SI{3}{\ohm}$ a corrente
+é o dobro e o rendimento é $33\%$; com $\SI{12}{\ohm}$, o rendimento é
+$67\%$. Mesma potência entregue, consumo da fonte muito diferente.}
+\end{questao}
+
+\begin{questao}[2]{}
+No ponto de máxima transferência da fonte anterior, determine a potência total
+fornecida, a entregue à carga e a dissipada internamente.
+\resposta{$\SI{48}{\watt}$, $\SI{24}{\watt}$ e $\SI{24}{\watt}$}
+\resolucao{Com $I=\SI{2}{\ampere}$:
+\[
+P_{tot}=V_{Th}I=24(2)=\SI{48}{\watt};
+\qquad
+P_L=R_LI^{2}=\SI{24}{\watt};
+\qquad
+P_{int}=R_{Th}I^{2}=\SI{24}{\watt}.
+\]
+\textbf{Metade da energia é perdida dentro da fonte} --- consequência direta de
+$R_L=R_{Th}$ e da corrente comum. É o preço do casamento, e a razão pela qual
+ele nunca é usado em eletrotécnica de potência.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas fontes têm a mesma potência máxima de $\SI{18}{\watt}$: a primeira com
+$V_{Th}=\SI{12}{\volt}$ e a segunda com $V_{Th}=\SI{24}{\volt}$. Determine
+$R_{Th}$ de cada uma.
+\resposta{$\SI{2}{\ohm}$ e $\SI{8}{\ohm}$}
+\resolucao{
+\[
+R_{Th}=\frac{V_{Th}^{2}}{4P_{\max}}
+\Rightarrow
+\frac{144}{72}=\SI{2}{\ohm};
+\qquad
+\frac{576}{72}=\SI{8}{\ohm}.
+\]
+\textbf{Leitura:} para a mesma potência disponível, dobrar a tensão permite
+\emph{quadruplicar} a resistência interna. Fontes de tensão mais alta toleram
+resistência interna maior --- princípio que fundamenta a transmissão de energia
+em alta tensão.\\
+\textbf{Diferença prática:} a primeira entrega $\SI{18}{\watt}$ a
+$\SI{3}{\ampere}$; a segunda, a $\SI{1.5}{\ampere}$. Correntes menores
+significam condutores mais finos.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma carga fixa de $\SI{10}{\ohm}$ é alimentada, alternativamente, por duas
+fontes de $\SI{20}{\volt}$: uma com $R_{Th}=\SI{2}{\ohm}$ e outra com
+$R_{Th}=\SI{10}{\ohm}$. Compare a potência entregue.
+\resposta{$\SI{27.8}{\watt}$ e $\SI{10}{\watt}$}
+\resolucao{
+\[
+R_{Th}=\SI{2}{\ohm}:\quad I=\frac{20}{12}=\SI{1.667}{\ampere},\quad
+P_L=10(1{,}667)^{2}=\SI{27.8}{\watt};
+\]
+\[
+R_{Th}=\SI{10}{\ohm}:\quad I=\SI{1}{\ampere},\quad P_L=\SI{10}{\watt}.
+\]
+\textbf{Aparente paradoxo:} a segunda fonte está \emph{casada} com a carga
+($R_L=R_{Th}$) e mesmo assim entrega bem menos que a primeira, descasada.\\
+\textbf{Resolução:} o casamento maximiza a potência quando $R_L$ é o parâmetro
+livre e a fonte é dada. Aqui a carga é fixa e a \emph{fonte} varia --- e nesse
+caso quanto \emph{menor} $R_{Th}$, melhor. São problemas de otimização
+diferentes, com respostas diferentes. O ponto é retomado no bloco de
+aprofundamento.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte casada entrega $\SI{24}{\watt}$ durante $\SI{5}{\hour}$. Determine a
+energia entregue à carga e a energia total consumida da fonte.
+\resposta{$\SI{120}{\watt\hour}$ e $\SI{240}{\watt\hour}$}
+\resolucao{
+\[
+E_L=P_Lt=24(5)=\SI{120}{\watt\hour}=\SI{0.12}{\kilo\watt\hour};
+\]
+\[
+E_{tot}=48(5)=\SI{240}{\watt\hour}.
+\]
+Metade da energia --- $\SI{120}{\watt\hour}$ --- foi dissipada internamente e
+perdida.\\
+\textbf{Consequência para sistemas alimentados por bateria:} operar casado
+\emph{reduz pela metade} a autonomia. Em um rádio portátil, isso significa
+trocar tempo de operação por volume de som --- decisão que às vezes vale a pena,
+mas que precisa ser consciente.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte de $\SI{24}{\volt}$ e $R_{Th}=\SI{6}{\ohm}$ alimenta
+$R_L=\SI{18}{\ohm}$. Determine a potência na carga, o rendimento e compare com
+o máximo disponível.
+\resposta{$P_L=\SI{18}{\watt}$; $\eta=75\%$; $75\%$ do máximo}
+\resolucao{
+\[
+I=\frac{24}{24}=\SI{1}{\ampere};
+\qquad
+P_L=18(1)^{2}=\SI{18}{\watt};
+\qquad
+\eta=\frac{18}{24}=75\%.
+\]
+Comparando com $P_{\max}=\SI{24}{\watt}$: entrega-se $75\%$ da potência
+disponível, com rendimento de $75\%$ em vez de $50\%$.\\
+\textbf{Compromisso quantificado:} abrir mão de $25\%$ da potência comprou
+$25$ pontos percentuais de rendimento. Em quase toda aplicação prática esse é
+um bom negócio --- e é por isso que sistemas reais operam com
+$R_L\gg R_{Th}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte tem $V_{oc}=\SI{30}{\volt}$ e $I_{sc}=\SI{5}{\ampere}$. Determine
+$R_{Th}$ e a potência máxima disponível.
+\resposta{$R_{Th}=\SI{6}{\ohm}$; $P_{\max}=\SI{37.5}{\watt}$}
+\resolucao{
+\[
+R_{Th}=\frac{V_{oc}}{I_{sc}}=\frac{30}{5}=\SI{6}{\ohm};
+\qquad
+P_{\max}=\frac{30^{2}}{4(6)}=\SI{37.5}{\watt}.
+\]
+\textbf{Forma alternativa e elegante:}
+\[
+P_{\max}=\frac{V_{oc}I_{sc}}{4}=\frac{30(5)}{4}=\SI{37.5}{\watt}.
+\]
+A potência máxima é um quarto do produto dos dois valores extremos --- e faz
+sentido: no ponto ótimo, tensão e corrente valem, cada uma, metade do seu
+extremo.}
+\end{questao}
+
+\begin{questao}[2]{}
+Verifique o balanço de potência para a fonte de $\SI{24}{\volt}$ e
+$R_{Th}=\SI{6}{\ohm}$ com $R_L=\SI{2}{\ohm}$.
+\resposta{Fonte: $\SI{72}{\watt}$; carga: $\SI{18}{\watt}$; interna:
+$\SI{54}{\watt}$}
+\resolucao{
+\[
+I=\frac{24}{8}=\SI{3}{\ampere};
+\qquad
+P_{fonte}=24(3)=\SI{72}{\watt};
+\]
+\[
+P_L=2(9)=\SI{18}{\watt};
+\qquad
+P_{int}=6(9)=\SI{54}{\watt};
+\qquad 18+54=72\ \checkmark
+\]
+\textbf{Rendimento de apenas $25\%$} --- três quartos da energia aquecem a
+fonte. Compare com a carga de $\SI{18}{\ohm}$ da questão anterior, que entrega
+a \emph{mesma} $\SI{18}{\watt}$ com rendimento de $75\%$. Duas cargas
+recíprocas, mesma potência, rendimentos opostos.}
+\end{questao}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Para $V_{Th}=\SI{24}{\volt}$ e $R_{Th}=\SI{6}{\ohm}$, verifique a simetria dos
+pares recíprocos de carga.
+\begin{itensq}
+\item Calcule $P_L$ para $R_L=\SI{2}{\ohm}$ e $R_L=\SI{18}{\ohm}$.
+\item Repita para $\SI{1.5}{\ohm}$ e $\SI{24}{\ohm}$.
+\item Identifique a relação entre os pares.
+\end{itensq}
+\resposta{(a) $\SI{18}{\watt}$ nos dois; (b) $\SI{15.36}{\watt}$ nos dois;
+(c) $R_{L1}R_{L2}=R_{Th}^{2}$}
+\resolucao{(a) $R_L=2$: $I=\SI{3}{\ampere}$, $P=\SI{18}{\watt}$.
+$R_L=18$: $I=\SI{1}{\ampere}$, $P=\SI{18}{\watt}$.\\
+(b) $R_L=1{,}5$: $I=24/7{,}5=\SI{3.2}{\ampere}$,
+$P=1{,}5(10{,}24)=\SI{15.36}{\watt}$.
+$R_L=24$: $I=\SI{0.8}{\ampere}$, $P=24(0{,}64)=\SI{15.36}{\watt}$.\\
+(c) Em ambos os casos, $R_{L1}R_{L2}=R_{Th}^{2}=36$:
+\[
+2\times18=36;\qquad 1{,}5\times24=36.
+\]
+Em termos de $x=R_L/R_{Th}$, os pares são $x$ e $1/x$ --- \textbf{recíprocos}.\\
+\textbf{Consequência para medição:} se uma varredura de carga encontra a mesma
+potência em dois valores $R_{L1}$ e $R_{L2}$, então
+$R_{Th}=\sqrt{R_{L1}R_{L2}}$ --- a \emph{média geométrica}. É um método de
+determinar $R_{Th}$ sem localizar o máximo com precisão, o que é vantajoso
+justamente porque o máximo é achatado.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine a faixa de $R_L/R_{Th}$ que garante pelo menos $90\%$ da potência
+máxima.
+\begin{itensq}
+\item Monte a equação e resolva.
+\item Interprete a largura da faixa.
+\end{itensq}
+\resposta{$0{,}52\le x\le1{,}93$ --- razão de quase $4{:}1$}
+\resolucao{(a) Impondo $\dfrac{4x}{(1+x)^{2}}=0{,}9$:
+\[
+4x=0{,}9(1+x)^{2}
+\;\Longrightarrow\;
+0{,}9x^{2}-2{,}2x+0{,}9=0,
+\]
+\[
+x=\frac{2{,}2\pm\sqrt{4{,}84-3{,}24}}{1{,}8}
+=\frac{2{,}2\pm1{,}265}{1{,}8}
+\;\Longrightarrow\;
+x=0{,}520\ \text{ou}\ 1{,}925.
+\]
+Note que $0{,}520\times1{,}925=1{,}000$ --- os limites são recíprocos, como a
+simetria exige.\\
+(b) \textbf{A faixa cobre uma razão de $3{,}7{:}1$.} Com
+$R_{Th}=\SI{6}{\ohm}$, qualquer carga entre $\SI{3.1}{\ohm}$ e
+$\SI{11.6}{\ohm}$ entrega ao menos $90\%$ do máximo.\\
+\textbf{Implicação prática:} não vale a pena esforço para casar cargas com
+precisão melhor que uns $20\%$. O máximo é achatado porque a função tem
+derivada nula ali --- perto do topo, a curva é essencialmente uma parábola
+suave. Esse é o motivo pelo qual "casamento aproximado" costuma bastar.}
+\end{questao}
+
+\begin{questao}[3]{}
+Construa a tabela de rendimento e de fração de potência máxima para
+$x=R_L/R_{Th}$ igual a $0{,}5$; $1$; $2$; $4$ e $9$, e interprete.
+\resposta{$\eta$: $33$, $50$, $67$, $80$ e $90\%$; $P/P_{\max}$: $89$, $100$,
+$89$, $64$ e $36\%$}
+\resolucao{Com $\eta=\dfrac{x}{1+x}$ e
+$\dfrac{P_L}{P_{\max}}=\dfrac{4x}{(1+x)^{2}}$:
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$x=R_L/R_{Th}$ & $\eta$ & $P_L/P_{\max}$\\
+\hline
+$0{,}5$ & $33{,}3\%$ & $88{,}9\%$\\
+$1$ & $50{,}0\%$ & $100\%$\\
+$2$ & $66{,}7\%$ & $88{,}9\%$\\
+$4$ & $80{,}0\%$ & $64{,}0\%$\\
+$9$ & $90{,}0\%$ & $36{,}0\%$\\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Três leituras.}\\
+\emph{(i)} $x=0{,}5$ e $x=2$ dão a mesma potência ($88{,}9\%$) mas rendimentos
+opostos ($33\%$ e $67\%$). \textbf{Entre dois pares recíprocos, escolha sempre
+o maior} --- mesma entrega, metade da perda.\\
+\emph{(ii)} As duas curvas puxam em sentidos contrários: $\eta$ cresce
+monotonicamente com $x$, enquanto $P_L/P_{\max}$ tem máximo em $x=1$ e decresce.
+Não existe ponto que otimize ambos.\\
+\emph{(iii)} A região $2\le x\le4$ é o compromisso usual: ainda se entrega de
+$64\%$ a $89\%$ da potência disponível, com rendimento entre $67\%$ e
+$80\%$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma carga fixa de $\SI{8}{\ohm}$ é alimentada por uma fonte de
+$\SI{24}{\volt}$ cuja resistência interna pode ser reduzida por projeto.
+\begin{itensq}
+\item Calcule $P_L$ para $R_{Th}=16$, $8$, $4$, $2$ e $\SI{0}{\ohm}$.
+\item Determine o valor ótimo de $R_{Th}$.
+\item Explique por que a resposta não é $R_{Th}=R_L$.
+\end{itensq}
+\resposta{(b) $R_{Th}\to0$; a potência cresce monotonicamente conforme
+$R_{Th}$ diminui}
+\resolucao{(a)
+\begin{center}
+\begin{tabular}{cc}
+\hline
+$R_{Th}$ & $P_L$\\
+\hline
+$\SI{16}{\ohm}$ & $\SI{8}{\watt}$\\
+$\SI{8}{\ohm}$ & $\SI{18}{\watt}$\\
+$\SI{4}{\ohm}$ & $\SI{32}{\watt}$\\
+$\SI{2}{\ohm}$ & $\SI{46.1}{\watt}$\\
+$\SI{0}{\ohm}$ & $\SI{72}{\watt}$\\
+\hline
+\end{tabular}
+\end{center}
+(b) A potência cresce sem parar conforme $R_{Th}$ diminui: o ótimo é
+$R_{Th}\to0$, no \emph{contorno} do domínio, não em um ponto interior.\\
+(c) \textbf{A condição $R_L=R_{Th}$ não é simétrica.} Ela resolve o problema
+"dada a fonte, escolha a carga". Aqui o problema é o inverso --- "dada a carga,
+escolha a fonte" --- e a função
+\[
+P_L=\frac{V_{Th}^{2}R_L}{(R_L+R_{Th})^{2}}
+\]
+é \textbf{monotonicamente decrescente} em $R_{Th}$: sua derivada,
+$-\dfrac{2V_{Th}^{2}R_L}{(R_L+R_{Th})^{3}}$, nunca se anula para
+$R_{Th}\ge0$.\\
+\textbf{Regra:} o casamento de impedâncias só faz sentido quando a fonte é
+\emph{dada e imutável} --- uma antena, um transdutor, um sensor. Se a fonte pode
+ser projetada, sempre convém $R_{Th}$ o menor possível.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma bateria de $\EMF=\SI{12}{\volt}$ e $r=\SI{0.5}{\ohm}$ alimenta um motor de
+partida.
+\begin{itensq}
+\item Determine a potência máxima disponível e a carga correspondente.
+\item Determine a corrente nessa condição e avalie sua viabilidade.
+\item Determine a potência com $R_L=\SI{2}{\ohm}$ e compare.
+\end{itensq}
+\resposta{(a) $\SI{72}{\watt}$ com $R_L=\SI{0.5}{\ohm}$; (b)
+$\SI{12}{\ampere}$; (c) $\SI{46.1}{\watt}$ com $\eta=80\%$}
+\resolucao{(a) $P_{\max}=\dfrac{144}{4(0{,}5)}=\SI{72}{\watt}$ com
+$R_L=\SI{0.5}{\ohm}$.\\
+(b) $I=\dfrac{12}{1}=\SI{12}{\ampere}$, com $\SI{72}{\watt}$ dissipados
+\emph{dentro} da bateria. Uma bateria pequena não suporta isso por muito tempo:
+o eletrólito aquece, $r$ cresce, e a potência disponível cai durante a própria
+operação.\\
+(c) $I=\dfrac{12}{2{,}5}=\SI{4.8}{\ampere}$;
+$P_L=2(4{,}8)^{2}=\SI{46.1}{\watt}$; $\eta=2/2{,}5=80\%$.\\
+\textbf{Comparação decisiva:} entrega-se $64\%$ da potência máxima, mas a perda
+interna cai de $\SI{72}{\watt}$ para $\SI{11.5}{\watt}$ --- \emph{seis vezes}
+menos aquecimento.\\
+\textbf{Além disso:} o modelo de $r$ constante já é otimista a
+$\SI{12}{\ampere}$. Baterias reais apresentam $r$ crescente com a corrente e
+com o estado de descarga, o que torna a operação casada ainda menos atraente do
+que o cálculo sugere.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte alimenta a carga através de uma rede resistiva intermediária. A fonte
+tem $\SI{36}{\volt}$ e $\SI{4}{\ohm}$; a rede é um resistor de
+$\SI{12}{\ohm}$ em série e um de $\SI{6}{\ohm}$ em paralelo com a saída.
+\begin{itensq}
+\item Determine o equivalente de Thévenin visto pela carga.
+\item Determine $R_L$ ótimo e a potência máxima.
+\item Compare com a potência máxima disponível na fonte original.
+\end{itensq}
+\resposta{(a) $V_{Th}=\SI{9.82}{\volt}$, $R_{Th}=\SI{4.36}{\ohm}$;
+(b) $R_L=\SI{4.36}{\ohm}$ e $P_{\max}=\SI{5.53}{\watt}$; (c) contra
+$\SI{81}{\watt}$ disponíveis na fonte}
+\resolucao{(a) Com a carga removida, a rede é um divisor de
+$4+12=\SI{16}{\ohm}$ e $\SI{6}{\ohm}$:
+\[
+V_{Th}=36\cdot\frac{6}{22}=\SI{9.82}{\volt};
+\qquad
+R_{Th}=\frac{16\cdot6}{22}=\SI{4.36}{\ohm}.
+\]
+(b) $R_L=\SI{4.36}{\ohm}$ e
+\[
+P_{\max}=\frac{(9{,}82)^{2}}{4(4{,}36)}=\SI{5.53}{\watt}.
+\]
+(c) A fonte original disponibilizaria
+$\dfrac{36^{2}}{4(4)}=\SI{81}{\watt}$.\\
+\textbf{A rede intermediária destruiu $93\%$ da potência disponível.} O
+resistor série de $\SI{12}{\ohm}$ derruba a tensão e o de $\SI{6}{\ohm}$ desvia
+corrente --- ambos dissipando.\\
+\textbf{Conclusão:} redes resistivas \emph{não} casam impedâncias sem perda.
+Elas alteram $R_{Th}$, sim, mas sempre ao custo de reduzir $V_{Th}$ e,
+com ele, a potência disponível. Casamento sem perda exige elementos reativos
+(transformador, rede LC) --- possíveis apenas em corrente alternada.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma carga só pode ser escolhida entre $\SI{12}{\ohm}$ e $\SI{40}{\ohm}$
+(valores disponíveis em estoque). A fonte tem $V_{Th}=\SI{24}{\volt}$ e
+$R_{Th}=\SI{6}{\ohm}$.
+\begin{itensq}
+\item Determine qual escolher para máxima potência.
+\item Determine qual escolher para máximo rendimento.
+\item Discuta o critério de decisão.
+\end{itensq}
+\resposta{(a) $\SI{12}{\ohm}$ ($\SI{21.3}{\watt}$); (b) $\SI{40}{\ohm}$
+($\eta=87\%$)}
+\resolucao{(a)
+\[
+R_L=12:\ I=\frac{24}{18}=1{,}333;\ P_L=12(1{,}778)=\SI{21.3}{\watt};
+\]
+\[
+R_L=40:\ I=\frac{24}{46}=0{,}522;\ P_L=40(0{,}272)=\SI{10.9}{\watt}.
+\]
+A de $\SI{12}{\ohm}$ é a mais próxima do ótimo ($x=2$) e entrega quase o dobro.\\
+(b) $\eta=\dfrac{R_L}{R_L+6}$: $67\%$ contra $87\%$. A de $\SI{40}{\ohm}$
+vence.\\
+(c) \textbf{O critério depende do que é escasso.}
+\begin{itemize}
+\item Se a fonte é abundante (rede elétrica) e o custo está na energia, escolha
+o \emph{rendimento}.
+\item Se a fonte é limitada (bateria, sensor, antena) e o que importa é extrair
+o máximo de um sinal fraco, escolha a \emph{potência}.
+\item Se a limitação é térmica na própria fonte, escolha rendimento --- a de
+$\SI{40}{\ohm}$ dissipa apenas $\SI{1.6}{\watt}$ internamente, contra
+$\SI{10.7}{\watt}$ da outra.
+\end{itemize}
+Sem saber o que é escasso, a pergunta "qual é melhor" não tem resposta.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma fonte de $\SI{24}{\volt}$ e $R_{Th}=\SI{6}{\ohm}$ tem sua corrente limitada
+eletronicamente a $\SI{1.5}{\ampere}$.
+\begin{itensq}
+\item Determine se o ponto ótimo teórico é atingível.
+\item Determine a carga que maximiza a potência sob essa restrição.
+\item Compare com o máximo irrestrito.
+\end{itensq}
+\resposta{(a) não --- exigiria $\SI{2}{\ampere}$; (b)
+$R_L=\SI{10}{\ohm}$; (c) $\SI{22.5}{\watt}$ contra $\SI{24}{\watt}$}
+\resolucao{(a) O ótimo teórico exige $I=V_{Th}/(2R_{Th})=\SI{2}{\ampere}$,
+acima do limite de $\SI{1.5}{\ampere}$. \textbf{O ponto ótimo é inatingível.}\\
+(b) Como $P_L=R_LI^{2}$ cresce quando $R_L$ se aproxima de $R_{Th}$ por cima, o
+melhor admissível é a \emph{menor} carga que ainda respeite o limite:
+\[
+I=\frac{24}{6+R_L}\le1{,}5
+\;\Longrightarrow\;
+6+R_L\ge16
+\;\Longrightarrow\;
+R_L\ge\SI{10}{\ohm}.
+\]
+Adotando $R_L=\SI{10}{\ohm}$: $I=\SI{1.5}{\ampere}$ e
+$P_L=10(2{,}25)=\SI{22.5}{\watt}$.\\
+(c) Isso é $93{,}8\%$ do máximo irrestrito --- perda de apenas $6\%$.\\
+\textbf{Duas observações.} O ótimo restrito fica na \emph{fronteira} do domínio
+admissível, não onde a derivada se anula: é a marca de um problema com
+restrição ativa. E o custo da restrição é pequeno justamente porque o máximo é
+achatado --- a mesma propriedade que torna o casamento tolerante torna as
+restrições baratas.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine o rendimento necessário para que uma fonte entregue $\SI{64}{\percent}$
+da potência máxima, e verifique a coerência com a curva $\eta(x)$.
+\resposta{$\eta=80\%$ (com $x=4$) ou $\eta=20\%$ (com $x=0{,}25$)}
+\resolucao{Impondo $\dfrac{4x}{(1+x)^{2}}=0{,}64$:
+\[
+0{,}64x^{2}-2{,}72x+0{,}64=0
+\;\Longrightarrow\;
+x=4\ \text{ou}\ x=0{,}25,
+\]
+recíprocos, como esperado.\\
+\textbf{Rendimentos:}
+\[
+x=4:\ \eta=\frac{4}{5}=80\%;
+\qquad
+x=0{,}25:\ \eta=\frac{0{,}25}{1{,}25}=20\%.
+\]
+\textbf{A mesma potência, dois rendimentos opostos} --- e a soma é
+$100\%$, o que não é coincidência: se $x$ e $1/x$ são recíprocos, então
+$\dfrac{x}{1+x}+\dfrac{1/x}{1+1/x}=\dfrac{x}{1+x}+\dfrac{1}{1+x}=1$.\\
+\textbf{Decisão óbvia:} escolha sempre o ramo $x>1$. A escolha $x=0{,}25$
+entregaria a mesma potência à carga dissipando \emph{quatro vezes} mais na
+fonte.}
+\end{questao}
+
+\blocodesafio
+
+\begin{questao}[4]{}
+\textbf{(Demonstração completa.)} Prove a condição de máxima transferência de
+potência.
+\begin{itensq}
+\item Derive $P_L(R_L)$ e obtenha o ponto crítico.
+\item Confirme que é máximo pela segunda derivada ou pela análise dos limites.
+\item Obtenha $P_{\max}$ e o rendimento correspondente.
+\end{itensq}
+\resposta{$R_L=R_{Th}$; $P_{\max}=\dfrac{V_{Th}^{2}}{4R_{Th}}$;
+$\eta=50\%$}
+\resolucao{(a) Com $I=\dfrac{V_{Th}}{R_{Th}+R_L}$:
+\[
+P_L=R_LI^{2}=\frac{V_{Th}^{2}R_L}{(R_{Th}+R_L)^{2}}.
+\]
+Derivando pela regra do quociente:
+\[
+\frac{\mathrm{d}P_L}{\mathrm{d}R_L}
+=V_{Th}^{2}\,\frac{(R_{Th}+R_L)^{2}-R_L\cdot2(R_{Th}+R_L)}{(R_{Th}+R_L)^{4}}
+=V_{Th}^{2}\,\frac{R_{Th}-R_L}{(R_{Th}+R_L)^{3}}.
+\]
+Anulando: $R_L=R_{Th}$.\\
+(b) \textbf{Pelo sinal da derivada}, que é mais simples que a segunda derivada:
+o denominador é sempre positivo, logo o sinal é o de $(R_{Th}-R_L)$ ---
+\emph{positivo} para $R_L<R_{Th}$ e \emph{negativo} para $R_L>R_{Th}$. A função
+cresce, atinge o topo e decresce: máximo confirmado.\\
+\textbf{Confirmação pelos limites:} $P_L\to0$ quando $R_L\to0$ (tensão nula na
+carga) e quando $R_L\to\infty$ (corrente nula). Entre dois zeros, uma função
+positiva e suave tem máximo interior.\\
+(c)
+\[
+P_{\max}=\frac{V_{Th}^{2}R_{Th}}{(2R_{Th})^{2}}=\frac{V_{Th}^{2}}{4R_{Th}};
+\qquad
+\eta=\frac{R_L}{R_L+R_{Th}}=\frac{1}{2}.
+\]
+\textbf{Observação estrutural:} a mesma derivada aparece na potência de um
+resistor em série (máxima quando ele iguala o restante) e na sensibilidade do
+divisor de tensão. É a mesma função $R/(R+a)^{2}$ em três contextos --- vale
+reconhecê-la.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Simetria dos pares recíprocos.)} Prove que $R_L$ e
+$R_{Th}^{2}/R_L$ entregam a mesma potência.
+\begin{itensq}
+\item Demonstre algebricamente.
+\item Mostre que os rendimentos correspondentes somam $100\%$.
+\item Deduza um método para obter $R_{Th}$ a partir de duas medições.
+\end{itensq}
+\resposta{$P(x)=P(1/x)$; $\eta(x)+\eta(1/x)=1$;
+$R_{Th}=\sqrt{R_{L1}R_{L2}}$}
+\resolucao{(a) Em variável adimensional $x=R_L/R_{Th}$:
+\[
+\frac{P_L}{P_{\max}}=\frac{4x}{(1+x)^{2}}.
+\]
+Substituindo $x\to1/x$:
+\[
+\frac{4/x}{(1+1/x)^{2}}
+=\frac{4/x}{\dfrac{(x+1)^{2}}{x^{2}}}
+=\frac{4x}{(1+x)^{2}}.
+\]
+Idêntico --- a função é \textbf{invariante} sob $x\to1/x$, e o ponto fixo dessa
+inversão é $x=1$, que é justamente o máximo.\\
+(b)
+\[
+\eta(x)+\eta(1/x)=\frac{x}{1+x}+\frac{1/x}{1+1/x}
+=\frac{x}{1+x}+\frac{1}{1+x}=1.
+\]
+Os rendimentos são complementares: $33\%$ e $67\%$; $20\%$ e $80\%$; e assim
+por diante.\\
+(c) \textbf{Método de medição.} Varie a carga e encontre \emph{dois} valores
+$R_{L1}\ne R_{L2}$ que produzam a mesma potência. Como
+$\dfrac{R_{L1}}{R_{Th}}=\dfrac{R_{Th}}{R_{L2}}$, segue
+\[
+R_{Th}=\sqrt{R_{L1}R_{L2}}\quad\text{(média geométrica)}.
+\]
+\textbf{Vantagem sobre buscar o máximo:} perto do topo a curva é chata, e
+localizar o pico com precisão é difícil. Já os dois pontos de igual potência
+podem ser tomados bem afastados do máximo, onde a curva é \emph{íngreme} --- e a
+determinação fica muito mais precisa. É um caso em que fugir do ponto de
+interesse melhora a medição.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Tolerância em torno do ótimo.)} Deduza a faixa de $x=R_L/R_{Th}$ que
+garante uma fração $f$ da potência máxima.
+\begin{itensq}
+\item Obtenha a equação e sua solução geral.
+\item Construa a tabela para $f=0{,}90$, $0{,}95$ e $0{,}99$.
+\item Interprete o comportamento da largura da faixa.
+\end{itensq}
+\resposta{$x=\dfrac{2-f\pm2\sqrt{1-f}}{f}$; faixas de $3{,}7{:}1$,
+$2{,}5{:}1$ e $1{,}5{:}1$}
+\resolucao{(a) De $\dfrac{4x}{(1+x)^{2}}=f$:
+\[
+fx^{2}+(2f-4)x+f=0
+\;\Longrightarrow\;
+x=\frac{(4-2f)\pm\sqrt{(2f-4)^{2}-4f^{2}}}{2f}
+=\frac{2-f\pm2\sqrt{1-f}}{f}.
+\]
+Como o produto das raízes vale $f/f=1$, elas são sempre \textbf{recíprocas} ---
+confirmação independente da simetria.\\
+(b)
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+$f$ & $x_{\min}$ & $x_{\max}$ & razão\\
+\hline
+$0{,}90$ & $0{,}520$ & $1{,}925$ & $3{,}70$\\
+$0{,}95$ & $0{,}635$ & $1{,}576$ & $2{,}48$\\
+$0{,}99$ & $0{,}818$ & $1{,}222$ & $1{,}49$\\
+\hline
+\end{tabular}
+\end{center}
+(c) \textbf{A largura encolhe como $\sqrt{1-f}$.} Passar de $90\%$ para
+$99\%$ da potência exige apertar a faixa por um fator $2{,}5$; chegar a
+$99{,}9\%$ exigiria outro fator $3$.\\
+\textbf{Origem:} perto do máximo a derivada é nula, e a curva se comporta como
+uma parábola --- a perda cresce com o \emph{quadrado} do desvio relativo.
+Consequentemente, um desvio de $10\%$ na carga custa cerca de $0{,}25\%$ da
+potência.\\
+\textbf{Conclusão de engenharia:} casar impedâncias com precisão melhor que
+$20\%$ raramente compensa. O esforço deve ir para reduzir $R_{Th}$, não para
+refinar o casamento.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Projeto de fonte.)} Projete uma fonte que entregue no máximo
+$\SI{25}{\watt}$ a uma carga de $\SI{4}{\ohm}$.
+\begin{itensq}
+\item Determine $V_{Th}$ e $R_{Th}$.
+\item Determine a corrente, a tensão de saída e a potência total.
+\item Especifique a dissipação interna e discuta o dimensionamento.
+\end{itensq}
+\resposta{$V_{Th}=\SI{20}{\volt}$, $R_{Th}=\SI{4}{\ohm}$;
+$I=\SI{2.5}{\ampere}$; $P_{tot}=\SI{50}{\watt}$}
+\resolucao{(a) Para que $\SI{4}{\ohm}$ seja a carga ótima, é preciso
+$R_{Th}=\SI{4}{\ohm}$. Então
+\[
+P_{\max}=\frac{V_{Th}^{2}}{4(4)}=25
+\;\Longrightarrow\;
+V_{Th}=\sqrt{400}=\SI{20}{\volt}.
+\]
+(b) $I=\dfrac{20}{8}=\SI{2.5}{\ampere}$;
+$U_L=\SI{10}{\volt}$; $P_{tot}=20(2{,}5)=\SI{50}{\watt}$.\\
+(c) \textbf{A fonte dissipa $\SI{25}{\watt}$ internamente} --- tanto quanto
+entrega. Isso significa:
+\begin{itemize}
+\item O elemento que realiza $R_{Th}=\SI{4}{\ohm}$ precisa ser dimensionado para
+$\SI{25}{\watt}$ contínuos (especifique $\SI{50}{\watt}$, com dissipador).
+\item A fonte primária deve fornecer $\SI{50}{\watt}$ e
+$\SI{2.5}{\ampere}$.
+\item O rendimento global é $50\%$ por construção.
+\end{itemize}
+\textbf{Crítica ao enunciado do projeto.} Deliberadamente inserir
+$R_{Th}=\SI{4}{\ohm}$ para "casar" é quase sempre um erro. Se o objetivo é
+entregar $\SI{25}{\watt}$ a $\SI{4}{\ohm}$, basta uma fonte de
+$\SI{10}{\volt}$ com $R_{Th}$ pequeno: ela entrega os mesmos
+$\SI{25}{\watt}$ consumindo pouco mais que isso.\\
+O casamento só se justifica quando $R_{Th}$ é \emph{imposto} pela física do
+dispositivo --- resistência de saída de um transdutor, impedância característica
+de uma linha --- e não quando é escolhido por projeto.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Otimização com restrição de rendimento.)} Maximize a potência
+entregue, com a restrição $\eta\ge80\%$, para
+$V_{Th}=\SI{24}{\volt}$ e $R_{Th}=\SI{6}{\ohm}$.
+\begin{itensq}
+\item Traduza a restrição em uma condição sobre $x$.
+\item Determine o ótimo restrito.
+\item Compare com o ótimo irrestrito e interprete.
+\end{itensq}
+\resposta{$x\ge4$; $R_L=\SI{24}{\ohm}$ com $P_L=\SI{15.36}{\watt}$
+($64\%$ do máximo)}
+\resolucao{(a) $\eta=\dfrac{x}{1+x}\ge0{,}8
+\Rightarrow x\ge0{,}8+0{,}8x
+\Rightarrow 0{,}2x\ge0{,}8
+\Rightarrow \boxed{x\ge4}$.\\
+(b) No domínio admissível $x\ge4$, a função
+$\dfrac{4x}{(1+x)^{2}}$ é \emph{decrescente} (pois já se passou do máximo em
+$x=1$). O melhor valor está, portanto, na \textbf{fronteira}: $x=4$, isto é
+$R_L=\SI{24}{\ohm}$.
+\[
+I=\frac{24}{30}=\SI{0.8}{\ampere};
+\qquad
+P_L=24(0{,}64)=\SI{15.36}{\watt};
+\qquad
+\eta=80\%\ \checkmark
+\]
+(c) O máximo irrestrito era $\SI{24}{\watt}$ com $\eta=50\%$. A restrição
+custou $36\%$ da potência e comprou $30$ pontos de rendimento.\\
+\textbf{Estrutura do problema.} Como as duas curvas são monótonas em sentidos
+opostos na região $x>1$, \textbf{a restrição de rendimento é sempre ativa} --- o
+ótimo cai exatamente sobre ela, nunca no interior. Isso simplifica muito o
+projeto: basta resolver a igualdade $\eta=\eta_{\min}$.\\
+\textbf{Generalização:} para rendimento mínimo $\eta_0$, o ótimo é
+$x=\dfrac{\eta_0}{1-\eta_0}$, e a fração de potência obtida é
+$4\eta_0(1-\eta_0)$. Para $\eta_0=0{,}5$ isso dá $100\%$ (o casamento); para
+$\eta_0=0{,}9$, apenas $36\%$.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Potência sob dois graus de liberdade.)} Analise a maximização de
+$P_L$ quando \emph{ambos} $R_L$ e $R_{Th}$ podem variar, com $V_{Th}$ fixo.
+\begin{itensq}
+\item Mostre que não existe máximo interior.
+\item Determine o comportamento no contorno.
+\item Explique a relevância prática dessa análise.
+\end{itensq}
+\resposta{Não há máximo interior; $P_L\to\infty$ com
+$R_{Th}\to0$ e $R_L\to0$}
+\resolucao{(a) Com
+$P_L=\dfrac{V_{Th}^{2}R_L}{(R_L+R_{Th})^{2}}$, as duas derivadas parciais são
+\[
+\frac{\partial P_L}{\partial R_L}=V_{Th}^{2}\frac{R_{Th}-R_L}{(R_L+R_{Th})^{3}};
+\qquad
+\frac{\partial P_L}{\partial R_{Th}}=-\frac{2V_{Th}^{2}R_L}{(R_L+R_{Th})^{3}}.
+\]
+A segunda é \textbf{estritamente negativa} para todo $R_L>0$ --- ela nunca se
+anula. Não existe ponto em que ambas as derivadas sejam nulas, logo não há
+máximo interior.\\
+(b) O ótimo migra para o contorno $R_{Th}\to0$. Nesse limite,
+\[
+P_L\to\frac{V_{Th}^{2}}{R_L},
+\]
+que por sua vez cresce sem limite conforme $R_L\to0$. \textbf{A potência
+diverge} --- o modelo perde sentido físico, pois pressupõe uma fonte de tensão
+ideal capaz de fornecer corrente infinita.\\
+(c) \textbf{Relevância.} A análise revela que "casamento de impedâncias" não é
+um princípio universal de otimização, mas a solução de um problema \emph{muito
+específico}: fonte fixa, carga livre.
+\begin{itemize}
+\item \emph{Fonte fixa, carga livre} $\Rightarrow$ $R_L=R_{Th}$ (casamento).
+\item \emph{Carga fixa, fonte livre} $\Rightarrow$ $R_{Th}\to0$ (fonte rígida).
+\item \emph{Ambos livres} $\Rightarrow$ problema mal posto, sem solução finita.
+\end{itemize}
+\textbf{Onde cada caso ocorre:} o primeiro em antenas, transdutores e sensores,
+cuja impedância é imposta pela física. O segundo em fontes de alimentação, em
+que o projeto persegue $R_{Th}$ o menor possível. Confundir os dois é o erro
+conceitual mais comum do tópico --- e leva à ideia equivocada de que fontes de
+alimentação deveriam ser "casadas" com suas cargas.}
+\end{questao}
+
+\begin{questao}[4]{}
+\textbf{(Análise de um sistema real.)} Um painel fotovoltaico apresenta, sob
+certa irradiância, $V_{oc}=\SI{22}{\volt}$ e $I_{sc}=\SI{5}{\ampere}$, com
+ponto de máxima potência em $\SI{18}{\volt}$ e $\SI{4.5}{\ampere}$.
+\begin{itensq}
+\item Compare a potência máxima real com a prevista pelo modelo de Thévenin.
+\item Explique a discrepância.
+\item Discuta a implicação para o rastreamento do ponto de máxima potência.
+\end{itensq}
+\resposta{$\SI{81}{\watt}$ reais contra $\SI{27.5}{\watt}$ previstos --- o
+painel não é uma fonte linear}
+\resolucao{(a) \textbf{Modelo de Thévenin:}
+$R_{Th}=22/5=\SI{4.4}{\ohm}$ e
+\[
+P_{\max}^{Th}=\frac{V_{oc}I_{sc}}{4}=\frac{22(5)}{4}=\SI{27.5}{\watt}.
+\]
+\textbf{Real:} $P=18(4{,}5)=\SI{81}{\watt}$ --- quase \textbf{três vezes}
+mais.\\
+(b) \textbf{O painel não é linear.} Sua curva $I\times V$ não é uma reta: ela é
+quase horizontal em $I\approx I_{sc}$ até perto de $V_{oc}$, onde despenca
+abruptamente. O modelo de Thévenin, que supõe a reta
+$I=I_{sc}(1-V/V_{oc})$, subestima grosseiramente a área sob a curva.\\
+A razão $\dfrac{P_{\max}}{V_{oc}I_{sc}}$ --- chamada \textbf{fator de forma} ---
+vale $0{,}25$ para uma fonte linear e $0{,}74$ para este painel. Painéis bons
+chegam a $0{,}80$.\\
+(c) \textbf{Implicações para o rastreamento.}
+\begin{itemize}
+\item A carga ótima é $R_L=18/4{,}5=\SI{4}{\ohm}$ --- próxima de
+$R_{Th}=\SI{4.4}{\ohm}$ por coincidência numérica, não por casamento.
+\item O máximo é \textbf{muito mais agudo} que o de uma fonte linear, pois a
+curva tem um "joelho" pronunciado. A tolerância generosa deduzida para fontes
+lineares \emph{não} se aplica: errar a carga custa caro.
+\item $V_{oc}$ e $I_{sc}$ variam com irradiância e temperatura, deslocando o
+ponto ótimo continuamente ao longo do dia.
+\end{itemize}
+\textbf{Consequência:} é necessário um rastreador ativo (MPPT), que ajusta a
+carga aparente em tempo real. E toda a teoria deste capítulo serve aqui apenas
+como \emph{referência conceitual} --- o dimensionamento exige a curva real do
+dispositivo.}
+\end{questao}
