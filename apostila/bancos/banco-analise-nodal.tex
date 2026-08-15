@@ -16,7 +16,46 @@ Fontes controladas são um tópico adicional importante, mas não substituem os
 demais conteúdos da análise nodal.
 \end{atencao}
 
+% Desenhos substitutos usados somente nos casos que apresentavam conflito de
+% rótulos, nós ou elementos. O restante dos circuitos permanece inalterado.
+\input{bancos/circuitos-revisados-analise.tex}
+
 \input{bancos/banco-analise-nodal-n1.tex}
 \input{bancos/banco-analise-nodal-n2-visual.tex}
+
+% N3: a ponte (9o circuito do bloco) foi redesenhada para separar claramente
+% R_10, R_8, R_12 e os rótulos V2/V3.
+\begingroup
+\newcount\fvNodalCircuitCount
+\fvNodalCircuitCount=0
+\let\fvCircuitoNodalOriginal\circuitoq
+\renewcommand{\circuitoq}[1]{%
+  \advance\fvNodalCircuitCount by 1\relax
+  \ifnum\fvNodalCircuitCount=9\relax
+    \fvCircuitoNodalOriginal{\fvNodalPonteRevisada}%
+  \else
+    \fvCircuitoNodalOriginal{#1}%
+  \fi}
 \input{bancos/banco-analise-nodal-n3-visual.tex}
+\endgroup
+
+% N4: foram redesenhados os circuitos das duas portas de Thevenin e a escada
+% de quatro nós. As portas agora usam terminal aberto (ocirc), e a escada
+% separa os rótulos V_k das resistências série.
+\begingroup
+\newcount\fvNodalCircuitCount
+\fvNodalCircuitCount=0
+\let\fvCircuitoNodalOriginal\circuitoq
+\renewcommand{\circuitoq}[1]{%
+  \advance\fvNodalCircuitCount by 1\relax
+  \ifnum\fvNodalCircuitCount=2\relax
+    \fvCircuitoNodalOriginal{\fvNodalPortaTheveninRevisada}%
+  \else\ifnum\fvNodalCircuitCount=5\relax
+    \fvCircuitoNodalOriginal{\fvNodalEscadaQuatroRevisada}%
+  \else\ifnum\fvNodalCircuitCount=8\relax
+    \fvCircuitoNodalOriginal{\fvNodalPortaDependenteRevisada}%
+  \else
+    \fvCircuitoNodalOriginal{#1}%
+  \fi\fi\fi}
 \input{bancos/banco-analise-nodal-n4-visual.tex}
+\endgroup
