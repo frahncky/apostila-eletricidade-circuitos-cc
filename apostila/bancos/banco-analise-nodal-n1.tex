@@ -1,0 +1,49 @@
+\blocofixacao
+
+\begin{questao}[1]{}
+Em um circuito com cinco nós, quantas tensões nodais independentes existem após a escolha do nó de referência?
+\resposta{4}
+\resolucao{Com um nó fixado em zero, restam $5-1=4$ potenciais desconhecidos.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um nó $A$ recebe $\SI{3}{\ampere}$ e está ligado ao terra por $\SI{10}{\ohm}$ e $\SI{15}{\ohm}$. Determine $V_A$.
+\resposta{$V_A=\SI{18}{\volt}$}
+\resolucao{$V_A(1/10+1/15)=3\Rightarrow V_A=\SI{18}{\volt}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Escreva a corrente, no sentido $A\to B$, em um resistor $R$ entre os nós $A$ e $B$.
+\resposta{$i_{AB}=(V_A-V_B)/R$}
+\resolucao{É a lei de Ohm escrita diretamente em função das tensões nodais.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte de corrente ideal de $I$ sai de um nó. Na forma $\mathbf G\mathbf V=\mathbf I$, qual é o sinal de sua contribuição no vetor de correntes injetadas?
+\resposta{Negativo}
+\resolucao{O vetor $\mathbf I$ representa corrente líquida injetada. Uma fonte que retira corrente entra como $-I$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Converta $\SI{4}{\ohm}$, $\SI{5}{\ohm}$ e $\SI{20}{\ohm}$, todos ligados do mesmo nó ao terra, em uma única condutância equivalente.
+\resposta{$G_{eq}=\SI{0.5}{\siemens}$}
+\resolucao{$G_{eq}=1/4+1/5+1/20=0{,}5\,\siemens$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma fonte ideal de tensão de $\SI{12}{\volt}$ tem o terminal negativo aterrado. Qual é a tensão do terminal positivo?
+\resposta{$\SI{12}{\volt}$}
+\resolucao{O terminal positivo é um nó de potencial conhecido; não é necessário escrever uma equação nodal para determiná-lo.}
+\end{questao}
+
+\begin{questao}[1]{}
+Quando uma fonte ideal de tensão liga dois nós desconhecidos e nenhum deles é o terra, qual técnica nodal é indicada?
+\resposta{Supernó}
+\resolucao{A corrente interna da fonte não é conhecida por uma relação resistiva; escreve-se a LKC no contorno do supernó e acrescenta-se a restrição de tensão.}
+\end{questao}
+
+\begin{questao}[1]{}
+Após obter $V_A=\SI{18}{\volt}$, determine a corrente em um resistor de $\SI{15}{\ohm}$ entre $A$ e o terra.
+\resposta{$\SI{1.2}{\ampere}$, de $A$ para o terra}
+\resolucao{$i=18/15=\SI{1.2}{\ampere}$.}
+\end{questao}
