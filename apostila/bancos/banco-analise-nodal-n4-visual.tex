@@ -1,148 +1,182 @@
 % =====================================================================
 % NIVEL 4 --- ANALISE NODAL: DESAFIOS COM CIRCUITOS
-% 10 questoes, todas com figura
+% 10 questoes, todas com circuito; 3 usam fontes dependentes.
 % =====================================================================
 \blocodesafio
+
+\begin{questao}[4]{}
+Resolva o circuito por \textbf{análise nodal modificada} (MNA), usando como incógnitas $V_1$, $V_2$ e a corrente $i_s$ da fonte de $\SI{10}{\volt}$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
+\draw (n1) to[battery1,l={$\SI{10}{\volt}$}] (4.7,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{20}{\ohm}$}] (4.7,0)--(0,0);
+\node[ground] at(1.5,0){}; \node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\dfrac{70}{3}\,\si{\volt}$; $V_2=\dfrac{40}{3}\,\si{\volt}$; $i_s=\dfrac{2}{3}\,\si{\ampere}$ de 1 para 2}
+\resolucao{Com $i_s$ positivo de 1 para 2:
+\[
+\frac{V_1}{10}+i_s=3,\qquad \frac{V_2}{20}-i_s=0,\qquad V_1-V_2=10.
+\]
+Na forma matricial,
+\[
+\begin{bmatrix}0{,}1&0&1\\0&0{,}05&-1\\1&-1&0\end{bmatrix}
+\begin{bmatrix}V_1\\V_2\\i_s\end{bmatrix}=
+\begin{bmatrix}3\\0\\10\end{bmatrix}.
+\]
+A solução é $V_1=70/3$ V, $V_2=40/3$ V e $i_s=2/3$ A.}
+\end{questao}
+
+\begin{questao}[4]{}
+Determine o equivalente de Thévenin visto na porta $a$--terra usando análise nodal e uma fonte de teste para $R_{Th}$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
+\draw (n1) to[R,l={$\SI{20}{\ohm}$}] (4.7,3) coordinate(a);
+\draw (a)--(5.8,3); \draw (5.8,2.75)--(5.8,3.25); \node[right] at(5.9,3){$a$};
+\draw (1.5,0)--(0,0); \node[ground] at(1.5,0){};
+\node[above,Vcol] at(n1){$V_1$};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{40}{\volt}$; $R_{Th}=\SI{30}{\ohm}$}
+\resolucao{Com a porta aberta não circula corrente no resistor de $20\,\ohm$, logo $V_a=V_1$. Toda a corrente de $4$ A passa pelo resistor de $10\,\ohm$, então $V_{Th}=40$ V. Para $R_{Th}$, zere a fonte de corrente (abra-a) e aplique uma fonte de teste na porta: a porta vê $20\,\ohm$ em série com $10\,\ohm$, portanto $R_{Th}=30\,\ohm$.}
+\end{questao}
+
+\begin{questao}[4]{}
+Escolha $R_L$ para que a tensão nodal não ultrapasse $\SI{24}{\volt}$. Determine o maior valor admissível de $R_L$ e a potência nele dissipada no limite.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{2}{\ampere}$}] (0,3)--(1.7,3) coordinate(n);
+\draw (n) to[R,l={$\SI{30}{\ohm}$}] (1.7,0)--(0,0);
+\draw (n)--(4.2,3) to[R,l={$R_L$}] (4.2,0)--(1.7,0);
+\node[ground] at(1.7,0){}; \node[above,Vcol] at(n){$V$};
+\end{circuitikz}}
+\resposta{$R_L\le\SI{20}{\ohm}$; no limite, $P_L=\SI{28.8}{\watt}$}
+\resolucao{A tensão é $V=2(30\parallel R_L)$. Impor $V\le24$ fornece
+\[
+2\frac{30R_L}{30+R_L}\le24\Rightarrow R_L\le20\,\ohm.
+\]
+No limite $V=24$ V e $P_L=V^2/R_L=576/20=\SI{28.8}{\watt}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+O circuito deve operar com $V=\SI{8}{\volt}$. Determine $R_L$ e a sensibilidade $\left.\dfrac{dV}{dR_L}\right|_{R_L}$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{12}{\volt}$}] (0,3) to[R,l={$\SI{4}{\ohm}$}] (2.6,3) coordinate(n);
+\draw (n) to[R,l={$R_L$}] (2.6,0)--(0,0);
+\node[ground] at(2.6,0){}; \node[above,Vcol] at(n){$V$};
+\end{circuitikz}}
+\resposta{$R_L=\SI{8}{\ohm}$; $\left.dV/dR_L\right|_{8\Omega}=\SI{0.333}{\volt\per\ohm}$}
+\resolucao{$V=12R_L/(4+R_L)$. De $8=12R_L/(4+R_L)$ resulta $R_L=8\,\ohm$. A derivada é
+\[
+\frac{dV}{dR_L}=\frac{48}{(4+R_L)^2},
+\]
+logo, em $R_L=8\,\ohm$, $dV/dR_L=48/144=1/3\,\si{\volt\per\ohm}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+Monte a matriz nodal da escada de quatro nós, resolva-a e determine a resistência de entrada vista pela fonte de corrente.
+\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
+\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3)--(1.1,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.1,0);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (3.3,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (3.3,0);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (5.5,3) coordinate(n3);
+\draw (n3) to[R,l={$\SI{10}{\ohm}$}] (5.5,0);
+\draw (n3) to[R,l={$\SI{10}{\ohm}$}] (7.7,3) coordinate(n4);
+\draw (n4) to[R,l={$\SI{10}{\ohm}$}] (7.7,0); \draw (7.7,0)--(0,0);
+\node[ground] at(1.1,0){}; \node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$}; \node[above,Vcol] at(n3){$V_3$}; \node[above,Vcol] at(n4){$V_4$};
+\end{circuitikz}}
+\resposta{$V_1=\dfrac{520}{21}\,\si{\volt}$; $V_2=\dfrac{200}{21}\,\si{\volt}$; $V_3=\dfrac{80}{21}\,\si{\volt}$; $V_4=\dfrac{40}{21}\,\si{\volt}$; $R_{in}=\dfrac{130}{21}\,\ohm\approx\SI{6.19}{\ohm}$}
+\resolucao{Multiplicando as LKC por $10$, obtém-se
+\[
+\begin{bmatrix}2&-1&0&0\\-1&3&-1&0\\0&-1&3&-1\\0&0&-1&2\end{bmatrix}
+\begin{bmatrix}V_1\\V_2\\V_3\\V_4\end{bmatrix}
+=\begin{bmatrix}40\\0\\0\\0\end{bmatrix}.
+\]
+A solução é $(520,200,80,40)/21$ V. Assim $R_{in}=V_1/4=130/21\,\ohm\approx6{,}19\,\ohm$.}
+\end{questao}
+
+\begin{questao}[4]{}
+A fonte de tensão controlada satisfaz $V_1-V_2=5i_x$, com $i_x=V_2/5$. Determine $V_1$, $V_2$, a corrente na fonte dependente e sua potência.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
+\draw (n1) to[cvsource,l={$5i_x$}] (4.7,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{5}{\ohm}$},i>^={$i_x$}] (4.7,0)--(0,0);
+\node[ground] at(1.5,0){}; \node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{25}{\volt}$; $V_2=\SI{12.5}{\volt}$; $i_s=\SI{2.5}{\ampere}$ de 1 para 2; a fonte dependente absorve $\SI{31.25}{\watt}$}
+\resolucao{Supernó: $V_1/10+V_2/5=5$. A restrição é $V_1-V_2=5(V_2/5)=V_2$, portanto $V_1=2V_2$. Da LKC, $V_2=12{,}5$ V e $V_1=25$ V. No nó 1, $i_s=5-25/10=2{,}5$ A. A tensão da fonte é $12{,}5$ V e a corrente entra em seu terminal positivo, logo ela absorve $12{,}5\cdot2{,}5=\SI{31.25}{\watt}$.}
+\end{questao}
 
 \begin{questao}[4]{}
 A fonte dependente injeta $gV$ no nó. Obtenha $V(g)$, determine o valor crítico de $g$ e calcule $V$ para $g=\SI{0.04}{\siemens}$.
 \circuitoq{\begin{circuitikz}[american,scale=.95,transform shape]
 \draw (0,0) to[isource,l_={$\SI{1}{\ampere}$}] (0,3)--(2,3) coordinate(n);
 \draw (n) to[R,l={$\SI{20}{\ohm}$}] (2,0)--(0,0);
-\draw (4.2,0) to[cisource,l_={$gV$}] (4.2,3)--(n);\draw (4.2,0)--(2,0);
-\node[ground] at(2,0){};\node[above,Vcol] at(n){$V$};
+\draw (4.2,0) to[cisource,l_={$gV$}] (4.2,3)--(n); \draw (4.2,0)--(2,0);
+\node[ground] at(2,0){}; \node[above,Vcol] at(n){$V$};
 \end{circuitikz}}
 \resposta{$V(g)=1/(0{,}05-g)$; $g_c=\SI{0.05}{\siemens}$; para $g=\SI{0.04}{\siemens}$, $V=\SI{100}{\volt}$}
-\resolucao{LKC: $V/20=1+gV$. Assim $V=1/(0{,}05-g)$. Em $g=0{,}05$ S o coeficiente nodal se anula: a rede linear torna-se singular.}
+\resolucao{A LKC fornece $V/20=1+gV$, então
+\[
+V(g)=\frac{1}{0{,}05-g}.
+\]
+Em $g_c=0{,}05$ S o coeficiente nodal se anula e a solução linear deixa de ser finita. Para $g=0{,}04$ S, $V=100$ V.}
 \end{questao}
 
 \begin{questao}[4]{}
-A fonte controlada injeta $kV_1$ no nó 2. Determine $k$ para que $V_2=\SI{10}{\volt}$ e encontre $V_1$.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[isource,l_={$\SI{2}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
-\draw (n1) to[R,l={$\SI{5}{\ohm}$}] (1.5,0);
-\draw (n1) to[R,l={$\SI{5}{\ohm}$}] (4.5,3) coordinate(n2);
-\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (4.5,0);
-\draw (6.3,0) to[cisource,l_={$kV_1$}] (6.3,3)--(n2);\draw (6.3,0)--(0,0);
-\node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
-\end{circuitikz}}
-\resposta{$k=\SI{0.1}{\siemens}$; $V_1=\SI{10}{\volt}$}
-\resolucao{Impondo $V_2=10$ V na LKC do nó 1: $V_1/5+(V_1-10)/5=2\Rightarrow V_1=10$ V. No nó 2: $10/10+(10-10)/5=k(10)$, logo $k=0{,}1$ S.}
-\end{questao}
-
-\begin{questao}[4]{}
-A fonte dependente injeta $2i_x$ no nó 3, com $i_x=(V_1-V_2)/4$. Determine as três tensões e identifique um ramo que fica sem corrente.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3)--(1.3,3) coordinate(n1);
-\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (1.3,0);
-\draw (n1) to[R,l={$\SI{4}{\ohm}$},i>^={$i_x$}] (3.8,3) coordinate(n2);
-\draw (n2) to[R,l={$\SI{8}{\ohm}$}] (3.8,0);
-\draw (n2) to[R,l={$\SI{4}{\ohm}$}] (6.3,3) coordinate(n3);
-\draw (n3) to[R,l={$\SI{4}{\ohm}$}] (6.3,0);
-\draw (7.9,0) to[cisource,l_={$2i_x$}] (7.9,3)--(n3);\draw (7.9,0)--(0,0);
-\node[ground] at(1.3,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[above,Vcol] at(n3){$V_3$};
-\end{circuitikz}}
-\resposta{$V_1=\SI{12}{\volt}$; $V_2=\SI{8}{\volt}$; $V_3=\SI{8}{\volt}$; o resistor entre 2 e 3 conduz corrente nula}
-\resolucao{As LKC são $V_1/4+(V_1-V_2)/4=4$, $V_2/8+(V_2-V_1)/4+(V_2-V_3)/4=0$ e $V_3/4+(V_3-V_2)/4=2(V_1-V_2)/4$. A solução é $(12,8,8)$ V.}
-\end{questao}
-
-\begin{questao}[4]{}
-A fonte de tensão controlada satisfaz $V_1-V_2=5i_x$, $i_x=V_2/10$, e a fonte de corrente controlada injeta $0{,}05V_1$ no nó 2. Determine $V_1$ e $V_2$.
-\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
-\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3)--(1.4,3) coordinate(n1);
-\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.4,0);
-\draw (n1) to[cvsource,l={$5i_x$}] (4.5,3) coordinate(n2);
-\draw (n2) to[R,l={$\SI{10}{\ohm}$},i>^={$i_x$}] (4.5,0);
-\draw (6.3,0) to[cisource,l_={$0{,}05V_1$}] (6.3,3)--(n2);\draw (6.3,0)--(0,0);
-\node[ground] at(1.4,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
-\end{circuitikz}}
-\resposta{$V_1=\dfrac{180}{7}\,\si{\volt}\approx\SI{25.71}{\volt}$; $V_2=\dfrac{120}{7}\,\si{\volt}\approx\SI{17.14}{\volt}$}
-\resolucao{A restrição é $V_1-V_2=5(V_2/10)=0{,}5V_2$, logo $V_1=1{,}5V_2$. No supernó: $V_1/10+V_2/10=3+0{,}05V_1$. Substituindo, $0{,}175V_2=3$.}
-\end{questao}
-
-\begin{questao}[4]{}
-Determine o equivalente de Thévenin visto no nó 2. A fonte dependente injeta $0{,}05V_1$ no nó 2.
+Determine o equivalente de Thévenin visto na porta. A fonte dependente injeta $0{,}05V_1$ no nó 2. Para $R_{Th}$, mantenha a fonte dependente ativa e use uma fonte de teste.
 \circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
 \draw (0,0) to[isource,l_={$\SI{2}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
 \draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
 \draw (n1) to[R,l={$\SI{5}{\ohm}$}] (4.7,3) coordinate(n2);
-\draw (6.5,0) to[cisource,l_={$0{,}05V_1$}] (6.5,3)--(n2);\draw (6.5,0)--(0,0);
-\draw (n2)--(5.7,3);\draw (5.7,2.75)--(5.7,3.25);\node[right] at(5.8,3){porta};
-\node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\draw (6.5,0) to[cisource,l_={$0{,}05V_1$}] (6.5,3)--(n2); \draw (6.5,0)--(0,0);
+\draw (n2)--(5.7,3); \draw (5.7,2.75)--(5.7,3.25); \node[right] at(5.8,3){porta};
+\node[ground] at(1.5,0){}; \node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$};
 \end{circuitikz}}
 \resposta{$V_{Th}=\SI{50}{\volt}$; $R_{Th}=\SI{30}{\ohm}$}
-\resolucao{Com a porta aberta: $(V_2-V_1)/5=0{,}05V_1\Rightarrow V_2=1{,}25V_1$. No nó 1, $V_1/10+(V_1-V_2)/5=2$, resultando $V_1=40$ V e $V_{Th}=50$ V. Para $R_{Th}$, abra a fonte de $2$ A e injete $I_t$ na porta. Da LKC do nó 1, $V_1=(2/3)V_2$; no nó 2 obtém-se $I_t=V_2/30$, logo $R_{Th}=30\,\ohm$.}
+\resolucao{Com a porta aberta, $(V_2-V_1)/5=0{,}05V_1$, logo $V_2=1{,}25V_1$. No nó 1, $V_1/10+(V_1-V_2)/5=2$, resultando $V_1=40$ V e $V_{Th}=50$ V. Para $R_{Th}$, abra a fonte independente e aplique uma corrente de teste $I_t$ na porta. A LKC do nó 1 dá $V_1=(2/3)V_2$ e, no nó 2, obtém-se $I_t=V_2/30$. Portanto $R_{Th}=V_2/I_t=30\,\ohm$.}
 \end{questao}
 
 \begin{questao}[4]{}
-A fonte controlada impõe $V_2=kV_1$. Obtenha $V_1(k)$ e determine o valor de $k$ para o qual a solução se torna singular.
+A ponte é alimentada por uma fonte de corrente. Determine a condição algébrica para corrente nula no resistor central e, para os valores da figura, calcule $V_1$, $V_2$ e $V_3$.
+\circuitoq{\begin{circuitikz}[american,scale=.80,transform shape]
+\coordinate (g) at (0,-1.6);
+\draw (g) to[isource,l_={$\SI{6}{\ampere}$}] (0,1.6)--(1.3,1.6) coordinate(n1);
+\draw (n1) to[R,l={$R_1=\SI{4}{\ohm}$}] (4.2,3.0) coordinate(n2);
+\draw (n1) to[R,l_={$R_3=\SI{6}{\ohm}$}] (4.2,0.2) coordinate(n3);
+\draw (n2) to[R,l={$R_b=\SI{5}{\ohm}$}] (n3);
+\draw (n2) to[R,l={$R_2=\SI{8}{\ohm}$}] (4.2,-1.6);
+\draw (n3) to[R,l_={$R_4=\SI{12}{\ohm}$}] (4.2,-1.6); \draw (4.2,-1.6)--(g);
+\node[ground] at(g){}; \node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$}; \node[right,Vcol] at(n3){$V_3$};
+\end{circuitikz}}
+\resposta{Equilíbrio quando $R_1/R_2=R_3/R_4$; para a figura, $V_1=\SI{43.2}{\volt}$ e $V_2=V_3=\SI{28.8}{\volt}$}
+\resolucao{Corrente nula em $R_b$ exige $V_2=V_3$. Pelos divisores laterais, isso ocorre quando
+\[
+\frac{R_2}{R_1+R_2}=\frac{R_4}{R_3+R_4}
+\quad\Longleftrightarrow\quad
+\frac{R_1}{R_2}=\frac{R_3}{R_4}.
+\]
+Na figura, $4/8=6/12$, portanto a ponte está equilibrada. As duas pernas equivalem a $12\,\ohm$ e $18\,\ohm$ em paralelo, logo $R_{eq}=7{,}2\,\ohm$ e $V_1=6\cdot7{,}2=43{,}2$ V. Os pontos médios ficam em $V_2=V_3=28{,}8$ V.}
+\end{questao}
+
+\begin{questao}[4]{}
+No circuito de síntese, deseja-se obter $V_1=\SI{18}{\volt}$ e $V_2=\SI{12}{\volt}$. Determine os valores e sentidos das fontes $I_1$ e $I_2$ e verifique o balanço de potência.
 \circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
-\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
-\draw (n1) to[R,l={$\SI{5}{\ohm}$}] (4.5,3) coordinate(n2);
-\draw (n2) to[cvsource,l={$kV_1$}] (4.5,0)--(0,0);
-\node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\draw (0,0) to[isource,l_={$I_1$}] (0,3)--(1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{6}{\ohm}$}] (1.5,0);
+\draw (n1) to[R,l={$\SI{3}{\ohm}$}] (4.7,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{4}{\ohm}$}] (4.7,0);
+\draw (6.4,0) to[isource,l_={$I_2$}] (6.4,3)--(n2); \draw (6.4,0)--(0,0);
+\node[ground] at(1.5,0){}; \node[above,Vcol] at(n1){$V_1=\SI{18}{\volt}$}; \node[above,Vcol] at(n2){$V_2=\SI{12}{\volt}$};
 \end{circuitikz}}
-\resposta{$V_1=3/(0{,}3-0{,}2k)$; singular em $k=1{,}5$}
-\resolucao{LKC no nó 1: $V_1/10+(V_1-kV_1)/5=3$. O coeficiente é $0{,}1+0{,}2(1-k)=0{,}3-0{,}2k$. Ele zera em $k=1{,}5$.}
-\end{questao}
-
-\begin{questao}[4]{}
-Escolha $R_L$ para obter $V=\SI{20}{\volt}$. Depois calcule a sensibilidade $dV/dR_L$ no ponto de projeto. A fonte dependente injeta $0{,}02V$ no nó.
-\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
-\draw (0,0) to[isource,l_={$\SI{2}{\ampere}$}] (0,3)--(1.5,3) coordinate(n);
-\draw (n) to[R,l={$\SI{20}{\ohm}$}] (1.5,0);
-\draw (n)--(3.7,3) to[R,l={$R_L$}] (3.7,0)--(1.5,0);
-\draw (5.5,0) to[cisource,l_={$0{,}02V$}] (5.5,3)--(n);\draw (5.5,0)--(1.5,0);
-\node[ground] at(1.5,0){};\node[above,Vcol] at(n){$V$};
-\end{circuitikz}}
-\resposta{$R_L=\dfrac{100}{7}\,\ohm\approx\SI{14.29}{\ohm}$; $dV/dR_L\approx\SI{0.98}{\volt\per\ohm}$}
-\resolucao{$V(1/20+1/R_L-0{,}02)=2$, portanto $V=2R_L/(1+0{,}03R_L)$. Impondo $V=20$ V, resulta $R_L=100/7\,\ohm$. A derivada é $dV/dR_L=2/(1+0{,}03R_L)^2\approx0{,}98$ V/$\ohm$.}
-\end{questao}
-
-\begin{questao}[4]{}
-Resolva o circuito por análise nodal modificada, tomando como incógnitas $V_1$, $V_2$ e a corrente $i_s$ da fonte flutuante de $\SI{10}{\volt}$. A fonte controlada drena $0{,}05V_1$ do nó 2.
-\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
-\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
-\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
-\draw (n1) to[battery1,l={$\SI{10}{\volt}$}] (4.7,3) coordinate(n2);
-\draw (n2) to[R,l={$\SI{20}{\ohm}$}] (4.7,0);
-\draw (n2)--(6.5,3) to[cisource,l={$0{,}05V_1$}] (6.5,0)--(0,0);
-\node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
-\end{circuitikz}}
-\resposta{$V_1=\SI{17.5}{\volt}$; $V_2=\SI{7.5}{\volt}$; $i_s=\SI{1.25}{\ampere}$ de 1 para 2}
-\resolucao{Com $i_s$ positivo de 1 para 2: $V_1/10+i_s=3$; $V_2/20+0{,}05V_1-i_s=0$; $V_1-V_2=10$. A solução é $(17{,}5,7{,}5,1{,}25)$.}
-\end{questao}
-
-\begin{questao}[4]{}
-Determine $R$ para que $V_2=\SI{10}{\volt}$. A fonte dependente drena $0{,}05V_1$ do nó 2.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
-\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
-\draw (n1) to[R,l={$\SI{5}{\ohm}$}] (4.5,3) coordinate(n2);
-\draw (n2) to[R,l={$R$}] (4.5,0);
-\draw (n2)--(6.3,3) to[cisource,l={$0{,}05V_1$}] (6.3,0)--(0,0);
-\node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
-\end{circuitikz}}
-\resposta{$V_1=\dfrac{70}{3}\,\si{\volt}$; $R=\dfrac{20}{3}\,\ohm\approx\SI{6.67}{\ohm}$}
-\resolucao{Com $V_2=10$ V, $V_1/10+(V_1-10)/5=5\Rightarrow V_1=70/3$ V. No nó 2: $10/R+(10-V_1)/5+0{,}05V_1=0$, de onde $10/R=1{,}5$ e $R=20/3\,\ohm$.}
-\end{questao}
-
-\begin{questao}[4]{}
-Determine $V_1$, $V_2$, $V_3$ e a corrente $i_{23}$ no resistor de ponte, positiva de 2 para 3. A fonte dependente injeta $0{,}125V_2$ no nó 3.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\coordinate (g) at (0,-1.7);
-\draw (g) to[isource,l_={$\SI{6}{\ampere}$}] (0,1.6) -- (1.2,1.6) coordinate(n1);
-\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (4.0,3.0) coordinate(n2);
-\draw (n1) to[R,l_={$\SI{4}{\ohm}$}] (4.0,0.2) coordinate(n3);
-\draw (n2) to[R,l={$\SI{4}{\ohm}$}] (n3);
-\draw (n2) to[R,l={$\SI{8}{\ohm}$}] (6.2,3.0) -- (6.2,-1.7) -- (g);
-\draw (n3) to[R,l_={$\SI{8}{\ohm}$}] (4.0,-1.7) -- (g);
-\draw (7.8,-1.7) to[cisource,l_={$0{,}125V_2$}] (7.8,0.2) -- (n3);
-\draw (7.8,-1.7) -- (g);
-\node[ground] at(g){};
-\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[right,Vcol] at(n3){$V_3$};
-\end{circuitikz}}
-\resposta{$V_1=\SI{57}{\volt}$; $V_2=\SI{42}{\volt}$; $V_3=\SI{48}{\volt}$; $i_{23}=\SI{-1.5}{\ampere}$}
-\resolucao{As LKC são $(V_1-V_2)/4+(V_1-V_3)/4=6$, $V_2/8+(V_2-V_1)/4+(V_2-V_3)/4=0$ e $V_3/8+(V_3-V_1)/4+(V_3-V_2)/4=0{,}125V_2$. A solução é $(57,42,48)$ V. Assim $i_{23}=(42-48)/4=-1{,}5$ A, isto é, $1{,}5$ A de 3 para 2.}
+\resposta{$I_1=\SI{5}{\ampere}$ e $I_2=\SI{1}{\ampere}$, ambas injetando corrente; potência total fornecida $=\SI{102}{\watt}$}
+\resolucao{Pela LKC,
+\[
+I_1=\frac{18}{6}+\frac{18-12}{3}=3+2=5\,\text{A},
+\]
+\[
+I_2=\frac{12}{4}+\frac{12-18}{3}=3-2=1\,\text{A}.
+\]
+As fontes fornecem $18\cdot5+12\cdot1=102$ W. Os resistores dissipam $18^2/6+12^2/4+(18-12)^2/3=54+36+12=102$ W.}
 \end{questao}
