@@ -32,10 +32,12 @@ Determine a tensão nodal $V$.
 \begin{questao}[2]{}
 Determine $V_A$ usando diretamente a LKC no nó.
 \circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[battery1,l_={$\SI{12}{\volt}$}] (0,2.7) to[R,l={$\SI{4}{\ohm}$}] (2.1,2.7) coordinate(a);
-\draw (a) to[R,l={$\SI{12}{\ohm}$}] (2.1,0) -- (0,0);
-\draw (a) to[R,l={$\SI{6}{\ohm}$}] (4.4,2.7) -- (4.4,0) to[battery1,l={$\SI{6}{\volt}$},invert] (4.4,2.7);
-\draw (4.4,0) -- (2.1,0); \node[ground] at (2.1,0){}; \node[above,Vcol] at (a){$V_A$};
+\coordinate (g) at (2.2,0);
+\draw (0,0) to[battery1,l_={$\SI{12}{\volt}$}] (0,2.7) to[R,l={$\SI{4}{\ohm}$}] (2.2,2.7) coordinate(a);
+\draw (a) to[R,l={$\SI{12}{\ohm}$}] (g);
+\draw (4.6,0) to[battery1,l_={$\SI{6}{\volt}$}] (4.6,2.7) to[R,l_={$\SI{6}{\ohm}$}] (a);
+\draw (4.6,0) -- (g) -- (0,0);
+\node[ground] at (g){}; \node[above,Vcol] at (a){$V_A$};
 \end{circuitikz}}
 \resposta{$V_A=\SI{8}{\volt}$}
 \resolucao{$\frac{V_A-12}{4}+\frac{V_A-6}{6}+\frac{V_A}{12}=0\Rightarrow V_A=8$ V.}
