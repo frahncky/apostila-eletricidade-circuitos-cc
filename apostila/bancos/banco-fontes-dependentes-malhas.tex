@@ -49,7 +49,7 @@ Na periferia da malha 2 há uma fonte de corrente dependente que impõe $I_2=0{,
 A fonte de corrente dependente está no ramo comum e aponta para baixo, impondo $I_1-I_2=0{,}5I_1$. Use supermalha para determinar $I_1$ e $I_2$.
 \circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
 \draw (0,0) to[battery1,l_={$\SI{30}{\volt}$}] (0,3) to[R,l={$\SI{6}{\ohm}$}] (3,3) coordinate(t);
-\draw (t) to[cisource,l={$0{,}5I_1$},invert] (3,0) coordinate(b)--(0,0);
+\draw (t) to[cisource,l={$0{,}5I_1$}] (3,0) coordinate(b)--(0,0);
 \draw (t) to[R,l={$\SI{6}{\ohm}$}] (6,3)--(6,0)--(b);
 \draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
 \draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
@@ -77,7 +77,7 @@ A fonte de tensão controlada está no ramo comum e tem polaridade positiva no t
 A fonte de corrente no ramo comum vale $2i_x$, onde $i_x=I_2$ é a corrente no resistor externo da malha 2. Determine as correntes usando supermalha.
 \circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
 \draw (0,0) to[battery1,l_={$\SI{36}{\volt}$}] (0,3) to[R,l={$\SI{4}{\ohm}$}] (3,3) coordinate(t);
-\draw (t) to[cisource,l={$2i_x$},invert] (3,0) coordinate(b)--(0,0);
+\draw (t) to[cisource,l={$2i_x$}] (3,0) coordinate(b)--(0,0);
 \draw (t) to[R,l={$\SI{8}{\ohm}$},i>^={$i_x$}] (6,3)--(6,0)--(b);
 \draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
 \draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
