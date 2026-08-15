@@ -22,12 +22,12 @@ demais conteúdos da análise nodal.
 % N3: a ponte (9o circuito do bloco) foi redesenhada para separar claramente
 % R_10, R_8, R_12 e os rótulos V2/V3.
 \begingroup
-\newcount\fvNodalCircuitCount
-\fvNodalCircuitCount=0
+\newcount\fvNodalNThreeCircuitCount
+\fvNodalNThreeCircuitCount=0
 \let\fvCircuitoNodalOriginal\circuitoq
 \renewcommand{\circuitoq}[1]{%
-  \advance\fvNodalCircuitCount by 1\relax
-  \ifnum\fvNodalCircuitCount=9\relax
+  \advance\fvNodalNThreeCircuitCount by 1\relax
+  \ifnum\fvNodalNThreeCircuitCount=9\relax
     \fvCircuitoNodalOriginal{\fvNodalPonteRevisada}%
   \else
     \fvCircuitoNodalOriginal{#1}%
@@ -39,16 +39,16 @@ demais conteúdos da análise nodal.
 % de quatro nós. As portas agora usam terminal aberto (ocirc), e a escada
 % separa os rótulos V_k das resistências série.
 \begingroup
-\newcount\fvNodalCircuitCount
-\fvNodalCircuitCount=0
+\newcount\fvNodalNFourCircuitCount
+\fvNodalNFourCircuitCount=0
 \let\fvCircuitoNodalOriginal\circuitoq
 \renewcommand{\circuitoq}[1]{%
-  \advance\fvNodalCircuitCount by 1\relax
-  \ifnum\fvNodalCircuitCount=2\relax
+  \advance\fvNodalNFourCircuitCount by 1\relax
+  \ifnum\fvNodalNFourCircuitCount=2\relax
     \fvCircuitoNodalOriginal{\fvNodalPortaTheveninRevisada}%
-  \else\ifnum\fvNodalCircuitCount=5\relax
+  \else\ifnum\fvNodalNFourCircuitCount=5\relax
     \fvCircuitoNodalOriginal{\fvNodalEscadaQuatroRevisada}%
-  \else\ifnum\fvNodalCircuitCount=8\relax
+  \else\ifnum\fvNodalNFourCircuitCount=8\relax
     \fvCircuitoNodalOriginal{\fvNodalPortaDependenteRevisada}%
   \else
     \fvCircuitoNodalOriginal{#1}%
