@@ -129,17 +129,20 @@ Determine $R$ para que $V_2=\SI{10}{\volt}$. A fonte dependente drena $0{,}05V_1
 \end{questao}
 
 \begin{questao}[4]{}
-Determine $V_1$, $V_2$, $V_3$ e a corrente no resistor de ponte. A fonte dependente injeta $0{,}125V_2$ no nó 3.
+Determine $V_1$, $V_2$, $V_3$ e a corrente $i_{23}$ no resistor de ponte, positiva de 2 para 3. A fonte dependente injeta $0{,}125V_2$ no nó 3.
 \circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw (0,0) to[isource,l_={$\SI{6}{\ampere}$}] (0,3)--(1.3,3) coordinate(n1);
-\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (3.7,3) coordinate(n2);
-\draw (n1) to[R,l_={$\SI{4}{\ohm}$}] (3.7,0) coordinate(n3);
-\draw (n2) to[R,l={$\SI{8}{\ohm}$}] (5.7,3)--(5.7,0)--(n3);
-\draw (n3) to[R,l_={$\SI{8}{\ohm}$}] (1.3,0)--(0,0);
+\coordinate (g) at (0,-1.7);
+\draw (g) to[isource,l_={$\SI{6}{\ampere}$}] (0,1.6) -- (1.2,1.6) coordinate(n1);
+\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (4.0,3.0) coordinate(n2);
+\draw (n1) to[R,l_={$\SI{4}{\ohm}$}] (4.0,0.2) coordinate(n3);
 \draw (n2) to[R,l={$\SI{4}{\ohm}$}] (n3);
-\draw (7.5,0) to[cisource,l_={$0{,}125V_2$}] (7.5,3)--(n3);\draw (7.5,0)--(1.3,0);
-\node[ground] at(1.3,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[below,Vcol] at(n3){$V_3$};
+\draw (n2) to[R,l={$\SI{8}{\ohm}$}] (6.2,3.0) -- (6.2,-1.7) -- (g);
+\draw (n3) to[R,l_={$\SI{8}{\ohm}$}] (4.0,-1.7) -- (g);
+\draw (7.8,-1.7) to[cisource,l_={$0{,}125V_2$}] (7.8,0.2) -- (n3);
+\draw (7.8,-1.7) -- (g);
+\node[ground] at(g){};
+\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[right,Vcol] at(n3){$V_3$};
 \end{circuitikz}}
-\resposta{$V_1=\SI{57}{\volt}$; $V_2=\SI{42}{\volt}$; $V_3=\SI{48}{\volt}$; $i_{23}=\SI{-1.5}{\ampere}$ para o sentido $2\to3$}
+\resposta{$V_1=\SI{57}{\volt}$; $V_2=\SI{42}{\volt}$; $V_3=\SI{48}{\volt}$; $i_{23}=\SI{-1.5}{\ampere}$}
 \resolucao{As LKC são $(V_1-V_2)/4+(V_1-V_3)/4=6$, $V_2/8+(V_2-V_1)/4+(V_2-V_3)/4=0$ e $V_3/8+(V_3-V_1)/4+(V_3-V_2)/4=0{,}125V_2$. A solução é $(57,42,48)$ V. Assim $i_{23}=(42-48)/4=-1{,}5$ A, isto é, $1{,}5$ A de 3 para 2.}
 \end{questao}
