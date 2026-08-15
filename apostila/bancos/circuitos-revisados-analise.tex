@@ -64,6 +64,45 @@
 \end{circuitikz}}
 
 % ----------------------------- MALHAS ---------------------------------
+% N2 original: fonte independente fora da area das setas e correntes de malha
+% deslocadas para baixo, evitando sobreposicao com tensoes e resistores.
+\newcommand{\fvMalhaNDoisQOneRevisada}{%
+\begin{circuitikz}[american,scale=.95,transform shape,line width=.8pt]
+  \draw (0,0) to[battery1,l^={$\SI{20}{\volt}$}] (0,3.2)
+        to[R,l={$R_1=\SI{4}{\ohm}$}] (3.2,3.2) coordinate(t);
+  \draw (t) to[R,l_={$R_2=\SI{8}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+  \draw (t) to[R,l={$R_3=\SI{4}{\ohm}$}] (6.4,3.2)--(6.4,0)--(b);
+  \draw[->,loopcol,line width=1.15pt] (1.55,1.05) arc(0:305:.38);
+  \node[loopcol,fill=white,inner sep=1pt] at(1.55,1.05){\footnotesize$I_1$};
+  \draw[->,loopcol,line width=1.15pt] (4.85,1.05) arc(0:305:.38);
+  \node[loopcol,fill=white,inner sep=1pt] at(4.85,1.05){\footnotesize$I_2$};
+\end{circuitikz}}
+
+\newcommand{\fvMalhaNDoisQTwoRevisada}{%
+\begin{circuitikz}[american,scale=.95,transform shape,line width=.8pt]
+  \draw (0,0) to[battery1,l^={$E_1=\SI{18}{\volt}$}] (0,3.2)
+        to[R,l={$R_1=\SI{2}{\ohm}$}] (3.2,3.2) coordinate(t);
+  \draw (t) to[R,l_={$R_2=\SI{6}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+  \draw (t) to[R,l={$R_3=\SI{6}{\ohm}$}] (6.4,3.2)
+        to[battery1,l_={$E_2=\SI{6}{\volt}$},invert] (6.4,0)--(b);
+  \draw[->,loopcol,line width=1.15pt] (1.55,1.05) arc(0:305:.38);
+  \node[loopcol,fill=white,inner sep=1pt] at(1.55,1.05){\footnotesize$I_1$};
+  \draw[->,loopcol,line width=1.15pt] (4.85,1.05) arc(0:305:.38);
+  \node[loopcol,fill=white,inner sep=1pt] at(4.85,1.05){\footnotesize$I_2$};
+\end{circuitikz}}
+
+\newcommand{\fvMalhaNDoisQThreeRevisada}{%
+\begin{circuitikz}[american,scale=.95,transform shape,line width=.8pt]
+  \draw (0,0) to[battery1,l^={$\SI{24}{\volt}$}] (0,3.2)
+        to[R,l={$R_1=\SI{2}{\ohm}$}] (3.2,3.2) coordinate(t);
+  \draw (t) to[R,l_={$R_2=\SI{6}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+  \draw (t) to[R,l={$R_3=\SI{3}{\ohm}$}] (6.4,3.2)--(6.4,0)--(b);
+  \draw[->,loopcol,line width=1.15pt] (1.55,1.05) arc(0:305:.38);
+  \node[loopcol,fill=white,inner sep=1pt] at(1.55,1.05){\footnotesize$I_1$};
+  \draw[->,loopcol,line width=1.15pt] (4.85,1.05) arc(0:305:.38);
+  \node[loopcol,fill=white,inner sep=1pt] at(4.85,1.05){\footnotesize$I_2$};
+\end{circuitikz}}
+
 \newcommand{\fvMalhaSuperRevisada}{%
 \begin{circuitikz}[american,scale=.95,transform shape,line width=.8pt]
   \draw (0,0) to[battery1,l^={$\SI{24}{\volt}$}] (0,3.2)
