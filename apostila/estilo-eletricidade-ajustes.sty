@@ -1,0 +1,31 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{estilo-eletricidade-ajustes}[2026/08/15 v1.0 Ajustes visuais]
+
+% Deve ser carregado depois de estilo-eletricidade.
+\RequirePackage{adjustbox}
+
+% Padrao unico para fontes independentes de tensao:
+% circulo com polaridade (+/-) no interior.
+% O alias tambem corrige automaticamente desenhos antigos que ainda
+% utilizam battery1.
+\tikzset{battery1/.style={american voltage source}}
+
+% Evita que circuitos largos ultrapassem a largura util da pagina.
+% O conteudo so e reduzido quando realmente necessario.
+\renewcommand{\circuitoq}[1]{%
+  \begin{figure}[H]\centering
+  \begin{adjustbox}{max width=.96\linewidth}
+    #1
+  \end{adjustbox}%
+  \caption{Circuito da questão \thequestao.}\label{fig:q\thequestao}%
+  \end{figure}}
+
+\renewcommand{\circuitoqq}[2]{%
+  \begin{figure}[H]\centering
+  \begin{adjustbox}{max width=.96\linewidth}
+    #1
+  \end{adjustbox}%
+  \caption{#2}\label{fig:q\thequestao}%
+  \end{figure}}
+
+\endinput
