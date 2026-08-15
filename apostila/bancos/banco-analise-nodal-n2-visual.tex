@@ -1,0 +1,173 @@
+% =====================================================================
+% NIVEL 2 --- ANALISE NODAL: APLICACAO COM CIRCUITOS
+% 13 questoes, todas com figura
+% =====================================================================
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Determine $V$ e as correntes nos dois resistores.
+\circuitoq{\begin{circuitikz}[american,scale=.95,transform shape]
+\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,2.7) -- (1.8,2.7) coordinate(n);
+\draw (n) to[R,l={$\SI{10}{\ohm}$}] (1.8,0) -- (0,0);
+\draw (n) -- (3.8,2.7) to[R,l={$\SI{20}{\ohm}$}] (3.8,0) -- (1.8,0);
+\node[above,Vcol] at (n){$V$}; \node[ground] at (1.8,0){};
+\end{circuitikz}}
+\resposta{$V=\SI{33.33}{\volt}$; $i_{10}=\SI{3.33}{\ampere}$; $i_{20}=\SI{1.67}{\ampere}$}
+\resolucao{$5=V/10+V/20\Rightarrow V=100/3\,\si{\volt}$. As correntes são $V/R$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine a tensão nodal $V$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{6}{\ampere}$}] (0,2.6) -- (1.4,2.6) coordinate(n);
+\draw (n) to[R,l={$\SI{8}{\ohm}$}] (1.4,0) -- (0,0);
+\draw (n) -- (3.3,2.6) to[R,l={$\SI{8}{\ohm}$}] (3.3,0) -- (1.4,0);
+\draw (n) -- (5,2.6) to[isource,l={$\SI{2}{\ampere}$},invert] (5,0) -- (3.3,0);
+\node[above,Vcol] at (n){$V$}; \node[ground] at (1.4,0){};
+\end{circuitikz}}
+\resposta{$V=\SI{16}{\volt}$}
+\resolucao{A corrente líquida injetada é $6-2=4$ A. Logo $V(1/8+1/8)=4\Rightarrow V=16$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_A$ usando diretamente a LKC no nó.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{12}{\volt}$}] (0,2.7) to[R,l={$\SI{4}{\ohm}$}] (2.1,2.7) coordinate(a);
+\draw (a) to[R,l={$\SI{12}{\ohm}$}] (2.1,0) -- (0,0);
+\draw (a) to[R,l={$\SI{6}{\ohm}$}] (4.4,2.7) -- (4.4,0) to[battery1,l={$\SI{6}{\volt}$},invert] (4.4,2.7);
+\draw (4.4,0) -- (2.1,0); \node[ground] at (2.1,0){}; \node[above,Vcol] at (a){$V_A$};
+\end{circuitikz}}
+\resposta{$V_A=\SI{8}{\volt}$}
+\resolucao{$\frac{V_A-12}{4}+\frac{V_A-6}{6}+\frac{V_A}{12}=0\Rightarrow V_A=8$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_1$ e $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.95,transform shape]
+\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,2.8) -- (1.5,2.8) coordinate(n1);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (4.2,2.8) coordinate(n2);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (4.2,0) -- (1.5,0) -- (0,0);
+\node[above,Vcol] at (n1){$V_1$}; \node[above,Vcol] at (n2){$V_2$}; \node[ground] at (1.5,0){};
+\end{circuitikz}}
+\resposta{$V_1=\SI{20}{\volt}$; $V_2=\SI{10}{\volt}$}
+\resolucao{$V_1/10+(V_1-V_2)/10=3$ e $V_2/10+(V_2-V_1)/10=0$. Da segunda, $V_1=2V_2$; então $V_2=10$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_A$. A fonte e o resistor de $\SI{10}{\ohm}$ formam uma fonte real de tensão.
+\circuitoq{\begin{circuitikz}[american,scale=.95,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{30}{\volt}$}] (0,2.7) to[R,l={$\SI{10}{\ohm}$}] (2.7,2.7) coordinate(a);
+\draw (a) to[R,l={$\SI{15}{\ohm}$}] (2.7,0) -- (0,0); \node[ground] at (2.7,0){}; \node[above,Vcol] at (a){$V_A$};
+\end{circuitikz}}
+\resposta{$V_A=\SI{18}{\volt}$}
+\resolucao{$\frac{V_A-30}{10}+\frac{V_A}{15}=0\Rightarrow V_A=18$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_A$ e a corrente no resistor de $\SI{5}{\ohm}$, positiva no sentido $A\to$ nó de $\SI{20}{\volt}$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{20}{\volt}$}] (0,2.7) to[R,l={$\SI{5}{\ohm}$}] (2.4,2.7) coordinate(a);
+\draw (a) to[R,l={$\SI{20}{\ohm}$}] (2.4,0) -- (0,0);
+\draw (4.4,0) to[isource,l_={$\SI{2}{\ampere}$}] (4.4,2.7) -- (a); \draw (4.4,0)--(2.4,0);
+\node[ground] at (2.4,0){}; \node[above,Vcol] at (a){$V_A$};
+\end{circuitikz}}
+\resposta{$V_A=\SI{24}{\volt}$; $i=\SI{0.8}{\ampere}$}
+\resolucao{$\frac{V_A-20}{5}+\frac{V_A}{20}=2\Rightarrow V_A=24$ V; $i=(24-20)/5=0{,}8$ A.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_1$ e $V_2$ na rede em escada.
+\circuitoq{\begin{circuitikz}[american,scale=.95,transform shape]
+\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,2.8) -- (1.4,2.8) coordinate(n1);
+\draw (n1) to[R,l={$\SI{5}{\ohm}$}] (1.4,0);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (4.1,2.8) coordinate(n2);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (4.1,0) -- (1.4,0) -- (0,0);
+\node[ground] at (1.4,0){}; \node[above,Vcol] at (n1){$V_1$}; \node[above,Vcol] at (n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{16}{\volt}$; $V_2=\SI{8}{\volt}$}
+\resolucao{$V_1/5+(V_1-V_2)/10=4$ e $V_2/10+(V_2-V_1)/10=0$.}
+\end{questao}
+
+\begin{questao}[2]{}
+A fonte de $\SI{1}{\ampere}$ transfere corrente do nó 1 para o nó 2. Determine $V_1$ e $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3) -- (1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{6}{\ohm}$}] (1.5,0);
+\draw (n1) to[R,l={$\SI{6}{\ohm}$}] (4.1,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{3}{\ohm}$}] (4.1,0) -- (1.5,0)--(0,0);
+\draw (n1) to[isource,l={$\SI{1}{\ampere}$}] (n2);
+\node[ground] at (1.5,0){}; \node[above,Vcol] at (n1){$V_1$}; \node[above,Vcol] at (n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{15.6}{\volt}$; $V_2=\SI{7.2}{\volt}$}
+\resolucao{Nó 1: $V_1/6+(V_1-V_2)/6+1=5$. Nó 2: $V_2/3+(V_2-V_1)/6=1$. A solução é $V_1=78/5$ V e $V_2=36/5$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine os três potenciais da escada resistiva.
+\circuitoq{\begin{circuitikz}[american,scale=.85,transform shape]
+\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,2.8) -- (1.2,2.8) coordinate(n1);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.2,0);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (3.7,2.8) coordinate(n2);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (3.7,0);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (6.2,2.8) coordinate(n3);
+\draw (n3) to[R,l={$\SI{10}{\ohm}$}] (6.2,0) -- (1.2,0) -- (0,0);
+\node[ground] at (1.2,0){}; \node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[above,Vcol] at(n3){$V_3$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{25}{\volt}$; $V_2=\SI{10}{\volt}$; $V_3=\SI{5}{\volt}$}
+\resolucao{As três LKC formam uma matriz tridiagonal. Da última, $V_2=2V_3$; da segunda, $V_1=2{,}5V_2$; na primeira obtém-se $V_2=10$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas fontes de corrente injetam corrente em nós diferentes. Determine $V_1$ e $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,2.8) -- (1.5,2.8) coordinate(n1);
+\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (1.5,0);
+\draw (n1) to[R,l={$\SI{8}{\ohm}$}] (4.5,2.8) coordinate(n2);
+\draw (n2) to[R,l={$\SI{4}{\ohm}$}] (4.5,0);
+\draw (6.2,0) to[isource,l_={$\SI{2}{\ampere}$}] (6.2,2.8) -- (n2); \draw (6.2,0)--(1.5,0)--(0,0);
+\node[ground] at (1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{14}{\volt}$; $V_2=\SI{10}{\volt}$}
+\resolucao{$V_1/4+(V_1-V_2)/8=4$ e $V_2/4+(V_2-V_1)/8=2$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_1$ e $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{18}{\volt}$}] (0,2.8) to[R,l={$\SI{6}{\ohm}$}] (2.4,2.8) coordinate(n1);
+\draw (n1) to[R,l={$\SI{12}{\ohm}$}] (2.4,0);
+\draw (n1) to[R,l={$\SI{6}{\ohm}$}] (5.1,2.8) coordinate(n2);
+\draw (n2) to[R,l={$\SI{6}{\ohm}$}] (5.1,0);
+\draw (6.7,0) to[isource,l_={$\SI{1}{\ampere}$}] (6.7,2.8)--(n2);\draw (6.7,0)--(0,0);
+\node[ground] at (2.4,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{10.5}{\volt}$; $V_2=\SI{8.25}{\volt}$}
+\resolucao{$\frac{V_1-18}{6}+\frac{V_1}{12}+\frac{V_1-V_2}{6}=0$ e $\frac{V_2}{6}+\frac{V_2-V_1}{6}=1$.}
+\end{questao}
+
+\begin{questao}[2]{}
+A fonte horizontal força $\SI{2}{\ampere}$ do nó 1 para o nó 2. Determine as tensões nodais.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{24}{\volt}$}] (0,2.8) to[R,l={$\SI{6}{\ohm}$}] (2.6,2.8) coordinate(n1);
+\draw (n1) to[R,l={$\SI{12}{\ohm}$}] (2.6,0);
+\draw (n1) to[isource,l={$\SI{2}{\ampere}$}] (5.2,2.8) coordinate(n2);
+\draw (n2) to[R,l={$\SI{6}{\ohm}$}] (5.2,0)--(0,0);
+\node[ground] at (2.6,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{8}{\volt}$; $V_2=\SI{12}{\volt}$}
+\resolucao{Nó 1: $(V_1-24)/6+V_1/12+2=0\Rightarrow V_1=8$ V. Nó 2: $V_2/6=2\Rightarrow V_2=12$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_1$, $V_2$ e a corrente no resistor de $\SI{4}{\ohm}$ entre os nós.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{10}{\volt}$}] (0,2.8) to[R,l={$\SI{2}{\ohm}$}] (2.4,2.8) coordinate(n1);
+\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (5,2.8) coordinate(n2);
+\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (2.4,0);
+\draw (n2) to[R,l={$\SI{8}{\ohm}$}] (5,0)--(0,0);
+\node[ground] at (2.4,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{6}{\volt}$; $V_2=\SI{4}{\volt}$; $i_{12}=\SI{0.5}{\ampere}$}
+\resolucao{$\frac{V_1-10}{2}+\frac{V_1}{4}+\frac{V_1-V_2}{4}=0$ e $\frac{V_2}{8}+\frac{V_2-V_1}{4}=0$. Logo $V_1=6$ V, $V_2=4$ V e $i_{12}=(6-4)/4=0{,}5$ A.}
+\end{questao}
