@@ -1,0 +1,17 @@
+% Circuito de tres malhas em L --- redesenho visual
+\newcommand{\fvMalhaLRevisada}{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,2.6) to[\fonteV,l^={$E=\SI{12}{\volt}$}] (0,5.4)
+      to[R,l={$\SI{2}{\ohm}$}] (3.2,5.4) coordinate(t1);
+\draw (t1) to[R,l_={$R_a=\SI{2}{\ohm}$}] (3.2,2.6) coordinate(m1)--(0,2.6);
+\draw (t1) to[R,l={$\SI{1}{\ohm}$}] (6.4,5.4) coordinate(t2);
+\draw (t2)--(6.4,2.6) coordinate(m2)--(m1);
+\draw (m1) to[R,l^={$R_b=\SI{2}{\ohm}$}] (3.2,0) coordinate(b1);
+\draw (b1) to[R,l_={$\SI{4}{\ohm}$}] (6.4,0) coordinate(b2)--(m2);
+\draw[->,loopcol,line width=1.05pt] (1.45,3.55) arc(0:305:.34);
+\node[loopcol,fill=white,inner sep=1pt] at(1.45,3.55){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.05pt] (4.95,3.55) arc(0:305:.34);
+\node[loopcol,fill=white,inner sep=1pt] at(4.95,3.55){\footnotesize$I_2$};
+\draw[->,loopcol,line width=1.05pt] (4.95,1.00) arc(0:305:.34);
+\node[loopcol,fill=white,inner sep=1pt] at(4.95,1.00){\footnotesize$I_3$};
+\end{circuitikz}}
