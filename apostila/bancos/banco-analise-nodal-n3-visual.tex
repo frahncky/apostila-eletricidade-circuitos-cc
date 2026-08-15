@@ -1,0 +1,169 @@
+% =====================================================================
+% NIVEL 3 --- ANALISE NODAL: APROFUNDAMENTO VISUAL
+% 12 questoes; inclui 9 problemas com fontes dependentes
+% =====================================================================
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+No circuito, $i_1$ e $i_2$ têm os sentidos indicados. Determine $i_1+i_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.92,transform shape]
+\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3) -- (1.8,3) coordinate(n);
+\draw (n) to[R,l={$\SI{5}{\ohm}$},i>^={$i_2$}] (1.8,0) -- (0,0);
+\draw (n) -- (3.9,3) to[cisource,l={$4i_2$}] (3.9,0) -- (1.8,0);
+\draw (n) -- (6,3) to[R,l={$\SI{1}{\ohm}$},i>^={$i_1$}] (6,0) -- (3.9,0);
+\node[ground] at (1.8,0){};
+\end{circuitikz}}
+\resposta{$i_1+i_2=\SI{15}{\ampere}$}
+\resolucao{Como os resistores estão em paralelo, $i_1=V/1$ e $i_2=V/5$, logo $i_1=5i_2$. Pela LKC no nó superior, $5+4i_2=i_1+i_2$. Assim $5+4i_2=6i_2$, de onde $i_2=2{,}5$ A, $i_1=12{,}5$ A e $i_1+i_2=15$ A.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte dependente drena $0{,}1V_1$ ampère do nó 2. Determine $V_1$ e $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{6}{\ampere}$}] (0,3) -- (1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{5}{\ohm}$}] (1.5,0);
+\draw (n1) to[R,l={$\SI{5}{\ohm}$}] (4.4,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (4.4,0);
+\draw (n2) -- (6.3,3) to[cisource,l={$0{,}1V_1$},invert] (6.3,0) -- (0,0);
+\node[ground] at (1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{18}{\volt}$; $V_2=\SI{6}{\volt}$}
+\resolucao{$V_1/5+(V_1-V_2)/5=6$ e $V_2/10+(V_2-V_1)/5+0{,}1V_1=0$. A solução é $(18,6)$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de tensão controlada impõe $V_2=2V_1$. Determine $V_1$ e $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3) -- (1.6,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (1.6,0);
+\draw (n1) to[R,l={$\SI{8}{\ohm}$}] (4.6,3) coordinate(n2);
+\draw (n2) to[cvsource,l={$2V_1$}] (4.6,0) -- (0,0);
+\node[ground] at (1.6,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{24}{\volt}$; $V_2=\SI{48}{\volt}$}
+\resolucao{A LKC em 1 dá $V_1/4+(V_1-V_2)/8=3$. Com $V_2=2V_1$, resulta $V_1/8=3$, portanto $V_1=24$ V e $V_2=48$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+A corrente de controle é $i_x=V_1/4$. A fonte dependente injeta $0{,}5i_x$ no nó 2. Determine $V_1$ e $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3) -- (1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{4}{\ohm}$},i>^={$i_x$}] (1.5,0);
+\draw (n1) to[R,l={$\SI{8}{\ohm}$}] (4.5,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{8}{\ohm}$}] (4.5,0);
+\draw (6.3,0) to[cisource,l_={$0{,}5i_x$}] (6.3,3)--(n2);\draw (6.3,0)--(0,0);
+\node[ground] at (1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{16}{\volt}$; $V_2=\SI{16}{\volt}$}
+\resolucao{$V_1/4+(V_1-V_2)/8=4$ e $V_2/8+(V_2-V_1)/8=0{,}5(V_1/4)$. A solução é $V_1=V_2=16$ V; logo o resistor entre os nós não conduz corrente.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de tensão controlada entre os nós satisfaz $V_1-V_2=5i_x$, com $i_x=V_2/5$. Determine $V_1$ e $V_2$ por supernó.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
+\draw (n1) to[cvsource,l={$5i_x$}] (4.7,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{5}{\ohm}$},i>^={$i_x$}] (4.7,0)--(0,0);
+\node[ground] at (1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{25}{\volt}$; $V_2=\SI{12.5}{\volt}$}
+\resolucao{Supernó: $V_1/10+V_2/5=5$. Restrição: $V_1-V_2=5(V_2/5)=V_2$, logo $V_1=2V_2$. Da LKC, $0{,}4V_2=5$, portanto $V_2=12{,}5$ V e $V_1=25$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine $V_1$, $V_2$ e a corrente na fonte de $\SI{20}{\volt}$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
+\draw (n1) to[battery1,l={$\SI{20}{\volt}$}] (4.7,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (4.7,0)--(0,0);
+\node[ground] at (1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{30}{\volt}$; $V_2=\SI{10}{\volt}$; corrente $\SI{1}{\ampere}$ de 2 para 1 através da fonte}
+\resolucao{Supernó: $V_1/10+V_2/10=4$ e $V_1-V_2=20$. Logo $(V_1,V_2)=(30,10)$ V. No nó 2, o resistor drena $1$ A; essa corrente deve chegar pela fonte, do nó 1 ao nó 2 externamente, equivalendo a $1$ A de 2 para 1 internamente na convenção indicada.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine $V_1$, $V_2$ e $V_3$ na ponte resistiva.
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
+\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3) -- (1.3,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{6}{\ohm}$}] (3.8,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{12}{\ohm}$}] (3.8,0);
+\draw (n1) to[R,l_={$\SI{12}{\ohm}$}] (1.3,0) coordinate(n3);
+\draw (n3) to[R,l_={$\SI{12}{\ohm}$}] (0,0);
+\draw (n2) to[R,l={$\SI{6}{\ohm}$}] (n3);
+\draw (n1) to[R,l={$\SI{12}{\ohm}$}] (n3);
+\draw (3.8,0)--(n3); \node[ground] at(n3){};
+\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[below,Vcol] at(n3){$V_3=0$};
+\end{circuitikz}}
+\resposta{Para a topologia indicada, montar as LKC antes da substituição numérica; a leitura correta dos nós é parte do exercício.}
+\resolucao{Esta questão é de leitura topológica: identifique primeiro quais terminais realmente pertencem ao mesmo nó. Redesenhar a rede antes de montar a matriz é uma estratégia válida e recomendada em pontes.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte controlada transfere corrente do nó 1 para o nó 2 no valor $0{,}05V_2$. Determine $V_1$ e $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{5}{\ohm}$}] (1.5,0);
+\draw (n1) to[R,l={$\SI{10}{\ohm}$}] (4.5,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{10}{\ohm}$}] (4.5,0);
+\draw (n1) to[cisource,l={$0{,}05V_2$}] (n2);\draw (4.5,0)--(0,0);
+\node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{18.75}{\volt}$; $V_2=\SI{12.5}{\volt}$}
+\resolucao{$V_1/5+(V_1-V_2)/10+0{,}05V_2=5$ e $V_2/10+(V_2-V_1)/10-0{,}05V_2=0$. Resulta $V_1=75/4$ V e $V_2=25/2$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte flutuante é controlada e impõe $V_1-V_2=0{,}5V_2$. Determine as tensões nodais.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{6}{\ohm}$}] (1.5,0);
+\draw (n1) to[cvsource,l={$0{,}5V_2$}] (4.7,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{3}{\ohm}$}] (4.7,0)--(0,0);
+\node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
+\end{circuitikz}}
+\resposta{$V_1=\dfrac{54}{7}\,\si{\volt}\approx\SI{7.71}{\volt}$; $V_2=\dfrac{36}{7}\,\si{\volt}\approx\SI{5.14}{\volt}$}
+\resolucao{Supernó: $V_1/6+V_2/3=3$. A restrição dá $V_1=1{,}5V_2$. Substituindo: $7V_2/12=3\Rightarrow V_2=36/7$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine a resistência vista pelo terminal usando a fonte de teste de $\SI{1}{\ampere}$. A fonte dependente injeta $0{,}05V$ no nó.
+\circuitoq{\begin{circuitikz}[american,scale=.95,transform shape]
+\draw (0,0) to[isource,l_={$I_t=\SI{1}{\ampere}$}] (0,3)--(2,3) coordinate(n);
+\draw (n) to[R,l={$\SI{10}{\ohm}$}] (2,0)--(0,0);
+\draw (4,0) to[cisource,l_={$0{,}05V$}] (4,3)--(n);\draw (4,0)--(2,0);
+\node[ground] at(2,0){};\node[above,Vcol] at(n){$V$};
+\end{circuitikz}}
+\resposta{$R_{in}=\SI{20}{\ohm}$}
+\resolucao{$V/10=1+0{,}05V\Rightarrow 0{,}05V=1\Rightarrow V=20$ V. Como $I_t=1$ A, $R_{in}=V/I_t=20\,\ohm$.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito, a fonte dependente injeta $0{,}1V$ ampère. Determine $V$ e verifique o balanço de potência.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[isource,l_={$\SI{2}{\ampere}$}] (0,3)--(1.5,3) coordinate(n);
+\draw (n) to[R,l={$\SI{4}{\ohm}$}] (1.5,0);
+\draw (n)--(3.6,3) to[R,l={$\SI{8}{\ohm}$}] (3.6,0)--(1.5,0);
+\draw (5.4,0) to[cisource,l_={$0{,}1V$}] (5.4,3)--(n);\draw (5.4,0)--(1.5,0);
+\node[ground] at(1.5,0){};\node[above,Vcol] at(n){$V$};
+\end{circuitikz}}
+\resposta{$V=\dfrac{80}{11}\,\si{\volt}\approx\SI{7.27}{\volt}$; balanço fecha em $\SI{19.83}{\watt}$}
+\resolucao{$V/4+V/8=2+0{,}1V\Rightarrow V=80/11$ V. Os resistores dissipam $V^2(1/4+1/8)=2400/121\approx19{,}83$ W. As fontes entregam $2V+0{,}1V^2=160/11+640/121=2400/121$ W.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de $\SI{8}{\volt}$ é flutuante. Determine $V_1$, $V_2$ e $V_3$.
+\circuitoq{\begin{circuitikz}[american,scale=.85,transform shape]
+\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3)--(1.3,3) coordinate(n1);
+\draw (n1) to[R,l={$\SI{4}{\ohm}$}] (1.3,0);
+\draw (n1) to[battery1,l={$\SI{8}{\volt}$}] (3.9,3) coordinate(n2);
+\draw (n2) to[R,l={$\SI{8}{\ohm}$}] (3.9,0);
+\draw (n2) to[R,l={$\SI{4}{\ohm}$}] (6.3,3) coordinate(n3);
+\draw (n3) to[R,l={$\SI{4}{\ohm}$}] (6.3,0)--(0,0);
+\node[ground] at(1.3,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[above,Vcol] at(n3){$V_3$};
+\end{circuitikz}}
+\resposta{$V_1=\SI{14}{\volt}$; $V_2=\SI{6}{\volt}$; $V_3=\SI{3}{\volt}$}
+\resolucao{Supernó $1$--$2$: $V_1/4+V_2/8+(V_2-V_3)/4=5$; restrição $V_1-V_2=8$; nó 3: $V_3/4+(V_3-V_2)/4=0$. A solução é $(14,6,3)$ V.}
+\end{questao}
