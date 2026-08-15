@@ -107,7 +107,7 @@ Resolva o circuito por análise nodal modificada, tomando como incógnitas $V_1$
 \draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
 \draw (n1) to[battery1,l={$\SI{10}{\volt}$}] (4.7,3) coordinate(n2);
 \draw (n2) to[R,l={$\SI{20}{\ohm}$}] (4.7,0);
-\draw (n2)--(6.5,3) to[cisource,l={$0{,}05V_1$},invert] (6.5,0)--(0,0);
+\draw (n2)--(6.5,3) to[cisource,l={$0{,}05V_1$}] (6.5,0)--(0,0);
 \node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
 \end{circuitikz}}
 \resposta{$V_1=\SI{17.5}{\volt}$; $V_2=\SI{7.5}{\volt}$; $i_s=\SI{1.25}{\ampere}$ de 1 para 2}
@@ -121,7 +121,7 @@ Determine $R$ para que $V_2=\SI{10}{\volt}$. A fonte dependente drena $0{,}05V_1
 \draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
 \draw (n1) to[R,l={$\SI{5}{\ohm}$}] (4.5,3) coordinate(n2);
 \draw (n2) to[R,l={$R$}] (4.5,0);
-\draw (n2)--(6.3,3) to[cisource,l={$0{,}05V_1$},invert] (6.3,0)--(0,0);
+\draw (n2)--(6.3,3) to[cisource,l={$0{,}05V_1$}] (6.3,0)--(0,0);
 \node[ground] at(1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
 \end{circuitikz}}
 \resposta{$V_1=\dfrac{70}{3}\,\si{\volt}$; $R=\dfrac{20}{3}\,\ohm\approx\SI{6.67}{\ohm}$}
