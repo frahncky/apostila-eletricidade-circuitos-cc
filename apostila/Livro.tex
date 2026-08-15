@@ -3,7 +3,6 @@
 %  Prof. Francisco Viana - 3a Edicao, Volume 1
 %  Arquivo principal
 %
-
 %  Compilar com: pdflatex Livro.tex  (duas vezes, para o sumario)
 % =====================================================================
 \documentclass[11pt,a4paper,oneside]{article}
@@ -12,7 +11,9 @@
 \usepackage{etoolbox}
 \usepackage[left=2.2cm,right=2.2cm,top=2.4cm,bottom=2.2cm,headsep=12pt]{geometry}
 \usepackage{estilo-eletricidade}
+\usepackage{estilo-eletricidade-ajustes}
 \DeclareSIUnit{\gauss}{G}
+\let\maxwell\relax
 \DeclareSIUnit{\maxwell}{Mx}
 \begin{document}
 
@@ -146,8 +147,7 @@ fórmulas e os princípios necessários para resolver as questões daquele bloco
 
 % Cap. 9 -------------------------------------------------------------
 \setcounter{section}{8}
-\input{cap09-maxwell}                % Metodo de Maxwell / malhas
-\input{bancos/banco-fontes-dependentes-malhas} % banco visual adicional
+\input{cap09-maxwell-integrado}      % Maxwell / malhas + dependentes por nivel
 
 % Cap. 10 ------------------------------------------------------------
 \setcounter{section}{9}
