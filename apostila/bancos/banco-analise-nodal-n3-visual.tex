@@ -72,7 +72,7 @@ A fonte de tensão controlada entre os nós satisfaz $V_1-V_2=5i_x$, com $i_x=V_
 \end{questao}
 
 \begin{questao}[3]{}
-Determine $V_1$, $V_2$ e a corrente na fonte de $\SI{20}{\volt}$.
+Determine $V_1$, $V_2$ e a corrente na fonte de $\SI{20}{\volt}$, adotada positiva de 1 para 2.
 \circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
 \draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3)--(1.5,3) coordinate(n1);
 \draw (n1) to[R,l={$\SI{10}{\ohm}$}] (1.5,0);
@@ -80,25 +80,26 @@ Determine $V_1$, $V_2$ e a corrente na fonte de $\SI{20}{\volt}$.
 \draw (n2) to[R,l={$\SI{10}{\ohm}$}] (4.7,0)--(0,0);
 \node[ground] at (1.5,0){};\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};
 \end{circuitikz}}
-\resposta{$V_1=\SI{30}{\volt}$; $V_2=\SI{10}{\volt}$; corrente $\SI{1}{\ampere}$ de 2 para 1 através da fonte}
-\resolucao{Supernó: $V_1/10+V_2/10=4$ e $V_1-V_2=20$. Logo $(V_1,V_2)=(30,10)$ V. No nó 2, o resistor drena $1$ A; essa corrente deve chegar pela fonte, do nó 1 ao nó 2 externamente, equivalendo a $1$ A de 2 para 1 internamente na convenção indicada.}
+\resposta{$V_1=\SI{30}{\volt}$; $V_2=\SI{10}{\volt}$; $i_s=\SI{1}{\ampere}$ de 1 para 2}
+\resolucao{Supernó: $V_1/10+V_2/10=4$ e $V_1-V_2=20$. Logo $(V_1,V_2)=(30,10)$ V. No nó 1, dos $4$ A injetados, $3$ A descem pelo resistor; o $1$ A restante atravessa a fonte de tensão de 1 para 2.}
 \end{questao}
 
 \begin{questao}[3]{}
-Determine $V_1$, $V_2$ e $V_3$ na ponte resistiva.
+Determine $V_1$, $V_2$, $V_3$ e a corrente $i_{23}$ no resistor de ponte de $\SI{6}{\ohm}$, positiva de 2 para 3.
 \circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3) -- (1.3,3) coordinate(n1);
-\draw (n1) to[R,l={$\SI{6}{\ohm}$}] (3.8,3) coordinate(n2);
-\draw (n2) to[R,l={$\SI{12}{\ohm}$}] (3.8,0);
-\draw (n1) to[R,l_={$\SI{12}{\ohm}$}] (1.3,0) coordinate(n3);
-\draw (n3) to[R,l_={$\SI{12}{\ohm}$}] (0,0);
+\coordinate (g) at (0,-1.6);
+\draw (g) to[isource,l_={$\SI{3}{\ampere}$}] (0,1.6) -- (1.3,1.6) coordinate(n1);
+\draw (n1) to[R,l={$\SI{6}{\ohm}$}] (4.2,3.0) coordinate(n2);
+\draw (n1) to[R,l_={$\SI{12}{\ohm}$}] (4.2,0.2) coordinate(n3);
 \draw (n2) to[R,l={$\SI{6}{\ohm}$}] (n3);
-\draw (n1) to[R,l={$\SI{12}{\ohm}$}] (n3);
-\draw (3.8,0)--(n3); \node[ground] at(n3){};
-\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[below,Vcol] at(n3){$V_3=0$};
+\draw (n2) to[R,l={$\SI{12}{\ohm}$}] (4.2,-1.6);
+\draw (n3) to[R,l_={$\SI{12}{\ohm}$}] (4.2,-1.6);
+\draw (4.2,-1.6) -- (g);
+\node[ground] at(g){};
+\node[above,Vcol] at(n1){$V_1$};\node[above,Vcol] at(n2){$V_2$};\node[right,Vcol] at(n3){$V_3$};
 \end{circuitikz}}
-\resposta{Para a topologia indicada, montar as LKC antes da substituição numérica; a leitura correta dos nós é parte do exercício.}
-\resolucao{Esta questão é de leitura topológica: identifique primeiro quais terminais realmente pertencem ao mesmo nó. Redesenhar a rede antes de montar a matriz é uma estratégia válida e recomendada em pontes.}
+\resposta{$V_1=\dfrac{576}{19}\,\si{\volt}\approx\SI{30.32}{\volt}$; $V_2=\dfrac{360}{19}\,\si{\volt}\approx\SI{18.95}{\volt}$; $V_3=\dfrac{324}{19}\,\si{\volt}\approx\SI{17.05}{\volt}$; $i_{23}=\dfrac{6}{19}\,\si{\ampere}\approx\SI{0.316}{\ampere}$}
+\resolucao{As LKC são $(V_1-V_2)/6+(V_1-V_3)/12=3$, $V_2/12+(V_2-V_1)/6+(V_2-V_3)/6=0$ e $V_3/12+(V_3-V_1)/12+(V_3-V_2)/6=0$. A solução é $(576,360,324)/19$ V. Assim $i_{23}=(V_2-V_3)/6=6/19$ A.}
 \end{questao}
 
 \begin{questao}[3]{}
