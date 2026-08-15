@@ -1,12 +1,14 @@
 % =====================================================================
 % CAPITULO 9 --- WRAPPER DE INTEGRACAO DOS EXERCICIOS DEPENDENTES
-% Injeta as questoes de fontes dependentes dentro dos blocos N2, N3 e N4
-% e substitui somente os desenhos identificados na auditoria visual.
+% Injeta as questoes de fontes dependentes dentro dos blocos N2, N3 e N4,
+% substitui desenhos identificados na auditoria visual e garante que TODAS as
+% setas de corrente de malha usadas no capitulo original sejam horarias.
 % =====================================================================
 
 \begingroup
 
 \input{bancos/circuito-revisado-malha-l.tex}
+\input{bancos/circuitos-malhas-horario.tex}
 
 \newcount\fvAprofCount
 \newcount\fvDesafioCount
@@ -49,7 +51,9 @@
 }
 
 % Primeiro N4: injeta N3 antes do cabecalho N4.
-% Segundo N4 (banco complementar): injeta N4 logo apos o cabecalho N4.
+% Segundo N4 (banco complementar diversificado): injeta N4 logo apos o
+% cabecalho N4. Assim as fontes dependentes continuam integradas por nivel,
+% sem dominar todo o banco de exercicios.
 \let\fvBlocoDesafioOriginal\blocodesafio
 \renewcommand{\blocodesafio}{%
   \advance\fvDesafioCount by 1\relax
