@@ -1,6 +1,7 @@
 % =====================================================================
 % FONTES DEPENDENTES EM MALHAS --- NIVEL 4
 % Questoes integradas ao bloco de Desafio do Capitulo 9.
+% Correntes de malha desenhadas no sentido HORARIO.
 % =====================================================================
 
 \begin{questao}[4]{}
@@ -17,7 +18,7 @@ $2{,}5I_1$ volts e impulsiona $I_3$. Determine $I_1$, $I_2$ e $I_3$.
 \draw (t2) to[R,l={$\SI{5}{\ohm}$}] (8.4,3.2)
       to[cvsource,l={$2{,}5I_1$}] (8.4,0) -- (b2);
 \foreach \x/\n in {1.25/1,4.15/2,7.05/3}{%
-  \draw[->,loopcol,line width=1.05pt] (\x,1.00) arc (0:310:.40);
+  \draw[->,loopcol,line width=1.05pt] (\x,1.00) arc[start angle=0,end angle=-310,radius=.40cm];
   \node[loopcol,fill=white,inner sep=1pt] at (\x,1.00){\scriptsize$I_{\n}$};}
 \end{circuitikz}}
 
@@ -49,7 +50,7 @@ as malhas 2 e 3.
 \draw (t2) to[cisource,l={$0{,}5I_1$},invert] (5.6,0) coordinate(b2) -- (b1);
 \draw (t2) to[R,l={$\SI{10}{\ohm}$}] (8.4,3.2) -- (8.4,0) -- (b2);
 \foreach \x/\n in {1.25/1,4.15/2,7.05/3}{%
-  \draw[->,loopcol,line width=1.05pt] (\x,1.00) arc (0:310:.40);
+  \draw[->,loopcol,line width=1.05pt] (\x,1.00) arc[start angle=0,end angle=-310,radius=.40cm];
   \node[loopcol,fill=white,inner sep=1pt] at (\x,1.00){\scriptsize$I_{\n}$};}
 \draw[dashed,laranja,line width=.9pt,rounded corners=7pt]
       (2.25,-.55) rectangle (8.95,4.05);
@@ -77,9 +78,9 @@ $I_2=\SI{2}{\ampere}$ e calcule $I_1$.
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (3.2,0) coordinate(b) -- (0,0);
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (6.4,3.2)
       to[cvsource,l={$kI_1$}] (6.4,0) -- (b);
-\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (1.75,1.00){\footnotesize$I_1$};
-\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (4.75,1.00){\footnotesize$I_2$};
 \end{circuitikz}}
 
@@ -103,9 +104,9 @@ sua potência, indicando se ela absorve ou fornece energia.
       to[R,l={$\SI{4}{\ohm}$}] (3.2,3.2) coordinate(t);
 \draw (t) to[cvsource,l_={$v_d$}] (3.2,0) coordinate(b) -- (0,0);
 \draw (t) to[R,l={$\SI{4}{\ohm}$}] (6.4,3.2) -- (6.4,0) -- (b);
-\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (1.75,1.00){\footnotesize$I_1$};
-\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (4.75,1.00){\footnotesize$I_2$};
 \end{circuitikz}}
 
