@@ -1,0 +1,70 @@
+% =====================================================================
+% CAPITULO 9 --- ANALISE DE MALHAS / METODO DE MAXWELL --- V2
+% Estrutura limpa: teoria curta + banco visual diversificado por nivel.
+% As fontes dependentes sao inseridas nos niveis correspondentes, sem
+% transformar o capitulo inteiro em variacoes do mesmo circuito.
+% =====================================================================
+
+\section{Método de Maxwell (Análise de Malhas)}
+
+\begin{conceito}[Procedimento de análise]
+Para circuitos \textbf{planares}, associe uma corrente a cada malha interna.
+Neste material, a convenção gráfica é sempre
+\textbf{corrente de malha no sentido horário}.
+\begin{enumerate}[leftmargin=1.7em,itemsep=2pt,topsep=3pt]
+\item Identifique as malhas independentes e adote $I_1,I_2,\ldots$ no sentido horário.
+\item Em resistor exclusivo da malha $k$, use $RI_k$.
+\item Em resistor compartilhado por $j$ e $k$, use
+      $R(I_j-I_k)$ quando o percurso é feito na malha $j$.
+\item Fontes de tensão entram diretamente na LKT, com sinal definido pela
+      polaridade encontrada durante o percurso horário.
+\item Fonte de corrente na periferia fixa diretamente uma corrente de malha.
+\item Fonte de corrente em ramo compartilhado exige \textbf{supermalha} mais
+      uma equação de restrição.
+\item Resolva o sistema e converta correntes de malha em correntes reais de ramo.
+\end{enumerate}
+\end{conceito}
+
+\begin{atencao}[Sentido das setas]
+As setas desenhadas neste capítulo são \textbf{horárias}. Em TikZ/CircuitikZ,
+um arco com ângulo final positivo é anti-horário; por isso os desenhos usam
+ângulos finais negativos. Se uma corrente calculada resultar negativa, o
+\emph{resultado} circula no sentido contrário à seta, mas a seta de referência
+continua horária.
+\end{atencao}
+
+\legendaniveis
+
+% Injecao dos bancos de fontes dependentes exatamente entre os niveis do banco
+% principal. Isso preserva a classificacao N2/N3/N4.
+\begingroup
+\newcount\fvMaxAprof
+\newcount\fvMaxDesafio
+\fvMaxAprof=0
+\fvMaxDesafio=0
+
+\let\fvMaxAprofOrig\blocoaprofundamento
+\renewcommand{\blocoaprofundamento}{%
+  \advance\fvMaxAprof by 1\relax
+  \ifnum\fvMaxAprof=1\relax
+    \input{bancos/banco-fontes-dependentes-malhas-n2}%
+  \fi
+  \fvMaxAprofOrig
+}
+
+\let\fvMaxDesafioOrig\blocodesafio
+\renewcommand{\blocodesafio}{%
+  \advance\fvMaxDesafio by 1\relax
+  \ifnum\fvMaxDesafio=1\relax
+    \input{bancos/banco-fontes-dependentes-malhas-n3}%
+    \fvMaxDesafioOrig
+    \input{bancos/banco-fontes-dependentes-malhas-n4}%
+  \else
+    \fvMaxDesafioOrig
+  \fi
+}
+
+\input{bancos/banco-metodo-de-maxwell-analise-de-malhas}
+\endgroup
+
+\gabarito[Capítulo 9 --- Método de Maxwell]
