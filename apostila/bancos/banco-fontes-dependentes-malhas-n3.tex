@@ -1,6 +1,7 @@
 % =====================================================================
 % FONTES DEPENDENTES EM MALHAS --- NIVEL 3
 % Questoes integradas ao bloco de Aprofundamento do Capitulo 9.
+% Correntes de malha desenhadas no sentido HORARIO.
 % =====================================================================
 
 \begin{questao}[3]{}
@@ -14,9 +15,9 @@ Determine as correntes de malha.
 \draw (t) to[R,l={$\SI{4}{\ohm}$},i>^={$i_x$}] (3.2,0) coordinate(b) -- (0,0);
 \draw (t) to[R,l={$\SI{8}{\ohm}$}] (6.4,3.2)
       to[cvsource,l={$4i_x$}] (6.4,0) -- (b);
-\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (1.75,1.00){\footnotesize$I_1$};
-\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (4.75,1.00){\footnotesize$I_2$};
 \end{circuitikz}}
 
@@ -40,9 +41,9 @@ malha 1. A fonte dependente vale $0{,}5v_x$. Determine $I_1$ e $I_2$.
 \draw (t) to[R,l={$\SI{4}{\ohm}$}] (3.2,0) coordinate(b) -- (0,0);
 \draw (t) to[R,l={$\SI{4}{\ohm}$}] (6.4,3.2)
       to[cvsource,l={$0{,}5v_x$}] (6.4,0) -- (b);
-\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (1.75,1.00){\footnotesize$I_1$};
-\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (4.75,1.00){\footnotesize$I_2$};
 \end{circuitikz}}
 
@@ -68,9 +69,9 @@ para cima igual a $0{,}1v_x$. A tensão $v_x$ está indicada no resistor da malh
       to[R,l_={$\SI{5}{\ohm}$},v^>={$v_x$}] (3.2,3.2) coordinate(t);
 \draw (t) to[cisource,l={$0{,}1v_x$},invert] (3.2,0) coordinate(b) -- (0,0);
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (6.4,3.2) -- (6.4,0) -- (b);
-\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (1.75,1.00){\footnotesize$I_1$};
-\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (4.75,1.00){\footnotesize$I_2$};
 \draw[dashed,laranja,line width=.9pt,rounded corners=7pt]
       (-.55,-.5) rectangle (6.95,4.10);
@@ -99,9 +100,9 @@ por supermalha.
       to[R,l_={$\SI{5}{\ohm}$},i>^={$i_x$}] (3.2,3.2) coordinate(t);
 \draw (t) to[cisource,l={$2i_x$},invert] (3.2,0) coordinate(b) -- (0,0);
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (6.4,3.2) -- (6.4,0) -- (b);
-\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (1.75,1.00){\footnotesize$I_1$};
-\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (4.75,1.00){\footnotesize$I_2$};
 \draw[dashed,laranja,line width=.9pt,rounded corners=7pt]
       (-.55,-.5) rectangle (6.95,4.10);
