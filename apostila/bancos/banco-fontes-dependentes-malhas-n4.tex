@@ -1,0 +1,120 @@
+% =====================================================================
+% FONTES DEPENDENTES EM MALHAS --- NIVEL 4
+% Questoes integradas ao bloco de Desafio do Capitulo 9.
+% =====================================================================
+
+\begin{questao}[4]{}
+No circuito de três malhas, a fonte dependente da terceira malha vale
+$2{,}5I_1$ volts e impulsiona $I_3$. Determine $I_1$, $I_2$ e $I_3$.
+
+\circuitoq{%
+\begin{circuitikz}[american,scale=.84,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l_={$\SI{20}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{5}{\ohm}$}] (2.8,3.2) coordinate(t1);
+\draw (t1) to[R,l={$\SI{5}{\ohm}$}] (2.8,0) coordinate(b1) -- (0,0);
+\draw (t1) to[R,l={$\SI{5}{\ohm}$}] (5.6,3.2) coordinate(t2);
+\draw (t2) to[R,l={$\SI{5}{\ohm}$}] (5.6,0) coordinate(b2) -- (b1);
+\draw (t2) to[R,l={$\SI{5}{\ohm}$}] (8.4,3.2)
+      to[cvsource,l={$2{,}5I_1$}] (8.4,0) -- (b2);
+\foreach \x/\n in {1.25/1,4.15/2,7.05/3}{
+  \draw[->,loopcol,line width=1.1pt] (\x,1.05) arc (0:310:.44);
+  \node[loopcol] at (\x,1.05){\scriptsize$I_{\n}$};}
+\end{circuitikz}}
+
+\resposta{$I_1=\dfrac{8}{3}\,\si{\ampere}$; $I_2=I_3=\dfrac{4}{3}\,\si{\ampere}$}
+\resolucao{As três equações são
+\[
+10I_1-5I_2=20,
+\]
+\[
+-5I_1+15I_2-5I_3=0,
+\]
+\[
+-5I_2+10I_3=2{,}5I_1.
+\]
+A solução do sistema fornece $I_1=8/3$ A e $I_2=I_3=4/3$ A.}
+\end{questao}
+
+\begin{questao}[4]{}
+A fonte de corrente dependente está entre as malhas 2 e 3 e impõe
+$I_3-I_2=0{,}5I_1$. Determine as três correntes usando uma supermalha envolvendo
+as malhas 2 e 3.
+
+\circuitoq{%
+\begin{circuitikz}[american,scale=.84,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l_={$\SI{30}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{5}{\ohm}$}] (2.8,3.2) coordinate(t1);
+\draw (t1) to[R,l={$\SI{5}{\ohm}$}] (2.8,0) coordinate(b1) -- (0,0);
+\draw (t1) to[R,l={$\SI{5}{\ohm}$}] (5.6,3.2) coordinate(t2);
+\draw (t2) to[cisource,l={$0{,}5I_1$},invert] (5.6,0) coordinate(b2) -- (b1);
+\draw (t2) to[R,l={$\SI{10}{\ohm}$}] (8.4,3.2) -- (8.4,0) -- (b2);
+\foreach \x/\n in {1.25/1,4.15/2,7.05/3}{
+  \draw[->,loopcol,line width=1.1pt] (\x,1.05) arc (0:310:.44);
+  \node[loopcol] at (\x,1.05){\scriptsize$I_{\n}$};}
+\draw[dashed,laranja,line width=.9pt,rounded corners=7pt]
+      (2.35,-.45) rectangle (8.85,3.65);
+\end{circuitikz}}
+
+\resposta{$I_1=\SI{3}{\ampere}$; $I_2=0$; $I_3=\SI{1.5}{\ampere}$}
+\resolucao{A malha 1 fornece $10I_1-5I_2=30$. A supermalha 2--3 fornece
+\[
+-5I_1+10I_2+10I_3=0,
+\]
+e a fonte impõe $I_3-I_2=0{,}5I_1$. Resolvendo o sistema,
+$I_1=\SI{3}{\ampere}$, $I_2=0$ e $I_3=\SI{1.5}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+A fonte dependente vale $kI_1$ volts. Determine $k$ para que
+$I_2=\SI{2}{\ampere}$ e calcule $I_1$.
+
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l_={$\SI{20}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{5}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l={$\SI{5}{\ohm}$}] (3.2,0) coordinate(b) -- (0,0);
+\draw (t) to[R,l={$\SI{5}{\ohm}$}] (6.4,3.2)
+      to[cvsource,l={$kI_1$}] (6.4,0) -- (b);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.05) arc (0:310:.50);
+\node[loopcol] at (1.75,1.05){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.75,1.05) arc (0:310:.50);
+\node[loopcol] at (4.75,1.05){\footnotesize$I_2$};
+\end{circuitikz}}
+
+\resposta{$I_1=\SI{3}{\ampere}$; $k=\dfrac{5}{3}\,\ohm\approx\SI{1.67}{\ohm}$}
+\resolucao{A malha 1 dá $10I_1-5I_2=20$. Impondo $I_2=2$ A,
+$I_1=3$ A. Na malha 2,
+\[
+-5I_1+10I_2=kI_1.
+\]
+Logo $-15+20=3k$, e portanto $k=5/3\,\ohm$.}
+\end{questao}
+
+\begin{questao}[4]{}
+A fonte de tensão dependente está no ramo comum e possui tensão, de cima para
+baixo, $v_d=2I_1$. Determine $I_1$, $I_2$, a corrente real na fonte dependente e
+sua potência, indicando se ela absorve ou fornece energia.
+
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l_={$\SI{20}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{4}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[cvsource,l_={$v_d$}] (3.2,0) coordinate(b) -- (0,0);
+\draw (t) to[R,l={$\SI{4}{\ohm}$}] (6.4,3.2) -- (6.4,0) -- (b);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.05) arc (0:310:.50);
+\node[loopcol] at (1.75,1.05){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.75,1.05) arc (0:310:.50);
+\node[loopcol] at (4.75,1.05){\footnotesize$I_2$};
+\end{circuitikz}}
+
+\resposta{$I_1=\dfrac{10}{3}\,\si{\ampere}$; $I_2=\dfrac{5}{3}\,\si{\ampere}$;
+$i_d=\dfrac{5}{3}\,\si{\ampere}$ para baixo; $P_d=\dfrac{100}{9}\,\si{\watt}$ absorvidos}
+\resolucao{Na malha 1, $4I_1+v_d=20$ e $v_d=2I_1$, portanto
+$I_1=10/3$ A. Na malha 2, $4I_2-v_d=0$, então $I_2=5/3$ A. A corrente real no
+ramo comum é $i_d=I_1-I_2=5/3$ A para baixo. Como $v_d=20/3$ V e a corrente
+entra no terminal positivo superior da fonte dependente,
+\[
+P_d=v_di_d=\frac{20}{3}\frac{5}{3}=\frac{100}{9}\,\si{\watt},
+\]
+logo a fonte dependente \textbf{absorve} potência.}
+\end{questao}
