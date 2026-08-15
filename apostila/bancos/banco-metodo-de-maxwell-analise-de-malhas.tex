@@ -1,713 +1,615 @@
 % =====================================================================
-%  Banco complementar --- Metodo de Maxwell (Analise de Malhas)
-%  REVISADO. Substitui a versao gerada por template (8 clones em N2,
-%  5 em N3 -- todos com o mesmo enunciado sobre fonte de corrente no
-%  ramo comum -- e 5 questoes conceituais marcadas como N4).
-%  O cap09 e denso e ja cobre: resistor compartilhado (N1), Maxwell
-%  em duas malhas com figura (tres vezes), tabela comparativa de
-%  tecnicas, escolha nodal x malhas com N nos e M malhas, comparacao
-%  de tres caminhos de solucao, SUPERMALHA com fonte compartilhada,
-%  matriz de tres malhas com regra de Cramer, correntes reais em ramos
-%  compartilhados, matriz de quatro malhas dada, tres malhas em "L",
-%  a relacao m = b - n + 1 e o arranjo 2x2 de quatro malhas.
-%  Este banco evita todos esses casos e explora: fonte de corrente na
-%  PERIFERIA (que nao gera supermalha), fontes dependentes e a quebra
-%  de simetria, forma quadratica da potencia, matriz singular,
-%  algoritmo de geracao e a dualidade formal nodal <-> malhas.
-%  Distribuicao mantida: 7 N1 + 8 N2 + 5 N3 + 5 N4 = 25
+% BANCO COMPLEMENTAR --- ANALISE DE MALHAS / METODO DE MAXWELL
+% Revisao 2026-08-15
+% 7 N1 + 8 N2 + 5 N3 + 5 N4 = 25 questoes.
+% N2/N3/N4: todas as questoes partem de CIRCUITOS diferentes e as setas
+% de corrente de malha sao desenhadas explicitamente no sentido HORARIO.
+% Fontes dependentes permanecem nos bancos especificos, evitando transformar
+% toda a secao em repeticoes do mesmo tema.
 % =====================================================================
 
 \subsubsection*{Banco complementar --- Método de Maxwell (análise de malhas)}
 
-\begin{atencao}[Organização do banco]
-A montagem por inspeção segue duas regras fixas: a \textbf{diagonal}
-$R_{kk}$ é a soma de todas as resistências da malha $k$; o termo \textbf{fora
-da diagonal} $R_{jk}$ é o \emph{negativo} da resistência compartilhada entre as
-malhas $j$ e $k$ (zero, se não houver). No vetor independente entram as fontes
-de tensão, positivas quando impulsionam a corrente no sentido adotado. O N3
-trata de fontes na periferia, fontes dependentes e forma quadrática; o N4 exige
-demonstração, diagnóstico de singularidade, algoritmo e dualidade.
+\begin{atencao}[Convenção gráfica]
+Em todos os circuitos deste banco, $I_1,I_2,\ldots$ são adotadas no
+\textbf{sentido horário}. Uma corrente calculada negativa significa apenas que
+a corrente real daquela malha circula no sentido oposto ao indicado. Os níveis
+2, 3 e 4 usam topologias e objetivos diferentes: malhas triangulares, fontes em
+ramos compartilhados, fontes de corrente periféricas, redes de três malhas,
+ponte resistiva, síntese, máxima potência, identificação de parâmetros e rede
+em roda de quatro malhas.
 \end{atencao}
 
+\providecommand{\fvMeshCW}[3]{%
+  \draw[->,loopcol,line width=1.1pt] (#1)
+    arc[start angle=0,end angle=-305,radius=#2cm];%
+  \node[loopcol,fill=white,inner sep=1pt] at (#1){\footnotesize #3};}
+
+% =====================================================================
+% N1
+% =====================================================================
 \blocofixacao
 
 \begin{questao}[1]{}
-Uma malha contém resistores de $\SI{4}{\ohm}$, $\SI{6}{\ohm}$ e
-$\SI{10}{\ohm}$, sendo o de $\SI{10}{\ohm}$ compartilhado com a malha vizinha.
-Determine $R_{11}$ e $R_{12}$.
-\resposta{$R_{11}=\SI{20}{\ohm}$; $R_{12}=\SI{-10}{\ohm}$}
-\resolucao{\textbf{Diagonal:} soma de \emph{todas} as resistências da malha,
-inclusive a compartilhada:
-\[
-R_{11}=4+6+10=\SI{20}{\ohm}.
-\]
-\textbf{Fora da diagonal:} o negativo da resistência comum:
-\[
-R_{12}=-\SI{10}{\ohm}.
-\]
-O sinal negativo aparece porque, com ambas as correntes de malha adotadas no
-mesmo sentido (horário, por convenção), elas percorrem o resistor comum em
-sentidos \emph{opostos}.}
+No desenho abaixo, a corrente de malha segue a convenção usada neste capítulo.
+Identifique o sentido de $I_1$.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[\fonteV,l^={$E$}] (0,2.8) to[R,l={$R$}] (4,2.8) -- (4,0)--(0,0);
+\fvMeshCW{2.0,1.25}{.42}{$I_1$}
+\end{circuitikz}}
+\resposta{Horário}
+\resolucao{A seta percorre o laço no sentido horário. Essa é apenas uma
+convenção de referência; se o resultado algébrico de $I_1$ for negativo, a
+corrente real circula no sentido anti-horário.}
 \end{questao}
 
 \begin{questao}[1]{}
-Um circuito planar tem $b=\SI{9}{}$ ramos e $n=\SI{5}{}$ nós. Determine o
-número de malhas independentes.
+Duas malhas horárias compartilham um resistor $R_c$. Qual é a corrente real no
+resistor, tomando como positivo o sentido de $I_1$ no ramo comum?
+\resposta{$i_c=I_1-I_2$}
+\resolucao{As correntes horárias atravessam o ramo compartilhado em sentidos
+opostos; por isso a corrente de ramo é a diferença algébrica.}
+\end{questao}
+
+\begin{questao}[1]{}
+Um circuito planar conectado possui $b=11$ ramos e $n=7$ nós. Quantas correntes
+de malha independentes são necessárias?
 \resposta{$m=5$}
-\resolucao{
-\[
-m=b-n+1=9-5+1=5.
-\]
-São, portanto, $5$ equações de malha --- contra $n-1=4$ equações nodais. Para
-\emph{este} circuito a análise nodal produz o sistema menor.\\
-A contagem deve ser feita \emph{antes} de escolher o método: ela custa segundos
-e pode poupar um sistema inteiro.}
+\resolucao{$m=b-n+1=11-7+1=5$.}
 \end{questao}
 
 \begin{questao}[1]{}
-Por que se adota o mesmo sentido (usualmente horário) para todas as correntes
-de malha?
-\begin{alternativas}[2]
-\item porque é o sentido físico real das correntes
-\item porque torna todos os termos fora da diagonal negativos
-\item porque é exigido pela lei de Kirchhoff
-\item porque evita resultados negativos
-\end{alternativas}
-\resposta{(b)}
-\resolucao{A escolha é \textbf{arbitrária} --- qualquer conjunto de sentidos
-leva ao mesmo resultado físico. Adotar todos horários é uma \emph{convenção de
-conveniência}: garante que toda corrente compartilhada seja percorrida em
-sentidos opostos pelas duas malhas, tornando \emph{todos} os $R_{jk}$
-negativos. A matriz fica simétrica com padrão de sinais previsível, e a
-montagem por inspeção vira mecânica.\\
-As alternativas (a) e (d) são falsas: correntes de malha são variáveis
-auxiliares, não correntes físicas, e podem perfeitamente resultar negativas.}
+Uma fonte ideal de corrente está na periferia de uma única malha e sua seta
+coincide com a corrente horária $I_2$. O que pode ser escrito imediatamente?
+\resposta{$I_2=I_s$}
+\resolucao{A fonte pertence somente àquela malha; portanto ela fixa diretamente
+a corrente de malha e elimina uma incógnita do sistema.}
 \end{questao}
 
 \begin{questao}[1]{}
-Uma malha contém uma fonte de $\SI{24}{\volt}$ que impulsiona a corrente no
-sentido adotado, e outra de $\SI{9}{\volt}$ que se opõe. Determine o termo
-independente dessa malha.
-\resposta{$\SI{15}{\volt}$}
-\resolucao{
-\[
-b_k=+24-9=\SI{15}{\volt}.
-\]
-A regra de sinal: some as fontes que \emph{empurram} a corrente no sentido
-adotado e subtraia as que se opõem. Fontes que pertencem apenas àquela malha
-entram uma única vez; se a fonte estiver em um ramo compartilhado, ela aparece
---- com sinais adequados --- nas equações das \emph{duas} malhas.}
+Uma fonte ideal de corrente está no ramo comum a duas malhas. Qual técnica deve
+ser usada?
+\resposta{Supermalha, mais a equação de restrição da fonte}
+\resolucao{A tensão sobre uma fonte ideal de corrente é desconhecida; por isso
+não se escreve LKT separadamente nas duas malhas. Contorna-se o ramo da fonte e
+acrescenta-se a relação entre $I_1$ e $I_2$.}
 \end{questao}
 
 \begin{questao}[1]{}
-Resolvido um sistema, obteve-se $I_1=\SI{2}{\ampere}$ e
-$I_2=\SI{1}{\ampere}$. Determine a corrente real em um resistor pertencente
-apenas à malha 1 e em um resistor compartilhado.
-\resposta{$\SI{2}{\ampere}$ e $\SI{1}{\ampere}$}
-\resolucao{\textbf{Resistor exclusivo da malha 1:} é percorrido apenas por
-$I_1$, logo conduz $\SI{2}{\ampere}$.\\
-\textbf{Resistor compartilhado:} é percorrido pelas duas correntes em sentidos
-opostos, logo conduz a \emph{diferença}:
-\[
-I=I_1-I_2=2-1=\SI{1}{\ampere},
-\]
-no sentido de $I_1$.\\
-Este é o passo de \emph{expansão} do método: as correntes de malha são
-variáveis intermediárias, e as correntes reais dos ramos precisam ser
-recuperadas ao final.}
+Na matriz de uma rede resistiva com correntes de malha todas horárias, o que
+representam $R_{kk}$ e $R_{jk}$, $j\ne k$?
+\resposta{$R_{kk}$ é a soma das resistências da malha $k$; $R_{jk}$ é o negativo
+da resistência compartilhada}
+\resolucao{A diagonal reúne todos os resistores percorridos por $I_k$. Fora da
+diagonal aparece $-R_c$ porque as correntes horárias percorrem o ramo comum em
+sentidos opostos.}
 \end{questao}
 
 \begin{questao}[1]{}
-Resolva o sistema
-$\begin{bmatrix}30&-20\\-20&40\end{bmatrix}
-\begin{bmatrix}I_1\\I_2\end{bmatrix}=
-\begin{bmatrix}40\\0\end{bmatrix}$.
-\resposta{$I_1=\SI{2}{\ampere}$; $I_2=\SI{1}{\ampere}$}
-\resolucao{Da segunda linha: $-20I_1+40I_2=0\Rightarrow I_1=2I_2$.
-Substituindo na primeira:
-\[
-30(2I_2)-20I_2=40 \;\Longrightarrow\; 40I_2=40 \;\Longrightarrow\;
-I_2=\SI{1}{\ampere},\quad I_1=\SI{2}{\ampere}.
-\]
-\textbf{Conferência estrutural:} a matriz é simétrica, com diagonal positiva e
-termos fora da diagonal negativos --- como deve ser em rede passiva. E é
-diagonal dominante ($30>20$; $40>20$), o que garante solução única.}
+Ao resolver uma malha adotada no sentido horário, obtém-se
+$I_3=-\SI{0.8}{\ampere}$. Interprete fisicamente.
+\resposta{A corrente real tem módulo $\SI{0.8}{\ampere}$ e circula no sentido anti-horário}
+\resolucao{O sinal negativo não indica erro: ele informa que a escolha inicial
+do sentido foi oposta à corrente física.}
 \end{questao}
 
-\begin{questao}[1]{}
-Na matriz de malhas de uma rede puramente resistiva, o elemento $R_{kk}$
-representa:
-\begin{alternativas}[2]
-\item apenas as resistências exclusivas da malha $k$
-\item a soma de todas as resistências da malha $k$
-\item a resistência compartilhada com a malha vizinha
-\item a resistência equivalente vista pela fonte
-\end{alternativas}
-\resposta{(b)}
-\resolucao{A diagonal reúne \textbf{todas} as resistências percorridas por
-$I_k$ --- exclusivas e compartilhadas. As compartilhadas aparecem duas vezes na
-matriz: na diagonal (positivas, em ambas as malhas que as contêm) e fora dela
-(negativas).\\
-Esquecer a resistência comum na diagonal é o erro de montagem mais frequente do
-método, e produz sistemas que não satisfazem a dominância diagonal --- sinal de
-alerta útil.}
-\end{questao}
-
+% =====================================================================
+% N2 --- circuitos distintos
+% =====================================================================
 \blocoaplicacao
 
 \begin{questao}[2]{}
-Uma malha 1 contém uma fonte de $\SI{40}{\volt}$ e $R_a=\SI{10}{\ohm}$; ela
-compartilha $R_c=\SI{20}{\ohm}$ com a malha 2, que contém ainda
-$R_b=\SI{20}{\ohm}$. Monte o sistema e resolva.
-\resposta{$I_1=\SI{2}{\ampere}$; $I_2=\SI{1}{\ampere}$}
-\resolucao{\textbf{Por inspeção:}
+Duas malhas triangulares compartilham o resistor diagonal de
+$\SI{6}{\ohm}$. Determine $I_1$, $I_2$ e a corrente no ramo compartilhado.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.88,transform shape,line width=.8pt]
+\coordinate (A) at (0,0); \coordinate (B) at (3.4,4.2); \coordinate (C) at (6.8,0);
+\draw (A) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,2.0)
+      to[R,l={$\SI{4}{\ohm}$}] (B);
+\draw (B) to[R,l={$\SI{3}{\ohm}$}] (5.2,2.1)
+      to[R,l={$\SI{3}{\ohm}$}] (C);
+\draw (C)--(A);
+\draw (B) to[R,l={$\SI{6}{\ohm}$}] (3.4,0)--(A);
+\fvMeshCW{1.75,1.45}{.38}{$I_1$}
+\fvMeshCW{5.05,1.45}{.38}{$I_2$}
+\end{circuitikz}}
+\resposta{$I_1=\dfrac{18}{7}\,\si{\ampere}$; $I_2=\dfrac{9}{7}\,\si{\ampere}$;
+$i_c=\dfrac{9}{7}\,\si{\ampere}$}
+\resolucao{As equações são
 \[
-R_{11}=10+20=30;\quad R_{22}=20+20=40;\quad R_{12}=R_{21}=-20.
+10I_1-6I_2=18,\qquad -6I_1+12I_2=0.
 \]
-\[
-\begin{bmatrix}30&-20\\-20&40\end{bmatrix}
-\begin{bmatrix}I_1\\I_2\end{bmatrix}
-=\begin{bmatrix}40\\0\end{bmatrix}
-\;\Longrightarrow\;
-I_1=\SI{2}{\ampere},\ I_2=\SI{1}{\ampere}.
-\]
-\textbf{Verificação pela LKT na malha 1:}
-$10(2)+20(2-1)=20+20=\SI{40}{\volt}$ \checkmark. A malha 2, sem fonte, deve
-fechar em zero: $20(1)+20(1-2)=0$ \checkmark.}
+Da segunda, $I_1=2I_2$. Logo $14I_2=18$, resultando
+$I_2=9/7$ A e $I_1=18/7$ A. No ramo comum,
+$i_c=I_1-I_2=9/7$ A.}
 \end{questao}
 
 \begin{questao}[2]{}
-Duas malhas compartilham $R_c=\SI{6}{\ohm}$. A malha 1 tem
-$R_a=\SI{6}{\ohm}$ e fonte de $\SI{36}{\volt}$; a malha 2 tem
-$R_b=\SI{6}{\ohm}$ e fonte de $\SI{18}{\volt}$, ambas impulsionando as
-correntes no sentido adotado. Determine $I_1$, $I_2$ e a corrente em $R_c$.
-\resposta{$I_1=\SI{5}{\ampere}$; $I_2=\SI{4}{\ampere}$; $I_{R_c}=\SI{1}{\ampere}$}
-\resolucao{
+A fonte de corrente de $\SI{1.5}{\ampere}$ está na periferia da malha 2 e sua
+seta coincide com $I_2$. Determine $I_1$, $I_2$ e a corrente no resistor
+central de $\SI{5}{\ohm}$.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{30}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{5}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$\SI{5}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{10}{\ohm}$}] (6.4,3.2)
+      to[isource,l={$\SI{1.5}{\ampere}$}] (6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$I_1=\SI{3.75}{\ampere}$; $I_2=\SI{1.5}{\ampere}$;
+$i_c=\SI{2.25}{\ampere}$}
+\resolucao{A fonte periférica fixa $I_2=1{,}5$ A. Para a malha 1,
 \[
-\begin{bmatrix}12&-6\\-6&12\end{bmatrix}
-\begin{bmatrix}I_1\\I_2\end{bmatrix}
-=\begin{bmatrix}36\\18\end{bmatrix}.
+5I_1+5(I_1-I_2)=30,
 \]
-Determinante: $144-36=108$. Por Cramer:
+portanto $10I_1-7{,}5=30$ e $I_1=3{,}75$ A. Assim
+$i_c=I_1-I_2=2{,}25$ A.}
+\end{questao}
+
+\begin{questao}[2]{}
+O ramo comum contém um resistor de $\SI{4}{\ohm}$ em série com uma fonte de
+$\SI{6}{\volt}$, com terminal positivo no topo. Determine $I_1$ e $I_2$.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.9,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.6)
+      to[R,l={$\SI{4}{\ohm}$}] (3.4,3.6) coordinate(t);
+\draw (t) to[R,l_={$\SI{4}{\ohm}$}] (3.4,2.0)
+      to[\fonteV,l_={$\SI{6}{\volt}$}] (3.4,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{8}{\ohm}$}] (6.8,3.6)--(6.8,0)--(b);
+\fvMeshCW{1.65,1.15}{.40}{$I_1$}
+\fvMeshCW{5.15,1.15}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$I_1=\SI{3}{\ampere}$; $I_2=\SI{1.5}{\ampere}$}
+\resolucao{Percorrendo as duas malhas no sentido horário:
 \[
-I_1=\frac{36(12)+6(18)}{108}=\frac{540}{108}=\SI{5}{\ampere};
+8I_1-4I_2=18,
 \qquad
-I_2=\frac{12(18)+6(36)}{108}=\frac{432}{108}=\SI{4}{\ampere}.
+-4I_1+12I_2=6.
 \]
-\[
-I_{R_c}=I_1-I_2=\SI{1}{\ampere}.
-\]
-\textbf{Observação:} apesar de a fonte da malha 1 ser o dobro da outra, as
-correntes de malha ficaram próximas ($5$ e $4$) --- o acoplamento pelo resistor
-comum arrasta uma malha na direção da outra.}
+A solução é $I_1=3$ A e $I_2=1{,}5$ A. A fonte compartilhada entra com sinais
+opostos nas duas equações porque é atravessada em sentidos opostos.}
 \end{questao}
 
 \begin{questao}[2]{}
-No circuito anterior, determine a potência de cada fonte e de cada resistor, e
-verifique o balanço.
-\resposta{Fontes: $\SI{180}{\watt}$ e $\SI{72}{\watt}$; resistores:
-$150$, $96$ e $\SI{6}{\watt}$}
-\resolucao{\textbf{Fontes:} cada uma entrega $V_kI_k$ (a corrente de malha é a
-que a atravessa, pois as fontes não estão em ramos compartilhados):
+A rede possui três malhas triangulares em torno do nó central $O$. Monte a
+matriz por inspeção e determine as três correntes.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
+\coordinate (A) at (0,0); \coordinate (B) at (4,6); \coordinate (C) at (8,0); \coordinate (O) at (4,2.1);
+% borda AB: R=4 e E1=16
+\draw (A) to[\fonteV,l^={$\SI{16}{\volt}$}] (1.15,1.75)
+      to[R,l={$\SI{4}{\ohm}$}] (B);
+% borda BC: R=5 e E2=11
+\draw (B) to[R,l={$\SI{5}{\ohm}$}] (6.85,1.75)
+      to[\fonteV,l={$\SI{11}{\volt}$}] (C);
+% borda CA: R=6 e E3=1
+\draw (C) to[R,l_={$\SI{6}{\ohm}$}] (4.7,0)
+      to[\fonteV,l_={$\SI{1}{\volt}$}] (A);
+% raios compartilhados
+\draw (B) to[R,l={$\SI{2}{\ohm}$}] (O);
+\draw (C) to[R,l={$\SI{3}{\ohm}$}] (O);
+\draw (A) to[R,l_={$\SI{1}{\ohm}$}] (O);
+\fvMeshCW{2.8,3.5}{.34}{$I_1$}
+\fvMeshCW{5.4,3.5}{.34}{$I_2$}
+\fvMeshCW{4.0,.95}{.34}{$I_3$}
+\node[fill=white,inner sep=1pt] at(O){$O$};
+\end{circuitikz}}
+\resposta{$I_1=\SI{3}{\ampere}$; $I_2=\SI{2}{\ampere}$; $I_3=\SI{1}{\ampere}$}
+\resolucao{Por inspeção,
 \[
-P_1=36(5)=\SI{180}{\watt};\qquad P_2=18(4)=\SI{72}{\watt};
-\qquad \text{total }\SI{252}{\watt}.
+\begin{bmatrix}
+7&-2&-1\\
+-2&10&-3\\
+-1&-3&10
+\end{bmatrix}
+\begin{bmatrix}I_1\\I_2\\I_3\end{bmatrix}
+=
+\begin{bmatrix}16\\11\\1\end{bmatrix}.
 \]
-\textbf{Resistores:}
-\[
-P_{R_a}=6(5)^{2}=150;\quad
-P_{R_b}=6(4)^{2}=96;\quad
-P_{R_c}=6(1)^{2}=\SI{6}{\watt};
-\qquad \text{total }\SI{252}{\watt}.\ \checkmark
-\]
-\textbf{Atenção ao resistor compartilhado:} sua potência usa a corrente
-\emph{real} $(I_1-I_2)$, não $I_1$ nem $I_2$. Usar uma corrente de malha aqui
-daria $\SI{150}{\watt}$ em vez de $\SI{6}{\watt}$ --- e o balanço não
-fecharia, denunciando o erro.}
+Substituindo $(3,2,1)$ verifica-se cada linha; logo essa é a solução. O desenho
+mostra que a matriz depende de quais raios são compartilhados, e não de uma
+sequência linear de malhas.}
 \end{questao}
 
 \begin{questao}[2]{}
-Uma malha 1 com fonte de $\SI{30}{\volt}$ e $R_a=\SI{5}{\ohm}$ compartilha
-$R_c=\SI{10}{\ohm}$ com a malha 2, que tem $R_b=\SI{5}{\ohm}$ e uma fonte de
-$\SI{20}{\volt}$ \textbf{opondo-se} ao sentido adotado. Monte o sistema.
-\resposta{$\begin{bmatrix}15&-10\\-10&15\end{bmatrix}
-\begin{bmatrix}I_1\\I_2\end{bmatrix}=
-\begin{bmatrix}30\\-20\end{bmatrix}$}
-\resolucao{\textbf{Diagonais:} $R_{11}=5+10=15$; $R_{22}=5+10=15$.\\
-\textbf{Fora da diagonal:} $R_{12}=R_{21}=-10$.\\
-\textbf{Termos independentes:} a fonte da malha 1 impulsiona
-($+30$); a da malha 2 se opõe ($-20$).\\
-Resolvendo: $\det=225-100=125$;
+As duas fontes do circuito atuam em oposição. Determine as correntes horárias e
+interprete o sinal de $I_2$.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{20}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{6}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$\SI{4}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{6}{\ohm}$}] (6.4,3.2)
+      to[\fonteV,l_={$\SI{12}{\volt}$}] (6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$I_1=\dfrac{38}{21}\,\si{\ampere}$;
+$I_2=-\dfrac{10}{21}\,\si{\ampere}$}
+\resolucao{O sistema é
 \[
-I_1=\frac{30(15)+10(-20)}{125}=\frac{250}{125}=\SI{2}{\ampere};
-\qquad
-I_2=\frac{15(-20)+10(30)}{125}=\frac{0}{125}=\SI{0}{\ampere}.
+\begin{bmatrix}10&-4\\-4&10\end{bmatrix}
+\begin{bmatrix}I_1\\I_2\end{bmatrix}
+=
+\begin{bmatrix}20\\-12\end{bmatrix}.
 \]
-\textbf{Resultado notável:} $I_2=0$. A fonte de $\SI{20}{\volt}$ equilibra
-exatamente a tensão que a malha 1 induz sobre $R_c$
-($10\times2=\SI{20}{\volt}$), e a malha 2 fica sem corrente.}
+Daí $I_1=38/21$ A e $I_2=-10/21$ A. Portanto a corrente física da segunda
+malha tem módulo $10/21$ A e circula no sentido anti-horário.}
 \end{questao}
 
 \begin{questao}[2]{}
-Três malhas dispostas \textbf{em linha}: a malha 1 compartilha
-$\SI{10}{\ohm}$ com a 2, e a 2 compartilha $\SI{10}{\ohm}$ com a 3; as malhas
-1 e 3 não se tocam. As resistências próprias adicionais são $\SI{10}{\ohm}$
-em cada malha, e há uma fonte de $\SI{60}{\volt}$ na malha 1. Monte a matriz.
-\resposta{$\begin{bmatrix}20&-10&0\\-10&30&-10\\0&-10&20\end{bmatrix}$,
-com $\mathbf{b}=(60;0;0)$}
-\resolucao{\textbf{Diagonais:} malha 1: $10+10=20$; malha 2:
-$10+10+10=30$ (ela tem \emph{duas} resistências compartilhadas); malha 3:
-$10+10=20$.\\
-\textbf{Fora da diagonal:} $R_{12}=R_{21}=-10$ e $R_{23}=R_{32}=-10$. Como as
-malhas 1 e 3 não compartilham nada, $R_{13}=R_{31}=\mathbf{0}$.\\
-A matriz é \textbf{tridiagonal} --- padrão típico de topologias em cadeia, e a
-mesma estrutura que aparece na análise nodal de redes em escada.\\
-Resolvendo: $I_1=\SI{3.75}{\ampere}$, $I_2=\SI{1.5}{\ampere}$,
-$I_3=\SI{0.75}{\ampere}$. Note a atenuação progressiva ao longo da cadeia.}
+Escolha o valor e a polaridade da fonte $E$ para que a corrente no resistor
+compartilhado de $\SI{4}{\ohm}$ seja nula.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{4}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$\SI{4}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{8}{\ohm}$}] (6.4,3.2)
+      to[\fonteV,l_={$E$}] (6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$E=\SI{48}{\volt}$, impulsionando $I_2$ no sentido horário}
+\resolucao{Corrente nula no ramo comum exige $I_1=I_2=I$. A primeira malha dá
+$(8-4)I=24$, ou $4I=24$, logo $I=6$ A. Na segunda,
+$(12-4)I=E$, portanto $E=8\cdot6=48$ V, com polaridade que impulsione $I_2$.}
 \end{questao}
 
 \begin{questao}[2]{}
-Verifique o resultado da questão anterior aplicando a LKT à malha 3.
-\resposta{Fecha em zero}
-\resolucao{A malha 3 não tem fonte, então a soma das quedas deve ser nula:
+Determine as correntes de malha e faça o balanço de potência.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{36}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{6}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$\SI{3}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{6}{\ohm}$}] (6.4,3.2)
+      to[\fonteV,l_={$\SI{12}{\volt}$},invert] (6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$I_1=\SI{5}{\ampere}$; $I_2=\SI{3}{\ampere}$;
+$P_{fontes}=P_R=\SI{216}{\watt}$}
+\resolucao{O sistema
 \[
-10\,I_3+10\,(I_3-I_2)=10(0{,}75)+10(0{,}75-1{,}5)=7{,}5-7{,}5=0.\ \checkmark
+\begin{bmatrix}9&-3\\-3&9\end{bmatrix}
+\begin{bmatrix}I_1\\I_2\end{bmatrix}
+=
+\begin{bmatrix}36\\12\end{bmatrix}
 \]
-\textbf{Estratégia de verificação:} confira sempre a malha \emph{sem fonte} ---
-ela oferece o teste mais limpo, pois qualquer erro aparece como um resíduo não
-nulo, sem precisar comparar com um valor de referência.\\
-Como teste adicional, a malha 2 dá
-$10(1{,}5)+10(1{,}5-3{,}75)+10(1{,}5-0{,}75)=15-22{,}5+7{,}5=0$ \checkmark.}
-\end{questao}
-
-\begin{questao}[2]{}
-Explique por que a matriz de malhas de uma rede puramente resistiva é
-simétrica, e o que isso permite economizar na montagem.
-\resposta{$R_{jk}=R_{kj}=-R_{comum}$; basta montar metade da matriz}
-\resolucao{\textbf{Razão:} o termo $R_{jk}$ é determinado pela resistência
-\emph{compartilhada} entre as malhas $j$ e $k$ --- e "compartilhada" é uma
-relação simétrica. O mesmo resistor produz o mesmo valor nas duas posições.\\
-\textbf{Economia:} basta montar a diagonal e o triângulo superior; o inferior
-sai por espelhamento. Para $m$ malhas, isso reduz de $m^{2}$ para
-$m(m+1)/2$ termos --- de $16$ para $10$ com quatro malhas.\\
-\textbf{Uso como teste:} se a matriz montada sair assimétrica em rede puramente
-resistiva, há erro de montagem. A única situação em que a assimetria é
-\emph{legítima} é a presença de fontes dependentes --- caso tratado adiante.}
-\end{questao}
-
-\begin{questao}[2]{}
-Uma fonte de tensão está em um ramo \textbf{compartilhado} por duas malhas.
-Explique como ela entra no sistema.
-\resposta{Aparece nos termos independentes das \emph{duas} malhas, com sinais
-opostos}
-\resolucao{O ramo comum é percorrido por $I_1$ em um sentido e por $I_2$ no
-sentido contrário. Ao escrever a LKT de cada malha, a mesma fonte é atravessada
-em sentidos opostos --- e entra com sinais opostos nos dois termos
-independentes.\\
-\textbf{Exemplo:} fonte de $\SI{12}{\volt}$ no ramo comum, impulsionando
-$I_1$:
+fornece $(I_1,I_2)=(5,3)$ A. A corrente no resistor comum é $2$ A. Assim
 \[
-b_1=+12
-\qquad\text{e}\qquad
-b_2=-12.
+P_R=6(5)^2+6(3)^2+3(2)^2=150+54+12=216\,\text{W}.
 \]
-\textbf{Contraste importante:} isso vale para fonte de \emph{tensão}. Uma fonte
-de \emph{corrente} no ramo comum não pode ser tratada assim --- sua tensão é
-desconhecida --- e exige a técnica da supermalha.}
+As fontes fornecem $36(5)+12(3)=216$ W.}
 \end{questao}
 
+\begin{questao}[2]{}
+A fonte de corrente da malha 2 fixa $I_2=\SI{2}{\ampere}$. Determine $I_1$ e a
+tensão $v_s$ da fonte de corrente, definida positiva do terminal superior para
+o inferior.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{20}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{5}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$\SI{5}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{10}{\ohm}$}] (6.4,3.2)
+      to[isource,l={$\SI{2}{\ampere}$}] (6.4,0)--(b);
+\node[right] at(6.75,1.6){$v_s$};
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$I_1=\SI{3}{\ampere}$; $v_s=\SI{-15}{\volt}$}
+\resolucao{Na malha 1,
+$5I_1+5(I_1-2)=20$, então $I_1=3$ A. Na malha 2, percorrida no sentido horário,
+\[
+10(2)+v_s-5(3-2)=0,
+\]
+portanto $v_s=-15$ V. Isso significa que o terminal inferior da fonte está
+$15$ V acima do terminal superior.}
+\end{questao}
+
+% =====================================================================
+% N3 --- aprofundamento com novas topologias/objetivos
+% =====================================================================
 \blocoaprofundamento
 
 \begin{questao}[3]{}
-Uma fonte de corrente de $\SI{2}{\ampere}$ está em um ramo que pertence
-\textbf{apenas} à malha 2 (periferia do circuito). A malha 1 tem fonte de
-$\SI{40}{\volt}$ e $R_a=\SI{10}{\ohm}$, e compartilha $R_c=\SI{10}{\ohm}$ com
-a malha 2.
-\begin{itensq}
-\item Explique por que \emph{não} é necessário formar supermalha.
-\item Determine $I_1$ e a corrente em $R_c$.
-\item Compare o esforço com o caso em que a fonte estivesse no ramo comum.
-\end{itensq}
-\resposta{(b) $I_1=\SI{3}{\ampere}$; $I_{R_c}=\SI{1}{\ampere}$}
-\resolucao{(a) Se a fonte de corrente pertence a \emph{uma única} malha, ela
-\textbf{impõe diretamente} o valor daquela corrente de malha:
-$I_2=\SI{2}{\ampere}$. A incógnita desaparece, e a equação da malha 2 não
-precisa ser escrita --- ela serviria apenas para descobrir a tensão sobre a
-fonte, se fosse pedida.\\
-(b) Resta uma única equação, a da malha 1:
+A fonte de corrente de $\SI{2}{\ampere}$ está entre as malhas 1 e 2. A fonte de
+$\SI{8}{\volt}$ da malha 3 se opõe ao sentido horário indicado. Resolva usando
+uma supermalha 1--2.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.4)
+      to[R,l={$\SI{4}{\ohm}$}] (2.8,3.4) coordinate(t1);
+\draw (t1) to[isource,l={$\SI{2}{\ampere}$},invert] (2.8,0) coordinate(b1)--(0,0);
+\draw (t1) to[R,l={$\SI{2}{\ohm}$}] (5.6,3.4) coordinate(t2);
+\draw (t2) to[R,l_={$\SI{4}{\ohm}$}] (5.6,0) coordinate(b2)--(b1);
+\draw (t2) to[R,l={$\SI{4}{\ohm}$}] (8.4,3.4)
+      to[\fonteV,l_={$\SI{8}{\volt}$}] (8.4,0)--(b2);
+\fvMeshCW{1.25,1.05}{.34}{$I_1$}
+\fvMeshCW{4.15,1.05}{.34}{$I_2$}
+\fvMeshCW{7.05,1.05}{.34}{$I_3$}
+\draw[dashed,laranja,line width=.9pt,rounded corners=7pt] (-.45,-.45) rectangle (6.05,3.85);
+\node[laranja,fill=white,inner sep=1pt] at(2.8,-.72){\footnotesize supermalha 1--2};
+\end{circuitikz}}
+\resposta{$I_1=\SI{1.5}{\ampere}$; $I_2=\SI{3.5}{\ampere}$;
+$I_3=\SI{0.75}{\ampere}$}
+\resolucao{As equações são
 \[
-40=10I_1+10(I_1-I_2)=20I_1-10(2)
-\;\Longrightarrow\;
-20I_1=60 \;\Longrightarrow\; I_1=\SI{3}{\ampere}.
+4I_1+6I_2-4I_3=24,
+\qquad I_2-I_1=2,
+\qquad -4I_2+8I_3=-8.
 \]
-\[
-I_{R_c}=I_1-I_2=3-2=\SI{1}{\ampere}.
-\]
-(c) \textbf{Comparação.} Fonte na periferia: o sistema \emph{encolhe} de
-$2\times2$ para $1\times1$ --- a fonte de corrente \emph{ajuda}.\\
-Fonte no ramo comum: nenhuma corrente de malha fica determinada, e é preciso
-formar a supermalha (uma LKT contornando as duas) mais a equação de restrição
-$I_1-I_2=I_{fonte}$. O sistema continua $2\times2$, com montagem mais delicada.\\
-\textbf{Regra prática:} ao escolher os contornos das malhas, procure fazer cada
-fonte de corrente pertencer a uma malha só. Muitas vezes isso é possível e
-simplifica bastante o problema.}
+Resolvendo, obtém-se $I_1=3/2$ A, $I_2=7/2$ A e $I_3=3/4$ A.}
 \end{questao}
 
 \begin{questao}[3]{}
-Um circuito de duas malhas tem $R_a=R_b=\SI{5}{\ohm}$ e
-$R_c=\SI{5}{\ohm}$ compartilhado, com fonte de $\SI{20}{\volt}$ na malha 1. Na
-malha 2 há uma fonte \textbf{dependente} de tensão, de valor
-$2{,}5\,I_1$ volts, impulsionando $I_2$.
-\begin{itensq}
-\item Monte o sistema e resolva.
-\item Comente a estrutura da matriz.
-\end{itensq}
-\resposta{$I_1=\SI{3.2}{\ampere}$; $I_2=\SI{2.4}{\ampere}$; matriz
-\textbf{assimétrica}}
-\resolucao{(a) \textbf{Malha 1:} $10I_1-5I_2=20$.\\
-\textbf{Malha 2:} $-5I_1+10I_2=2{,}5\,I_1$. A fonte dependente é função de uma
-incógnita, então seu termo \emph{migra para a matriz}:
+O ramo comum é uma fonte ideal de $\SI{6}{\volt}$, positiva no topo. A fonte de
+$\SI{18}{\volt}$ impulsiona $I_1$, enquanto a de $\SI{12}{\volt}$ se opõe a
+$I_2$. Determine as correntes e a potência da fonte compartilhada.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{6}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[\fonteV,l_={$\SI{6}{\volt}$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{4}{\ohm}$}] (6.4,3.2)
+      to[\fonteV,l_={$\SI{12}{\volt}$}] (6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$I_1=\SI{2}{\ampere}$; $I_2=\SI{-1.5}{\ampere}$;
+$P_{6V}=\SI{21}{\watt}$ absorvidos}
+\resolucao{Na malha 1, $6I_1+6=18$, logo $I_1=2$ A. Na malha 2,
+$4I_2+12-6=0$, então $I_2=-1{,}5$ A. A corrente real na fonte comum, para
+baixo, é $I_1-I_2=3{,}5$ A. Como ela entra no terminal positivo superior,
 \[
--7{,}5\,I_1+10I_2=0.
+P=6(3{,}5)=21\,\text{W},
 \]
-\[
-\begin{bmatrix}10&-5\\-7{,}5&10\end{bmatrix}
-\begin{bmatrix}I_1\\I_2\end{bmatrix}
-=\begin{bmatrix}20\\0\end{bmatrix}.
-\]
-Da segunda linha, $I_2=0{,}75\,I_1$. Na primeira:
-$10I_1-3{,}75I_1=20\Rightarrow I_1=\SI{3.2}{\ampere}$ e
-$I_2=\SI{2.4}{\ampere}$. Corrente em $R_c$: $\SI{0.8}{\ampere}$.\\
-(b) \textbf{A matriz perdeu a simetria} ($R_{12}=-5$ mas
-$R_{21}=-7{,}5$). Isso não é erro: fontes dependentes quebram a
-\textbf{reciprocidade}, exatamente como ocorre na matriz de condutâncias da
-análise nodal.\\
-\textbf{Consequências:} \emph{(i)} não vale mais montar só metade da matriz;
-\emph{(ii)} perde-se a garantia automática de dominância diagonal, e a matriz
-pode até tornar-se singular para certos valores do coeficiente; \emph{(iii)}
-elemento ativo e reciprocidade são mutuamente exclusivos --- é a assinatura
-matemática de um amplificador.}
+portanto a fonte de $6$ V absorve potência.}
 \end{questao}
 
 \begin{questao}[3]{}
-No circuito de duas malhas com $R_a=R_b=R_c=\SI{6}{\ohm}$ e fontes de
-$\SI{36}{\volt}$ e $\SI{18}{\volt}$ ($I_1=\SI{5}{\ampere}$,
-$I_2=\SI{4}{\ampere}$), calcule a potência total pela forma quadrática
-$\mathbf{I}^{\!\top}\mathbf{R}\,\mathbf{I}$ e confronte com a soma direta.
-\resposta{$\SI{252}{\watt}$ pelos dois caminhos}
-\resolucao{\textbf{Forma quadrática:}
+As fontes de corrente periféricas fixam $I_1=\SI{2}{\ampere}$ e
+$I_3=\SI{1}{\ampere}$. Determine $I_2$ e identifique qualquer ramo
+compartilhado com corrente nula.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+\draw (0,0) to[isource,l^={$\SI{2}{\ampere}$}] (0,3.4)
+      --(2.8,3.4) coordinate(t1);
+\draw (t1) to[R,l_={$\SI{2}{\ohm}$}] (2.8,0) coordinate(b1)--(0,0);
+\draw (t1) to[R,l={$\SI{4}{\ohm}$}] (4.5,3.4)
+      to[\fonteV,l={$\SI{11}{\volt}$}] (5.8,3.4) coordinate(t2);
+\draw (t2) to[R,l_={$\SI{3}{\ohm}$}] (5.8,0) coordinate(b2)--(b1);
+\draw (t2)--(8.6,3.4) to[isource,l={$\SI{1}{\ampere}$}] (8.6,0)--(b2);
+\fvMeshCW{1.25,1.05}{.34}{$I_1$}
+\fvMeshCW{4.30,1.05}{.34}{$I_2$}
+\fvMeshCW{7.25,1.05}{.34}{$I_3$}
+\end{circuitikz}}
+\resposta{$I_2=\SI{2}{\ampere}$; o resistor de $\SI{2}{\ohm}$ conduz corrente nula}
+\resolucao{A equação da malha central é
 \[
-\mathbf{I}^{\!\top}\mathbf{R}\,\mathbf{I}
-=R_{11}I_1^{2}+R_{22}I_2^{2}+2R_{12}I_1I_2
-=12(25)+12(16)+2(-6)(5)(4),
+(2+4+3)I_2-2I_1-3I_3=11.
 \]
-\[
-=300+192-240=\SI{252}{\watt}.
-\]
-\textbf{Soma direta:} $6(5)^{2}+6(4)^{2}+6(1)^{2}=150+96+6=\SI{252}{\watt}$
-\checkmark.\\
-\textbf{Interpretação do termo cruzado:} os $\SI{-240}{\watt}$ não são potência
-negativa --- eles \emph{corrigem} a dupla contagem de $R_c$, que aparece nas
-duas diagonais. De fato, $R_c$ é contabilizado como
-$6(25)+6(16)-240=246-240=\SI{6}{\watt}$, exatamente
-$6(I_1-I_2)^{2}$.\\
-A forma quadrática é a versão compacta e algébrica do balanço de potência, e
-generaliza para qualquer número de malhas.}
+Com $I_1=2$ A e $I_3=1$ A:
+$9I_2-4-3=11$, portanto $I_2=2$ A. Assim, no resistor compartilhado entre as
+malhas 1 e 2, $I_1-I_2=0$.}
 \end{questao}
 
 \begin{questao}[3]{}
-As três malhas em linha formam uma escada: o condutor superior passa pelos nós
-$A$, $B$, $C$, $D$; os ramos verticais em $B$ e $C$ são os compartilhados.
-Com $I_1=\SI{3.75}{\ampere}$, $I_2=\SI{1.5}{\ampere}$ e
-$I_3=\SI{0.75}{\ampere}$:
-\begin{itensq}
-\item Determine a corrente real em cada ramo.
-\item Verifique a LKC nos nós $B$ e $C$.
-\item Explique por que a verificação era desnecessária.
-\end{itensq}
-\resposta{$3{,}75$; $2{,}25$; $1{,}5$; $0{,}75$ e $\SI{0.75}{\ampere}$; a LKC é
-satisfeita \emph{identicamente}}
-\resolucao{(a) Ramos exclusivos conduzem a própria corrente de malha; ramos
-compartilhados, a diferença:
-\begin{center}
-\begin{tabular}{ll}
-\hline
-Ramo & Corrente\\
-\hline
-horizontal $A$--$B$ (só malha 1) & $I_1=\SI{3.75}{\ampere}$\\
-vertical em $B$ (malhas 1 e 2) & $I_1-I_2=\SI{2.25}{\ampere}$\\
-horizontal $B$--$C$ (só malha 2) & $I_2=\SI{1.5}{\ampere}$\\
-vertical em $C$ (malhas 2 e 3) & $I_2-I_3=\SI{0.75}{\ampere}$\\
-horizontal $C$--$D$ (só malha 3) & $I_3=\SI{0.75}{\ampere}$\\
-\hline
-\end{tabular}
-\end{center}
-(b) \textbf{Nó $B$} --- chega o ramo $A$--$B$, saem o vertical e o
-$B$--$C$:
+Analise a ponte resistiva pelo método das malhas e determine a corrente no
+resistor de ponte de $\SI{5}{\ohm}$.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
+\coordinate (A) at (5,5); \coordinate (D) at (5,0); \coordinate (B) at (2.6,2.5); \coordinate (C) at (7.4,2.5);
+\draw (A)--(0.5,5) to[\fonteV,l^={$\SI{18}{\volt}$}] (0.5,0)--(D);
+\draw (A) to[R,l_={$\SI{2}{\ohm}$}] (B) to[R,l_={$\SI{4}{\ohm}$}] (D);
+\draw (A) to[R,l={$\SI{3}{\ohm}$}] (C) to[R,l={$\SI{6}{\ohm}$}] (D);
+\draw (B) to[R,l={$\SI{5}{\ohm}$}] (C);
+\fvMeshCW{2.1,2.55}{.34}{$I_1$}
+\fvMeshCW{5.0,3.55}{.32}{$I_2$}
+\fvMeshCW{5.0,1.45}{.32}{$I_3$}
+\end{circuitikz}}
+\resposta{$I_1=\SI{5}{\ampere}$; $I_2=I_3=\SI{2}{\ampere}$;
+$i_{ponte}=0$}
+\resolucao{A matriz é
 \[
-3{,}75=2{,}25+1{,}5.\ \checkmark
+\begin{bmatrix}
+6&-2&-4\\
+-2&10&-5\\
+-4&-5&15
+\end{bmatrix}
+\begin{bmatrix}I_1\\I_2\\I_3\end{bmatrix}
+=
+\begin{bmatrix}18\\0\\0\end{bmatrix}.
 \]
-\textbf{Nó $C$:} $1{,}5=0{,}75+0{,}75$ \checkmark.\\
-(c) \textbf{Porque a LKC é uma identidade algébrica, não um resultado.}
-Em $B$:
-\[
-I_1=(I_1-I_2)+I_2,
-\]
-verdadeiro para \emph{quaisquer} valores de $I_1$ e $I_2$ --- inclusive
-errados. O mesmo em $C$: $I_2=(I_2-I_3)+I_3$.\\
-\textbf{Razão estrutural:} cada corrente de malha percorre um \emph{laço
-fechado}, entrando e saindo de todo nó que atravessa. Qualquer combinação de
-correntes de malha satisfaz a lei dos nós por construção.\\
-\textbf{Consequência conceitual:} as correntes de malha formam uma
-\textbf{base} do espaço das correntes de ramo que obedecem à LKC. O método impõe
-a LKC pela \emph{escolha das variáveis} e usa as equações apenas para a LKT ---
-exatamente o inverso da análise nodal, que impõe a LKT ao adotar potenciais e
-gasta as equações com a LKC.\\
-\textbf{Alerta prático:} justamente por ser identidade, a LKC \emph{não serve}
-como verificação em análise de malhas --- ela fecharia mesmo com o sistema
-resolvido errado. Verifique sempre pela LKT, ou pelo balanço de potência.}
+A solução é $(5,2,2)$ A. O resistor de ponte é comum às malhas 2 e 3, logo
+$i_{ponte}=I_2-I_3=0$. O resultado expressa o equilíbrio da ponte.}
 \end{questao}
 
 \begin{questao}[3]{}
-Um circuito de duas malhas produziu a matriz
-$\begin{bmatrix}10&-10\\-10&10\end{bmatrix}$.
-\begin{itensq}
-\item Mostre que ela é singular.
-\item Determine o que essa estrutura significa fisicamente.
-\item Indique como corrigir a análise.
-\end{itensq}
-\resposta{$\det=0$; as duas malhas compartilham \emph{toda} a sua resistência}
-\resolucao{(a) $\det=10(10)-(-10)(-10)=100-100=0$. O sistema não tem solução
-única.\\
-(b) $R_{11}=R_{22}=|R_{12}|=\SI{10}{\ohm}$ significa que a resistência
-compartilhada é \emph{toda} a resistência de cada malha --- nenhuma delas possui
-resistência própria. As duas "malhas" são, na verdade, o mesmo caminho de
-corrente: elas não são independentes.\\
-Formalmente, a matriz perdeu a dominância diagonal estrita, e as duas linhas são
-proporcionais.\\
-(c) \textbf{Causas prováveis e correções.}
-\begin{itemize}
-\item \textbf{Contornos mal escolhidos:} duas malhas que descrevem o mesmo laço.
-Refaça a identificação, conferindo $m=b-n+1$.
-\item \textbf{Resistência própria omitida:} um resistor exclusivo esquecido na
-diagonal. Verifique a montagem elemento a elemento.
-\item \textbf{Fonte de corrente ideal em ramo compartilhado} tratada como se
-fosse resistência nula --- neste caso, a correção é usar supermalha.
-\item \textbf{Circuito realmente desconexo} em duas partes sem acoplamento
-resistivo, o que exigiria tratá-las separadamente.
-\end{itemize}
-\textbf{Diagnóstico rápido:} em rede passiva bem montada, a matriz de malhas é
-\emph{sempre} simétrica e diagonal dominante. Determinante nulo denuncia erro de
-montagem, não peculiaridade do circuito.}
+Use uma fonte de teste de $\SI{12}{\volt}$ e análise de malhas para determinar
+a resistência equivalente vista pela fonte.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{3}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$\SI{6}{\ohm}$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{6}{\ohm}$}] (6.4,3.2)--(6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$I_1=\SI{2}{\ampere}$; $I_2=\SI{1}{\ampere}$;
+$R_{eq}=\SI{6}{\ohm}$}
+\resolucao{As equações são
+\[
+9I_1-6I_2=12,\qquad -6I_1+12I_2=0.
+\]
+Da segunda, $I_1=2I_2$; substituindo na primeira, $I_2=1$ A e $I_1=2$ A. A
+fonte de teste fornece $2$ A, portanto $R_{eq}=12/2=6\,\ohm$.}
 \end{questao}
 
+% =====================================================================
+% N4 --- sintese, otimizacao e problemas inversos
+% =====================================================================
 \blocodesafio
 
 \begin{questao}[4]{}
-\textbf{(Demonstração --- forma quadrática da potência.)} Prove que, na
-formulação de malhas, a potência total dissipada vale
-$P=\mathbf{I}^{\!\top}\mathbf{R}\,\mathbf{I}$.
-\begin{itensq}
-\item Demonstre para uma rede genérica de $m$ malhas.
-\item Mostre que a expressão é sempre não negativa em rede passiva.
-\item Relacione com o balanço $P=\mathbf{I}^{\!\top}\mathbf{b}$.
-\end{itensq}
-\resposta{$P=\sum_k R_{kk}I_k^{2}+2\sum_{j<k}R_{jk}I_jI_k$, forma quadrática
-definida positiva}
-\resolucao{(a) A potência é a soma sobre os \emph{ramos}. Um resistor
-exclusivo da malha $k$ dissipa $R\,I_k^{2}$; um resistor $R_c$ compartilhado
-pelas malhas $j$ e $k$ dissipa
+A rede em ``roda'' possui quatro malhas triangulares em torno do nó $O$.
+Monte a matriz e determine as quatro correntes.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.72,transform shape,line width=.8pt]
+\coordinate (A) at (-4,4); \coordinate (B) at (4,4); \coordinate (C) at (4,-4); \coordinate (D) at (-4,-4); \coordinate (O) at (0,0);
+% lados externos: R=4 em serie com fontes
+\draw (A) to[\fonteV,l^={$\SI{24}{\volt}$}] (-1.8,4) to[R,l={$\SI{4}{\ohm}$}] (B);
+\draw (B) to[\fonteV,l={$\SI{12}{\volt}$}] (4,1.8) to[R,l={$\SI{4}{\ohm}$}] (C);
+\draw (C) to[\fonteV,l_={$\SI{8}{\volt}$}] (1.8,-4) to[R,l_={$\SI{4}{\ohm}$}] (D);
+\draw (D) to[\fonteV,l_={$\SI{4}{\volt}$},invert] (-4,1.8) to[R,l_={$\SI{4}{\ohm}$}] (A);
+% raios
+\draw (A) to[R,l={$\SI{2}{\ohm}$}] (O);
+\draw (B) to[R,l_={$\SI{2}{\ohm}$}] (O);
+\draw (C) to[R,l={$\SI{2}{\ohm}$}] (O);
+\draw (D) to[R,l_={$\SI{2}{\ohm}$}] (O);
+\fvMeshCW{0,2.45}{.34}{$I_1$}
+\fvMeshCW{2.45,0}{.34}{$I_2$}
+\fvMeshCW{0,-2.45}{.34}{$I_3$}
+\fvMeshCW{-2.45,0}{.34}{$I_4$}
+\node[fill=white,inner sep=1pt] at(O){$O$};
+\end{circuitikz}}
+\resposta{$I_1=\SI{4}{\ampere}$; $I_2=\SI{3}{\ampere}$;
+$I_3=\SI{2}{\ampere}$; $I_4=\SI{1}{\ampere}$}
+\resolucao{Cada malha contém $4\,\ohm$ exclusivo e dois raios de
+$2\,\ohm$. A matriz é cíclica:
 \[
-R_c(I_j-I_k)^{2}=R_cI_j^{2}+R_cI_k^{2}-2R_cI_jI_k.
+\begin{bmatrix}
+8&-2&0&-2\\
+-2&8&-2&0\\
+0&-2&8&-2\\
+-2&0&-2&8
+\end{bmatrix}
+\begin{bmatrix}I_1\\I_2\\I_3\\I_4\end{bmatrix}
+=
+\begin{bmatrix}24\\12\\8\\-4\end{bmatrix}.
 \]
-Ora, $R_c$ está incluído em $R_{jj}$ \emph{e} em $R_{kk}$, e
-$R_{jk}=-R_c$. Somando sobre todos os ramos, os termos se reagrupam
-exatamente como
-\[
-P=\sum_{k}R_{kk}I_k^{2}+2\sum_{j<k}R_{jk}I_jI_k
-=\mathbf{I}^{\!\top}\mathbf{R}\,\mathbf{I}.
-\]
-(b) Cada parcela da soma original é da forma $R\,(\text{corrente})^{2}$ com
-$R>0$, logo $P\ge0$ para \emph{qualquer} $\mathbf{I}$, anulando-se apenas com
-$\mathbf{I}=\mathbf{0}$. Isso significa que $\mathbf{R}$ é \textbf{definida
-positiva} --- e, em particular, não singular. \textbf{A física garante a
-álgebra:} a existência e unicidade da solução decorre de a rede não poder
-dissipar potência negativa.\\
-(c) Multiplicando $\mathbf{R}\mathbf{I}=\mathbf{b}$ por
-$\mathbf{I}^{\!\top}$ à esquerda:
-\[
-\mathbf{I}^{\!\top}\mathbf{R}\,\mathbf{I}=\mathbf{I}^{\!\top}\mathbf{b}
-\;\Longrightarrow\;
-P_{dissipada}=\sum_k b_kI_k=P_{fornecida}.
-\]
-O balanço de potência não é uma verificação \emph{adicional} --- ele é uma
-consequência algébrica direta do sistema de malhas. É por isso que ele
-\emph{sempre} fecha quando a montagem e a resolução estão corretas.}
+A solução é $(4,3,2,1)$ A. O termo $-4$ representa a fonte da quarta malha
+orientada contra a corrente horária de referência.}
 \end{questao}
 
 \begin{questao}[4]{}
-\textbf{(Dualidade formal.)} Estabeleça a correspondência completa entre
-análise nodal e análise de malhas.
-\begin{itensq}
-\item Construa a tabela de correspondências entre grandezas e estruturas.
-\item Mostre que o mesmo circuito, transformado em seu dual, troca um método
-      pelo outro.
-\item Indique a limitação dessa dualidade.
-\end{itensq}
-\resposta{Tensão$\leftrightarrow$corrente,
-$\mathbf{G}\leftrightarrow\mathbf{R}$, nó$\leftrightarrow$malha,
-supernó$\leftrightarrow$supermalha; limitada a circuitos planares}
-\resolucao{(a)
-\begin{center}
-\begin{tabular}{ll}
-\hline
-Análise nodal & Análise de malhas\\
-\hline
-Tensões nodais $\mathbf{v}$ & Correntes de malha $\mathbf{I}$\\
-Matriz de condutâncias $\mathbf{G}$ & Matriz de resistências $\mathbf{R}$\\
-$G_{kk}=\sum$ condutâncias do nó & $R_{kk}=\sum$ resistências da malha\\
-$G_{jk}=-G_{comum}$ & $R_{jk}=-R_{comum}$\\
-Fontes de corrente em $\mathbf{b}$ & Fontes de tensão em $\mathbf{b}$\\
-Lei dos nós (LKC) & Lei das malhas (LKT)\\
-Supernó (fonte de tensão flutuante) & Supermalha (fonte de corrente comum)\\
-Nó de referência & Malha externa\\
-$n-1$ equações & $b-n+1$ equações\\
-\hline
-\end{tabular}
-\end{center}
-(b) \textbf{Circuito dual:} substitua cada resistência $R$ por uma condutância
-de mesmo valor numérico, cada fonte de tensão por uma de corrente (mesmo valor
-numérico), série por paralelo, e associe a cada malha do original um nó do dual.
-As equações nodais do dual são \emph{idênticas}, termo a termo, às equações de
-malha do original.\\
-\textbf{Consequência:} qualquer resultado provado para um método vale
-automaticamente para o outro. A simetria e a definição positiva de
-$\mathbf{R}$, por exemplo, são a mesma propriedade já estabelecida para
-$\mathbf{G}$.\\
-(c) \textbf{Limitação:} o dual só existe para circuitos \textbf{planares} ---
-aqueles que podem ser desenhados sem cruzamentos. A análise de malhas
-compartilha essa restrição, pois "malha" só se define em desenho plano.\\
-A análise \textbf{nodal não tem essa limitação}: ela funciona em qualquer
-topologia. É a razão prática pela qual simuladores como o SPICE são construídos
-sobre formulação nodal, e não de malhas.}
-\end{questao}
-
-\begin{questao}[4]{}
-\textbf{(Algoritmo.)} Formule um procedimento sistemático para gerar as
-equações de malha a partir da descrição de um circuito planar.
-\begin{itensq}
-\item Descreva o algoritmo, incluindo o tratamento de fontes de corrente.
-\item Determine o custo computacional.
-\item Aponte a etapa mais difícil de automatizar e por quê.
-\end{itensq}
-\resposta{Identificação das faces do grafo planar é a etapa crítica; custo
-$\mathcal{O}(m^{3})$ na resolução}
-\resolucao{(a) \textbf{Algoritmo.}
-\begin{enumerate}
-\item Verificar planaridade e obter um \emph{mergulho} plano do grafo.
-\item Identificar as $m=b-n+1$ faces internas (as malhas); a face externa é
-      descartada.
-\item Adotar sentido horário para todas as correntes de malha.
-\item Inicializar $\mathbf{R}=\mathbf{0}$ e $\mathbf{b}=\mathbf{0}$.
-\item Para cada resistor $R$: somar $R$ à diagonal de \emph{cada} malha que o
-      contenha; se pertencer a duas malhas $j,k$, subtrair $R$ de
-      $R_{jk}$ e de $R_{kj}$.
-\item Para cada fonte de tensão: somar $\pm V$ em $b_k$ de cada malha que a
-      contenha, conforme o sentido.
-\item \textbf{Fontes de corrente:} se pertencer a uma só malha, fixar
-      $I_k$ e eliminar a linha e a coluna correspondentes. Se for
-      compartilhada, fundir as duas malhas em uma supermalha e acrescentar a
-      equação de restrição $I_j-I_k=I_{fonte}$.
-\item Resolver $\mathbf{R}\mathbf{I}=\mathbf{b}$ e expandir para as correntes
-      de ramo.
-\end{enumerate}
-(b) \textbf{Custo:} montagem em $\mathcal{O}(b)$ --- cada elemento é visitado
-uma vez. Resolução em $\mathcal{O}(m^{3}/3)$ por eliminação; muito menos se a
-matriz for esparsa, o que é típico. O gargalo é a resolução, não a montagem.\\
-(c) \textbf{A etapa crítica é a 2:} identificar as faces internas do grafo. Ela
-exige um \emph{mergulho} plano --- uma escolha de como desenhar o grafo --- e não
-é uma propriedade combinatória simples da lista de ramos. O teste de
-planaridade é $\mathcal{O}(n)$, mas a implementação é notoriamente delicada.\\
-Pior: se o circuito \textbf{não for planar}, o algoritmo simplesmente não tem
-saída --- não há malhas a identificar.\\
-\textbf{Conclusão:} a análise nodal dispensa toda a etapa 1--2, pois nós são
-dados diretamente pela netlist. Essa é a razão de fundo pela qual a
-formulação nodal venceu na prática computacional, apesar de a análise de malhas
-ser frequentemente mais econômica no papel.}
-\end{questao}
-
-\begin{questao}[4]{}
-\textbf{(Sensibilidade e matriz inversa.)} Para o circuito de duas malhas com
-$\mathbf{R}=\begin{bmatrix}12&-6\\-6&12\end{bmatrix}$:
-\begin{itensq}
-\item Calcule $\mathbf{R}^{-1}$ e interprete cada elemento.
-\item Determine como $I_1$ varia se a fonte da malha 2 aumentar em
-      $\SI{6}{\volt}$.
-\item Verifique a reciprocidade.
-\end{itensq}
-\resposta{$\mathbf{R}^{-1}=\frac{1}{108}\begin{bmatrix}12&6\\6&12\end{bmatrix}
-\si{\per\ohm}$; $\Delta I_1=\SI{0.333}{\ampere}$}
-\resolucao{(a) Com $\det=108$:
+Determine o resistor compartilhado $R$ para que $I_2=I_1/2$. Calcule também
+as correntes resultantes.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{20}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{4}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$R$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{6}{\ohm}$}] (6.4,3.2)--(6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$R=\SI{6}{\ohm}$; $I_1=\dfrac{20}{7}\,\si{\ampere}$;
+$I_2=\dfrac{10}{7}\,\si{\ampere}$}
+\resolucao{Na malha 2,
 \[
-\mathbf{R}^{-1}=\frac{1}{108}\begin{bmatrix}12&6\\6&12\end{bmatrix}
-=\begin{bmatrix}0{,}1111&0{,}0556\\0{,}0556&0{,}1111\end{bmatrix}\si{\siemens}.
+-RI_1+(6+R)I_2=0.
 \]
-O elemento $(\mathbf{R}^{-1})_{11}=\SI{0.111}{\siemens}$ é a
-\emph{condutância de entrada} da malha 1: quantos ampères de $I_1$ por volt
-aplicado nela. O elemento $(\mathbf{R}^{-1})_{12}=\SI{0.0556}{\siemens}$ é uma
-\textbf{condutância de transferência}: quantos ampères de $I_1$ por volt
-aplicado na malha \emph{2}.\\
-(b)
-\[
-\Delta I_1=(\mathbf{R}^{-1})_{12}\,\Delta b_2=0{,}0556(6)=\SI{0.333}{\ampere}.
-\]
-\textbf{Verificação:} com $\mathbf{b}=(36;24)$,
-$I_1=(36\cdot12+6\cdot24)/108=(432+144)/108=\SI{5.333}{\ampere}$ --- e o valor
-anterior era $\SI{5}{\ampere}$ \checkmark.\\
-(c) $(\mathbf{R}^{-1})_{12}=(\mathbf{R}^{-1})_{21}=\SI{0.0556}{\siemens}$:
-aplicar $\SI{1}{\volt}$ na malha 2 e medir $I_1$ dá o mesmo que aplicar
-$\SI{1}{\volt}$ na malha 1 e medir $I_2$.\\
-\textbf{Origem:} a inversa de uma matriz simétrica é simétrica --- e
-$\mathbf{R}$ só é simétrica porque não há fontes dependentes. Com o elemento
-ativo da questão anterior, a reciprocidade se perderia, exatamente como ocorre
-na formulação nodal.}
+Impondo $I_2=I_1/2$:
+$-R+(6+R)/2=0$, logo $R=6\,\ohm$. Na malha 1,
+$10I_1-6I_2=20$; com $I_2=I_1/2$, resulta $7I_1=20$.}
 \end{questao}
 
 \begin{questao}[4]{}
-\textbf{(Escolha de método sob restrição.)} Uma rede planar tem $n$ nós e
-$b$ ramos, com $f_i$ fontes de corrente e $f_v$ fontes de tensão.
-\begin{itensq}
-\item Estabeleça um critério quantitativo de escolha entre nodal e malhas.
-\item Aplique a $n=6$, $b=10$, $f_i=4$, $f_v=1$.
-\item Discuta o caso em que o critério e a contagem bruta discordam.
-\end{itensq}
-\resposta{Comparar $(n-1)$ e $(b-n+1)$ \emph{corrigidos} pelo efeito das
-fontes; no exemplo, nodal com $1$ incógnita efetiva}
-\resolucao{(a) \textbf{Critério corrigido.} O tamanho efetivo do sistema é o
-número bruto de equações menos as incógnitas que as fontes \emph{eliminam}:
-\begin{itemize}
-\item \textbf{Nodal:} $(n-1)$ menos o número de fontes de tensão
-\emph{aterradas} (cada uma fixa um potencial). Fontes de corrente não alteram o
-tamanho --- entram direto no vetor $\mathbf{b}$.
-\item \textbf{Malhas:} $(b-n+1)$ menos o número de fontes de corrente
-\emph{na periferia} (cada uma fixa uma corrente de malha). Fontes de tensão
-entram direto em $\mathbf{b}$.
-\end{itemize}
-Escolha o menor. Em caso de empate, prefira o método em que as fontes restantes
-não exigem supernó ou supermalha.\\
-(b) Nodal: $6-1=5$; com a fonte de tensão aterrada, $4$ incógnitas.\\
-Malhas: $10-6+1=5$; se as quatro fontes de corrente estiverem na periferia,
-restam $\mathbf{1}$ incógnita.\\
-\textbf{Escolha: malhas}, com um sistema $1\times1$ --- resultado que a
-contagem bruta (empate em $5$) não revelaria.\\
-(c) \textbf{Quando discordam.} A contagem bruta é um limite \emph{superior};
-o efeito das fontes pode reduzi-lo drasticamente e inverter a decisão, como
-acabou de ocorrer.\\
-\textbf{Mas há uma ressalva decisiva:} a redução em malhas depende de as fontes
-de corrente poderem ser postas na periferia, o que nem sempre é possível --- com
-quatro delas em uma rede de cinco malhas, é provável que ao menos uma fique
-compartilhada, exigindo supermalha e devolvendo parte da vantagem.\\
-\textbf{Procedimento honesto:} faça a contagem bruta, depois \emph{desenhe} os
-contornos e verifique quantas fontes realmente caem na periferia. Só então
-decida.}
+O resistor compartilhado é a carga $R_L$. Determine $R_L$ para que sua potência
+seja máxima e calcule $P_{L,\max}$.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{4}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$R_L$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{8}{\ohm}$}] (6.4,3.2)
+      to[\fonteV,l_={$\SI{12}{\volt}$},invert] (6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$R_L=\dfrac{8}{3}\,\ohm\approx\SI{2.67}{\ohm}$;
+$P_{L,\max}=\SI{13.5}{\watt}$}
+\resolucao{As equações são
+\[
+(4+R_L)I_1-R_LI_2=24,
+\]
+\[
+-R_LI_1+(8+R_L)I_2=12.
+\]
+A corrente na carga é
+\[
+i_L=I_1-I_2=\frac{36}{3R_L+8}.
+\]
+Logo
+\[
+P_L=R_Li_L^2=\frac{1296R_L}{(3R_L+8)^2}.
+\]
+Derivando e igualando a zero, obtém-se $R_L=8/3\,\ohm$. Nesse ponto,
+$i_L=36/16=2{,}25$ A e $P_{L,\max}=13{,}5$ W.}
+\end{questao}
+
+\begin{questao}[4]{}
+A fonte $E$ deve ser escolhida para impor $I_2=0$. Determine $E$, sua polaridade
+relativa ao sentido horário e as correntes $I_1$ e $I_3$.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.4)
+      to[R,l={$\SI{6}{\ohm}$}] (2.8,3.4) coordinate(t1);
+\draw (t1) to[R,l_={$\SI{2}{\ohm}$}] (2.8,0) coordinate(b1)--(0,0);
+\draw (t1) to[R,l={$\SI{4}{\ohm}$}] (5.8,3.4) coordinate(t2);
+\draw (t2) to[R,l_={$\SI{1}{\ohm}$}] (5.8,0) coordinate(b2)--(b1);
+\draw (t2) to[R,l={$\SI{4}{\ohm}$}] (8.8,3.4)
+      to[\fonteV,l_={$E$}] (8.8,0)--(b2);
+\fvMeshCW{1.25,1.05}{.34}{$I_1$}
+\fvMeshCW{4.30,1.05}{.34}{$I_2$}
+\fvMeshCW{7.35,1.05}{.34}{$I_3$}
+\end{circuitikz}}
+\resposta{$I_1=\SI{3}{\ampere}$; $I_2=0$; $I_3=\SI{-6}{\ampere}$;
+$E=\SI{30}{\volt}$ orientada contra $I_3$ horário}
+\resolucao{O sistema é
+\[
+8I_1-2I_2=24,
+\qquad
+-2I_1+7I_2-I_3=0,
+\qquad
+-I_2+5I_3=E_s,
+\]
+onde $E_s$ é positivo se impulsiona $I_3$ horário. Impondo $I_2=0$:
+$I_1=3$ A e, pela segunda equação, $I_3=-6$ A. Assim
+$E_s=5(-6)=-30$ V. Portanto a fonte deve ter magnitude $30$ V e polaridade
+oposta à referência horária.}
+\end{questao}
+
+\begin{questao}[4]{}
+Em ensaio de uma rede de duas malhas, mediram-se $I_1=\SI{3}{\ampere}$ e
+$I_2=\SI{2}{\ampere}$. Determine a resistência desconhecida $R$ do ramo comum
+e a potência dissipada nela.
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{20}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{4}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l_={$R$}] (3.2,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{6}{\ohm}$}] (6.4,3.2)
+      to[\fonteV,l_={$\SI{4}{\volt}$},invert] (6.4,0)--(b);
+\fvMeshCW{1.55,1.05}{.40}{$I_1$}
+\fvMeshCW{4.85,1.05}{.40}{$I_2$}
+\end{circuitikz}}
+\resposta{$R=\SI{8}{\ohm}$; $P_R=\SI{8}{\watt}$}
+\resolucao{Pela malha 1,
+\[
+(4+R)3-R(2)=20 \Rightarrow 12+R=20 \Rightarrow R=8\,\ohm.
+\]
+A malha 2 confirma o mesmo valor:
+\[
+-3R+(6+R)2=4 \Rightarrow 12-R=4 \Rightarrow R=8\,\ohm.
+\]
+A corrente no ramo comum é $I_1-I_2=1$ A; portanto
+$P_R=8(1)^2=8$ W.}
 \end{questao}
