@@ -22,7 +22,7 @@ Determine a tensão nodal $V$.
 \draw (0,0) to[isource,l_={$\SI{6}{\ampere}$}] (0,2.6) -- (1.4,2.6) coordinate(n);
 \draw (n) to[R,l={$\SI{8}{\ohm}$}] (1.4,0) -- (0,0);
 \draw (n) -- (3.3,2.6) to[R,l={$\SI{8}{\ohm}$}] (3.3,0) -- (1.4,0);
-\draw (n) -- (5,2.6) to[isource,l={$\SI{2}{\ampere}$},invert] (5,0) -- (3.3,0);
+\draw (n) -- (5,2.6) to[isource,l={$\SI{2}{\ampere}$}] (5,0) -- (3.3,0);
 \node[above,Vcol] at (n){$V$}; \node[ground] at (1.4,0){};
 \end{circuitikz}}
 \resposta{$V=\SI{16}{\volt}$}
