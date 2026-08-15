@@ -6,6 +6,8 @@
 
 \begingroup
 
+\input{bancos/circuito-revisado-malha-l.tex}
+
 \newcount\fvAprofCount
 \newcount\fvDesafioCount
 \newcount\fvMalhaCircuitCount
@@ -26,7 +28,7 @@
   \or \fvCircuitoMalhaOriginal{\fvMalhaNDoisQThreeRevisada}% 3
   \or \fvCircuitoMalhaOriginal{\fvMalhaSuperRevisada}% 4
   \or \fvCircuitoMalhaOriginal{\fvMalhaTresRevisada}% 5
-  \or \fvCircuitoMalhaOriginal{#1}% 6: tres malhas em L
+  \or \fvCircuitoMalhaOriginal{\fvMalhaLRevisada}% 6
   \or \fvCircuitoMalhaOriginal{\fvMalhaTresDuasFontesRevisada}% 7
   \or \fvCircuitoMalhaOriginal{\fvMalhaQuatroRevisada}% 8
   \else \fvCircuitoMalhaOriginal{#1}% banco complementar e demais casos
