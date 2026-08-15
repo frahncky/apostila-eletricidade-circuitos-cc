@@ -6,7 +6,7 @@
 % ---------------------- CAPITULO 7 ORIGINAL ---------------------------
 \newcommand{\fvNodalOrigOne}{%
 \begin{circuitikz}[american,scale=.95,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{9}{\ampere}$}] (0,3.2) -- (2.0,3.2) coordinate(n);
+\draw (0,0) to[isource,l^={$\SI{9}{\ampere}$}] (0,3.2) -- (2.0,3.2) coordinate(n);
 \draw (n) to[R,l_={$\SI{6}{\ohm}$}] (2.0,0);
 \draw (n) -- (4.4,3.2) to[R,l={$\SI{3}{\ohm}$}] (4.4,0) -- (2.0,0) -- (0,0);
 \node[Vcol,fill=white,inner sep=1pt] at ($(n)+(0,.42)$) {$V$};
@@ -15,7 +15,7 @@
 
 \newcommand{\fvNodalOrigTwo}{%
 \begin{circuitikz}[american,scale=.93,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{6}{\ampere}$}] (0,3.2) -- (1.7,3.2) coordinate(n1);
+\draw (0,0) to[isource,l^={$\SI{6}{\ampere}$}] (0,3.2) -- (1.7,3.2) coordinate(n1);
 \draw (n1) to[R,l_={$\SI{2}{\ohm}$}] (1.7,0);
 \draw (n1) to[R,l={$\SI{3}{\ohm}$}] (5.0,3.2) coordinate(n2);
 \draw (n2) to[R,l={$\SI{6}{\ohm}$}] (5.0,0) -- (1.7,0) -- (0,0);
@@ -26,7 +26,7 @@
 
 \newcommand{\fvNodalOrigThree}{%
 \begin{circuitikz}[american,scale=.90,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3.2) -- (1.6,3.2) coordinate(n);
+\draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,3.2) -- (1.6,3.2) coordinate(n);
 \draw (n) to[R,l_={$\SI{6}{\ohm}$}] (1.6,0);
 \draw (n) -- (3.9,3.2) to[R,l={$\SI{3}{\ohm}$}] (3.9,0);
 \draw (n) -- (6.3,3.2) to[isource,l={$\SI{1}{\ampere}$},invert] (6.3,0) -- (1.6,0) -- (0,0);
@@ -36,7 +36,7 @@
 
 \newcommand{\fvNodalOrigFour}{%
 \begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
-\draw (0,0) to[\fonteV,l_={$\SI{12}{\volt}$}] (0,3.2) -- (1.2,3.2)
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,3.2) -- (1.2,3.2)
       to[R,l={$\SI{4}{\ohm}$}] (3.8,3.2) coordinate(a);
 \draw (a) to[R,l_={$\SI{6}{\ohm}$}] (3.8,0) -- (0,0);
 \draw (6.3,0) to[isource,l_={$\SI{2}{\ampere}$}] (6.3,3.2) -- (a);
@@ -48,7 +48,7 @@
 \newcommand{\fvNodalOrigFive}{%
 \begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
 \coordinate (g) at (4.3,0);
-\draw (0,0) to[\fonteV,l_={$\SI{12}{\volt}$}] (0,4.3) -- (1.0,4.3)
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,4.3) -- (1.0,4.3)
       to[R,l={$\SI{2}{\ohm}$}] (3.2,4.3) coordinate(n1);
 \draw (n1) to[R,l={$\SI{4}{\ohm}$}] (6.6,4.3) coordinate(n2);
 \draw (n1) to[R,l_={$\SI{4}{\ohm}$}] (4.3,2.1) coordinate(n3);
@@ -63,22 +63,22 @@
 \end{circuitikz}}
 
 \newcommand{\fvNodalOrigSix}{%
-\begin{circuitikz}[american,scale=.90,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{2}{\ampere}$}] (0,3.2) -- (1.8,3.2) coordinate(n1);
-\draw (n1) to[R,l_={$R_1=\SI{6}{\ohm}$}] (1.8,0);
-\draw (n1) to[\fonteV,l={$\SI{6}{\volt}$}] (5.2,3.2) coordinate(n2);
-\draw (n2) to[R,l={$R_2=\SI{3}{\ohm}$}] (5.2,0) -- (1.8,0) -- (0,0);
+\begin{circuitikz}[american,scale=.88,transform shape,line width=.8pt]
+\draw (0,0) to[isource,l^={$\SI{2}{\ampere}$}] (0,3.2) -- (2.4,3.2) coordinate(n1);
+\draw (n1) to[R,l_={$R_1=\SI{6}{\ohm}$}] (2.4,0);
+\draw (n1) to[\fonteV,l_={$\SI{6}{\volt}$},invert] (6.4,3.2) coordinate(n2);
+\draw (n2) to[R,l={$R_2=\SI{3}{\ohm}$}] (6.4,0) -- (2.4,0) -- (0,0);
 \node[Vcol,fill=white,inner sep=1pt] at ($(n1)+(0,.42)$) {$V_1$};
 \node[Vcol,fill=white,inner sep=1pt] at ($(n2)+(0,.42)$) {$V_2$};
-\draw[dashed,laranja,line width=.9pt,rounded corners=8pt] (1.15,2.42) rectangle (5.85,3.95);
-\node[laranja,font=\footnotesize\sffamily,fill=white,inner sep=1.5pt] at (3.5,4.15) {supernó};
-\node[ground] at (1.8,0){};
+\draw[dashed,laranja,line width=.9pt,rounded corners=8pt] (1.55,2.35) rectangle (7.25,3.95);
+\node[laranja,font=\footnotesize\sffamily,fill=white,inner sep=1.5pt] at (4.4,4.18) {supernó};
+\node[ground] at (2.4,0){};
 \end{circuitikz}}
 
 % ----------------------------- NIVEL 2 --------------------------------
 \newcommand{\fvNodalNtwoOne}{%
 \begin{circuitikz}[american,scale=.95,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3.1) -- (1.8,3.1) coordinate(n);
+\draw (0,0) to[isource,l^={$\SI{5}{\ampere}$}] (0,3.1) -- (1.8,3.1) coordinate(n);
 \draw (n) to[R,l_={$\SI{10}{\ohm}$}] (1.8,0);
 \draw (n) -- (4.4,3.1) to[R,l={$\SI{20}{\ohm}$}] (4.4,0) -- (1.8,0) -- (0,0);
 \node[Vcol,fill=white,inner sep=1pt] at ($(n)+(0,.42)$) {$V$}; \node[ground] at (1.8,0){};
@@ -86,7 +86,7 @@
 
 \newcommand{\fvNodalNtwoTwo}{%
 \begin{circuitikz}[american,scale=.90,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{6}{\ampere}$}] (0,3.1) -- (1.6,3.1) coordinate(n);
+\draw (0,0) to[isource,l^={$\SI{6}{\ampere}$}] (0,3.1) -- (1.6,3.1) coordinate(n);
 \draw (n) to[R,l_={$\SI{8}{\ohm}$}] (1.6,0);
 \draw (n) -- (4.0,3.1) to[R,l={$\SI{8}{\ohm}$}] (4.0,0);
 \draw (n) -- (6.4,3.1) to[isource,l={$\SI{2}{\ampere}$}] (6.4,0) -- (1.6,0) -- (0,0);
@@ -107,7 +107,7 @@
 
 \newcommand{\fvNodalNtwoFour}{%
 \begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{3}{\ampere}$}] (0,3.2) -- (1.7,3.2) coordinate(n1);
+\draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,3.2) -- (1.7,3.2) coordinate(n1);
 \draw (n1) to[R,l_={$\SI{10}{\ohm}$}] (1.7,0);
 \draw (n1) to[R,l={$\SI{10}{\ohm}$}] (5.2,3.2) coordinate(n2);
 \draw (n2) to[R,l={$\SI{10}{\ohm}$}] (5.2,0) -- (1.7,0) -- (0,0);
@@ -134,7 +134,7 @@
 
 \newcommand{\fvNodalNtwoSeven}{%
 \begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3.2) -- (1.7,3.2) coordinate(n1);
+\draw (0,0) to[isource,l^={$\SI{4}{\ampere}$}] (0,3.2) -- (1.7,3.2) coordinate(n1);
 \draw (n1) to[R,l_={$\SI{5}{\ohm}$}] (1.7,0);
 \draw (n1) to[R,l={$\SI{10}{\ohm}$}] (5.2,3.2) coordinate(n2);
 \draw (n2) to[R,l={$\SI{10}{\ohm}$}] (5.2,0) -- (1.7,0) -- (0,0);
@@ -144,7 +144,7 @@
 
 \newcommand{\fvNodalNtwoEight}{%
 \begin{circuitikz}[american,scale=.86,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{5}{\ampere}$}] (0,3.3) -- (1.7,3.3) coordinate(n1);
+\draw (0,0) to[isource,l^={$\SI{5}{\ampere}$}] (0,3.3) -- (1.7,3.3) coordinate(n1);
 \draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (1.7,0);
 \draw (n1) to[R,l={$\SI{6}{\ohm}$}] (4.1,3.3) coordinate(mid);
 \draw (mid) to[isource,l={$\SI{1}{\ampere}$}] (6.6,3.3) coordinate(n2);
@@ -155,7 +155,7 @@
 
 \newcommand{\fvNodalNtwoNine}{%
 \begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3.4) -- (1.3,3.4) coordinate(n1);
+\draw (0,0) to[isource,l^={$\SI{4}{\ampere}$}] (0,3.4) -- (1.3,3.4) coordinate(n1);
 \draw (n1) to[R,l_={$\SI{10}{\ohm}$}] (1.3,0);
 \draw (n1) to[R,l={$\SI{10}{\ohm}$}] (4.2,3.4) coordinate(n2);
 \draw (n2) to[R,l_={$\SI{10}{\ohm}$}] (4.2,0);
@@ -167,7 +167,7 @@
 
 \newcommand{\fvNodalNtwoTen}{%
 \begin{circuitikz}[american,scale=.86,transform shape,line width=.8pt]
-\draw (0,0) to[isource,l_={$\SI{4}{\ampere}$}] (0,3.2) -- (1.7,3.2) coordinate(n1);
+\draw (0,0) to[isource,l^={$\SI{4}{\ampere}$}] (0,3.2) -- (1.7,3.2) coordinate(n1);
 \draw (n1) to[R,l_={$\SI{4}{\ohm}$}] (1.7,0);
 \draw (n1) to[R,l={$\SI{8}{\ohm}$}] (5.2,3.2) coordinate(n2);
 \draw (n2) to[R,l={$\SI{4}{\ohm}$}] (5.2,0);
