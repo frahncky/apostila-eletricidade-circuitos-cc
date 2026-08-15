@@ -1,15 +1,35 @@
 % =====================================================================
 % CAPITULO 9 --- WRAPPER DE INTEGRACAO DOS EXERCICIOS DEPENDENTES
 % Injeta as questoes de fontes dependentes dentro dos blocos N2, N3 e N4
-% do capitulo original, mantendo um unico gabarito ao final.
+% e substitui somente os desenhos identificados na auditoria visual.
 % =====================================================================
 
 \begingroup
 
 \newcount\fvAprofCount
 \newcount\fvDesafioCount
+\newcount\fvMalhaCircuitCount
 \fvAprofCount=0
 \fvDesafioCount=0
+\fvMalhaCircuitCount=0
+
+% O contador abaixo acompanha apenas os circuitos do capitulo original.
+% Durante a injecao dos bancos de fontes dependentes, a macro original e
+% restaurada localmente para que a numeracao dos alvos nao seja deslocada.
+\let\fvCircuitoMalhaOriginal\circuitoq
+\renewcommand{\circuitoq}[1]{%
+  \advance\fvMalhaCircuitCount by 1\relax
+  \ifnum\fvMalhaCircuitCount=4\relax
+    \fvCircuitoMalhaOriginal{\fvMalhaSuperRevisada}%
+  \else\ifnum\fvMalhaCircuitCount=5\relax
+    \fvCircuitoMalhaOriginal{\fvMalhaTresRevisada}%
+  \else\ifnum\fvMalhaCircuitCount=7\relax
+    \fvCircuitoMalhaOriginal{\fvMalhaTresDuasFontesRevisada}%
+  \else\ifnum\fvMalhaCircuitCount=8\relax
+    \fvCircuitoMalhaOriginal{\fvMalhaQuatroRevisada}%
+  \else
+    \fvCircuitoMalhaOriginal{#1}%
+  \fi\fi\fi\fi}
 
 % Ao chegar ao primeiro N3, fecha-se o N2 principal: injeta as questoes N2
 % imediatamente antes do cabecalho N3.
@@ -17,7 +37,10 @@
 \renewcommand{\blocoaprofundamento}{%
   \advance\fvAprofCount by 1\relax
   \ifnum\fvAprofCount=1\relax
-    \input{bancos/banco-fontes-dependentes-malhas-n2}%
+    \begingroup
+      \let\circuitoq\fvCircuitoMalhaOriginal
+      \input{bancos/banco-fontes-dependentes-malhas-n2}%
+    \endgroup
   \fi
   \fvBlocoAprofOriginal
 }
@@ -28,12 +51,18 @@
 \renewcommand{\blocodesafio}{%
   \advance\fvDesafioCount by 1\relax
   \ifnum\fvDesafioCount=1\relax
-    \input{bancos/banco-fontes-dependentes-malhas-n3}%
+    \begingroup
+      \let\circuitoq\fvCircuitoMalhaOriginal
+      \input{bancos/banco-fontes-dependentes-malhas-n3}%
+    \endgroup
     \fvBlocoDesafioOriginal
   \else
     \fvBlocoDesafioOriginal
     \ifnum\fvDesafioCount=2\relax
-      \input{bancos/banco-fontes-dependentes-malhas-n4}%
+      \begingroup
+        \let\circuitoq\fvCircuitoMalhaOriginal
+        \input{bancos/banco-fontes-dependentes-malhas-n4}%
+      \endgroup
     \fi
   \fi
 }
