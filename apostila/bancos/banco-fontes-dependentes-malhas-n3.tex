@@ -1,0 +1,112 @@
+% =====================================================================
+% FONTES DEPENDENTES EM MALHAS --- NIVEL 3
+% Questoes integradas ao bloco de Aprofundamento do Capitulo 9.
+% =====================================================================
+
+\begin{questao}[3]{}
+A fonte dependente vale $4i_x$ volts, com $i_x=I_1-I_2$ no resistor central.
+Determine as correntes de malha.
+
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l_={$\SI{24}{\volt}$}] (0,3.2)
+      to[R,l={$\SI{4}{\ohm}$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l={$\SI{4}{\ohm}$},i>^={$i_x$}] (3.2,0) coordinate(b) -- (0,0);
+\draw (t) to[R,l={$\SI{8}{\ohm}$}] (6.4,3.2)
+      to[cvsource,l={$4i_x$}] (6.4,0) -- (b);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.05) arc (0:310:.50);
+\node[loopcol] at (1.75,1.05){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.75,1.05) arc (0:310:.50);
+\node[loopcol] at (4.75,1.05){\footnotesize$I_2$};
+\end{circuitikz}}
+
+\resposta{$I_1=\SI{4}{\ampere}$; $I_2=\SI{2}{\ampere}$}
+\resolucao{A malha 1 fornece $8I_1-4I_2=24$. Na malha 2,
+\[
+-4I_1+12I_2=4(I_1-I_2),
+\]
+ou $-8I_1+16I_2=0$. Assim $I_1=2I_2$ e, pela primeira equação,
+$I_1=\SI{4}{\ampere}$ e $I_2=\SI{2}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+A tensão de controle $v_x$ é medida no resistor de $\SI{4}{\ohm}$ exclusivo da
+malha 1. A fonte dependente vale $0{,}5v_x$. Determine $I_1$ e $I_2$.
+
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l_={$\SI{24}{\volt}$}] (0,3.2)
+      to[R,l_={$\SI{4}{\ohm}$},v^>={$v_x$}] (3.2,3.2) coordinate(t);
+\draw (t) to[R,l={$\SI{4}{\ohm}$}] (3.2,0) coordinate(b) -- (0,0);
+\draw (t) to[R,l={$\SI{4}{\ohm}$}] (6.4,3.2)
+      to[cvsource,l={$0{,}5v_x$}] (6.4,0) -- (b);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.05) arc (0:310:.50);
+\node[loopcol] at (1.75,1.05){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.75,1.05) arc (0:310:.50);
+\node[loopcol] at (4.75,1.05){\footnotesize$I_2$};
+\end{circuitikz}}
+
+\resposta{$I_1=\SI{4.8}{\ampere}$; $I_2=\SI{3.6}{\ampere}$}
+\resolucao{Como $v_x=4I_1$, a fonte dependente vale $2I_1$ volts. Logo,
+\[
+8I_1-4I_2=24,
+\qquad
+-4I_1+8I_2=2I_1.
+\]
+Da segunda, $I_2=0{,}75I_1$. Substituindo na primeira, obtêm-se
+$I_1=\SI{4.8}{\ampere}$ e $I_2=\SI{3.6}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de corrente dependente está no ramo comum e fornece corrente de baixo
+para cima igual a $0{,}1v_x$. A tensão $v_x$ está indicada no resistor da malha
+1. Determine $I_1$ e $I_2$ por supermalha.
+
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l_={$\SI{40}{\volt}$}] (0,3.2)
+      to[R,l_={$\SI{5}{\ohm}$},v^>={$v_x$}] (3.2,3.2) coordinate(t);
+\draw (t) to[cisource,l={$0{,}1v_x$},invert] (3.2,0) coordinate(b) -- (0,0);
+\draw (t) to[R,l={$\SI{5}{\ohm}$}] (6.4,3.2) -- (6.4,0) -- (b);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.05) arc (0:310:.50);
+\node[loopcol] at (1.75,1.05){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.75,1.05) arc (0:310:.50);
+\node[loopcol] at (4.75,1.05){\footnotesize$I_2$};
+\draw[dashed,laranja,line width=.9pt,rounded corners=7pt]
+      (-.45,-.4) rectangle (6.85,3.65);
+\end{circuitikz}}
+
+\resposta{$I_1=\SI{3.2}{\ampere}$; $I_2=\SI{4.8}{\ampere}$}
+\resolucao{Como $v_x=5I_1$, a restrição imposta pela fonte é
+\[
+I_2-I_1=0{,}1(5I_1)=0{,}5I_1,
+\]
+portanto $I_2=1{,}5I_1$. A LKT na supermalha externa é
+$40=5I_1+5I_2$. Substituindo, $I_1=\SI{3.2}{\ampere}$ e
+$I_2=\SI{4.8}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de corrente dependente do ramo comum fornece, de baixo para cima,
+$2i_x$, sendo $i_x=I_1$ no resistor esquerdo. Determine as correntes de malha
+por supermalha.
+
+\circuitoq{%
+\begin{circuitikz}[american,scale=.92,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l_={$\SI{40}{\volt}$}] (0,3.2)
+      to[R,l_={$\SI{5}{\ohm}$},i>^={$i_x$}] (3.2,3.2) coordinate(t);
+\draw (t) to[cisource,l={$2i_x$},invert] (3.2,0) coordinate(b) -- (0,0);
+\draw (t) to[R,l={$\SI{5}{\ohm}$}] (6.4,3.2) -- (6.4,0) -- (b);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.05) arc (0:310:.50);
+\node[loopcol] at (1.75,1.05){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.75,1.05) arc (0:310:.50);
+\node[loopcol] at (4.75,1.05){\footnotesize$I_2$};
+\draw[dashed,laranja,line width=.9pt,rounded corners=7pt]
+      (-.45,-.4) rectangle (6.85,3.65);
+\end{circuitikz}}
+
+\resposta{$I_1=\SI{2}{\ampere}$; $I_2=\SI{6}{\ampere}$}
+\resolucao{A restrição é $I_2-I_1=2I_1$, portanto $I_2=3I_1$. A LKT na
+supermalha é $40=5I_1+5I_2$. Assim $40=20I_1$, resultando
+$I_1=\SI{2}{\ampere}$ e $I_2=\SI{6}{\ampere}$.}
+\end{questao}
