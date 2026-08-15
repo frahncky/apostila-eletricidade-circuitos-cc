@@ -1,116 +1,156 @@
 % =====================================================================
 % FONTES DEPENDENTES --- ANALISE DE MALHAS
-% 8 questoes visuais (completa o conjunto de 17 com as 9 de analise nodal)
+% 10 questoes visuais. Com 7 questoes dependentes no banco nodal visual,
+% completa o conjunto de 17 solicitado (a questao original + 16 novas).
 % =====================================================================
-\subsubsection*{Fontes dependentes --- análise de malhas}
+
+\subsubsection*{Banco especial --- Fontes dependentes em análise de malhas}
+
+\begin{atencao}[Leitura obrigatória do circuito]
+As questões abaixo usam topologias distintas: fontes controladas por corrente e
+por tensão, ramos externos e compartilhados, supermalha, três malhas,
+determinação de ganho e potência. Adote as correntes de malha indicadas no
+sentido horário.
+\end{atencao}
 
 \blocoaprofundamento
 
 \begin{questao}[3]{}
-As correntes de malha $I_1$ e $I_2$ são horárias. A fonte dependente da malha 2 vale $2{,}5I_1$ volts e auxilia $I_2$. Determine $I_1$ e $I_2$.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+A fonte de tensão dependente vale $2{,}5I_1$ volts e impulsiona a malha 2. Determine $I_1$, $I_2$ e a corrente real no resistor central.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
 \draw (0,0) to[battery1,l_={$\SI{20}{\volt}$}] (0,3) to[R,l={$\SI{5}{\ohm}$}] (3,3) coordinate(t);
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (3,0) coordinate(b)--(0,0);
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (6,3) to[cvsource,l={$2{,}5I_1$}] (6,0)--(b);
-\draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
-\draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
+\draw[->,loopcol,line width=1.2pt] (1.4,1.5) arc (0:310:.48); \node[loopcol] at(1.4,1.5){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.6,1.5) arc (0:310:.48); \node[loopcol] at(4.6,1.5){\footnotesize$I_2$};
 \end{circuitikz}}
-\resposta{$I_1=\SI{3.2}{\ampere}$; $I_2=\SI{2.4}{\ampere}$}
-\resolucao{Malha 1: $10I_1-5I_2=20$. Malha 2: $-5I_1+10I_2=2{,}5I_1$, isto é, $-7{,}5I_1+10I_2=0$. A solução é $(3{,}2;2{,}4)$ A.}
+\resposta{$I_1=\SI{3.2}{\ampere}$; $I_2=\SI{2.4}{\ampere}$; $I_c=\SI{0.8}{\ampere}$}
+\resolucao{Malha 1: $10I_1-5I_2=20$. Malha 2: $-5I_1+10I_2=2{,}5I_1$, ou $-7{,}5I_1+10I_2=0$. Daí $I_1=3{,}2$ A e $I_2=2{,}4$ A. No resistor comum, $I_c=I_1-I_2=0{,}8$ A.}
 \end{questao}
 
 \begin{questao}[3]{}
-A fonte controlada da malha 2 vale $3I_1$ volts e auxilia $I_2$. Determine as correntes de malha.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+A fonte dependente vale $4i_x$ volts, com $i_x=I_1-I_2$ no resistor central. Determine as correntes de malha.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
 \draw (0,0) to[battery1,l_={$\SI{24}{\volt}$}] (0,3) to[R,l={$\SI{4}{\ohm}$}] (3,3) coordinate(t);
-\draw (t) to[R,l={$\SI{2}{\ohm}$}] (3,0) coordinate(b)--(0,0);
-\draw (t) to[R,l={$\SI{6}{\ohm}$}] (6,3) to[cvsource,l={$3I_1$}] (6,0)--(b);
-\draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
-\draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
-\end{circuitikz}}
-\resposta{$I_1=\dfrac{96}{19}\,\si{\ampere}\approx\SI{5.05}{\ampere}$; $I_2=\dfrac{60}{19}\,\si{\ampere}\approx\SI{3.16}{\ampere}$}
-\resolucao{$6I_1-2I_2=24$ e $-2I_1+8I_2=3I_1$. Portanto $-5I_1+8I_2=0$ e a solução é $I_1=96/19$ A, $I_2=60/19$ A.}
-\end{questao}
-
-\begin{questao}[3]{}
-Na periferia da malha 2 há uma fonte de corrente dependente que impõe $I_2=0{,}5i_x$, com $i_x=I_1-I_2$ no resistor compartilhado. Determine $I_1$ e $I_2$.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[battery1,l_={$\SI{12}{\volt}$}] (0,3) to[R,l={$\SI{2}{\ohm}$}] (3,3) coordinate(t);
 \draw (t) to[R,l={$\SI{4}{\ohm}$},i>^={$i_x$}] (3,0) coordinate(b)--(0,0);
-\draw (t) -- (6,3) to[cisource,l={$0{,}5i_x$}] (6,0)--(b);
-\draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
-\draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
+\draw (t) to[R,l={$\SI{8}{\ohm}$}] (6,3) to[cvsource,l={$4i_x$}] (6,0)--(b);
+\draw[->,loopcol,line width=1.2pt] (1.4,1.5) arc (0:310:.48); \node[loopcol] at(1.4,1.5){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.6,1.5) arc (0:310:.48); \node[loopcol] at(4.6,1.5){\footnotesize$I_2$};
 \end{circuitikz}}
-\resposta{$I_1=\dfrac{18}{7}\,\si{\ampere}\approx\SI{2.57}{\ampere}$; $I_2=\dfrac{6}{7}\,\si{\ampere}\approx\SI{0.857}{\ampere}$}
-\resolucao{$I_2=0{,}5(I_1-I_2)\Rightarrow I_1=3I_2$. Na malha 1, $2I_1+4(I_1-I_2)=12$. Substituindo $I_1=3I_2$, obtém-se $14I_2=12$.}
+\resposta{$I_1=\SI{4}{\ampere}$; $I_2=\SI{2}{\ampere}$}
+\resolucao{Malha 1: $8I_1-4I_2=24$. Na malha 2, $-4I_1+12I_2=4(I_1-I_2)$, portanto $-8I_1+16I_2=0$. Assim $I_1=4$ A e $I_2=2$ A.}
 \end{questao}
 
 \begin{questao}[3]{}
-A fonte de corrente dependente está no ramo comum e aponta para baixo, impondo $I_1-I_2=0{,}5I_1$. Use supermalha para determinar $I_1$ e $I_2$.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[battery1,l_={$\SI{30}{\volt}$}] (0,3) to[R,l={$\SI{6}{\ohm}$}] (3,3) coordinate(t);
-\draw (t) to[cisource,l={$0{,}5I_1$}] (3,0) coordinate(b)--(0,0);
-\draw (t) to[R,l={$\SI{6}{\ohm}$}] (6,3)--(6,0)--(b);
-\draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
-\draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
+A tensão de controle $v_x$ é a tensão no resistor de $\SI{4}{\ohm}$ da malha 1. A fonte dependente vale $0{,}5v_x$. Determine $I_1$ e $I_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{24}{\volt}$}] (0,3) to[R,l={$\SI{4}{\ohm}$},v^>={$v_x$}] (3,3) coordinate(t);
+\draw (t) to[R,l={$\SI{4}{\ohm}$}] (3,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{4}{\ohm}$}] (6,3) to[cvsource,l={$0{,}5v_x$}] (6,0)--(b);
+\draw[->,loopcol,line width=1.2pt] (1.4,1.5) arc (0:310:.48); \node[loopcol] at(1.4,1.5){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.6,1.5) arc (0:310:.48); \node[loopcol] at(4.6,1.5){\footnotesize$I_2$};
 \end{circuitikz}}
-\resposta{$I_1=\SI{3.33}{\ampere}$; $I_2=\SI{1.67}{\ampere}$}
-\resolucao{Restrição: $I_1-I_2=0{,}5I_1\Rightarrow I_2=0{,}5I_1$. Supermalha externa: $6I_1+6I_2=30$. Logo $9I_1=30$.}
+\resposta{$I_1=\SI{4.8}{\ampere}$; $I_2=\SI{3.6}{\ampere}$}
+\resolucao{$v_x=4I_1$, logo a fonte vale $2I_1$ V. As equações são $8I_1-4I_2=24$ e $-4I_1+8I_2=2I_1$. Da segunda, $I_2=0{,}75I_1$; substituindo na primeira, $I_1=4{,}8$ A e $I_2=3{,}6$ A.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de corrente dependente está na periferia da malha 2 e impõe $I_2=0{,}5I_1$. Determine $I_1$, $I_2$ e o módulo da tensão na fonte de corrente.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{30}{\volt}$}] (0,3) to[R,l={$\SI{5}{\ohm}$}] (3,3) coordinate(t);
+\draw (t) to[R,l={$\SI{5}{\ohm}$}] (3,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{10}{\ohm}$}] (6,3) to[cisource,l={$0{,}5I_1$},invert] (6,0)--(b);
+\draw[->,loopcol,line width=1.2pt] (1.4,1.5) arc (0:310:.48); \node[loopcol] at(1.4,1.5){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.6,1.5) arc (0:310:.48); \node[loopcol] at(4.6,1.5){\footnotesize$I_2$};
+\end{circuitikz}}
+\resposta{$I_1=\SI{4}{\ampere}$; $I_2=\SI{2}{\ampere}$; $|v_s|=\SI{10}{\volt}$}
+\resolucao{A fonte na periferia fixa diretamente $I_2=0{,}5I_1$. Na malha 1: $10I_1-5I_2=30$. Portanto $7{,}5I_1=30$, resultando $I_1=4$ A e $I_2=2$ A. Na malha 2, as quedas resistivas somam $10(2)+5(2-4)=10$ V em módulo; a fonte sustenta essa tensão.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de corrente dependente está no ramo comum. Sua corrente, de baixo para cima, é $0{,}1v_x$, onde $v_x$ é a tensão no resistor esquerdo de $\SI{5}{\ohm}$. Resolva pela supermalha.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{40}{\volt}$}] (0,3) to[R,l={$\SI{5}{\ohm}$},v^>={$v_x$}] (3,3) coordinate(t);
+\draw (t) to[cisource,l={$0{,}1v_x$},invert] (3,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{5}{\ohm}$}] (6,3)--(6,0)--(b);
+\draw[->,loopcol,line width=1.2pt] (1.4,1.5) arc (0:310:.48); \node[loopcol] at(1.4,1.5){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.6,1.5) arc (0:310:.48); \node[loopcol] at(4.6,1.5){\footnotesize$I_2$};
+\end{circuitikz}}
+\resposta{$I_1=\SI{3.2}{\ampere}$; $I_2=\SI{4.8}{\ampere}$}
+\resolucao{Como $v_x=5I_1$, a restrição é $I_2-I_1=0{,}1(5I_1)=0{,}5I_1$, logo $I_2=1{,}5I_1$. Na supermalha: $40=5I_1+5I_2$. Daí $I_1=3{,}2$ A e $I_2=4{,}8$ A.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de corrente dependente do ramo comum fornece, de baixo para cima, $2i_x$, sendo $i_x=I_1$ no resistor esquerdo. Determine as correntes por supermalha.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{40}{\volt}$}] (0,3) to[R,l={$\SI{5}{\ohm}$},i>^={$i_x$}] (3,3) coordinate(t);
+\draw (t) to[cisource,l={$2i_x$},invert] (3,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{5}{\ohm}$}] (6,3)--(6,0)--(b);
+\draw[->,loopcol,line width=1.2pt] (1.4,1.5) arc (0:310:.48); \node[loopcol] at(1.4,1.5){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.6,1.5) arc (0:310:.48); \node[loopcol] at(4.6,1.5){\footnotesize$I_2$};
+\end{circuitikz}}
+\resposta{$I_1=\SI{2}{\ampere}$; $I_2=\SI{6}{\ampere}$}
+\resolucao{A restrição é $I_2-I_1=2I_1$, portanto $I_2=3I_1$. A LKT da supermalha é $40=5I_1+5I_2$. Substituindo, $40=20I_1$, daí $I_1=2$ A e $I_2=6$ A.}
 \end{questao}
 
 \blocodesafio
 
 \begin{questao}[4]{}
-A fonte de tensão controlada está no ramo comum e tem polaridade positiva no topo, com valor $2I_2$ volts. As fontes independentes impulsionam as correntes horárias. Determine $I_1$ e $I_2$.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[battery1,l_={$\SI{20}{\volt}$}] (0,3) to[R,l={$\SI{4}{\ohm}$}] (3,3) coordinate(t);
-\draw (t) to[cvsource,l={$2I_2$}] (3,0) coordinate(b)--(0,0);
-\draw (t) to[R,l={$\SI{4}{\ohm}$}] (6,3) to[battery1,l={$\SI{8}{\volt}$},invert] (6,0)--(b);
-\draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
-\draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
+No circuito de três malhas, a fonte dependente da terceira malha vale $2{,}5I_1$ volts e impulsiona $I_3$. Determine $I_1$, $I_2$ e $I_3$.
+\circuitoq{\begin{circuitikz}[american,scale=.70,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{20}{\volt}$}] (0,3) to[R,l={$\SI{5}{\ohm}$}] (2.6,3) coordinate(t1);
+\draw (t1) to[R,l={$\SI{5}{\ohm}$}] (2.6,0) coordinate(b1)--(0,0);
+\draw (t1) to[R,l={$\SI{5}{\ohm}$}] (5.2,3) coordinate(t2);
+\draw (t2) to[R,l={$\SI{5}{\ohm}$}] (5.2,0) coordinate(b2)--(b1);
+\draw (t2) to[R,l={$\SI{5}{\ohm}$}] (7.8,3) to[cvsource,l={$2{,}5I_1$}] (7.8,0)--(b2);
+\draw[->,loopcol] (1.2,1.5) arc (0:310:.4); \node[loopcol] at(1.2,1.5){\scriptsize$I_1$};
+\draw[->,loopcol] (3.9,1.5) arc (0:310:.4); \node[loopcol] at(3.9,1.5){\scriptsize$I_2$};
+\draw[->,loopcol] (6.6,1.5) arc (0:310:.4); \node[loopcol] at(6.6,1.5){\scriptsize$I_3$};
 \end{circuitikz}}
-\resposta{$I_1=\SI{3}{\ampere}$; $I_2=\SI{4}{\ampere}$}
-\resolucao{Na malha 1, $4I_1+2I_2=20$. Na malha 2, a fonte controlada é atravessada no sentido oposto: $4I_2-2I_2=8$, logo $I_2=4$ A; então $I_1=3$ A.}
+\resposta{$I_1=\dfrac{8}{3}\,\si{\ampere}$; $I_2=I_3=\dfrac{4}{3}\,\si{\ampere}$}
+\resolucao{O sistema é $10I_1-5I_2=20$, $-5I_1+15I_2-5I_3=0$ e $-5I_2+10I_3=2{,}5I_1$. Resolvendo, $I_1=8/3$ A e $I_2=I_3=4/3$ A.}
 \end{questao}
 
 \begin{questao}[4]{}
-A fonte de corrente no ramo comum vale $2i_x$, onde $i_x=I_2$ é a corrente no resistor externo da malha 2. Determine as correntes usando supermalha.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[battery1,l_={$\SI{36}{\volt}$}] (0,3) to[R,l={$\SI{4}{\ohm}$}] (3,3) coordinate(t);
-\draw (t) to[cisource,l={$2i_x$}] (3,0) coordinate(b)--(0,0);
-\draw (t) to[R,l={$\SI{8}{\ohm}$},i>^={$i_x$}] (6,3)--(6,0)--(b);
-\draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
-\draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
+A fonte de corrente dependente está entre as malhas 2 e 3 e impõe $I_3-I_2=0{,}5I_1$. Determine as três correntes usando uma supermalha entre 2 e 3.
+\circuitoq{\begin{circuitikz}[american,scale=.70,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{30}{\volt}$}] (0,3) to[R,l={$\SI{5}{\ohm}$}] (2.6,3) coordinate(t1);
+\draw (t1) to[R,l={$\SI{5}{\ohm}$}] (2.6,0) coordinate(b1)--(0,0);
+\draw (t1) to[R,l={$\SI{5}{\ohm}$}] (5.2,3) coordinate(t2);
+\draw (t2) to[cisource,l={$0{,}5I_1$},invert] (5.2,0) coordinate(b2)--(b1);
+\draw (t2) to[R,l={$\SI{10}{\ohm}$}] (7.8,3)--(7.8,0)--(b2);
+\draw[->,loopcol] (1.2,1.5) arc (0:310:.4); \node[loopcol] at(1.2,1.5){\scriptsize$I_1$};
+\draw[->,loopcol] (3.9,1.5) arc (0:310:.4); \node[loopcol] at(3.9,1.5){\scriptsize$I_2$};
+\draw[->,loopcol] (6.6,1.5) arc (0:310:.4); \node[loopcol] at(6.6,1.5){\scriptsize$I_3$};
 \end{circuitikz}}
-\resposta{$I_1=\SI{5.4}{\ampere}$; $I_2=\SI{1.8}{\ampere}$}
-\resolucao{No ramo comum, $I_1-I_2=2I_2\Rightarrow I_1=3I_2$. Na supermalha: $4I_1+8I_2=36$. Assim $20I_2=36$.}
+\resposta{$I_1=\SI{3}{\ampere}$; $I_2=0$; $I_3=\SI{1.5}{\ampere}$}
+\resolucao{Malha 1: $10I_1-5I_2=30$. Supermalha 2--3: $-5I_1+10I_2+10I_3=0$. Restrição: $I_3-I_2=0{,}5I_1$. O sistema fornece $I_1=3$ A, $I_2=0$ e $I_3=1{,}5$ A.}
 \end{questao}
 
 \begin{questao}[4]{}
-Três malhas em linha têm resistores próprios de $\SI{4}{\ohm}$ e resistores compartilhados de $\SI{2}{\ohm}$. A malha 1 possui uma fonte de $\SI{24}{\volt}$; a malha 3 possui uma fonte dependente de $2I_1$ volts que auxilia $I_3$. Determine $I_1$, $I_2$ e $I_3$.
-\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
-\draw (0,0) to[battery1,l_={$\SI{24}{\volt}$}] (0,3) to[R,l={$\SI{4}{\ohm}$}] (2.6,3) coordinate(a);
-\draw (a) to[R,l={$\SI{2}{\ohm}$}] (2.6,0) coordinate(b)--(0,0);
-\draw (a) to[R,l={$\SI{4}{\ohm}$}] (5.2,3) coordinate(c);
-\draw (c) to[R,l={$\SI{2}{\ohm}$}] (5.2,0) coordinate(d)--(b);
-\draw (c) to[R,l={$\SI{4}{\ohm}$}] (7.8,3) to[cvsource,l={$2I_1$}] (7.8,0)--(d);
-\node[loopcol] at(1.3,1.5){$I_1$};\node[loopcol] at(3.9,1.5){$I_2$};\node[loopcol] at(6.5,1.5){$I_3$};
-\end{circuitikz}}
-\resposta{$I_1=\dfrac{132}{29}\,\si{\ampere}\approx\SI{4.55}{\ampere}$; $I_2=\dfrac{48}{29}\,\si{\ampere}\approx\SI{1.66}{\ampere}$; $I_3=\dfrac{60}{29}\,\si{\ampere}\approx\SI{2.07}{\ampere}$}
-\resolucao{O sistema é $6I_1-2I_2=24$, $-2I_1+8I_2-2I_3=0$ e $-2I_2+6I_3=2I_1$. Resolvendo, obtêm-se $I_1=132/29$, $I_2=48/29$ e $I_3=60/29$ A.}
-\end{questao}
-
-\begin{questao}[4]{}
-No circuito simétrico, a fonte dependente da malha 2 vale $kI_1$ volts e auxilia $I_2$. Determine $k$ para que $I_2=\SI{3}{\ampere}$.
-\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
-\draw (0,0) to[battery1,l_={$\SI{30}{\volt}$}] (0,3) to[R,l={$\SI{5}{\ohm}$}] (3,3) coordinate(t);
+A fonte dependente vale $kI_1$ volts. Determine $k$ para que $I_2=\SI{2}{\ampere}$ e calcule $I_1$.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{20}{\volt}$}] (0,3) to[R,l={$\SI{5}{\ohm}$}] (3,3) coordinate(t);
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (3,0) coordinate(b)--(0,0);
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (6,3) to[cvsource,l={$kI_1$}] (6,0)--(b);
-\draw[->,loopcol] (1.5,1.5) arc (0:300:.55);\node[loopcol] at(1.5,1.5){$I_1$};
-\draw[->,loopcol] (4.7,1.5) arc (0:300:.55);\node[loopcol] at(4.7,1.5){$I_2$};
+\draw[->,loopcol,line width=1.2pt] (1.4,1.5) arc (0:310:.48); \node[loopcol] at(1.4,1.5){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.6,1.5) arc (0:310:.48); \node[loopcol] at(4.6,1.5){\footnotesize$I_2$};
 \end{circuitikz}}
-\resposta{$k=\dfrac{5}{3}\,\ohm\approx\SI{1.67}{\ohm}$}
-\resolucao{Com $I_2=3$ A, a malha 1 dá $10I_1-5(3)=30\Rightarrow I_1=4{,}5$ A. A malha 2 dá $-5I_1+10I_2=kI_1$, logo $-22{,}5+30=4{,}5k$ e $k=5/3\,\ohm$.}
+\resposta{$I_1=\SI{3}{\ampere}$; $k=\dfrac{5}{3}\,\ohm\approx\SI{1.67}{\ohm}$}
+\resolucao{A malha 1 dá $10I_1-5I_2=20$. Impondo $I_2=2$ A, resulta $I_1=3$ A. Na malha 2, $-5I_1+10I_2=kI_1$. Logo $-15+20=3k$, portanto $k=5/3\,\ohm$.}
 \end{questao}
 
-\gabarito[Capítulo 9 --- Fontes dependentes em análise de malhas]
+\begin{questao}[4]{}
+A fonte de tensão dependente está no ramo comum e possui tensão, de cima para baixo, $v_d=2I_1$. Determine $I_1$, $I_2$, a corrente real na fonte dependente e sua potência.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\draw (0,0) to[battery1,l_={$\SI{20}{\volt}$}] (0,3) to[R,l={$\SI{4}{\ohm}$}] (3,3) coordinate(t);
+\draw (t) to[cvsource,l={$v_d=2I_1$}] (3,0) coordinate(b)--(0,0);
+\draw (t) to[R,l={$\SI{4}{\ohm}$}] (6,3)--(6,0)--(b);
+\draw[->,loopcol,line width=1.2pt] (1.4,1.5) arc (0:310:.48); \node[loopcol] at(1.4,1.5){\footnotesize$I_1$};
+\draw[->,loopcol,line width=1.2pt] (4.6,1.5) arc (0:310:.48); \node[loopcol] at(4.6,1.5){\footnotesize$I_2$};
+\end{circuitikz}}
+\resposta{$I_1=\dfrac{10}{3}\,\si{\ampere}$; $I_2=\dfrac{5}{3}\,\si{\ampere}$; $i_d=\dfrac{5}{3}\,\si{\ampere}$ para baixo; $P_d=\dfrac{100}{9}\,\si{\watt}\approx\SI{11.11}{\watt}$ absorvidos}
+\resolucao{Na malha 1, $4I_1+v_d=20$ e $v_d=2I_1$, então $I_1=10/3$ A. Na malha 2, $4I_2-v_d=0$, logo $I_2=5/3$ A. A corrente real no ramo comum é $i_d=I_1-I_2=5/3$ A, para baixo. Como $v_d=20/3$ V e a corrente entra no terminal positivo superior, a fonte absorve $P=v_di_d=100/9$ W.}
+\end{questao}
+
+\gabarito[Fontes dependentes --- análise de malhas]
