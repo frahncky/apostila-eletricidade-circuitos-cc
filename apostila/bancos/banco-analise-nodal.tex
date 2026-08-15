@@ -17,7 +17,35 @@ demais conteúdos da análise nodal.
 \end{atencao}
 
 \input{bancos/banco-analise-nodal-n1.tex}
+
+% N2: todos os 13 circuitos foram redesenhados com maior separacao entre
+% componentes, fontes, valores e rotulos nodais. A substituicao e somente
+% visual: enunciados, respostas e resolucoes permanecem no banco original.
+\begingroup
+\newcount\fvNodalNTwoCircuitCount
+\fvNodalNTwoCircuitCount=0
+\let\fvCircuitoNodalNtwoOriginal\circuitoq
+\renewcommand{\circuitoq}[1]{%
+  \advance\fvNodalNTwoCircuitCount by 1\relax
+  \ifcase\fvNodalNTwoCircuitCount
+    \fvCircuitoNodalNtwoOriginal{#1}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoOne}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoTwo}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoThree}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoFour}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoFive}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoSix}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoSeven}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoEight}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoNine}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoTen}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoEleven}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoTwelve}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoThirteen}%
+  \else \fvCircuitoNodalNtwoOriginal{#1}%
+  \fi}
 \input{bancos/banco-analise-nodal-n2-visual.tex}
+\endgroup
 
 % N3: a ponte (9o circuito do bloco) foi redesenhada para separar claramente
 % R_10, R_8, R_12 e os rótulos V2/V3.
