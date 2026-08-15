@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{estilo-eletricidade-ajustes}[2026/08/15 v1.0 Ajustes visuais]
+\ProvidesPackage{estilo-eletricidade-ajustes}[2026/08/15 v1.1 Ajustes visuais]
 
 % Deve ser carregado depois de estilo-eletricidade.
 \RequirePackage{adjustbox}
@@ -27,5 +27,9 @@
   \end{adjustbox}%
   \caption{#2}\label{fig:q\thequestao}%
   \end{figure}}
+
+% Macros de desenhos que substituem apenas circuitos identificados na
+% auditoria visual como sobrepostos ou excessivamente comprimidos.
+\InputIfFileExists{bancos/circuitos-revisados-analise.tex}{}{}
 
 \endinput
