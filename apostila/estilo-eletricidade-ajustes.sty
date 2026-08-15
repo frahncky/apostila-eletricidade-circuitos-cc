@@ -1,14 +1,18 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{estilo-eletricidade-ajustes}[2026/08/15 v1.1 Ajustes visuais]
+\ProvidesPackage{estilo-eletricidade-ajustes}[2026/08/15 v1.2 Ajustes visuais]
 
 % Deve ser carregado depois de estilo-eletricidade.
 \RequirePackage{adjustbox}
 
 % Padrao unico para fontes independentes de tensao:
 % circulo com polaridade (+/-) no interior.
-% O alias tambem corrige automaticamente desenhos antigos que ainda
-% utilizam battery1.
-\tikzset{battery1/.style={american voltage source}}
+% Os aliases corrigem automaticamente desenhos antigos que ainda utilizam
+% simbolos de bateria/celula do CircuitikZ.
+\tikzset{
+  battery/.style={american voltage source},
+  battery1/.style={american voltage source},
+  battery2/.style={american voltage source}
+}
 
 % Evita que circuitos largos ultrapassem a largura util da pagina.
 % O conteudo so e reduzido quando realmente necessario.
