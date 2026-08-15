@@ -19,17 +19,18 @@
 \let\fvCircuitoMalhaOriginal\circuitoq
 \renewcommand{\circuitoq}[1]{%
   \advance\fvMalhaCircuitCount by 1\relax
-  \ifnum\fvMalhaCircuitCount=4\relax
-    \fvCircuitoMalhaOriginal{\fvMalhaSuperRevisada}%
-  \else\ifnum\fvMalhaCircuitCount=5\relax
-    \fvCircuitoMalhaOriginal{\fvMalhaTresRevisada}%
-  \else\ifnum\fvMalhaCircuitCount=7\relax
-    \fvCircuitoMalhaOriginal{\fvMalhaTresDuasFontesRevisada}%
-  \else\ifnum\fvMalhaCircuitCount=8\relax
-    \fvCircuitoMalhaOriginal{\fvMalhaQuatroRevisada}%
-  \else
-    \fvCircuitoMalhaOriginal{#1}%
-  \fi\fi\fi\fi}
+  \ifcase\fvMalhaCircuitCount
+    \fvCircuitoMalhaOriginal{#1}% caso 0 (nao ocorre)
+  \or \fvCircuitoMalhaOriginal{\fvMalhaNDoisQOneRevisada}% 1
+  \or \fvCircuitoMalhaOriginal{\fvMalhaNDoisQTwoRevisada}% 2
+  \or \fvCircuitoMalhaOriginal{\fvMalhaNDoisQThreeRevisada}% 3
+  \or \fvCircuitoMalhaOriginal{\fvMalhaSuperRevisada}% 4
+  \or \fvCircuitoMalhaOriginal{\fvMalhaTresRevisada}% 5
+  \or \fvCircuitoMalhaOriginal{#1}% 6: tres malhas em L
+  \or \fvCircuitoMalhaOriginal{\fvMalhaTresDuasFontesRevisada}% 7
+  \or \fvCircuitoMalhaOriginal{\fvMalhaQuatroRevisada}% 8
+  \else \fvCircuitoMalhaOriginal{#1}% banco complementar e demais casos
+  \fi}
 
 % Ao chegar ao primeiro N3, fecha-se o N2 principal: injeta as questoes N2
 % imediatamente antes do cabecalho N3.
