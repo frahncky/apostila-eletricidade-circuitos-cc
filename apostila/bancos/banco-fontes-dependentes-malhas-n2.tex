@@ -1,6 +1,7 @@
 % =====================================================================
 % FONTES DEPENDENTES EM MALHAS --- NIVEL 2
 % Questoes integradas ao bloco de Aplicacao do Capitulo 9.
+% Correntes de malha desenhadas no sentido HORARIO.
 % =====================================================================
 
 \begin{questao}[2]{}
@@ -14,9 +15,9 @@ malha 2. Determine $I_1$, $I_2$ e a corrente real no resistor central.
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (3.2,0) coordinate(b) -- (0,0);
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (6.4,3.2)
       to[cvsource,l={$2{,}5I_1$}] (6.4,0) -- (b);
-\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (1.75,1.00){\footnotesize$I_1$};
-\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (4.75,1.00){\footnotesize$I_2$};
 \end{circuitikz}}
 
@@ -43,9 +44,9 @@ $I_2=0{,}5I_1$. Determine $I_1$, $I_2$ e o módulo da tensão sobre essa fonte.
 \draw (t) to[R,l={$\SI{5}{\ohm}$}] (3.2,0) coordinate(b) -- (0,0);
 \draw (t) to[R,l={$\SI{10}{\ohm}$}] (6.4,3.2)
       to[cisource,l={$0{,}5I_1$},invert] (6.4,0) -- (b);
-\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (1.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (1.75,1.00){\footnotesize$I_1$};
-\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc (0:310:.46);
+\draw[->,loopcol,line width=1.2pt] (4.75,1.00) arc[start angle=0,end angle=-310,radius=.46cm];
 \node[loopcol,fill=white,inner sep=1pt] at (4.75,1.00){\footnotesize$I_2$};
 \end{circuitikz}}
 
