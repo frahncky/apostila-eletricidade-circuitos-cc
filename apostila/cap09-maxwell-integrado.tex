@@ -1,0 +1,43 @@
+% =====================================================================
+% CAPITULO 9 --- WRAPPER DE INTEGRACAO DOS EXERCICIOS DEPENDENTES
+% Injeta as questoes de fontes dependentes dentro dos blocos N2, N3 e N4
+% do capitulo original, mantendo um unico gabarito ao final.
+% =====================================================================
+
+\begingroup
+
+\newcount\fvAprofCount
+\newcount\fvDesafioCount
+\fvAprofCount=0
+\fvDesafioCount=0
+
+% Ao chegar ao primeiro N3, fecha-se o N2 principal: injeta as questoes N2
+% imediatamente antes do cabecalho N3.
+\let\fvBlocoAprofOriginal\blocoaprofundamento
+\renewcommand{\blocoaprofundamento}{%
+  \advance\fvAprofCount by 1\relax
+  \ifnum\fvAprofCount=1\relax
+    \input{bancos/banco-fontes-dependentes-malhas-n2}%
+  \fi
+  \fvBlocoAprofOriginal
+}
+
+% Primeiro N4: injeta N3 antes do cabecalho N4.
+% Segundo N4 (banco complementar): injeta N4 logo apos o cabecalho N4.
+\let\fvBlocoDesafioOriginal\blocodesafio
+\renewcommand{\blocodesafio}{%
+  \advance\fvDesafioCount by 1\relax
+  \ifnum\fvDesafioCount=1\relax
+    \input{bancos/banco-fontes-dependentes-malhas-n3}%
+    \fvBlocoDesafioOriginal
+  \else
+    \fvBlocoDesafioOriginal
+    \ifnum\fvDesafioCount=2\relax
+      \input{bancos/banco-fontes-dependentes-malhas-n4}%
+    \fi
+  \fi
+}
+
+\input{cap09-maxwell}
+
+\endgroup
