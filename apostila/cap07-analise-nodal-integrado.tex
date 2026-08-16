@@ -10,6 +10,8 @@
 % Ajustes finais exclusivamente graficos. Este arquivo sobrescreve apenas
 % as macros de desenho, sem modificar qualquer questao do capitulo/banco.
 \input{bancos/circuitos-revisados-nodal-final.tex}
+% Revisao dedicada das seis questoes identificadas no PDF.
+\input{bancos/circuitos-revisados-nodal-questoes-criticas.tex}
 
 \newcount\fvNodalOrigCircuitCount
 \fvNodalOrigCircuitCount=0
@@ -22,6 +24,10 @@
 % IMPORTANTE: cada ambiente questao cria um grupo TeX. O incremento precisa
 % ser global; caso contrario, o contador volta a zero ao final de cada questao
 % e todas as figuras recebem o primeiro circuito da lista.
+%
+% As questoes 735, 739, 742, 750, 751 e 752 sao tratadas pela numeracao
+% global do livro. Isso evita que uma futura reorganizacao interna dos bancos
+% aplique um desenho corrigido a uma questao diferente.
 \renewcommand{\circuitoq}[1]{%
   \global\advance\fvNodalOrigCircuitCount by 1\relax
   \ifcase\fvNodalOrigCircuitCount
@@ -32,7 +38,22 @@
   \or \fvNodalOrigCircuitoOriginal{\fvNodalOrigFour}%
   \or \fvNodalOrigCircuitoOriginal{\fvNodalOrigFive}%
   \or \fvNodalOrigCircuitoOriginal{\fvNodalOrigSix}%
-  \else \fvNodalOrigCircuitoOriginal{#1}%
+  \else
+    \ifnum\value{questao}=735\relax
+      \fvNodalOrigCircuitoOriginal{\fvNodalQ735Revisada}%
+    \else\ifnum\value{questao}=739\relax
+      \fvNodalOrigCircuitoOriginal{\fvNodalQ739Revisada}%
+    \else\ifnum\value{questao}=742\relax
+      \fvNodalOrigCircuitoOriginal{\fvNodalQ742Revisada}%
+    \else\ifnum\value{questao}=750\relax
+      \fvNodalOrigCircuitoOriginal{\fvNodalQ750Revisada}%
+    \else\ifnum\value{questao}=751\relax
+      \fvNodalOrigCircuitoOriginal{\fvNodalQ751Revisada}%
+    \else\ifnum\value{questao}=752\relax
+      \fvNodalOrigCircuitoOriginal{\fvNodalQ752Revisada}%
+    \else
+      \fvNodalOrigCircuitoOriginal{#1}%
+    \fi\fi\fi\fi\fi\fi
   \fi}
 
 \input{cap07-analise-nodal}
