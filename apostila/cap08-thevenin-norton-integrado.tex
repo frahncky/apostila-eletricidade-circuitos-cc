@@ -1,9 +1,49 @@
 % =====================================================================
 % CAPITULO 8 --- WRAPPER VISUAL
 % Mantem o capitulo original e substitui apenas o banco complementar pela
-% versao visual, sem alterar enunciados, respostas, resolucoes ou numeracao.
+% versao visual. Repete os equivalentes nas questoes que dependiam apenas de
+% referencias textuais a questoes anteriores.
 % =====================================================================
 \begingroup
+
+\def\fvThCapCargaSeis{%
+\begin{circuitikz}[american,scale=.88,transform shape,line width=.8pt]
+  \draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{6}{\volt}$}] (0,3.6)
+        to[R,l={$R_{Th}=\SI{2}{\ohm}$}] (4.0,3.6)
+        to[R,l={$R_L=\SI{6}{\ohm}$},i>^={$I_L$}] (4.0,0) -- (0,0);
+\end{circuitikz}}
+
+\def\fvThCapConversao{%
+\begin{circuitikz}[american,scale=.72,transform shape,line width=.8pt]
+  \draw (0,0) to[\fonteV,l^={$\SI{6}{\volt}$}] (0,3.3)
+        to[R,l={$\SI{2}{\ohm}$}] (3.2,3.3) -- (4.1,3.3) node[ocirc]{};
+  \draw (0,0)--(4.1,0) node[ocirc]{};
+  \node[font=\bfseries] at (2.0,4.0) {Thévenin};
+  \draw (7.0,0) to[isource,l^={$\SI{3}{\ampere}$}] (7.0,3.3) -- (10.2,3.3) -- (11.1,3.3) node[ocirc]{};
+  \draw (10.2,3.3) to[R,l_={$\SI{2}{\ohm}$}] (10.2,0);
+  \draw (7.0,0)--(11.1,0) node[ocirc]{};
+  \node[font=\bfseries] at (9.0,4.0) {Norton};
+\end{circuitikz}}
+
+\def\fvThCapCargasMultiplas{%
+\begin{circuitikz}[american,scale=.86,transform shape,line width=.8pt]
+  \draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{18}{\volt}$}] (0,3.7)
+        to[R,l={$R_{Th}=\SI{3}{\ohm}$}] (4.0,3.7)
+        to[R,l={$R_L$},i>^={$I_L$}] (4.0,0) -- (0,0);
+  \node[right,align=left,font=\footnotesize] at (5.0,2.0)
+    {$R_L=\SI{3}{\ohm}$\\$R_L=\SI{6}{\ohm}$\\$R_L=\SI{9}{\ohm}$};
+\end{circuitikz}}
+
+\newcount\fvThCapQuestao
+\fvThCapQuestao=0
+\let\fvThCapRespostaOriginal\resposta
+\renewcommand{\resposta}[1]{%
+  \global\advance\fvThCapQuestao by 1\relax
+  \ifnum\fvThCapQuestao=4\relax\circuitoq{\fvThCapCargaSeis}\fi
+  \ifnum\fvThCapQuestao=5\relax\circuitoq{\fvThCapConversao}\fi
+  \ifnum\fvThCapQuestao=8\relax\circuitoq{\fvThCapCargasMultiplas}\fi
+  \fvThCapRespostaOriginal{#1}}
+
 \let\fvThInputOriginal\input
 \renewcommand{\input}[1]{%
   \ifstrequal{#1}{bancos/banco-teoremas-de-thevenin-e-norton.tex}%
