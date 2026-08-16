@@ -63,22 +63,24 @@ Determine a corrente no resistor de $\SI{3}{\ohm}$ entre os nós usando a contri
 \draw (n2) to[R,l={$\SI{3}{\ohm}$}] (7,0)--(g);
 \draw (8.7,0) to[isource,l_={$\SI{1}{\ampere}$}] (8.7,4.2)--(n2); \draw (0,0)--(g)--(8.7,0)--(10.3,0);
 \end{circuitikz}}
-\resposta{$V_1=\SI{68/7}{\volt}$, $V_2=\SI{44/7}{\volt}$, $i=\SI{8/7}{\ampere}$}
-\resolucao{Somando as três respostas parciais obtêm-se $V_1=68/7$ V e $V_2=44/7$ V. Logo $i=(V_1-V_2)/3=8/7$ A.}
+\resposta{$V_1\approx\SI{9.71}{\volt}$, $V_2\approx\SI{6.29}{\volt}$, $i\approx\SI{1.14}{\ampere}$}
+\resolucao{Somando as três respostas parciais obtêm-se $V_1=68/7\approx9{,}71$ V e $V_2=44/7\approx6{,}29$ V. Logo $i=(V_1-V_2)/3=8/7\approx1{,}14$ A.}
 \end{questao}
 
 \begin{questao}[2]{}
-As duas fontes alimentam uma ponte resistiva. Determine por superposição a tensão $V_{ab}=V_a-V_b$.
-\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
-\coordinate (l) at (0,2.2); \coordinate (r) at (10,2.2); \coordinate (a) at (5,5); \coordinate (b) at (5,-.6);
-\draw (l) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,-.6)--(b);
-\draw (r) to[\fonteV,l_={$\SI{6}{\volt}$},invert] (10,-.6)--(b);
+As duas fontes alimentam uma ponte com dois divisores de mesma razão. Determine por superposição $V_{ab}=V_a-V_b$.
+\circuitoq{\begin{circuitikz}[american,scale=.68,transform shape]
+\coordinate (l) at (0,2.4); \coordinate (r) at (10,2.4); \coordinate (a) at (5,5.2); \coordinate (b) at (5,-.4);
+\coordinate (gl) at (0,-2.5); \coordinate (gr) at (10,-2.5); \coordinate (g) at (5,-2.5);
+\draw (gl) to[\fonteV,l^={$\SI{12}{\volt}$}] (l);
+\draw (gr) to[\fonteV,l_={$\SI{6}{\volt}$}] (r);
+\draw (gl)--(g)--(gr);
 \draw (l) to[R,l={$\SI{4}{\ohm}$}] (a) to[R,l={$\SI{8}{\ohm}$}] (r);
 \draw (l) to[R,l_={$\SI{6}{\ohm}$}] (b) to[R,l_={$\SI{12}{\ohm}$}] (r);
-\node[above,Vcol] at(a){$a$}; \node[below,Vcol] at(b){$b$};
+\node[above,Vcol] at(a){$a$}; \node[below,Vcol] at(b){$b$}; \node[ground] at(g){};
 \end{circuitikz}}
 \resposta{$V_{ab}=\SI{0}{\volt}$}
-\resolucao{Os dois divisores têm a mesma razão $4/8=6/12$. Para qualquer combinação linear das duas fontes, os pontos médios permanecem equipotenciais; cada fonte separadamente produz $V_{ab}=0$, portanto a soma também é zero.}
+\resolucao{Os dois caminhos têm a mesma razão $R_{esq}/R_{dir}=1/2$. Para cada fonte isoladamente, $V_a$ e $V_b$ recebem a mesma fração da diferença entre os nós extremos. Assim $V_{ab}^{(1)}=V_{ab}^{(2)}=0$ e a soma permanece nula.}
 \end{questao}
 
 \begin{questao}[2]{}
