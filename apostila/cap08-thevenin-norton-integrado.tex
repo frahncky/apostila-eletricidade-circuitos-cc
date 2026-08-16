@@ -1,11 +1,12 @@
 % =====================================================================
-% CAPITULO 8 --- WRAPPER VISUAL
-% Mantem o capitulo original e substitui apenas o banco complementar pela
-% versao visual. Repete os equivalentes nas questoes que dependiam apenas de
-% referencias textuais a questoes anteriores.
+% CAPITULO 8 --- WRAPPER VISUAL DIVERSIFICADO
+% Mantem a teoria do capitulo e substitui o banco complementar pelo banco
+% diversificado, com circuitos e valores proprios em cada questao pratica.
 % =====================================================================
 \begingroup
 
+% Questões do corpo do capítulo que dependem explicitamente de equivalentes
+% calculados anteriormente repetem apenas o diagrama necessário.
 \def\fvThCapCargaSeis{%
 \begin{circuitikz}[american,scale=.88,transform shape,line width=.8pt]
   \draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{6}{\volt}$}] (0,3.6)
@@ -48,7 +49,7 @@
 \renewcommand{\input}[1]{%
   \ifstrequal{#1}{bancos/banco-teoremas-de-thevenin-e-norton.tex}%
     {\begingroup\let\input\fvThInputOriginal
-     \fvThInputOriginal{bancos/banco-teoremas-de-thevenin-e-norton-visual.tex}%
+     \fvThInputOriginal{bancos/banco-teoremas-de-thevenin-e-norton-diverso.tex}%
      \endgroup}%
     {\fvThInputOriginal{#1}}}
 \fvThInputOriginal{cap08-thevenin-norton}
