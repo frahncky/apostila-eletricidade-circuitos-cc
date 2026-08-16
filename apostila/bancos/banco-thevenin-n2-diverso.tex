@@ -1,0 +1,138 @@
+% N2 --- Thevenin e Norton: 11 questoes com topologias distintas
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Determine o equivalente de Thévenin visto de A--B.
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape]
+\coordinate (g) at (4,0); \coordinate (a) at (4,3.8);
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.8) to[R,l={$\SI{6}{\kilo\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{3}{\kilo\ohm}$}] (g)--(0,0);
+\draw (a)--(6.2,3.8) node[ocirc]{} node[right]{A}; \draw (g)--(6.2,0) node[ocirc]{} node[right]{B};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{8}{\volt}$; $R_{Th}=\SI{2}{\kilo\ohm}$}
+\resolucao{Divisor em vazio: $24\cdot3/(6+3)=8$ V. Com a fonte em curto, $6\parallel3=2$ k$\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_{Th}$ e $R_{Th}$ vistos na porta à direita.
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
+\coordinate (g) at (2.6,0); \coordinate (a) at (2.6,3.8); \coordinate (b) at (7.2,3.8);
+\draw (0,0) to[isource,l^={$\SI{2}{\milli\ampere}$}] (0,3.8)--(a);
+\draw (a) to[R,l_={$\SI{4}{\kilo\ohm}$}] (g)--(0,0);
+\draw (a) to[R,l={$\SI{2}{\kilo\ohm}$}] (b) node[ocirc]{} node[right]{A};
+\draw (g)--(7.2,0) node[ocirc]{} node[right]{B};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{8}{\volt}$; $R_{Th}=\SI{6}{\kilo\ohm}$}
+\resolucao{Em aberto não circula corrente no resistor de 2 k$\Omega$, então $V_{Th}=2$ mA$\times4$ k$\Omega=8$ V. Com a fonte aberta, a porta vê $2+4=6$ k$\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Duas fontes reais aterradas alimentam a mesma porta. Determine o equivalente.
+\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
+\coordinate (g) at (5,0); \coordinate (a) at (5,4.1);
+\draw (0,0) to[\fonteV,l^={$\SI{20}{\volt}$}] (0,4.1) to[R,l={$\SI{5}{\kilo\ohm}$}] (a);
+\draw (10,0) to[\fonteV,l_={$\SI{10}{\volt}$}] (10,4.1) to[R,l_={$\SI{10}{\kilo\ohm}$}] (a);
+\draw (0,0)--(g)--(10,0); \draw (a)--(6.8,4.1) node[ocirc]{}; \draw (g)--(6.8,0) node[ocirc]{};
+\end{circuitikz}}
+\resposta{$V_{Th}\approx\SI{16.67}{\volt}$; $R_{Th}\approx\SI{3.33}{\kilo\ohm}$}
+\resolucao{$V_{Th}=(20/5+10/10)/(1/5+1/10)=16{,}67$ V. Zerando as fontes, $R_{Th}=5\parallel10=3{,}33$ k$\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+A porta está no nó B. Determine seu equivalente de Thévenin.
+\circuitoq{\begin{circuitikz}[american,scale=.74,transform shape]
+\coordinate (g) at (3.6,0); \coordinate (a) at (3.6,4); \coordinate (b) at (8.6,4);
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,4) to[R,l={$R_1=\SI{2}{\kilo\ohm}$}] (a);
+\draw (a) to[R,l_={$R_2=\SI{4}{\kilo\ohm}$}] (g)--(0,0);
+\draw (a) to[R,l={$R_3=\SI{3}{\kilo\ohm}$}] (b) node[ocirc]{} node[right]{B};
+\draw (g)--(8.6,0) node[ocirc]{} node[right]{terra};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{8}{\volt}$; $R_{Th}\approx\SI{4.33}{\kilo\ohm}$}
+\resolucao{Em aberto, $R_3$ não conduz e $V_B=12\cdot4/(2+4)=8$ V. Com a fonte zerada, $R_{Th}=R_3+(R_1\parallel R_2)=3+4/3=4{,}33$ k$\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine o equivalente de Thévenin da fonte de Norton com resistor série até a porta.
+\circuitoq{\begin{circuitikz}[american,scale=.8,transform shape]
+\coordinate (g) at (2.8,0); \coordinate (a) at (2.8,3.8); \coordinate (b) at (7.2,3.8);
+\draw (0,0) to[isource,l^={$\SI{5}{\milli\ampere}$}] (0,3.8)--(a);
+\draw (a) to[R,l_={$\SI{3}{\kilo\ohm}$}] (g)--(0,0);
+\draw (a) to[R,l={$\SI{2}{\kilo\ohm}$}] (b) node[ocirc]{}; \draw (g)--(7.2,0) node[ocirc]{};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{15}{\volt}$; $R_{Th}=\SI{5}{\kilo\ohm}$}
+\resolucao{Em vazio o resistor série de 2 k$\Omega$ não conduz, então $V_{Th}=5$ mA$\times3$ k$\Omega=15$ V. Com a fonte aberta, $R_{Th}=3+2=5$ k$\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine $V_{Th}$ e $R_{Th}$ vistos em A--B.
+\circuitoq{\begin{circuitikz}[american,scale=.78,transform shape]
+\coordinate (g) at (4.2,0); \coordinate (a) at (4.2,3.9);
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,3.9) to[R,l={$\SI{4}{\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{6}{\ohm}$}] (g)--(0,0);
+\draw (8.2,0) to[isource,l_={$\SI{2}{\ampere}$}] (8.2,3.9)--(a); \draw (8.2,0)--(g);
+\draw (a)--(10,3.9) node[ocirc]{} node[right]{A}; \draw (g)--(10,0) node[ocirc]{} node[right]{B};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{12}{\volt}$; $R_{Th}=\SI{2.4}{\ohm}$}
+\resolucao{A condutância da porta é $1/4+1/6=5/12$ S. A fonte de 12 V equivale a 3 A e soma-se à fonte de 2 A: $V_{Th}=5/(5/12)=12$ V. Zerando as fontes, $R_{Th}=4\parallel6=2{,}4\,\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+O equivalente abaixo alimentará três cargas distintas. Complete as correntes e identifique a condição de maior potência.
+\circuitoq{\begin{circuitikz}[american,scale=.86,transform shape]
+\draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{9}{\volt}$}] (0,3.6) to[R,l={$R_{Th}=\SI{3}{\ohm}$}] (4,3.6) to[R,l={$R_L$}] (4,0)--(0,0);
+\node[right,align=left,font=\footnotesize] at(5,2){$R_L=3\,\Omega$\\$R_L=6\,\Omega$\\$R_L=15\,\Omega$};
+\end{circuitikz}}
+\resposta{$I_L=\SI{1.5}{\ampere}$, $\SI{1}{\ampere}$ e $\SI{0.5}{\ampere}$; maior potência em $R_L=\SI{3}{\ohm}$}
+\resolucao{$I_L=9/(3+R_L)$. As correntes são 1,5 A, 1 A e 0,5 A. A máxima transferência ocorre quando $R_L=R_{Th}=3\,\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma caixa-preta fornece $\SI{30}{\volt}$ em vazio e $\SI{24}{\volt}$ com $R_L=\SI{10}{\ohm}$. Determine o equivalente e $I_{sc}$.
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape]
+\draw[dashed,cinza,rounded corners] (0,0) rectangle (3.3,3.7); \node[cinza] at(1.65,1.9){caixa-preta};
+\draw (3.3,3)--(4.8,3) coordinate(a); \draw (3.3,.7)--(4.8,.7) coordinate(b);
+\draw (a) to[R,l={$R_L=\SI{10}{\ohm}$}] (b); \draw[<->,Vcol] (5.5,.9)--(5.5,2.8) node[midway,right] {$24$ V};
+\node[above,font=\footnotesize] at(1.65,3.95){$V_{oc}=30$ V};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{30}{\volt}$; $R_{Th}=\SI{2.5}{\ohm}$; $I_{sc}=\SI{12}{\ampere}$}
+\resolucao{Com a carga, $I=24/10=2{,}4$ A e a queda interna é 6 V; logo $R_{Th}=6/2{,}4=2{,}5\,\Omega$. Então $I_{sc}=30/2{,}5=12$ A.}
+\end{questao}
+
+\begin{questao}[2]{}
+A mesma rede é observada em duas portas. Determine os equivalentes em A e B.
+\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
+\coordinate (g) at (3.4,0); \coordinate (a) at (3.4,4); \coordinate (b) at (8.5,4);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4) to[R,l={$\SI{6}{\kilo\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{3}{\kilo\ohm}$}] (g)--(0,0);
+\draw (a)--(5.2,4) node[ocirc]{} node[above]{A};
+\draw (a) to[R,l={$\SI{4}{\kilo\ohm}$}] (b) node[ocirc]{} node[right]{B};
+\draw (g)--(8.5,0) node[ocirc]{} node[right]{terra};
+\end{circuitikz}}
+\resposta{Porta A: $V_{Th}=\SI{6}{\volt}$, $R_{Th}=\SI{2}{\kilo\ohm}$; porta B: $V_{Th}=\SI{6}{\volt}$, $R_{Th}=\SI{6}{\kilo\ohm}$}
+\resolucao{Em vazio, nenhuma corrente passa no resistor até B, então ambas as portas têm 6 V. Em A, $R_{Th}=6\parallel3=2$ k$\Omega$; em B soma-se o resistor de 4 k$\Omega$, resultando 6 k$\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine o equivalente de Norton da rede.
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape]
+\coordinate (g) at (4,0); \coordinate (a) at (4,3.8);
+\draw (0,0) to[isource,l^={$\SI{4}{\ampere}$}] (0,3.8)--(a);
+\draw (a) to[R,l_={$\SI{12}{\ohm}$}] (2.7,0)--(g);
+\draw (a) to[R,l={$\SI{6}{\ohm}$}] (5.3,0)--(g); \draw (0,0)--(g);
+\draw (a)--(7.2,3.8) node[ocirc]{}; \draw (g)--(7.2,0) node[ocirc]{};
+\end{circuitikz}}
+\resposta{$I_N=\SI{4}{\ampere}$; $R_N=\SI{4}{\ohm}$}
+\resolucao{Em curto, toda a corrente da fonte vai para a porta, logo $I_N=4$ A. Com a fonte aberta, $R_N=12\parallel6=4\,\Omega$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma carga $R_L=\SI{5}{\ohm}$ é conectada ao equivalente de Norton mostrado. Determine $I_L$ e $U_L$.
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape]
+\coordinate (g) at (4,0); \coordinate (a) at (4,3.8);
+\draw (0,0) to[isource,l^={$I_N=\SI{3}{\ampere}$}] (0,3.8)--(a);
+\draw (a) to[R,l_={$R_N=\SI{6}{\ohm}$}] (2.7,0)--(g);
+\draw (a) to[R,l={$R_L=\SI{5}{\ohm}$},i>^={$I_L$}] (6,0)--(g); \draw (0,0)--(g);
+\end{circuitikz}}
+\resposta{$I_L=\SI{18/11}{\ampere}\approx\SI{1.64}{\ampere}$; $U_L\approx\SI{8.18}{\volt}$}
+\resolucao{Por divisão de corrente, $I_L=3\cdot6/(6+5)=18/11\approx1{,}64$ A. Então $U_L=5I_L\approx8{,}18$ V.}
+\end{questao}
