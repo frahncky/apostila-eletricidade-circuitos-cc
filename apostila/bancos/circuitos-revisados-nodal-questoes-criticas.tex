@@ -1,109 +1,119 @@
 % =====================================================================
 % ANALISE NODAL --- QUESTOES CRITICAS 735, 739, 742, 750, 751 e 752
 % Somente desenhos. Enunciados, respostas, resolucoes e niveis permanecem.
+% Revisao preventiva: maior espacamento entre ramos, componentes e rotulos.
 % =====================================================================
 
 % Q735 --- N2/5: fonte real de tensao alimentando carga
 \def\fvNodalQ735Revisada{%
-\begin{circuitikz}[american,scale=.88,transform shape,line width=.8pt]
-  \coordinate (g) at (4.4,0);
-  \coordinate (a) at (4.4,4.0);
-  \draw (0,0) to[\fonteV,l^={$\SI{30}{\volt}$}] (0,4.0)
-        -- (1.2,4.0) to[R,l^={$\SI{10}{\ohm}$}] (a);
+\begin{circuitikz}[american,scale=.96,transform shape,line width=.8pt]
+  \coordinate (g) at (5.2,0);
+  \coordinate (a) at (5.2,4.4);
+  \draw (0,0) to[\fonteV,l^={$\SI{30}{\volt}$}] (0,4.4)
+        -- (1.4,4.4) to[R,l^={$\SI{10}{\ohm}$}] (a);
   \draw (a) to[R,l_={$\SI{15}{\ohm}$}] (g) -- (0,0);
   \fill (a) circle (1.2pt);
-  \node[Vcol,fill=white,inner sep=1.6pt] at ($(a)+(.62,.48)$) {$V_A$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(a)+(.85,.58)$) {$V_A$};
   \node[ground] at(g){};
 \end{circuitikz}}
 
 % Q739 --- N2/9: escada resistiva de tres nos
 \def\fvNodalQ739Revisada{%
-\begin{circuitikz}[american,scale=.66,transform shape,line width=.8pt]
-  \coordinate (g) at (5.2,0);
-  \coordinate (n1) at (1.8,4.5);
-  \coordinate (n2) at (5.2,4.5);
-  \coordinate (n3) at (8.6,4.5);
-  \draw (0,0) to[isource,l^={$\SI{4}{\ampere}$}] (0,4.5) -- (n1);
-  \draw (n1) to[R,l_={$\SI{10}{\ohm}$}] (1.8,0);
-  \draw (n1) to[R,l_={$\SI{10}{\ohm}$}] (n2);
-  \draw (n2) to[R,l={$\SI{10}{\ohm}$}] (5.2,0);
-  \draw (n2) to[R,l_={$\SI{10}{\ohm}$}] (n3);
-  \draw (n3) to[R,l={$\SI{10}{\ohm}$}] (8.6,0) -- (g) -- (0,0);
-  \foreach \p/\lab in {n1/1,n2/2,n3/3}{%
-    \fill (\p) circle (1.2pt);
-    \node[Vcol,fill=white,inner sep=1.6pt] at ($(\p)+(0,.72)$) {$V_\lab$};}
+\begin{circuitikz}[american,scale=.72,transform shape,line width=.8pt]
+  \coordinate (g) at (6.6,0);
+  \coordinate (n1) at (2.1,4.9);
+  \coordinate (n2) at (6.6,4.9);
+  \coordinate (n3) at (11.1,4.9);
+  \draw (0,0) to[isource,l^={$\SI{4}{\ampere}$}] (0,4.9) -- (n1);
+  \draw (n1) to[R,l_={$\SI{10}{\ohm}$}] (2.1,0);
+  \draw (n1) to[R,l^={$\SI{10}{\ohm}$}] (n2);
+  \draw (n2) to[R,l_={$\SI{10}{\ohm}$}] (6.6,0);
+  \draw (n2) to[R,l^={$\SI{10}{\ohm}$}] (n3);
+  \draw (n3) to[R,l_={$\SI{10}{\ohm}$}] (11.1,0) -- (g) -- (0,0);
+  \fill (n1) circle (1.2pt);
+  \fill (n2) circle (1.2pt);
+  \fill (n3) circle (1.2pt);
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.86)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.86)$) {$V_2$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n3)+(0,.86)$) {$V_3$};
   \node[ground] at(g){};
 \end{circuitikz}}
 
 % Q742 --- N2/12: fonte de tensao, dois nos e fonte horizontal de corrente
 \def\fvNodalQ742Revisada{%
-\begin{circuitikz}[american,scale=.76,transform shape,line width=.8pt]
-  \coordinate (g) at (3.5,0);
-  \coordinate (n1) at (3.5,4.2);
-  \coordinate (n2) at (8.4,4.2);
-  \draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,4.2)
-        -- (.9,4.2) to[R,l^={$\SI{6}{\ohm}$}] (n1);
+\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+  \coordinate (g) at (4.3,0);
+  \coordinate (n1) at (4.3,4.8);
+  \coordinate (n2) at (10.3,4.8);
+  \draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,4.8)
+        -- (1.2,4.8) to[R,l^={$\SI{6}{\ohm}$}] (n1);
   \draw (n1) to[R,l_={$\SI{12}{\ohm}$}] (g);
   \draw (n1) to[isource,l_={$\SI{2}{\ampere}$}] (n2);
-  \draw (n2) to[R,l={$\SI{6}{\ohm}$}] (8.4,0) -- (g) -- (0,0);
-  \fill (n1) circle (1.2pt); \fill (n2) circle (1.2pt);
-  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n1)+(0,.66)$) {$V_1$};
-  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n2)+(0,.66)$) {$V_2$};
+  \draw (n2) to[R,l={$\SI{6}{\ohm}$}] (10.3,0) -- (g) -- (0,0);
+  \fill (n1) circle (1.2pt);
+  \fill (n2) circle (1.2pt);
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.86)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.86)$) {$V_2$};
   \node[ground] at(g){};
 \end{circuitikz}}
 
 % Q750 --- N3/7: fonte de corrente dependente controlada por i_x
 \def\fvNodalQ750Revisada{%
-\begin{circuitikz}[american,scale=.75,transform shape,line width=.8pt]
-  \coordinate (g) at (2.1,0);
-  \coordinate (n1) at (2.1,4.2);
-  \coordinate (n2) at (6.6,4.2);
-  \draw (0,0) to[isource,l^={$\SI{4}{\ampere}$}] (0,4.2) -- (n1);
+\begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
+  \coordinate (g) at (2.5,0);
+  \coordinate (n1) at (2.5,4.6);
+  \coordinate (n2) at (8.3,4.6);
+  \draw (0,0) to[isource,l^={$\SI{4}{\ampere}$}] (0,4.6) -- (n1);
   \draw (n1) to[R,l_={$\SI{4}{\ohm}$},i>_={$i_x$}] (g);
   \draw (n1) to[R,l^={$\SI{8}{\ohm}$}] (n2);
-  \draw (n2) to[R,l={$\SI{8}{\ohm}$}] (6.6,0);
-  \draw (9.5,0) to[cisource,l_={$0{,}5i_x$}] (9.5,4.2) -- (n2);
-  \draw (9.5,0) -- (g) -- (0,0);
-  \fill (n1) circle (1.2pt); \fill (n2) circle (1.2pt);
-  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n1)+(0,.68)$) {$V_1$};
-  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n2)+(0,.68)$) {$V_2$};
+  \draw (n2) to[R,l={$\SI{8}{\ohm}$}] (8.3,0);
+  \draw (12.3,0) to[cisource,l_={$0{,}5i_x$}] (12.3,4.6) -- (n2);
+  \draw (12.3,0) -- (g) -- (0,0);
+  \fill (n1) circle (1.2pt);
+  \fill (n2) circle (1.2pt);
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.82)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.82)$) {$V_2$};
   \node[ground] at(g){};
 \end{circuitikz}}
 
 % Q751 --- N3/8: fonte de tensao controlada V2 = 2 V1
 \def\fvNodalQ751Revisada{%
-\begin{circuitikz}[american,scale=.80,transform shape,line width=.8pt]
-  \coordinate (g) at (2.0,0);
-  \coordinate (n1) at (2.0,4.1);
-  \coordinate (n2) at (7.0,4.1);
-  \draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,4.1) -- (n1);
+\begin{circuitikz}[american,scale=.84,transform shape,line width=.8pt]
+  \coordinate (g) at (2.3,0);
+  \coordinate (n1) at (2.3,4.6);
+  \coordinate (n2) at (8.2,4.6);
+  \draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,4.6) -- (n1);
   \draw (n1) to[R,l_={$\SI{4}{\ohm}$}] (g);
   \draw (n1) to[R,l^={$\SI{8}{\ohm}$}] (n2);
-  \draw (n2) to[cvsource,l_={$2V_1$}] (7.0,0) -- (g) -- (0,0);
-  \fill (n1) circle (1.2pt); \fill (n2) circle (1.2pt);
-  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n1)+(0,.68)$) {$V_1$};
-  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n2)+(0,.68)$) {$V_2$};
+  \draw (n2) to[cvsource,l_={$2V_1$}] (8.2,0) -- (g) -- (0,0);
+  \fill (n1) circle (1.2pt);
+  \fill (n2) circle (1.2pt);
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.82)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.82)$) {$V_2$};
   \node[ground] at(g){};
 \end{circuitikz}}
 
 % Q752 --- N3/9: ponte equilibrada, com ramos e rotulos separados
 \def\fvNodalQ752Revisada{%
-\begin{circuitikz}[american,scale=.72,transform shape,line width=.8pt]
+\begin{circuitikz}[american,scale=.76,transform shape,line width=.8pt]
   \coordinate (g0) at (0,0);
-  \coordinate (g)  at (4.8,0);
-  \coordinate (gr) at (9.6,3.7);
-  \coordinate (n1) at (2.0,3.7);
-  \coordinate (n2) at (6.0,5.5);
-  \coordinate (n3) at (6.0,1.9);
-  \draw (g0) to[isource,l^={$\SI{6}{\ampere}$}] (0,3.7) -- (n1);
+  \coordinate (g)  at (6.0,0);
+  \coordinate (gr) at (12.3,4.6);
+  \coordinate (n1) at (2.5,4.6);
+  \coordinate (n2) at (7.6,7.2);
+  \coordinate (n3) at (7.6,2.0);
+  \draw (g0) to[isource,l^={$\SI{6}{\ampere}$}] (0,4.6) -- (n1);
   \draw (n1) to[R,l^={$\SI{4}{\ohm}$}] (n2);
   \draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (n3);
   \draw (n2) to[R,l={$\SI{10}{\ohm}$}] (n3);
   \draw (n2) to[R,l^={$\SI{8}{\ohm}$}] (gr);
   \draw (n3) to[R,l_={$\SI{12}{\ohm}$}] (gr);
-  \draw (gr) -- (9.6,0) -- (g) -- (g0);
-  \foreach \p/\dx/\dy/\lab in {n1/0/.62/1,n2/0/.58/2,n3/.62/0/3}{%
-    \fill (\p) circle (1.2pt);
-    \node[Vcol,fill=white,inner sep=1.6pt] at ($(\p)+(\dx,\dy)$) {$V_\lab$};}
+  \draw (gr) -- (12.3,0) -- (g) -- (g0);
+  \fill (n1) circle (1.2pt);
+  \fill (n2) circle (1.2pt);
+  \fill (n3) circle (1.2pt);
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.84)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.72)$) {$V_2$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n3)+(.92,0)$) {$V_3$};
   \node[ground] at(g){};
 \end{circuitikz}}
