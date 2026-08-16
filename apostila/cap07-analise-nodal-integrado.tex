@@ -1,14 +1,12 @@
 % =====================================================================
-% CAPITULO 7 --- WRAPPER DE REVISAO VISUAL
-% Substitui os circuitos originais do capitulo por versoes redesenhadas,
-% mantendo enunciados, respostas, resolucoes e numeracao das questoes.
+% CAPITULO 7 --- WRAPPER DE REVISAO VISUAL + RESTAURACAO DE QUESTOES
+% Mantem os circuitos redesenhados e garante que o banco anterior seja
+% processado antes do gabarito do capitulo.
 % =====================================================================
 
 \begingroup
 
 \input{bancos/circuitos-revisados-nodal-inicial.tex}
-% Ajustes finais exclusivamente graficos. Este arquivo sobrescreve apenas
-% as macros de desenho, sem modificar qualquer questao do capitulo/banco.
 \input{bancos/circuitos-revisados-nodal-final.tex}
 
 \newcount\fvNodalOrigCircuitCount
@@ -16,8 +14,7 @@
 \let\fvNodalOrigCircuitoOriginal\circuitoq
 
 % O capitulo original possui seis chamadas de \circuitoq antes do banco
-% complementar. Todas foram redesenhadas para eliminar sobreposicoes e,
-% no antigo circuito de tres nos, corrigir a representacao topologica.
+% complementar. Somente os desenhos sao substituidos.
 \renewcommand{\circuitoq}[1]{%
   \advance\fvNodalOrigCircuitCount by 1\relax
   \ifcase\fvNodalOrigCircuitCount
@@ -31,6 +28,18 @@
   \else \fvNodalOrigCircuitoOriginal{#1}%
   \fi}
 
+% O arquivo cap07-analise-nodal.tex chama \gabarito no final. Adiamos essa
+% chamada para poder inserir o banco restaurado ANTES do gabarito.
+\let\fvNodalGabaritoOriginal\gabarito
+\renewcommand{\gabarito}[1][]{}
+
 \input{cap07-analise-nodal}
+
+% Banco anterior restaurado integralmente. As questoes entram no mesmo
+% Capitulo 7 e suas respostas/resolucoes sao recolhidas pelo gabarito abaixo.
+\input{bancos/banco-analise-nodal-restaurado.tex}
+
+\let\gabarito\fvNodalGabaritoOriginal
+\gabarito[Capítulo 7 --- Análise Nodal]
 
 \endgroup
