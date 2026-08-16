@@ -1,0 +1,132 @@
+% N3 --- Superposicao: 10 questoes com topologias distintas
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+A fonte dependente deve permanecer ativa em todas as parcelas. Determine $V_A$ por superposição das duas fontes independentes.
+\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
+\coordinate (g) at (4.2,0); \coordinate (a) at (4.2,4.1);
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,4.1) to[R,l={$\SI{4}{\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{8}{\ohm}$}] (g)--(0,0);
+\draw (7.2,0) to[isource,l_={$\SI{1}{\ampere}$}] (7.2,4.1)--(a);
+\draw (10,0) to[cisource,l_={$0{,}0625V_A$}] (10,4.1)--(a); \draw (10,0)--(7.2,0)--(g);
+\node[above,Vcol] at(a){$V_A$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V_A'=\SI{9.6}{\volt}$, $V_A''=\SI{3.2}{\volt}$, $V_A=\SI{12.8}{\volt}$}
+\resolucao{A condutância líquida é $1/4+1/8-0{,}0625=0{,}3125$ S. A fonte de 12 V injeta equivalente de 3 A, dando $9{,}6$ V; a fonte de 1 A dá $3{,}2$ V. A dependente permanece nas duas análises.}
+\end{questao}
+
+\begin{questao}[3]{}
+Há três fontes independentes atuando em dois nós. Determine $V_1$ e $V_2$ por superposição.
+\circuitoq{\begin{circuitikz}[american,scale=.66,transform shape]
+\coordinate (g) at (5,0); \coordinate (n1) at (3.1,4.3); \coordinate (n2) at (7.2,4.3);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4.3) to[R,l={$\SI{6}{\ohm}$}] (n1);
+\draw (n1) to[R,l_={$\SI{9}{\ohm}$}] (3.1,0)--(g);
+\draw (n1) to[R,l={$\SI{3}{\ohm}$}] (n2);
+\draw (10.3,0) to[\fonteV,l_={$\SI{9}{\volt}$}] (10.3,4.3) to[R,l_={$\SI{3}{\ohm}$}] (n2);
+\draw (n2) to[R,l={$\SI{6}{\ohm}$}] (7.2,0)--(g);
+\draw (1.6,0) to[isource,l_={$\SI{2}{\ampere}$}] (1.6,2.7)--(n1); \draw (0,0)--(1.6,0)--(g)--(10.3,0);
+\node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V_1\approx\SI{12.98}{\volt}$; $V_2\approx\SI{8.79}{\volt}$}
+\resolucao{Resolvem-se três vezes as mesmas duas equações nodais, uma por fonte. A soma das parcelas fornece $V_1=558/43\approx12{,}98$ V e $V_2=378/43\approx8{,}79$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+Duas fontes reais alimentam uma carga. Determine a tensão $U$ e identifique a parcela de cada f.e.m.
+\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
+\coordinate (g) at (5,0); \coordinate (a) at (5,4.2);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4.2) to[R,l={$r_1=\SI{3}{\ohm}$}] (a);
+\draw (10,0) to[\fonteV,l_={$\SI{9}{\volt}$}] (10,4.2) to[R,l_={$r_2=\SI{6}{\ohm}$}] (a);
+\draw (a) to[R,l_={$R_L=\SI{9}{\ohm}$}] (g); \draw (0,0)--(g)--(10,0);
+\node[above,Vcol] at(a){$U$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$U_1\approx\SI{9.82}{\volt}$; $U_2\approx\SI{2.45}{\volt}$; $U\approx\SI{12.27}{\volt}$}
+\resolucao{A condutância total é $1/3+1/6+1/9=11/18$ S. As parcelas são $(18/3)/(11/18)=108/11$ V e $(9/6)/(11/18)=27/11$ V. Soma $135/11\approx12{,}27$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+A fonte de tensão controlada impõe $V_2=1{,}5V_1$. Determine $V_1$ por superposição das fontes independentes.
+\circuitoq{\begin{circuitikz}[american,scale=.76,transform shape]
+\coordinate (g) at (2.4,0); \coordinate (n1) at (2.4,4); \coordinate (n2) at (7.2,4);
+\draw (0,0) to[isource,l^={$\SI{2}{\ampere}$}] (0,4)--(n1);
+\draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (g);
+\draw (n1) to[R,l={$\SI{12}{\ohm}$}] (n2);
+\draw (n2) to[cvsource,l_={$1{,}5V_1$}] (7.2,0)--(g)--(0,0);
+\draw (9.5,0) to[isource,l_={$\SI{0.5}{\ampere}$}] (9.5,4)--(n2); \draw (9.5,0)--(g);
+\node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{A fonte dependente permanece ativa em ambas as análises; $V_1=\SI{16}{\volt}$}
+\resolucao{A superposição é feita somente sobre as duas fontes independentes; a fonte controlada não é zerada. Montando as equações em cada parcela e somando, obtém-se $V_1=16$ V e $V_2=24$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+Mostre quantitativamente por que não se deve somar potências parciais no resistor.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\draw (0,0) to[\fonteV,l^={$\SI{16}{\volt}$}] (0,3.5) to[R,l={$R=\SI{4}{\ohm}$},i>^={$I$}] (5,3.5)
+ to[\fonteV,l_={$\SI{8}{\volt}$}] (5,0)--(0,0);
+\end{circuitikz}}
+\resposta{$I_1=\SI{4}{\ampere}$, $I_2=\SI{2}{\ampere}$; $P=\SI{144}{\watt}$, enquanto $P_1+P_2=\SI{80}{\watt}$}
+\resolucao{As correntes somam: $I=4+2=6$ A. Portanto $P=RI^2=4(36)=144$ W. Somar $4(4^2)+4(2^2)=80$ W ignora o termo cruzado $2RI_1I_2=64$ W.}
+\end{questao}
+
+\begin{questao}[3]{}
+Use o circuito para explicar por que a superposição falha quando o estado do diodo muda entre parcelas.
+\circuitoq{\begin{circuitikz}[american,scale=.74,transform shape]
+\coordinate (g) at (4.7,0); \coordinate (a) at (4.7,4);
+\draw (0,0) to[\fonteV,l^={$\SI{6}{\volt}$}] (0,4) to[R,l={$\SI{1}{\kilo\ohm}$}] (a);
+\draw (9.4,0) to[\fonteV,l_={$\SI{4}{\volt}$},invert] (9.4,4) to[R,l_={$\SI{2}{\kilo\ohm}$}] (a);
+\draw (a) to[D,l_={$D$}] (g); \draw (0,0)--(g)--(9.4,0); \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{Não se pode superpor as respostas obtidas com estados diferentes do diodo}
+\resolucao{O diodo altera a própria topologia equivalente ao conduzir ou bloquear. Assim, cada parcela pode corresponder a uma rede diferente; a linearidade exigida pelo teorema deixa de existir.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito linear, determine o novo $V_A$ se a fonte de $\SI{4}{\volt}$ for duplicada, sem refazer toda a análise.
+\circuitoq{\begin{circuitikz}[american,scale=.76,transform shape]
+\coordinate (g) at (5,0); \coordinate (a) at (5,4);
+\draw (0,0) to[\fonteV,l^={$\SI{10}{\volt}$}] (0,4) to[R,l={$\SI{5}{\ohm}$}] (a);
+\draw (10,0) to[\fonteV,l_={$\SI{4}{\volt}$}] (10,4) to[R,l_={$\SI{10}{\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{10}{\ohm}$}] (g); \draw (0,0)--(g)--(10,0); \node[ground] at(g){}; \node[above,Vcol] at(a){$V_A$};
+\end{circuitikz}}
+\resposta{Originalmente $V_A=\SI{6}{\volt}$; após duplicar a segunda fonte, $V_A=\SI{7}{\volt}$}
+\resolucao{As parcelas originais são $5$ V e $1$ V. Duplicar apenas a segunda fonte duplica somente sua parcela: $1\to2$ V. Logo o novo total é $5+2=7$ V.}
+\end{questao}
+
+\begin{questao}[3]{}
+A corrente total no galvanômetro é nula. A fonte $E_1$, sozinha, produz $+\SI{35}{\milli\ampere}$. Determine a contribuição de $E_2$ e interprete.
+\circuitoq{\begin{circuitikz}[american,scale=.68,transform shape]
+\coordinate (l) at (0,2.2); \coordinate (r) at (10,2.2); \coordinate (u) at (5,5); \coordinate (d) at (5,-.6);
+\draw (l) to[\fonteV,l^={$E_1$}] (0,-.6)--(d); \draw (r) to[\fonteV,l_={$E_2$}] (10,-.6)--(d);
+\draw (l) to[R,l={$R_1$}] (u) to[R,l={$R_3$}] (r); \draw (l) to[R,l_={$R_2$}] (d) to[R,l_={$R_4$}] (r);
+\draw (u) to[R,l={$R_g$},i>^={$I_g$}] (d); \node[ground] at(d){};
+\end{circuitikz}}
+\resposta{$I_g^{(E_2)}=\SI{-35}{\milli\ampere}$}
+\resolucao{Como $I_g=I_g^{(E_1)}+I_g^{(E_2)}=0$, a segunda parcela deve ser $-35$ mA. Isso é cancelamento entre fontes, não necessariamente equilíbrio resistivo da ponte.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um sinal e uma interferência entram por ramos diferentes. Determine as parcelas de saída e a razão sinal-interferência.
+\circuitoq{\begin{circuitikz}[american,scale=.76,transform shape]
+\coordinate (g) at (5,0); \coordinate (a) at (5,4);
+\draw (0,0) to[\fonteV,l^={$V_s=\SI{0.2}{\volt}$}] (0,4) to[R,l={$\SI{1}{\kilo\ohm}$}] (a);
+\draw (10,0) to[\fonteV,l_={$V_n=\SI{1}{\volt}$}] (10,4) to[R,l_={$\SI{20}{\kilo\ohm}$}] (a);
+\draw (a) to[R,l_={$R_L=\SI{2}{\kilo\ohm}$}] (g); \draw (0,0)--(g)--(10,0); \node[ground] at(g){}; \node[above,Vcol] at(a){$V_o$};
+\end{circuitikz}}
+\resposta{$V_{o,s}\approx\SI{129}{\milli\volt}$; $V_{o,n}\approx\SI{32.3}{\milli\volt}$; razão $\approx4$ ($\approx\SI{12}{\decibel}$)}
+\resolucao{A condutância total é $1/1k+1/20k+1/2k=1{,}55$ mS. As injeções são $0{,}2$ mA e $0{,}05$ mA, gerando aproximadamente $129$ mV e $32{,}3$ mV.}
+\end{questao}
+
+\begin{questao}[3]{}
+Compare o custo de superposição e análise nodal para a rede de dois nós e quatro fontes abaixo.
+\circuitoq{\begin{circuitikz}[american,scale=.62,transform shape]
+\coordinate (g) at (5,0); \coordinate (n1) at (3,4.3); \coordinate (n2) at (7.2,4.3);
+\draw (0,0) to[\fonteV,l^={$E_1$}] (0,4.3) to[R,l={$R_1$}] (n1);
+\draw (1.5,0) to[isource,l^={$I_2$}] (1.5,2.6)--(n1); \draw (n1) to[R,l_={$R_2$}] (3,0)--(g);
+\draw (n1) to[R,l={$R_{12}$}] (n2); \draw (n2) to[R,l={$R_3$}] (7.2,0)--(g);
+\draw (10.2,0) to[\fonteV,l_={$E_3$}] (10.2,4.3) to[R,l_={$R_4$}] (n2);
+\draw (8.8,0) to[isource,l_={$I_4$}] (8.8,2.7)--(n2); \draw (0,0)--(1.5,0)--(g)--(8.8,0)--(10.2,0); \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{Superposição: quatro sistemas $2\times2$; nodal direto: um sistema $2\times2$}
+\resolucao{Para um único resultado numérico, nodal é mais econômico. Superposição vale o custo adicional quando é necessário conhecer a contribuição individual de cada fonte.}
+\end{questao}
