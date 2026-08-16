@@ -6,14 +6,15 @@
 
 % Q735 --- N2/5: fonte real de tensao alimentando carga
 \def\fvNodalQ735Revisada{%
-\begin{circuitikz}[american,scale=.96,transform shape,line width=.8pt]
-  \coordinate (g) at (5.2,0);
-  \coordinate (a) at (5.2,4.4);
+\begin{circuitikz}[american,scale=.88,transform shape,line width=.8pt]
+  \coordinate (g) at (6.2,0);
+  \coordinate (a) at (6.2,4.4);
   \draw (0,0) to[\fonteV,l^={$\SI{30}{\volt}$}] (0,4.4)
-        -- (1.4,4.4) to[R,l^={$\SI{10}{\ohm}$}] (a);
-  \draw (a) to[R,l_={$\SI{15}{\ohm}$}] (g) -- (0,0);
+        -- (1.6,4.4) to[R,l^={$\SI{10}{\ohm}$}] (a);
+  \draw (a) to[R,l_={$\SI{15}{\ohm}$}] (g);
+  \draw (g) -- (0,0);
   \fill (a) circle (1.2pt);
-  \node[Vcol,fill=white,inner sep=1.8pt] at ($(a)+(.85,.58)$) {$V_A$};
+  \node[Vcol,fill=white,inner sep=2pt] at ($(a)+(.95,.72)$) {$V_A$};
   \node[ground] at(g){};
 \end{circuitikz}}
 
@@ -40,20 +41,24 @@
 \end{circuitikz}}
 
 % Q742 --- N2/12: fonte de tensao, dois nos e fonte horizontal de corrente
+% A fonte horizontal foi deslocada para um ramo inferior para separar
+% o seu rotulo dos identificadores V1 e V2.
 \def\fvNodalQ742Revisada{%
-\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
-  \coordinate (g) at (4.3,0);
-  \coordinate (n1) at (4.3,4.8);
-  \coordinate (n2) at (10.3,4.8);
-  \draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,4.8)
-        -- (1.2,4.8) to[R,l^={$\SI{6}{\ohm}$}] (n1);
+\begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
+  \coordinate (g) at (4.2,0);
+  \coordinate (n1) at (4.2,5.0);
+  \coordinate (n2) at (11.0,5.0);
+  \coordinate (p1) at (5.2,3.35);
+  \coordinate (p2) at (10.0,3.35);
+  \draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,5.0)
+        -- (1.2,5.0) to[R,l^={$\SI{6}{\ohm}$}] (n1);
   \draw (n1) to[R,l_={$\SI{12}{\ohm}$}] (g);
-  \draw (n1) to[isource,l_={$\SI{2}{\ampere}$}] (n2);
-  \draw (n2) to[R,l={$\SI{6}{\ohm}$}] (10.3,0) -- (g) -- (0,0);
+  \draw (n1) -- (p1) to[isource,l_={$\SI{2}{\ampere}$}] (p2) -- (n2);
+  \draw (n2) to[R,l={$\SI{6}{\ohm}$}] (11.0,0) -- (g) -- (0,0);
   \fill (n1) circle (1.2pt);
   \fill (n2) circle (1.2pt);
-  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.86)$) {$V_1$};
-  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.86)$) {$V_2$};
+  \node[Vcol,fill=white,inner sep=2pt] at ($(n1)+(0,.88)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=2pt] at ($(n2)+(0,.88)$) {$V_2$};
   \node[ground] at(g){};
 \end{circuitikz}}
 
@@ -77,19 +82,23 @@
 \end{circuitikz}}
 
 % Q751 --- N3/8: fonte de tensao controlada V2 = 2 V1
+% A fonte controlada foi afastada fisicamente do no V2; a ligacao horizontal
+% preserva a mesma topologia eletrica.
 \def\fvNodalQ751Revisada{%
-\begin{circuitikz}[american,scale=.84,transform shape,line width=.8pt]
+\begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
   \coordinate (g) at (2.3,0);
-  \coordinate (n1) at (2.3,4.6);
-  \coordinate (n2) at (8.2,4.6);
-  \draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,4.6) -- (n1);
+  \coordinate (n1) at (2.3,4.8);
+  \coordinate (n2) at (7.6,4.8);
+  \coordinate (dtop) at (11.0,4.8);
+  \coordinate (dbot) at (11.0,0);
+  \draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,4.8) -- (n1);
   \draw (n1) to[R,l_={$\SI{4}{\ohm}$}] (g);
   \draw (n1) to[R,l^={$\SI{8}{\ohm}$}] (n2);
-  \draw (n2) to[cvsource,l_={$2V_1$}] (8.2,0) -- (g) -- (0,0);
+  \draw (n2) -- (dtop) to[cvsource,l_={$2V_1$}] (dbot) -- (g) -- (0,0);
   \fill (n1) circle (1.2pt);
   \fill (n2) circle (1.2pt);
-  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.82)$) {$V_1$};
-  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.82)$) {$V_2$};
+  \node[Vcol,fill=white,inner sep=2pt] at ($(n1)+(0,.88)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=2pt] at ($(n2)+(0,.88)$) {$V_2$};
   \node[ground] at(g){};
 \end{circuitikz}}
 
