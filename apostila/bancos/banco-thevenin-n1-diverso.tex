@@ -1,0 +1,93 @@
+% N1 --- Thevenin e Norton: 8 questoes visuais distintas
+\blocofixacao
+
+\begin{questao}[1]{}
+Determine $V_{Th}$ e $R_{Th}$ vistos em A--B.
+\circuitoq{\begin{circuitikz}[american,scale=.86,transform shape]
+\coordinate (g) at (3.8,0); \coordinate (a) at (3.8,3.7);
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,3.7) to[R,l={$\SI{4}{\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{8}{\ohm}$}] (g)--(0,0);
+\draw (a)--(6.2,3.7) node[ocirc]{} node[right]{A}; \draw (g)--(6.2,0) node[ocirc]{} node[right]{B};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{8}{\volt}$; $R_{Th}=\SI{2.67}{\ohm}$}
+\resolucao{Em aberto, o divisor fornece $12\cdot8/(4+8)=8$ V. Zerando a fonte, $R_{Th}=4\parallel8=8/3\approx2{,}67\,\Omega$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Converta o equivalente de Thévenin mostrado em Norton.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[\fonteV,l^={$\SI{15}{\volt}$}] (0,3.5) to[R,l={$\SI{5}{\ohm}$}] (4,3.5)--(5.2,3.5) node[ocirc]{};
+\draw (0,0)--(5.2,0) node[ocirc]{};
+\end{circuitikz}}
+\resposta{$I_N=\SI{3}{\ampere}$; $R_N=\SI{5}{\ohm}$}
+\resolucao{$I_N=V_{Th}/R_{Th}=15/5=3$ A e $R_N=R_{Th}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o equivalente de Thévenin da fonte de Norton.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\coordinate (g) at (3.5,0); \coordinate (a) at (3.5,3.6);
+\draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,3.6)--(a);
+\draw (a) to[R,l_={$\SI{6}{\ohm}$}] (g)--(0,0);
+\draw (a)--(5.5,3.6) node[ocirc]{}; \draw (g)--(5.5,0) node[ocirc]{};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{18}{\volt}$; $R_{Th}=\SI{6}{\ohm}$}
+\resolucao{Em aberto toda a corrente passa por $6\,\Omega$, produzindo $18$ V. Com a fonte de corrente aberta, a porta vê apenas $6\,\Omega$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Para calcular $R_{Th}$, indique o que acontece com as duas fontes independentes.
+\circuitoq{\begin{circuitikz}[american,scale=.78,transform shape]
+\draw (0,0) to[\fonteV,l^={$E$}] (0,3.7) to[R,l={$R_1$}] (3.5,3.7) coordinate(a);
+\draw (a) to[R,l_={$R_2$}] (3.5,0)--(0,0);
+\draw (6.8,0) to[isource,l_={$I$}] (6.8,3.7)--(a); \draw (6.8,0)--(3.5,0);
+\draw (a)--(8.3,3.7) node[ocirc]{}; \draw (3.5,0)--(8.3,0) node[ocirc]{};
+\end{circuitikz}}
+\resposta{A fonte de tensão vira curto e a fonte de corrente vira circuito aberto}
+\resolucao{Zerar uma fonte ideal significa impor sua grandeza igual a zero: $V=0$ corresponde a curto; $I=0$ corresponde a aberto.}
+\end{questao}
+
+\begin{questao}[1]{}
+Calcule a corrente e a tensão na carga.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{18}{\volt}$}] (0,3.6) to[R,l={$R_{Th}=\SI{3}{\ohm}$}] (4,3.6)
+ to[R,l={$R_L=\SI{6}{\ohm}$},i>^={$I_L$}] (4,0)--(0,0);
+\end{circuitikz}}
+\resposta{$I_L=\SI{2}{\ampere}$; $U_L=\SI{12}{\volt}$}
+\resolucao{$I_L=18/(3+6)=2$ A e $U_L=6(2)=12$ V.}
+\end{questao}
+
+\begin{questao}[1]{}
+Uma rede apresenta $V_{oc}=\SI{20}{\volt}$ e $I_{sc}=\SI{4}{\ampere}$. Determine $R_{Th}$.
+\circuitoq{\begin{circuitikz}[american,scale=.85,transform shape]
+\draw[dashed,cinza,rounded corners] (0,0) rectangle (3.2,3.5); \node[cinza] at(1.6,1.75){rede};
+\draw (3.2,2.8)--(5,2.8) node[ocirc]{}; \draw (3.2,.7)--(5,.7) node[ocirc]{};
+\node[right] at(5.3,2.3){$V_{oc}=20$ V}; \node[right] at(5.3,1.3){$I_{sc}=4$ A};
+\end{circuitikz}}
+\resposta{$R_{Th}=\SI{5}{\ohm}$}
+\resolucao{$R_{Th}=V_{oc}/I_{sc}=20/4=5\,\Omega$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Duas fontes aterradas alimentam a porta. Determine $V_{Th}$ e $R_{Th}$.
+\circuitoq{\begin{circuitikz}[american,scale=.74,transform shape]
+\coordinate (g) at (5,0); \coordinate (a) at (5,4);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4) to[R,l={$\SI{6}{\ohm}$}] (a);
+\draw (10,0) to[\fonteV,l_={$\SI{6}{\volt}$}] (10,4) to[R,l_={$\SI{3}{\ohm}$}] (a);
+\draw (0,0)--(g)--(10,0); \draw (a)--(6.8,4) node[ocirc]{}; \draw (g)--(6.8,0) node[ocirc]{};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{10}{\volt}$; $R_{Th}=\SI{2}{\ohm}$}
+\resolucao{Por Millman, $V_{Th}=(18/6+6/3)/(1/6+1/3)=10$ V. Zerando as fontes, $R_{Th}=6\parallel3=2\,\Omega$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine o equivalente visto na porta.
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape]
+\coordinate (g) at (4,0); \coordinate (a) at (4,3.8);
+\draw (0,0) to[\fonteV,l^={$\SI{30}{\volt}$}] (0,3.8) to[R,l={$\SI{10}{\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{15}{\ohm}$}] (g)--(0,0);
+\draw (a)--(6.2,3.8) node[ocirc]{}; \draw (g)--(6.2,0) node[ocirc]{};
+\end{circuitikz}}
+\resposta{$V_{Th}=\SI{18}{\volt}$; $R_{Th}=\SI{6}{\ohm}$}
+\resolucao{$V_{Th}=30\cdot15/(10+15)=18$ V e $R_{Th}=10\parallel15=6\,\Omega$.}
+\end{questao}
