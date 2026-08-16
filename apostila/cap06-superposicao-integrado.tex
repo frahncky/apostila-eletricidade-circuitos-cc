@@ -1,11 +1,12 @@
 % =====================================================================
-% CAPITULO 6 --- WRAPPER VISUAL
-% Mantem o capitulo original e substitui apenas o banco complementar pela
-% versao visual. Tambem repete a figura nas questoes que antes dependiam da
-% expressao "mesmo circuito da questao anterior".
+% CAPITULO 6 --- WRAPPER VISUAL DIVERSIFICADO
+% Mantem a teoria do capitulo e substitui o banco complementar pelo banco
+% diversificado, com circuito e valores proprios em cada questao pratica.
 % =====================================================================
 \begingroup
 
+% As duas questoes do corpo do capitulo que dependem explicitamente do circuito
+% anterior repetem a figura para que a questao continue autocontida.
 \def\fvSupCapDuasFontes{%
 \begin{circuitikz}[american,scale=.86,transform shape,line width=.8pt]
   \coordinate (g) at (3.8,0);
@@ -33,7 +34,7 @@
 \renewcommand{\input}[1]{%
   \ifstrequal{#1}{bancos/banco-teorema-da-superposicao.tex}%
     {\begingroup\let\input\fvSupInputOriginal
-     \fvSupInputOriginal{bancos/banco-teorema-da-superposicao-visual.tex}%
+     \fvSupInputOriginal{bancos/banco-teorema-da-superposicao-diverso.tex}%
      \endgroup}%
     {\fvSupInputOriginal{#1}}}
 \fvSupInputOriginal{cap06-superposicao}
