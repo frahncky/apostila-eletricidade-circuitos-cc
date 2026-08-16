@@ -1,0 +1,123 @@
+% N2 --- Superposicao: 9 questoes, circuitos e valores distintos
+\blocoaplicacao
+
+\begin{questao}[2]{}
+Determine $V_A$ por superposição.
+\circuitoq{\begin{circuitikz}[american,scale=.76,transform shape]
+\coordinate (g) at (5,0); \coordinate (a) at (5,4);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4) to[R,l={$\SI{6}{\ohm}$}] (a);
+\draw (10,0) to[\fonteV,l_={$\SI{6}{\volt}$}] (10,4) to[R,l_={$\SI{12}{\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{4}{\ohm}$}] (g); \draw (0,0)--(g)--(10,0);
+\node[above,Vcol] at(a){$V_A$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V_A=\SI{7}{\volt}$}
+\resolucao{Com apenas $18$ V: $V_A'=\SI{6}{\volt}$. Com apenas $6$ V: $V_A''=\SI{1}{\volt}$. Logo $V_A=7$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Use superposição para obter a tensão sobre $R_L$.
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape]
+\coordinate (g) at (3.8,0); \coordinate (a) at (3.8,3.8);
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.8) to[R,l={$\SI{8}{\ohm}$}] (a);
+\draw (a) to[R,l_={$R_L=\SI{12}{\ohm}$}] (g)--(0,0);
+\draw (7.3,0) to[isource,l_={$\SI{1.5}{\ampere}$}] (7.3,3.8)--(a); \draw (7.3,0)--(g);
+\node[above,Vcol] at(a){$V_A$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V_A=\SI{21.6}{\volt}$}
+\resolucao{A resistência vista pelo nó com a fonte de tensão zerada é $8\parallel12=\SI{4.8}{\ohm}$. A fonte de tensão contribui com $14{,}4$ V e a de corrente com $7{,}2$ V; soma $21{,}6$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine, por superposição, a corrente no resistor que liga os nós 1 e 2, positiva de 1 para 2.
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
+\coordinate (g) at (4,0); \coordinate (n1) at (2,3.8); \coordinate (n2) at (6.5,3.8);
+\draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,3.8)--(n1);
+\draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (2,0)--(g);
+\draw (n1) to[R,l={$\SI{6}{\ohm}$},i>^={$i_{12}$}] (n2);
+\draw (n2) to[R,l={$\SI{3}{\ohm}$}] (6.5,0)--(g);
+\draw (8.5,0) to[isource,l_={$\SI{1}{\ampere}$}] (8.5,3.8)--(n2); \draw (8.5,0)--(g)--(0,0);
+\node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V_1=\SI{12}{\volt}$, $V_2=\SI{6}{\volt}$, $i_{12}=\SI{1}{\ampere}$}
+\resolucao{A soma das respostas parciais fornece $V_1=12$ V e $V_2=6$ V. Portanto $i_{12}=(12-6)/6=\SI{1}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+As fontes estão em oposição. Determine $I$ por superposição.
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
+\draw (0,0) to[\fonteV,l^={$\SI{21}{\volt}$}] (0,3.4) to[R,l={$\SI{6}{\ohm}$},i>^={$I$}] (5,3.4)
+ to[\fonteV,l_={$\SI{9}{\volt}$},invert] (5,0)--(0,0);
+\end{circuitikz}}
+\resposta{$I=\SI{2}{\ampere}$}
+\resolucao{$I_1=21/6=3{,}5$ A e $I_2=-9/6=-1{,}5$ A. Assim $I=2$ A.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine a corrente no resistor de $\SI{3}{\ohm}$ entre os nós usando a contribuição das três fontes separadamente.
+\circuitoq{\begin{circuitikz}[american,scale=.68,transform shape]
+\coordinate (g) at (5,0); \coordinate (n1) at (3.2,4.2); \coordinate (n2) at (7,4.2);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4.2) to[R,l={$\SI{3}{\ohm}$}] (n1);
+\draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (3.2,0)--(g);
+\draw (n1) to[R,l={$\SI{3}{\ohm}$},i>^={$i$}] (n2);
+\draw (10.3,0) to[\fonteV,l_={$\SI{6}{\volt}$}] (10.3,4.2) to[R,l_={$\SI{6}{\ohm}$}] (n2);
+\draw (n2) to[R,l={$\SI{3}{\ohm}$}] (7,0)--(g);
+\draw (8.7,0) to[isource,l_={$\SI{1}{\ampere}$}] (8.7,4.2)--(n2); \draw (0,0)--(g)--(8.7,0)--(10.3,0);
+\end{circuitikz}}
+\resposta{$V_1=\SI{68/7}{\volt}$, $V_2=\SI{44/7}{\volt}$, $i=\SI{8/7}{\ampere}$}
+\resolucao{Somando as três respostas parciais obtêm-se $V_1=68/7$ V e $V_2=44/7$ V. Logo $i=(V_1-V_2)/3=8/7$ A.}
+\end{questao}
+
+\begin{questao}[2]{}
+As duas fontes alimentam uma ponte resistiva. Determine por superposição a tensão $V_{ab}=V_a-V_b$.
+\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
+\coordinate (l) at (0,2.2); \coordinate (r) at (10,2.2); \coordinate (a) at (5,5); \coordinate (b) at (5,-.6);
+\draw (l) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,-.6)--(b);
+\draw (r) to[\fonteV,l_={$\SI{6}{\volt}$},invert] (10,-.6)--(b);
+\draw (l) to[R,l={$\SI{4}{\ohm}$}] (a) to[R,l={$\SI{8}{\ohm}$}] (r);
+\draw (l) to[R,l_={$\SI{6}{\ohm}$}] (b) to[R,l_={$\SI{12}{\ohm}$}] (r);
+\node[above,Vcol] at(a){$a$}; \node[below,Vcol] at(b){$b$};
+\end{circuitikz}}
+\resposta{$V_{ab}=\SI{0}{\volt}$}
+\resolucao{Os dois divisores têm a mesma razão $4/8=6/12$. Para qualquer combinação linear das duas fontes, os pontos médios permanecem equipotenciais; cada fonte separadamente produz $V_{ab}=0$, portanto a soma também é zero.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma fonte real e uma fonte ideal de corrente alimentam a carga. Determine $V$ por superposição.
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
+\coordinate (g) at (3.8,0); \coordinate (a) at (3.8,3.8);
+\draw (0,0) to[\fonteV,l^={$\SI{15}{\volt}$}] (0,3.8) to[R,l={$r=\SI{3}{\ohm}$}] (a);
+\draw (a) to[R,l_={$R_L=\SI{6}{\ohm}$}] (g)--(0,0);
+\draw (7.2,0) to[isource,l_={$\SI{2}{\ampere}$}] (7.2,3.8)--(a); \draw (7.2,0)--(g);
+\node[above,Vcol] at(a){$V$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V=\SI{14}{\volt}$}
+\resolucao{A fonte real contribui com $10$ V. Com a f.e.m. zerada, $3\parallel6=2\,\Omega$ e a fonte de corrente contribui com $4$ V. Total: $14$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Determine a contribuição de cada fonte e a tensão na carga.
+\circuitoq{\begin{circuitikz}[american,scale=.76,transform shape]
+\coordinate (g) at (5,0); \coordinate (a) at (5,4);
+\draw (0,0) to[\fonteV,l^={$\SI{20}{\volt}$}] (0,4) to[R,l={$\SI{4}{\ohm}$}] (a);
+\draw (10,0) to[\fonteV,l_={$\SI{12}{\volt}$}] (10,4) to[R,l_={$\SI{12}{\ohm}$}] (a);
+\draw (a) to[R,l_={$R_L=\SI{6}{\ohm}$}] (g); \draw (0,0)--(g)--(10,0);
+\node[above,Vcol] at(a){$V_L$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V_L^{(20)}=\SI{10}{\volt}$, $V_L^{(12)}=\SI{2}{\volt}$, $V_L=\SI{12}{\volt}$}
+\resolucao{Com a fonte de 12 V em curto, $4$ alimenta $12\parallel6=4\,\Omega$, dando $10$ V. Com a de 20 V em curto, $12$ alimenta $4\parallel6=2{,}4\,\Omega$, dando $2$ V. Soma: $12$ V.}
+\end{questao}
+
+\begin{questao}[2]{}
+Use superposição para determinar $V_2$.
+\circuitoq{\begin{circuitikz}[american,scale=.76,transform shape]
+\coordinate (g) at (4.8,0); \coordinate (n1) at (3,4); \coordinate (n2) at (7,4);
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,4) to[R,l={$\SI{6}{\ohm}$}] (n1);
+\draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (3,0)--(g);
+\draw (n1) to[R,l={$\SI{3}{\ohm}$}] (n2);
+\draw (n2) to[R,l={$\SI{4}{\ohm}$}] (7,0)--(g);
+\draw (9.2,0) to[isource,l_={$\SI{1}{\ampere}$}] (9.2,4)--(n2); \draw (9.2,0)--(g)--(0,0);
+\node[above,Vcol] at(n1){$V_1$}; \node[above,Vcol] at(n2){$V_2$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V_2=\SI{7.2}{\volt}$}
+\resolucao{A soma das respostas parciais da fonte de 24 V e da fonte de 1 A fornece $V_1=9{,}6$ V e $V_2=7{,}2$ V.}
+\end{questao}
