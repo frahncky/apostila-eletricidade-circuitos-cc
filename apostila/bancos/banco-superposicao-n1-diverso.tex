@@ -1,0 +1,71 @@
+% N1 --- Superposicao: 6 questoes visuais e distintas
+\blocofixacao
+
+\begin{questao}[1]{}
+No circuito, deseja-se calcular a contribuição de $E_1$ para a corrente $I$ em $R_L$. Indique como as outras fontes devem ser desativadas.
+\circuitoq{\begin{circuitikz}[american,scale=.78,transform shape]
+\draw (0,0) to[\fonteV,l^={$E_1$}] (0,3.6) to[R,l={$R_1$}] (3.2,3.6) coordinate(a);
+\draw (a) to[R,l_={$R_L$},i>^={$I$}] (3.2,0)--(0,0);
+\draw (6.4,0) to[isource,l_={$I_2$}] (6.4,3.6)--(a); \draw (6.4,0)--(3.2,0);
+\draw (9.0,0) to[\fonteV,l_={$E_3$}] (9.0,3.6) to[R,l_={$R_3$}] (a); \draw (9.0,0)--(6.4,0);
+\end{circuitikz}}
+\resposta{$I_2$ aberto; $E_3$ em curto; $E_1$ permanece ativa}
+\resolucao{Na superposição, apenas uma fonte independente fica ativa por vez. Fonte de corrente ideal zerada vira circuito aberto; fonte de tensão ideal zerada vira curto-circuito.}
+\end{questao}
+
+\begin{questao}[1]{}
+Considere a referência de corrente indicada. Determine somente a contribuição de $E_1=\SI{16}{\volt}$.
+\circuitoq{\begin{circuitikz}[american,scale=.9,transform shape]
+\draw (0,0) to[\fonteV,l^={$\SI{16}{\volt}$}] (0,3.2) to[R,l={$\SI{8}{\ohm}$},i>^={$I$}] (4.6,3.2)
+ to[\fonteV,l_={$\SI{4}{\volt}$},invert] (4.6,0)--(0,0);
+\end{circuitikz}}
+\resposta{$I_{E_1}=\SI{2}{\ampere}$}
+\resolucao{Zerando a fonte de $\SI{4}{\volt}$, ela vira um curto. Assim $I_{E_1}=16/8=\SI{2}{\ampere}$ no sentido da referência.}
+\end{questao}
+
+\begin{questao}[1]{}
+Determine somente a contribuição da fonte de corrente para $V_A$.
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape]
+\coordinate (g) at (3.4,0); \coordinate (a) at (3.4,3.6);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,3.6) to[R,l={$\SI{9}{\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{6}{\ohm}$}] (g)--(0,0);
+\draw (6.8,0) to[isource,l_={$\SI{3}{\ampere}$}] (6.8,3.6)--(a); \draw (6.8,0)--(g);
+\node[above,Vcol] at(a){$V_A$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{$V_A^{(I)}=\SI{10.8}{\volt}$}
+\resolucao{Com a fonte de tensão em curto, o nó vê $9\parallel6=\SI{3.6}{\ohm}$. Logo $V_A^{(I)}=3\times3{,}6=\SI{10.8}{\volt}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+Quantas análises parciais são necessárias para obter $V$ por superposição no circuito abaixo?
+\circuitoq{\begin{circuitikz}[american,scale=.7,transform shape]
+\coordinate (g) at (5,0); \coordinate (a) at (5,4);
+\draw (0,0) to[\fonteV,l^={$E_1$}] (0,4) to[R,l={$R_1$}] (a);
+\draw (2.5,0) to[isource,l^={$I_2$}] (2.5,4)--(a);
+\draw (10,0) to[\fonteV,l_={$E_3$}] (10,4) to[R,l_={$R_3$}] (a);
+\draw (a) to[R,l_={$R_L$}] (g); \draw (0,0)--(2.5,0)--(g)--(10,0);
+\node[above,Vcol] at(a){$V$}; \node[ground] at(g){};
+\end{circuitikz}}
+\resposta{Três análises parciais}
+\resolucao{Há três fontes independentes. Faz-se uma análise com $E_1$, outra com $I_2$ e outra com $E_3$, mantendo eventuais fontes dependentes ativas.}
+\end{questao}
+
+\begin{questao}[1]{}
+As contribuições das duas fontes para a corrente indicada são $+\SI{1.8}{\ampere}$ e $-\SI{0.7}{\ampere}$. Determine a corrente real.
+\circuitoq{\begin{circuitikz}[american,scale=.86,transform shape]
+\draw (0,0) to[\fonteV,l^={$E_1$}] (0,3.4) to[R,l={$R$},i>^={$I$}] (4.8,3.4)
+ to[\fonteV,l_={$E_2$}] (4.8,0)--(0,0);
+\end{circuitikz}}
+\resposta{$I=\SI{1.1}{\ampere}$ no sentido indicado}
+\resolucao{Somam-se contribuições com sinal: $I=1{,}8-0{,}7=\SI{1.1}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[1]{}
+O teorema da superposição pode ser aplicado diretamente a este circuito para obter a tensão no diodo?
+\circuitoq{\begin{circuitikz}[american,scale=.86,transform shape]
+\draw (0,0) to[\fonteV,l^={$\SI{10}{\volt}$}] (0,3.5) to[R,l={$\SI{1}{\kilo\ohm}$}] (3.5,3.5)
+ to[D,l={$D$}] (3.5,0)--(0,0);
+\end{circuitikz}}
+\resposta{Não}
+\resolucao{O diodo é não linear: sua relação tensão-corrente não é proporcional. A configuração de condução pode mudar entre análises parciais, invalidando a soma.}
+\end{questao}
