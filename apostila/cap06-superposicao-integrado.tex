@@ -1,0 +1,15 @@
+% =====================================================================
+% CAPITULO 6 --- WRAPPER VISUAL
+% Mantem o capitulo original e substitui apenas o banco complementar pela
+% versao visual, sem alterar enunciados, respostas, resolucoes ou numeracao.
+% =====================================================================
+\begingroup
+\let\fvSupInputOriginal\input
+\renewcommand{\input}[1]{%
+  \ifstrequal{#1}{bancos/banco-teorema-da-superposicao.tex}%
+    {\begingroup\let\input\fvSupInputOriginal
+     \fvSupInputOriginal{bancos/banco-teorema-da-superposicao-visual.tex}%
+     \endgroup}%
+    {\fvSupInputOriginal{#1}}%}
+\fvSupInputOriginal{cap06-superposicao}
+\endgroup
