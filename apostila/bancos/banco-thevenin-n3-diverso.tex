@@ -1,14 +1,17 @@
 % N3 --- Thevenin e Norton: 11 questoes avancadas e distintas
+% Revisao visual: portas fora dos ramos, fontes de teste afastadas e rotulos
+% protegidos contra colisoes.
 \blocoaprofundamento
 
 \begin{questao}[3]{}
 A rede contém apenas uma fonte dependente. Determine $R_{Th}$ pela fonte de teste.
-\circuitoq{\begin{circuitikz}[american,scale=.8,transform shape]
-\coordinate (g) at (3.6,0); \coordinate (a) at (3.6,4);
+\circuitoq{\begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
+\coordinate (g) at (4.2,0); \coordinate (a) at (4.2,4.4);
 \draw (a) to[R,l_={$\SI{1}{\kilo\ohm}$}] (g);
-\draw (0,0) to[cisource,l^={$0{,}5\,\mathrm{mS}\,V_A$}] (0,4)--(a); \draw (0,0)--(g);
-\draw (7.3,0) to[isource,l_={$I_t$}] (7.3,4)--(a); \draw (7.3,0)--(g);
-\node[above,Vcol] at(a){$V_A$}; \node[ground] at(g){};
+\draw (0,0) to[cisource,l^={$0{,}5\,\mathrm{mS}\,V_A$}] (0,4.4)--(a); \draw (0,0)--(g);
+\draw (9.0,0) to[isource,l_={$I_t$}] (9.0,4.4)--(a); \draw (9.0,0)--(g);
+\fill (a) circle (1.1pt); \node[Vcol,fill=white,inner sep=1.6pt] at ($(a)+(0,.70)$) {$V_A$};
+\node[ground] at(g){};
 \end{circuitikz}}
 \resposta{$R_{Th}=\SI{2}{\kilo\ohm}$}
 \resolucao{$I_t=V_A/1000-0{,}0005V_A=0{,}0005V_A$. Logo $R_{Th}=V_A/I_t=2$ k$\Omega$.}
@@ -16,13 +19,16 @@ A rede contém apenas uma fonte dependente. Determine $R_{Th}$ pela fonte de tes
 
 \begin{questao}[3]{}
 Determine $V_{Th}$, $I_{sc}$ e $R_{Th}$, mantendo a fonte dependente ativa.
-\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
-\coordinate (g) at (4.2,0); \coordinate (a) at (4.2,4.1);
-\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,4.1) to[R,l={$\SI{2}{\kilo\ohm}$}] (a);
+\circuitoq{\begin{circuitikz}[american,scale=.68,transform shape,line width=.8pt]
+\coordinate (g) at (4.8,0); \coordinate (a) at (4.8,4.5);
+\coordinate (pa) at (10.5,5.9); \coordinate (pb) at (10.5,-1.3);
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,4.5) to[R,l={$\SI{2}{\kilo\ohm}$}] (a);
 \draw (a) to[R,l_={$\SI{2}{\kilo\ohm}$}] (g)--(0,0);
-\draw (8,0) to[cisource,l_={$0{,}25\,\mathrm{mS}\,V_A$}] (8,4.1)--(a); \draw (8,0)--(g);
-\draw (a)--(10,4.1) node[ocirc]{}; \draw (g)--(10,0) node[ocirc]{};
-\node[above,Vcol] at(a){$V_A$}; \node[ground] at(g){};
+\draw (8.6,0) to[cisource,l_={$0{,}25\,\mathrm{mS}\,V_A$}] (8.6,4.5)--(a); \draw (8.6,0)--(g);
+\draw (a)--(4.8,5.9)--(pa) node[ocirc]{} node[right]{A};
+\draw (g)--(4.8,-1.3)--(pb) node[ocirc]{} node[right]{B};
+\fill (a) circle (1.1pt); \node[Vcol,fill=white,inner sep=1.5pt] at ($(a)+(0,.70)$) {$V_A$};
+\node[ground] at(g){};
 \end{circuitikz}}
 \resposta{$V_{Th}=\SI{8}{\volt}$; $I_{sc}=\SI{6}{\milli\ampere}$; $R_{Th}\approx\SI{1.33}{\kilo\ohm}$}
 \resolucao{Em aberto, $(V-12)/2k+V/2k-0{,}25\,\mathrm{mS}\,V=0$, dando $V=8$ V. Em curto, $V=0$ e a corrente é $12/2k=6$ mA. Logo $R_{Th}=8/6$ k$\Omega\approx1{,}33$ k$\Omega$.}
@@ -30,11 +36,13 @@ Determine $V_{Th}$, $I_{sc}$ e $R_{Th}$, mantendo a fonte dependente ativa.
 
 \begin{questao}[3]{}
 Uma rede linear foi medida com duas cargas. Determine $V_{Th}$ e $R_{Th}$ sem usar circuito aberto.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw[dashed,cinza,rounded corners] (0,0) rectangle (3.2,3.8); \node[cinza] at(1.6,2){rede};
-\draw (3.2,3.1)--(4.8,3.1) coordinate(a); \draw (3.2,.7)--(4.8,.7) coordinate(b);
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+\draw[dashed,cinza,line width=.8pt,rounded corners=6pt] (0,0) rectangle (3.4,4.0);
+\node[cinza] at(1.7,2.05){rede};
+\draw (3.4,3.2)--(5.0,3.2) coordinate(a); \draw (3.4,.8)--(5.0,.8) coordinate(b);
 \draw (a) to[R,l={$R_L$}] (b);
-\node[right,align=left,font=\footnotesize] at(5.7,2){$R_L=2\,k\Omega\Rightarrow U=6$ V\\$R_L=6\,k\Omega\Rightarrow U=9$ V};
+\node[right,align=left,font=\footnotesize,draw=cinza,rounded corners,inner sep=3pt]
+ at(7.2,2.0){$R_L=\SI{2}{\kilo\ohm}\Rightarrow U=\SI{6}{\volt}$\\$R_L=\SI{6}{\kilo\ohm}\Rightarrow U=\SI{9}{\volt}$};
 \end{circuitikz}}
 \resposta{$V_{Th}=\SI{12}{\volt}$; $R_{Th}=\SI{2}{\kilo\ohm}$}
 \resolucao{Usando $U=V_{Th}R_L/(R_{Th}+R_L)$ nas duas medições, obtém-se o sistema que resulta em $R_{Th}=2$ k$\Omega$ e $V_{Th}=12$ V.}
@@ -42,10 +50,12 @@ Uma rede linear foi medida com duas cargas. Determine $V_{Th}$ e $R_{Th}$ sem us
 
 \begin{questao}[3]{}
 No divisor, ambos os resistores têm tolerância de $\pm5\%$. Determine os extremos de $V_{Th}$ e de $R_{Th}$.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\coordinate (g) at (4,0); \coordinate (a) at (4,3.8);
-\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,3.8) to[R,l={$6\,k\Omega\;\pm5\%$}] (a);
-\draw (a) to[R,l_={$3\,k\Omega\;\pm5\%$}] (g)--(0,0); \draw (a)--(6.2,3.8) node[ocirc]{}; \draw (g)--(6.2,0) node[ocirc]{};
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape,line width=.8pt]
+\coordinate (g) at (4.2,0); \coordinate (a) at (4.2,4.0);
+\draw (0,0) to[\fonteV,l^={$\SI{12}{\volt}$}] (0,4.0) to[R,l={$\SI{6}{\kilo\ohm}\;\pm5\%$}] (a);
+\draw (a) to[R,l_={$\SI{3}{\kilo\ohm}\;\pm5\%$}] (g)--(0,0);
+\draw (a)--(6.8,4.0) node[ocirc]{} node[right]{A}; \draw (g)--(6.8,0) node[ocirc]{} node[right]{B};
+\node[ground] at(g){};
 \end{circuitikz}}
 \resposta{$V_{Th}\approx\SI{3.74}{\volt}$ a $\SI{4.27}{\volt}$; $R_{Th}=\SI{1.90}{\kilo\ohm}$ a $\SI{2.10}{\kilo\ohm}$}
 \resolucao{$V_{Th}$ máximo ocorre com $R_2$ alto e $R_1$ baixo; o mínimo no caso oposto. Já $R_{Th}=R_1\parallel R_2$ varia de 1,90 a 2,10 k$\Omega$.}
@@ -53,10 +63,13 @@ No divisor, ambos os resistores têm tolerância de $\pm5\%$. Determine os extre
 
 \begin{questao}[3]{}
 A fonte não pode ser curto-circuitada. A partir de duas medições, estime seu equivalente.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw[dashed,cinza,rounded corners] (0,0) rectangle (3.3,3.8); \node[cinza] at(1.65,2){fonte};
-\draw (3.3,3.1)--(4.8,3.1) coordinate(a); \draw (3.3,.7)--(4.8,.7) coordinate(b); \draw (a) to[R,l={$R_L$},i>^={$I$}] (b);
-\node[right,align=left,font=\footnotesize] at(5.8,2){$5{,}5\,\Omega\Rightarrow10$ A\\$2{,}5\,\Omega\Rightarrow20$ A};
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+\draw[dashed,cinza,line width=.8pt,rounded corners=6pt] (0,0) rectangle (3.5,4.0);
+\node[cinza] at(1.75,2.05){fonte};
+\draw (3.5,3.2)--(5.1,3.2) coordinate(a); \draw (3.5,.8)--(5.1,.8) coordinate(b);
+\draw (a) to[R,l={$R_L$},i>^={$I$}] (b);
+\node[right,align=left,font=\footnotesize,draw=cinza,rounded corners,inner sep=3pt]
+ at(7.2,2.0){$R_L=\SI{5.5}{\ohm}\Rightarrow I=\SI{10}{\ampere}$\\$R_L=\SI{2.5}{\ohm}\Rightarrow I=\SI{20}{\ampere}$};
 \end{circuitikz}}
 \resposta{$V_{Th}=\SI{60}{\volt}$; $R_{Th}=\SI{0.5}{\ohm}$; $I_N=\SI{120}{\ampere}$}
 \resolucao{As tensões são 55 V e 50 V. Pela reta $U=V_{Th}-R_{Th}I$, a inclinação é $-(50-55)/(20-10)=-0{,}5$, então $R_{Th}=0{,}5\,\Omega$ e $V_{Th}=60$ V.}
@@ -64,9 +77,10 @@ A fonte não pode ser curto-circuitada. A partir de duas medições, estime seu 
 
 \begin{questao}[3]{}
 O equivalente alimenta um LED aproximado por queda constante de $\SI{2}{\volt}$. Determine o ponto de operação.
-\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
-\draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{5}{\volt}$}] (0,3.7) to[R,l={$R_{Th}=\SI{200}{\ohm}$}] (4,3.7)
- to[leD,l={$LED\;(2\,V)$},i>^={$I$}] (4,0)--(0,0);
+\circuitoq{\begin{circuitikz}[american,scale=.90,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{5}{\volt}$}] (0,3.9)
+      to[R,l={$R_{Th}=\SI{200}{\ohm}$}] (4.4,3.9)
+      to[leD,l={$LED\;(\SI{2}{\volt})$},i>^={$I$}] (4.4,0)--(0,0);
 \end{circuitikz}}
 \resposta{$I=\SI{15}{\milli\ampere}$}
 \resolucao{A reta de carga é $U=5-200I$. Na aproximação $U_D=2$ V: $I=(5-2)/200=15$ mA.}
@@ -74,9 +88,11 @@ O equivalente alimenta um LED aproximado por queda constante de $\SI{2}{\volt}$.
 
 \begin{questao}[3]{}
 A carga deve receber no mínimo $\SI{20}{\volt}$. Determine a faixa admissível de $R_L$.
-\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
-\draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{24}{\volt}$}] (0,3.7) to[R,l={$R_{Th}=\SI{8}{\ohm}$}] (4,3.7)
- to[R,l={$R_L$}] (4,0)--(0,0); \draw[<->,Vcol] (4.9,.4)--(4.9,3.3) node[midway,right] {$U_L\ge20$ V};
+\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$V_{Th}=\SI{24}{\volt}$}] (0,3.9)
+      to[R,l={$R_{Th}=\SI{8}{\ohm}$}] (4.4,3.9)
+      to[R,l={$R_L$}] (4.4,0)--(0,0);
+\draw[<->,Vcol,line width=.9pt] (5.5,.45)--(5.5,3.45) node[midway,right] {$U_L\ge\SI{20}{\volt}$};
 \end{circuitikz}}
 \resposta{$R_L\ge\SI{40}{\ohm}$}
 \resolucao{$24R_L/(R_L+8)\ge20$ implica $24R_L\ge20R_L+160$, portanto $R_L\ge40\,\Omega$.}
@@ -84,11 +100,15 @@ A carga deve receber no mínimo $\SI{20}{\volt}$. Determine a faixa admissível 
 
 \begin{questao}[3]{}
 Compare as duas portas da mesma rede para uma carga de $\SI{4}{\kilo\ohm}$.
-\circuitoq{\begin{circuitikz}[american,scale=.72,transform shape]
-\coordinate (g) at (3.4,0); \coordinate (a) at (3.4,4); \coordinate (b) at (8.5,4);
-\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4) to[R,l={$\SI{6}{\kilo\ohm}$}] (a);
-\draw (a) to[R,l_={$\SI{3}{\kilo\ohm}$}] (g)--(0,0); \draw (a)--(5,4) node[ocirc]{} node[above]{A};
-\draw (a) to[R,l={$\SI{4}{\kilo\ohm}$}] (b) node[ocirc]{} node[right]{B}; \draw (g)--(8.5,0) node[ocirc]{};
+\circuitoq{\begin{circuitikz}[american,scale=.68,transform shape,line width=.8pt]
+\coordinate (g) at (4.0,0); \coordinate (a) at (4.0,4.5); \coordinate (b) at (10.0,4.5);
+\coordinate (pa) at (6.0,6.0);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4.5) to[R,l={$\SI{6}{\kilo\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{3}{\kilo\ohm}$}] (g)--(0,0);
+\draw (a) to[R,l={$\SI{4}{\kilo\ohm}$}] (b) node[ocirc]{} node[right]{B};
+\draw (a)--(4.0,6.0)--(pa) node[ocirc]{} node[right]{A};
+\draw (g)--(10.0,0) node[ocirc]{} node[right]{terra};
+\fill (a) circle (1.1pt); \node[ground] at(g){};
 \end{circuitikz}}
 \resposta{Porta A: $U_L=\SI{4}{\volt}$; porta B: $U_L=\SI{2.4}{\volt}$}
 \resolucao{Em A, o equivalente é 6 V em série com 2 k$\Omega$: $U=6\cdot4/(2+4)=4$ V. Em B, é 6 V em série com 6 k$\Omega$: $U=6\cdot4/(6+4)=2{,}4$ V.}
@@ -96,12 +116,17 @@ Compare as duas portas da mesma rede para uma carga de $\SI{4}{\kilo\ohm}$.
 
 \begin{questao}[3]{}
 Determine o equivalente visto pela porta da rede com três fontes independentes.
-\circuitoq{\begin{circuitikz}[american,scale=.68,transform shape]
-\coordinate (g) at (5,0); \coordinate (a) at (5,4.2);
-\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4.2) to[R,l={$\SI{6}{\ohm}$}] (a);
-\draw (10,0) to[\fonteV,l_={$\SI{6}{\volt}$}] (10,4.2) to[R,l_={$\SI{3}{\ohm}$}] (a);
-\draw (7.8,0) to[isource,l_={$\SI{1}{\ampere}$}] (7.8,4.2)--(a); \draw (a) to[R,l_={$\SI{6}{\ohm}$}] (g);
-\draw (0,0)--(g)--(7.8,0)--(10,0); \draw (a)--(11.5,4.2) node[ocirc]{}; \draw (g)--(11.5,0) node[ocirc]{};
+\circuitoq{\begin{circuitikz}[american,scale=.62,transform shape,line width=.8pt]
+\coordinate (g) at (6.0,0); \coordinate (a) at (6.0,4.8);
+\coordinate (pa) at (11.8,6.3); \coordinate (pb) at (11.8,-1.4);
+\draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4.8) to[R,l={$\SI{6}{\ohm}$}] (a);
+\draw (9.2,0) to[isource,l_={$\SI{1}{\ampere}$}] (9.2,4.8)--(a);
+\draw (13.0,0) to[\fonteV,l_={$\SI{6}{\volt}$}] (13.0,4.8) to[R,l_={$\SI{3}{\ohm}$}] (a);
+\draw (a) to[R,l_={$\SI{6}{\ohm}$}] (g);
+\draw (0,0)--(g)--(9.2,0)--(13.0,0);
+\draw (a)--(6.0,6.3)--(pa) node[ocirc]{} node[right]{A};
+\draw (g)--(6.0,-1.4)--(pb) node[ocirc]{} node[right]{B};
+\fill (a) circle (1.1pt); \node[ground] at(g){};
 \end{circuitikz}}
 \resposta{$V_{Th}=\SI{9}{\volt}$; $R_{Th}=\SI{1.5}{\ohm}$}
 \resolucao{A soma Norton equivalente é $18/6+6/3+1=6$ A e a condutância é $1/6+1/3+1/6=2/3$ S. Logo $V_{Th}=9$ V e $R_{Th}=1/(2/3)=1{,}5\,\Omega$.}
@@ -109,10 +134,12 @@ Determine o equivalente visto pela porta da rede com três fontes independentes.
 
 \begin{questao}[3]{}
 Três medições fornecem os pares $(I,U)=(1,10)$, $(2,8)$ e $(3,6)$ em unidades SI. Determine o equivalente e avalie a linearidade.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw[dashed,cinza,rounded corners] (0,0) rectangle (3.3,3.7); \node[cinza] at(1.65,1.85){rede};
-\draw (3.3,3)--(4.8,3) node[ocirc]{}; \draw (3.3,.7)--(4.8,.7) node[ocirc]{};
-\node[right,align=left,font=\footnotesize] at(5.3,1.9){$(1\,A,10\,V)$\\$(2\,A,8\,V)$\\$(3\,A,6\,V)$};
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+\draw[dashed,cinza,line width=.8pt,rounded corners=6pt] (0,0) rectangle (3.5,3.9);
+\node[cinza] at(1.75,1.95){rede};
+\draw (3.5,3.1)--(5.0,3.1) node[ocirc]{}; \draw (3.5,.8)--(5.0,.8) node[ocirc]{};
+\node[right,align=left,font=\footnotesize,draw=cinza,rounded corners,inner sep=3pt]
+ at(6.8,1.95){$(\SI{1}{\ampere},\SI{10}{\volt})$\\$(\SI{2}{\ampere},\SI{8}{\volt})$\\$(\SI{3}{\ampere},\SI{6}{\volt})$};
 \end{circuitikz}}
 \resposta{$V_{Th}=\SI{12}{\volt}$; $R_{Th}=\SI{2}{\ohm}$; dados perfeitamente lineares}
 \resolucao{Os três pontos pertencem à reta $U=12-2I$. O intercepto é $V_{Th}=12$ V e a inclinação é $-R_{Th}=-2\,\Omega$.}
@@ -120,11 +147,13 @@ Três medições fornecem os pares $(I,U)=(1,10)$, $(2,8)$ e $(3,6)$ em unidades
 
 \begin{questao}[3]{}
 A rede ativa abaixo pode apresentar resistência de Thévenin negativa. Determine-a com uma fonte de teste.
-\circuitoq{\begin{circuitikz}[american,scale=.8,transform shape]
-\coordinate (g) at (3.6,0); \coordinate (a) at (3.6,4);
+\circuitoq{\begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
+\coordinate (g) at (4.2,0); \coordinate (a) at (4.2,4.4);
 \draw (a) to[R,l_={$\SI{1}{\kilo\ohm}$}] (g);
-\draw (0,0) to[cisource,l^={$1{,}5\,\mathrm{mS}\,V_A$}] (0,4)--(a); \draw (0,0)--(g);
-\draw (7.2,0) to[isource,l_={$I_t$}] (7.2,4)--(a); \draw (7.2,0)--(g); \node[ground] at(g){};
+\draw (0,0) to[cisource,l^={$1{,}5\,\mathrm{mS}\,V_A$}] (0,4.4)--(a); \draw (0,0)--(g);
+\draw (9.0,0) to[isource,l_={$I_t$}] (9.0,4.4)--(a); \draw (9.0,0)--(g);
+\fill (a) circle (1.1pt); \node[Vcol,fill=white,inner sep=1.6pt] at ($(a)+(0,.70)$) {$V_A$};
+\node[ground] at(g){};
 \end{circuitikz}}
 \resposta{$R_{Th}=\SI{-2}{\kilo\ohm}$}
 \resolucao{$I_t=V/1000-1{,}5\,\mathrm{mS}\,V=-0{,}5\,\mathrm{mS}\,V$, logo $V/I_t=-2$ k$\Omega$. A rede ativa fornece energia à porta.}
