@@ -1,12 +1,15 @@
 % N4 --- Thevenin e Norton: 10 desafios
+% Revisao visual preventiva dos circuitos densos.
 \blocodesafio
 
 \begin{questao}[4]{}
 Prove o teorema de Thévenin aplicando uma fonte de corrente de teste $I$ à porta e usando superposição.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw[dashed,cinza,rounded corners] (0,0) rectangle (3.4,3.8); \node[cinza] at(1.7,1.9){rede linear};
-\draw (3.4,3.1)--(5,3.1) coordinate(a); \draw (3.4,.7)--(5,.7) coordinate(b);
-\draw (b) to[isource,l_={$I$}] (a); \draw[<->,Vcol] (5.7,.9)--(5.7,2.9) node[midway,right] {$U$};
+\circuitoq{\begin{circuitikz}[american,scale=.84,transform shape,line width=.8pt]
+\draw[dashed,cinza,line width=.8pt,rounded corners=6pt] (0,0) rectangle (3.6,4.0);
+\node[cinza] at(1.8,2.0){rede linear};
+\draw (3.6,3.2)--(5.4,3.2) coordinate(a); \draw (3.6,.8)--(5.4,.8) coordinate(b);
+\draw (b) to[isource,l_={$I$}] (a);
+\draw[<->,Vcol,line width=.9pt] (6.4,1.0)--(6.4,3.0) node[midway,right] {$U$};
 \end{circuitikz}}
 \resposta{$U=V_{oc}-R_{Th}I$}
 \resolucao{Por superposição, $U=U'+U''$. Com a fonte de teste zerada, a porta está aberta e $U'=V_{oc}$. Com as fontes internas zeradas, a rede vista pela porta é linear e produz $U''=-R_{Th}I$.}
@@ -14,11 +17,17 @@ Prove o teorema de Thévenin aplicando uma fonte de corrente de teste $I$ à por
 
 \begin{questao}[4]{}
 Mostre que os modelos abaixo são equivalentes para qualquer carga e obtenha as relações entre seus parâmetros.
-\circuitoq{\begin{circuitikz}[american,scale=.7,transform shape]
-\draw (0,0) to[\fonteV,l^={$V_{Th}$}] (0,3.4) to[R,l={$R_{Th}$}] (3.5,3.4)--(4.5,3.4) node[ocirc]{};
-\draw (0,0)--(4.5,0) node[ocirc]{}; \node[above] at(2.2,4){Thévenin};
-\draw (7,0) to[isource,l^={$I_N$}] (7,3.4)--(10.3,3.4)--(11.3,3.4) node[ocirc]{};
-\draw (10.3,3.4) to[R,l_={$R_N$}] (10.3,0); \draw (7,0)--(11.3,0) node[ocirc]{}; \node[above] at(9.1,4){Norton};
+\circuitoq{\begin{circuitikz}[american,scale=.64,transform shape,line width=.8pt]
+% Thevenin
+\draw (0,0) to[\fonteV,l^={$V_{Th}$}] (0,3.8)
+      to[R,l={$R_{Th}$}] (4.0,3.8)--(5.2,3.8) node[ocirc]{} node[right]{A};
+\draw (0,0)--(5.2,0) node[ocirc]{} node[right]{B};
+\node[font=\bfseries] at(2.4,4.65){Thévenin};
+% Norton
+\draw (8.2,0) to[isource,l^={$I_N$}] (8.2,3.8)--(12.0,3.8)--(13.2,3.8) node[ocirc]{} node[right]{A};
+\draw (12.0,3.8) to[R,l_={$R_N$}] (12.0,0);
+\draw (8.2,0)--(13.2,0) node[ocirc]{} node[right]{B};
+\node[font=\bfseries] at(10.6,4.65){Norton};
 \end{circuitikz}}
 \resposta{$R_N=R_{Th}$ e $I_N=V_{Th}/R_{Th}$}
 \resolucao{Thévenin impõe $U=V_{Th}-R_{Th}I$. Norton impõe $U=I_NR_N-R_NI$. As duas retas coincidem quando intercepto e inclinação são iguais.}
@@ -32,10 +41,13 @@ Deduza um método de mínimos quadrados para estimar $V_{Th}$ e $R_{Th}$ a parti
 
 \begin{questao}[4]{}
 Projete um ensaio seguro para estimar o Norton de uma fonte de $\SI{60}{\volt}$ cuja corrente de curto prevista é $\SI{120}{\ampere}$, usando instrumentos limitados a $\SI{25}{\ampere}$.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw[dashed,cinza,rounded corners] (0,0) rectangle (3.3,3.8); \node[cinza] at(1.65,2){fonte};
-\draw (3.3,3.1)--(4.8,3.1) coordinate(a); \draw (3.3,.7)--(4.8,.7) coordinate(b); \draw (a) to[R,l={$R_L$},i>^={$I$}] (b);
-\node[right,align=left,font=\footnotesize] at(5.7,2){usar dois ou mais\\pontos abaixo de 25 A};
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+\draw[dashed,cinza,line width=.8pt,rounded corners=6pt] (0,0) rectangle (3.5,4.0);
+\node[cinza] at(1.75,2.05){fonte};
+\draw (3.5,3.2)--(5.1,3.2) coordinate(a); \draw (3.5,.8)--(5.1,.8) coordinate(b);
+\draw (a) to[R,l={$R_L$},i>^={$I$}] (b);
+\node[right,align=center,font=\footnotesize,draw=cinza,rounded corners,inner sep=3pt]
+ at(7.3,2.0){usar dois ou mais pontos\\com $I<\SI{25}{\ampere}$};
 \end{circuitikz}}
 \resposta{Exemplo: $R_L=\SI{5.5}{\ohm}$ e $\SI{2.5}{\ohm}$, produzindo aproximadamente $10$ A e $20$ A para $R_{Th}\approx0{,}5\,\Omega$}
 \resolucao{Escolhem-se cargas que mantenham a corrente abaixo do limite e suficientemente separadas para evitar mau condicionamento. Ajusta-se a reta $U=V_{Th}-R_{Th}I$ e extrapola-se $I_N=V_{Th}/R_{Th}$ sem curto real.}
@@ -43,10 +55,15 @@ Projete um ensaio seguro para estimar o Norton de uma fonte de $\SI{60}{\volt}$ 
 
 \begin{questao}[4]{}
 A rede de duas portas não pode ser representada simultaneamente por dois equivalentes independentes se houver acoplamento. Explique a necessidade de uma matriz de porta.
-\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape]
-\draw[dashed,cinza,rounded corners] (0,0) rectangle (4.2,4); \node[cinza] at(2.1,2){rede acoplada};
-\draw (0,3.2)--(-1.4,3.2) node[ocirc]{} node[left]{A+}; \draw (0,.8)--(-1.4,.8) node[ocirc]{} node[left]{A-};
-\draw (4.2,3.2)--(5.6,3.2) node[ocirc]{} node[right]{B+}; \draw (4.2,.8)--(5.6,.8) node[ocirc]{} node[right]{B-};
+\circuitoq{\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+\draw[dashed,cinza,line width=.8pt,rounded corners=6pt] (0,0) rectangle (4.6,4.2);
+\node[cinza] at(2.3,2.1){rede acoplada};
+\draw (0,3.35)--(-1.8,3.35) node[ocirc]{} node[left]{A+};
+\draw (0,.85)--(-1.8,.85) node[ocirc]{} node[left]{A-};
+\draw (4.6,3.35)--(6.4,3.35) node[ocirc]{} node[right]{B+};
+\draw (4.6,.85)--(6.4,.85) node[ocirc]{} node[right]{B-};
+\node[above,font=\footnotesize] at(-.9,3.65){porta A};
+\node[above,font=\footnotesize] at(5.5,3.65){porta B};
 \end{circuitikz}}
 \resposta{É necessário um modelo de dois acessos, por exemplo $\mathbf U=\mathbf V_0-\mathbf R\mathbf I$}
 \resolucao{Uma corrente aplicada em A pode alterar a tensão em B e vice-versa. Os termos fora da diagonal da matriz representam esse acoplamento, algo que dois Thévenins independentes não capturam.}
@@ -54,9 +71,11 @@ A rede de duas portas não pode ser representada simultaneamente por dois equiva
 
 \begin{questao}[4]{}
 Para o equivalente abaixo, maximize a potência na carga sob a restrição $U_L\ge\SI{20}{\volt}$.
-\circuitoq{\begin{circuitikz}[american,scale=.88,transform shape]
-\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.8) to[R,l={$\SI{8}{\ohm}$}] (4.2,3.8) to[R,l={$R_L$}] (4.2,0)--(0,0);
-\draw[<->,Vcol] (5,.4)--(5,3.4) node[midway,right] {$U_L\ge20$ V};
+\circuitoq{\begin{circuitikz}[american,scale=.90,transform shape,line width=.8pt]
+\draw (0,0) to[\fonteV,l^={$\SI{24}{\volt}$}] (0,3.9)
+      to[R,l={$\SI{8}{\ohm}$}] (4.5,3.9)
+      to[R,l={$R_L$}] (4.5,0)--(0,0);
+\draw[<->,Vcol,line width=.9pt] (5.7,.45)--(5.7,3.45) node[midway,right] {$U_L\ge\SI{20}{\volt}$};
 \end{circuitikz}}
 \resposta{$R_L=\SI{40}{\ohm}$ no limite; $P_L=\SI{10}{\watt}$}
 \resolucao{A restrição exige $R_L\ge40\,\Omega$. Para $R_L>R_{Th}$, a potência decresce com $R_L$, portanto o máximo admissível ocorre no menor valor permitido, 40 $\Omega$.}
@@ -64,10 +83,13 @@ Para o equivalente abaixo, maximize a potência na carga sob a restrição $U_L\
 
 \begin{questao}[4]{}
 Aplique uma fonte de teste e determine quando a rede ativa abaixo apresenta $R_{Th}<0$.
-\circuitoq{\begin{circuitikz}[american,scale=.78,transform shape]
-\coordinate (g) at (3.6,0); \coordinate (a) at (3.6,4);
-\draw (a) to[R,l_={$R$}] (g); \draw (0,0) to[cisource,l^={$g_mV_A$}] (0,4)--(a); \draw (0,0)--(g);
-\draw (7.2,0) to[isource,l_={$I_t$}] (7.2,4)--(a); \draw (7.2,0)--(g); \node[ground] at(g){};
+\circuitoq{\begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
+\coordinate (g) at (4.2,0); \coordinate (a) at (4.2,4.4);
+\draw (a) to[R,l_={$R$}] (g);
+\draw (0,0) to[cisource,l^={$g_mV_A$}] (0,4.4)--(a); \draw (0,0)--(g);
+\draw (9.0,0) to[isource,l_={$I_t$}] (9.0,4.4)--(a); \draw (9.0,0)--(g);
+\fill (a) circle (1.1pt); \node[Vcol,fill=white,inner sep=1.6pt] at ($(a)+(0,.70)$) {$V_A$};
+\node[ground] at(g){};
 \end{circuitikz}}
 \resposta{$R_{Th}=1/(1/R-g_m)$; é negativo quando $g_m>1/R$}
 \resolucao{$I_t=V_A/R-g_mV_A$. Logo $R_{Th}=V_A/I_t=1/(1/R-g_m)$. Se a transcondutância superar a condutância passiva, a inclinação da porta muda de sinal.}
