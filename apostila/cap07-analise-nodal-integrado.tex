@@ -18,8 +18,12 @@
 % O capitulo original possui seis chamadas de \circuitoq antes do banco
 % complementar. Todas foram redesenhadas para eliminar sobreposicoes e,
 % no antigo circuito de tres nos, corrigir a representacao topologica.
+%
+% IMPORTANTE: cada ambiente questao cria um grupo TeX. O incremento precisa
+% ser global; caso contrario, o contador volta a zero ao final de cada questao
+% e todas as figuras recebem o primeiro circuito da lista.
 \renewcommand{\circuitoq}[1]{%
-  \advance\fvNodalOrigCircuitCount by 1\relax
+  \global\advance\fvNodalOrigCircuitCount by 1\relax
   \ifcase\fvNodalOrigCircuitCount
     \fvNodalOrigCircuitoOriginal{#1}%
   \or \fvNodalOrigCircuitoOriginal{\fvNodalOrigOne}%
