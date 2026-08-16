@@ -1,9 +1,34 @@
 % =====================================================================
 % CAPITULO 6 --- WRAPPER VISUAL
 % Mantem o capitulo original e substitui apenas o banco complementar pela
-% versao visual, sem alterar enunciados, respostas, resolucoes ou numeracao.
+% versao visual. Tambem repete a figura nas questoes que antes dependiam da
+% expressao "mesmo circuito da questao anterior".
 % =====================================================================
 \begingroup
+
+\def\fvSupCapDuasFontes{%
+\begin{circuitikz}[american,scale=.86,transform shape,line width=.8pt]
+  \coordinate (g) at (3.8,0);
+  \coordinate (n) at (3.8,3.8);
+  \draw (0,0) to[\fonteV,l^={$E_1=\SI{12}{\volt}$}] (0,3.8)
+        to[R,l={$\SI{6}{\ohm}$}] (n);
+  \draw (n) to[R,l_={$\SI{3}{\ohm}$}] (g) -- (0,0);
+  \draw (7.6,0) to[\fonteV,l_={$E_2=\SI{6}{\volt}$}] (7.6,3.8)
+        to[R,l_={$\SI{6}{\ohm}$}] (n);
+  \draw (7.6,0)--(g);
+  \node[Vcol,fill=white,inner sep=1.5pt] at ($(n)+(0,.58)$) {$V$};
+  \node[ground] at(g){};
+\end{circuitikz}}
+
+\newcount\fvSupCapQuestao
+\fvSupCapQuestao=0
+\let\fvSupCapRespostaOriginal\resposta
+\renewcommand{\resposta}[1]{%
+  \global\advance\fvSupCapQuestao by 1\relax
+  \ifnum\fvSupCapQuestao=4\relax\circuitoq{\fvSupCapDuasFontes}\fi
+  \ifnum\fvSupCapQuestao=6\relax\circuitoq{\fvSupCapDuasFontes}\fi
+  \fvSupCapRespostaOriginal{#1}}
+
 \let\fvSupInputOriginal\input
 \renewcommand{\input}[1]{%
   \ifstrequal{#1}{bancos/banco-teorema-da-superposicao.tex}%
