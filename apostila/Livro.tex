@@ -111,8 +111,7 @@ fórmulas e os princípios necessários para resolver as questões daquele bloco
 
 % --------------------------- CAPITULOS -------------------------------
 % A numeracao dos capitulos segue a estrutura final da obra (12 capitulos).
-% Cada arquivo de capitulo NAO deve conter \setcounter: o controle fica aqui,
-% para que capitulos ainda nao migrados nao quebrem a sequencia.
+% Cada arquivo de capitulo NAO deve conter \setcounter: o controle fica aqui.
 \newpage
 
 % Cap. 1 -------------------------------------------------------------
@@ -154,19 +153,17 @@ fórmulas e os princípios necessários para resolver as questões daquele bloco
 \setcounter{section}{9}
 \input{cap10-capacitores-indutores} % Capacitores e indutores
 
-% Cap. 11 -------------------------------------------------------------
+% Cap. 11 ------------------------------------------------------------
 \setcounter{section}{10}
-\input{cap11-eletromagnetismo}      % Eletromagnetismo
-
+\input{cap11-circuitos-primeira-segunda-ordem} % Transitorios RC, RL e RLC
 
 % Cap. 12 ------------------------------------------------------------
-% REMOVIDO: "Medicoes Eletricas e Propagacao de Incertezas".
-% O capitulo e o banco complementar correspondente foram retirados da obra.
-% O tratamento de incertezas NAO se perdeu: ele permanece distribuido nos
-% blocos de Nivel 4 dos capitulos e bancos que o utilizam de fato --
-% tolerancia em associacoes (serie e paralelo), tolerancia de razao em
-% divisores e em Thevenin, propagacao em RC, incerteza na verificacao
-% experimental da LKC e no metodo das duas cargas.
+\setcounter{section}{11}
+\input{cap11-eletromagnetismo}      % Eletromagnetismo
+
+% Nota editorial: o antigo capitulo "Medicoes Eletricas e Propagacao de
+% Incertezas" permanece removido. O tratamento de incertezas continua
+% distribuido nos blocos de Nivel 4 em que ele e efetivamente aplicado.
 
 % Nota: o conteudo avancado (redes infinitas, superno, supermalha,
 % solucao matricial e sintese) foi DISTRIBUIDO nas secoes correspondentes,
