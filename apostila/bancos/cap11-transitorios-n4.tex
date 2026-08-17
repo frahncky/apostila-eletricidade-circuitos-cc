@@ -1,0 +1,219 @@
+% =====================================================================
+% CAP. 11 - NIVEL 4
+% =====================================================================
+\blocodesafio
+
+\begin{questao}[4]{}
+Em laboratório, um circuito RC com $R=\SI{5}{\kilo\ohm}$ e
+$C=\SI{10}{\micro\farad}$ deveria apresentar $\tau=\SI{50}{\milli\second}$.
+Entretanto, o ajuste exponencial do osciloscópio fornece
+$\tau_{\mathrm{med}}=\SI{80}{\milli\second}$. O capacitor foi medido e está
+próximo do nominal. Estime a resistência efetiva vista pelo capacitor e proponha
+uma causa elétrica plausível para a discrepância.
+\resposta{$R_{\mathrm{eq}}\approx\SI{8}{\kilo\ohm}$; há cerca de \SI{3}{\kilo\ohm}
+adicionais na trajetória equivalente}
+\resolucao{$R_{\mathrm{eq}}=\tau/C=0{,}08/(\pot{10}{-6})=\SI{8}{\kilo\ohm}$.
+Como o resistor nominal é \SI{5}{\kilo\ohm}, existe aproximadamente
+\SI{3}{\kilo\ohm} adicional. Isso pode vir de resistência de saída da fonte,
+rede de polarização esquecida, resistor em série, chave/sensor ou uma topologia
+que não foi corretamente reduzida ao equivalente de Thévenin.}
+\end{questao}
+
+\begin{questao}[4]{}
+Um capacitor de $\SI{470}{\micro\farad}$ será carregado por uma fonte de
+$\SI{24}{\volt}$. Deseja-se limitar a corrente inicial a
+$\SI{100}{\milli\ampere}$ e atingir pelo menos \SI{95}{\percent} da tensão final
+em menos de $\SI{0.5}{\second}$. Projete o resistor série mínimo, verifique o
+tempo de carga e estime a energia total dissipada nele durante uma carga completa.
+\resposta{$R=\SI{240}{\ohm}$; $t_{95}\approx\SI{0.338}{\second}$; $E_R\approx\SI{0.135}{\joule}$}
+\resolucao{Pela corrente inicial, $R\ge24/0{,}1=\SI{240}{\ohm}$. Com esse valor,
+$\tau=RC=240\cdot\pot{470}{-6}=\SI{112.8}{\milli\second}$. Para \SI{95}{\percent},
+$t=-\tau\ln0{,}05\approx\SI{0.338}{\second}$, atendendo à especificação. A
+energia dissipada no resistor durante a carga ideal por fonte de tensão é igual à
+energia final do capacitor:
+$E_R=\tfrac12CV^2\approx\SI{0.135}{\joule}$. A potência inicial é
+$V^2/R=\SI{2.4}{\watt}$, importante para a escolha da tecnologia do resistor.}
+\end{questao}
+
+\begin{questao}[4]{}
+Uma bobina de relé tem $L=\SI{120}{\milli\henry}$ e resistência de cobre
+$\SI{60}{\ohm}$, alimentada em $\SI{24}{\volt}$ até o regime permanente.
+Compare duas estratégias de desligamento: (A) diodo de roda livre ideal; (B)
+resistor de clamp de $\SI{180}{\ohm}$ no caminho de descarga. Determine a energia
+inicial, as constantes de tempo aproximadas e a tensão inicial no resistor de
+clamp. Explique o compromisso de projeto.
+\resposta{$I_0=\SI{0.4}{\ampere}$; $E_L=\SI{9.6}{\milli\joule}$; $\tau_A\approx\SI{2}{\milli\second}$;
+$\tau_B\approx\SI{0.5}{\milli\second}$; $v_{R,\mathrm{clamp}}(0^+)\approx\SI{72}{\volt}$}
+\resolucao{Em regime, $I_0=24/60=\SI{0.4}{\ampere}$ e
+$E_L=\tfrac12LI_0^2=\SI{9.6}{\milli\joule}$. Com diodo ideal, a descarga vê
+aproximadamente o cobre da bobina: $\tau_A=L/60=\SI{2}{\milli\second}$. Com o
+resistor adicional, $R_{\mathrm{tot}}=60+180=\SI{240}{\ohm}$ e
+$\tau_B=L/240=\SI{0.5}{\milli\second}$. A tensão inicial no resistor externo é
+$0{,}4\cdot180=\SI{72}{\volt}$. O clamp resistivo desliga o relé mais rápido,
+mas produz tensão maior; o diodo reduz a sobretensão, porém prolonga a corrente.}
+\end{questao}
+
+\begin{questao}[4]{}
+Uma oscilação amortecida medida em um circuito RLC apresenta período entre picos
+de aproximadamente $\SI{4}{\milli\second}$ e a envoltória cai à metade a cada
+$\SI{10}{\milli\second}$. O capacitor é $C=\SI{10}{\micro\farad}$. Estime
+$\alpha$, $\omega_d$, $\omega_0$, $\zeta$, $L$ e a resistência série equivalente.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ width=0.88\linewidth,height=5.2cm,
+ xlabel={$t$ (ms)},ylabel={$v(t)$},xmin=0,xmax=30,
+ axis lines=middle,grid=both,samples=300,
+ tick label style={font=\scriptsize},label style={font=\small\sffamily}]
+\addplot[thick,azulprof,domain=0:30] {10*exp(-0.0693147*x)*cos(deg(1.5707963*x))};
+\addplot[dashed,laranja,domain=0:30] {10*exp(-0.0693147*x)};
+\addplot[dashed,laranja,domain=0:30] {-10*exp(-0.0693147*x)};
+\end{axis}
+\end{tikzpicture}
+\caption{Exemplo de oscilação amortecida e sua envoltória exponencial.}
+\end{figure}
+
+\resposta{$\alpha\approx\SI{69.3}{\per\second}$; $\omega_d\approx\SI{1571}{\radian\per\second}$;
+$\omega_0\approx\SI{1572}{\radian\per\second}$; $\zeta\approx0{,}044$;
+$L\approx\SI{40.45}{\milli\henry}$; $R\approx\SI{5.61}{\ohm}$}
+\resolucao{Da envoltória, $e^{-\alpha(0{,}01)}=1/2$, então
+$\alpha=\ln2/0{,}01\approx\SI{69.3}{\per\second}$. Do período,
+$\omega_d=2\pi/0{,}004\approx\SI{1571}{\radian\per\second}$. Logo
+$\omega_0=\sqrt{\omega_d^2+\alpha^2}\approx\SI{1572}{\radian\per\second}$ e
+$\zeta\approx0{,}044$. Como $\omega_0^2=1/(LC)$,
+$L\approx1/(C\omega_0^2)\approx\SI{40.45}{\milli\henry}$. Por fim,
+$R=2\alpha L\approx\SI{5.61}{\ohm}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+Um estágio série RLC usa $L=\SI{20}{\milli\henry}$ e
+$C=\SI{10}{\micro\farad}$. O requisito é obter a resposta mais rápida possível
+sem oscilação. Determine o resistor ideal e compare qualitativamente o uso de
+$\SI{45}{\ohm}$ e $\SI{180}{\ohm}$.
+\resposta{$R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$; \SI{45}{\ohm} é subamortecido;
+\SI{180}{\ohm} é superamortecido}
+\resolucao{$R_{\mathrm{crit}}=2\sqrt{L/C}=2\sqrt{0{,}02/\pot{10}{-6}}
+\approx\SI{89.4}{\ohm}$. Com \SI{45}{\ohm}, $R<R_{\mathrm{crit}}$ e haverá
+ringing/sobressinal. Com \SI{180}{\ohm}, $R>R_{\mathrm{crit}}$ e a resposta será
+monotônica, porém mais lenta. O amortecimento crítico é o limite de resposta
+monotônica mais rápida para o modelo ideal.}
+\end{questao}
+
+\begin{questao}[4]{}
+A tabela mostra a resposta de um RC inicialmente descarregado cuja tensão final é
+$\SI{10}{\volt}$.
+
+\begin{table}[H]
+\centering\small\sffamily
+\begin{tabular}{@{}c c@{}}
+\toprule
+$t$ & $v_C(t)$\\
+\midrule
+\SI{20}{\milli\second} & \SI{6.32}{\volt}\\
+\SI{40}{\milli\second} & \SI{8.65}{\volt}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Verifique se os dados são compatíveis com uma única constante de tempo e estime
+$R$ se $C=\SI{4.7}{\micro\farad}$.
+\resposta{$\tau\approx\SI{20}{\milli\second}$; $R\approx\SI{4.26}{\kilo\ohm}$}
+\resolucao{Em $t=\tau$, uma carga RC atinge \SI{63.2}{\percent}, exatamente o
+primeiro ponto. Em $2\tau$, atinge $1-e^{-2}=0{,}8647$, coerente com
+\SI{8.65}{\volt}. Logo $\tau\approx\SI{20}{\milli\second}$. Assim
+$R=\tau/C=0{,}02/(\pot{4.7}{-6})\approx\SI{4.26}{\kilo\ohm}$.}
+\end{questao}
+
+\begin{questao}[4]{}
+Após uma comutação, um RLC série fica sem fonte independente e possui
+$R=\SI{20}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
+$C=\SI{100}{\micro\farad}$. Adote $v_C(0^+)=\SI{5}{\volt}$ e
+$i(0^+)=\SI{0.1}{\ampere}$ entrando no terminal positivo do capacitor. Determine
+a expressão de $v_C(t)$.
+\resposta{$v_C(t)=e^{-200t}[5\cos(400t)+5\sin(400t)]\ \si{\volt}$}
+\resolucao{$\alpha=R/(2L)=200$, $\omega_0=1/\sqrt{LC}\approx447{,}2$ e
+$\omega_d=\sqrt{\omega_0^2-\alpha^2}=400$. Portanto
+$v_C=e^{-200t}(A\cos400t+B\sin400t)$. De $v_C(0)=5$, $A=5$. Como
+$i=C\dot v_C$, $\dot v_C(0)=0{,}1/(\pot{100}{-6})=\SI{1000}{\volt\per\second}$.
+Então $\dot v_C(0)=-200A+400B=1000$, resultando em $B=5$.}
+\end{questao}
+
+\begin{questao}[4]{}
+Projete uma rede de temporização para uma entrada de $\SI{3.3}{\volt}$ e
+$C=\SI{1}{\micro\farad}$. Na carga, a tensão deve alcançar
+$\SI{2}{\volt}$ em aproximadamente $\SI{8}{\milli\second}$. No desligamento,
+deve cair de $\SI{3.3}{\volt}$ para menos de $\SI{0.5}{\volt}$ em
+$\SI{5}{\milli\second}$. Mostre que um único resistor não atende bem às duas
+metas e proponha resistores independentes de carga e descarga usando um diodo.
+\resposta{$R_{\mathrm{carga}}\approx\SI{8.59}{\kilo\ohm}$; $R_{\mathrm{descarga}}\lesssim\SI{2.65}{\kilo\ohm}$;
+valores práticos: \SI{8.2}{\kilo\ohm} e \SI{2.4}{\kilo\ohm}}
+\resolucao{Na carga,
+$2=3{,}3(1-e^{-8\mathrm{ms}/RC})$, fornecendo
+$R\approx\SI{8.59}{\kilo\ohm}$. Se esse mesmo resistor fosse usado na descarga,
+o tempo até \SI{0.5}{\volt} seria $RC\ln(3{,}3/0{,}5)\approx\SI{16.2}{\milli\second}$,
+acima do limite. Para a descarga em no máximo \SI{5}{\milli\second},
+$R\le t/[C\ln(3{,}3/0{,}5)]\approx\SI{2.65}{\kilo\ohm}$. Um diodo permite
+separar os caminhos; \SI{8.2}{\kilo\ohm} e \SI{2.4}{\kilo\ohm} são escolhas
+comerciais coerentes.}
+\end{questao}
+
+\begin{questao}[4]{}
+Para $L=\SI{20}{\milli\henry}$ e $C=\SI{10}{\micro\farad}$, compare os três
+resistores da tabela e escolha o mais adequado quando se deseja resposta rápida
+sem sobressinal.
+
+\begin{table}[H]
+\centering\small\sffamily
+\begin{tabular}{@{}c c c@{}}
+\toprule
+\textbf{Opção} & $R$ & \textbf{Observação a determinar}\\
+\midrule
+A & \SI{40}{\ohm} & ?\\
+B & \SI{89.4}{\ohm} & ?\\
+C & \SI{180}{\ohm} & ?\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\resposta{A: $\zeta\approx0{,}447$, subamortecido; B: crítico; C: $\zeta\approx2{,}01$, superamortecido; escolher B}
+\resolucao{Como $R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$, no RLC série vale
+$\zeta=R/R_{\mathrm{crit}}$. Assim A fornece $\zeta\approx0{,}447$ e oscila; B
+fica praticamente em $\zeta=1$; C fornece $\zeta\approx2{,}01$ e é lento por
+superamortecimento. Para rapidez sem sobressinal, B é a escolha adequada.}
+\end{questao}
+
+\begin{questao}[4]{}
+Um projeto prevê $R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$, portanto deveria ser subamortecido. Contudo, o ajuste
+da resposta medida indica dois polos reais em aproximadamente
+$-\SI{112.7}{\per\second}$ e $-\SI{887.3}{\per\second}$. Admitindo $L$ e $C$
+corretos, estime a resistência série efetiva e diagnostique a discrepância.
+\resposta{$R_{\mathrm{efetivo}}\approx\SI{100}{\ohm}$; há cerca de \SI{80}{\ohm}
+de resistência série não contabilizada}
+\resolucao{Para $s^2+(R/L)s+1/(LC)=0$, a soma dos polos é $-R/L$. A soma medida é
+$-1000\ \si{\per\second}$; com $L=\SI{0.1}{\henry}$,
+$R=1000L=\SI{100}{\ohm}$. O produto dos polos é aproximadamente
+$100000\ \si{\per\second\squared}$, coerente com $1/(LC)$, confirmando que $L$ e
+$C$ são plausíveis. Portanto existe cerca de \SI{80}{\ohm} extra, por ESR,
+resistência do indutor, resistor de proteção, fonte ou fiação.}
+\end{questao}
+
+\begin{questao}[4]{}
+Um barramento CC de $\SI{400}{\volt}$ possui capacitor de
+$\SI{470}{\micro\farad}$. Por segurança, após desligar a fonte deseja-se reduzir
+a tensão para no máximo $\SI{50}{\volt}$ em $\SI{60}{\second}$. Dimensione o
+maior resistor de descarga admissível, escolha um valor comercial abaixo dele,
+estime a potência inicial e a energia que será dissipada.
+\resposta{$R_{\max}\approx\SI{61.4}{\kilo\ohm}$; escolha \SI{56}{\kilo\ohm};
+$t\approx\SI{54.7}{\second}$; $P_0\approx\SI{2.86}{\watt}$; $E\approx\SI{37.6}{\joule}$}
+\resolucao{Na descarga, $50=400e^{-t/RC}$. Assim
+$R=t/[C\ln(400/50)]\approx\SI{61.4}{\kilo\ohm}$. Um valor de
+\SI{56}{\kilo\ohm} fornece $t=RC\ln8\approx\SI{54.7}{\second}$. A potência
+inicial é $P_0=V^2/R=400^2/56000\approx\SI{2.86}{\watt}$, portanto é prudente
+usar resistor com margem de potência e tensão. A energia inicialmente armazenada,
+e posteriormente dissipada, é $E=\tfrac12CV^2\approx\SI{37.6}{\joule}$.}
+\end{questao}
+
+\gabarito[Nível 4]
