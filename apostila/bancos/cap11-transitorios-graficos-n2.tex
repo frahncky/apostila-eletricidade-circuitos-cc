@@ -1,0 +1,155 @@
+% =====================================================================
+% CAP. 11 - NIVEL 2 - QUESTOES GRAFICAS E INTEGRADAS
+% Inspiradas no nivel de variedade de livros-texto, com enunciados originais.
+% =====================================================================
+\blocoaplicacao
+
+\begin{questao}[2]{}
+A chave do circuito permaneceu fechada por muito tempo e \textbf{abre} em
+$t=0$. Determine $v_C(0^+)$, a constante de tempo para $t>0$ e
+$v_C(\SI{0.30}{\second})$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american voltage source,l_={$\SI{18}{\volt}$}] (0,3)
+      to[switch,l={abre em $t=0$}] (1.7,3)
+      to[R,l={$R_1=\SI{3}{\kilo\ohm}$}] (4,3) coordinate(a);
+\draw (a) to[R,l={$R_2=\SI{6}{\kilo\ohm}$}] (4,0) -- (0,0);
+\draw (a) -- (6,3)
+      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (6,0) -- (4,0);
+\end{circuitikz}}{Circuito RC com mudança de topologia em $t=0$.}
+
+\resposta{$v_C(0^+)=\SI{12}{\volt}$; $\tau=\SI{0.60}{\second}$;
+$v_C(0{,}30\,\mathrm{s})\approx\SI{7.28}{\volt}$}
+\resolucao{Para $t<0$, o capacitor está em regime permanente e equivale a um
+circuito aberto. Assim,
+\[
+v_C(0^-)=18\frac{6}{3+6}=\SI{12}{\volt}.
+\]
+Pela continuidade da tensão no capacitor, $v_C(0^+)=\SI{12}{\volt}$. Quando a
+chave abre, a fonte e $R_1$ ficam desconectados do capacitor; a descarga ocorre
+somente por $R_2$. Logo
+\[
+\tau=R_2C=(6\times10^3)(100\times10^{-6})=\SI{0.60}{\second}.
+\]
+Como $v_C(\infty)=0$,
+$v_C(t)=12e^{-t/0{,}60}$ e, em $t=\SI{0.30}{\second}$,
+$v_C\approx12e^{-0{,}5}=\SI{7.28}{\volt}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito abaixo, a chave permaneceu fechada por muito tempo e abre em
+$t=0$. Determine $i_L(0^+)$, a constante de tempo da descarga e
+$i_L(\SI{10}{\milli\second})$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american voltage source,l_={$\SI{24}{\volt}$}] (0,3)
+      to[switch,l={abre em $t=0$}] (1.7,3)
+      to[R,l={$R_1=\SI{6}{\ohm}$}] (4,3) coordinate(a);
+\draw (a) to[L,l={$L=\SI{120}{\milli\henry}$},i>^={$i_L$}] (4,0) -- (0,0);
+\draw (a) -- (6,3) to[R,l={$R_2=\SI{18}{\ohm}$}] (6,0) -- (4,0);
+\end{circuitikz}}{Circuito RL com caminho de descarga resistivo.}
+
+\resposta{$i_L(0^+)=\SI{4}{\ampere}$; $\tau\approx\SI{6.67}{\milli\second}$;
+$i_L(10\,\mathrm{ms})\approx\SI{0.893}{\ampere}$}
+\resolucao{Em regime permanente, o indutor equivale a um curto-circuito; portanto
+$R_2$ fica sem tensão e
+$i_L(0^-)=24/6=\SI{4}{\ampere}$. Pela continuidade da corrente,
+$i_L(0^+)=\SI{4}{\ampere}$. Após a abertura da chave, a fonte e $R_1$ ficam
+isolados e o indutor descarrega por $R_2$:
+\[
+\tau=\frac{L}{R_2}=\frac{0{,}12}{18}\approx\SI{6.67}{\milli\second}.
+\]
+Assim, $i_L(t)=4e^{-t/\tau}$ e
+$i_L(10\,\mathrm{ms})\approx4e^{-10/6{,}67}=\SI{0.893}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+A fonte de corrente já está ligada há muito tempo. Em $t=0$ a chave fecha,
+inserindo $R_2$ em paralelo com o capacitor. Determine $v_C(0^+)$,
+$v_C(\infty)$, $\tau$ e escreva $v_C(t)$ para $t>0$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american current source,l_={$\SI{2}{\milli\ampere}$}] (0,3) -- (2,3) coordinate(a);
+\draw (a) to[R,l={$R_1=\SI{4}{\kilo\ohm}$}] (2,0) -- (0,0);
+\draw (a) -- (4,3) to[C,l={$C=\SI{50}{\micro\farad}$},v^>={$v_C$}] (4,0) -- (2,0);
+\draw (a) -- (5.5,3) to[switch,l={fecha em $t=0$}] (6.8,3)
+      to[R,l={$R_2=\SI{12}{\kilo\ohm}$}] (6.8,0) -- (4,0);
+\end{circuitikz}}{Mudança da resistência vista pelo capacitor.}
+
+\resposta{$v_C(0^+)=\SI{8}{\volt}$; $v_C(\infty)=\SI{6}{\volt}$;
+$\tau=\SI{150}{\milli\second}$;
+$v_C(t)=6+2e^{-t/0{,}15}\ \si{\volt}$}
+\resolucao{Antes da comutação, o capacitor está aberto e $R_2$ desconectado. Logo
+$v_C(0^-)=I_SR_1=(2\,\mathrm{mA})(4\,\mathrm{k\Omega})=\SI{8}{\volt}$, portanto
+$v_C(0^+)=\SI{8}{\volt}$. Após o fechamento, em regime permanente o capacitor
+continua aberto e
+\[
+v_C(\infty)=I_S(R_1\parallel R_2)
+=2\,\mathrm{mA}\,(3\,\mathrm{k\Omega})=\SI{6}{\volt}.
+\]
+Para a constante de tempo, a fonte de corrente independente é aberta:
+$R_{\mathrm{eq}}=R_1\parallel R_2=\SI{3}{\kilo\ohm}$ e
+$\tau=R_{\mathrm{eq}}C=\SI{0.15}{\second}$. Assim,
+$v_C(t)=6+(8-6)e^{-t/0{,}15}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+A chave fecha em $t=0$, aplicando um degrau de $\SI{20}{\volt}$ ao circuito RLC
+em série. Sem resolver ainda a resposta completa, determine $\alpha$, $\omega_0$,
+$\omega_d$ e classifique o amortecimento.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american voltage source,l_={$\SI{20}{\volt}$}] (0,3)
+      to[switch,l={fecha em $t=0$}] (1.6,3)
+      to[R,l={$R=\SI{15}{\ohm}$}] (3.6,3)
+      to[L,l={$L=\SI{50}{\milli\henry}$}] (5.8,3)
+      to[C,l={$C=\SI{200}{\micro\farad}$}] (7.8,3) -- (7.8,0) -- (0,0);
+\end{circuitikz}}{Circuito RLC em série excitado por degrau.}
+
+\resposta{$\alpha=\SI{150}{\per\second}$;
+$\omega_0\approx\SI{316.2}{\radian\per\second}$;
+$\omega_d\approx\SI{278.4}{\radian\per\second}$; resposta subamortecida}
+\resolucao{Para RLC em série,
+\[
+\alpha=\frac{R}{2L}=\frac{15}{0{,}10}=\SI{150}{\per\second},\qquad
+\omega_0=\frac{1}{\sqrt{LC}}
+=\frac{1}{\sqrt{0{,}05\cdot200\times10^{-6}}}
+\approx\SI{316.2}{\radian\per\second}.
+\]
+Como $\alpha<\omega_0$, a resposta é subamortecida e
+$\omega_d=\sqrt{\omega_0^2-\alpha^2}\approx\SI{278.4}{\radian\per\second}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+O circuito RLC paralelo abaixo parte sem energia armazenada e recebe a fonte
+$i_s(t)=3u(t)\,\si{\ampere}$. Determine $v(0^+)$, $i_L(0^+)$,
+$\mathrm{d}v/\mathrm{d}t|_{0^+}$, $v(\infty)$ e $i_L(\infty)$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american current source,l_={$3u(t)\,\si{\ampere}$}] (0,3) -- (6,3);
+\draw (2,3) to[R,l={$R=\SI{6}{\ohm}$}] (2,0);
+\draw (4,3) to[C,l={$C=\SI{0.5}{\farad}$},v^>={$v$}] (4,0);
+\draw (6,3) to[L,l={$L=\SI{2}{\henry}$},i>^={$i_L$}] (6,0) -- (0,0);
+\end{circuitikz}}{RLC paralelo: condições iniciais, derivada inicial e regime final.}
+
+\resposta{$v(0^+)=0$; $i_L(0^+)=0$;
+$\dot v(0^+)=\SI{6}{\volt\per\second}$;
+$v(\infty)=0$; $i_L(\infty)=\SI{3}{\ampere}$}
+\resolucao{Como o circuito parte sem energia, $v_C(0^-)=0$ e $i_L(0^-)=0$;
+logo $v(0^+)=0$ e $i_L(0^+)=0$. Aplicando KCL em $0^+$,
+\[
+3=\frac{v}{R}+C\dot v+i_L
+\quad\Rightarrow\quad
+3=0+0{,}5\dot v+0,
+\]
+portanto $\dot v(0^+)=\SI{6}{\volt\per\second}$. Em regime CC, o capacitor é
+aberto e o indutor é curto-circuito; assim $v(\infty)=0$ e toda a corrente da fonte
+flui pelo indutor: $i_L(\infty)=\SI{3}{\ampere}$.}
+\end{questao}
+
+\gabarito[Nível 2 --- circuitos e chaveamento]
