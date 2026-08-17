@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'apostila/**/*.tex'
+      - '!apostila/gerado-questoes.tex'
+      - '!apostila/gerado-resolucoes.tex'
       - 'apostila/**/*.sty'
       - 'apostila/gerar-pdfs-estudo.py'
       - '.github/workflows/compilar-pdfs-estudo.yml'
@@ -41,6 +43,8 @@ jobs:
           test -s apostila/Resolucoes.pdf
           test "$(head -c 4 apostila/Questoes-Gabarito.pdf)" = "%PDF"
           test "$(head -c 4 apostila/Resolucoes.pdf)" = "%PDF"
+          test -s apostila/gerado-questoes.tex
+          test -s apostila/gerado-resolucoes.tex
           mkdir -p pdf
           cp apostila/Questoes-Gabarito.pdf pdf/Apostila-CC-Questoes-Gabarito.pdf
           cp apostila/Resolucoes.pdf pdf/Apostila-CC-Resolucoes.pdf
@@ -53,16 +57,17 @@ jobs:
             pdf/Apostila-CC-Questoes-Gabarito.pdf
             pdf/Apostila-CC-Resolucoes.pdf
 
-      - name: Atualizar PDFs versionados
+      - name: Atualizar fontes para Overleaf e PDFs versionados
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pdf/Apostila-CC-Questoes-Gabarito.pdf pdf/Apostila-CC-Resolucoes.pdf
+          git add apostila/gerado-questoes.tex apostila/gerado-resolucoes.tex \
+                  pdf/Apostila-CC-Questoes-Gabarito.pdf pdf/Apostila-CC-Resolucoes.pdf
           if git diff --cached --quiet; then
-            echo "PDFs já estão atualizados."
+            echo "Fontes do Overleaf e PDFs já estão atualizados."
           else
-            git commit -m "atualiza PDFs de questoes e resolucoes"
+            git commit -m "atualiza fontes Overleaf e PDFs de estudo"
             git push
           fi
