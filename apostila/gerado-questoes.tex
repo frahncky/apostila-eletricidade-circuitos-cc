@@ -12358,6 +12358,657 @@ $-\SI{0.4}{\milli\henry\per\milli\meter}$}
 
 \gabarito[10.2 Indutores]
 
+\section{Circuitos de Primeira e Segunda Ordem}
+
+\blocofixacao
+\begin{questao}[1]{}
+
+Um capacitor ideal possui $v_C(0^-)=\SI{7}{\volt}$. No instante $t=0$ ocorre uma
+comutação no circuito. Qual é o valor de $v_C(0^+)$?
+\resposta{$v_C(0^+)=\SI{7}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Um indutor ideal conduz $i_L(0^-)=\SI{350}{\milli\ampere}$. Uma chave muda de
+posição em $t=0$. Determine $i_L(0^+)$.
+\resposta{$i_L(0^+)=\SI{350}{\milli\ampere}$}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Um circuito RC tem $R=\SI{2}{\kilo\ohm}$ e $C=\SI{50}{\micro\farad}$. Determine
+a constante de tempo.
+\resposta{$\tau=\SI{100}{\milli\second}$}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Um circuito RL possui $L=\SI{80}{\milli\henry}$ e resistência equivalente
+$R_{\mathrm{eq}}=\SI{20}{\ohm}$. Calcule $\tau$.
+\resposta{$\tau=\SI{4}{\milli\second}$}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Um capacitor inicialmente descarregado é carregado por uma fonte CC através de
+um resistor. Após um intervalo igual a uma constante de tempo, aproximadamente
+qual fração da variação total de tensão já ocorreu?
+\begin{alternativas}[3]
+\item \SI{36.8}{\percent}
+\item \SI{50}{\percent}
+\item \SI{63.2}{\percent}
+\item \SI{86.5}{\percent}
+\item \SI{99.3}{\percent}
+\end{alternativas}
+\resposta{(c)}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Uma resposta natural de primeira ordem é proporcional a $e^{-t/\tau}$. Qual
+percentual do valor inicial resta após $3\tau$?
+\resposta{$e^{-3}\times100\%\approx\SI{4.98}{\percent}$}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Ao calcular a resistência equivalente vista por um capacitor para obter a
+constante de tempo, como devem ser tratadas as fontes independentes ideais?
+\begin{alternativas}
+\item fontes de tensão abertas e fontes de corrente em curto.
+\item todas as fontes abertas.
+\item fontes de tensão em curto e fontes de corrente abertas.
+\item todas as fontes em curto.
+\item as fontes não devem ser modificadas.
+\end{alternativas}
+\resposta{(c)}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Um circuito ideal possui um capacitor e um indutor independentes entre si como
+únicos elementos armazenadores de energia. Qual é, em geral, a ordem máxima do
+circuito?
+\resposta{Segunda ordem}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Para $L=\SI{0.2}{\henry}$ e $C=\SI{50}{\micro\farad}$, determine a frequência
+natural não amortecida $\omega_0$.
+\resposta{$\omega_0\approx\SI{316.2}{\radian\per\second}$}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Em um RLC série, $R=\SI{40}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$. Classifique o amortecimento.
+\resposta{Subamortecido}
+
+
+\end{questao}
+\begin{questao}[1]{}
+
+Determine a resistência crítica de um RLC série com $L=\SI{50}{\milli\henry}$ e
+$C=\SI{200}{\micro\farad}$.
+\resposta{$R_{\mathrm{crit}}\approx\SI{31.6}{\ohm}$}
+
+
+\end{questao}
+
+\gabarito[Nível 1]
+
+\blocoaplicacao
+\begin{questao}[2]{}
+
+A tensão de um capacitor muda de $\SI{8}{\volt}$ para um valor final de
+$\SI{2}{\volt}$ através de $R=\SI{4}{\kilo\ohm}$ e
+$C=\SI{25}{\micro\farad}$. Determine $v_C(\SI{0.2}{\second})$.
+\resposta{$v_C(\SI{0.2}{\second})\approx\SI{2.81}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+A corrente de um indutor passa de $\SI{1}{\ampere}$ para um valor final de
+$\SI{4}{\ampere}$. Sabendo que $L=\SI{0.6}{\henry}$ e
+$R_{\mathrm{eq}}=\SI{30}{\ohm}$, calcule $i_L(\SI{40}{\milli\second})$.
+\resposta{$i_L\approx\SI{3.59}{\ampere}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Um circuito RC inicialmente descarregado possui $R=\SI{10}{\kilo\ohm}$ e
+$C=\SI{10}{\micro\farad}$. Quanto tempo é necessário para atingir
+\SI{90}{\percent} do valor final?
+\resposta{$t\approx\SI{230}{\milli\second}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Um capacitor descarrega de $\SI{12}{\volt}$ para $\SI{3}{\volt}$ com
+$\tau=\SI{50}{\milli\second}$. Determine o tempo decorrido.
+\resposta{$t\approx\SI{69.3}{\milli\second}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+A corrente natural de um circuito RL cai de $\SI{2}{\ampere}$ para
+$\SI{0.2}{\ampere}$. Se $\tau=\SI{25}{\milli\second}$, determine o intervalo de
+tempo.
+\resposta{$t\approx\SI{57.6}{\milli\second}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+No circuito abaixo, a chave conecta a fonte em $t=0$ e o capacitor está
+inicialmente descarregado. Determine $v_C(\tau)$ e a constante de tempo.
+
+\circuitoq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[battery1,l_={$\SI{20}{\volt}$}] (0,3)
+      to[R,l={$R_1=\SI{6}{\kilo\ohm}$}] (3,3) coordinate(a);
+\draw (a) to[R,l={$R_2=\SI{3}{\kilo\ohm}$}] (3,0) -- (0,0);
+\draw (a) -- (5,3) to[C,l={$C=\SI{50}{\micro\farad}$}] (5,0) -- (3,0);
+\end{circuitikz}}
+
+\resposta{$\tau=\SI{100}{\milli\second}$; $v_C(\tau)\approx\SI{4.21}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Após uma comutação, um capacitor possui $v_C(0^+)=\SI{5}{\volt}$ e tende a
+$-\SI{10}{\volt}$, com $\tau=\SI{20}{\milli\second}$. Determine
+$v_C(\SI{10}{\milli\second})$.
+\resposta{$v_C\approx-\SI{0.90}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Um indutor de $\SI{40}{\milli\henry}$ vê $R_{\mathrm{eq}}=\SI{4}{\ohm}$ após
+uma comutação. Sua corrente inicial é $\SI{0.5}{\ampere}$ e o valor final é
+$\SI{2}{\ampere}$. Calcule a corrente após $\SI{20}{\milli\second}$.
+\resposta{$i_L\approx\SI{1.80}{\ampere}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Um RLC série tem $R=\SI{10}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
+$C=\SI{200}{\micro\farad}$. Determine $\alpha$, $\omega_0$, $\omega_d$ e o tipo
+de resposta.
+\resposta{$\alpha=\SI{100}{\per\second}$; $\omega_0\approx\SI{316.2}{\radian\per\second}$;
+$\omega_d=\SI{300}{\radian\per\second}$; subamortecida}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Para um RLC série com $R=\SI{40}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
+$C=\SI{200}{\micro\farad}$, classifique a resposta natural.
+\resposta{Superamortecida}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Calcule $R_{\mathrm{crit}}$ para um RLC série com $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$.
+\resposta{$R_{\mathrm{crit}}\approx\SI{63.25}{\ohm}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Uma resposta subamortecida de tensão tem a forma
+\[
+v(t)=e^{-100t}\big(10\cos300t+B\sin300t\big).
+\]
+Sabendo que $\mathrm{d}v/\mathrm{d}t|_{0^+}=0$, determine $B$.
+\resposta{$B\approx\SI{3.33}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Em um capacitor de $C=\SI{100}{\micro\farad}$, a corrente em $0^+$ é
+$\SI{20}{\milli\ampere}$ entrando no terminal positivo. Determine
+$\mathrm{d}v_C/\mathrm{d}t|_{0^+}$.
+\resposta{$\mathrm{d}v_C/\mathrm{d}t|_{0^+}=\SI{200}{\volt\per\second}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Um RLC paralelo possui $R=\SI{200}{\ohm}$, $C=\SI{100}{\micro\farad}$ e
+$L=\SI{0.1}{\henry}$. Classifique a resposta natural da tensão.
+\resposta{Subamortecida}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Em uma resposta de primeira ordem, qual erro percentual em relação ao valor final
+permanece após $5\tau$?
+\resposta{$\approx\SI{0.674}{\percent}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Um circuito LC ideal possui $C=\SI{100}{\micro\farad}$ inicialmente a
+$\SI{10}{\volt}$ e $L=\SI{50}{\milli\henry}$ com corrente inicial nula.
+Determine a energia inicial e a corrente máxima ideal.
+\resposta{$E=\SI{5}{\milli\joule}$; $I_{\max}\approx\SI{0.447}{\ampere}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+Para $L=\SI{10}{\milli\henry}$ e $C=\SI{100}{\micro\farad}$, determine o
+período natural ideal $T_0$.
+\resposta{$T_0\approx\SI{6.28}{\milli\second}$}
+
+
+\end{questao}
+
+\gabarito[Nível 2]
+
+\blocoaprofundamento
+\begin{questao}[3]{}
+
+Um capacitor de $\SI{10}{\micro\farad}$, inicialmente descarregado, é ligado a
+$\SI{12}{\volt}$ por $R_1=\SI{2}{\kilo\ohm}$ durante
+$\SI{50}{\milli\second}$. Em seguida, a fonte é removida e ele passa a
+descarregar por $R_2=\SI{5}{\kilo\ohm}$. Determine sua tensão
+$\SI{40}{\milli\second}$ após a segunda comutação.
+\resposta{$v_C\approx\SI{4.95}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Um indutor de $\SI{100}{\milli\henry}$ é energizado por uma fonte de
+$\SI{20}{\volt}$ através de $R_1=\SI{10}{\ohm}$ durante
+$\SI{15}{\milli\second}$. Depois, a fonte é retirada e o indutor descarrega por
+$R_2=\SI{25}{\ohm}$. Qual é a corrente após mais $\SI{8}{\milli\second}$?
+\resposta{$i_L\approx\SI{0.210}{\ampere}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Após a supressão das fontes independentes, um capacitor de
+$C=\SI{20}{\micro\farad}$ enxerga $R_3=\SI{1}{\kilo\ohm}$ em série com o
+paralelo de $R_1=\SI{6}{\kilo\ohm}$ e $R_2=\SI{3}{\kilo\ohm}$. Determine a
+constante de tempo.
+
+\circuitoq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,1.5) to[C,l={$C$},o-] (2,1.5) to[R,l={$R_3$}] (4,1.5) coordinate(a);
+\draw (a) -- (4,2.6) to[R,l={$R_1$}] (6,2.6) -- (6,0.4);
+\draw (a) -- (4,0.4) to[R,l_={$R_2$}] (6,0.4) -- (6,-0.2) node[ground]{};
+\end{circuitikz}}
+
+\resposta{$R_{\mathrm{eq}}=\SI{3}{\kilo\ohm}$; $\tau=\SI{60}{\milli\second}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Após uma comutação, $v_C(0^+)=-\SI{4}{\volt}$, $v_C(\infty)=\SI{8}{\volt}$,
+$R_{\mathrm{eq}}=\SI{2.5}{\kilo\ohm}$ e $C=\SI{40}{\micro\farad}$. Em que
+instante a tensão cruza zero?
+\resposta{$t\approx\SI{40.5}{\milli\second}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Um indutor possui $i_L(0^+)=-\SI{1}{\ampere}$, $i_L(\infty)=\SI{3}{\ampere}$ e
+$\tau=\SI{25}{\milli\second}$. Determine quando a corrente muda de sinal.
+\resposta{$t\approx\SI{7.19}{\milli\second}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Um capacitor com $v_C(0)=\SI{2}{\volt}$ é ligado a uma fonte de
+$\SI{10}{\volt}$ através de $R=\SI{2}{\kilo\ohm}$ e
+$C=\SI{50}{\micro\farad}$. Determine a corrente inicial e a corrente após
+$\SI{150}{\milli\second}$.
+\resposta{$i(0^+)=\SI{4}{\milli\ampere}$; $i(150\,\mathrm{ms})\approx\SI{0.893}{\milli\ampere}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Um capacitor de $\SI{100}{\micro\farad}$ inicialmente a $\SI{20}{\volt}$ é
+descarregado por $R=\SI{1}{\kilo\ohm}$. Mostre, por integração da potência no
+resistor, que toda a energia inicialmente armazenada é dissipada e calcule-a.
+\resposta{$E=\SI{20}{\milli\joule}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Projete um atraso RC para que uma tensão de $\SI{5}{\volt}$ alcance
+$\SI{3.3}{\volt}$ em $\SI{0.5}{\second}$. Use $R=\SI{100}{\kilo\ohm}$ e
+considere o capacitor inicialmente descarregado. Determine $C$ e indique um
+valor comercial próximo.
+\resposta{$C\approx\SI{4.63}{\micro\farad}$; valor comercial: \SI{4.7}{\micro\farad}}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Deseja-se que a corrente de um circuito RL alcance \SI{95}{\percent} de seu valor
+final de $\SI{1}{\ampere}$ em $\SI{20}{\milli\second}$. Se
+$L=\SI{50}{\milli\henry}$, determine a resistência e a tensão da fonte.
+\resposta{$R\approx\SI{7.49}{\ohm}$; $V\approx\SI{7.49}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Um RLC série tem $R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$. Determine os polos naturais.
+\resposta{$s_{1,2}=-100\pm j300\ \si{\per\second}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Uma resposta criticamente amortecida é
+$v(t)=(A+Bt)e^{-200t}$. Se $v(0)=\SI{10}{\volt}$ e
+$\dot v(0)=-\SI{500}{\volt\per\second}$, determine $A$ e $B$.
+\resposta{$A=\SI{10}{\volt}$; $B=\SI{1500}{\volt\per\second}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Para um RLC série com $R=\SI{100}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$, determine os dois polos reais.
+\resposta{$s_1\approx-\SI{112.7}{\per\second}$; $s_2\approx-\SI{887.3}{\per\second}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Determine a resistência crítica de um RLC \textbf{paralelo} com
+$L=\SI{50}{\milli\henry}$ e $C=\SI{200}{\micro\farad}$.
+\resposta{$R_{\mathrm{crit}}\approx\SI{7.91}{\ohm}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Para um sistema subamortecido de segunda ordem com $\zeta=0{,}5$, estime o
+sobressinal percentual de pico usando
+$M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$.
+\resposta{$M_p\approx\SI{16.3}{\percent}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Um RLC série possui $R=\SI{20}{\ohm}$, $L=\SI{100}{\milli\henry}$ e
+$C=\SI{100}{\micro\farad}$. Calcule o fator de amortecimento $\zeta$.
+\resposta{$\zeta\approx0{,}316$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Classifique os quatro casos da tabela.
+
+\begin{table}[H]
+\centering\small\sffamily
+\begin{tabular}{@{}c c c c c@{}}
+\toprule
+\textbf{Caso} & \textbf{Topologia} & $R$ & $L$ & $C$\\
+\midrule
+A & série & \SI{20}{\ohm} & \SI{0.1}{\henry} & \SI{100}{\micro\farad}\\
+B & série & \SI{63.25}{\ohm} & \SI{0.1}{\henry} & \SI{100}{\micro\farad}\\
+C & série & \SI{100}{\ohm} & \SI{0.1}{\henry} & \SI{100}{\micro\farad}\\
+D & paralelo & \SI{20}{\ohm} & \SI{50}{\milli\henry} & \SI{200}{\micro\farad}\\
+\bottomrule
+\end{tabular}
+\end{table}
+\resposta{A subamortecido; B aproximadamente crítico; C superamortecido; D subamortecido}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Em certo instante de um RLC, $C=\SI{100}{\micro\farad}$ está a
+$\SI{10}{\volt}$ e $L=\SI{50}{\milli\henry}$ conduz
+$\SI{0.2}{\ampere}$. Qual é a energia total armazenada naquele instante?
+\resposta{$E=\SI{6}{\milli\joule}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Antes de uma comutação, um capacitor possui $v_C=\SI{6}{\volt}$ e um indutor
+possui $i_L=\SI{0.3}{\ampere}$. Logo após a comutação, ambos passam a integrar
+uma nova rede resistiva. Quais condições iniciais devem ser usadas na nova rede?
+\resposta{$v_C(0^+)=\SI{6}{\volt}$ e $i_L(0^+)=\SI{0.3}{\ampere}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+Para um RLC série alimentado por um degrau de $\SI{10}{\volt}$, use
+$R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e $C=\SI{100}{\micro\farad}$. Escreva
+a equação diferencial para $v_C(t)$ após a comutação.
+\resposta{$\ddot v_C+200\dot v_C+100000v_C=1000000$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+No circuito da questão anterior, admita energia inicial nula. Determine
+$v_C(0^+)$, $\dot v_C(0^+)$ e $\ddot v_C(0^+)$.
+\resposta{$v_C(0^+)=0$; $\dot v_C(0^+)=0$; $\ddot v_C(0^+)=\SI{1e6}{\volt\per\second\squared}$}
+
+
+\end{questao}
+
+\gabarito[Nível 3]
+
+\blocodesafio
+\begin{questao}[4]{}
+
+Em laboratório, um circuito RC com $R=\SI{5}{\kilo\ohm}$ e
+$C=\SI{10}{\micro\farad}$ deveria apresentar $\tau=\SI{50}{\milli\second}$.
+Entretanto, o ajuste exponencial do osciloscópio fornece
+$\tau_{\mathrm{med}}=\SI{80}{\milli\second}$. O capacitor foi medido e está
+próximo do nominal. Estime a resistência efetiva vista pelo capacitor e proponha
+uma causa elétrica plausível para a discrepância.
+\resposta{$R_{\mathrm{eq}}\approx\SI{8}{\kilo\ohm}$; há cerca de \SI{3}{\kilo\ohm}
+adicionais na trajetória equivalente}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Um capacitor de $\SI{470}{\micro\farad}$ será carregado por uma fonte de
+$\SI{24}{\volt}$. Deseja-se limitar a corrente inicial a
+$\SI{100}{\milli\ampere}$ e atingir pelo menos \SI{95}{\percent} da tensão final
+em menos de $\SI{0.5}{\second}$. Projete o resistor série mínimo, verifique o
+tempo de carga e estime a energia total dissipada nele durante uma carga completa.
+\resposta{$R=\SI{240}{\ohm}$; $t_{95}\approx\SI{0.338}{\second}$; $E_R\approx\SI{0.135}{\joule}$}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Uma bobina de relé tem $L=\SI{120}{\milli\henry}$ e resistência de cobre
+$\SI{60}{\ohm}$, alimentada em $\SI{24}{\volt}$ até o regime permanente.
+Compare duas estratégias de desligamento: (A) diodo de roda livre ideal; (B)
+resistor de clamp de $\SI{180}{\ohm}$ no caminho de descarga. Determine a energia
+inicial, as constantes de tempo aproximadas e a tensão inicial no resistor de
+clamp. Explique o compromisso de projeto.
+\resposta{$I_0=\SI{0.4}{\ampere}$; $E_L=\SI{9.6}{\milli\joule}$; $\tau_A\approx\SI{2}{\milli\second}$;
+$\tau_B\approx\SI{0.5}{\milli\second}$; $v_{R,\mathrm{clamp}}(0^+)\approx\SI{72}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Uma oscilação amortecida medida em um circuito RLC apresenta período entre picos
+de aproximadamente $\SI{4}{\milli\second}$ e a envoltória cai à metade a cada
+$\SI{10}{\milli\second}$. O capacitor é $C=\SI{10}{\micro\farad}$. Estime
+$\alpha$, $\omega_d$, $\omega_0$, $\zeta$, $L$ e a resistência série equivalente.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ width=0.88\linewidth,height=5.2cm,
+ xlabel={$t$ (ms)},ylabel={$v(t)$},xmin=0,xmax=30,
+ axis lines=middle,grid=both,samples=300,
+ tick label style={font=\scriptsize},label style={font=\small\sffamily}]
+\addplot[thick,azulprof,domain=0:30] {10*exp(-0.0693147*x)*cos(deg(1.5707963*x))};
+\addplot[dashed,laranja,domain=0:30] {10*exp(-0.0693147*x)};
+\addplot[dashed,laranja,domain=0:30] {-10*exp(-0.0693147*x)};
+\end{axis}
+\end{tikzpicture}
+\caption{Exemplo de oscilação amortecida e sua envoltória exponencial.}
+\end{figure}
+
+\resposta{$\alpha\approx\SI{69.3}{\per\second}$; $\omega_d\approx\SI{1571}{\radian\per\second}$;
+$\omega_0\approx\SI{1572}{\radian\per\second}$; $\zeta\approx0{,}044$;
+$L\approx\SI{40.45}{\milli\henry}$; $R\approx\SI{5.61}{\ohm}$}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Um estágio série RLC usa $L=\SI{20}{\milli\henry}$ e
+$C=\SI{10}{\micro\farad}$. O requisito é obter a resposta mais rápida possível
+sem oscilação. Determine o resistor ideal e compare qualitativamente o uso de
+$\SI{45}{\ohm}$ e $\SI{180}{\ohm}$.
+\resposta{$R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$; \SI{45}{\ohm} é subamortecido;
+\SI{180}{\ohm} é superamortecido}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+A tabela mostra a resposta de um RC inicialmente descarregado cuja tensão final é
+$\SI{10}{\volt}$.
+
+\begin{table}[H]
+\centering\small\sffamily
+\begin{tabular}{@{}c c@{}}
+\toprule
+$t$ & $v_C(t)$\\
+\midrule
+\SI{20}{\milli\second} & \SI{6.32}{\volt}\\
+\SI{40}{\milli\second} & \SI{8.65}{\volt}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Verifique se os dados são compatíveis com uma única constante de tempo e estime
+$R$ se $C=\SI{4.7}{\micro\farad}$.
+\resposta{$\tau\approx\SI{20}{\milli\second}$; $R\approx\SI{4.26}{\kilo\ohm}$}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Após uma comutação, um RLC série fica sem fonte independente e possui
+$R=\SI{20}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
+$C=\SI{100}{\micro\farad}$. Adote $v_C(0^+)=\SI{5}{\volt}$ e
+$i(0^+)=\SI{0.1}{\ampere}$ entrando no terminal positivo do capacitor. Determine
+a expressão de $v_C(t)$.
+\resposta{$v_C(t)=e^{-200t}[5\cos(400t)+5\sin(400t)]\ \si{\volt}$}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Projete uma rede de temporização para uma entrada de $\SI{3.3}{\volt}$ e
+$C=\SI{1}{\micro\farad}$. Na carga, a tensão deve alcançar
+$\SI{2}{\volt}$ em aproximadamente $\SI{8}{\milli\second}$. No desligamento,
+deve cair de $\SI{3.3}{\volt}$ para menos de $\SI{0.5}{\volt}$ em
+$\SI{5}{\milli\second}$. Mostre que um único resistor não atende bem às duas
+metas e proponha resistores independentes de carga e descarga usando um diodo.
+\resposta{$R_{\mathrm{carga}}\approx\SI{8.59}{\kilo\ohm}$; $R_{\mathrm{descarga}}\lesssim\SI{2.65}{\kilo\ohm}$;
+valores práticos: \SI{8.2}{\kilo\ohm} e \SI{2.4}{\kilo\ohm}}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Para $L=\SI{20}{\milli\henry}$ e $C=\SI{10}{\micro\farad}$, compare os três
+resistores da tabela e escolha o mais adequado quando se deseja resposta rápida
+sem sobressinal.
+
+\begin{table}[H]
+\centering\small\sffamily
+\begin{tabular}{@{}c c c@{}}
+\toprule
+\textbf{Opção} & $R$ & \textbf{Observação a determinar}\\
+\midrule
+A & \SI{40}{\ohm} & ?\\
+B & \SI{89.4}{\ohm} & ?\\
+C & \SI{180}{\ohm} & ?\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\resposta{A: $\zeta\approx0{,}447$, subamortecido; B: crítico; C: $\zeta\approx2{,}01$, superamortecido; escolher B}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Um projeto prevê $R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$, portanto deveria ser subamortecido. Contudo, o ajuste
+da resposta medida indica dois polos reais em aproximadamente
+$-\SI{112.7}{\per\second}$ e $-\SI{887.3}{\per\second}$. Admitindo $L$ e $C$
+corretos, estime a resistência série efetiva e diagnostique a discrepância.
+\resposta{$R_{\mathrm{efetivo}}\approx\SI{100}{\ohm}$; há cerca de \SI{80}{\ohm}
+de resistência série não contabilizada}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Um barramento CC de $\SI{400}{\volt}$ possui capacitor de
+$\SI{470}{\micro\farad}$. Por segurança, após desligar a fonte deseja-se reduzir
+a tensão para no máximo $\SI{50}{\volt}$ em $\SI{60}{\second}$. Dimensione o
+maior resistor de descarga admissível, escolha um valor comercial abaixo dele,
+estime a potência inicial e a energia que será dissipada.
+\resposta{$R_{\max}\approx\SI{61.4}{\kilo\ohm}$; escolha \SI{56}{\kilo\ohm};
+$t\approx\SI{54.7}{\second}$; $P_0\approx\SI{2.86}{\watt}$; $E\approx\SI{37.6}{\joule}$}
+
+
+\end{questao}
+
+\gabarito[Nível 4]
+
 \section{Eletromagnetismo}
 
 \subsection{Conceitos iniciais e materiais magnéticos}

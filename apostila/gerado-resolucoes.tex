@@ -14264,6 +14264,365 @@ especificados.}
 
 \gabarito[10.2 Indutores]
 
+\section{Circuitos de Primeira e Segunda Ordem}
+\stepcounter{questao}
+\resposta{$v_C(0^+)=\SI{7}{\volt}$}
+\resolucao{A tensão em um capacitor ideal não pode variar instantaneamente, pois
+$i_C=C\,\mathrm{d}v_C/\mathrm{d}t$ exigiria corrente impulsiva infinita. Logo,
+$v_C(0^+)=v_C(0^-)=\SI{7}{\volt}$.}
+\stepcounter{questao}
+\resposta{$i_L(0^+)=\SI{350}{\milli\ampere}$}
+\resolucao{A corrente de um indutor ideal é contínua. Como
+$v_L=L\,\mathrm{d}i_L/\mathrm{d}t$, uma mudança instantânea de corrente exigiria
+tensão impulsiva infinita. Portanto $i_L(0^+)=i_L(0^-)$.}
+\stepcounter{questao}
+\resposta{$\tau=\SI{100}{\milli\second}$}
+\resolucao{$\tau=RC=(\pot{2}{3})(\pot{50}{-6})=\SI{0.1}{\second}
+=\SI{100}{\milli\second}$.}
+\stepcounter{questao}
+\resposta{$\tau=\SI{4}{\milli\second}$}
+\resolucao{$\tau=L/R_{\mathrm{eq}}=0{,}08/20=\SI{0.004}{\second}
+=\SI{4}{\milli\second}$.}
+\stepcounter{questao}
+\resposta{(c)}
+\resolucao{Para uma carga partindo de zero,
+$v_C(\tau)=V_f(1-e^{-1})\approx0{,}632V_f$. Portanto cerca de
+\SI{63.2}{\percent} da variação total já ocorreu.}
+\stepcounter{questao}
+\resposta{$e^{-3}\times100\%\approx\SI{4.98}{\percent}$}
+\resolucao{$e^{-3}\approx0{,}0498$. Assim resta cerca de \SI{4.98}{\percent} do
+valor inicial.}
+\stepcounter{questao}
+\resposta{(c)}
+\resolucao{Para calcular $R_{\mathrm{eq}}$ com fontes independentes suprimidas,
+uma fonte ideal de tensão é substituída por curto-circuito e uma fonte ideal de
+corrente por circuito aberto. Fontes dependentes, quando existirem, permanecem
+ativas.}
+\stepcounter{questao}
+\resposta{Segunda ordem}
+\resolucao{Cada variável independente de armazenamento de energia pode introduzir
+um estado. Um capacitor e um indutor independentes produzem duas variáveis de
+estado, caracterizando um circuito de segunda ordem.}
+\stepcounter{questao}
+\resposta{$\omega_0\approx\SI{316.2}{\radian\per\second}$}
+\resolucao{$LC=0{,}2\cdot\pot{50}{-6}=\pot{1}{-5}$ e
+$\omega_0=1/\sqrt{LC}=1/\sqrt{\pot{1}{-5}}\approx\SI{316.2}{\radian\per\second}$.}
+\stepcounter{questao}
+\resposta{Subamortecido}
+\resolucao{$\alpha=R/(2L)=40/0{,}2=\SI{200}{\per\second}$ e
+$\omega_0=1/\sqrt{0{,}1\cdot\pot{100}{-6}}\approx\SI{316.2}{\radian\per\second}$.
+Como $\alpha<\omega_0$, a resposta é subamortecida.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{crit}}\approx\SI{31.6}{\ohm}$}
+\resolucao{$R_{\mathrm{crit}}=2\sqrt{L/C}=2\sqrt{0{,}05/(\pot{200}{-6})}
+=2\sqrt{250}\approx\SI{31.6}{\ohm}$.}
+
+\gabarito[Nível 1]
+\stepcounter{questao}
+\resposta{$v_C(\SI{0.2}{\second})\approx\SI{2.81}{\volt}$}
+\resolucao{$\tau=RC=\SI{0.1}{\second}$. Logo
+\[
+v_C(t)=2+(8-2)e^{-t/0{,}1}.
+\]
+Em $t=\SI{0.2}{\second}$, $v_C=2+6e^{-2}\approx\SI{2.81}{\volt}$.}
+\stepcounter{questao}
+\resposta{$i_L\approx\SI{3.59}{\ampere}$}
+\resolucao{$\tau=L/R=0{,}6/30=\SI{20}{\milli\second}$. Assim
+$i_L(t)=4+(1-4)e^{-t/\tau}$. Para $t=2\tau$,
+$i_L=4-3e^{-2}\approx\SI{3.59}{\ampere}$.}
+\stepcounter{questao}
+\resposta{$t\approx\SI{230}{\milli\second}$}
+\resolucao{$\tau=\SI{0.1}{\second}$. De
+$0{,}9=1-e^{-t/\tau}$ resulta $e^{-t/\tau}=0{,}1$ e
+$t=\tau\ln 10\approx\SI{0.230}{\second}$.}
+\stepcounter{questao}
+\resposta{$t\approx\SI{69.3}{\milli\second}$}
+\resolucao{$3=12e^{-t/\tau}$, então $e^{-t/\tau}=1/4$ e
+$t=\tau\ln4=\SI{50}{\milli\second}\cdot1{,}386\approx\SI{69.3}{\milli\second}$.}
+\stepcounter{questao}
+\resposta{$t\approx\SI{57.6}{\milli\second}$}
+\resolucao{$0{,}2=2e^{-t/\tau}$ implica $e^{-t/\tau}=0{,}1$. Logo
+$t=\tau\ln10\approx25\cdot2{,}303=\SI{57.6}{\milli\second}$.}
+\stepcounter{questao}
+\resposta{$\tau=\SI{100}{\milli\second}$; $v_C(\tau)\approx\SI{4.21}{\volt}$}
+\resolucao{Em regime permanente, o capacitor mede a tensão do divisor:
+$V_f=20\cdot3/(6+3)=\SI{6.67}{\volt}$. Suprimindo a fonte,
+$R_{\mathrm{eq}}=R_1\parallel R_2=\SI{2}{\kilo\ohm}$, então
+$\tau=R_{\mathrm{eq}}C=\SI{0.1}{\second}$. Como $v_C(0)=0$,
+$v_C(\tau)=V_f(1-e^{-1})\approx\SI{4.21}{\volt}$.}
+\stepcounter{questao}
+\resposta{$v_C\approx-\SI{0.90}{\volt}$}
+\resolucao{$v_C(t)=-10+[5-(-10)]e^{-t/\tau}=-10+15e^{-t/\tau}$.
+Para $t/\tau=0{,}5$, obtém-se $v_C\approx-10+15e^{-0{,}5}
+\approx-\SI{0.90}{\volt}$.}
+\stepcounter{questao}
+\resposta{$i_L\approx\SI{1.80}{\ampere}$}
+\resolucao{$\tau=L/R=\SI{10}{\milli\second}$ e
+$i_L(t)=2+(0{,}5-2)e^{-t/\tau}$. Em $t=2\tau$,
+$i_L=2-1{,}5e^{-2}\approx\SI{1.80}{\ampere}$.}
+\stepcounter{questao}
+\resposta{$\alpha=\SI{100}{\per\second}$; $\omega_0\approx\SI{316.2}{\radian\per\second}$;
+$\omega_d=\SI{300}{\radian\per\second}$; subamortecida}
+\resolucao{$\alpha=R/(2L)=10/0{,}1=100$. Além disso,
+$\omega_0=1/\sqrt{0{,}05\cdot\pot{200}{-6}}\approx316{,}2$. Como
+$\alpha<\omega_0$, é subamortecido e
+$\omega_d=\sqrt{316{,}2^2-100^2}=\SI{300}{\radian\per\second}$.}
+\stepcounter{questao}
+\resposta{Superamortecida}
+\resolucao{$\alpha=40/(2\cdot0{,}05)=\SI{400}{\per\second}$, enquanto
+$\omega_0\approx\SI{316.2}{\radian\per\second}$. Como $\alpha>\omega_0$, a
+resposta é superamortecida.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{crit}}\approx\SI{63.25}{\ohm}$}
+\resolucao{$R_{\mathrm{crit}}=2\sqrt{L/C}=2\sqrt{0{,}1/\pot{100}{-6}}
+=2\sqrt{1000}\approx\SI{63.25}{\ohm}$.}
+\stepcounter{questao}
+\resposta{$B\approx\SI{3.33}{\volt}$}
+\resolucao{Derivando e avaliando em zero,
+$\dot v(0)=-100\cdot10+300B=0$. Portanto
+$B=1000/300\approx\SI{3.33}{\volt}$.}
+\stepcounter{questao}
+\resposta{$\mathrm{d}v_C/\mathrm{d}t|_{0^+}=\SI{200}{\volt\per\second}$}
+\resolucao{Pela convenção passiva, $i_C=C\dot v_C$. Logo
+$\dot v_C=0{,}02/(\pot{100}{-6})=\SI{200}{\volt\per\second}$.}
+\stepcounter{questao}
+\resposta{Subamortecida}
+\resolucao{No paralelo, $\alpha=1/(2RC)=1/[2\cdot200\cdot\pot{100}{-6}]
+=\SI{25}{\per\second}$. Já $\omega_0\approx\SI{316.2}{\radian\per\second}$.
+Como $\alpha<\omega_0$, a resposta é subamortecida.}
+\stepcounter{questao}
+\resposta{$\approx\SI{0.674}{\percent}$}
+\resolucao{O erro normalizado é $e^{-t/\tau}$. Em $5\tau$,
+$e^{-5}\approx0{,}00674$, ou \SI{0.674}{\percent}.}
+\stepcounter{questao}
+\resposta{$E=\SI{5}{\milli\joule}$; $I_{\max}\approx\SI{0.447}{\ampere}$}
+\resolucao{$E=\tfrac12CV^2=\tfrac12\pot{100}{-6}\cdot100=\SI{5}{\milli\joule}$.
+Quando toda a energia está no indutor,
+$\tfrac12LI_{\max}^2=E$, então
+$I_{\max}=V\sqrt{C/L}=10\sqrt{\pot{100}{-6}/0{,}05}\approx\SI{0.447}{\ampere}$.}
+\stepcounter{questao}
+\resposta{$T_0\approx\SI{6.28}{\milli\second}$}
+\resolucao{$\omega_0=1/\sqrt{LC}=1/\sqrt{\pot{1}{-6}}=\SI{1000}{\radian\per\second}$.
+Logo $T_0=2\pi/\omega_0\approx\SI{6.28}{\milli\second}$.}
+
+\gabarito[Nível 2]
+\stepcounter{questao}
+\resposta{$v_C\approx\SI{4.95}{\volt}$}
+\resolucao{Na primeira etapa, $\tau_1=\SI{20}{\milli\second}$ e
+$v_C(50\,\mathrm{ms})=12(1-e^{-2{,}5})\approx\SI{11.015}{\volt}$. Esse valor é a
+condição inicial da segunda etapa. Agora $\tau_2=\SI{50}{\milli\second}$ e
+$v_C=11{,}015e^{-40/50}\approx\SI{4.95}{\volt}$.}
+\stepcounter{questao}
+\resposta{$i_L\approx\SI{0.210}{\ampere}$}
+\resolucao{Na energização, $I_f=20/10=\SI{2}{\ampere}$ e
+$\tau_1=0{,}1/10=\SI{10}{\milli\second}$. Assim
+$i_L(15\,\mathrm{ms})=2(1-e^{-1{,}5})\approx\SI{1.554}{\ampere}$. Na descarga,
+$\tau_2=0{,}1/25=\SI{4}{\milli\second}$, portanto após $2\tau_2$:
+$i_L=1{,}554e^{-2}\approx\SI{0.210}{\ampere}$.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{eq}}=\SI{3}{\kilo\ohm}$; $\tau=\SI{60}{\milli\second}$}
+\resolucao{$R_1\parallel R_2=(6\cdot3)/(6+3)=\SI{2}{\kilo\ohm}$. Em série com
+$R_3$, $R_{\mathrm{eq}}=\SI{3}{\kilo\ohm}$. Logo
+$\tau=R_{\mathrm{eq}}C=\pot{3}{3}\pot{20}{-6}=\SI{60}{\milli\second}$.}
+\stepcounter{questao}
+\resposta{$t\approx\SI{40.5}{\milli\second}$}
+\resolucao{$\tau=\SI{0.1}{\second}$ e
+$v_C=8+(-4-8)e^{-t/0{,}1}=8-12e^{-t/0{,}1}$. No cruzamento,
+$e^{-t/0{,}1}=2/3$. Portanto $t=0{,}1\ln(3/2)\approx\SI{40.5}{\milli\second}$.}
+\stepcounter{questao}
+\resposta{$t\approx\SI{7.19}{\milli\second}$}
+\resolucao{$i_L=3+(-1-3)e^{-t/\tau}=3-4e^{-t/\tau}$. Para $i_L=0$,
+$e^{-t/\tau}=3/4$. Logo $t=\tau\ln(4/3)\approx\SI{7.19}{\milli\second}$.}
+\stepcounter{questao}
+\resposta{$i(0^+)=\SI{4}{\milli\ampere}$; $i(150\,\mathrm{ms})\approx\SI{0.893}{\milli\ampere}$}
+\resolucao{$\tau=RC=\SI{0.1}{\second}$. A corrente é
+$i(t)=(10-2)R^{-1}e^{-t/\tau}=\SI{4}{\milli\ampere}e^{-t/\tau}$. Em
+$150\,\mathrm{ms}=1{,}5\tau$, $i\approx4e^{-1{,}5}=\SI{0.893}{\milli\ampere}$.}
+\stepcounter{questao}
+\resposta{$E=\SI{20}{\milli\joule}$}
+\resolucao{$v_C=V_0e^{-t/RC}$ e $i=(V_0/R)e^{-t/RC}$. Logo
+$p_R=Ri^2=(V_0^2/R)e^{-2t/RC}$. Integrando de zero a infinito:
+\[
+E_R=\frac{V_0^2}{R}\int_0^\infty e^{-2t/RC}\,\mathrm{d}t
+=\frac{V_0^2}{R}\frac{RC}{2}=\frac12CV_0^2.
+\]
+Numericamente, $E_R=\tfrac12\pot{100}{-6}\cdot20^2=\SI{20}{\milli\joule}$.}
+\stepcounter{questao}
+\resposta{$C\approx\SI{4.63}{\micro\farad}$; valor comercial: \SI{4.7}{\micro\farad}}
+\resolucao{$3{,}3=5(1-e^{-t/RC})$, então
+$C=-t/[R\ln(1-3{,}3/5)]$. Substituindo,
+$C\approx\SI{4.63}{\micro\farad}$. Um valor comercial próximo é
+\SI{4.7}{\micro\farad}.}
+\stepcounter{questao}
+\resposta{$R\approx\SI{7.49}{\ohm}$; $V\approx\SI{7.49}{\volt}$}
+\resolucao{$0{,}95=1-e^{-t/\tau}$ implica
+$\tau=-t/\ln0{,}05\approx\SI{6.68}{\milli\second}$. Como $\tau=L/R$,
+$R=0{,}05/0{,}00668\approx\SI{7.49}{\ohm}$. Para corrente final de \SI{1}{\ampere},
+$V=RI_f\approx\SI{7.49}{\volt}$.}
+\stepcounter{questao}
+\resposta{$s_{1,2}=-100\pm j300\ \si{\per\second}$}
+\resolucao{$\alpha=R/(2L)=100$ e $\omega_0\approx316{,}2$. Assim
+$\omega_d=\sqrt{316{,}2^2-100^2}=300$. Para o caso subamortecido,
+$s_{1,2}=-\alpha\pm j\omega_d=-100\pm j300\ \si{\per\second}$.}
+\stepcounter{questao}
+\resposta{$A=\SI{10}{\volt}$; $B=\SI{1500}{\volt\per\second}$}
+\resolucao{De $v(0)=A$, segue $A=10$. Derivando,
+$\dot v(0)=B-200A=-500$. Logo $B=-500+2000=\SI{1500}{\volt\per\second}$.}
+\stepcounter{questao}
+\resposta{$s_1\approx-\SI{112.7}{\per\second}$; $s_2\approx-\SI{887.3}{\per\second}$}
+\resolucao{A equação característica é
+$s^2+(R/L)s+1/(LC)=s^2+1000s+100000=0$. Portanto
+\[
+s=\frac{-1000\pm\sqrt{1000^2-4\cdot100000}}{2}
+=\frac{-1000\pm\sqrt{600000}}{2},
+\]
+resultando aproximadamente em $-112{,}7$ e $-887{,}3\ \si{\per\second}$.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{crit}}\approx\SI{7.91}{\ohm}$}
+\resolucao{No paralelo, a condição crítica é
+$1/(2RC)=1/\sqrt{LC}$. Logo
+$R_{\mathrm{crit}}=\tfrac12\sqrt{L/C}
+=\tfrac12\sqrt{0{,}05/\pot{200}{-6}}\approx\SI{7.91}{\ohm}$.}
+\stepcounter{questao}
+\resposta{$M_p\approx\SI{16.3}{\percent}$}
+\resolucao{Substituindo $\zeta=0{,}5$:
+$M_p=e^{-\pi(0{,}5)/\sqrt{0{,}75}}\approx0{,}163$. Portanto o sobressinal é
+aproximadamente \SI{16.3}{\percent}.}
+\stepcounter{questao}
+\resposta{$\zeta\approx0{,}316$}
+\resolucao{$\alpha=R/(2L)=100$ e $\omega_0\approx316{,}2$. Assim
+$\zeta=\alpha/\omega_0\approx100/316{,}2\approx0{,}316$.}
+\stepcounter{questao}
+\resposta{A subamortecido; B aproximadamente crítico; C superamortecido; D subamortecido}
+\resolucao{A, B e C possuem $\omega_0\approx316{,}2$. No série,
+$\alpha=R/(0{,}2)$: A dá $100<316{,}2$; B dá aproximadamente $316{,}25$; C dá
+$500>316{,}2$. No caso D, $\alpha=1/(2RC)=125$ e
+$\omega_0=1/\sqrt{0{,}05\cdot\pot{200}{-6}}\approx316{,}2$, logo também é
+subamortecido.}
+\stepcounter{questao}
+\resposta{$E=\SI{6}{\milli\joule}$}
+\resolucao{$E_C=\tfrac12CV^2=\SI{5}{\milli\joule}$ e
+$E_L=\tfrac12LI^2=\tfrac12(0{,}05)(0{,}2)^2=\SI{1}{\milli\joule}$. A soma é
+\SI{6}{\milli\joule}.}
+\stepcounter{questao}
+\resposta{$v_C(0^+)=\SI{6}{\volt}$ e $i_L(0^+)=\SI{0.3}{\ampere}$}
+\resolucao{As variáveis de estado associadas aos elementos ideais armazenadores
+são contínuas: a tensão do capacitor e a corrente do indutor mantêm seus valores
+no instante da comutação. A nova topologia altera suas derivadas e seus valores
+finais, não os valores instantâneos em $0^+$.}
+\stepcounter{questao}
+\resposta{$\ddot v_C+200\dot v_C+100000v_C=1000000$}
+\resolucao{Pela LKT,
+$LC\ddot v_C+RC\dot v_C+v_C=V_s$. Como $LC=\pot{1}{-5}$ e
+$RC=\pot{2}{-3}$, dividindo por $LC$ resulta
+\[
+\ddot v_C+200\dot v_C+100000v_C=10\cdot100000=1000000.
+\]}
+\stepcounter{questao}
+\resposta{$v_C(0^+)=0$; $\dot v_C(0^+)=0$; $\ddot v_C(0^+)=\SI{1e6}{\volt\per\second\squared}$}
+\resolucao{Energia inicial nula implica $v_C(0^+)=0$ e $i_L(0^+)=0$. Como
+$i_C=C\dot v_C$, segue $\dot v_C(0^+)=0$. Substituindo esses valores na equação
+$\ddot v_C+200\dot v_C+100000v_C=1000000$, obtém-se
+$\ddot v_C(0^+)=\SI{1e6}{\volt\per\second\squared}$.}
+
+\gabarito[Nível 3]
+\stepcounter{questao}
+\resposta{$R_{\mathrm{eq}}\approx\SI{8}{\kilo\ohm}$; há cerca de \SI{3}{\kilo\ohm}
+adicionais na trajetória equivalente}
+\resolucao{$R_{\mathrm{eq}}=\tau/C=0{,}08/(\pot{10}{-6})=\SI{8}{\kilo\ohm}$.
+Como o resistor nominal é \SI{5}{\kilo\ohm}, existe aproximadamente
+\SI{3}{\kilo\ohm} adicional. Isso pode vir de resistência de saída da fonte,
+rede de polarização esquecida, resistor em série, chave/sensor ou uma topologia
+que não foi corretamente reduzida ao equivalente de Thévenin.}
+\stepcounter{questao}
+\resposta{$R=\SI{240}{\ohm}$; $t_{95}\approx\SI{0.338}{\second}$; $E_R\approx\SI{0.135}{\joule}$}
+\resolucao{Pela corrente inicial, $R\ge24/0{,}1=\SI{240}{\ohm}$. Com esse valor,
+$\tau=RC=240\cdot\pot{470}{-6}=\SI{112.8}{\milli\second}$. Para \SI{95}{\percent},
+$t=-\tau\ln0{,}05\approx\SI{0.338}{\second}$, atendendo à especificação. A
+energia dissipada no resistor durante a carga ideal por fonte de tensão é igual à
+energia final do capacitor:
+$E_R=\tfrac12CV^2\approx\SI{0.135}{\joule}$. A potência inicial é
+$V^2/R=\SI{2.4}{\watt}$, importante para a escolha da tecnologia do resistor.}
+\stepcounter{questao}
+\resposta{$I_0=\SI{0.4}{\ampere}$; $E_L=\SI{9.6}{\milli\joule}$; $\tau_A\approx\SI{2}{\milli\second}$;
+$\tau_B\approx\SI{0.5}{\milli\second}$; $v_{R,\mathrm{clamp}}(0^+)\approx\SI{72}{\volt}$}
+\resolucao{Em regime, $I_0=24/60=\SI{0.4}{\ampere}$ e
+$E_L=\tfrac12LI_0^2=\SI{9.6}{\milli\joule}$. Com diodo ideal, a descarga vê
+aproximadamente o cobre da bobina: $\tau_A=L/60=\SI{2}{\milli\second}$. Com o
+resistor adicional, $R_{\mathrm{tot}}=60+180=\SI{240}{\ohm}$ e
+$\tau_B=L/240=\SI{0.5}{\milli\second}$. A tensão inicial no resistor externo é
+$0{,}4\cdot180=\SI{72}{\volt}$. O clamp resistivo desliga o relé mais rápido,
+mas produz tensão maior; o diodo reduz a sobretensão, porém prolonga a corrente.}
+\stepcounter{questao}
+\resposta{$\alpha\approx\SI{69.3}{\per\second}$; $\omega_d\approx\SI{1571}{\radian\per\second}$;
+$\omega_0\approx\SI{1572}{\radian\per\second}$; $\zeta\approx0{,}044$;
+$L\approx\SI{40.45}{\milli\henry}$; $R\approx\SI{5.61}{\ohm}$}
+\resolucao{Da envoltória, $e^{-\alpha(0{,}01)}=1/2$, então
+$\alpha=\ln2/0{,}01\approx\SI{69.3}{\per\second}$. Do período,
+$\omega_d=2\pi/0{,}004\approx\SI{1571}{\radian\per\second}$. Logo
+$\omega_0=\sqrt{\omega_d^2+\alpha^2}\approx\SI{1572}{\radian\per\second}$ e
+$\zeta\approx0{,}044$. Como $\omega_0^2=1/(LC)$,
+$L\approx1/(C\omega_0^2)\approx\SI{40.45}{\milli\henry}$. Por fim,
+$R=2\alpha L\approx\SI{5.61}{\ohm}$.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$; \SI{45}{\ohm} é subamortecido;
+\SI{180}{\ohm} é superamortecido}
+\resolucao{$R_{\mathrm{crit}}=2\sqrt{L/C}=2\sqrt{0{,}02/\pot{10}{-6}}
+\approx\SI{89.4}{\ohm}$. Com \SI{45}{\ohm}, $R<R_{\mathrm{crit}}$ e haverá
+ringing/sobressinal. Com \SI{180}{\ohm}, $R>R_{\mathrm{crit}}$ e a resposta será
+monotônica, porém mais lenta. O amortecimento crítico é o limite de resposta
+monotônica mais rápida para o modelo ideal.}
+\stepcounter{questao}
+\resposta{$\tau\approx\SI{20}{\milli\second}$; $R\approx\SI{4.26}{\kilo\ohm}$}
+\resolucao{Em $t=\tau$, uma carga RC atinge \SI{63.2}{\percent}, exatamente o
+primeiro ponto. Em $2\tau$, atinge $1-e^{-2}=0{,}8647$, coerente com
+\SI{8.65}{\volt}. Logo $\tau\approx\SI{20}{\milli\second}$. Assim
+$R=\tau/C=0{,}02/(\pot{4.7}{-6})\approx\SI{4.26}{\kilo\ohm}$.}
+\stepcounter{questao}
+\resposta{$v_C(t)=e^{-200t}[5\cos(400t)+5\sin(400t)]\ \si{\volt}$}
+\resolucao{$\alpha=R/(2L)=200$, $\omega_0=1/\sqrt{LC}\approx447{,}2$ e
+$\omega_d=\sqrt{\omega_0^2-\alpha^2}=400$. Portanto
+$v_C=e^{-200t}(A\cos400t+B\sin400t)$. De $v_C(0)=5$, $A=5$. Como
+$i=C\dot v_C$, $\dot v_C(0)=0{,}1/(\pot{100}{-6})=\SI{1000}{\volt\per\second}$.
+Então $\dot v_C(0)=-200A+400B=1000$, resultando em $B=5$.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{carga}}\approx\SI{8.59}{\kilo\ohm}$; $R_{\mathrm{descarga}}\lesssim\SI{2.65}{\kilo\ohm}$;
+valores práticos: \SI{8.2}{\kilo\ohm} e \SI{2.4}{\kilo\ohm}}
+\resolucao{Na carga,
+$2=3{,}3(1-e^{-8\mathrm{ms}/RC})$, fornecendo
+$R\approx\SI{8.59}{\kilo\ohm}$. Se esse mesmo resistor fosse usado na descarga,
+o tempo até \SI{0.5}{\volt} seria $RC\ln(3{,}3/0{,}5)\approx\SI{16.2}{\milli\second}$,
+acima do limite. Para a descarga em no máximo \SI{5}{\milli\second},
+$R\le t/[C\ln(3{,}3/0{,}5)]\approx\SI{2.65}{\kilo\ohm}$. Um diodo permite
+separar os caminhos; \SI{8.2}{\kilo\ohm} e \SI{2.4}{\kilo\ohm} são escolhas
+comerciais coerentes.}
+\stepcounter{questao}
+\resposta{A: $\zeta\approx0{,}447$, subamortecido; B: crítico; C: $\zeta\approx2{,}01$, superamortecido; escolher B}
+\resolucao{Como $R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$, no RLC série vale
+$\zeta=R/R_{\mathrm{crit}}$. Assim A fornece $\zeta\approx0{,}447$ e oscila; B
+fica praticamente em $\zeta=1$; C fornece $\zeta\approx2{,}01$ e é lento por
+superamortecimento. Para rapidez sem sobressinal, B é a escolha adequada.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{efetivo}}\approx\SI{100}{\ohm}$; há cerca de \SI{80}{\ohm}
+de resistência série não contabilizada}
+\resolucao{Para $s^2+(R/L)s+1/(LC)=0$, a soma dos polos é $-R/L$. A soma medida é
+$-1000\ \si{\per\second}$; com $L=\SI{0.1}{\henry}$,
+$R=1000L=\SI{100}{\ohm}$. O produto dos polos é aproximadamente
+$100000\ \si{\per\second\squared}$, coerente com $1/(LC)$, confirmando que $L$ e
+$C$ são plausíveis. Portanto existe cerca de \SI{80}{\ohm} extra, por ESR,
+resistência do indutor, resistor de proteção, fonte ou fiação.}
+\stepcounter{questao}
+\resposta{$R_{\max}\approx\SI{61.4}{\kilo\ohm}$; escolha \SI{56}{\kilo\ohm};
+$t\approx\SI{54.7}{\second}$; $P_0\approx\SI{2.86}{\watt}$; $E\approx\SI{37.6}{\joule}$}
+\resolucao{Na descarga, $50=400e^{-t/RC}$. Assim
+$R=t/[C\ln(400/50)]\approx\SI{61.4}{\kilo\ohm}$. Um valor de
+\SI{56}{\kilo\ohm} fornece $t=RC\ln8\approx\SI{54.7}{\second}$. A potência
+inicial é $P_0=V^2/R=400^2/56000\approx\SI{2.86}{\watt}$, portanto é prudente
+usar resistor com margem de potência e tensão. A energia inicialmente armazenada,
+e posteriormente dissipada, é $E=\tfrac12CV^2\approx\SI{37.6}{\joule}$.}
+
+\gabarito[Nível 4]
+
 \section{Eletromagnetismo}
 
 \subsection{Conceitos iniciais e materiais magnéticos}
