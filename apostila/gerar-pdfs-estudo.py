@@ -100,6 +100,24 @@ def provide_defs(s):
         if j>=len(s) or s[j]!='{':p=j;continue
         _,e=group(s,j);o.append(s[i:e]);p=e
 
+def tem_acento(x):
+    return any(ord(c)>127 for c in x)
+
+def normaliza_matematica(s):
+    def indice(m):
+        x=m.group(2)
+        if tem_acento(x) and '\\' not in x:
+            return m.group(1)+'{\\text{'+x+'}}'
+        return m.group(0)
+    def roman(m):
+        x=m.group(1)
+        if tem_acento(x) and '\\' not in x:
+            return '\\text{'+x+'}'
+        return m.group(0)
+    s=re.sub(r'([_^])\{([^{}]+)\}',indice,s)
+    s=re.sub(r'\\mathrm\{([^{}]+)\}',roman,s)
+    return s
+
 def filt(s,mode):
     o=[];p=0;st={'q':0,'a':0,'r':0,'sa':0,'sr':0};levels=('blocofixacao','blocoaplicacao','blocoaprofundamento','blocodesafio')
     while p<len(s):
@@ -130,9 +148,12 @@ def main():
     for f,n in CH:
         if n is not None:z.append(f'\n\\setcounter{{section}}{{{n}}}\n')
         p=B/f;z.append(expand(p.read_text(encoding='utf-8'),p.parent,(p.resolve(),)))
-    s=''.join(z);s=re.sub(r'\\SI\{([^{}]+)\}\{\\month\}',r'\1 meses',s)
+    s=''.join(z)
+    s=re.sub(r'\\SI\{([^{}]+)\}\{\\month\}',r'\1 meses',s)
+    s=s.replace('\\siemens','\\siemenssafe')
+    s=normaliza_matematica(s)
     defs=provide_defs(s);q,qs=filt(s,'q');r,rs=filt(s,'r')
-    head='% Gerado automaticamente. Nao editar.\n'+defs+'\n'
+    head='% Gerado automaticamente. Nao editar.\n\\DeclareSIUnit{\\siemenssafe}{S}\n'+defs+'\n'
     (B/'gerado-questoes.tex').write_text(head+q,encoding='utf-8')
     (B/'gerado-resolucoes.tex').write_text(head+r,encoding='utf-8')
     print('questoes',qs);print('resolucoes',rs);print('macros auxiliares preservadas',defs.count('\\providecommand'))
