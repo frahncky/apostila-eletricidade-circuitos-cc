@@ -12,12 +12,15 @@ $\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$ e $\SI{0.6}{\milli\ensuremath{\mathrm{
 $R=\SI{2}{\kilo\ohm}$ e $C=\SI{100}{\micro\farad}$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) -- (6,0);
-\draw (0,3) -- (6,3);
-\draw (1.8,3) to[R,l={$R=\SI{2}{\kilo\ohm}$}] (1.8,0);
-\draw (3.8,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (3.8,0);
-\draw (6,0) to[american controlled current source,l_={$g v_C$}] (6,3);
+\begin{circuitikz}[scale=0.98,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) -- (7.0,0);
+\draw (0,3) -- (7.0,3);
+\draw (1.8,3) to[R] (1.8,0);
+\node[anchor=east] at (1.55,1.5) {$R=\SI{2}{\kilo\ohm}$};
+\draw (4.2,3) to[C,v^>={$v_C$}] (4.2,0);
+\node[anchor=east] at (3.95,1.5) {$C=\SI{100}{\micro\farad}$};
+\draw (7.0,0) to[american controlled current source] (7.0,3);
+\node[anchor=west] at (7.25,1.5) {$g\,v_C$};
 \end{circuitikz}}{RC com VCCS capaz de reduzir, anular ou inverter o amortecimento.}
 
 \resposta{$g_{\mathrm{crit}}=1/R=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$; para
@@ -46,13 +49,17 @@ se a resposta será subamortecida ou superamortecida para valores de $g$ menores
 maiores que o valor calculado, supondo $g\ge0$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) -- (8,0);
-\draw (0,3) -- (8,3);
-\draw (1.5,3) to[R,l={$R=\SI{100}{\ohm}$}] (1.5,0);
-\draw (3.7,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v$}] (3.7,0);
-\draw (5.8,3) to[L,l={$L=\SI{100}{\milli\henry}$}] (5.8,0);
-\draw (8,3) to[american controlled current source,l_={$g v$}] (8,0);
+\begin{circuitikz}[scale=0.94,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) -- (8.8,0);
+\draw (0,3) -- (8.8,3);
+\draw (1.5,3) to[R] (1.5,0);
+\node[anchor=east] at (1.25,1.5) {$R=\SI{100}{\ohm}$};
+\draw (3.9,3) to[C,v^>={$v$}] (3.9,0);
+\node[anchor=east] at (3.65,1.5) {$C=\SI{100}{\micro\farad}$};
+\draw (6.3,3) to[L] (6.3,0);
+\node[anchor=east] at (6.05,1.5) {$L=\SI{100}{\milli\henry}$};
+\draw (8.8,3) to[american controlled current source] (8.8,0);
+\node[anchor=west] at (9.05,1.5) {$g\,v$};
 \end{circuitikz}}{Projeto do amortecimento de um circuito RLC em paralelo usando uma VCCS.}
 
 \resposta{$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\ensuremath{\mathrm{S}}}$; abaixo desse
@@ -88,12 +95,16 @@ intervalos de $\mu$ que produzem resposta subamortecida, criticamente amortecida
 superamortecida estável, polo em zero e instabilidade.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) to[R,l={$R=\SI{20}{\ohm}$}] (2,0)
-      to[L,l={$L=\SI{0.1}{\henry}$},i>^={$i$}] (4.3,0)
-      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (6.5,0)
-      to[american controlled voltage source,l_={$\mu v_C$}] (8.5,0)
-      -- (8.5,-2) -- (0,-2) -- (0,0);
+\begin{circuitikz}[scale=0.88,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) to[R] (2.2,0)
+      to[L,i>^={$i$}] (4.8,0)
+      to[C,v^>={$v_C$}] (7.4,0)
+      to[american controlled voltage source] (10.0,0)
+      -- (10.0,-2.2) -- (0,-2.2) -- (0,0);
+\node[anchor=south] at (1.1,0.25) {$R=\SI{20}{\ohm}$};
+\node[anchor=south] at (3.5,0.25) {$L=\SI{0.1}{\henry}$};
+\node[anchor=south] at (6.1,0.25) {$C=\SI{100}{\micro\farad}$};
+\node[anchor=south] at (8.7,0.25) {$\mu\,v_C$};
 \end{circuitikz}}{RLC com VCVS modificando o termo restaurador e a estabilidade.}
 
 \resposta{$s^2+200s+100000(1-\mu)=0$; subamortecida para $\mu<0{,}9$;
@@ -124,13 +135,18 @@ $\beta i_x$, em que $i_x=v_1/R_1$. Considere
 $R_1=R_2=\SI{1}{\kilo\ohm}$ e $C_1=C_2=\SI{1}{\milli\farad}$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) -- (7.5,0);
-\draw (0,3) coordinate(a) to[R,l={$R_2=\SI{1}{\kilo\ohm}$}] (4,3) coordinate(b);
-\draw (a) to[R,l={$R_1=\SI{1}{\kilo\ohm}$},i>^={$i_x$}] (0,0);
-\draw (a) -- (2,3) to[C,l={$C_1=\SI{1}{\milli\farad}$},v^>={$v_1$}] (2,0);
-\draw (b) to[C,l={$C_2=\SI{1}{\milli\farad}$},v^>={$v_2$}] (4,0);
-\draw (7.5,0) to[american controlled current source,l_={$\beta i_x$}] (7.5,3) -- (b);
+\begin{circuitikz}[scale=0.92,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) -- (8.4,0);
+\draw (0,3) coordinate(a) to[R] (5.0,3) coordinate(b);
+\node[anchor=south] at (2.5,3.25) {$R_2=\SI{1}{\kilo\ohm}$};
+\draw (a) to[R,i>^={$i_x$}] (0,0);
+\node[anchor=west] at (0.25,1.5) {$R_1=\SI{1}{\kilo\ohm}$};
+\draw (2.5,3) to[C,v^>={$v_1$}] (2.5,0);
+\node[anchor=east] at (2.25,1.5) {$C_1=\SI{1}{\milli\farad}$};
+\draw (b) to[C,v^>={$v_2$}] (5.0,0);
+\node[anchor=east] at (4.75,1.5) {$C_2=\SI{1}{\milli\farad}$};
+\draw (8.4,0) to[american controlled current source] (8.4,3) -- (b);
+\node[anchor=west] at (8.65,1.5) {$\beta\,i_x$};
 \end{circuitikz}}{Rede RC de segunda ordem com CCCS e possibilidade de perda de estabilidade.}
 
 \begin{itensq}
