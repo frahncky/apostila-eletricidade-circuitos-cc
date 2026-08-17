@@ -1,0 +1,88 @@
+% =====================================================================
+% CAP. 11 - NIVEL 2 - FONTES DEPENDENTES
+% =====================================================================
+\blocoaplicacao
+
+\begin{questao}[2]{}
+O circuito abaixo parte com o capacitor descarregado. Em $t=0$, a fonte de corrente
+independente aplica um degrau de $\SI{3}{\milli\ampere}$. A fonte dependente é uma
+VCCS de valor $g v_C$, com $g=\SI{0.25}{\milli\siemens}$. Determine a constante de
+tempo, o valor final de $v_C$ e $v_C(\SI{0.10}{\second})$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american current source,l_={$3u(t)\,\mathrm{mA}$}] (0,3) -- (6.5,3);
+\draw (2.2,3) to[R,l={$R=\SI{4}{\kilo\ohm}$}] (2.2,0);
+\draw (4.3,3) to[C,l={$C=\SI{50}{\micro\farad}$},v^>={$v_C$}] (4.3,0);
+\draw (6.5,3) to[american controlled current source,l_={$g v_C$}] (6.5,0) -- (0,0);
+\end{circuitikz}}{Circuito RC com fonte de corrente controlada por tensão (VCCS).}
+
+\resposta{$R_{\mathrm{eq}}=\SI{2}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
+$v_C(\infty)=\SI{6}{\volt}$; $v_C(0{,}10\,\mathrm{s})\approx\SI{3.79}{\volt}$}
+\resolucao{A fonte dependente não é suprimida. A condutância total vista pelo
+capacitor é
+\[
+G_{\mathrm{eq}}=\frac1R+g=\SI{0.25}{\milli\siemens}+
+\SI{0.25}{\milli\siemens}=\SI{0.50}{\milli\siemens},
+\]
+logo $R_{\mathrm{eq}}=1/G_{\mathrm{eq}}=\SI{2}{\kilo\ohm}$ e
+$\tau=R_{\mathrm{eq}}C=\SI{0.10}{\second}$. Em regime permanente,
+$v_C=I_s/G_{\mathrm{eq}}=\SI{6}{\volt}$. Portanto
+$v_C(t)=6(1-e^{-t/0{,}1})$ e, em $t=\SI{0.10}{\second}$,
+$v_C\approx\SI{3.79}{\volt}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+O capacitor do circuito natural abaixo está inicialmente a $\SI{10}{\volt}$.
+A fonte dependente fornece a corrente $g v_C$, com
+$g=\SI{0.5}{\milli\siemens}$. Determine $R_{\mathrm{eq}}$, $\tau$ e $v_C(t)$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6,0);
+\draw (0,3) -- (6,3);
+\draw (1.8,3) to[R,l={$R=\SI{2}{\kilo\ohm}$}] (1.8,0);
+\draw (3.8,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (3.8,0);
+\draw (6,3) to[american controlled current source,l_={$g v_C$}] (6,0);
+\end{circuitikz}}{Resposta natural RC com uma VCCS em paralelo.}
+
+\resposta{$R_{\mathrm{eq}}=\SI{1}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
+$v_C(t)=10e^{-10t}\ \si{\volt}$}
+\resolucao{Como a fonte dependente permanece ativa,
+$G_{\mathrm{eq}}=1/R+g=\SI{0.5}{\milli\siemens}+
+\SI{0.5}{\milli\siemens}=\SI{1}{\milli\siemens}$. Logo
+$R_{\mathrm{eq}}=\SI{1}{\kilo\ohm}$ e
+$\tau=R_{\mathrm{eq}}C=\SI{0.10}{\second}$. Como não há fonte independente e
+o valor final é zero, $v_C(t)=10e^{-t/\tau}=10e^{-10t}\,\si{\volt}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito abaixo, o indutor possui $i_L(0^+)=\SI{2}{\ampere}$. A fonte dependente
+é uma CCCS que injeta para cima a corrente $\beta i_x$, em que
+$i_x=v/R$ e $\beta=0{,}5$. Determine a resistência equivalente vista pelo indutor,
+a constante de tempo e $i_L(t)$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6,0);
+\draw (0,3) -- (6,3);
+\draw (1.8,3) to[R,l={$R=\SI{20}{\ohm}$},i>^={$i_x$}] (1.8,0);
+\draw (3.9,3) to[L,l={$L=\SI{200}{\milli\henry}$},i>^={$i_L$}] (3.9,0);
+\draw (6,0) to[american controlled current source,l_={$\beta i_x$}] (6,3);
+\end{circuitikz}}{Resposta natural RL com fonte de corrente controlada por corrente (CCCS).}
+
+\resposta{$R_{\mathrm{eq}}=\SI{40}{\ohm}$; $\tau=\SI{5}{\milli\second}$;
+$i_L(t)=2e^{-200t}\ \si{\ampere}$}
+\resolucao{Aplicando uma tensão-teste $v_x$ aos terminais do indutor, a corrente
+no resistor é $i_x=v_x/R$. A fonte dependente injeta $\beta i_x$ no nó superior,
+logo a corrente fornecida pela fonte-teste é
+\[
+i_t=i_x-\beta i_x=(1-\beta)\frac{v_x}{R}.
+\]
+Portanto
+$R_{\mathrm{eq}}=v_x/i_t=R/(1-\beta)=20/0{,}5=\SI{40}{\ohm}$.
+Assim $\tau=L/R_{\mathrm{eq}}=0{,}2/40=\SI{5}{\milli\second}$ e
+$i_L(t)=2e^{-t/\tau}=2e^{-200t}\,\si{\ampere}$.}
+\end{questao}
+
+\gabarito[Nível 2 --- fontes dependentes]
