@@ -1,0 +1,39 @@
+% =====================================================================
+%  CAPITULO 11 - CIRCUITOS DE PRIMEIRA E SEGUNDA ORDEM
+% =====================================================================
+\section{Circuitos de Primeira e Segunda Ordem}
+
+\begin{conceito}[Mapa de resolução]
+Este capítulo trata do comportamento transitório de circuitos com elementos
+armazenadores de energia. Use as relações abaixo como referência rápida.
+
+\textbf{Primeira ordem:}
+\[
+x(t)=x(\infty)+\big[x(0^+)-x(\infty)\big]e^{-t/\tau}.
+\]
+Para circuitos RC, $\tau=R_{\mathrm{eq}}C$ e a tensão do capacitor é contínua:
+$v_C(0^+)=v_C(0^-)$. Para circuitos RL, $\tau=L/R_{\mathrm{eq}}$ e a corrente do
+indutor é contínua: $i_L(0^+)=i_L(0^-)$. Para obter $R_{\mathrm{eq}}$, observe a
+resistência vista pelo elemento armazenador com as fontes independentes
+suprimidas.
+
+\textbf{Segunda ordem --- RLC série:}
+\[
+\alpha=\frac{R}{2L},\qquad
+\omega_0=\frac{1}{\sqrt{LC}},\qquad
+\zeta=\frac{\alpha}{\omega_0}.
+\]
+Se $\alpha<\omega_0$, a resposta é subamortecida e
+$\omega_d=\sqrt{\omega_0^2-\alpha^2}$. Se $\alpha=\omega_0$, há amortecimento
+crítico. Se $\alpha>\omega_0$, a resposta é superamortecida. No RLC série,
+$R_{\mathrm{crit}}=2\sqrt{L/C}$. No RLC paralelo, para a tensão natural,
+$\alpha=1/(2RC)$.
+\end{conceito}
+
+\legendaniveis
+
+% Os bancos são separados por nível para manter o capítulo organizado.
+\input{bancos/cap11-transitorios-n1.tex}
+\input{bancos/cap11-transitorios-n2.tex}
+\input{bancos/cap11-transitorios-n3.tex}
+\input{bancos/cap11-transitorios-n4.tex}
