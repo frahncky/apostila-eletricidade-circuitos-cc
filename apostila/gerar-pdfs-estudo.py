@@ -41,7 +41,10 @@ def expand(s,base,stack=()):
     for m in list(re.finditer(r'\\input\s*\{',s)):
         if m.start()<p:continue
         o.append(s[p:m.start()]);q=s.find('{',m.start());n,e=group(s,q)
-        f=(base/n.strip()).resolve();f=f if f.suffix else f.with_suffix('.tex')
+        raw=n.strip()
+        f=(B/raw).resolve();f=f if f.suffix else f.with_suffix('.tex')
+        if not f.exists():
+            f=(base/raw).resolve();f=f if f.suffix else f.with_suffix('.tex')
         if f in stack:raise RuntimeError('ciclo de input: '+str(f))
         if not f.exists():raise FileNotFoundError(f)
         o.append('\n'+expand(f.read_text(encoding='utf-8'),f.parent,stack+(f,))+'\n');p=e
