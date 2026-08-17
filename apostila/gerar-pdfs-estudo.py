@@ -150,10 +150,10 @@ def main():
         p=B/f;z.append(expand(p.read_text(encoding='utf-8'),p.parent,(p.resolve(),)))
     s=''.join(z)
     s=re.sub(r'\\SI\{([^{}]+)\}\{\\month\}',r'\1 meses',s)
-    s=s.replace('\\siemens','\\siemenssafe')
+    s=s.replace('\\siemens','\\ensuremath{\\mathrm{S}}')
     s=normaliza_matematica(s)
     defs=provide_defs(s);q,qs=filt(s,'q');r,rs=filt(s,'r')
-    head='% Gerado automaticamente. Nao editar.\n\\DeclareSIUnit{\\siemenssafe}{S}\n'+defs+'\n'
+    head='% Gerado automaticamente. Nao editar.\n'+defs+'\n'
     (B/'gerado-questoes.tex').write_text(head+q,encoding='utf-8')
     (B/'gerado-resolucoes.tex').write_text(head+r,encoding='utf-8')
     print('questoes',qs);print('resolucoes',rs);print('macros auxiliares preservadas',defs.count('\\providecommand'))
