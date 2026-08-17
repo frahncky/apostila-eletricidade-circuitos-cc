@@ -1,0 +1,221 @@
+% =====================================================================
+% CAP. 11 - NIVEL 3 - QUESTOES GRAFICAS E INTEGRADAS
+% =====================================================================
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um capacitor de $\SI{40}{\micro\farad}$ permaneceu ligado por muito tempo ao
+circuito (a). Em $t=0$, a chave transfere instantaneamente o capacitor para o
+circuito (b). Determine $v_C(t)$ para $t>0$, o instante em que a tensão cruza
+zero e a corrente no resistor $R_2$ imediatamente após a comutação, tomando como
+positivo o sentido do capacitor para a fonte de $-\SI{5}{\volt}$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=0.92,transform shape,line width=0.8pt]
+\draw (0,0) to[american voltage source,l_={$\SI{15}{\volt}$}] (0,3)
+      to[R,l={$R_1=\SI{5}{\kilo\ohm}$}] (3,3)
+      to[C,l={$C=\SI{40}{\micro\farad}$},v^>={$v_C$}] (3,0) -- (0,0);
+\node[font=\sffamily\bfseries] at (1.5,-0.6) {(a) $t<0$};
+\begin{scope}[xshift=7cm]
+\draw (0,0) to[american voltage source,l_={$-\SI{5}{\volt}$}] (0,3)
+      to[R,l={$R_2=\SI{10}{\kilo\ohm}$}] (3,3)
+      to[C,l={$C=\SI{40}{\micro\farad}$},v^>={$v_C$}] (3,0) -- (0,0);
+\node[font=\sffamily\bfseries] at (1.5,-0.6) {(b) $t>0$};
+\end{scope}
+\end{circuitikz}}{Circuitos equivalentes antes e depois da comutação.}
+
+\resposta{$v_C(t)=-5+20e^{-t/0{,}4}\ \si{\volt}$;
+$t_{v=0}\approx\SI{0.555}{\second}$; $i_{R_2}(0^+)=\SI{2}{\milli\ampere}$}
+\resolucao{Em regime permanente no circuito (a), o capacitor está aberto e não há
+queda em $R_1$, de modo que $v_C(0^-)=\SI{15}{\volt}$. Logo
+$v_C(0^+)=\SI{15}{\volt}$. Para $t>0$, o valor final é $-\SI{5}{\volt}$ e
+\[
+\tau=R_2C=(10\,\mathrm{k\Omega})(40\,\mathrm{\mu F})=\SI{0.4}{\second}.
+\]
+Portanto
+\[
+v_C(t)=-5+(15+5)e^{-t/0{,}4}=-5+20e^{-t/0{,}4}.
+\]
+No cruzamento por zero, $e^{-t/0{,}4}=1/4$, logo
+$t=0{,}4\ln4\approx\SI{0.555}{\second}$. A corrente inicial em $R_2$ é
+$(15-(-5))/10\,\mathrm{k\Omega}=\SI{2}{\milli\ampere}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+A chave permaneceu fechada por muito tempo e abre em $t=0$. O indutor passa a
+liberar sua energia pela associação $R_2\parallel R_3$. Determine a corrente
+$i_L(t)$ para $t>0$ e a energia ainda armazenada no indutor em
+$t=\SI{50}{\milli\second}$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+\draw (0,0) to[american voltage source,l_={$\SI{30}{\volt}$}] (0,3)
+      to[switch,l={abre em $t=0$}] (1.6,3)
+      to[R,l={$R_1=\SI{5}{\ohm}$}] (3.6,3) coordinate(a);
+\draw (a) to[L,l={$L=\SI{200}{\milli\henry}$},i>^={$i_L$}] (3.6,0) -- (0,0);
+\draw (a) -- (5.6,3) to[R,l={$R_2=\SI{8}{\ohm}$}] (5.6,0) -- (3.6,0);
+\draw (a) -- (7.6,3) to[R,l={$R_3=\SI{24}{\ohm}$}] (7.6,0) -- (5.6,0);
+\end{circuitikz}}{Descarga de um indutor por uma rede resistiva equivalente.}
+
+\resposta{$i_L(t)=6e^{-t/0{,}0333}\ \si{\ampere}$;
+$W_L(50\,\mathrm{ms})\approx\SI{0.179}{\joule}$}
+\resolucao{Antes da abertura, o indutor ideal está em curto e os resistores
+$R_2$ e $R_3$ ficam sem tensão. Assim $i_L(0^-)=30/5=\SI{6}{\ampere}$ e
+$i_L(0^+)=\SI{6}{\ampere}$. Para $t>0$,
+\[
+R_{\mathrm{eq}}=8\parallel24=\SI{6}{\ohm},\qquad
+\tau=\frac{0{,}2}{6}\approx\SI{33.3}{\milli\second}.
+\]
+Logo $i_L(t)=6e^{-t/\tau}$. Em $\SI{50}{\milli\second}$,
+$i_L=6e^{-1{,}5}\approx\SI{1.339}{\ampere}$. A energia remanescente é
+\[
+W_L=\frac12Li_L^2\approx\frac12(0{,}2)(1{,}339)^2
+\approx\SI{0.179}{\joule}.
+\]}
+\end{questao}
+
+\begin{questao}[3]{}
+O capacitor possui $v_C(0^-)=\SI{10}{\volt}$. Em $t=0$ a chave fecha e o conecta
+à rede mostrada. Determine $v_C(t)$, a resistência equivalente vista pelo
+capacitor e o tempo necessário para que o erro em relação ao valor final seja
+menor que \SI{1}{\percent} da variação inicial.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+\draw (0,0) to[american voltage source,l_={$\SI{18}{\volt}$}] (0,3)
+      to[R,l={$R_1=\SI{6}{\kilo\ohm}$}] (3,3) coordinate(b);
+\draw (b) to[R,l={$R_2=\SI{3}{\kilo\ohm}$}] (3,0) -- (0,0);
+\draw (b) to[R,l={$R_3=\SI{2}{\kilo\ohm}$}] (5.3,3)
+      to[switch,l={fecha em $t=0$}] (6.7,3)
+      to[C,l={$C=\SI{25}{\micro\farad}$},v^>={$v_C$}] (6.7,0) -- (3,0);
+\end{circuitikz}}{Capacitor conectado a uma rede de Thévenin não trivial.}
+
+\resposta{$R_{\mathrm{eq}}=\SI{4}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
+$v_C(t)=6+4e^{-10t}\ \si{\volt}$; $t_{1\%}\approx\SI{0.461}{\second}$}
+\resolucao{Em regime final não circula corrente em $R_3$, portanto o capacitor
+assume a tensão do divisor formado por $R_1$ e $R_2$:
+$V_f=18\cdot3/(6+3)=\SI{6}{\volt}$. Para obter a resistência vista pelo capacitor,
+a fonte ideal de tensão é curto-circuitada:
+\[
+R_{\mathrm{eq}}=R_3+(R_1\parallel R_2)=2\,\mathrm{k\Omega}+2\,\mathrm{k\Omega}
+=\SI{4}{\kilo\ohm}.
+\]
+Logo $\tau=R_{\mathrm{eq}}C=\SI{0.10}{\second}$ e
+$v_C(t)=6+(10-6)e^{-t/0{,}1}=6+4e^{-10t}$. O erro normalizado é
+$e^{-t/\tau}$. Para ficar abaixo de \SI{1}{\percent},
+$t>\tau\ln100\approx4{,}605\tau=\SI{0.461}{\second}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Para $t<0$, a fonte de corrente de $\SI{2}{\ampere}$ permaneceu conectada por
+muito tempo ao RLC paralelo. Em $t=0$ a chave abre e a fonte é removida. Determine
+o tipo de resposta natural e obtenha $v(t)$ para $t>0$, considerando a polaridade
+indicada.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american current source,l_={$\SI{2}{\ampere}$}] (0,3)
+      to[switch,l={abre em $t=0$}] (1.7,3) -- (6.5,3);
+\draw (2.5,3) to[R,l={$R=\SI{10}{\ohm}$}] (2.5,0);
+\draw (4.5,3) to[C,l={$C=\SI{200}{\micro\farad}$},v^>={$v$}] (4.5,0);
+\draw (6.5,3) to[L,l={$L=\SI{50}{\milli\henry}$},i>^={$i_L$}] (6.5,0) -- (0,0);
+\end{circuitikz}}{Resposta natural de um RLC paralelo com energia inicialmente no indutor.}
+
+\resposta{Subamortecida;
+$v(t)\approx-51{,}64e^{-250t}\sin(193{,}65t)\ \si{\volt}$}
+\resolucao{Antes da abertura, em regime CC, o capacitor é aberto e o indutor é
+curto. Assim $v(0^-)=0$ e $i_L(0^-)=\SI{2}{\ampere}$; por continuidade,
+$v(0^+)=0$ e $i_L(0^+)=\SI{2}{\ampere}$. Para o RLC paralelo,
+\[
+\alpha=\frac{1}{2RC}=\SI{250}{\per\second},\qquad
+\omega_0=\frac{1}{\sqrt{LC}}\approx\SI{316.23}{\radian\per\second},
+\]
+logo a resposta é subamortecida e
+$\omega_d\approx\SI{193.65}{\radian\per\second}$. Pela KCL em $0^+$,
+$C\dot v(0^+)+i_L(0^+)=0$, portanto
+$\dot v(0^+)=-2/(200\,\mathrm{\mu F})=-\SI{10000}{\volt\per\second}$.
+Como $v(0)=0$, a parcela cossenoidal é nula e
+$B=\dot v(0)/\omega_d\approx-51{,}64$, resultando na expressão indicada.}
+\end{questao}
+
+\begin{questao}[3]{}
+O circuito RLC em série parte sem energia armazenada e a chave fecha em $t=0$.
+Determine a resposta completa $v_C(t)$ e o valor do primeiro pico da tensão do
+capacitor.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american voltage source,l_={$\SI{10}{\volt}$}] (0,3)
+      to[switch,l={fecha em $t=0$}] (1.5,3)
+      to[R,l={$R=\SI{20}{\ohm}$}] (3.4,3)
+      to[L,l={$L=\SI{100}{\milli\henry}$}] (5.5,3)
+      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (7.5,3)
+      -- (7.5,0) -- (0,0);
+\end{circuitikz}}{Resposta ao degrau de um RLC série subamortecido.}
+
+\resposta{$v_C(t)=10\left[1-e^{-100t}\left(\cos300t+\frac13\sin300t\right)\right]\,\si{\volt}$;
+$v_{C,\mathrm{pico}}\approx\SI{13.51}{\volt}$ em $t_p\approx\SI{10.47}{\milli\second}$}
+\resolucao{Temos
+$\alpha=R/(2L)=\SI{100}{\per\second}$,
+$\omega_0\approx\SI{316.23}{\radian\per\second}$ e
+$\omega_d=\SI{300}{\radian\per\second}$. Para entrada degrau e condições iniciais
+nulas, a resposta do capacitor é
+\[
+v_C(t)=V_s\left[1-e^{-\alpha t}\left(\cos\omega_dt+
+\frac{\alpha}{\omega_d}\sin\omega_dt\right)\right].
+\]
+Substituindo os valores, obtém-se a expressão indicada. O primeiro pico ocorre em
+$t_p=\pi/\omega_d\approx\SI{10.47}{\milli\second}$. Nesse instante,
+$\sin(\omega_dt_p)=0$ e $\cos(\omega_dt_p)=-1$, logo
+$v_C(t_p)=10[1+e^{-100t_p}]\approx\SI{13.51}{\volt}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Em laboratório, mediu-se a corrente natural do RLC série mostrado. A distância
+entre picos consecutivos é aproximadamente $T_d=\SI{8}{\milli\second}$ e a
+envoltória cai à metade a cada $\SI{16}{\milli\second}$. Sabendo que
+$R=\SI{8}{\ohm}$, estime $\alpha$, $\omega_d$, $L$ e $C$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[R,l={$R=\SI{8}{\ohm}$}] (2,0)
+      to[L,l={$L$}] (4,0)
+      to[C,l={$C$}] (6,0) -- (6,-2) -- (0,-2) -- (0,0);
+\draw[->] (1.2,0.45) -- (2.3,0.45) node[midway,above] {$i(t)$};
+\end{circuitikz}}{RLC série identificado a partir de uma oscilação medida.}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ width=.88\linewidth,height=5.2cm,
+ xlabel={$t$ (ms)},ylabel={$i(t)$ (u.a.)},xmin=0,xmax=32,ymin=-2.2,ymax=2.2,
+ grid=both,samples=300,
+ tick label style={font=\scriptsize},label style={font=\small\sffamily}]
+\addplot[thick,azulprof,domain=0:32] {2*exp(-0.0433217*x)*sin(deg(0.785398*x))};
+\addplot[dashed,laranja,domain=0:32] {2*exp(-0.0433217*x)};
+\addplot[dashed,laranja,domain=0:32] {-2*exp(-0.0433217*x)};
+\end{axis}
+\end{tikzpicture}
+\caption{Oscilação amortecida medida e envoltória exponencial.}
+\end{figure}
+
+\resposta{$\alpha\approx\SI{43.3}{\per\second}$;
+$\omega_d\approx\SI{785.4}{\radian\per\second}$;
+$L\approx\SI{92.3}{\milli\henry}$; $C\approx\SI{17.5}{\micro\farad}$}
+\resolucao{A envoltória obedece $e^{-\alpha t}$. Como ela cai à metade em
+$\SI{16}{\milli\second}$,
+\[
+\alpha=\frac{\ln2}{0{,}016}\approx\SI{43.3}{\per\second}.
+\]
+O período amortecido fornece
+$\omega_d=2\pi/T_d\approx\SI{785.4}{\radian\per\second}$. Para RLC série,
+$\alpha=R/(2L)$, então
+$L=R/(2\alpha)\approx\SI{92.3}{\milli\henry}$. Além disso,
+$\omega_0=\sqrt{\omega_d^2+\alpha^2}\approx\SI{786.6}{\radian\per\second}$ e
+\[
+C=\frac{1}{L\omega_0^2}\approx\SI{17.5}{\micro\farad}.
+\]}
+\end{questao}
+
+\gabarito[Nível 3 --- análise integrada e formas de onda]
