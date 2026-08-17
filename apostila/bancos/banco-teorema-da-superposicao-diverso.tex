@@ -10,7 +10,27 @@ Nos exercícios práticos, o circuito faz parte do enunciado. Topologias, valore
 fontes e grandezas de interesse variam de uma questão para outra. A repetição é
 usada apenas quando pedagogicamente necessária para comparar métodos.
 \end{atencao}
+
+\input{bancos/circuitos-revisados-superposicao-questoes-criticas.tex}
 \input{bancos/banco-superposicao-n1-diverso.tex}
+
+% No banco N2, substitui apenas as figuras locais 3 e 5 identificadas na
+% auditoria visual. O restante do banco passa pelo desenho original.
+\begingroup
+\newcount\fvSupNDoisCircuitCount
+\fvSupNDoisCircuitCount=0
+\let\fvSupNDoisCircuitoOriginal\circuitoq
+\renewcommand{\circuitoq}[1]{%
+  \global\advance\fvSupNDoisCircuitCount by 1\relax
+  \ifnum\fvSupNDoisCircuitCount=3\relax
+    \fvSupNDoisCircuitoOriginal{\fvSupNDoisQTresRevisada}%
+  \else\ifnum\fvSupNDoisCircuitCount=5\relax
+    \fvSupNDoisCircuitoOriginal{\fvSupNDoisQCincoRevisada}%
+  \else
+    \fvSupNDoisCircuitoOriginal{#1}%
+  \fi\fi}
 \input{bancos/banco-superposicao-n2-diverso.tex}
+\endgroup
+
 \input{bancos/banco-superposicao-n3-diverso.tex}
 \input{bancos/banco-superposicao-n4-diverso.tex}
