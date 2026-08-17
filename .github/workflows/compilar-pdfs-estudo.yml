@@ -18,6 +18,7 @@ permissions:
 
 jobs:
   compilar:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Baixar repositório
@@ -28,6 +29,20 @@ jobs:
 
       - name: Gerar fontes filtradas
         run: python3 apostila/gerar-pdfs-estudo.py
+
+      - name: Gravar fontes revisados e arquivos do Overleaf
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          find apostila -type f \( -name '*.tex' -o -name '*.sty' \) -print0 | xargs -0 git add --
+          if git diff --cached --quiet; then
+            echo "Fontes revisados já estão atualizados."
+          else
+            git commit -m "revisa português nos fontes"
+            git push
+          fi
 
       - name: Compilar apostila e PDFs de estudo
         uses: xu-cheng/latex-action@v4
@@ -65,18 +80,14 @@ jobs:
             pdf/Apostila-CC-Questoes-Gabarito.pdf
             pdf/Apostila-CC-Resolucoes.pdf
 
-      - name: Atualizar fontes revisados, Overleaf e PDFs versionados
+      - name: Atualizar PDFs versionados
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          find apostila -type f \( -name '*.tex' -o -name '*.sty' \) -print0 | xargs -0 git add --
-          git add apostila/revisar-portugues.py \
-                  pdf/Apostila-CC-Questoes-Gabarito.pdf pdf/Apostila-CC-Resolucoes.pdf
+          git add pdf/Apostila-CC-Questoes-Gabarito.pdf pdf/Apostila-CC-Resolucoes.pdf
           if git diff --cached --quiet; then
-            echo "Fontes revisados e PDFs já estão atualizados."
+            echo "PDFs já estão atualizados."
           else
-            git commit -m "revisa português e atualiza PDFs de estudo"
+            git commit -m "atualiza PDFs após revisão de português"
             git push
           fi
