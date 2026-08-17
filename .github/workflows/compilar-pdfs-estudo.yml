@@ -1,0 +1,68 @@
+name: Compilar PDFs de estudo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apostila/**/*.tex'
+      - 'apostila/**/*.sty'
+      - 'apostila/gerar-pdfs-estudo.py'
+      - '.github/workflows/compilar-pdfs-estudo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v7
+
+      - name: Gerar fontes filtradas
+        run: python3 apostila/gerar-pdfs-estudo.py
+
+      - name: Compilar os dois PDFs
+        uses: xu-cheng/latex-action@v4
+        with:
+          working_directory: apostila
+          root_file: |
+            Questoes-Gabarito.tex
+            Resolucoes.tex
+          texlive_version: 2026
+          os: debian
+
+      - name: Validar e organizar saídas
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s apostila/Questoes-Gabarito.pdf
+          test -s apostila/Resolucoes.pdf
+          test "$(head -c 4 apostila/Questoes-Gabarito.pdf)" = "%PDF"
+          test "$(head -c 4 apostila/Resolucoes.pdf)" = "%PDF"
+          mkdir -p pdf
+          cp apostila/Questoes-Gabarito.pdf pdf/Apostila-CC-Questoes-Gabarito.pdf
+          cp apostila/Resolucoes.pdf pdf/Apostila-CC-Resolucoes.pdf
+
+      - name: Disponibilizar PDFs como artefato
+        uses: actions/upload-artifact@v7
+        with:
+          name: apostila-cc-estudo
+          path: |
+            pdf/Apostila-CC-Questoes-Gabarito.pdf
+            pdf/Apostila-CC-Resolucoes.pdf
+
+      - name: Atualizar PDFs versionados
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pdf/Apostila-CC-Questoes-Gabarito.pdf pdf/Apostila-CC-Resolucoes.pdf
+          if git diff --cached --quiet; then
+            echo "PDFs já estão atualizados."
+          else
+            git commit -m "atualiza PDFs de questoes e resolucoes"
+            git push
+          fi
