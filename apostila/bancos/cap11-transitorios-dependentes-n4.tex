@@ -7,8 +7,8 @@
 O circuito RC natural abaixo contém uma VCCS orientada para cima, de valor $g v_C$.
 O capacitor está inicialmente carregado. Determine o valor crítico de $g$ que
 separa decaimento, resposta constante e crescimento exponencial. Em seguida,
-classifique os casos $g=\SI{0.4}{\milli\siemens}$,
-$\SI{0.5}{\milli\siemens}$ e $\SI{0.6}{\milli\siemens}$ para
+classifique os casos $g=\SI{0.4}{\milli\ensuremath{\mathrm{S}}}$,
+$\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$ e $\SI{0.6}{\milli\ensuremath{\mathrm{S}}}$ para
 $R=\SI{2}{\kilo\ohm}$ e $C=\SI{100}{\micro\farad}$.
 
 \circuitoqq{%
@@ -20,9 +20,9 @@ $R=\SI{2}{\kilo\ohm}$ e $C=\SI{100}{\micro\farad}$.
 \draw (6,0) to[american controlled current source,l_={$g v_C$}] (6,3);
 \end{circuitikz}}{RC com VCCS capaz de reduzir, anular ou inverter o amortecimento.}
 
-\resposta{$g_{\mathrm{crit}}=1/R=\SI{0.5}{\milli\siemens}$; para
-\SI{0.4}{\milli\siemens}: estável, $\tau=\SI{1}{\second}$; para
-\SI{0.5}{\milli\siemens}: polo em zero; para \SI{0.6}{\milli\siemens}:
+\resposta{$g_{\mathrm{crit}}=1/R=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$; para
+\SI{0.4}{\milli\ensuremath{\mathrm{S}}}: estável, $\tau=\SI{1}{\second}$; para
+\SI{0.5}{\milli\ensuremath{\mathrm{S}}}: polo em zero; para \SI{0.6}{\milli\ensuremath{\mathrm{S}}}:
 instável, crescimento com constante de tempo de magnitude \SI{1}{\second}}
 \resolucao{Pela KCL,
 \[
@@ -31,7 +31,7 @@ C\dot v_C+\frac{v_C}{R}-gv_C=0
 \dot v_C+\frac{1/R-g}{C}v_C=0.
 \]
 O polo é $s=-(1/R-g)/C$. O limite ocorre para $g=1/R$, isto é,
-$g_{\mathrm{crit}}=\SI{0.5}{\milli\siemens}$. Para $g=0{,}4\,\mathrm{mS}$,
+$g_{\mathrm{crit}}=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$. Para $g=0{,}4\,\mathrm{mS}$,
 $1/R-g=0{,}1\,\mathrm{mS}$ e
 $\tau=C/(1/R-g)=\SI{1}{\second}$: a resposta decai. Para
 $g=0{,}5\,\mathrm{mS}$, o polo é zero e, no modelo ideal, a tensão permanece
@@ -53,9 +53,9 @@ maiores que o valor calculado, supondo $g\ge0$.
 \draw (3.7,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v$}] (3.7,0);
 \draw (5.8,3) to[L,l={$L=\SI{100}{\milli\henry}$}] (5.8,0);
 \draw (8,3) to[american controlled current source,l_={$g v$}] (8,0);
-\end{circuitikz}}{Projeto do amortecimento de um RLC paralelo usando uma VCCS.}
+\end{circuitikz}}{Projeto do amortecimento de um circuito RLC em paralelo usando uma VCCS.}
 
-\resposta{$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\siemens}$; abaixo desse
+\resposta{$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\ensuremath{\mathrm{S}}}$; abaixo desse
 valor a resposta é subamortecida; acima, superamortecida}
 \resolucao{A equação natural é
 \[
@@ -71,10 +71,10 @@ $\omega_0\approx\SI{316.23}{\radian\per\second}$. Para amortecimento crítico,
 $\alpha=\omega_0$, então
 \[
 \frac1R+g=2C\omega_0
-=2(100\times10^{-6})(316{,}23)\approx\SI{63.25}{\milli\siemens}.
+=2(100\times10^{-6})(316{,}23)\approx\SI{63.25}{\milli\ensuremath{\mathrm{S}}}.
 \]
-Como $1/R=\SI{10}{\milli\siemens}$,
-$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\siemens}$. Reduzir $g$ reduz
+Como $1/R=\SI{10}{\milli\ensuremath{\mathrm{S}}}$,
+$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\ensuremath{\mathrm{S}}}$. Reduzir $g$ reduz
 $\alpha$ e leva ao caso subamortecido; aumentar $g$ produz superamortecimento.}
 \end{questao}
 
