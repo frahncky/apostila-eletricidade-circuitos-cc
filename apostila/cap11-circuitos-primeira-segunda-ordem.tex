@@ -5,7 +5,18 @@
 
 \begin{conceito}[Mapa de resolução]
 Este capítulo trata do comportamento transitório de circuitos com elementos
-armazenadores de energia. Use as relações abaixo como referência rápida.
+armazenadores de energia. A solução deve partir da \textbf{leitura do circuito},
+e não apenas da substituição de valores em fórmulas.
+
+\textbf{Roteiro para circuitos com chaveamento:}
+\begin{enumerate}[leftmargin=1.8em,itemsep=2pt,topsep=3pt]
+\item desenhe ou interprete o circuito para $t<0$ e obtenha o regime permanente;
+\item use a continuidade para determinar $v_C(0^+)$ e/ou $i_L(0^+)$;
+\item redesenhe o circuito para $t>0$, determine o valor final e a resistência
+      vista pelo elemento armazenador;
+\item somente então escreva a resposta transitória e verifique unidades,
+      condições iniciais e comportamento para $t\to\infty$.
+\end{enumerate}
 
 \textbf{Primeira ordem:}
 \[
@@ -15,9 +26,17 @@ Para circuitos RC, $\tau=R_{\mathrm{eq}}C$ e a tensão do capacitor é contínua
 $v_C(0^+)=v_C(0^-)$. Para circuitos RL, $\tau=L/R_{\mathrm{eq}}$ e a corrente do
 indutor é contínua: $i_L(0^+)=i_L(0^-)$. Para obter $R_{\mathrm{eq}}$, observe a
 resistência vista pelo elemento armazenador com as fontes independentes
-suprimidas.
+suprimidas; fontes dependentes, quando existirem, permanecem ativas.
 
-\textbf{Segunda ordem --- RLC em série:}
+\textbf{Segunda ordem:} dois elementos independentes de armazenamento podem
+produzir uma resposta de segunda ordem. Eles não precisam ser necessariamente um
+capacitor e um indutor: duas capacitâncias ou duas indutâncias também podem gerar
+dois estados quando não podem ser reduzidas a um único elemento equivalente.
+Antes de resolver a equação de segunda ordem, determine as condições iniciais,
+os valores finais e, quando necessário, $\dot v(0^+)$ ou $\dot i(0^+)$ pelas leis
+de Kirchhoff.
+
+\textbf{RLC em série:}
 \[
 \alpha=\frac{R}{2L},\qquad
 \omega_0=\frac{1}{\sqrt{LC}},\qquad
@@ -33,7 +52,12 @@ $\alpha=1/(2RC)$.
 \legendaniveis
 
 % Os bancos são separados por nível para manter o capítulo organizado.
+% N1 permanece conceitual; N2--N4 recebem uma trilha adicional com muitos
+% circuitos, chaveamentos, formas de onda, projeto e diagnóstico.
 \input{bancos/cap11-transitorios-n1.tex}
 \input{bancos/cap11-transitorios-n2.tex}
+\input{bancos/cap11-transitorios-graficos-n2.tex}
 \input{bancos/cap11-transitorios-n3.tex}
+\input{bancos/cap11-transitorios-graficos-n3.tex}
 \input{bancos/cap11-transitorios-n4.tex}
+\input{bancos/cap11-transitorios-graficos-n4.tex}
