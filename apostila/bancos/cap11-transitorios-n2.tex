@@ -1,0 +1,181 @@
+% =====================================================================
+% CAP. 11 - NIVEL 2
+% =====================================================================
+\blocoaplicacao
+
+\begin{questao}[2]{}
+A tensão de um capacitor muda de $\SI{8}{\volt}$ para um valor final de
+$\SI{2}{\volt}$ através de $R=\SI{4}{\kilo\ohm}$ e
+$C=\SI{25}{\micro\farad}$. Determine $v_C(\SI{0.2}{\second})$.
+\resposta{$v_C(\SI{0.2}{\second})\approx\SI{2.81}{\volt}$}
+\resolucao{$\tau=RC=\SI{0.1}{\second}$. Logo
+\[
+v_C(t)=2+(8-2)e^{-t/0{,}1}.
+\]
+Em $t=\SI{0.2}{\second}$, $v_C=2+6e^{-2}\approx\SI{2.81}{\volt}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+A corrente de um indutor passa de $\SI{1}{\ampere}$ para um valor final de
+$\SI{4}{\ampere}$. Sabendo que $L=\SI{0.6}{\henry}$ e
+$R_{\mathrm{eq}}=\SI{30}{\ohm}$, calcule $i_L(\SI{40}{\milli\second})$.
+\resposta{$i_L\approx\SI{3.59}{\ampere}$}
+\resolucao{$\tau=L/R=0{,}6/30=\SI{20}{\milli\second}$. Assim
+$i_L(t)=4+(1-4)e^{-t/\tau}$. Para $t=2\tau$,
+$i_L=4-3e^{-2}\approx\SI{3.59}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito RC inicialmente descarregado possui $R=\SI{10}{\kilo\ohm}$ e
+$C=\SI{10}{\micro\farad}$. Quanto tempo é necessário para atingir
+\SI{90}{\percent} do valor final?
+\resposta{$t\approx\SI{230}{\milli\second}$}
+\resolucao{$\tau=\SI{0.1}{\second}$. De
+$0{,}9=1-e^{-t/\tau}$ resulta $e^{-t/\tau}=0{,}1$ e
+$t=\tau\ln 10\approx\SI{0.230}{\second}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um capacitor descarrega de $\SI{12}{\volt}$ para $\SI{3}{\volt}$ com
+$\tau=\SI{50}{\milli\second}$. Determine o tempo decorrido.
+\resposta{$t\approx\SI{69.3}{\milli\second}$}
+\resolucao{$3=12e^{-t/\tau}$, então $e^{-t/\tau}=1/4$ e
+$t=\tau\ln4=\SI{50}{\milli\second}\cdot1{,}386\approx\SI{69.3}{\milli\second}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+A corrente natural de um circuito RL cai de $\SI{2}{\ampere}$ para
+$\SI{0.2}{\ampere}$. Se $\tau=\SI{25}{\milli\second}$, determine o intervalo de
+tempo.
+\resposta{$t\approx\SI{57.6}{\milli\second}$}
+\resolucao{$0{,}2=2e^{-t/\tau}$ implica $e^{-t/\tau}=0{,}1$. Logo
+$t=\tau\ln10\approx25\cdot2{,}303=\SI{57.6}{\milli\second}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+No circuito abaixo, a chave conecta a fonte em $t=0$ e o capacitor está
+inicialmente descarregado. Determine $v_C(\tau)$ e a constante de tempo.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[battery1,l_={$\SI{20}{\volt}$}] (0,3)
+      to[R,l={$R_1=\SI{6}{\kilo\ohm}$}] (3,3) coordinate(a);
+\draw (a) to[R,l={$R_2=\SI{3}{\kilo\ohm}$}] (3,0) -- (0,0);
+\draw (a) -- (5,3) to[C,l={$C=\SI{50}{\micro\farad}$}] (5,0) -- (3,0);
+\end{circuitikz}}
+
+\resposta{$\tau=\SI{100}{\milli\second}$; $v_C(\tau)\approx\SI{4.21}{\volt}$}
+\resolucao{Em regime permanente, o capacitor mede a tensão do divisor:
+$V_f=20\cdot3/(6+3)=\SI{6.67}{\volt}$. Suprimindo a fonte,
+$R_{\mathrm{eq}}=R_1\parallel R_2=\SI{2}{\kilo\ohm}$, então
+$\tau=R_{\mathrm{eq}}C=\SI{0.1}{\second}$. Como $v_C(0)=0$,
+$v_C(\tau)=V_f(1-e^{-1})\approx\SI{4.21}{\volt}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Após uma comutação, um capacitor possui $v_C(0^+)=\SI{5}{\volt}$ e tende a
+$-\SI{10}{\volt}$, com $\tau=\SI{20}{\milli\second}$. Determine
+$v_C(\SI{10}{\milli\second})$.
+\resposta{$v_C\approx-\SI{0.90}{\volt}$}
+\resolucao{$v_C(t)=-10+[5-(-10)]e^{-t/\tau}=-10+15e^{-t/\tau}$.
+Para $t/\tau=0{,}5$, obtém-se $v_C\approx-10+15e^{-0{,}5}
+\approx-\SI{0.90}{\volt}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um indutor de $\SI{40}{\milli\henry}$ vê $R_{\mathrm{eq}}=\SI{4}{\ohm}$ após
+uma comutação. Sua corrente inicial é $\SI{0.5}{\ampere}$ e o valor final é
+$\SI{2}{\ampere}$. Calcule a corrente após $\SI{20}{\milli\second}$.
+\resposta{$i_L\approx\SI{1.80}{\ampere}$}
+\resolucao{$\tau=L/R=\SI{10}{\milli\second}$ e
+$i_L(t)=2+(0{,}5-2)e^{-t/\tau}$. Em $t=2\tau$,
+$i_L=2-1{,}5e^{-2}\approx\SI{1.80}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um RLC série tem $R=\SI{10}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
+$C=\SI{200}{\micro\farad}$. Determine $\alpha$, $\omega_0$, $\omega_d$ e o tipo
+de resposta.
+\resposta{$\alpha=\SI{100}{\per\second}$; $\omega_0\approx\SI{316.2}{\radian\per\second}$;
+$\omega_d=\SI{300}{\radian\per\second}$; subamortecida}
+\resolucao{$\alpha=R/(2L)=10/0{,}1=100$. Além disso,
+$\omega_0=1/\sqrt{0{,}05\cdot\pot{200}{-6}}\approx316{,}2$. Como
+$\alpha<\omega_0$, é subamortecido e
+$\omega_d=\sqrt{316{,}2^2-100^2}=\SI{300}{\radian\per\second}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Para um RLC série com $R=\SI{40}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
+$C=\SI{200}{\micro\farad}$, classifique a resposta natural.
+\resposta{Superamortecida}
+\resolucao{$\alpha=40/(2\cdot0{,}05)=\SI{400}{\per\second}$, enquanto
+$\omega_0\approx\SI{316.2}{\radian\per\second}$. Como $\alpha>\omega_0$, a
+resposta é superamortecida.}
+\end{questao}
+
+\begin{questao}[2]{}
+Calcule $R_{\mathrm{crit}}$ para um RLC série com $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$.
+\resposta{$R_{\mathrm{crit}}\approx\SI{63.25}{\ohm}$}
+\resolucao{$R_{\mathrm{crit}}=2\sqrt{L/C}=2\sqrt{0{,}1/\pot{100}{-6}}
+=2\sqrt{1000}\approx\SI{63.25}{\ohm}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Uma resposta subamortecida de tensão tem a forma
+\[
+v(t)=e^{-100t}\big(10\cos300t+B\sin300t\big).
+\]
+Sabendo que $\mathrm{d}v/\mathrm{d}t|_{0^+}=0$, determine $B$.
+\resposta{$B\approx\SI{3.33}{\volt}$}
+\resolucao{Derivando e avaliando em zero,
+$\dot v(0)=-100\cdot10+300B=0$. Portanto
+$B=1000/300\approx\SI{3.33}{\volt}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em um capacitor de $C=\SI{100}{\micro\farad}$, a corrente em $0^+$ é
+$\SI{20}{\milli\ampere}$ entrando no terminal positivo. Determine
+$\mathrm{d}v_C/\mathrm{d}t|_{0^+}$.
+\resposta{$\mathrm{d}v_C/\mathrm{d}t|_{0^+}=\SI{200}{\volt\per\second}$}
+\resolucao{Pela convenção passiva, $i_C=C\dot v_C$. Logo
+$\dot v_C=0{,}02/(\pot{100}{-6})=\SI{200}{\volt\per\second}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um RLC paralelo possui $R=\SI{200}{\ohm}$, $C=\SI{100}{\micro\farad}$ e
+$L=\SI{0.1}{\henry}$. Classifique a resposta natural da tensão.
+\resposta{Subamortecida}
+\resolucao{No paralelo, $\alpha=1/(2RC)=1/[2\cdot200\cdot\pot{100}{-6}]
+=\SI{25}{\per\second}$. Já $\omega_0\approx\SI{316.2}{\radian\per\second}$.
+Como $\alpha<\omega_0$, a resposta é subamortecida.}
+\end{questao}
+
+\begin{questao}[2]{}
+Em uma resposta de primeira ordem, qual erro percentual em relação ao valor final
+permanece após $5\tau$?
+\resposta{$\approx\SI{0.674}{\percent}$}
+\resolucao{O erro normalizado é $e^{-t/\tau}$. Em $5\tau$,
+$e^{-5}\approx0{,}00674$, ou \SI{0.674}{\percent}.}
+\end{questao}
+
+\begin{questao}[2]{}
+Um circuito LC ideal possui $C=\SI{100}{\micro\farad}$ inicialmente a
+$\SI{10}{\volt}$ e $L=\SI{50}{\milli\henry}$ com corrente inicial nula.
+Determine a energia inicial e a corrente máxima ideal.
+\resposta{$E=\SI{5}{\milli\joule}$; $I_{\max}\approx\SI{0.447}{\ampere}$}
+\resolucao{$E=\tfrac12CV^2=\tfrac12\pot{100}{-6}\cdot100=\SI{5}{\milli\joule}$.
+Quando toda a energia está no indutor,
+$\tfrac12LI_{\max}^2=E$, então
+$I_{\max}=V\sqrt{C/L}=10\sqrt{\pot{100}{-6}/0{,}05}\approx\SI{0.447}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[2]{}
+Para $L=\SI{10}{\milli\henry}$ e $C=\SI{100}{\micro\farad}$, determine o
+período natural ideal $T_0$.
+\resposta{$T_0\approx\SI{6.28}{\milli\second}$}
+\resolucao{$\omega_0=1/\sqrt{LC}=1/\sqrt{\pot{1}{-6}}=\SI{1000}{\radian\per\second}$.
+Logo $T_0=2\pi/\omega_0\approx\SI{6.28}{\milli\second}$.}
+\end{questao}
+
+\gabarito[Nível 2]
