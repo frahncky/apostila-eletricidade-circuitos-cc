@@ -10,7 +10,40 @@ variação de topologia é intencional: divisores, fontes reais, Norton, escadas
 redes de múltiplas portas, fontes dependentes, caracterização experimental e
 cargas não lineares aparecem em problemas distintos.
 \end{atencao}
+
+\input{bancos/circuitos-revisados-thevenin-questoes-criticas.tex}
 \input{bancos/banco-thevenin-n1-diverso.tex}
+
+% N2: substitui somente a oitava figura, na qual a anotacao de 24 V colidia
+% com o rotulo da carga.
+\begingroup
+\newcount\fvThNDoisCircuitCount
+\fvThNDoisCircuitCount=0
+\let\fvThNDoisCircuitoOriginal\circuitoq
+\renewcommand{\circuitoq}[1]{%
+  \global\advance\fvThNDoisCircuitCount by 1\relax
+  \ifnum\fvThNDoisCircuitCount=8\relax
+    \fvThNDoisCircuitoOriginal{\fvThNDoisQOitoRevisada}%
+  \else
+    \fvThNDoisCircuitoOriginal{#1}%
+  \fi}
 \input{bancos/banco-thevenin-n2-diverso.tex}
+\endgroup
+
+% N3: substitui somente a nona figura, separando o ramo da fonte de corrente
+% do resistor ligado a fonte de tensao da direita.
+\begingroup
+\newcount\fvThNTresCircuitCount
+\fvThNTresCircuitCount=0
+\let\fvThNTresCircuitoOriginal\circuitoq
+\renewcommand{\circuitoq}[1]{%
+  \global\advance\fvThNTresCircuitCount by 1\relax
+  \ifnum\fvThNTresCircuitCount=9\relax
+    \fvThNTresCircuitoOriginal{\fvThNTresQNoveRevisada}%
+  \else
+    \fvThNTresCircuitoOriginal{#1}%
+  \fi}
 \input{bancos/banco-thevenin-n3-diverso.tex}
+\endgroup
+
 \input{bancos/banco-thevenin-n4-diverso.tex}
