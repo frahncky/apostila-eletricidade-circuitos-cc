@@ -1,0 +1,124 @@
+% =====================================================================
+% CAP. 11 - NIVEL 3 - FONTES DEPENDENTES
+% =====================================================================
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+O capacitor abaixo possui $v_C(0^+)=\SI{8}{\volt}$. A fonte dependente é uma VCVS
+que impõe $v_b=\mu v_C$, com $\mu=0{,}5$. Determine a resistência equivalente vista
+pelo capacitor, a constante de tempo e $v_C(t)$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6.5,0);
+\draw (0,3) to[C,l={$C=\SI{25}{\micro\farad}$},v^>={$v_C$}] (0,0);
+\draw (0,3) to[R,l={$R=\SI{4}{\kilo\ohm}$}] (3.2,3) coordinate(b);
+\draw (b) to[american controlled voltage source,l_={$\mu v_C$}] (3.2,0);
+\node[right] at (b) {$v_b$};
+\end{circuitikz}}{Circuito RC com fonte de tensão controlada por tensão (VCVS).}
+
+\resposta{$R_{\mathrm{eq}}=\SI{8}{\kilo\ohm}$; $\tau=\SI{0.20}{\second}$;
+$v_C(t)=8e^{-5t}\ \si{\volt}$}
+\resolucao{Aplique uma tensão-teste $v_x$ aos terminais do capacitor. Como a VCVS
+impõe $v_b=\mu v_x$, a corrente de teste é
+\[
+i_t=\frac{v_x-v_b}{R}=\frac{(1-\mu)v_x}{R}.
+\]
+Logo
+$R_{\mathrm{eq}}=v_x/i_t=R/(1-\mu)=4\,\mathrm{k\Omega}/0{,}5=
+\SI{8}{\kilo\ohm}$. Assim
+$\tau=R_{\mathrm{eq}}C=\SI{0.20}{\second}$. Como o circuito é natural,
+$v_C(\infty)=0$ e $v_C(t)=8e^{-t/0{,}2}=8e^{-5t}\,\si{\volt}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+O indutor do circuito abaixo conduz inicialmente $\SI{3}{\ampere}$. A fonte
+dependente é uma CCVS de valor $r_m i_x$, com $r_m=\SI{9}{\ohm}$, e sua polaridade
+é indicada no desenho. Determine a resistência equivalente vista pelo indutor,
+$\tau$ e $i_L(t)$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6,0);
+\draw (0,3) to[L,l={$L=\SI{75}{\milli\henry}$},i>^={$i_L$}] (0,0);
+\draw (0,3) to[R,l={$R=\SI{6}{\ohm}$},i>^={$i_x$}] (3.3,3)
+      to[american controlled voltage source,l_={$r_m i_x$}] (3.3,0);
+\end{circuitikz}}{Resposta natural RL com fonte de tensão controlada por corrente (CCVS).}
+
+\resposta{$R_{\mathrm{eq}}=\SI{15}{\ohm}$; $\tau=\SI{5}{\milli\second}$;
+$i_L(t)=3e^{-200t}\ \si{\ampere}$}
+\resolucao{Com uma fonte-teste aplicada aos terminais do indutor, a queda total na
+rede é a soma da queda no resistor e da tensão da CCVS:
+\[
+v_t=Ri_x+r_mi_x=(R+r_m)i_x.
+\]
+Assim $R_{\mathrm{eq}}=R+r_m=6+9=\SI{15}{\ohm}$ e
+$\tau=L/R_{\mathrm{eq}}=0{,}075/15=\SI{5}{\milli\second}$. Portanto
+$i_L(t)=3e^{-t/\tau}=3e^{-200t}\,\si{\ampere}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+O RLC em paralelo abaixo não possui fonte independente para $t>0$. A VCCS fornece
+uma corrente $g v$, com $g=\SI{50}{\milli\siemens}$. Considere
+$v(0^+)=\SI{5}{\volt}$ e $i_L(0^+)=0$. Determine a equação diferencial da resposta
+natural, classifique o amortecimento e obtenha $v(t)$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (8,0);
+\draw (0,3) -- (8,3);
+\draw (1.6,3) to[R,l={$R=\SI{20}{\ohm}$}] (1.6,0);
+\draw (3.8,3) to[C,l={$C=\SI{10}{\milli\farad}$},v^>={$v$}] (3.8,0);
+\draw (6,3) to[L,l={$L=\SI{1}{\henry}$},i>^={$i_L$}] (6,0);
+\draw (8,3) to[american controlled current source,l_={$g v$}] (8,0);
+\end{circuitikz}}{RLC em paralelo com VCCS modificando o amortecimento.}
+
+\resposta{$\ddot v+10\dot v+100v=0$; subamortecida;
+$v(t)=e^{-5t}[5\cos(8{,}66t)-2{,}89\sin(8{,}66t)]\ \si{\volt}$}
+\resolucao{A KCL fornece
+$C\dot v+v/R+gv+i_L=0$. Derivando e usando $\dot i_L=v/L$:
+\[
+C\ddot v+\left(\frac1R+g\right)\dot v+\frac{1}{L}v=0.
+\]
+Com os valores dados,
+$\ddot v+10\dot v+100v=0$. Logo
+$\alpha=5\,\mathrm{s^{-1}}$ e $\omega_0=10\,\mathrm{rad/s}$, resultando em
+$\omega_d=\sqrt{100-25}=\SI{8.66}{\radian\per\second}$ e resposta subamortecida.
+Da KCL em $0^+$,
+$0{,}01\dot v(0)+5/20+0{,}05\cdot5+0=0$, portanto
+$\dot v(0)=-\SI{50}{\volt\per\second}$. Assim
+$v=e^{-5t}(A\cos8{,}66t+B\sin8{,}66t)$, com $A=5$ e
+$-5A+8{,}66B=-50$, resultando em $B\approx-2{,}89$.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito RLC em série abaixo, a CCVS produz uma tensão $r_m i$ que se soma à
+queda resistiva, com $r_m=\SI{30}{\ohm}$. Para
+$R=\SI{10}{\ohm}$, $L=\SI{0.1}{\henry}$, $C=\SI{100}{\micro\farad}$,
+$v_C(0^+)=\SI{10}{\volt}$ e $i(0^+)=0$, determine $v_C(t)$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[R,l={$R=\SI{10}{\ohm}$}] (2.1,0)
+      to[american controlled voltage source,l_={$r_m i$}] (4.2,0)
+      to[L,l={$L=\SI{0.1}{\henry}$},i>^={$i$}] (6.3,0)
+      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (8.5,0)
+      -- (8.5,-2) -- (0,-2) -- (0,0);
+\end{circuitikz}}{RLC em série com CCVS equivalente a amortecimento adicional.}
+
+\resposta{$v_C(t)=e^{-200t}[10\cos(244{,}95t)+8{,}17\sin(244{,}95t)]\ \si{\volt}$}
+\resolucao{A CCVS se comporta, para a equação de malha, como uma queda adicional
+$r_mi$. Logo a equação natural é
+\[
+L\ddot v_C+(R+r_m)\dot v_C+\frac1C v_C=0.
+\]
+Assim
+$\alpha=(R+r_m)/(2L)=40/0{,}2=\SI{200}{\per\second}$ e
+$\omega_0=1/\sqrt{LC}\approx\SI{316.23}{\radian\per\second}$, de modo que
+$\omega_d\approx\SI{244.95}{\radian\per\second}$. A forma é
+$v_C=e^{-200t}(A\cos\omega_dt+B\sin\omega_dt)$. Como $A=10$ e
+$i(0)=C\dot v_C(0)=0$, temos $-200(10)+244{,}95B=0$, logo
+$B\approx\SI{8.17}{\volt}$.}
+\end{questao}
+
+\gabarito[Nível 3 --- fontes dependentes]
