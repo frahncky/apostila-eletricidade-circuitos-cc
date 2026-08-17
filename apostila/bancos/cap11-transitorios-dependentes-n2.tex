@@ -6,7 +6,7 @@
 \begin{questao}[2]{}
 O circuito abaixo parte com o capacitor descarregado. Em $t=0$, a fonte de corrente
 independente aplica um degrau de $\SI{3}{\milli\ampere}$. A fonte dependente é uma
-VCCS de valor $g v_C$, com $g=\SI{0.25}{\milli\siemens}$. Determine a constante de
+VCCS de valor $g v_C$, com $g=\SI{0.25}{\milli\ensuremath{\mathrm{S}}}$. Determine a constante de
 tempo, o valor final de $v_C$ e $v_C(\SI{0.10}{\second})$.
 
 \circuitoqq{%
@@ -22,8 +22,8 @@ $v_C(\infty)=\SI{6}{\volt}$; $v_C(0{,}10\,\mathrm{s})\approx\SI{3.79}{\volt}$}
 \resolucao{A fonte dependente não é suprimida. A condutância total vista pelo
 capacitor é
 \[
-G_{\mathrm{eq}}=\frac1R+g=\SI{0.25}{\milli\siemens}+
-\SI{0.25}{\milli\siemens}=\SI{0.50}{\milli\siemens},
+G_{\mathrm{eq}}=\frac1R+g=\SI{0.25}{\milli\ensuremath{\mathrm{S}}}+
+\SI{0.25}{\milli\ensuremath{\mathrm{S}}}=\SI{0.50}{\milli\ensuremath{\mathrm{S}}},
 \]
 logo $R_{\mathrm{eq}}=1/G_{\mathrm{eq}}=\SI{2}{\kilo\ohm}$ e
 $\tau=R_{\mathrm{eq}}C=\SI{0.10}{\second}$. Em regime permanente,
@@ -35,7 +35,7 @@ $v_C\approx\SI{3.79}{\volt}$.}
 \begin{questao}[2]{}
 O capacitor do circuito natural abaixo está inicialmente a $\SI{10}{\volt}$.
 A fonte dependente fornece a corrente $g v_C$, com
-$g=\SI{0.5}{\milli\siemens}$. Determine $R_{\mathrm{eq}}$, $\tau$ e $v_C(t)$.
+$g=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$. Determine $R_{\mathrm{eq}}$, $\tau$ e $v_C(t)$.
 
 \circuitoqq{%
 \begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
@@ -49,8 +49,8 @@ $g=\SI{0.5}{\milli\siemens}$. Determine $R_{\mathrm{eq}}$, $\tau$ e $v_C(t)$.
 \resposta{$R_{\mathrm{eq}}=\SI{1}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
 $v_C(t)=10e^{-10t}\ \si{\volt}$}
 \resolucao{Como a fonte dependente permanece ativa,
-$G_{\mathrm{eq}}=1/R+g=\SI{0.5}{\milli\siemens}+
-\SI{0.5}{\milli\siemens}=\SI{1}{\milli\siemens}$. Logo
+$G_{\mathrm{eq}}=1/R+g=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}+
+\SI{0.5}{\milli\ensuremath{\mathrm{S}}}=\SI{1}{\milli\ensuremath{\mathrm{S}}}$. Logo
 $R_{\mathrm{eq}}=\SI{1}{\kilo\ohm}$ e
 $\tau=R_{\mathrm{eq}}C=\SI{0.10}{\second}$. Como não há fonte independente e
 o valor final é zero, $v_C(t)=10e^{-t/\tau}=10e^{-10t}\,\si{\volt}$.}
