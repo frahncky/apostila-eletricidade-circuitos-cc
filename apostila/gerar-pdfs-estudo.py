@@ -116,7 +116,9 @@ def main():
     for f,n in CH:
         if n is not None:z.append(f'\n\\setcounter{{section}}{{{n}}}\n')
         p=B/f;z.append(expand(p.read_text(encoding='utf-8'),p.parent,(p.resolve(),)))
-    s=''.join(z);q,qs=filt(s,'q');r,rs=filt(s,'r')
+    s=''.join(z)
+    s=re.sub(r'\\SI\{([^{}]+)\}\{\\month\}',r'\1 meses',s)
+    q,qs=filt(s,'q');r,rs=filt(s,'r')
     (B/'gerado-questoes.tex').write_text('% Gerado automaticamente. Nao editar.\n'+q,encoding='utf-8')
     (B/'gerado-resolucoes.tex').write_text('% Gerado automaticamente. Nao editar.\n'+r,encoding='utf-8')
     print('questoes',qs);print('resolucoes',rs)
