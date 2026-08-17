@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Revisão linguística conservadora dos fontes LaTeX da apostila.
 
-O script aplica apenas substituições editoriais de alta confiança. Ele não altera
-fórmulas, valores numéricos, circuitos, níveis de dificuldade nem a estrutura dos
-ambientes LaTeX. É idempotente: executá-lo novamente não produz novas mudanças.
+O script aplica substituições editoriais de alta confiança e normaliza texto
+acentuado usado dentro de expressões matemáticas. Não altera fórmulas, valores
+numéricos, circuitos, níveis de dificuldade nem a estrutura dos ambientes LaTeX.
+É idempotente: executá-lo novamente não produz novas mudanças.
 """
 from pathlib import Path
+import re
 
 BASE = Path(__file__).resolve().parent
 EXCLUIR = {"gerado-questoes.tex", "gerado-resolucoes.tex"}
+ACENTOS = set("áéíóúâêôãõàçÁÉÍÓÚÂÊÔÃÕÀÇ")
 
 # Substituições globais seguras e de padronização técnico-didática.
 SUBSTITUICOES = [
@@ -22,6 +25,9 @@ SUBSTITUICOES = [
     ("resistores série", "resistores em série"),
     ("resistência série", "resistência em série"),
     ("resistências série", "resistências em série"),
+    ("resistência em série equivalente", "resistência equivalente em série"),
+    ("resistência em série efetiva", "resistência efetiva em série"),
+    ("resistor em série mínimo", "resistor mínimo em série"),
     ("estágio série RLC", "estágio RLC em série"),
     ("No série,", "No circuito RLC em série,"),
     ("No paralelo,", "No circuito RLC em paralelo,"),
@@ -30,11 +36,14 @@ SUBSTITUICOES = [
     ("uma vez achado", "uma vez obtido"),
     ("refazer as contas", "refazer os cálculos"),
     ("Confere.", "Resultado consistente."),
+    ("Qual a ", "Qual é a "),
+    ("Qual o ", "Qual é o "),
+    ("qual a ", "qual é a "),
+    ("qual o ", "qual é o "),
     ("\\gabarito[11.", "\\gabarito[12."),
 ]
 
-# Correções contextuais. Mantidas como correspondências exatas para evitar
-# reescritas indiscriminadas em trechos com significado técnico diferente.
+# Correções contextuais. Correspondências exatas evitam reescritas indevidas.
 SUBSTITUICOES_EXATAS = [
     (
         "a carga \"puxa\" a tensão para baixo. Divisores resistivos só",
@@ -132,6 +141,10 @@ SUBSTITUICOES_EXATAS = [
         "quanto mais larga a área, mais estável ele é.",
         "quanto maior a área do ciclo, maior é sua resistência à desmagnetização.",
     ),
+    (
+        "A numeração é mantida para permitir consulta direta ao PDF de questões e gabarito e à apostila completa.",
+        "A numeração é mantida para permitir a consulta direta tanto ao PDF de questões e gabarito quanto à apostila completa.",
+    ),
 ]
 
 # Trechos específicos do capítulo de transitórios que exigem reescrita sintática.
@@ -155,6 +168,35 @@ SUBSTITUICOES_CAP11 = [
 ]
 
 
+def tem_acento(texto: str) -> bool:
+    return any(c in ACENTOS for c in texto)
+
+
+def normalizar_texto_em_matematica(texto: str) -> tuple[str, int]:
+    """Usa \text{...} para palavras acentuadas em índices/\mathrm matemáticos."""
+    alteracoes = 0
+
+    def indice(match):
+        nonlocal alteracoes
+        conteudo = match.group(2)
+        if tem_acento(conteudo) and "\\" not in conteudo:
+            alteracoes += 1
+            return match.group(1) + "{\\text{" + conteudo + "}}"
+        return match.group(0)
+
+    def roman(match):
+        nonlocal alteracoes
+        conteudo = match.group(1)
+        if tem_acento(conteudo) and "\\" not in conteudo:
+            alteracoes += 1
+            return "\\text{" + conteudo + "}"
+        return match.group(0)
+
+    texto = re.sub(r"([_^])\{([^{}]+)\}", indice, texto)
+    texto = re.sub(r"\\mathrm\{([^{}]+)\}", roman, texto)
+    return texto, alteracoes
+
+
 def revisar_texto(texto: str) -> tuple[str, int]:
     alteracoes = 0
     for antigo, novo in SUBSTITUICOES + SUBSTITUICOES_EXATAS + SUBSTITUICOES_CAP11:
@@ -162,6 +204,8 @@ def revisar_texto(texto: str) -> tuple[str, int]:
         if n:
             texto = texto.replace(antigo, novo)
             alteracoes += n
+    texto, n_math = normalizar_texto_em_matematica(texto)
+    alteracoes += n_math
     return texto, alteracoes
 
 
