@@ -15,6 +15,22 @@
 \fvNodalOrigCircuitCount=0
 \let\fvNodalOrigCircuitoOriginal\circuitoq
 
+% A questao 722 e a sexta figura do corpo principal. Para ela, o desenho e
+% renderizado inline, sem o ambiente figure[H]. Isso evita que a figura do
+% superno desapareca em determinadas quebras de pagina dentro do ambiente
+% questao (que internamente e uma list), mas preserva largura, legenda e label.
+\newcommand{\fvNodalCircuitoInline}[1]{%
+  \par\medskip
+  \begin{center}
+    \begin{adjustbox}{max width=.96\linewidth}
+      #1
+    \end{adjustbox}%
+    \captionof{figure}{Circuito da questão \thequestao.}%
+    \label{fig:q\thequestao}%
+  \end{center}
+  \par\smallskip
+}
+
 % O capitulo original possui seis chamadas de \circuitoq antes do banco.
 % O contador e global porque cada ambiente questao cria um grupo TeX.
 % Depois dessas seis figuras, o wrapper apenas repassa o circuito recebido.
@@ -29,7 +45,7 @@
   \or \fvNodalOrigCircuitoOriginal{\fvNodalOrigThree}%
   \or \fvNodalOrigCircuitoOriginal{\fvNodalOrigFour}%
   \or \fvNodalOrigCircuitoOriginal{\fvNodalOrigFive}%
-  \or \fvNodalOrigCircuitoOriginal{\fvNodalOrigSix}%
+  \or \fvNodalCircuitoInline{\fvNodalOrigSix}% Q722
   \else
     \fvNodalOrigCircuitoOriginal{#1}%
   \fi}
