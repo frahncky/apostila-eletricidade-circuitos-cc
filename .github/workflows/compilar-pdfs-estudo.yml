@@ -9,6 +9,7 @@ on:
       - '!apostila/gerado-resolucoes.tex'
       - 'apostila/**/*.sty'
       - 'apostila/gerar-pdfs-estudo.py'
+      - 'apostila/revisar-portugues.py'
       - '.github/workflows/compilar-pdfs-estudo.yml'
   workflow_dispatch:
 
@@ -22,14 +23,18 @@ jobs:
       - name: Baixar repositório
         uses: actions/checkout@v7
 
+      - name: Revisar português e padronização editorial
+        run: python3 apostila/revisar-portugues.py
+
       - name: Gerar fontes filtradas
         run: python3 apostila/gerar-pdfs-estudo.py
 
-      - name: Compilar os dois PDFs
+      - name: Compilar apostila e PDFs de estudo
         uses: xu-cheng/latex-action@v4
         with:
           working_directory: apostila
           root_file: |
+            Livro.tex
             Questoes-Gabarito.tex
             Resolucoes.tex
           texlive_version: 2026
@@ -39,8 +44,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test -s apostila/Livro.pdf
           test -s apostila/Questoes-Gabarito.pdf
           test -s apostila/Resolucoes.pdf
+          test "$(head -c 4 apostila/Livro.pdf)" = "%PDF"
           test "$(head -c 4 apostila/Questoes-Gabarito.pdf)" = "%PDF"
           test "$(head -c 4 apostila/Resolucoes.pdf)" = "%PDF"
           test -s apostila/gerado-questoes.tex
@@ -54,20 +61,22 @@ jobs:
         with:
           name: apostila-cc-estudo
           path: |
+            apostila/Livro.pdf
             pdf/Apostila-CC-Questoes-Gabarito.pdf
             pdf/Apostila-CC-Resolucoes.pdf
 
-      - name: Atualizar fontes para Overleaf e PDFs versionados
+      - name: Atualizar fontes revisados, Overleaf e PDFs versionados
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add apostila/gerado-questoes.tex apostila/gerado-resolucoes.tex \
+          find apostila -type f \( -name '*.tex' -o -name '*.sty' \) -print0 | xargs -0 git add --
+          git add apostila/revisar-portugues.py \
                   pdf/Apostila-CC-Questoes-Gabarito.pdf pdf/Apostila-CC-Resolucoes.pdf
           if git diff --cached --quiet; then
-            echo "Fontes do Overleaf e PDFs já estão atualizados."
+            echo "Fontes revisados e PDFs já estão atualizados."
           else
-            git commit -m "atualiza fontes Overleaf e PDFs de estudo"
+            git commit -m "revisa português e atualiza PDFs de estudo"
             git push
           fi
