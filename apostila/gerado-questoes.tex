@@ -13488,12 +13488,14 @@ $v_C\ge\SI{3}{\volt}$ e exige que isso ocorra em no máximo
 $\SI{20}{\milli\second}$.
 
 \circuitoqq{
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.90,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{5}{\volt}$}] (0,3)
-      to[R,l={$R_s=\SI{1}{\kilo\ohm}$}] (2.3,3)
-      to[switch,l={fecha em $t=0$}] (3.8,3) -- (6.5,3) coordinate(a);
-\draw (a) to[R,l={$R_L=\SI{9}{\kilo\ohm}$}] (6.5,0) -- (0,0);
-\draw (a) -- (8.5,3) to[C,l={$C$},v^>={$v_C$}] (8.5,0) -- (6.5,0);
+      to[R,l={$R_s=\SI{1}{\kilo\ohm}$}] (2.5,3)
+      to[switch] (4.3,3) -- (6.8,3) coordinate(a);
+\node[anchor=south] at (3.4,3.30) {fecha em $t=0$};
+\draw (a) to[R,l_={$R_L=\SI{9}{\kilo\ohm}$}] (6.8,0) -- (0,0);
+\draw (a) -- (9.2,3) to[C,v^>={$v_C$}] (9.2,0) -- (6.8,0);
+\node[anchor=east] at (8.95,1.5) {$C$};
 \end{circuitikz}}{Entrada RC carregada por uma fonte com resistência interna e carga finita.}
 
 \begin{itensq}
@@ -13518,11 +13520,13 @@ $R_b$ deve reduzir a tensão para no máximo $\SI{50}{\volt}$ em
 $\SI{60}{\second}$. Despreze outras cargas.
 
 \circuitoqq{
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.94,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{325}{\volt}$}] (0,3)
-      to[switch,l={desliga em $t=0$}] (1.8,3) -- (5,3) coordinate(a);
-\draw (a) to[C,l={$C=\SI{470}{\micro\farad}$},v^>={$v_C$}] (5,0) -- (0,0);
-\draw (a) -- (7.2,3) to[R,l={$R_b$}] (7.2,0) -- (5,0);
+      to[switch] (2.0,3) -- (5.2,3) coordinate(a);
+\node[anchor=south] at (1.0,3.30) {desliga em $t=0$};
+\draw (a) to[C,v^>={$v_C$}] (5.2,0) -- (0,0);
+\node[anchor=east] at (4.95,1.5) {$C=\SI{470}{\micro\farad}$};
+\draw (a) -- (7.8,3) to[R,l_={$R_b$}] (7.8,0) -- (5.2,0);
 \end{circuitikz}}{Resistor de descarga de um barramento capacitivo.}
 
 \begin{itensq}
@@ -13548,13 +13552,15 @@ especificação. Determine $L$, $R$, o sobressinal percentual e o instante do
 primeiro pico.
 
 \circuitoqq{
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.90,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$V_su(t)$}] (0,3)
-      to[switch,l={fecha em $t=0$}] (1.5,3)
-      to[R,l={$R$}] (3.3,3)
-      to[L,l={$L$}] (5.3,3)
-      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (7.5,3)
-      -- (7.5,0) -- (0,0);
+      to[switch] (1.8,3)
+      to[R,l={$R$}] (4.0,3)
+      to[L,l={$L$}] (6.5,3)
+      to[C,v^>={$v_C$}] (9.0,3)
+      -- (9.0,0) -- (0,0);
+\node[anchor=south] at (0.9,3.30) {fecha em $t=0$};
+\node[anchor=south] at (7.75,3.30) {$C=\SI{100}{\micro\farad}$};
 \end{circuitikz}}{Projeto de um circuito RLC em série a partir de especificações transitórias.}
 
 \resposta{$\omega_0=\SI{200}{\radian\per\second}$;
@@ -13571,12 +13577,15 @@ iniciais nulas, obtenha as equações de estado em $v_1$ e $v_2$, determine os p
 naturais e encontre $v_2(t)$.
 
 \circuitoqq{
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) to[american voltage source,l_={$10u(t)\,\si{\volt}$}] (0,3)
-      to[R,l={$R_1=\SI{1}{\kilo\ohm}$}] (3,3) coordinate(a)
-      to[R,l={$R_2=\SI{2}{\kilo\ohm}$}] (6,3) coordinate(b);
-\draw (a) to[C,l={$C_1=\SI{100}{\micro\farad}$},v^>={$v_1$}] (3,0);
-\draw (b) to[C,l={$C_2=\SI{50}{\micro\farad}$},v^>={$v_2$}] (6,0) -- (0,0);
+\begin{circuitikz}[scale=0.94,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) to[american voltage source] (0,3)
+      to[R,l={$R_1=\SI{1}{\kilo\ohm}$}] (3.2,3) coordinate(a)
+      to[R,l={$R_2=\SI{2}{\kilo\ohm}$}] (6.5,3) coordinate(b);
+\node[anchor=east] at (-0.25,1.5) {$10u(t)\,\si{\volt}$};
+\draw (a) to[C,v^>={$v_1$}] (3.2,0);
+\node[anchor=east] at (2.95,1.5) {$C_1=\SI{100}{\micro\farad}$};
+\draw (b) to[C,v^>={$v_2$}] (6.5,0) -- (0,0);
+\node[anchor=east] at (6.25,1.5) {$C_2=\SI{50}{\micro\farad}$};
 \end{circuitikz}}{Rede RC de segunda ordem com dois elementos armazenadores do mesmo tipo.}
 
 \resposta{$\dot v_1=100u(t)-15v_1+5v_2$;
@@ -13593,11 +13602,15 @@ resposta completa $v(t)$, classifique o amortecimento e encontre o primeiro pico
 negativo da tensão.
 
 \circuitoqq{
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) to[american current source,l_={$I_s:\ 2\,\mathrm{A}\to1\,\mathrm{A}$}] (0,3) -- (6.5,3);
-\draw (2.2,3) to[R,l={$R=\SI{20}{\ohm}$}] (2.2,0);
-\draw (4.3,3) to[C,l={$C=\SI{500}{\micro\farad}$},v^>={$v$}] (4.3,0);
-\draw (6.5,3) to[L,l={$L=\SI{0.2}{\henry}$},i>^={$i_L$}] (6.5,0) -- (0,0);
+\begin{circuitikz}[scale=0.94,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) to[american current source] (0,3) -- (7.5,3);
+\node[anchor=east,align=right] at (-0.25,1.5) {$I_s$\\$2\,\mathrm{A}\to1\,\mathrm{A}$};
+\draw (2.3,3) to[R] (2.3,0);
+\node[anchor=east] at (2.05,1.5) {$R=\SI{20}{\ohm}$};
+\draw (4.9,3) to[C,v^>={$v$}] (4.9,0);
+\node[anchor=east] at (4.65,1.5) {$C=\SI{500}{\micro\farad}$};
+\draw (7.5,3) to[L,i>^={$i_L$}] (7.5,0) -- (0,0);
+\node[anchor=east] at (7.25,1.5) {$L=\SI{0.2}{\henry}$};
 \end{circuitikz}}{RLC em paralelo excitado por uma mudança de nível da fonte de corrente.}
 
 \resposta{Subamortecida;
