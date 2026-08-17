@@ -108,7 +108,7 @@ $t>\tau\ln100\approx4{,}605\tau=\SI{0.461}{\second}$.}
 
 \begin{questao}[3]{}
 Para $t<0$, a fonte de corrente de $\SI{2}{\ampere}$ permaneceu conectada por
-muito tempo ao RLC paralelo. Em $t=0$ a chave abre e a fonte é removida. Determine
+muito tempo ao RLC em paralelo. Em $t=0$ a chave abre e a fonte é removida. Determine
 o tipo de resposta natural e obtenha $v(t)$ para $t>0$, considerando a polaridade
 indicada.
 
@@ -119,13 +119,13 @@ indicada.
 \draw (2.5,3) to[R,l={$R=\SI{10}{\ohm}$}] (2.5,0);
 \draw (4.5,3) to[C,l={$C=\SI{200}{\micro\farad}$},v^>={$v$}] (4.5,0);
 \draw (6.5,3) to[L,l={$L=\SI{50}{\milli\henry}$},i>^={$i_L$}] (6.5,0) -- (0,0);
-\end{circuitikz}}{Resposta natural de um RLC paralelo com energia inicialmente no indutor.}
+\end{circuitikz}}{Resposta natural de um circuito RLC em paralelo com energia inicialmente no indutor.}
 
 \resposta{Subamortecida;
 $v(t)\approx-51{,}64e^{-250t}\sin(193{,}65t)\ \si{\volt}$}
 \resolucao{Antes da abertura, em regime CC, o capacitor é aberto e o indutor é
 curto. Assim $v(0^-)=0$ e $i_L(0^-)=\SI{2}{\ampere}$; por continuidade,
-$v(0^+)=0$ e $i_L(0^+)=\SI{2}{\ampere}$. Para o RLC paralelo,
+$v(0^+)=0$ e $i_L(0^+)=\SI{2}{\ampere}$. Para o RLC em paralelo,
 \[
 \alpha=\frac{1}{2RC}=\SI{250}{\per\second},\qquad
 \omega_0=\frac{1}{\sqrt{LC}}\approx\SI{316.23}{\radian\per\second},
@@ -151,7 +151,7 @@ capacitor.
       to[L,l={$L=\SI{100}{\milli\henry}$}] (5.5,3)
       to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (7.5,3)
       -- (7.5,0) -- (0,0);
-\end{circuitikz}}{Resposta ao degrau de um RLC série subamortecido.}
+\end{circuitikz}}{Resposta ao degrau de um circuito RLC em série subamortecido.}
 
 \resposta{$v_C(t)=10\left[1-e^{-100t}\left(\cos300t+\frac13\sin300t\right)\right]\,\si{\volt}$;
 $v_{C,\mathrm{pico}}\approx\SI{13.51}{\volt}$ em $t_p\approx\SI{10.47}{\milli\second}$}
@@ -171,7 +171,7 @@ $v_C(t_p)=10[1+e^{-100t_p}]\approx\SI{13.51}{\volt}$.}
 \end{questao}
 
 \begin{questao}[3]{}
-Em laboratório, mediu-se a corrente natural do RLC série mostrado. A distância
+Em laboratório, mediu-se a corrente natural do RLC em série mostrado. A distância
 entre picos consecutivos é aproximadamente $T_d=\SI{8}{\milli\second}$ e a
 envoltória cai à metade a cada $\SI{16}{\milli\second}$. Sabendo que
 $R=\SI{8}{\ohm}$, estime $\alpha$, $\omega_d$, $L$ e $C$.
@@ -182,7 +182,7 @@ $R=\SI{8}{\ohm}$, estime $\alpha$, $\omega_d$, $L$ e $C$.
       to[L,l={$L$}] (4,0)
       to[C,l={$C$}] (6,0) -- (6,-2) -- (0,-2) -- (0,0);
 \draw[->] (1.2,0.45) -- (2.3,0.45) node[midway,above] {$i(t)$};
-\end{circuitikz}}{RLC série identificado a partir de uma oscilação medida.}
+\end{circuitikz}}{RLC em série identificado a partir de uma oscilação medida.}
 
 \begin{figure}[H]
 \centering
@@ -209,7 +209,7 @@ $\SI{16}{\milli\second}$,
 \alpha=\frac{\ln2}{0{,}016}\approx\SI{43.3}{\per\second}.
 \]
 O período amortecido fornece
-$\omega_d=2\pi/T_d\approx\SI{785.4}{\radian\per\second}$. Para RLC série,
+$\omega_d=2\pi/T_d\approx\SI{785.4}{\radian\per\second}$. Para RLC em série,
 $\alpha=R/(2L)$, então
 $L=R/(2\alpha)\approx\SI{92.3}{\milli\henry}$. Além disso,
 $\omega_0=\sqrt{\omega_d^2+\alpha^2}\approx\SI{786.6}{\radian\per\second}$ e
