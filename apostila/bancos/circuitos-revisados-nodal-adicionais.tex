@@ -1,0 +1,74 @@
+% =====================================================================
+% ANALISE NODAL --- CORRECOES ADICIONAIS DE TOPOLOGIA E SOBREPOSICAO
+% Somente desenhos. Enunciados, respostas e resolucoes permanecem.
+% =====================================================================
+
+% N2/8 --- resistor de 6 ohms e fonte de 1 A em PARALELO entre V1 e V2.
+% A revisao anterior havia separado visualmente os elementos colocando-os
+% em serie; aqui a topologia correta do enunciado/resolucao e restaurada.
+\def\fvNodalNtwoEightParaleloRevisada{%
+\begin{circuitikz}[american,scale=.76,transform shape,line width=.8pt]
+  \coordinate (g) at (2.2,0);
+  \coordinate (n1) at (2.2,4.6);
+  \coordinate (n2) at (9.0,4.6);
+  \coordinate (p1) at (3.2,2.55);
+  \coordinate (p2) at (8.0,2.55);
+  \draw (0,0) to[isource,l^={$\SI{5}{\ampere}$}] (0,4.6) -- (n1);
+  \draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (g);
+  \draw (n1) to[R,l^={$\SI{6}{\ohm}$}] (n2);
+  \draw (n1) -- (p1) to[isource,l_={$\SI{1}{\ampere}$}] (p2) -- (n2);
+  \draw (n2) to[R,l={$\SI{3}{\ohm}$}] (9.0,0) -- (g) -- (0,0);
+  \fill (n1) circle (1.2pt);
+  \fill (n2) circle (1.2pt);
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.78)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.78)$) {$V_2$};
+  \node[ground] at(g){};
+\end{circuitikz}}
+
+% N3/12 --- resistor de 10 ohms e fonte dependente 0,05 V2 em paralelo.
+% No desenho original os dois componentes ocupavam exatamente o mesmo ramo.
+\def\fvNodalNthreeTwelveRevisada{%
+\begin{circuitikz}[american,scale=.76,transform shape,line width=.8pt]
+  \coordinate (g) at (2.2,0);
+  \coordinate (n1) at (2.2,4.6);
+  \coordinate (n2) at (8.4,4.6);
+  \coordinate (p1) at (3.2,2.5);
+  \coordinate (p2) at (7.4,2.5);
+  \draw (0,0) to[isource,l^={$\SI{5}{\ampere}$}] (0,4.6) -- (n1);
+  \draw (n1) to[R,l_={$\SI{5}{\ohm}$}] (g);
+  \draw (n1) to[R,l^={$\SI{10}{\ohm}$}] (n2);
+  \draw (n1) -- (p1) to[cisource,l_={$0{,}05V_2$}] (p2) -- (n2);
+  \draw (n2) to[R,l={$\SI{10}{\ohm}$}] (8.4,0) -- (g) -- (0,0);
+  \fill (n1) circle (1.2pt);
+  \fill (n2) circle (1.2pt);
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.78)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.78)$) {$V_2$};
+  \node[ground] at(g){};
+\end{circuitikz}}
+
+% N4/9 --- ponte equilibrada com cinco resistores geometricamente separados.
+% Rb, R2 e R4 ocupavam a mesma vertical no banco original, gerando forte
+% sobreposicao visual e ambiguidade de conexao.
+\def\fvNodalNfourNineRevisada{%
+\begin{circuitikz}[american,scale=.72,transform shape,line width=.8pt]
+  \coordinate (g0) at (0,0);
+  \coordinate (g)  at (6.0,0);
+  \coordinate (gr) at (12.3,4.6);
+  \coordinate (n1) at (2.5,4.6);
+  \coordinate (n2) at (7.6,7.2);
+  \coordinate (n3) at (7.6,2.0);
+  \draw (g0) to[isource,l^={$\SI{6}{\ampere}$}] (0,4.6) -- (n1);
+  \draw (n1) to[R,l^={$R_1=\SI{4}{\ohm}$}] (n2);
+  \draw (n1) to[R,l_={$R_3=\SI{6}{\ohm}$}] (n3);
+  \draw (n2) to[R,l_={$R_b=\SI{5}{\ohm}$}] (n3);
+  \draw (n2) to[R,l^={$R_2=\SI{8}{\ohm}$}] (gr);
+  \draw (n3) to[R,l_={$R_4=\SI{12}{\ohm}$}] (gr);
+  \draw (gr) -- (12.3,0) -- (g) -- (g0);
+  \fill (n1) circle (1.2pt);
+  \fill (n2) circle (1.2pt);
+  \fill (n3) circle (1.2pt);
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n1)+(0,.80)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n2)+(0,.70)$) {$V_2$};
+  \node[Vcol,fill=white,inner sep=1.8pt] at ($(n3)+(-.90,0)$) {$V_3$};
+  \node[ground] at(g){};
+\end{circuitikz}}

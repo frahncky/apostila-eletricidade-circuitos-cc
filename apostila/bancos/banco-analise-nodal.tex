@@ -16,6 +16,7 @@ Fontes controladas são um tópico adicional importante, mas não substituem os
 demais conteúdos da análise nodal.
 \end{atencao}
 
+\input{bancos/circuitos-revisados-nodal-adicionais.tex}
 \input{bancos/banco-analise-nodal-n1.tex}
 
 % ---------------------------------------------------------------------
@@ -39,7 +40,7 @@ demais conteúdos da análise nodal.
   \or \fvCircuitoNodalNtwoOriginal{\fvNodalQ735Revisada}%   % N2/5
   \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoSix}%
   \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoSeven}%
-  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoEight}%
+  \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoEightParaleloRevisada}% % N2/8
   \or \fvCircuitoNodalNtwoOriginal{\fvNodalQ739Revisada}%   % N2/9
   \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoTen}%
   \or \fvCircuitoNodalNtwoOriginal{\fvNodalNtwoEleven}%
@@ -53,7 +54,7 @@ demais conteúdos da análise nodal.
 
 % ---------------------------------------------------------------------
 % N3 --- 12 circuitos.
-% As tres questoes criticas sao N3/7, N3/8 e N3/9.
+% Correcoes locais: N3/7, N3/8, N3/9 e N3/12.
 % ---------------------------------------------------------------------
 \begingroup
 \newcount\fvNodalNThreeCircuitCount
@@ -67,14 +68,16 @@ demais conteúdos da análise nodal.
     \fvCircuitoNodalNthreeOriginal{\fvNodalQ751Revisada}%
   \else\ifnum\fvNodalNThreeCircuitCount=9\relax
     \fvCircuitoNodalNthreeOriginal{\fvNodalQ752Revisada}%
+  \else\ifnum\fvNodalNThreeCircuitCount=12\relax
+    \fvCircuitoNodalNthreeOriginal{\fvNodalNthreeTwelveRevisada}%
   \else
     \fvCircuitoNodalNthreeOriginal{#1}%
-  \fi\fi\fi}
+  \fi\fi\fi\fi}
 \input{bancos/banco-analise-nodal-n3-visual.tex}
 \endgroup
 
 % ---------------------------------------------------------------------
-% N4 --- correcoes visuais locais das portas de Thevenin e da escada.
+% N4 --- correcoes visuais locais das portas, escada e ponte.
 % ---------------------------------------------------------------------
 \begingroup
 \newcount\fvNodalNFourCircuitCount
@@ -88,8 +91,10 @@ demais conteúdos da análise nodal.
     \fvCircuitoNodalNfourOriginal{\fvNodalEscadaQuatroRevisada}%
   \else\ifnum\fvNodalNFourCircuitCount=8\relax
     \fvCircuitoNodalNfourOriginal{\fvNodalPortaDependenteRevisada}%
+  \else\ifnum\fvNodalNFourCircuitCount=9\relax
+    \fvCircuitoNodalNfourOriginal{\fvNodalNfourNineRevisada}%
   \else
     \fvCircuitoNodalNfourOriginal{#1}%
-  \fi\fi\fi}
+  \fi\fi\fi\fi}
 \input{bancos/banco-analise-nodal-n4-visual.tex}
 \endgroup
