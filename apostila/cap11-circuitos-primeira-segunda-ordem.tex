@@ -26,7 +26,16 @@ Para circuitos RC, $\tau=R_{\mathrm{eq}}C$ e a tensão do capacitor é contínua
 $v_C(0^+)=v_C(0^-)$. Para circuitos RL, $\tau=L/R_{\mathrm{eq}}$ e a corrente do
 indutor é contínua: $i_L(0^+)=i_L(0^-)$. Para obter $R_{\mathrm{eq}}$, observe a
 resistência vista pelo elemento armazenador com as fontes independentes
-suprimidas; fontes dependentes, quando existirem, permanecem ativas.
+suprimidas.
+
+\textbf{Fontes dependentes:} fontes controladas \textbf{não são suprimidas} na
+análise da constante de tempo. Quando a rede contém VCVS, CCVS, VCCS ou CCCS, em
+geral é mais seguro remover temporariamente o elemento armazenador, aplicar uma
+\textbf{fonte-teste} $v_t$ ou $i_t$ em seus terminais e calcular
+$R_{\mathrm{eq}}=v_t/i_t$. A fonte dependente permanece ativa e sua variável de
+controle deve ser expressa em função da grandeza-teste. Dependendo do ganho e da
+polaridade da fonte controlada, ela pode aumentar ou reduzir o amortecimento,
+produzir resistência equivalente negativa ou até tornar a resposta instável.
 
 \textbf{Segunda ordem:} dois elementos independentes de armazenamento podem
 produzir uma resposta de segunda ordem. Eles não precisam ser necessariamente um
@@ -52,12 +61,15 @@ $\alpha=1/(2RC)$.
 \legendaniveis
 
 % Os bancos são separados por nível para manter o capítulo organizado.
-% N1 permanece conceitual; N2--N4 recebem uma trilha adicional com muitos
-% circuitos, chaveamentos, formas de onda, projeto e diagnóstico.
+% N1 permanece conceitual; N2--N4 recebem trilhas adicionais com muitos
+% circuitos, chaveamentos, formas de onda, fontes dependentes, projeto e diagnóstico.
 \input{bancos/cap11-transitorios-n1.tex}
 \input{bancos/cap11-transitorios-n2.tex}
 \input{bancos/cap11-transitorios-graficos-n2.tex}
+\input{bancos/cap11-transitorios-dependentes-n2.tex}
 \input{bancos/cap11-transitorios-n3.tex}
 \input{bancos/cap11-transitorios-graficos-n3.tex}
+\input{bancos/cap11-transitorios-dependentes-n3.tex}
 \input{bancos/cap11-transitorios-n4.tex}
 \input{bancos/cap11-transitorios-graficos-n4.tex}
+\input{bancos/cap11-transitorios-dependentes-n4.tex}
