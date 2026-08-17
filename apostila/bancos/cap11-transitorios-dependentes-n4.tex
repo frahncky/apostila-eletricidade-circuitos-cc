@@ -1,0 +1,172 @@
+% =====================================================================
+% CAP. 11 - NIVEL 4 - FONTES DEPENDENTES, PROJETO E ESTABILIDADE
+% =====================================================================
+\blocodesafio
+
+\begin{questao}[4]{}
+O circuito RC natural abaixo contém uma VCCS orientada para cima, de valor $g v_C$.
+O capacitor está inicialmente carregado. Determine o valor crítico de $g$ que
+separa decaimento, resposta constante e crescimento exponencial. Em seguida,
+classifique os casos $g=\SI{0.4}{\milli\siemens}$,
+$\SI{0.5}{\milli\siemens}$ e $\SI{0.6}{\milli\siemens}$ para
+$R=\SI{2}{\kilo\ohm}$ e $C=\SI{100}{\micro\farad}$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6,0);
+\draw (0,3) -- (6,3);
+\draw (1.8,3) to[R,l={$R=\SI{2}{\kilo\ohm}$}] (1.8,0);
+\draw (3.8,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (3.8,0);
+\draw (6,0) to[american controlled current source,l_={$g v_C$}] (6,3);
+\end{circuitikz}}{RC com VCCS capaz de reduzir, anular ou inverter o amortecimento.}
+
+\resposta{$g_{\mathrm{crit}}=1/R=\SI{0.5}{\milli\siemens}$; para
+\SI{0.4}{\milli\siemens}: estável, $\tau=\SI{1}{\second}$; para
+\SI{0.5}{\milli\siemens}: polo em zero; para \SI{0.6}{\milli\siemens}:
+instável, crescimento com constante de tempo de magnitude \SI{1}{\second}}
+\resolucao{Pela KCL,
+\[
+C\dot v_C+\frac{v_C}{R}-gv_C=0
+\quad\Rightarrow\quad
+\dot v_C+\frac{1/R-g}{C}v_C=0.
+\]
+O polo é $s=-(1/R-g)/C$. O limite ocorre para $g=1/R$, isto é,
+$g_{\mathrm{crit}}=\SI{0.5}{\milli\siemens}$. Para $g=0{,}4\,\mathrm{mS}$,
+$1/R-g=0{,}1\,\mathrm{mS}$ e
+$\tau=C/(1/R-g)=\SI{1}{\second}$: a resposta decai. Para
+$g=0{,}5\,\mathrm{mS}$, o polo é zero e, no modelo ideal, a tensão permanece
+constante. Para $g=0{,}6\,\mathrm{mS}$, o coeficiente torna-se negativo e o polo é
+$+\SI{1}{\per\second}$, produzindo crescimento exponencial.}
+\end{questao}
+
+\begin{questao}[4]{}
+Deseja-se usar uma VCCS $g v$ para ajustar o amortecimento do RLC em paralelo
+abaixo. Determine o valor de $g$ para obter amortecimento crítico. Depois indique
+se a resposta será subamortecida ou superamortecida para valores de $g$ menores ou
+maiores que o valor calculado, supondo $g\ge0$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (8,0);
+\draw (0,3) -- (8,3);
+\draw (1.5,3) to[R,l={$R=\SI{100}{\ohm}$}] (1.5,0);
+\draw (3.7,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v$}] (3.7,0);
+\draw (5.8,3) to[L,l={$L=\SI{100}{\milli\henry}$}] (5.8,0);
+\draw (8,3) to[american controlled current source,l_={$g v$}] (8,0);
+\end{circuitikz}}{Projeto do amortecimento de um RLC paralelo usando uma VCCS.}
+
+\resposta{$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\siemens}$; abaixo desse
+valor a resposta é subamortecida; acima, superamortecida}
+\resolucao{A equação natural é
+\[
+C\ddot v+\left(\frac1R+g\right)\dot v+\frac1L v=0.
+\]
+Logo
+\[
+\alpha=\frac{1/R+g}{2C},\qquad
+\omega_0=\frac1{\sqrt{LC}}.
+\]
+Com $L=0{,}1\,\mathrm{H}$ e $C=100\,\mathrm{\mu F}$,
+$\omega_0\approx\SI{316.23}{\radian\per\second}$. Para amortecimento crítico,
+$\alpha=\omega_0$, então
+\[
+\frac1R+g=2C\omega_0
+=2(100\times10^{-6})(316{,}23)\approx\SI{63.25}{\milli\siemens}.
+\]
+Como $1/R=\SI{10}{\milli\siemens}$,
+$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\siemens}$. Reduzir $g$ reduz
+$\alpha$ e leva ao caso subamortecido; aumentar $g$ produz superamortecimento.}
+\end{questao}
+
+\begin{questao}[4]{}
+No RLC em série abaixo, a VCVS tem valor $\mu v_C$ e polaridade tal que sua tensão
+\textbf{auxilia} a tensão do capacitor na equação de malha, resultando no termo
+restaurador $(1-\mu)v_C$. Para
+$R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$, derive a equação característica e determine os
+intervalos de $\mu$ que produzem resposta subamortecida, criticamente amortecida,
+superamortecida estável, polo em zero e instabilidade.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[R,l={$R=\SI{20}{\ohm}$}] (2,0)
+      to[L,l={$L=\SI{0.1}{\henry}$},i>^={$i$}] (4.3,0)
+      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (6.5,0)
+      to[american controlled voltage source,l_={$\mu v_C$}] (8.5,0)
+      -- (8.5,-2) -- (0,-2) -- (0,0);
+\end{circuitikz}}{RLC com VCVS modificando o termo restaurador e a estabilidade.}
+
+\resposta{$s^2+200s+100000(1-\mu)=0$; subamortecida para $\mu<0{,}9$;
+crítica em $\mu=0{,}9$; superamortecida estável para $0{,}9<\mu<1$;
+polo em zero para $\mu=1$; instável para $\mu>1$}
+\resolucao{Com a polaridade indicada, a KVL é
+$L\dot i+Ri+(1-\mu)v_C=0$. Como $i=C\dot v_C$,
+\[
+LC\ddot v_C+RC\dot v_C+(1-\mu)v_C=0.
+\]
+Dividindo por $LC$:
+\[
+s^2+\frac RL s+\frac{1-\mu}{LC}=0
+=s^2+200s+100000(1-\mu)=0.
+\]
+A fronteira entre polos complexos e reais ocorre quando o discriminante é zero:
+$200^2-4\cdot100000(1-\mu)=0$, fornecendo $\mu=0{,}9$. Para
+$\mu<0{,}9$ há polos complexos conjugados com parte real negativa. Em
+$\mu=0{,}9$ há polo real duplo. Para $0{,}9<\mu<1$, os dois polos são reais e
+negativos. Em $\mu=1$, o termo constante se anula e surge um polo em zero. Para
+$\mu>1$, o produto dos polos é negativo, portanto um polo é positivo e o circuito
+é instável.}
+\end{questao}
+
+\begin{questao}[4]{}
+A rede abaixo possui dois capacitores e uma CCCS que injeta no nó $v_2$ a corrente
+$\beta i_x$, em que $i_x=v_1/R_1$. Considere
+$R_1=R_2=\SI{1}{\kilo\ohm}$ e $C_1=C_2=\SI{1}{\milli\farad}$.
+
+\circuitoqq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (7.5,0);
+\draw (0,3) coordinate(a) to[R,l={$R_2=\SI{1}{\kilo\ohm}$}] (4,3) coordinate(b);
+\draw (a) to[R,l={$R_1=\SI{1}{\kilo\ohm}$},i>^={$i_x$}] (0,0);
+\draw (a) -- (2,3) to[C,l={$C_1=\SI{1}{\milli\farad}$},v^>={$v_1$}] (2,0);
+\draw (b) to[C,l={$C_2=\SI{1}{\milli\farad}$},v^>={$v_2$}] (4,0);
+\draw (7.5,0) to[american controlled current source,l_={$\beta i_x$}] (7.5,3) -- (b);
+\end{circuitikz}}{Rede RC de segunda ordem com CCCS e possibilidade de perda de estabilidade.}
+
+\begin{itensq}
+\item Obtenha as equações de estado em $v_1$ e $v_2$.
+\item Determine a equação característica em função de $\beta$.
+\item Encontre a faixa de $\beta$ que garante estabilidade assintótica.
+\item Para $\beta=0{,}5$, $v_1(0)=\SI{1}{\volt}$ e $v_2(0)=0$, determine $v_2(t)$.
+\end{itensq}
+
+\resposta{$\dot v_1=-2v_1+v_2$;
+$\dot v_2=(1+\beta)v_1-v_2$;
+$s^2+3s+(1-\beta)=0$; estável para $\beta<1$;
+para $\beta=0{,}5$,
+$v_2(t)=\frac{1.5}{\sqrt7}\left(e^{(-3+\sqrt7)t/2}-e^{(-3-\sqrt7)t/2}\right)\ \si{\volt}$}
+\resolucao{Como $R_1C_1=R_2C_1=R_2C_2=\SI{1}{\second}$, a KCL no nó 1 fornece
+\[
+C_1\dot v_1+\frac{v_1}{R_1}+\frac{v_1-v_2}{R_2}=0
+\quad\Rightarrow\quad
+\dot v_1=-2v_1+v_2.
+\]
+No nó 2,
+\[
+C_2\dot v_2+\frac{v_2-v_1}{R_2}-\beta\frac{v_1}{R_1}=0,
+\]
+portanto $\dot v_2=(1+\beta)v_1-v_2$. A matriz de estado é
+\[
+A=\begin{bmatrix}-2&1\\1+\beta&-1\end{bmatrix},
+\]
+e
+$\det(sI-A)=s^2+3s+(1-\beta)$. Como o coeficiente de $s$ é positivo, a
+estabilidade assintótica de segunda ordem exige $1-\beta>0$, isto é,
+$\beta<1$. Para $\beta=0{,}5$, os polos são
+$s_{1,2}=(-3\pm\sqrt7)/2$. Além disso, $v_2(0)=0$ e
+$\dot v_2(0)=1{,}5\,\si{\volt\per\second}$. Logo
+$v_2=A_1e^{s_1t}+A_2e^{s_2t}$, com $A_2=-A_1$ e
+$A_1(s_1-s_2)=1{,}5$, resultando na expressão indicada.}
+\end{questao}
+
+\gabarito[Nível 4 --- fontes dependentes]
