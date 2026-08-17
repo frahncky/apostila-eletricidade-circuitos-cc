@@ -1,0 +1,60 @@
+% =====================================================================
+%  PDF de estudo - somente resolucoes comentadas
+%  Antes de compilar: python3 gerar-pdfs-estudo.py
+% =====================================================================
+\documentclass[11pt,a4paper,oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textgreek}
+\usepackage{etoolbox}
+\usepackage[left=2.2cm,right=2.2cm,top=2.4cm,bottom=2.2cm,headsep=12pt]{geometry}
+\usepackage{estilo-eletricidade}
+\usepackage{estilo-eletricidade-ajustes}
+\usepackage{siunitx}
+\DeclareSIUnit{\gauss}{G}
+\let\maxwell\relax
+\DeclareSIUnit{\maxwell}{Mx}
+\usepackage[resolucoes]{modo-estudo}
+
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[azulprof] (current page.north west) rectangle (current page.south east);
+  \fill[white] ($(current page.north west)+(0,-7.2cm)$) rectangle ($(current page.south east)+(0,4.6cm)$);
+  \begin{scope}[shift={($(current page.north west)+(2.2cm,-4.4cm)$)}]
+    \draw[white,line width=1.2pt,opacity=0.55] plot[domain=0:16,samples=200] (\x,{0.75*sin(\x*40)});
+    \foreach \x in {0,4,8,12,16}\fill[laranja,opacity=0.9] (\x,{0.75*sin(\x*40)}) circle (3.5pt);
+  \end{scope}
+  \node[anchor=north west,text=white,align=left,inner sep=0]
+    at ($(current page.north west)+(2.2cm,-1.6cm)$)
+    {\sffamily\bfseries\Huge Eletricidade Básica,\\[2mm]Circuitos Elétricos\\[2mm]e Eletromagnetismo};
+  \node[anchor=north,align=center,inner sep=0]
+    at ($(current page.north)+(0,-9.25cm)$)
+    {\sffamily\LARGE\color{azulprof}\bfseries Resoluções Comentadas\\[3mm]
+     \sffamily\large\color{cinza}Volume 1 --- Corrente Contínua};
+  \node[anchor=north] at ($(current page.north)+(0,-12.5cm)$) {
+    \begin{circuitikz}[scale=0.9,transform shape,line width=0.9pt]
+      \draw (0,0) to[battery1,l_=$\EMF$] (0,2.4) to[R,l=$R_1$,color=Rcol] (3.2,2.4)
+            to[R,l=$R_2$,color=Rcol] (3.2,0) -- (0,0);
+      \draw (3.2,2.4) -- (5.4,2.4) to[C,l=$C$] (5.4,0) -- (3.2,0);
+      \draw[->,Icol,line width=1pt] (0.8,2.75) -- (2.0,2.75) node[midway,above,font=\footnotesize\sffamily]{$I$};
+    \end{circuitikz}};
+  \node[anchor=south west,text=white,align=left,inner sep=0]
+    at ($(current page.south west)+(2.2cm,2.0cm)$)
+    {\sffamily\LARGE\bfseries Prof. Francisco Viana\\[2mm]\sffamily\normalsize 3\textsuperscript{a} Edição};
+\end{tikzpicture}
+\end{titlepage}
+
+\newpage
+\section*{Orientação de uso}
+\addcontentsline{toc}{section}{Orientação de uso}
+Este volume reúne somente as \textbf{resoluções comentadas} das questões da apostila. A numeração é mantida para permitir consulta direta ao PDF de questões e gabarito e à apostila completa.
+
+\newpage
+\renewcommand{\contentsname}{\sffamily\color{azulprof}Sumário}
+\tableofcontents
+\newpage
+
+\input{gerado-resolucoes}
+
+\end{document}
