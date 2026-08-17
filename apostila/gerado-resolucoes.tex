@@ -14482,6 +14482,44 @@ flui pelo indutor: $i_L(\infty)=\SI{3}{\ampere}$.}
 
 \gabarito[Nível 2 --- circuitos e chaveamento]
 \stepcounter{questao}
+\resposta{$R_{\mathrm{eq}}=\SI{2}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
+$v_C(\infty)=\SI{6}{\volt}$; $v_C(0{,}10\,\mathrm{s})\approx\SI{3.79}{\volt}$}
+\resolucao{A fonte dependente não é suprimida. A condutância total vista pelo
+capacitor é
+\[
+G_{\mathrm{eq}}=\frac1R+g=\SI{0.25}{\milli\ensuremath{\mathrm{S}}}+
+\SI{0.25}{\milli\ensuremath{\mathrm{S}}}=\SI{0.50}{\milli\ensuremath{\mathrm{S}}},
+\]
+logo $R_{\mathrm{eq}}=1/G_{\mathrm{eq}}=\SI{2}{\kilo\ohm}$ e
+$\tau=R_{\mathrm{eq}}C=\SI{0.10}{\second}$. Em regime permanente,
+$v_C=I_s/G_{\mathrm{eq}}=\SI{6}{\volt}$. Portanto
+$v_C(t)=6(1-e^{-t/0{,}1})$ e, em $t=\SI{0.10}{\second}$,
+$v_C\approx\SI{3.79}{\volt}$.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{eq}}=\SI{1}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
+$v_C(t)=10e^{-10t}\ \si{\volt}$}
+\resolucao{Como a fonte dependente permanece ativa,
+$G_{\mathrm{eq}}=1/R+g=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}+
+\SI{0.5}{\milli\ensuremath{\mathrm{S}}}=\SI{1}{\milli\ensuremath{\mathrm{S}}}$. Logo
+$R_{\mathrm{eq}}=\SI{1}{\kilo\ohm}$ e
+$\tau=R_{\mathrm{eq}}C=\SI{0.10}{\second}$. Como não há fonte independente e
+o valor final é zero, $v_C(t)=10e^{-t/\tau}=10e^{-10t}\,\si{\volt}$.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{eq}}=\SI{40}{\ohm}$; $\tau=\SI{5}{\milli\second}$;
+$i_L(t)=2e^{-200t}\ \si{\ampere}$}
+\resolucao{Aplicando uma tensão-teste $v_x$ aos terminais do indutor, a corrente
+no resistor é $i_x=v_x/R$. A fonte dependente injeta $\beta i_x$ no nó superior,
+logo a corrente fornecida pela fonte-teste é
+\[
+i_t=i_x-\beta i_x=(1-\beta)\frac{v_x}{R}.
+\]
+Portanto
+$R_{\mathrm{eq}}=v_x/i_t=R/(1-\beta)=20/0{,}5=\SI{40}{\ohm}$.
+Assim $\tau=L/R_{\mathrm{eq}}=0{,}2/40=\SI{5}{\milli\second}$ e
+$i_L(t)=2e^{-t/\tau}=2e^{-200t}\,\si{\ampere}$.}
+
+\gabarito[Nível 2 --- fontes dependentes]
+\stepcounter{questao}
 \resposta{$v_C\approx\SI{4.95}{\volt}$}
 \resolucao{Na primeira etapa, $\tau_1=\SI{20}{\milli\second}$ e
 $v_C(50\,\mathrm{ms})=12(1-e^{-2{,}5})\approx\SI{11.015}{\volt}$. Esse valor é a
@@ -14700,6 +14738,63 @@ C=\frac{1}{L\omega_0^2}\approx\SI{17.5}{\micro\farad}.
 
 \gabarito[Nível 3 --- análise integrada e formas de onda]
 \stepcounter{questao}
+\resposta{$R_{\mathrm{eq}}=\SI{8}{\kilo\ohm}$; $\tau=\SI{0.20}{\second}$;
+$v_C(t)=8e^{-5t}\ \si{\volt}$}
+\resolucao{Aplique uma tensão-teste $v_x$ aos terminais do capacitor. Como a VCVS
+impõe $v_b=\mu v_x$, a corrente de teste é
+\[
+i_t=\frac{v_x-v_b}{R}=\frac{(1-\mu)v_x}{R}.
+\]
+Logo
+$R_{\mathrm{eq}}=v_x/i_t=R/(1-\mu)=4\,\mathrm{k\Omega}/0{,}5=
+\SI{8}{\kilo\ohm}$. Assim
+$\tau=R_{\mathrm{eq}}C=\SI{0.20}{\second}$. Como o circuito é natural,
+$v_C(\infty)=0$ e $v_C(t)=8e^{-t/0{,}2}=8e^{-5t}\,\si{\volt}$.}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{eq}}=\SI{15}{\ohm}$; $\tau=\SI{5}{\milli\second}$;
+$i_L(t)=3e^{-200t}\ \si{\ampere}$}
+\resolucao{Com uma fonte-teste aplicada aos terminais do indutor, a queda total na
+rede é a soma da queda no resistor e da tensão da CCVS:
+\[
+v_t=Ri_x+r_mi_x=(R+r_m)i_x.
+\]
+Assim $R_{\mathrm{eq}}=R+r_m=6+9=\SI{15}{\ohm}$ e
+$\tau=L/R_{\mathrm{eq}}=0{,}075/15=\SI{5}{\milli\second}$. Portanto
+$i_L(t)=3e^{-t/\tau}=3e^{-200t}\,\si{\ampere}$.}
+\stepcounter{questao}
+\resposta{$\ddot v+10\dot v+100v=0$; subamortecida;
+$v(t)=e^{-5t}[5\cos(8{,}66t)-2{,}89\sin(8{,}66t)]\ \si{\volt}$}
+\resolucao{A KCL fornece
+$C\dot v+v/R+gv+i_L=0$. Derivando e usando $\dot i_L=v/L$:
+\[
+C\ddot v+\left(\frac1R+g\right)\dot v+\frac{1}{L}v=0.
+\]
+Com os valores dados,
+$\ddot v+10\dot v+100v=0$. Logo
+$\alpha=5\,\mathrm{s^{-1}}$ e $\omega_0=10\,\mathrm{rad/s}$, resultando em
+$\omega_d=\sqrt{100-25}=\SI{8.66}{\radian\per\second}$ e resposta subamortecida.
+Da KCL em $0^+$,
+$0{,}01\dot v(0)+5/20+0{,}05\cdot5+0=0$, portanto
+$\dot v(0)=-\SI{50}{\volt\per\second}$. Assim
+$v=e^{-5t}(A\cos8{,}66t+B\sin8{,}66t)$, com $A=5$ e
+$-5A+8{,}66B=-50$, resultando em $B\approx-2{,}89$.}
+\stepcounter{questao}
+\resposta{$v_C(t)=e^{-200t}[10\cos(244{,}95t)+8{,}17\sin(244{,}95t)]\ \si{\volt}$}
+\resolucao{A CCVS se comporta, para a equação de malha, como uma queda adicional
+$r_mi$. Logo a equação natural é
+\[
+L\ddot v_C+(R+r_m)\dot v_C+\frac1C v_C=0.
+\]
+Assim
+$\alpha=(R+r_m)/(2L)=40/0{,}2=\SI{200}{\per\second}$ e
+$\omega_0=1/\sqrt{LC}\approx\SI{316.23}{\radian\per\second}$, de modo que
+$\omega_d\approx\SI{244.95}{\radian\per\second}$. A forma é
+$v_C=e^{-200t}(A\cos\omega_dt+B\sin\omega_dt)$. Como $A=10$ e
+$i(0)=C\dot v_C(0)=0$, temos $-200(10)+244{,}95B=0$, logo
+$B\approx\SI{8.17}{\volt}$.}
+
+\gabarito[Nível 3 --- fontes dependentes]
+\stepcounter{questao}
 \resposta{$R_{\mathrm{eq}}\approx\SI{8}{\kilo\ohm}$; há cerca de \SI{3}{\kilo\ohm}
 adicionais na trajetória equivalente}
 \resolucao{$R_{\mathrm{eq}}=\tau/C=0{,}08/(\pot{10}{-6})=\SI{8}{\kilo\ohm}$.
@@ -14907,6 +15002,97 @@ $\omega_dt=\pi/3$ e $t_p\approx\SI{12.1}{\milli\second}$. Substituindo na
 resposta, $v_{\min}\approx-\SI{10.93}{\volt}$.}
 
 \gabarito[Nível 4 --- projeto, diagnóstico e síntese]
+\stepcounter{questao}
+\resposta{$g_{\mathrm{crit}}=1/R=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$; para
+\SI{0.4}{\milli\ensuremath{\mathrm{S}}}: estável, $\tau=\SI{1}{\second}$; para
+\SI{0.5}{\milli\ensuremath{\mathrm{S}}}: polo em zero; para \SI{0.6}{\milli\ensuremath{\mathrm{S}}}:
+instável, crescimento com constante de tempo de magnitude \SI{1}{\second}}
+\resolucao{Pela KCL,
+\[
+C\dot v_C+\frac{v_C}{R}-gv_C=0
+\quad\Rightarrow\quad
+\dot v_C+\frac{1/R-g}{C}v_C=0.
+\]
+O polo é $s=-(1/R-g)/C$. O limite ocorre para $g=1/R$, isto é,
+$g_{\mathrm{crit}}=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$. Para $g=0{,}4\,\mathrm{mS}$,
+$1/R-g=0{,}1\,\mathrm{mS}$ e
+$\tau=C/(1/R-g)=\SI{1}{\second}$: a resposta decai. Para
+$g=0{,}5\,\mathrm{mS}$, o polo é zero e, no modelo ideal, a tensão permanece
+constante. Para $g=0{,}6\,\mathrm{mS}$, o coeficiente torna-se negativo e o polo é
+$+\SI{1}{\per\second}$, produzindo crescimento exponencial.}
+\stepcounter{questao}
+\resposta{$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\ensuremath{\mathrm{S}}}$; abaixo desse
+valor a resposta é subamortecida; acima, superamortecida}
+\resolucao{A equação natural é
+\[
+C\ddot v+\left(\frac1R+g\right)\dot v+\frac1L v=0.
+\]
+Logo
+\[
+\alpha=\frac{1/R+g}{2C},\qquad
+\omega_0=\frac1{\sqrt{LC}}.
+\]
+Com $L=0{,}1\,\mathrm{H}$ e $C=100\,\mathrm{\mu F}$,
+$\omega_0\approx\SI{316.23}{\radian\per\second}$. Para amortecimento crítico,
+$\alpha=\omega_0$, então
+\[
+\frac1R+g=2C\omega_0
+=2(100\times10^{-6})(316{,}23)\approx\SI{63.25}{\milli\ensuremath{\mathrm{S}}}.
+\]
+Como $1/R=\SI{10}{\milli\ensuremath{\mathrm{S}}}$,
+$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\ensuremath{\mathrm{S}}}$. Reduzir $g$ reduz
+$\alpha$ e leva ao caso subamortecido; aumentar $g$ produz superamortecimento.}
+\stepcounter{questao}
+\resposta{$s^2+200s+100000(1-\mu)=0$; subamortecida para $\mu<0{,}9$;
+crítica em $\mu=0{,}9$; superamortecida estável para $0{,}9<\mu<1$;
+polo em zero para $\mu=1$; instável para $\mu>1$}
+\resolucao{Com a polaridade indicada, a KVL é
+$L\dot i+Ri+(1-\mu)v_C=0$. Como $i=C\dot v_C$,
+\[
+LC\ddot v_C+RC\dot v_C+(1-\mu)v_C=0.
+\]
+Dividindo por $LC$:
+\[
+s^2+\frac RL s+\frac{1-\mu}{LC}=0
+=s^2+200s+100000(1-\mu)=0.
+\]
+A fronteira entre polos complexos e reais ocorre quando o discriminante é zero:
+$200^2-4\cdot100000(1-\mu)=0$, fornecendo $\mu=0{,}9$. Para
+$\mu<0{,}9$ há polos complexos conjugados com parte real negativa. Em
+$\mu=0{,}9$ há polo real duplo. Para $0{,}9<\mu<1$, os dois polos são reais e
+negativos. Em $\mu=1$, o termo constante se anula e surge um polo em zero. Para
+$\mu>1$, o produto dos polos é negativo, portanto um polo é positivo e o circuito
+é instável.}
+\stepcounter{questao}
+\resposta{$\dot v_1=-2v_1+v_2$;
+$\dot v_2=(1+\beta)v_1-v_2$;
+$s^2+3s+(1-\beta)=0$; estável para $\beta<1$;
+para $\beta=0{,}5$,
+$v_2(t)=\frac{1.5}{\sqrt7}\left(e^{(-3+\sqrt7)t/2}-e^{(-3-\sqrt7)t/2}\right)\ \si{\volt}$}
+\resolucao{Como $R_1C_1=R_2C_1=R_2C_2=\SI{1}{\second}$, a KCL no nó 1 fornece
+\[
+C_1\dot v_1+\frac{v_1}{R_1}+\frac{v_1-v_2}{R_2}=0
+\quad\Rightarrow\quad
+\dot v_1=-2v_1+v_2.
+\]
+No nó 2,
+\[
+C_2\dot v_2+\frac{v_2-v_1}{R_2}-\beta\frac{v_1}{R_1}=0,
+\]
+portanto $\dot v_2=(1+\beta)v_1-v_2$. A matriz de estado é
+\[
+A=\begin{bmatrix}-2&1\\1+\beta&-1\end{bmatrix},
+\]
+e
+$\det(sI-A)=s^2+3s+(1-\beta)$. Como o coeficiente de $s$ é positivo, a
+estabilidade assintótica de segunda ordem exige $1-\beta>0$, isto é,
+$\beta<1$. Para $\beta=0{,}5$, os polos são
+$s_{1,2}=(-3\pm\sqrt7)/2$. Além disso, $v_2(0)=0$ e
+$\dot v_2(0)=1{,}5\,\si{\volt\per\second}$. Logo
+$v_2=A_1e^{s_1t}+A_2e^{s_2t}$, com $A_2=-A_1$ e
+$A_1(s_1-s_2)=1{,}5$, resultando na expressão indicada.}
+
+\gabarito[Nível 4 --- fontes dependentes]
 
 \section{Eletromagnetismo}
 

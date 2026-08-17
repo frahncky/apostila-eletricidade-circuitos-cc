@@ -12739,6 +12739,71 @@ $v(\infty)=0$; $i_L(\infty)=\SI{3}{\ampere}$}
 
 \gabarito[Nível 2 --- circuitos e chaveamento]
 
+\blocoaplicacao
+\begin{questao}[2]{}
+
+O circuito abaixo parte com o capacitor descarregado. Em $t=0$, a fonte de corrente
+independente aplica um degrau de $\SI{3}{\milli\ampere}$. A fonte dependente é uma
+VCCS de valor $g v_C$, com $g=\SI{0.25}{\milli\ensuremath{\mathrm{S}}}$. Determine a constante de
+tempo, o valor final de $v_C$ e $v_C(\SI{0.10}{\second})$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[american current source,l_={$3u(t)\,\mathrm{mA}$}] (0,3) -- (6.5,3);
+\draw (2.2,3) to[R,l={$R=\SI{4}{\kilo\ohm}$}] (2.2,0);
+\draw (4.3,3) to[C,l={$C=\SI{50}{\micro\farad}$},v^>={$v_C$}] (4.3,0);
+\draw (6.5,3) to[american controlled current source,l_={$g v_C$}] (6.5,0) -- (0,0);
+\end{circuitikz}}{Circuito RC com fonte de corrente controlada por tensão (VCCS).}
+
+\resposta{$R_{\mathrm{eq}}=\SI{2}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
+$v_C(\infty)=\SI{6}{\volt}$; $v_C(0{,}10\,\mathrm{s})\approx\SI{3.79}{\volt}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+O capacitor do circuito natural abaixo está inicialmente a $\SI{10}{\volt}$.
+A fonte dependente fornece a corrente $g v_C$, com
+$g=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$. Determine $R_{\mathrm{eq}}$, $\tau$ e $v_C(t)$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6,0);
+\draw (0,3) -- (6,3);
+\draw (1.8,3) to[R,l={$R=\SI{2}{\kilo\ohm}$}] (1.8,0);
+\draw (3.8,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (3.8,0);
+\draw (6,3) to[american controlled current source,l_={$g v_C$}] (6,0);
+\end{circuitikz}}{Resposta natural RC com uma VCCS em paralelo.}
+
+\resposta{$R_{\mathrm{eq}}=\SI{1}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
+$v_C(t)=10e^{-10t}\ \si{\volt}$}
+
+
+\end{questao}
+\begin{questao}[2]{}
+
+No circuito abaixo, o indutor possui $i_L(0^+)=\SI{2}{\ampere}$. A fonte dependente
+é uma CCCS que injeta para cima a corrente $\beta i_x$, em que
+$i_x=v/R$ e $\beta=0{,}5$. Determine a resistência equivalente vista pelo indutor,
+a constante de tempo e $i_L(t)$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6,0);
+\draw (0,3) -- (6,3);
+\draw (1.8,3) to[R,l={$R=\SI{20}{\ohm}$},i>^={$i_x$}] (1.8,0);
+\draw (3.9,3) to[L,l={$L=\SI{200}{\milli\henry}$},i>^={$i_L$}] (3.9,0);
+\draw (6,0) to[american controlled current source,l_={$\beta i_x$}] (6,3);
+\end{circuitikz}}{Resposta natural RL com fonte de corrente controlada por corrente (CCCS).}
+
+\resposta{$R_{\mathrm{eq}}=\SI{40}{\ohm}$; $\tau=\SI{5}{\milli\second}$;
+$i_L(t)=2e^{-200t}\ \si{\ampere}$}
+
+
+\end{questao}
+
+\gabarito[Nível 2 --- fontes dependentes]
+
 \blocoaprofundamento
 \begin{questao}[3]{}
 
@@ -13098,6 +13163,92 @@ $L\approx\SI{92.3}{\milli\henry}$; $C\approx\SI{17.5}{\micro\farad}$}
 
 \gabarito[Nível 3 --- análise integrada e formas de onda]
 
+\blocoaprofundamento
+\begin{questao}[3]{}
+
+O capacitor abaixo possui $v_C(0^+)=\SI{8}{\volt}$. A fonte dependente é uma VCVS
+que impõe $v_b=\mu v_C$, com $\mu=0{,}5$. Determine a resistência equivalente vista
+pelo capacitor, a constante de tempo e $v_C(t)$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6.5,0);
+\draw (0,3) to[C,l={$C=\SI{25}{\micro\farad}$},v^>={$v_C$}] (0,0);
+\draw (0,3) to[R,l={$R=\SI{4}{\kilo\ohm}$}] (3.2,3) coordinate(b);
+\draw (b) to[american controlled voltage source,l_={$\mu v_C$}] (3.2,0);
+\node[right] at (b) {$v_b$};
+\end{circuitikz}}{Circuito RC com fonte de tensão controlada por tensão (VCVS).}
+
+\resposta{$R_{\mathrm{eq}}=\SI{8}{\kilo\ohm}$; $\tau=\SI{0.20}{\second}$;
+$v_C(t)=8e^{-5t}\ \si{\volt}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+O indutor do circuito abaixo conduz inicialmente $\SI{3}{\ampere}$. A fonte
+dependente é uma CCVS de valor $r_m i_x$, com $r_m=\SI{9}{\ohm}$, e sua polaridade
+é indicada no desenho. Determine a resistência equivalente vista pelo indutor,
+$\tau$ e $i_L(t)$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6,0);
+\draw (0,3) to[L,l={$L=\SI{75}{\milli\henry}$},i>^={$i_L$}] (0,0);
+\draw (0,3) to[R,l={$R=\SI{6}{\ohm}$},i>^={$i_x$}] (3.3,3)
+      to[american controlled voltage source,l_={$r_m i_x$}] (3.3,0);
+\end{circuitikz}}{Resposta natural RL com fonte de tensão controlada por corrente (CCVS).}
+
+\resposta{$R_{\mathrm{eq}}=\SI{15}{\ohm}$; $\tau=\SI{5}{\milli\second}$;
+$i_L(t)=3e^{-200t}\ \si{\ampere}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+O RLC em paralelo abaixo não possui fonte independente para $t>0$. A VCCS fornece
+uma corrente $g v$, com $g=\SI{50}{\milli\ensuremath{\mathrm{S}}}$. Considere
+$v(0^+)=\SI{5}{\volt}$ e $i_L(0^+)=0$. Determine a equação diferencial da resposta
+natural, classifique o amortecimento e obtenha $v(t)$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (8,0);
+\draw (0,3) -- (8,3);
+\draw (1.6,3) to[R,l={$R=\SI{20}{\ohm}$}] (1.6,0);
+\draw (3.8,3) to[C,l={$C=\SI{10}{\milli\farad}$},v^>={$v$}] (3.8,0);
+\draw (6,3) to[L,l={$L=\SI{1}{\henry}$},i>^={$i_L$}] (6,0);
+\draw (8,3) to[american controlled current source,l_={$g v$}] (8,0);
+\end{circuitikz}}{RLC em paralelo com VCCS modificando o amortecimento.}
+
+\resposta{$\ddot v+10\dot v+100v=0$; subamortecida;
+$v(t)=e^{-5t}[5\cos(8{,}66t)-2{,}89\sin(8{,}66t)]\ \si{\volt}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+No circuito RLC em série abaixo, a CCVS produz uma tensão $r_m i$ que se soma à
+queda resistiva, com $r_m=\SI{30}{\ohm}$. Para
+$R=\SI{10}{\ohm}$, $L=\SI{0.1}{\henry}$, $C=\SI{100}{\micro\farad}$,
+$v_C(0^+)=\SI{10}{\volt}$ e $i(0^+)=0$, determine $v_C(t)$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[R,l={$R=\SI{10}{\ohm}$}] (2.1,0)
+      to[american controlled voltage source,l_={$r_m i$}] (4.2,0)
+      to[L,l={$L=\SI{0.1}{\henry}$},i>^={$i$}] (6.3,0)
+      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (8.5,0)
+      -- (8.5,-2) -- (0,-2) -- (0,0);
+\end{circuitikz}}{RLC em série com CCVS equivalente a amortecimento adicional.}
+
+\resposta{$v_C(t)=e^{-200t}[10\cos(244{,}95t)+8{,}17\sin(244{,}95t)]\ \si{\volt}$}
+
+
+\end{questao}
+
+\gabarito[Nível 3 --- fontes dependentes]
+
 \blocodesafio
 \begin{questao}[4]{}
 
@@ -13405,6 +13556,113 @@ $v_{\min}\approx-\SI{10.93}{\volt}$}
 \end{questao}
 
 \gabarito[Nível 4 --- projeto, diagnóstico e síntese]
+
+\blocodesafio
+\begin{questao}[4]{}
+
+O circuito RC natural abaixo contém uma VCCS orientada para cima, de valor $g v_C$.
+O capacitor está inicialmente carregado. Determine o valor crítico de $g$ que
+separa decaimento, resposta constante e crescimento exponencial. Em seguida,
+classifique os casos $g=\SI{0.4}{\milli\ensuremath{\mathrm{S}}}$,
+$\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$ e $\SI{0.6}{\milli\ensuremath{\mathrm{S}}}$ para
+$R=\SI{2}{\kilo\ohm}$ e $C=\SI{100}{\micro\farad}$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (6,0);
+\draw (0,3) -- (6,3);
+\draw (1.8,3) to[R,l={$R=\SI{2}{\kilo\ohm}$}] (1.8,0);
+\draw (3.8,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (3.8,0);
+\draw (6,0) to[american controlled current source,l_={$g v_C$}] (6,3);
+\end{circuitikz}}{RC com VCCS capaz de reduzir, anular ou inverter o amortecimento.}
+
+\resposta{$g_{\mathrm{crit}}=1/R=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$; para
+\SI{0.4}{\milli\ensuremath{\mathrm{S}}}: estável, $\tau=\SI{1}{\second}$; para
+\SI{0.5}{\milli\ensuremath{\mathrm{S}}}: polo em zero; para \SI{0.6}{\milli\ensuremath{\mathrm{S}}}:
+instável, crescimento com constante de tempo de magnitude \SI{1}{\second}}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+Deseja-se usar uma VCCS $g v$ para ajustar o amortecimento do RLC em paralelo
+abaixo. Determine o valor de $g$ para obter amortecimento crítico. Depois indique
+se a resposta será subamortecida ou superamortecida para valores de $g$ menores ou
+maiores que o valor calculado, supondo $g\ge0$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (8,0);
+\draw (0,3) -- (8,3);
+\draw (1.5,3) to[R,l={$R=\SI{100}{\ohm}$}] (1.5,0);
+\draw (3.7,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v$}] (3.7,0);
+\draw (5.8,3) to[L,l={$L=\SI{100}{\milli\henry}$}] (5.8,0);
+\draw (8,3) to[american controlled current source,l_={$g v$}] (8,0);
+\end{circuitikz}}{Projeto do amortecimento de um circuito RLC em paralelo usando uma VCCS.}
+
+\resposta{$g_{\mathrm{crit}}\approx\SI{53.25}{\milli\ensuremath{\mathrm{S}}}$; abaixo desse
+valor a resposta é subamortecida; acima, superamortecida}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+No RLC em série abaixo, a VCVS tem valor $\mu v_C$ e polaridade tal que sua tensão
+\textbf{auxilia} a tensão do capacitor na equação de malha, resultando no termo
+restaurador $(1-\mu)v_C$. Para
+$R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$, derive a equação característica e determine os
+intervalos de $\mu$ que produzem resposta subamortecida, criticamente amortecida,
+superamortecida estável, polo em zero e instabilidade.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) to[R,l={$R=\SI{20}{\ohm}$}] (2,0)
+      to[L,l={$L=\SI{0.1}{\henry}$},i>^={$i$}] (4.3,0)
+      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (6.5,0)
+      to[american controlled voltage source,l_={$\mu v_C$}] (8.5,0)
+      -- (8.5,-2) -- (0,-2) -- (0,0);
+\end{circuitikz}}{RLC com VCVS modificando o termo restaurador e a estabilidade.}
+
+\resposta{$s^2+200s+100000(1-\mu)=0$; subamortecida para $\mu<0{,}9$;
+crítica em $\mu=0{,}9$; superamortecida estável para $0{,}9<\mu<1$;
+polo em zero para $\mu=1$; instável para $\mu>1$}
+
+
+\end{questao}
+\begin{questao}[4]{}
+
+A rede abaixo possui dois capacitores e uma CCCS que injeta no nó $v_2$ a corrente
+$\beta i_x$, em que $i_x=v_1/R_1$. Considere
+$R_1=R_2=\SI{1}{\kilo\ohm}$ e $C_1=C_2=\SI{1}{\milli\farad}$.
+
+\circuitoqq{
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,0) -- (7.5,0);
+\draw (0,3) coordinate(a) to[R,l={$R_2=\SI{1}{\kilo\ohm}$}] (4,3) coordinate(b);
+\draw (a) to[R,l={$R_1=\SI{1}{\kilo\ohm}$},i>^={$i_x$}] (0,0);
+\draw (a) -- (2,3) to[C,l={$C_1=\SI{1}{\milli\farad}$},v^>={$v_1$}] (2,0);
+\draw (b) to[C,l={$C_2=\SI{1}{\milli\farad}$},v^>={$v_2$}] (4,0);
+\draw (7.5,0) to[american controlled current source,l_={$\beta i_x$}] (7.5,3) -- (b);
+\end{circuitikz}}{Rede RC de segunda ordem com CCCS e possibilidade de perda de estabilidade.}
+
+\begin{itensq}
+\item Obtenha as equações de estado em $v_1$ e $v_2$.
+\item Determine a equação característica em função de $\beta$.
+\item Encontre a faixa de $\beta$ que garante estabilidade assintótica.
+\item Para $\beta=0{,}5$, $v_1(0)=\SI{1}{\volt}$ e $v_2(0)=0$, determine $v_2(t)$.
+\end{itensq}
+
+\resposta{$\dot v_1=-2v_1+v_2$;
+$\dot v_2=(1+\beta)v_1-v_2$;
+$s^2+3s+(1-\beta)=0$; estável para $\beta<1$;
+para $\beta=0{,}5$,
+$v_2(t)=\frac{1.5}{\sqrt7}\left(e^{(-3+\sqrt7)t/2}-e^{(-3-\sqrt7)t/2}\right)\ \si{\volt}$}
+
+
+\end{questao}
+
+\gabarito[Nível 4 --- fontes dependentes]
 
 \section{Eletromagnetismo}
 
