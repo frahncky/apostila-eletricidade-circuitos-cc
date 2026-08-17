@@ -1,0 +1,43 @@
+% =====================================================================
+% THEVENIN/NORTON --- QUESTOES VISUAIS CRITICAS DOS BANCOS N2 E N3
+% Somente desenhos. Enunciados, respostas, resolucoes e niveis permanecem.
+% =====================================================================
+
+% N2/8 --- separa o rotulo da carga da anotacao da tensao medida.
+\def\fvThNDoisQOitoRevisada{%
+\begin{circuitikz}[american,scale=.84,transform shape,line width=.8pt]
+  \draw[dashed,cinza,line width=.8pt,rounded corners=6pt]
+        (0,0) rectangle (3.4,3.9);
+  \node[cinza] at(1.7,2.0){caixa-preta};
+  \draw (3.4,3.1)--(5.0,3.1) coordinate(a);
+  \draw (3.4,.8)--(5.0,.8) coordinate(b);
+  \draw (a) to[R,l_={$R_L=\SI{10}{\ohm}$}] (b);
+  \draw[<->,Vcol,line width=.9pt]
+        (6.8,1.0)--(6.8,2.9)
+        node[midway,right,fill=white,inner sep=1.5pt] {$\SI{24}{\volt}$};
+  \node[above,font=\footnotesize,fill=white,inner sep=1.5pt]
+        at(1.7,4.15){$V_{oc}=\SI{30}{\volt}$};
+\end{circuitikz}}
+
+% N3/9 --- cria um trecho de fio exclusivo para a fonte de 1 A antes do
+% resistor de 3 ohms; evita que o ramo vertical termine sobre o resistor.
+\def\fvThNTresQNoveRevisada{%
+\begin{circuitikz}[american,scale=.58,transform shape,line width=.8pt]
+  \coordinate (g) at (6.0,0);
+  \coordinate (a) at (6.0,4.8);
+  \coordinate (jr) at (10.2,4.8);
+  \coordinate (pa) at (11.8,6.3);
+  \coordinate (pb) at (11.8,-1.4);
+  \draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4.8)
+        to[R,l={$\SI{6}{\ohm}$}] (a);
+  \draw (9.0,0) to[isource,l_={$\SI{1}{\ampere}$}] (9.0,4.8);
+  \draw (a)--(9.0,4.8)--(jr);
+  \draw (13.4,0) to[\fonteV,l_={$\SI{6}{\volt}$}] (13.4,4.8)
+        to[R,l_={$\SI{3}{\ohm}$}] (jr);
+  \draw (a) to[R,l_={$\SI{6}{\ohm}$}] (g);
+  \draw (0,0)--(g)--(9.0,0)--(13.4,0);
+  \draw (a)--(6.0,6.3)--(pa) node[ocirc]{} node[right]{A};
+  \draw (g)--(6.0,-1.4)--(pb) node[ocirc]{} node[right]{B};
+  \fill (a) circle (1.1pt);
+  \node[ground] at(g){};
+\end{circuitikz}}
