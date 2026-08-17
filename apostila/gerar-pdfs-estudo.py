@@ -41,8 +41,7 @@ def expand(s,base,stack=()):
     for m in list(re.finditer(r'\\input\s*\{',s)):
         if m.start()<p:continue
         o.append(s[p:m.start()]);q=s.find('{',m.start());n,e=group(s,q)
-        raw=n.strip()
-        f=(B/raw).resolve();f=f if f.suffix else f.with_suffix('.tex')
+        raw=n.strip();f=(B/raw).resolve();f=f if f.suffix else f.with_suffix('.tex')
         if not f.exists():
             f=(base/raw).resolve();f=f if f.suffix else f.with_suffix('.tex')
         if f in stack:raise RuntimeError('ciclo de input: '+str(f))
@@ -86,6 +85,21 @@ def question(s,p):
     if e<0:raise ValueError('questao sem fechamento')
     return op,src,s[i:e],e+len('\\end{questao}')
 
+def provide_defs(s):
+    t='\\providecommand';o=[];p=0
+    while True:
+        i=s.find(t,p)
+        if i<0:return '\n'.join(o)
+        j=i+len(t)
+        if j<len(s) and s[j].isalpha():p=j;continue
+        if j<len(s) and s[j]=='*':j+=1
+        j=spaces(s,j)
+        if j>=len(s) or s[j]!='{':p=j;continue
+        _,j=group(s,j)
+        _,j=opt(s,j);_,j=opt(s,j);j=spaces(s,j)
+        if j>=len(s) or s[j]!='{':p=j;continue
+        _,e=group(s,j);o.append(s[i:e]);p=e
+
 def filt(s,mode):
     o=[];p=0;st={'q':0,'a':0,'r':0,'sa':0,'sr':0};levels=('blocofixacao','blocoaplicacao','blocoaprofundamento','blocodesafio')
     while p<len(s):
@@ -116,12 +130,12 @@ def main():
     for f,n in CH:
         if n is not None:z.append(f'\n\\setcounter{{section}}{{{n}}}\n')
         p=B/f;z.append(expand(p.read_text(encoding='utf-8'),p.parent,(p.resolve(),)))
-    s=''.join(z)
-    s=re.sub(r'\\SI\{([^{}]+)\}\{\\month\}',r'\1 meses',s)
-    q,qs=filt(s,'q');r,rs=filt(s,'r')
-    (B/'gerado-questoes.tex').write_text('% Gerado automaticamente. Nao editar.\n'+q,encoding='utf-8')
-    (B/'gerado-resolucoes.tex').write_text('% Gerado automaticamente. Nao editar.\n'+r,encoding='utf-8')
-    print('questoes',qs);print('resolucoes',rs)
+    s=''.join(z);s=re.sub(r'\\SI\{([^{}]+)\}\{\\month\}',r'\1 meses',s)
+    defs=provide_defs(s);q,qs=filt(s,'q');r,rs=filt(s,'r')
+    head='% Gerado automaticamente. Nao editar.\n'+defs+'\n'
+    (B/'gerado-questoes.tex').write_text(head+q,encoding='utf-8')
+    (B/'gerado-resolucoes.tex').write_text(head+r,encoding='utf-8')
+    print('questoes',qs);print('resolucoes',rs);print('macros auxiliares preservadas',defs.count('\\providecommand'))
     if not qs['q'] or qs['q']!=rs['q']:raise SystemExit('falha de consistencia')
     if qs['sa']:print('AVISO: questoes sem resposta:',qs['sa'])
     if qs['sr']:print('AVISO: questoes sem resolucao:',qs['sr'])
