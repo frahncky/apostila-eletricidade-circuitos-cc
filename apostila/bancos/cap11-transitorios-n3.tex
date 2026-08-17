@@ -1,0 +1,244 @@
+% =====================================================================
+% CAP. 11 - NIVEL 3
+% =====================================================================
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+Um capacitor de $\SI{10}{\micro\farad}$, inicialmente descarregado, é ligado a
+$\SI{12}{\volt}$ por $R_1=\SI{2}{\kilo\ohm}$ durante
+$\SI{50}{\milli\second}$. Em seguida, a fonte é removida e ele passa a
+descarregar por $R_2=\SI{5}{\kilo\ohm}$. Determine sua tensão
+$\SI{40}{\milli\second}$ após a segunda comutação.
+\resposta{$v_C\approx\SI{4.95}{\volt}$}
+\resolucao{Na primeira etapa, $\tau_1=\SI{20}{\milli\second}$ e
+$v_C(50\,\mathrm{ms})=12(1-e^{-2{,}5})\approx\SI{11.015}{\volt}$. Esse valor é a
+condição inicial da segunda etapa. Agora $\tau_2=\SI{50}{\milli\second}$ e
+$v_C=11{,}015e^{-40/50}\approx\SI{4.95}{\volt}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um indutor de $\SI{100}{\milli\henry}$ é energizado por uma fonte de
+$\SI{20}{\volt}$ através de $R_1=\SI{10}{\ohm}$ durante
+$\SI{15}{\milli\second}$. Depois, a fonte é retirada e o indutor descarrega por
+$R_2=\SI{25}{\ohm}$. Qual é a corrente após mais $\SI{8}{\milli\second}$?
+\resposta{$i_L\approx\SI{0.210}{\ampere}$}
+\resolucao{Na energização, $I_f=20/10=\SI{2}{\ampere}$ e
+$\tau_1=0{,}1/10=\SI{10}{\milli\second}$. Assim
+$i_L(15\,\mathrm{ms})=2(1-e^{-1{,}5})\approx\SI{1.554}{\ampere}$. Na descarga,
+$\tau_2=0{,}1/25=\SI{4}{\milli\second}$, portanto após $2\tau_2$:
+$i_L=1{,}554e^{-2}\approx\SI{0.210}{\ampere}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Após a supressão das fontes independentes, um capacitor de
+$C=\SI{20}{\micro\farad}$ enxerga $R_3=\SI{1}{\kilo\ohm}$ em série com o
+paralelo de $R_1=\SI{6}{\kilo\ohm}$ e $R_2=\SI{3}{\kilo\ohm}$. Determine a
+constante de tempo.
+
+\circuitoq{%
+\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\draw (0,1.5) to[C,l={$C$},o-] (2,1.5) to[R,l={$R_3$}] (4,1.5) coordinate(a);
+\draw (a) -- (4,2.6) to[R,l={$R_1$}] (6,2.6) -- (6,0.4);
+\draw (a) -- (4,0.4) to[R,l_={$R_2$}] (6,0.4) -- (6,-0.2) node[ground]{};
+\end{circuitikz}}
+
+\resposta{$R_{\mathrm{eq}}=\SI{3}{\kilo\ohm}$; $\tau=\SI{60}{\milli\second}$}
+\resolucao{$R_1\parallel R_2=(6\cdot3)/(6+3)=\SI{2}{\kilo\ohm}$. Em série com
+$R_3$, $R_{\mathrm{eq}}=\SI{3}{\kilo\ohm}$. Logo
+$\tau=R_{\mathrm{eq}}C=\pot{3}{3}\pot{20}{-6}=\SI{60}{\milli\second}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Após uma comutação, $v_C(0^+)=-\SI{4}{\volt}$, $v_C(\infty)=\SI{8}{\volt}$,
+$R_{\mathrm{eq}}=\SI{2.5}{\kilo\ohm}$ e $C=\SI{40}{\micro\farad}$. Em que
+instante a tensão cruza zero?
+\resposta{$t\approx\SI{40.5}{\milli\second}$}
+\resolucao{$\tau=\SI{0.1}{\second}$ e
+$v_C=8+(-4-8)e^{-t/0{,}1}=8-12e^{-t/0{,}1}$. No cruzamento,
+$e^{-t/0{,}1}=2/3$. Portanto $t=0{,}1\ln(3/2)\approx\SI{40.5}{\milli\second}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um indutor possui $i_L(0^+)=-\SI{1}{\ampere}$, $i_L(\infty)=\SI{3}{\ampere}$ e
+$\tau=\SI{25}{\milli\second}$. Determine quando a corrente muda de sinal.
+\resposta{$t\approx\SI{7.19}{\milli\second}$}
+\resolucao{$i_L=3+(-1-3)e^{-t/\tau}=3-4e^{-t/\tau}$. Para $i_L=0$,
+$e^{-t/\tau}=3/4$. Logo $t=\tau\ln(4/3)\approx\SI{7.19}{\milli\second}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor com $v_C(0)=\SI{2}{\volt}$ é ligado a uma fonte de
+$\SI{10}{\volt}$ através de $R=\SI{2}{\kilo\ohm}$ e
+$C=\SI{50}{\micro\farad}$. Determine a corrente inicial e a corrente após
+$\SI{150}{\milli\second}$.
+\resposta{$i(0^+)=\SI{4}{\milli\ampere}$; $i(150\,\mathrm{ms})\approx\SI{0.893}{\milli\ampere}$}
+\resolucao{$\tau=RC=\SI{0.1}{\second}$. A corrente é
+$i(t)=(10-2)R^{-1}e^{-t/\tau}=\SI{4}{\milli\ampere}e^{-t/\tau}$. Em
+$150\,\mathrm{ms}=1{,}5\tau$, $i\approx4e^{-1{,}5}=\SI{0.893}{\milli\ampere}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um capacitor de $\SI{100}{\micro\farad}$ inicialmente a $\SI{20}{\volt}$ é
+descarregado por $R=\SI{1}{\kilo\ohm}$. Mostre, por integração da potência no
+resistor, que toda a energia inicialmente armazenada é dissipada e calcule-a.
+\resposta{$E=\SI{20}{\milli\joule}$}
+\resolucao{$v_C=V_0e^{-t/RC}$ e $i=(V_0/R)e^{-t/RC}$. Logo
+$p_R=Ri^2=(V_0^2/R)e^{-2t/RC}$. Integrando de zero a infinito:
+\[
+E_R=\frac{V_0^2}{R}\int_0^\infty e^{-2t/RC}\,\mathrm{d}t
+=\frac{V_0^2}{R}\frac{RC}{2}=\frac12CV_0^2.
+\]
+Numericamente, $E_R=\tfrac12\pot{100}{-6}\cdot20^2=\SI{20}{\milli\joule}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Projete um atraso RC para que uma tensão de $\SI{5}{\volt}$ alcance
+$\SI{3.3}{\volt}$ em $\SI{0.5}{\second}$. Use $R=\SI{100}{\kilo\ohm}$ e
+considere o capacitor inicialmente descarregado. Determine $C$ e indique um
+valor comercial próximo.
+\resposta{$C\approx\SI{4.63}{\micro\farad}$; valor comercial: \SI{4.7}{\micro\farad}}
+\resolucao{$3{,}3=5(1-e^{-t/RC})$, então
+$C=-t/[R\ln(1-3{,}3/5)]$. Substituindo,
+$C\approx\SI{4.63}{\micro\farad}$. Um valor comercial próximo é
+\SI{4.7}{\micro\farad}.}
+\end{questao}
+
+\begin{questao}[3]{}
+Deseja-se que a corrente de um circuito RL alcance \SI{95}{\percent} de seu valor
+final de $\SI{1}{\ampere}$ em $\SI{20}{\milli\second}$. Se
+$L=\SI{50}{\milli\henry}$, determine a resistência e a tensão da fonte.
+\resposta{$R\approx\SI{7.49}{\ohm}$; $V\approx\SI{7.49}{\volt}$}
+\resolucao{$0{,}95=1-e^{-t/\tau}$ implica
+$\tau=-t/\ln0{,}05\approx\SI{6.68}{\milli\second}$. Como $\tau=L/R$,
+$R=0{,}05/0{,}00668\approx\SI{7.49}{\ohm}$. Para corrente final de \SI{1}{\ampere},
+$V=RI_f\approx\SI{7.49}{\volt}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um RLC série tem $R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$. Determine os polos naturais.
+\resposta{$s_{1,2}=-100\pm j300\ \si{\per\second}$}
+\resolucao{$\alpha=R/(2L)=100$ e $\omega_0\approx316{,}2$. Assim
+$\omega_d=\sqrt{316{,}2^2-100^2}=300$. Para o caso subamortecido,
+$s_{1,2}=-\alpha\pm j\omega_d=-100\pm j300\ \si{\per\second}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Uma resposta criticamente amortecida é
+$v(t)=(A+Bt)e^{-200t}$. Se $v(0)=\SI{10}{\volt}$ e
+$\dot v(0)=-\SI{500}{\volt\per\second}$, determine $A$ e $B$.
+\resposta{$A=\SI{10}{\volt}$; $B=\SI{1500}{\volt\per\second}$}
+\resolucao{De $v(0)=A$, segue $A=10$. Derivando,
+$\dot v(0)=B-200A=-500$. Logo $B=-500+2000=\SI{1500}{\volt\per\second}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Para um RLC série com $R=\SI{100}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+$C=\SI{100}{\micro\farad}$, determine os dois polos reais.
+\resposta{$s_1\approx-\SI{112.7}{\per\second}$; $s_2\approx-\SI{887.3}{\per\second}$}
+\resolucao{A equação característica é
+$s^2+(R/L)s+1/(LC)=s^2+1000s+100000=0$. Portanto
+\[
+s=\frac{-1000\pm\sqrt{1000^2-4\cdot100000}}{2}
+=\frac{-1000\pm\sqrt{600000}}{2},
+\]
+resultando aproximadamente em $-112{,}7$ e $-887{,}3\ \si{\per\second}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Determine a resistência crítica de um RLC \textbf{paralelo} com
+$L=\SI{50}{\milli\henry}$ e $C=\SI{200}{\micro\farad}$.
+\resposta{$R_{\mathrm{crit}}\approx\SI{7.91}{\ohm}$}
+\resolucao{No paralelo, a condição crítica é
+$1/(2RC)=1/\sqrt{LC}$. Logo
+$R_{\mathrm{crit}}=\tfrac12\sqrt{L/C}
+=\tfrac12\sqrt{0{,}05/\pot{200}{-6}}\approx\SI{7.91}{\ohm}$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Para um sistema subamortecido de segunda ordem com $\zeta=0{,}5$, estime o
+sobressinal percentual de pico usando
+$M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}$.
+\resposta{$M_p\approx\SI{16.3}{\percent}$}
+\resolucao{Substituindo $\zeta=0{,}5$:
+$M_p=e^{-\pi(0{,}5)/\sqrt{0{,}75}}\approx0{,}163$. Portanto o sobressinal é
+aproximadamente \SI{16.3}{\percent}.}
+\end{questao}
+
+\begin{questao}[3]{}
+Um RLC série possui $R=\SI{20}{\ohm}$, $L=\SI{100}{\milli\henry}$ e
+$C=\SI{100}{\micro\farad}$. Calcule o fator de amortecimento $\zeta$.
+\resposta{$\zeta\approx0{,}316$}
+\resolucao{$\alpha=R/(2L)=100$ e $\omega_0\approx316{,}2$. Assim
+$\zeta=\alpha/\omega_0\approx100/316{,}2\approx0{,}316$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Classifique os quatro casos da tabela.
+
+\begin{table}[H]
+\centering\small\sffamily
+\begin{tabular}{@{}c c c c c@{}}
+\toprule
+\textbf{Caso} & \textbf{Topologia} & $R$ & $L$ & $C$\\
+\midrule
+A & série & \SI{20}{\ohm} & \SI{0.1}{\henry} & \SI{100}{\micro\farad}\\
+B & série & \SI{63.25}{\ohm} & \SI{0.1}{\henry} & \SI{100}{\micro\farad}\\
+C & série & \SI{100}{\ohm} & \SI{0.1}{\henry} & \SI{100}{\micro\farad}\\
+D & paralelo & \SI{20}{\ohm} & \SI{50}{\milli\henry} & \SI{200}{\micro\farad}\\
+\bottomrule
+\end{tabular}
+\end{table}
+\resposta{A subamortecido; B aproximadamente crítico; C superamortecido; D subamortecido}
+\resolucao{A, B e C possuem $\omega_0\approx316{,}2$. No série,
+$\alpha=R/(0{,}2)$: A dá $100<316{,}2$; B dá aproximadamente $316{,}25$; C dá
+$500>316{,}2$. No caso D, $\alpha=1/(2RC)=125$ e
+$\omega_0=1/\sqrt{0{,}05\cdot\pot{200}{-6}}\approx316{,}2$, logo também é
+subamortecido.}
+\end{questao}
+
+\begin{questao}[3]{}
+Em certo instante de um RLC, $C=\SI{100}{\micro\farad}$ está a
+$\SI{10}{\volt}$ e $L=\SI{50}{\milli\henry}$ conduz
+$\SI{0.2}{\ampere}$. Qual é a energia total armazenada naquele instante?
+\resposta{$E=\SI{6}{\milli\joule}$}
+\resolucao{$E_C=\tfrac12CV^2=\SI{5}{\milli\joule}$ e
+$E_L=\tfrac12LI^2=\tfrac12(0{,}05)(0{,}2)^2=\SI{1}{\milli\joule}$. A soma é
+\SI{6}{\milli\joule}.}
+\end{questao}
+
+\begin{questao}[3]{}
+Antes de uma comutação, um capacitor possui $v_C=\SI{6}{\volt}$ e um indutor
+possui $i_L=\SI{0.3}{\ampere}$. Logo após a comutação, ambos passam a integrar
+uma nova rede resistiva. Quais condições iniciais devem ser usadas na nova rede?
+\resposta{$v_C(0^+)=\SI{6}{\volt}$ e $i_L(0^+)=\SI{0.3}{\ampere}$}
+\resolucao{As variáveis de estado associadas aos elementos ideais armazenadores
+são contínuas: a tensão do capacitor e a corrente do indutor mantêm seus valores
+no instante da comutação. A nova topologia altera suas derivadas e seus valores
+finais, não os valores instantâneos em $0^+$.}
+\end{questao}
+
+\begin{questao}[3]{}
+Para um RLC série alimentado por um degrau de $\SI{10}{\volt}$, use
+$R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e $C=\SI{100}{\micro\farad}$. Escreva
+a equação diferencial para $v_C(t)$ após a comutação.
+\resposta{$\ddot v_C+200\dot v_C+100000v_C=1000000$}
+\resolucao{Pela LKT,
+$LC\ddot v_C+RC\dot v_C+v_C=V_s$. Como $LC=\pot{1}{-5}$ e
+$RC=\pot{2}{-3}$, dividindo por $LC$ resulta
+\[
+\ddot v_C+200\dot v_C+100000v_C=10\cdot100000=1000000.
+\]}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito da questão anterior, admita energia inicial nula. Determine
+$v_C(0^+)$, $\dot v_C(0^+)$ e $\ddot v_C(0^+)$.
+\resposta{$v_C(0^+)=0$; $\dot v_C(0^+)=0$; $\ddot v_C(0^+)=\SI{1e6}{\volt\per\second\squared}$}
+\resolucao{Energia inicial nula implica $v_C(0^+)=0$ e $i_L(0^+)=0$. Como
+$i_C=C\dot v_C$, segue $\dot v_C(0^+)=0$. Substituindo esses valores na equação
+$\ddot v_C+200\dot v_C+100000v_C=1000000$, obtém-se
+$\ddot v_C(0^+)=\SI{1e6}{\volt\per\second\squared}$.}
+\end{questao}
+
+\gabarito[Nível 3]
