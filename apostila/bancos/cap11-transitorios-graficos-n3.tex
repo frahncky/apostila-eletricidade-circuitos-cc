@@ -11,16 +11,18 @@ zero e a corrente no resistor $R_2$ imediatamente após a comutação, tomando c
 positivo o sentido do capacitor para a fonte de $-\SI{5}{\volt}$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=0.92,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.88,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{15}{\volt}$}] (0,3)
-      to[R,l={$R_1=\SI{5}{\kilo\ohm}$}] (3,3)
-      to[C,l={$C=\SI{40}{\micro\farad}$},v^>={$v_C$}] (3,0) -- (0,0);
-\node[font=\sffamily\bfseries] at (1.5,-0.6) {(a) $t<0$};
-\begin{scope}[xshift=7cm]
+      to[R,l={$R_1=\SI{5}{\kilo\ohm}$}] (3.2,3)
+      to[C,v^>={$v_C$}] (3.2,0) -- (0,0);
+\node[anchor=east] at (2.95,1.5) {$C=\SI{40}{\micro\farad}$};
+\node[font=\sffamily\bfseries\scriptsize] at (1.6,-0.6) {(a) $t<0$};
+\begin{scope}[xshift=7.6cm]
 \draw (0,0) to[american voltage source,l_={$-\SI{5}{\volt}$}] (0,3)
-      to[R,l={$R_2=\SI{10}{\kilo\ohm}$}] (3,3)
-      to[C,l={$C=\SI{40}{\micro\farad}$},v^>={$v_C$}] (3,0) -- (0,0);
-\node[font=\sffamily\bfseries] at (1.5,-0.6) {(b) $t>0$};
+      to[R,l={$R_2=\SI{10}{\kilo\ohm}$}] (3.2,3)
+      to[C,v^>={$v_C$}] (3.2,0) -- (0,0);
+\node[anchor=east] at (2.95,1.5) {$C=\SI{40}{\micro\farad}$};
+\node[font=\sffamily\bfseries\scriptsize] at (1.6,-0.6) {(b) $t>0$};
 \end{scope}
 \end{circuitikz}}{Circuitos equivalentes antes e depois da comutação.}
 
@@ -48,13 +50,15 @@ $i_L(t)$ para $t>0$ e a energia ainda armazenada no indutor em
 $t=\SI{50}{\milli\second}$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.92,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{30}{\volt}$}] (0,3)
-      to[switch,l={abre em $t=0$}] (1.6,3)
-      to[R,l={$R_1=\SI{5}{\ohm}$}] (3.6,3) coordinate(a);
-\draw (a) to[L,l={$L=\SI{200}{\milli\henry}$},i>^={$i_L$}] (3.6,0) -- (0,0);
-\draw (a) -- (5.6,3) to[R,l={$R_2=\SI{8}{\ohm}$}] (5.6,0) -- (3.6,0);
-\draw (a) -- (7.6,3) to[R,l={$R_3=\SI{24}{\ohm}$}] (7.6,0) -- (5.6,0);
+      to[switch] (1.8,3)
+      to[R,l={$R_1=\SI{5}{\ohm}$}] (4.0,3) coordinate(a);
+\node[anchor=south] at (0.9,3.30) {abre em $t=0$};
+\draw (a) to[L,i>^={$i_L$}] (4.0,0) -- (0,0);
+\node[anchor=east] at (3.75,1.5) {$L=\SI{200}{\milli\henry}$};
+\draw (a) -- (6.3,3) to[R,l_={$R_2=\SI{8}{\ohm}$}] (6.3,0) -- (4.0,0);
+\draw (a) -- (8.6,3) to[R,l_={$R_3=\SI{24}{\ohm}$}] (8.6,0) -- (6.3,0);
 \end{circuitikz}}{Descarga de um indutor por uma rede resistiva equivalente.}
 
 \resposta{$i_L(t)=6e^{-t/0{,}0333}\ \si{\ampere}$;
@@ -81,13 +85,15 @@ capacitor e o tempo necessário para que o erro em relação ao valor final seja
 menor que \SI{1}{\percent} da variação inicial.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=0.95,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.91,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{18}{\volt}$}] (0,3)
-      to[R,l={$R_1=\SI{6}{\kilo\ohm}$}] (3,3) coordinate(b);
-\draw (b) to[R,l={$R_2=\SI{3}{\kilo\ohm}$}] (3,0) -- (0,0);
-\draw (b) to[R,l={$R_3=\SI{2}{\kilo\ohm}$}] (5.3,3)
-      to[switch,l={fecha em $t=0$}] (6.7,3)
-      to[C,l={$C=\SI{25}{\micro\farad}$},v^>={$v_C$}] (6.7,0) -- (3,0);
+      to[R,l={$R_1=\SI{6}{\kilo\ohm}$}] (3.2,3) coordinate(b);
+\draw (b) to[R,l_={$R_2=\SI{3}{\kilo\ohm}$}] (3.2,0) -- (0,0);
+\draw (b) to[R,l={$R_3=\SI{2}{\kilo\ohm}$}] (5.7,3)
+      to[switch] (7.2,3)
+      to[C,v^>={$v_C$}] (7.2,0) -- (3.2,0);
+\node[anchor=south] at (6.45,3.30) {fecha em $t=0$};
+\node[anchor=east] at (6.95,1.5) {$C=\SI{25}{\micro\farad}$};
 \end{circuitikz}}{Capacitor conectado a uma rede de Thévenin não trivial.}
 
 \resposta{$R_{\mathrm{eq}}=\SI{4}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
@@ -113,12 +119,17 @@ o tipo de resposta natural e obtenha $v(t)$ para $t>0$, considerando a polaridad
 indicada.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) to[american current source,l_={$\SI{2}{\ampere}$}] (0,3)
-      to[switch,l={abre em $t=0$}] (1.7,3) -- (6.5,3);
-\draw (2.5,3) to[R,l={$R=\SI{10}{\ohm}$}] (2.5,0);
-\draw (4.5,3) to[C,l={$C=\SI{200}{\micro\farad}$},v^>={$v$}] (4.5,0);
-\draw (6.5,3) to[L,l={$L=\SI{50}{\milli\henry}$},i>^={$i_L$}] (6.5,0) -- (0,0);
+\begin{circuitikz}[scale=0.94,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) to[american current source] (0,3)
+      to[switch] (1.9,3) -- (7.3,3);
+\node[anchor=east] at (-0.25,1.5) {$\SI{2}{\ampere}$};
+\node[anchor=south] at (0.95,3.30) {abre em $t=0$};
+\draw (2.6,3) to[R] (2.6,0);
+\node[anchor=east] at (2.35,1.5) {$R=\SI{10}{\ohm}$};
+\draw (4.9,3) to[C,v^>={$v$}] (4.9,0);
+\node[anchor=east] at (4.65,1.5) {$C=\SI{200}{\micro\farad}$};
+\draw (7.3,3) to[L,i>^={$i_L$}] (7.3,0) -- (0,0);
+\node[anchor=east] at (7.05,1.5) {$L=\SI{50}{\milli\henry}$};
 \end{circuitikz}}{Resposta natural de um circuito RLC em paralelo com energia inicialmente no indutor.}
 
 \resposta{Subamortecida;
@@ -144,13 +155,15 @@ Determine a resposta completa $v_C(t)$ e o valor do primeiro pico da tensão do
 capacitor.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.90,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{10}{\volt}$}] (0,3)
-      to[switch,l={fecha em $t=0$}] (1.5,3)
-      to[R,l={$R=\SI{20}{\ohm}$}] (3.4,3)
-      to[L,l={$L=\SI{100}{\milli\henry}$}] (5.5,3)
-      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (7.5,3)
-      -- (7.5,0) -- (0,0);
+      to[switch] (1.8,3)
+      to[R,l={$R=\SI{20}{\ohm}$}] (4.0,3)
+      to[L,l={$L=\SI{100}{\milli\henry}$}] (6.5,3)
+      to[C,v^>={$v_C$}] (9.0,3)
+      -- (9.0,0) -- (0,0);
+\node[anchor=south] at (0.9,3.30) {fecha em $t=0$};
+\node[anchor=south] at (7.75,3.30) {$C=\SI{100}{\micro\farad}$};
 \end{circuitikz}}{Resposta ao degrau de um circuito RLC em série subamortecido.}
 
 \resposta{$v_C(t)=10\left[1-e^{-100t}\left(\cos300t+\frac13\sin300t\right)\right]\,\si{\volt}$;
@@ -177,11 +190,15 @@ envoltória cai à metade a cada $\SI{16}{\milli\second}$. Sabendo que
 $R=\SI{8}{\ohm}$, estime $\alpha$, $\omega_d$, $L$ e $C$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) to[R,l={$R=\SI{8}{\ohm}$}] (2,0)
-      to[L,l={$L$}] (4,0)
-      to[C,l={$C$}] (6,0) -- (6,-2) -- (0,-2) -- (0,0);
-\draw[->] (1.2,0.45) -- (2.3,0.45) node[midway,above] {$i(t)$};
+\begin{circuitikz}[scale=0.96,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) to[R] (2.2,0)
+      to[L] (4.5,0)
+      to[C] (6.8,0) -- (6.8,-2) -- (0,-2) -- (0,0);
+\node[anchor=south] at (1.1,0.25) {$R=\SI{8}{\ohm}$};
+\node[anchor=south] at (3.35,0.25) {$L$};
+\node[anchor=south] at (5.65,0.25) {$C$};
+\draw[->] (0.9,0.70) -- (2.2,0.70);
+\node[anchor=south] at (1.55,0.82) {$i(t)$};
 \end{circuitikz}}{RLC em série identificado a partir de uma oscilação medida.}
 
 \begin{figure}[H]
