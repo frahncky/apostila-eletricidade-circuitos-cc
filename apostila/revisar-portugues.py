@@ -86,6 +86,18 @@ SUBSTITUICOES_EXATAS = [
         "ringing/sobressinal",
         "oscilações amortecidas (ringing) e sobressinal",
     ),
+    (
+        "Resolucoes comentadas",
+        "Resoluções comentadas",
+    ),
+    (
+        "\\addcontentsline{toc}{subsection}{Resolucoes",
+        "\\addcontentsline{toc}{subsection}{Resoluções",
+    ),
+    (
+        "Selecione questoes ou resolucoes",
+        "Selecione questões ou resoluções",
+    ),
 ]
 
 # Trechos específicos do capítulo de transitórios que exigem reescrita sintática.
