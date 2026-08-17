@@ -1,0 +1,48 @@
+% =====================================================================
+% SUPERPOSICAO --- QUESTOES VISUAIS CRITICAS DO BANCO N2
+% Somente desenhos. Enunciados, respostas, resolucoes e niveis permanecem.
+% =====================================================================
+
+% N2/3 --- afasta a corrente i_12 dos rotulos nodais V1 e V2.
+\def\fvSupNDoisQTresRevisada{%
+\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
+  \coordinate (g) at (4,0);
+  \coordinate (n1) at (2,3.8);
+  \coordinate (n2) at (6.5,3.8);
+  \draw (0,0) to[isource,l^={$\SI{3}{\ampere}$}] (0,3.8)--(n1);
+  \draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (2,0)--(g);
+  \draw (n1) to[R,l={$\SI{6}{\ohm}$},i>_={$i_{12}$}] (n2);
+  \draw (n2) to[R,l={$\SI{3}{\ohm}$}] (6.5,0)--(g);
+  \draw (8.5,0) to[isource,l_={$\SI{1}{\ampere}$}] (8.5,3.8)--(n2);
+  \draw (8.5,0)--(g)--(0,0);
+  \fill (n1) circle (1.1pt);
+  \fill (n2) circle (1.1pt);
+  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n1)+(0,.62)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n2)+(0,.62)$) {$V_2$};
+  \node[ground] at(g){};
+\end{circuitikz}}
+
+% N2/5 --- a fonte de 1 A passa a se ligar a um trecho de fio do no V2,
+% e nao ao interior do resistor de 6 ohms da fonte da direita.
+\def\fvSupNDoisQCincoRevisada{%
+\begin{circuitikz}[american,scale=.64,transform shape,line width=.8pt]
+  \coordinate (g) at (5.2,0);
+  \coordinate (n1) at (3.2,4.4);
+  \coordinate (n2) at (7.2,4.4);
+  \coordinate (jr) at (10.0,4.4);
+  \draw (0,0) to[\fonteV,l^={$\SI{18}{\volt}$}] (0,4.4)
+        to[R,l={$\SI{3}{\ohm}$}] (n1);
+  \draw (n1) to[R,l_={$\SI{6}{\ohm}$}] (3.2,0)--(g);
+  \draw (n1) to[R,l={$\SI{3}{\ohm}$},i>^={$i$}] (n2);
+  \draw (n2) to[R,l={$\SI{3}{\ohm}$}] (7.2,0)--(g);
+  \draw (9.0,0) to[isource,l_={$\SI{1}{\ampere}$}] (9.0,4.4);
+  \draw (n2)--(9.0,4.4)--(jr);
+  \draw (13.0,0) to[\fonteV,l_={$\SI{6}{\volt}$}] (13.0,4.4)
+        to[R,l_={$\SI{6}{\ohm}$}] (jr);
+  \draw (0,0)--(g)--(9.0,0)--(13.0,0);
+  \fill (n1) circle (1.1pt);
+  \fill (n2) circle (1.1pt);
+  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n1)+(0,.70)$) {$V_1$};
+  \node[Vcol,fill=white,inner sep=1.6pt] at ($(n2)+(0,.70)$) {$V_2$};
+  \node[ground] at(g){};
+\end{circuitikz}}
