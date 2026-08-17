@@ -10,13 +10,15 @@ $t=0$. Determine $v_C(0^+)$, a constante de tempo para $t>0$ e
 $v_C(\SI{0.30}{\second})$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.96,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{18}{\volt}$}] (0,3)
-      to[switch,l={abre em $t=0$}] (1.7,3)
-      to[R,l={$R_1=\SI{3}{\kilo\ohm}$}] (4,3) coordinate(a);
-\draw (a) to[R,l={$R_2=\SI{6}{\kilo\ohm}$}] (4,0) -- (0,0);
-\draw (a) -- (6,3)
-      to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (6,0) -- (4,0);
+      to[switch] (1.9,3)
+      to[R,l={$R_1=\SI{3}{\kilo\ohm}$}] (4.5,3) coordinate(a);
+\node[anchor=south] at (0.95,3.30) {abre em $t=0$};
+\draw (a) to[R,l_={$R_2=\SI{6}{\kilo\ohm}$}] (4.5,0) -- (0,0);
+\draw (a) -- (7.0,3)
+      to[C,v^>={$v_C$}] (7.0,0) -- (4.5,0);
+\node[anchor=east] at (6.75,1.5) {$C=\SI{100}{\micro\farad}$};
 \end{circuitikz}}{Circuito RC com mudança de topologia em $t=0$.}
 
 \resposta{$v_C(0^+)=\SI{12}{\volt}$; $\tau=\SI{0.60}{\second}$;
@@ -43,12 +45,14 @@ $t=0$. Determine $i_L(0^+)$, a constante de tempo da descarga e
 $i_L(\SI{10}{\milli\second})$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.96,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{24}{\volt}$}] (0,3)
-      to[switch,l={abre em $t=0$}] (1.7,3)
-      to[R,l={$R_1=\SI{6}{\ohm}$}] (4,3) coordinate(a);
-\draw (a) to[L,l={$L=\SI{120}{\milli\henry}$},i>^={$i_L$}] (4,0) -- (0,0);
-\draw (a) -- (6,3) to[R,l={$R_2=\SI{18}{\ohm}$}] (6,0) -- (4,0);
+      to[switch] (1.9,3)
+      to[R,l={$R_1=\SI{6}{\ohm}$}] (4.5,3) coordinate(a);
+\node[anchor=south] at (0.95,3.30) {abre em $t=0$};
+\draw (a) to[L,i>^={$i_L$}] (4.5,0) -- (0,0);
+\node[anchor=east] at (4.25,1.5) {$L=\SI{120}{\milli\henry}$};
+\draw (a) -- (7.0,3) to[R,l_={$R_2=\SI{18}{\ohm}$}] (7.0,0) -- (4.5,0);
 \end{circuitikz}}{Circuito RL com caminho de descarga resistivo.}
 
 \resposta{$i_L(0^+)=\SI{4}{\ampere}$; $\tau\approx\SI{6.67}{\milli\second}$;
@@ -71,12 +75,14 @@ inserindo $R_2$ em paralelo com o capacitor. Determine $v_C(0^+)$,
 $v_C(\infty)$, $\tau$ e escreva $v_C(t)$ para $t>0$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) to[american current source,l_={$\SI{2}{\milli\ampere}$}] (0,3) -- (2,3) coordinate(a);
-\draw (a) to[R,l={$R_1=\SI{4}{\kilo\ohm}$}] (2,0) -- (0,0);
-\draw (a) -- (4,3) to[C,l={$C=\SI{50}{\micro\farad}$},v^>={$v_C$}] (4,0) -- (2,0);
-\draw (a) -- (5.5,3) to[switch,l={fecha em $t=0$}] (6.8,3)
-      to[R,l={$R_2=\SI{12}{\kilo\ohm}$}] (6.8,0) -- (4,0);
+\begin{circuitikz}[scale=0.94,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) to[american current source,l_={$\SI{2}{\milli\ampere}$}] (0,3) -- (2.2,3) coordinate(a);
+\draw (a) to[R,l_={$R_1=\SI{4}{\kilo\ohm}$}] (2.2,0) -- (0,0);
+\draw (a) -- (4.7,3) to[C,v^>={$v_C$}] (4.7,0) -- (2.2,0);
+\node[anchor=east] at (4.45,1.5) {$C=\SI{50}{\micro\farad}$};
+\draw (a) -- (6.0,3) to[switch] (7.5,3)
+      to[R,l_={$R_2=\SI{12}{\kilo\ohm}$}] (7.5,0) -- (4.7,0);
+\node[anchor=south] at (6.75,3.30) {fecha em $t=0$};
 \end{circuitikz}}{Mudança da resistência vista pelo capacitor.}
 
 \resposta{$v_C(0^+)=\SI{8}{\volt}$; $v_C(\infty)=\SI{6}{\volt}$;
@@ -102,12 +108,14 @@ em série. Sem resolver ainda a resposta completa, determine $\alpha$, $\omega_0
 $\omega_d$ e classifique o amortecimento.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
+\begin{circuitikz}[scale=0.92,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
 \draw (0,0) to[american voltage source,l_={$\SI{20}{\volt}$}] (0,3)
-      to[switch,l={fecha em $t=0$}] (1.6,3)
-      to[R,l={$R=\SI{15}{\ohm}$}] (3.6,3)
-      to[L,l={$L=\SI{50}{\milli\henry}$}] (5.8,3)
-      to[C,l={$C=\SI{200}{\micro\farad}$}] (7.8,3) -- (7.8,0) -- (0,0);
+      to[switch] (1.8,3)
+      to[R,l={$R=\SI{15}{\ohm}$}] (4.0,3)
+      to[L,l={$L=\SI{50}{\milli\henry}$}] (6.5,3)
+      to[C] (9.0,3) -- (9.0,0) -- (0,0);
+\node[anchor=south] at (0.9,3.30) {fecha em $t=0$};
+\node[anchor=south] at (7.75,3.30) {$C=\SI{200}{\micro\farad}$};
 \end{circuitikz}}{Circuito RLC em série excitado por degrau.}
 
 \resposta{$\alpha=\SI{150}{\per\second}$;
@@ -130,11 +138,15 @@ $i_s(t)=3u(t)\,\si{\ampere}$. Determine $v(0^+)$, $i_L(0^+)$,
 $\mathrm{d}v/\mathrm{d}t|_{0^+}$, $v(\infty)$ e $i_L(\infty)$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) to[american current source,l_={$3u(t)\,\si{\ampere}$}] (0,3) -- (6,3);
-\draw (2,3) to[R,l={$R=\SI{6}{\ohm}$}] (2,0);
-\draw (4,3) to[C,l={$C=\SI{0.5}{\farad}$},v^>={$v$}] (4,0);
-\draw (6,3) to[L,l={$L=\SI{2}{\henry}$},i>^={$i_L$}] (6,0) -- (0,0);
+\begin{circuitikz}[scale=0.96,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) to[american current source] (0,3) -- (7.2,3);
+\node[anchor=east] at (-0.25,1.5) {$3u(t)\,\si{\ampere}$};
+\draw (2.2,3) to[R] (2.2,0);
+\node[anchor=east] at (1.95,1.5) {$R=\SI{6}{\ohm}$};
+\draw (4.7,3) to[C,v^>={$v$}] (4.7,0);
+\node[anchor=east] at (4.45,1.5) {$C=\SI{0.5}{\farad}$};
+\draw (7.2,3) to[L,i>^={$i_L$}] (7.2,0) -- (0,0);
+\node[anchor=east] at (6.95,1.5) {$L=\SI{2}{\henry}$};
 \end{circuitikz}}{RLC em paralelo: condições iniciais, derivada inicial e regime final.}
 
 \resposta{$v(0^+)=0$; $i_L(0^+)=0$;
