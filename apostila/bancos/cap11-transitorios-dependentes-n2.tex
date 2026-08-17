@@ -10,11 +10,15 @@ VCCS de valor $g v_C$, com $g=\SI{0.25}{\milli\ensuremath{\mathrm{S}}}$. Determi
 tempo, o valor final de $v_C$ e $v_C(\SI{0.10}{\second})$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) to[american current source,l_={$3u(t)\,\mathrm{mA}$}] (0,3) -- (6.5,3);
-\draw (2.2,3) to[R,l={$R=\SI{4}{\kilo\ohm}$}] (2.2,0);
-\draw (4.3,3) to[C,l={$C=\SI{50}{\micro\farad}$},v^>={$v_C$}] (4.3,0);
-\draw (6.5,3) to[american controlled current source,l_={$g v_C$}] (6.5,0) -- (0,0);
+\begin{circuitikz}[scale=0.96,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) to[american current source] (0,3) -- (7.0,3);
+\node[anchor=east] at (-0.25,1.5) {$3u(t)\,\mathrm{mA}$};
+\draw (2.0,3) to[R] (2.0,0);
+\node[anchor=east] at (1.75,1.5) {$R=\SI{4}{\kilo\ohm}$};
+\draw (4.5,3) to[C,v^>={$v_C$}] (4.5,0);
+\node[anchor=east] at (4.25,1.5) {$C=\SI{50}{\micro\farad}$};
+\draw (7.0,3) to[american controlled current source] (7.0,0) -- (0,0);
+\node[anchor=west] at (7.25,1.5) {$g\,v_C$};
 \end{circuitikz}}{Circuito RC com fonte de corrente controlada por tensão (VCCS).}
 
 \resposta{$R_{\mathrm{eq}}=\SI{2}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
@@ -38,12 +42,15 @@ A fonte dependente fornece a corrente $g v_C$, com
 $g=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$. Determine $R_{\mathrm{eq}}$, $\tau$ e $v_C(t)$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) -- (6,0);
-\draw (0,3) -- (6,3);
-\draw (1.8,3) to[R,l={$R=\SI{2}{\kilo\ohm}$}] (1.8,0);
-\draw (3.8,3) to[C,l={$C=\SI{100}{\micro\farad}$},v^>={$v_C$}] (3.8,0);
-\draw (6,3) to[american controlled current source,l_={$g v_C$}] (6,0);
+\begin{circuitikz}[scale=0.98,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) -- (7.0,0);
+\draw (0,3) -- (7.0,3);
+\draw (1.8,3) to[R] (1.8,0);
+\node[anchor=east] at (1.55,1.5) {$R=\SI{2}{\kilo\ohm}$};
+\draw (4.2,3) to[C,v^>={$v_C$}] (4.2,0);
+\node[anchor=east] at (3.95,1.5) {$C=\SI{100}{\micro\farad}$};
+\draw (7.0,3) to[american controlled current source] (7.0,0);
+\node[anchor=west] at (7.25,1.5) {$g\,v_C$};
 \end{circuitikz}}{Resposta natural RC com uma VCCS em paralelo.}
 
 \resposta{$R_{\mathrm{eq}}=\SI{1}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
@@ -63,12 +70,15 @@ $i_x=v/R$ e $\beta=0{,}5$. Determine a resistência equivalente vista pelo indut
 a constante de tempo e $i_L(t)$.
 
 \circuitoqq{%
-\begin{circuitikz}[scale=1,transform shape,line width=0.8pt]
-\draw (0,0) -- (6,0);
-\draw (0,3) -- (6,3);
-\draw (1.8,3) to[R,l={$R=\SI{20}{\ohm}$},i>^={$i_x$}] (1.8,0);
-\draw (3.9,3) to[L,l={$L=\SI{200}{\milli\henry}$},i>^={$i_L$}] (3.9,0);
-\draw (6,0) to[american controlled current source,l_={$\beta i_x$}] (6,3);
+\begin{circuitikz}[scale=0.98,transform shape,line width=0.8pt,every node/.append style={font=\scriptsize}]
+\draw (0,0) -- (7.2,0);
+\draw (0,3) -- (7.2,3);
+\draw (1.8,3) to[R,i>^={$i_x$}] (1.8,0);
+\node[anchor=east] at (1.55,1.5) {$R=\SI{20}{\ohm}$};
+\draw (4.2,3) to[L,i>^={$i_L$}] (4.2,0);
+\node[anchor=east] at (3.95,1.5) {$L=\SI{200}{\milli\henry}$};
+\draw (7.2,0) to[american controlled current source] (7.2,3);
+\node[anchor=west] at (7.45,1.5) {$\beta\,i_x$};
 \end{circuitikz}}{Resposta natural RL com fonte de corrente controlada por corrente (CCCS).}
 
 \resposta{$R_{\mathrm{eq}}=\SI{40}{\ohm}$; $\tau=\SI{5}{\milli\second}$;
