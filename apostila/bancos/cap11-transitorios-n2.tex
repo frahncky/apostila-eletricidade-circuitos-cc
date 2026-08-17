@@ -65,7 +65,7 @@ inicialmente descarregado. Determine $v_C(\tau)$ e a constante de tempo.
 \end{circuitikz}}
 
 \resposta{$\tau=\SI{100}{\milli\second}$; $v_C(\tau)\approx\SI{4.21}{\volt}$}
-\resolucao{Em regime permanente, o capacitor mede a tensão do divisor:
+\resolucao{Em regime permanente, a tensão no capacitor corresponde à tensão do divisor:
 $V_f=20\cdot3/(6+3)=\SI{6.67}{\volt}$. Suprimindo a fonte,
 $R_{\mathrm{eq}}=R_1\parallel R_2=\SI{2}{\kilo\ohm}$, então
 $\tau=R_{\mathrm{eq}}C=\SI{0.1}{\second}$. Como $v_C(0)=0$,
@@ -83,8 +83,9 @@ Para $t/\tau=0{,}5$, obtém-se $v_C\approx-10+15e^{-0{,}5}
 \end{questao}
 
 \begin{questao}[2]{}
-Um indutor de $\SI{40}{\milli\henry}$ vê $R_{\mathrm{eq}}=\SI{4}{\ohm}$ após
-uma comutação. Sua corrente inicial é $\SI{0.5}{\ampere}$ e o valor final é
+Um indutor de $\SI{40}{\milli\henry}$ está conectado, após uma
+comutação, a uma rede cuja resistência equivalente vista em seus terminais é
+$R_{\mathrm{eq}}=\SI{4}{\ohm}$. Sua corrente inicial é $\SI{0.5}{\ampere}$ e o valor final é
 $\SI{2}{\ampere}$. Calcule a corrente após $\SI{20}{\milli\second}$.
 \resposta{$i_L\approx\SI{1.80}{\ampere}$}
 \resolucao{$\tau=L/R=\SI{10}{\milli\second}$ e
@@ -93,7 +94,7 @@ $i_L=2-1{,}5e^{-2}\approx\SI{1.80}{\ampere}$.}
 \end{questao}
 
 \begin{questao}[2]{}
-Um RLC série tem $R=\SI{10}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
+Um RLC em série tem $R=\SI{10}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
 $C=\SI{200}{\micro\farad}$. Determine $\alpha$, $\omega_0$, $\omega_d$ e o tipo
 de resposta.
 \resposta{$\alpha=\SI{100}{\per\second}$; $\omega_0\approx\SI{316.2}{\radian\per\second}$;
@@ -105,7 +106,7 @@ $\omega_d=\sqrt{316{,}2^2-100^2}=\SI{300}{\radian\per\second}$.}
 \end{questao}
 
 \begin{questao}[2]{}
-Para um RLC série com $R=\SI{40}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
+Para um RLC em série com $R=\SI{40}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
 $C=\SI{200}{\micro\farad}$, classifique a resposta natural.
 \resposta{Superamortecida}
 \resolucao{$\alpha=40/(2\cdot0{,}05)=\SI{400}{\per\second}$, enquanto
@@ -114,7 +115,7 @@ resposta é superamortecida.}
 \end{questao}
 
 \begin{questao}[2]{}
-Calcule $R_{\mathrm{crit}}$ para um RLC série com $L=\SI{0.1}{\henry}$ e
+Calcule $R_{\mathrm{crit}}$ para um RLC em série com $L=\SI{0.1}{\henry}$ e
 $C=\SI{100}{\micro\farad}$.
 \resposta{$R_{\mathrm{crit}}\approx\SI{63.25}{\ohm}$}
 \resolucao{$R_{\mathrm{crit}}=2\sqrt{L/C}=2\sqrt{0{,}1/\pot{100}{-6}}
@@ -143,10 +144,10 @@ $\dot v_C=0{,}02/(\pot{100}{-6})=\SI{200}{\volt\per\second}$.}
 \end{questao}
 
 \begin{questao}[2]{}
-Um RLC paralelo possui $R=\SI{200}{\ohm}$, $C=\SI{100}{\micro\farad}$ e
+Um RLC em paralelo possui $R=\SI{200}{\ohm}$, $C=\SI{100}{\micro\farad}$ e
 $L=\SI{0.1}{\henry}$. Classifique a resposta natural da tensão.
 \resposta{Subamortecida}
-\resolucao{No paralelo, $\alpha=1/(2RC)=1/[2\cdot200\cdot\pot{100}{-6}]
+\resolucao{No circuito RLC em paralelo, $\alpha=1/(2RC)=1/[2\cdot200\cdot\pot{100}{-6}]
 =\SI{25}{\per\second}$. Já $\omega_0\approx\SI{316.2}{\radian\per\second}$.
 Como $\alpha<\omega_0$, a resposta é subamortecida.}
 \end{questao}
@@ -160,8 +161,9 @@ $e^{-5}\approx0{,}00674$, ou \SI{0.674}{\percent}.}
 \end{questao}
 
 \begin{questao}[2]{}
-Um circuito LC ideal possui $C=\SI{100}{\micro\farad}$ inicialmente a
-$\SI{10}{\volt}$ e $L=\SI{50}{\milli\henry}$ com corrente inicial nula.
+Um circuito LC ideal possui um capacitor de $C=\SI{100}{\micro\farad}$
+com tensão inicial de $\SI{10}{\volt}$ e um indutor de
+$L=\SI{50}{\milli\henry}$ com corrente inicial nula.
 Determine a energia inicial e a corrente máxima ideal.
 \resposta{$E=\SI{5}{\milli\joule}$; $I_{\max}\approx\SI{0.447}{\ampere}$}
 \resolucao{$E=\tfrac12CV^2=\tfrac12\pot{100}{-6}\cdot100=\SI{5}{\milli\joule}$.

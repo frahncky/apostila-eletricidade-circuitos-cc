@@ -1087,7 +1087,7 @@ F=\frac{\pot{9}{9}\cdot(\pot{1}{-6})^{2}}{(\pot{1}{-2})^{2}}
 \]
 Um milionésimo de coulomb, a um centímetro, produz nove vezes o peso de um
 quilograma. Essa desproporção entre a força elétrica e a gravitacional é a razão
-pela qual a matéria macroscópica é praticamente neutra: qualquer desequilíbrio
+pela qual é a matéria macroscópica é praticamente neutra: qualquer desequilíbrio
 apreciável de carga seria violentamente desfeito.}
 \stepcounter{questao}
 \resposta{Um único ponto: $x=\SI{60}{\centi\meter}$}
@@ -3197,7 +3197,7 @@ v_d=\frac{I}{n\,e\,A}
 \approx\pot{7.4}{-4}\,\si{\meter\per\second}=\SI{0.74}{\milli\meter\per\second}.
 \]
 \textbf{(b)} $t = \dfrac{1}{\pot{7.4}{-4}} \approx \SI{1360}{\second}
-\approx \SI{23}{\minute}$ --- um elétron leva quase meia hora para andar um metro!
+\approx \SI{23}{\minute}$ --- um elétron leva aproximadamente 23 minutos para percorrer um metro.
 
 \textbf{(c) A resolução do aparente paradoxo.} A lâmpada acende
 instantaneamente porque \textbf{não é preciso que um elétron viaje da chave até a
@@ -5591,7 +5591,7 @@ I_1 = \SI{3}{\ampere},\ I_2 = \SI{1}{\ampere}.
 \]
 Logo $I_3 = 3 - 1 = \SI{2}{\ampere}$.\\
 \textbf{Verificação} pela malha esquerda: $2\cdot3 + 6\cdot2 = 6+12 =
-\SI{18}{\volt} = E_1$. Confere.}
+\SI{18}{\volt} = E_1$. Resultado consistente.}
 \stepcounter{questao}
 \resposta{$I_1 = \SI{2.4}{\ampere}$, $I_2 = \SI{-0.6}{\ampere}$, $I_3 = \SI{1.8}{\ampere}$}
 \resolucao{\textbf{Nó superior:} $I_1 + I_2 = I_3$.\\
@@ -5608,7 +5608,7 @@ O sinal \emph{negativo} de $I_2$ significa que a corrente real nesse ramo é
 \emph{oposta} ao sentido adotado: a fonte $E_2$, mais fraca, na verdade
 \textbf{recebe} corrente (está sendo carregada) em vez de fornecer.\\
 \textbf{Verificação} (malha esquerda): $2\cdot2{,}4 + 4\cdot1{,}8 = 4{,}8+7{,}2
-= \SI{12}{\volt} = E_1$. Confere. Este é um bom lembrete: adotar um sentido
+= \SI{12}{\volt} = E_1$. Resultado consistente. Este é um bom lembrete: adotar um sentido
 errado não invalida a solução --- o sinal negativo se encarrega de corrigi-lo.}
 \stepcounter{questao}
 \resposta{(a) $V_{ac}=\SI{6}{\volt}$; (b) $V_{ab}=\SI{14}{\volt}$,
@@ -6386,7 +6386,7 @@ sinal da corrente calculada confirma automaticamente.}
 
 \section{Associação de Resistores e Transformações}
 
-\subsection{Circuitos série}
+\subsection{Circuitos em série}
 \stepcounter{questao}
 \resposta{(b)}
 \resolucao{Só existe um caminho para a corrente, logo ela é a mesma em todos os
@@ -7123,9 +7123,9 @@ primeiro é o critério de casamento (relevante quando o bloco fixo é a
 resistência interna de uma fonte); o segundo é o critério de eficiência. Este
 mesmo antagonismo reaparece no teorema da máxima transferência de potência.}
 
-\gabarito[3.1 Circuitos série]
+\gabarito[3.1 Circuitos em série]
 
-\subsection{Circuitos paralelo}
+\subsection{Circuitos em paralelo}
 \stepcounter{questao}
 \resposta{(c)}
 \resolucao{Todos os ramos estão ligados ao mesmo par de nós, logo compartilham a
@@ -7220,7 +7220,7 @@ multiplica por $n$ a capacidade de dissipação do conjunto.}
 \stepcounter{questao}
 \resposta{$R_{AB} = \SI{45}{\ohm}$}
 \resolucao{O fio ideal liga os dois terminais do resistor de \SI{30}{\ohm}
-central, curto-circuitando-o. Ele deixa de conduzir e some do circuito. Sobram
+central, curto-circuitando-o. Ele deixa de conduzir e pode ser desconsiderado no circuito equivalente. Sobram
 apenas os resistores de \SI{15}{\ohm} e \SI{30}{\ohm} em série:
 \[
 R_{AB}=15+30=\SI{45}{\ohm}.
@@ -7263,8 +7263,7 @@ R_1=\SI{15}{\ohm},\quad R_2=\SI{10}{\ohm}.
 \textbf{Verificação:} $15+10=25$ \checkmark\ e
 $\dfrac{15\cdot10}{25}=\SI{6}{\ohm}$ \checkmark\\
 \textbf{Observação:} o problema só tem solução real se
-$(R_s)^2 \ge 4R_sR_p$, ou seja, $R_s \ge 4R_p$. Aqui, $25 \ge 24$ --- passou
-raspando! Se o enunciado pedisse $\Req=\SI{7}{\ohm}$ em paralelo com a mesma soma
+$(R_s)^2 \ge 4R_sR_p$, ou seja, $R_s \ge 4R_p$. Aqui, $25 \ge 24$ --- a condição é satisfeita por pequena margem. Se o enunciado pedisse $\Req=\SI{7}{\ohm}$ em paralelo com a mesma soma
 $\SI{25}{\ohm}$, não existiriam resistores reais que satisfizessem.}
 \stepcounter{questao}
 \resposta{$R_{eq}=\SI{20}{\ohm}$}
@@ -7307,7 +7306,7 @@ corrente --- quem cresce é o total.}
 \[
 I=\frac{V}{R}=\frac{24}{48}=\SI{0.5}{\ampere}.
 \]
-No paralelo, a tensão é \emph{comum} a todos os ramos: a corrente de cada um
+No circuito RLC em paralelo, a tensão é \emph{comum} a todos os ramos: a corrente de cada um
 depende só do próprio resistor. Não é preciso conhecer os demais ramos nem
 $R_{eq}$.}
 \stepcounter{questao}
@@ -7537,7 +7536,7 @@ regra produto/soma. \emph{(ii)} A distribuição de corrente sai de graça:
 $I_k/I_t=G_k/G_{eq}$, aqui $40\%$, $20\%$, $20\%$, $10\%$ e $10\%$.
 \emph{(iii)} Para incerteza, a propagação em $G$ é \emph{linear}, ao passo que
 em $R$ envolve derivadas de uma função racional.\\
-É também a razão pela qual a análise nodal --- construída sobre a LKC --- adota
+É também a razão pela qual é a análise nodal --- construída sobre a LKC --- adota
 condutâncias como grandeza natural.}
 \stepcounter{questao}
 \resposta{(a) $R_{sh}=\SI{1}{\ohm}$; (b) $\SI{0.99}{\ohm}$}
@@ -7887,7 +7886,7 @@ aritmética dos máximos --- que dimensiona a entrada. Superdimensionar o geral
 para $\SI{45}{\ampere}$ exigiria condutores muito mais caros sem ganho real de
 disponibilidade.}
 
-\gabarito[3.2 Circuitos paralelo]
+\gabarito[3.2 Circuitos em paralelo]
 
 \subsection{Circuitos mistos}
 \stepcounter{questao}
@@ -8550,7 +8549,7 @@ anulado. E o resistor de $\SI{30}{\ohm}$ \emph{em paralelo} com o reostato
 impõe um piso a $R_{eq}$: mesmo com o reostato em $\infty$, o bloco não
 passaria de $\SI{30}{\ohm}$, e $R_{eq}$ de $\SI{50}{\ohm}$.\\
 \textbf{Consequência de projeto:} para ampliar a faixa de controle, é preciso
-reduzir o resistor série \emph{e} aumentar o resistor em paralelo --- alterar
+reduzir o resistor em série \emph{e} aumentar o resistor em paralelo --- alterar
 apenas o reostato tem efeito saturante.}
 \stepcounter{questao}
 \resposta{$V_{\max}=\SI{20}{\volt}$; o crítico é $R_1$}
@@ -9683,7 +9682,7 @@ U_3 = 5\cdot10 = \SI{50}{\volt}.
 \textbf{Verificação:} $30+40+50 = \SI{120}{\volt}$, igual à fonte.}
 \stepcounter{questao}
 \resposta{(b)}
-\resolucao{Direto pela fórmula do divisor:
+\resolucao{Aplicando diretamente a fórmula do divisor:
 \[
 U_2 = E\,\frac{R_2}{R_1+R_2} = 100\cdot\frac{40}{100} = \SI{40}{\volt}.
 \]}
@@ -9717,7 +9716,7 @@ R_2 \parallel R_L = 1\text{k}\parallel 1\text{k} = \SI{0.5}{\kilo\ohm}
 \ \Rightarrow\
 U_{\text{out}} = 12\cdot\frac{0{,}5}{1+0{,}5} = \SI{4}{\volt}.
 \]
-\textbf{Conclusão:} a carga "puxa" a tensão para baixo. Divisores resistivos só
+\textbf{Conclusão:} a conexão da carga reduz a tensão de saída. Divisores resistivos só
 mantêm a saída se $R_L \gg R_2$; por isso não servem como fonte de alimentação
 para cargas variáveis --- para isso usa-se um regulador de tensão.}
 \stepcounter{questao}
@@ -10646,7 +10645,7 @@ P_2=\frac{36^{2}}{15}=\SI{86.4}{\watt}.
 \]
 Total nos ramos: $\SI{216}{\watt}=36(6)$ \checkmark.\\
 \textbf{Observe:} o ramo de \emph{menor} resistência dissipa mais --- regra do
-paralelo ($P\propto1/R$ com $U$ comum). O resistor série dissipa ainda
+paralelo ($P\propto1/R$ com $U$ comum). O resistor em série dissipa ainda
 $4(36)=\SI{144}{\watt}$, e a fonte entrega $60(6)=\SI{360}{\watt}$
 \checkmark.}
 \stepcounter{questao}
@@ -11221,7 +11220,7 @@ dela.}
 $P_L = R_L I^2 = 4\cdot4 = \SI{16}{\watt}$.\\
 (b) O máximo ocorreria em $R_L = R_{\text{int}} = \SI{2}{\ohm}$:
 $P_{\max} = \dfrac{12^2}{4\cdot2} = \SI{18}{\watt}$. A carga de \SI{4}{\ohm}
-entrega \SI{16}{\watt}, um pouco abaixo do máximo --- coerente com a curva suave
+dissipa \SI{16}{\watt}, um pouco abaixo do máximo --- coerente com a curva suave
 de $P_L$ em torno do ponto ótimo.}
 \stepcounter{questao}
 \resposta{$P(5)\approx\SI{8.9}{\watt}$, $P(10)=\SI{10}{\watt}$,
@@ -11239,8 +11238,9 @@ $R_L = R_{\text{Th}} = \SI{10}{\ohm}$. Note a \emph{simetria}: cargas de
 potência. A curva $P_L \times R_L$ tem um máximo suave em $R_L = R_{\text{Th}}$.}
 \stepcounter{questao}
 \resposta{Ver comentário}
-\resolucao{Com $R_L = R_{\text{Th}}$, a corrente se divide igualmente e a mesma
-potência dissipada na carga é dissipada \emph{internamente} em $R_{\text{Th}}$.
+\resolucao{Com $R_L = R_{\text{Th}}$, a mesma corrente percorre as duas resistências e,
+como elas têm o mesmo valor, a potência dissipada na carga é igual à potência
+dissipada \emph{internamente} em $R_{\text{Th}}$.
 O rendimento é
 \[
 \eta=\frac{P_{\text{carga}}}{P_{\text{total}}}
@@ -11627,7 +11627,7 @@ P_{\max}=\frac{(9{,}82)^{2}}{4(4{,}36)}=\SI{5.53}{\watt}.
 (c) A fonte original disponibilizaria
 $\dfrac{36^{2}}{4(4)}=\SI{81}{\watt}$.\\
 \textbf{A rede intermediária destruiu $93\%$ da potência disponível.} O
-resistor série de $\SI{12}{\ohm}$ derruba a tensão e o de $\SI{6}{\ohm}$ desvia
+resistor em série de $\SI{12}{\ohm}$ derruba a tensão e o de $\SI{6}{\ohm}$ desvia
 corrente --- ambos dissipando.\\
 \textbf{Conclusão:} redes resistivas \emph{não} casam impedâncias sem perda.
 Elas alteram $R_{Th}$, sim, mas sempre ao custo de reduzir $V_{Th}$ e,
@@ -11957,7 +11957,7 @@ V_1=\frac{108}{11}\approx\SI{9.82}{\volt},
 V_2=\frac{72}{11}\approx\SI{6.55}{\volt}.
 \]
 \textbf{Verificação:} corrente da fonte $= \dfrac{V_1}{2}+\dfrac{V_1-V_2}{3}
-= \dfrac{108}{22}+\dfrac{36}{33}\approx 4{,}91+1{,}09 = \SI{6}{\ampere}$. Confere.}
+= \dfrac{108}{22}+\dfrac{36}{33}\approx 4{,}91+1{,}09 = \SI{6}{\ampere}$. Resultado consistente.}
 \stepcounter{questao}
 \resposta{$V = \SI{4}{\volt}$}
 \resolucao{A corrente líquida injetada no nó é $3 - 1 = \SI{2}{\ampere}$, que
@@ -11977,7 +11977,7 @@ superior da fonte de tensão está fixo em \SI{12}{\volt}, a lei dos nós em $A$
 \]
 Multiplicando por 12: $3(V_A-12)+2V_A-24=0 \Rightarrow 5V_A = 60
 \Rightarrow V_A = \SI{12}{\volt}$.\\
-\textbf{Interpretação:} nesse ponto, a corrente que a fonte de tensão empurraria
+\textbf{Interpretação:} nesse ponto, a corrente que a fonte de tensão forneceria
 pelo resistor de \SI{4}{\ohm} é nula ($V_A = \SI{12}{\volt}$ iguala os dois lados),
 e toda a corrente de \SI{2}{\ampere} da fonte de corrente escoa pelo resistor de
 \SI{6}{\ohm}: $2 = 12/6$. Consistente.}
@@ -12605,7 +12605,7 @@ $E = \tfrac12 C\,U^2 = \tfrac12\cdot\pot{10}{-6}\cdot12^2
 paralelo do resistor: o equivalente é \emph{menor} que o menor deles.}
 \stepcounter{questao}
 \resposta{(c)}
-\resolucao{No paralelo, as capacitâncias \emph{somam}:
+\resolucao{No circuito RLC em paralelo, as capacitâncias \emph{somam}:
 $\Ceq = 4 + 12 = \SI{16}{\micro\farad}$.}
 \stepcounter{questao}
 \resposta{(c)}
@@ -12910,7 +12910,7 @@ U_C=24\cdot\frac{4}{8+4}=\SI{8}{\volt};
 \qquad
 i_C=0.
 \]
-\textbf{Método:} para achar o estado final de qualquer circuito CC com
+\textbf{Método:} para determinar o estado final de qualquer circuito CC com
 capacitores, basta \emph{removê-los} do esquema e resolver a rede resistiva
 restante. Para indutores, o procedimento dual é substituí-los por curtos.}
 \stepcounter{questao}
@@ -13076,7 +13076,7 @@ fonte de tensão através de resistor é \textbf{sempre $50\%$} --- não importa
 valor de $R$, nem de $C$, nem da tensão. Diminuir $R$ apenas acelera o
 processo; a energia perdida é a mesma. A demonstração formal por integração
 está no bloco de desafio.\\
-\textbf{Consequência prática:} carregadores eficientes não usam resistor série
+\textbf{Consequência prática:} carregadores eficientes não usam resistor em série
 --- usam conversores chaveados, que transferem energia em pacotes através de um
 indutor e escapam desse limite de $50\%$.}
 \stepcounter{questao}
@@ -13362,7 +13362,7 @@ $R_f=U/I_f$, e portanto
 \tau_f=\frac{U\,C}{I_f}.
 \]
 Note que $\tau_f$ depende do \emph{produto} $R_fC$, e em eletrolíticos $R_f$
-cai quando $C$ cresce --- razão pela qual a autodescarga de capacitores grandes
+cai quando $C$ cresce --- razão pela qual é a autodescarga de capacitores grandes
 não é proporcionalmente mais lenta.\\
 (c) $\tau_f=\pot{100}{3}\cdot\pot{1000}{-6}=\SI{100}{\second}$. Após
 $\SI{300}{\second}$:
@@ -14345,7 +14345,7 @@ $t=\tau\ln4=\SI{50}{\milli\second}\cdot1{,}386\approx\SI{69.3}{\milli\second}$.}
 $t=\tau\ln10\approx25\cdot2{,}303=\SI{57.6}{\milli\second}$.}
 \stepcounter{questao}
 \resposta{$\tau=\SI{100}{\milli\second}$; $v_C(\tau)\approx\SI{4.21}{\volt}$}
-\resolucao{Em regime permanente, o capacitor mede a tensão do divisor:
+\resolucao{Em regime permanente, a tensão no capacitor corresponde à tensão do divisor:
 $V_f=20\cdot3/(6+3)=\SI{6.67}{\volt}$. Suprimindo a fonte,
 $R_{\mathrm{eq}}=R_1\parallel R_2=\SI{2}{\kilo\ohm}$, então
 $\tau=R_{\mathrm{eq}}C=\SI{0.1}{\second}$. Como $v_C(0)=0$,
@@ -14387,7 +14387,7 @@ $B=1000/300\approx\SI{3.33}{\volt}$.}
 $\dot v_C=0{,}02/(\pot{100}{-6})=\SI{200}{\volt\per\second}$.}
 \stepcounter{questao}
 \resposta{Subamortecida}
-\resolucao{No paralelo, $\alpha=1/(2RC)=1/[2\cdot200\cdot\pot{100}{-6}]
+\resolucao{No circuito RLC em paralelo, $\alpha=1/(2RC)=1/[2\cdot200\cdot\pot{100}{-6}]
 =\SI{25}{\per\second}$. Já $\omega_0\approx\SI{316.2}{\radian\per\second}$.
 Como $\alpha<\omega_0$, a resposta é subamortecida.}
 \stepcounter{questao}
@@ -14479,7 +14479,7 @@ s=\frac{-1000\pm\sqrt{1000^2-4\cdot100000}}{2}
 resultando aproximadamente em $-112{,}7$ e $-887{,}3\ \si{\per\second}$.}
 \stepcounter{questao}
 \resposta{$R_{\mathrm{crit}}\approx\SI{7.91}{\ohm}$}
-\resolucao{No paralelo, a condição crítica é
+\resolucao{No circuito RLC em paralelo, a condição crítica é
 $1/(2RC)=1/\sqrt{LC}$. Logo
 $R_{\mathrm{crit}}=\tfrac12\sqrt{L/C}
 =\tfrac12\sqrt{0{,}05/\pot{200}{-6}}\approx\SI{7.91}{\ohm}$.}
@@ -14494,7 +14494,7 @@ aproximadamente \SI{16.3}{\percent}.}
 $\zeta=\alpha/\omega_0\approx100/316{,}2\approx0{,}316$.}
 \stepcounter{questao}
 \resposta{A subamortecido; B aproximadamente crítico; C superamortecido; D subamortecido}
-\resolucao{A, B e C possuem $\omega_0\approx316{,}2$. No série,
+\resolucao{A, B e C possuem $\omega_0\approx316{,}2$. No circuito RLC em série,
 $\alpha=R/(0{,}2)$: A dá $100<316{,}2$; B dá aproximadamente $316{,}25$; C dá
 $500>316{,}2$. No caso D, $\alpha=1/(2RC)=125$ e
 $\omega_0=1/\sqrt{0{,}05\cdot\pot{200}{-6}}\approx316{,}2$, logo também é
@@ -14530,9 +14530,10 @@ $\ddot v_C(0^+)=\SI{1e6}{\volt\per\second\squared}$.}
 \resposta{$R_{\mathrm{eq}}\approx\SI{8}{\kilo\ohm}$; há cerca de \SI{3}{\kilo\ohm}
 adicionais na trajetória equivalente}
 \resolucao{$R_{\mathrm{eq}}=\tau/C=0{,}08/(\pot{10}{-6})=\SI{8}{\kilo\ohm}$.
-Como o resistor nominal é \SI{5}{\kilo\ohm}, existe aproximadamente
-\SI{3}{\kilo\ohm} adicional. Isso pode vir de resistência de saída da fonte,
-rede de polarização esquecida, resistor em série, chave/sensor ou uma topologia
+Como o resistor nominal é de \SI{5}{\kilo\ohm}, há uma resistência
+adicional de aproximadamente \SI{3}{\kilo\ohm}. Essa diferença pode decorrer da resistência de saída da fonte, de uma
+rede de polarização não considerada, de um resistor em série, de uma chave ou
+sensor, ou de uma topologia
 que não foi corretamente reduzida ao equivalente de Thévenin.}
 \stepcounter{questao}
 \resposta{$R=\SI{240}{\ohm}$; $t_{95}\approx\SI{0.338}{\second}$; $E_R\approx\SI{0.135}{\joule}$}
@@ -14547,8 +14548,8 @@ $V^2/R=\SI{2.4}{\watt}$, importante para a escolha da tecnologia do resistor.}
 \resposta{$I_0=\SI{0.4}{\ampere}$; $E_L=\SI{9.6}{\milli\joule}$; $\tau_A\approx\SI{2}{\milli\second}$;
 $\tau_B\approx\SI{0.5}{\milli\second}$; $v_{R,\mathrm{clamp}}(0^+)\approx\SI{72}{\volt}$}
 \resolucao{Em regime, $I_0=24/60=\SI{0.4}{\ampere}$ e
-$E_L=\tfrac12LI_0^2=\SI{9.6}{\milli\joule}$. Com diodo ideal, a descarga vê
-aproximadamente o cobre da bobina: $\tau_A=L/60=\SI{2}{\milli\second}$. Com o
+$E_L=\tfrac12LI_0^2=\SI{9.6}{\milli\joule}$. Com o diodo ideal, a resistência no caminho de descarga é aproximadamente
+a resistência do enrolamento da bobina: $\tau_A=L/60=\SI{2}{\milli\second}$. Com o
 resistor adicional, $R_{\mathrm{tot}}=60+180=\SI{240}{\ohm}$ e
 $\tau_B=L/240=\SI{0.5}{\milli\second}$. A tensão inicial no resistor externo é
 $0{,}4\cdot180=\SI{72}{\volt}$. O clamp resistivo desliga o relé mais rápido,
@@ -14569,7 +14570,7 @@ $R=2\alpha L\approx\SI{5.61}{\ohm}$.}
 \SI{180}{\ohm} é superamortecido}
 \resolucao{$R_{\mathrm{crit}}=2\sqrt{L/C}=2\sqrt{0{,}02/\pot{10}{-6}}
 \approx\SI{89.4}{\ohm}$. Com \SI{45}{\ohm}, $R<R_{\mathrm{crit}}$ e haverá
-ringing/sobressinal. Com \SI{180}{\ohm}, $R>R_{\mathrm{crit}}$ e a resposta será
+oscilações amortecidas (ringing) e sobressinal. Com \SI{180}{\ohm}, $R>R_{\mathrm{crit}}$ e a resposta será
 monotônica, porém mais lenta. O amortecimento crítico é o limite de resposta
 monotônica mais rápida para o modelo ideal.}
 \stepcounter{questao}
@@ -14598,13 +14599,13 @@ separar os caminhos; \SI{8.2}{\kilo\ohm} e \SI{2.4}{\kilo\ohm} são escolhas
 comerciais coerentes.}
 \stepcounter{questao}
 \resposta{A: $\zeta\approx0{,}447$, subamortecido; B: crítico; C: $\zeta\approx2{,}01$, superamortecido; escolher B}
-\resolucao{Como $R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$, no RLC série vale
+\resolucao{Como $R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$, no RLC em série vale
 $\zeta=R/R_{\mathrm{crit}}$. Assim A fornece $\zeta\approx0{,}447$ e oscila; B
 fica praticamente em $\zeta=1$; C fornece $\zeta\approx2{,}01$ e é lento por
 superamortecimento. Para rapidez sem sobressinal, B é a escolha adequada.}
 \stepcounter{questao}
 \resposta{$R_{\mathrm{efetivo}}\approx\SI{100}{\ohm}$; há cerca de \SI{80}{\ohm}
-de resistência série não contabilizada}
+de resistência em série não contabilizada}
 \resolucao{Para $s^2+(R/L)s+1/(LC)=0$, a soma dos polos é $-R/L$. A soma medida é
 $-1000\ \si{\per\second}$; com $L=\SI{0.1}{\henry}$,
 $R=1000L=\SI{100}{\ohm}$. O produto dos polos é aproximadamente
@@ -14678,7 +14679,7 @@ corrente produzem acréscimos de $B$ apenas na proporção do ar
 e o fluxo não pode crescer indefinidamente. Ultrapassado o joelho da curva de
 saturação:
 \begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
-\item a corrente de magnetização dispara (aquecendo o enrolamento) sem ganho
+\item a corrente de magnetização aumenta acentuadamente (aquecendo o enrolamento) sem ganho
       proporcional de fluxo;
 \item a forma de onda distorce, gerando harmônicos;
 \item as perdas aumentam desproporcionalmente.
@@ -14693,8 +14694,7 @@ uma máquina elétrica.}}
 no material quando o campo externo é removido ($H = 0$). É o que faz um prego
 continuar magnetizado depois de encostar num ímã.\\
 $H_c$ é a \textbf{coercividade}: o campo externo, de sentido oposto, necessário
-para \emph{anular} a magnetização ($B = 0$). Mede a "teimosia" do material em
-manter seu estado magnético.
+para \emph{anular} a magnetização ($B = 0$). Quantifica a resistência do material à desmagnetização.
 
 \textbf{(b)} A área interna do ciclo representa a \textbf{energia dissipada por
 unidade de volume e por ciclo} --- as chamadas \emph{perdas por histerese}. Cada
@@ -14712,7 +14712,7 @@ materiais especiais.
 \toprule
  & \textbf{Núcleo de transformador} & \textbf{Ímã permanente}\\
 \midrule
-Ciclo desejado & \textbf{estreito} (fino) & \textbf{largo} (gordo)\\
+Ciclo desejado & \textbf{estreito} (fino) & \textbf{largo} (amplo)\\
 $H_c$ & baixa & alta\\
 $B_r$ & baixa & alta\\
 Objetivo & minimizar perdas & reter magnetização\\
@@ -14724,7 +14724,7 @@ Denominação & magneticamente \emph{mole} & magneticamente \emph{duro}\\
 \textbf{Raciocínio central:} o transformador inverte o campo 50 ou 60 vezes por
 segundo --- cada inversão custa a área do ciclo em calor, logo o ciclo deve ser o
 mais estreito possível. O ímã permanente, ao contrário, precisa \emph{resistir} à
-desmagnetização: quanto mais larga a área, mais estável ele é. \emph{O mesmo
+desmagnetização: quanto maior a área do ciclo, maior é sua resistência à desmagnetização. \emph{O mesmo
 gráfico, lido com objetivos opostos, leva a escolhas opostas de material.}}
 \stepcounter{questao}
 \resposta{$B=\SI{62.8}{\milli\tesla}$}
@@ -15652,7 +15652,7 @@ de alnico pode danificá-lo permanentemente, pois o ponto de operação despenca
 segundo quadrante inteiro, toleram isso muito melhor --- e é uma das razões de
 sua popularidade, além do produto de energia.}
 
-\gabarito[11.1 Conceitos iniciais e materiais magnéticos]
+\gabarito[12.1 Conceitos iniciais e materiais magnéticos]
 
 \subsection{Campo magnético}
 \stepcounter{questao}
@@ -16380,7 +16380,7 @@ carga, dá campo elétrico uniforme na cavidade de uma esfera carregada --- e é
 usado no projeto de aceleradores e de ímãs de deflexão, em que se busca campo
 uniforme em uma região de acesso.}
 
-\gabarito[11.2 Campo magnético]
+\gabarito[12.2 Campo magnético]
 
 \subsection{Fluxo magnético}
 \stepcounter{questao}
@@ -17233,7 +17233,7 @@ cálculo de relutância (pequeno efeito) mas dominam o comportamento na saturaç
 \textbf{Regra:} calcule $\mathcal{R}$ pelo caminho todo, mas verifique
 $B$ na \emph{seção crítica}.}
 
-\gabarito[11.3 Fluxo magnético]
+\gabarito[12.3 Fluxo magnético]
 
 \subsection{Força magnética}
 \stepcounter{questao}
@@ -18192,7 +18192,7 @@ ressonância mecânica.
 seria $\SI{1.3}{\newton\per\meter}$ --- desprezível. O dimensionamento mecânico
 de barramentos é governado inteiramente pela condição de \emph{falta}.}
 
-\gabarito[11.4 Força magnética]
+\gabarito[12.4 Força magnética]
 
 \subsection{Lei de Lenz e indução eletromagnética}
 \stepcounter{questao}
@@ -19004,7 +19004,7 @@ satura e chega a \emph{diminuir}.
 \item \textbf{Efeito pelicular:} em alta frequência efetiva, as correntes se
 concentram na superfície do disco, reduzindo a espessura útil $t$.
 \end{itemize}
-\textbf{Existe, portanto, uma velocidade de força máxima}, acima da qual o freio
+\textbf{Existe, portanto, uma velocidade de força máxima}, acima da qual é o freio
 perde eficácia --- comportamento oposto ao do freio de atrito e que precisa ser
 levado em conta no dimensionamento.}
 \stepcounter{questao}
@@ -19694,4 +19694,4 @@ passagem pela região entre os eletrodos, o campo elétrico fornece energia à
 partícula, aumentando sua velocidade e, consequentemente, o raio da órbita.
 }
 
-\gabarito[11.5 Lei de Lenz e indução eletromagnética]
+\gabarito[12.5 Lei de Lenz e indução eletromagnética]

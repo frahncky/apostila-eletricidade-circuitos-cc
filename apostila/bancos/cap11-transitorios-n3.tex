@@ -30,9 +30,10 @@ $i_L=1{,}554e^{-2}\approx\SI{0.210}{\ampere}$.}
 \end{questao}
 
 \begin{questao}[3]{}
-Após a supressão das fontes independentes, um capacitor de
-$C=\SI{20}{\micro\farad}$ enxerga $R_3=\SI{1}{\kilo\ohm}$ em série com o
-paralelo de $R_1=\SI{6}{\kilo\ohm}$ e $R_2=\SI{3}{\kilo\ohm}$. Determine a
+Após a supressão das fontes independentes, a resistência vista por um
+capacitor de $C=\SI{20}{\micro\farad}$ é composta por
+$R_3=\SI{1}{\kilo\ohm}$ em série com o paralelo de
+$R_1=\SI{6}{\kilo\ohm}$ e $R_2=\SI{3}{\kilo\ohm}$. Determine a
 constante de tempo.
 
 \circuitoq{%
@@ -115,7 +116,7 @@ $V=RI_f\approx\SI{7.49}{\volt}$.}
 \end{questao}
 
 \begin{questao}[3]{}
-Um RLC série tem $R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+Um RLC em série tem $R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
 $C=\SI{100}{\micro\farad}$. Determine os polos naturais.
 \resposta{$s_{1,2}=-100\pm j300\ \si{\per\second}$}
 \resolucao{$\alpha=R/(2L)=100$ e $\omega_0\approx316{,}2$. Assim
@@ -133,7 +134,7 @@ $\dot v(0)=B-200A=-500$. Logo $B=-500+2000=\SI{1500}{\volt\per\second}$.}
 \end{questao}
 
 \begin{questao}[3]{}
-Para um RLC série com $R=\SI{100}{\ohm}$, $L=\SI{0.1}{\henry}$ e
+Para um RLC em série com $R=\SI{100}{\ohm}$, $L=\SI{0.1}{\henry}$ e
 $C=\SI{100}{\micro\farad}$, determine os dois polos reais.
 \resposta{$s_1\approx-\SI{112.7}{\per\second}$; $s_2\approx-\SI{887.3}{\per\second}$}
 \resolucao{A equação característica é
@@ -149,7 +150,7 @@ resultando aproximadamente em $-112{,}7$ e $-887{,}3\ \si{\per\second}$.}
 Determine a resistência crítica de um RLC \textbf{paralelo} com
 $L=\SI{50}{\milli\henry}$ e $C=\SI{200}{\micro\farad}$.
 \resposta{$R_{\mathrm{crit}}\approx\SI{7.91}{\ohm}$}
-\resolucao{No paralelo, a condição crítica é
+\resolucao{No circuito RLC em paralelo, a condição crítica é
 $1/(2RC)=1/\sqrt{LC}$. Logo
 $R_{\mathrm{crit}}=\tfrac12\sqrt{L/C}
 =\tfrac12\sqrt{0{,}05/\pot{200}{-6}}\approx\SI{7.91}{\ohm}$.}
@@ -166,7 +167,7 @@ aproximadamente \SI{16.3}{\percent}.}
 \end{questao}
 
 \begin{questao}[3]{}
-Um RLC série possui $R=\SI{20}{\ohm}$, $L=\SI{100}{\milli\henry}$ e
+Um RLC em série possui $R=\SI{20}{\ohm}$, $L=\SI{100}{\milli\henry}$ e
 $C=\SI{100}{\micro\farad}$. Calcule o fator de amortecimento $\zeta$.
 \resposta{$\zeta\approx0{,}316$}
 \resolucao{$\alpha=R/(2L)=100$ e $\omega_0\approx316{,}2$. Assim
@@ -190,7 +191,7 @@ D & paralelo & \SI{20}{\ohm} & \SI{50}{\milli\henry} & \SI{200}{\micro\farad}\\
 \end{tabular}
 \end{table}
 \resposta{A subamortecido; B aproximadamente crítico; C superamortecido; D subamortecido}
-\resolucao{A, B e C possuem $\omega_0\approx316{,}2$. No série,
+\resolucao{A, B e C possuem $\omega_0\approx316{,}2$. No circuito RLC em série,
 $\alpha=R/(0{,}2)$: A dá $100<316{,}2$; B dá aproximadamente $316{,}25$; C dá
 $500>316{,}2$. No caso D, $\alpha=1/(2RC)=125$ e
 $\omega_0=1/\sqrt{0{,}05\cdot\pot{200}{-6}}\approx316{,}2$, logo também é
@@ -198,9 +199,9 @@ subamortecido.}
 \end{questao}
 
 \begin{questao}[3]{}
-Em certo instante de um RLC, $C=\SI{100}{\micro\farad}$ está a
-$\SI{10}{\volt}$ e $L=\SI{50}{\milli\henry}$ conduz
-$\SI{0.2}{\ampere}$. Qual é a energia total armazenada naquele instante?
+Em certo instante, o capacitor de $C=\SI{100}{\micro\farad}$ apresenta
+tensão de $\SI{10}{\volt}$, enquanto o indutor de
+$L=\SI{50}{\milli\henry}$ conduz corrente de $\SI{0.2}{\ampere}$. Qual é a energia total armazenada naquele instante?
 \resposta{$E=\SI{6}{\milli\joule}$}
 \resolucao{$E_C=\tfrac12CV^2=\SI{5}{\milli\joule}$ e
 $E_L=\tfrac12LI^2=\tfrac12(0{,}05)(0{,}2)^2=\SI{1}{\milli\joule}$. A soma é
@@ -219,7 +220,7 @@ finais, não os valores instantâneos em $0^+$.}
 \end{questao}
 
 \begin{questao}[3]{}
-Para um RLC série alimentado por um degrau de $\SI{10}{\volt}$, use
+Para um RLC em série alimentado por um degrau de $\SI{10}{\volt}$, use
 $R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e $C=\SI{100}{\micro\farad}$. Escreva
 a equação diferencial para $v_C(t)$ após a comutação.
 \resposta{$\ddot v_C+200\dot v_C+100000v_C=1000000$}

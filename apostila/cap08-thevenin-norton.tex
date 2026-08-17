@@ -52,7 +52,7 @@ A resistência de Thévenin de uma rede é calculada:
 \item apenas para circuitos com uma única fonte.
 \end{alternativas}
 \resposta{(b)}
-\resolucao{Para achar $R_{\text{Th}}$, desligam-se as fontes independentes (tensão
+\resolucao{Para determinar $R_{\text{Th}}$, desligam-se as fontes independentes (tensão
 $\to$ curto, corrente $\to$ aberto) e calcula-se a resistência equivalente vista
 dos terminais de saída.}
 \end{questao}
@@ -96,7 +96,7 @@ I_L=\frac{V_{\text{Th}}}{R_{\text{Th}}+R_L}=\frac{6}{2+6}=\SI{0.75}{\ampere},
 \qquad
 U_L=R_L\,I_L=6\cdot0{,}75=\SI{4.5}{\volt}.
 \]
-\textbf{Vantagem do método:} uma vez achado o equivalente, testar qualquer carga
+\textbf{Vantagem do método:} uma vez obtido o equivalente, testar qualquer carga
 é imediato --- não é preciso reanalisar o circuito inteiro a cada valor de $R_L$.}
 \end{questao}
 
@@ -139,7 +139,7 @@ I_{\text{N}} = \frac{24}{R_1} = \frac{24}{6} = \SI{4}{\ampere}.
 \textbf{Conferindo pela relação com Thévenin:}
 $V_{\text{Th}} = 24\cdot\dfrac{3}{9} = \SI{8}{\volt}$ e
 $I_{\text{N}} = \dfrac{V_{\text{Th}}}{R_{\text{Th}}} = \dfrac{8}{2}
-= \SI{4}{\ampere}$. Confere.}
+= \SI{4}{\ampere}$. Resultado consistente.}
 \end{questao}
 
 \blocoaprofundamento
@@ -179,7 +179,7 @@ que permite aplicar a condição $R_L = R_{\text{Th}}$ de forma direta.}
 
 \begin{questao}[3]{}
 Um circuito foi reduzido ao equivalente de Thévenin $V_{\text{Th}}=\SI{18}{\volt}$,
-$R_{\text{Th}}=\SI{3}{\ohm}$. Deseja-se saber, sem refazer as contas para cada
+$R_{\text{Th}}=\SI{3}{\ohm}$. Deseja-se saber, sem refazer os cálculos para cada
 caso, a corrente na carga para $R_L = \SI{3}{\ohm}$, $\SI{6}{\ohm}$ e
 $\SI{9}{\ohm}$, e em qual delas a potência entregue é máxima.
 \resposta{$I(3)=\SI{3}{\ampere}$, $I(6)=\SI{2}{\ampere}$, $I(9)=\SI{1.5}{\ampere}$;
@@ -261,7 +261,7 @@ carga de $\SI{8}{\ohm}$, a tensão nos terminais cai para $\SI{16}{\volt}$.
 
 \begin{itensq}
 \item Determine o equivalente de Thévenin da caixa-preta.
-\item Qual a corrente de curto-circuito nos terminais?
+\item Qual é a corrente de curto-circuito nos terminais?
 \item Qual carga extrairia a máxima potência, e qual seria essa potência?
 \item Um técnico sugere medir $R_{\text{Th}}$ diretamente com um ohmímetro nos
       terminais A--B. Por que isso é um erro grave?

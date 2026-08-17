@@ -71,15 +71,15 @@ $(\text{soma das condutâncias do nó})\times V = (\text{corrente líquida injet
 \begin{questao}[1]{}
 Converta $R_1=\SI{4}{\ohm}$, $R_2=\SI{5}{\ohm}$ e $R_3=\SI{20}{\ohm}$ em
 condutâncias, some-as e obtenha a resistência equivalente.
-\resposta{$G=\SI{0.5}{\siemens}$; $R_{eq}=\SI{2}{\ohm}$}
+\resposta{$G=\SI{0.5}{\ensuremath{\mathrm{S}}}$; $R_{eq}=\SI{2}{\ohm}$}
 \resolucao{
 \[
-G_1=\tfrac14=\SI{0.25}{\siemens},\quad
-G_2=\tfrac15=\SI{0.20}{\siemens},\quad
-G_3=\tfrac1{20}=\SI{0.05}{\siemens}.
+G_1=\tfrac14=\SI{0.25}{\ensuremath{\mathrm{S}}},\quad
+G_2=\tfrac15=\SI{0.20}{\ensuremath{\mathrm{S}}},\quad
+G_3=\tfrac1{20}=\SI{0.05}{\ensuremath{\mathrm{S}}}.
 \]
 \[
-G=0{,}25+0{,}20+0{,}05=\SI{0.5}{\siemens}
+G=0{,}25+0{,}20+0{,}05=\SI{0.5}{\ensuremath{\mathrm{S}}}
 \;\Longrightarrow\;
 R_{eq}=\frac{1}{G}=\SI{2}{\ohm}.
 \]
@@ -360,7 +360,7 @@ V_A(0{,}10+0{,}10)=4
 V_A=\SI{20}{\volt}.
 \]
 \textbf{Leitura:} a fonte dependente comporta-se como uma condutância adicional
-de $\SI{0.1}{\siemens}$ --- um resistor "sintético" de $\SI{10}{\ohm}$. Se o
+de $\SI{0.1}{\ensuremath{\mathrm{S}}}$ --- um resistor "sintético" de $\SI{10}{\ohm}$. Se o
 coeficiente fosse negativo, ela agiria como \emph{resistência negativa}.}
 \end{questao}
 
@@ -436,7 +436,7 @@ $R_{in}=V_1/I=25/4=\SI{6.25}{\ohm}$. Note a atenuação progressiva
 O nó 1 recebe $\SI{6}{\ampere}$ e liga-se ao terra por $\SI{5}{\ohm}$ e ao nó 2
 por $\SI{5}{\ohm}$. O nó 2 liga-se ao terra por $\SI{10}{\ohm}$ e, além disso,
 uma fonte de corrente \textbf{dependente} drena $g\,V_1$ do nó 2 para o terra,
-com $g=\SI{0.1}{\siemens}$. Determine $V_1$ e $V_2$.
+com $g=\SI{0.1}{\ensuremath{\mathrm{S}}}$. Determine $V_1$ e $V_2$.
 \resposta{$V_1=\SI{18}{\volt}$, $V_2=\SI{6}{\volt}$}
 \resolucao{Nó 1: $0{,}4V_1-0{,}2V_2=6$.\\
 Nó 2: $-0{,}2V_1+0{,}3V_2+0{,}1V_1=0$, ou seja $-0{,}1V_1+0{,}3V_2=0$.\\
@@ -500,8 +500,8 @@ instrumento de zero e passa a exigir o circuito completo.}
 
 \begin{questao}[3]{}
 Monte e resolva \textbf{por regra de Cramer} o sistema de um circuito em que
-$G_{11}=\SI{0.3}{\siemens}$, $G_{22}=\SI{0.2}{\siemens}$,
-$G_{12}=G_{21}=\SI{-0.1}{\siemens}$, com $\SI{4}{\ampere}$ injetados no nó 1 e
+$G_{11}=\SI{0.3}{\ensuremath{\mathrm{S}}}$, $G_{22}=\SI{0.2}{\ensuremath{\mathrm{S}}}$,
+$G_{12}=G_{21}=\SI{-0.1}{\ensuremath{\mathrm{S}}}$, com $\SI{4}{\ampere}$ injetados no nó 1 e
 $\SI{1}{\ampere}$ no nó 2.
 \resposta{$V_1=\SI{18}{\volt}$, $V_2=\SI{14}{\volt}$}
 \resolucao{
@@ -630,7 +630,7 @@ $-0{,}1(18)+0{,}2(14)=-1{,}8+2{,}8=1$ \checkmark.\\
 \textbf{Teste 2 --- balanço de potência.} As fontes fornecem
 $4(18)+1(14)=\SI{86}{\watt}$. Reconstituindo os ramos: $G_{11}+G_{12}=0{,}2$
 (condutância do nó 1 ao terra), $G_{22}+G_{21}=0{,}1$ (nó 2 ao terra) e
-$\SI{0.1}{\siemens}$ entre os nós:
+$\SI{0.1}{\ensuremath{\mathrm{S}}}$ entre os nós:
 \[
 P=0{,}2(18)^2+0{,}1(14)^2+0{,}1(18-14)^2=64{,}8+19{,}6+1{,}6=\SI{86}{\watt}
 \ \checkmark
@@ -714,7 +714,7 @@ corrente também recebem linhas extras.}
 
 \begin{questao}[4]{}
 \textbf{(Recorrência --- escada infinita.)} Uma escada infinita repete
-indefinidamente a célula: um resistor série de $\SI{10}{\ohm}$ seguido de um
+indefinidamente a célula: um resistor em série de $\SI{10}{\ohm}$ seguido de um
 resistor de $\SI{10}{\ohm}$ ao terra.
 \begin{itensq}
 \item Obtenha a resistência de entrada $R_\infty$.
@@ -740,7 +740,7 @@ R_\infty^{2}+10R_\infty-100=0
 R_\infty=5(\sqrt5-1)\approx\SI{6.180}{\ohm}
 \]
 (descartada a raiz negativa, sem sentido físico).\\
-(b) Cada nó vê $R_\infty$ à sua frente, atrás de um resistor série de
+(b) Cada nó vê $R_\infty$ à sua frente, atrás de um resistor em série de
 $\SI{10}{\ohm}$ --- um divisor de tensão:
 \[
 \frac{V_{k+1}}{V_k}=\frac{R_\infty}{10+R_\infty}
@@ -835,18 +835,18 @@ também alimenta o nó.
 \item Determine o valor crítico $g_c$ e interprete-o.
 \item Discuta o significado físico de $g>g_c$.
 \end{itensq}
-\resposta{(a) $V=\dfrac{1}{1/R-g}$; (b) $g_c=1/R=\SI{0.05}{\siemens}$;
+\resposta{(a) $V=\dfrac{1}{1/R-g}$; (b) $g_c=1/R=\SI{0.05}{\ensuremath{\mathrm{S}}}$;
 (c) condutância equivalente negativa --- o modelo linear deixa de descrever o
 circuito}
 \resolucao{(a) LKC: $\dfrac{V}{R}-gV=1$, portanto
 \[
 V=\frac{1}{\dfrac{1}{R}-g}=\frac{1}{0{,}05-g}.
 \]
-(b) Em $g_c=1/R=\SI{0.05}{\siemens}$ o denominador se anula: a matriz
+(b) Em $g_c=1/R=\SI{0.05}{\ensuremath{\mathrm{S}}}$ o denominador se anula: a matriz
 ($1\times1$) torna-se \textbf{singular} e não há solução finita. Fisicamente, a
 fonte dependente passa a fornecer exatamente a corrente que o resistor consome,
-e o nó "flutua". Valores próximos: $g=\SI{0.02}{\siemens}\Rightarrow
-V=\SI{33.3}{\volt}$; $g=\SI{0.049}{\siemens}\Rightarrow V=\SI{1000}{\volt}$ ---
+e o nó "flutua". Valores próximos: $g=\SI{0.02}{\ensuremath{\mathrm{S}}}\Rightarrow
+V=\SI{33.3}{\volt}$; $g=\SI{0.049}{\ensuremath{\mathrm{S}}}\Rightarrow V=\SI{1000}{\volt}$ ---
 sensibilidade explosiva.\\
 (c) Para $g>g_c$ a condutância equivalente $1/R-g$ é \textbf{negativa} e a
 fórmula devolve $V<0$: um resultado matematicamente correto, porém fisicamente
@@ -924,7 +924,7 @@ obtida pela realimentação, que torna o circuito previsível e reprodutível.}
 \mathbf{G}=\begin{bmatrix}
 1{,}0001 & -1{,}0000\\
 -1{,}0000 & 1{,}0001
-\end{bmatrix}\si{\siemens}.
+\end{bmatrix}\si{\ensuremath{\mathrm{S}}}.
 \]
 \begin{itensq}
 \item Calcule $\det\mathbf{G}$ e estime a amplificação de erros.
@@ -939,14 +939,14 @@ são $\lambda_1=\pot{1}{-4}$ e $\lambda_2=2{,}0001$, de modo que o número de
 condição vale $\kappa=\lambda_2/\lambda_1\approx\pot{2}{4}$. Um erro relativo de
 $10^{-8}$ nos dados pode crescer até $\approx10^{-4}$ na solução --- perda de
 cerca de quatro algarismos significativos.\\
-(b) O acoplamento entre os nós ($\SI{1}{\siemens}$, ou $\SI{1}{\ohm}$) é
-$10^{4}$ vezes maior que a condutância ao terra ($\SI{1e-4}{\siemens}$, ou
+(b) O acoplamento entre os nós ($\SI{1}{\ensuremath{\mathrm{S}}}$, ou $\SI{1}{\ohm}$) é
+$10^{4}$ vezes maior que a condutância ao terra ($\SI{1e-4}{\ensuremath{\mathrm{S}}}$, ou
 $\SI{10}{\kilo\ohm}$). Eletricamente, os dois nós são quase o \emph{mesmo} nó,
 e o sistema mal consegue distingui-los: um circuito quase degenerado.\\
 (c) \textbf{(i) Reformular:} se o resistor de $\SI{1}{\ohm}$ for parasita
 (trilha, contato), funda os dois nós em um só --- o sistema cai para $1\times1$ e
 o mau condicionamento desaparece. \textbf{(ii) Reescalar:} trabalhar em
-$\si{\milli\siemens}$ e $\si{\kilo\ohm}$ equilibra as ordens de grandeza da
+$\si{\milli\ensuremath{\mathrm{S}}}$ e $\si{\kilo\ohm}$ equilibra as ordens de grandeza da
 matriz. \textbf{(iii)} Se ambos os efeitos forem reais e necessários, usar
 pivotamento parcial e precisão dupla.\\
 \textbf{Regra geral:} mau condicionamento raramente é um problema de
@@ -957,7 +957,7 @@ elementos de escalas muito diferentes foram misturados sem necessidade.}
 \begin{questao}[4]{}
 \textbf{(Generalização --- matriz de resistências de transferência.)} Para uma
 rede passiva de dois nós com
-$\mathbf{G}=\begin{bmatrix}0{,}3&-0{,}1\\-0{,}1&0{,}2\end{bmatrix}\si{\siemens}$:
+$\mathbf{G}=\begin{bmatrix}0{,}3&-0{,}1\\-0{,}1&0{,}2\end{bmatrix}\si{\ensuremath{\mathrm{S}}}$:
 \begin{itensq}
 \item Calcule $\mathbf{R}=\mathbf{G}^{-1}$ e interprete cada elemento.
 \item Enuncie e verifique o teorema da reciprocidade.

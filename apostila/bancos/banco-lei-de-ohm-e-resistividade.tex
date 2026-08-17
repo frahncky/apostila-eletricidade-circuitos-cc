@@ -88,10 +88,10 @@ conversão também é quadrático.}
 
 \begin{questao}[1]{}
 Determine a condutância de um resistor de $\SI{25}{\ohm}$.
-\resposta{$G=\SI{0.04}{\siemens}$}
+\resposta{$G=\SI{0.04}{\ensuremath{\mathrm{S}}}$}
 \resolucao{
 \[
-G=\frac{1}{R}=\frac{1}{25}=\SI{0.04}{\siemens}.
+G=\frac{1}{R}=\frac{1}{25}=\SI{0.04}{\ensuremath{\mathrm{S}}}.
 \]
 A condutância mede a \emph{facilidade} de conduzir. Ela é a grandeza natural
 quando os elementos estão em paralelo (somam-se diretamente) e na análise nodal.
@@ -618,7 +618,7 @@ $\SI{100}{\celsius\per\watt}$.
 \resposta{$\Delta T=\SI{100}{\celsius}$; $R=\SI{140}{\ohm}$}
 \resolucao{(a)
 \[
-\Delta T=R_{térm}P=100(1)=\SI{100}{\celsius};
+\Delta T=R_{\text{térm}}P=100(1)=\SI{100}{\celsius};
 \qquad
 R=100\left[1+0{,}004(100)\right]=\SI{140}{\ohm}.
 \]
@@ -632,9 +632,9 @@ Mais potência, mais aquecimento, $R$ cresce ainda mais.
 \textbf{Realimentação positiva.}\\
 \textbf{Condição de estabilidade} no caso de corrente constante: o incremento de
 potência por grau, $\alpha R I^{2}$, deve ser menor que a capacidade de
-escoar calor, $1/R_{térm}$:
+escoar calor, $1/R_{\text{térm}}$:
 \[
-\alpha R I^{2}R_{térm}<1.
+\alpha R I^{2}R_{\text{térm}}<1.
 \]
 Aqui, $0{,}004(100)(0{,}01)(100)=0{,}4<1$ \checkmark --- estável, mas com apenas
 $2{,}5$ vezes de margem. Dobrar a corrente levaria o produto a $1{,}6$ e
@@ -806,26 +806,26 @@ segunda reta pela curva do dispositivo.}
 
 \begin{questao}[4]{}
 \textbf{(Estabilidade térmica.)} Um resistor de resistência $R$, coeficiente
-$\alpha$ e resistência térmica $R_{térm}$ é alimentado por corrente constante
+$\alpha$ e resistência térmica $R_{\text{térm}}$ é alimentado por corrente constante
 $I$.
 \begin{itensq}
 \item Deduza a condição de estabilidade térmica.
 \item Avalie para $R=\SI{100}{\ohm}$, $\alpha=\SI{0.004}{\per\celsius}$,
-      $R_{térm}=\SI{100}{\celsius\per\watt}$ e $I=\SI{100}{\milli\ampere}$.
+      $R_{\text{térm}}=\SI{100}{\celsius\per\watt}$ e $I=\SI{100}{\milli\ampere}$.
 \item Determine a corrente crítica.
 \end{itensq}
-\resposta{Condição: $\alpha R I^{2}R_{térm}<1$; aqui $0{,}4$ --- estável;
+\resposta{Condição: $\alpha R I^{2}R_{\text{térm}}<1$; aqui $0{,}4$ --- estável;
 $I_c=\SI{158}{\milli\ampere}$}
-\resolucao{(a) Em equilíbrio, $\Delta T=R_{térm}P=R_{térm}RI^{2}$ e
+\resolucao{(a) Em equilíbrio, $\Delta T=R_{\text{térm}}P=R_{\text{térm}}RI^{2}$ e
 $R=R_0(1+\alpha\Delta T)$. Substituindo,
 \[
-R=R_0\left(1+\alpha R_{térm}RI^{2}\right)
+R=R_0\left(1+\alpha R_{\text{térm}}RI^{2}\right)
 \;\Longrightarrow\;
-R\left(1-\alpha R_{térm}R_0I^{2}\right)=R_0.
+R\left(1-\alpha R_{\text{térm}}R_0I^{2}\right)=R_0.
 \]
 Existe solução finita e estável se, e somente se, o parênteses for positivo:
 \[
-\boxed{\alpha\,R_0\,I^{2}\,R_{térm}<1}
+\boxed{\alpha\,R_0\,I^{2}\,R_{\text{térm}}<1}
 \]
 Fisicamente: o acréscimo de potência por grau de aquecimento deve ser
 \emph{menor} que a capacidade de escoar calor. Caso contrário, cada grau
@@ -839,7 +839,7 @@ $R=100/(1-0{,}4)=\SI{167}{\ohm}$, e a elevação, $\SI{167}{\celsius}$ ---
 elevada, mas estável.\\
 (c) Corrente crítica:
 \[
-I_c=\sqrt{\frac{1}{\alpha R_0R_{térm}}}=\sqrt{\frac{1}{0{,}004(100)(100)}}
+I_c=\sqrt{\frac{1}{\alpha R_0R_{\text{térm}}}}=\sqrt{\frac{1}{0{,}004(100)(100)}}
 =\sqrt{0{,}025}=\SI{158}{\milli\ampere}.
 \]
 \textbf{Margem estreita:} apenas $58\%$ acima da corrente de operação. E note
@@ -1031,7 +1031,7 @@ natureza e exigem outras técnicas.}
 
 \begin{questao}[4]{}
 \textbf{(Condutor composto.)} Um cabo de alta tensão tem alma de aço
-($\rho_{aço}=\pot{1.5}{-7}\,\si{\ohm\meter}$, $A=\SI{20}{\milli\meter\squared}$)
+($\rho_{\text{aço}}=\pot{1.5}{-7}\,\si{\ohm\meter}$, $A=\SI{20}{\milli\meter\squared}$)
 envolvida por alumínio ($\rho_{Al}=\pot{2.8}{-8}\,\si{\ohm\meter}$,
 $A=\SI{100}{\milli\meter\squared}$), com $\SI{1}{\kilo\meter}$ de comprimento.
 \begin{itensq}
@@ -1039,12 +1039,12 @@ $A=\SI{100}{\milli\meter\squared}$), com $\SI{1}{\kilo\meter}$ de comprimento.
 \item Determine a fração de corrente em cada um.
 \item Explique a função da alma de aço.
 \end{itensq}
-\resposta{$R_{aço}=\SI{7.5}{\ohm}$, $R_{Al}=\SI{0.28}{\ohm}$,
+\resposta{$R_{\text{aço}}=\SI{7.5}{\ohm}$, $R_{Al}=\SI{0.28}{\ohm}$,
 $R_{eq}=\SI{0.270}{\ohm}$; o aço conduz $3{,}6\%$}
 \resolucao{(a) Os dois materiais estão em \textbf{paralelo} (mesmo comprimento,
 mesmos terminais):
 \[
-R_{aço}=\frac{\pot{1.5}{-7}(1000)}{\pot{20}{-6}}=\SI{7.5}{\ohm};
+R_{\text{aço}}=\frac{\pot{1.5}{-7}(1000)}{\pot{20}{-6}}=\SI{7.5}{\ohm};
 \qquad
 R_{Al}=\frac{\pot{2.8}{-8}(1000)}{\pot{100}{-6}}=\SI{0.28}{\ohm};
 \]
@@ -1055,7 +1055,7 @@ R_{eq}=\frac{7{,}5(0{,}28)}{7{,}78}=\SI{0.270}{\ohm}.
 \[
 \frac{I_{Al}}{I_T}=\frac{1/0{,}28}{1/0{,}28+1/7{,}5}=96{,}4\%;
 \qquad
-\frac{I_{aço}}{I_T}=3{,}6\%.
+\frac{I_{\text{aço}}}{I_T}=3{,}6\%.
 \]
 (c) \textbf{A alma de aço praticamente não conduz --- e não é essa a sua
 função.} Ela existe por razões \textbf{mecânicas}:

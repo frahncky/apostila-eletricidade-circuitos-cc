@@ -170,7 +170,7 @@ E=1{,}5\left(\tfrac13\right)+0{,}6\left(\tfrac23\right)
 =0{,}50+0{,}40=\SI{0.90}{\kilo\watt\hour}.
 \]
 \[
-E_{mês}=0{,}90(30)=\SI{27}{\kilo\watt\hour};
+E_{\text{mês}}=0{,}90(30)=\SI{27}{\kilo\watt\hour};
 \qquad
 \text{custo}=27(0{,}95)=\mathrm{R\$}\,25{,}65.
 \]
@@ -183,10 +183,10 @@ que conta.}
 \begin{questao}[2]{}
 Um resistor é submetido a pulsos de $\SI{50}{\watt}$ com ciclo de trabalho de
 $\SI{10}{\percent}$. Determine a potência média.
-\resposta{$P_{média}=\SI{5}{\watt}$}
+\resposta{$P_{\text{média}}=\SI{5}{\watt}$}
 \resolucao{
 \[
-P_{média}=P_{pico}\times D=50(0{,}10)=\SI{5}{\watt}.
+P_{\text{média}}=P_{pico}\times D=50(0{,}10)=\SI{5}{\watt}.
 \]
 \textbf{Mas cuidado:} isso \emph{não} significa que um resistor de
 $\SI{5}{\watt}$ sirva. Se a duração do pulso for comparável ou maior que a
@@ -219,13 +219,13 @@ conversor, totalizando $\SI{30.7}{\watt}$ dissipados.}
 Uma carga alterna entre $\SI{500}{\watt}$ por $\SI{5}{\minute}$ e
 $\SI{100}{\watt}$ por $\SI{15}{\minute}$, em ciclos de
 $\SI{20}{\minute}$. Determine a potência média e a energia por ciclo.
-\resposta{$P_{média}=\SI{200}{\watt}$; $E=\SI{66.7}{\watt\hour}$}
+\resposta{$P_{\text{média}}=\SI{200}{\watt}$; $E=\SI{66.7}{\watt\hour}$}
 \resolucao{A potência média é a \textbf{média ponderada pelo tempo}:
 \[
-P_{média}=\frac{500(5)+100(15)}{20}=\frac{2500+1500}{20}=\SI{200}{\watt}.
+P_{\text{média}}=\frac{500(5)+100(15)}{20}=\frac{2500+1500}{20}=\SI{200}{\watt}.
 \]
 \[
-E_{ciclo}=P_{média}\times t_{ciclo}=200\times\frac{20}{60}
+E_{ciclo}=P_{\text{média}}\times t_{ciclo}=200\times\frac{20}{60}
 =\SI{66.7}{\watt\hour}.
 \]
 \textbf{Atenção:} a média \emph{aritmética} das potências ($300\,\si{\watt}$)
@@ -245,18 +245,18 @@ $\SI{25}{\percent}$ do tempo e nada nos $\SI{75}{\percent}$ restantes.
 \end{itensq}
 \resposta{(a) $\SI{1}{\ampere}$ e $\SI{10}{\watt}$ (errado); (b)
 $\SI{40}{\watt}$; (c) a potência depende de $\langle i^{2}\rangle$}
-\resolucao{(a) $I_{média}=0{,}25(4)+0{,}75(0)=\SI{1}{\ampere}$, e
-$RI_{média}^{2}=10(1)=\SI{10}{\watt}$.\\
+\resolucao{(a) $I_{\text{média}}=0{,}25(4)+0{,}75(0)=\SI{1}{\ampere}$, e
+$RI_{\text{média}}^{2}=10(1)=\SI{10}{\watt}$.\\
 (b) A potência instantânea vale $\SI{160}{\watt}$ durante $25\%$ do tempo e
 zero no resto:
 \[
-P_{média}=0{,}25(160)+0{,}75(0)=\SI{40}{\watt}.
+P_{\text{média}}=0{,}25(160)+0{,}75(0)=\SI{40}{\watt}.
 \]
 \textbf{Quatro vezes} o valor obtido em (a).\\
 (c) A potência é \emph{quadrática} na corrente, e a média de um quadrado não é
 o quadrado da média:
 \[
-P_{média}=R\left\langle i^{2}\right\rangle
+P_{\text{média}}=R\left\langle i^{2}\right\rangle
 \ne R\left\langle i\right\rangle^{2}.
 \]
 Define-se então o \textbf{valor eficaz}
@@ -277,8 +277,8 @@ $\SI{50}{\watt}$ com ciclo de trabalho de $\SI{10}{\percent}$.
 \item Analise dois casos: pulsos de $\SI{1}{\milli\second}$ e de
       $\SI{10}{\second}$.
 \end{itensq}
-\resposta{$P_{média}=\SI{5}{\watt}$; a decisão depende da constante térmica}
-\resolucao{(a) $P_{média}=\SI{5}{\watt}$, metade do nominal --- aparentemente
+\resposta{$P_{\text{média}}=\SI{5}{\watt}$; a decisão depende da constante térmica}
+\resolucao{(a) $P_{\text{média}}=\SI{5}{\watt}$, metade do nominal --- aparentemente
 seguro.\\
 (b) \textbf{O critério é a comparação entre a duração do pulso e a constante
 térmica $\tau_t$ do componente} (tipicamente de segundos a dezenas de segundos
@@ -440,7 +440,7 @@ $\SI{9}{\watt}$ e mesmo fluxo luminoso, usadas $\SI{5}{\hour}$ por dia.
       $\mathrm{R\$}\,15{,}00$ a mais.
 \end{itensq}
 \resposta{(a) $\mathrm{R\$}\,104{,}02$ contra $\mathrm{R\$}\,15{,}60$;
-(b) cerca de $\SI{2}{\month}$}
+(b) cerca de $2 meses$}
 \resolucao{(a) Horas anuais: $5\times365=\SI{1825}{\hour}$.
 \[
 E_{inc}=0{,}060(1825)=\SI{109.5}{\kilo\watt\hour}
@@ -453,7 +453,7 @@ E_{LED}=0{,}009(1825)=\SI{16.4}{\kilo\watt\hour}
 Economia anual: $\mathrm{R\$}\,88{,}42$.\\
 (b)
 \[
-t=\frac{15{,}00}{88{,}42}=0{,}17\ \text{ano}\approx\SI{2}{\month}.
+t=\frac{15{,}00}{88{,}42}=0{,}17\ \text{ano}\approx2 meses.
 \]
 \textbf{Retorno excepcional} --- poucos investimentos em engenharia se pagam em
 dois meses.\\
@@ -498,17 +498,17 @@ isolamento e os transformadores nas duas pontas.}
 \textbf{(Demonstração --- potência média e valor eficaz.)} Prove que a potência
 média em um resistor depende do valor \emph{eficaz} da corrente.
 \begin{itensq}
-\item Deduza $P_{média}=R\,I_{rms}^{2}$ a partir da definição.
-\item Mostre que $I_{rms}\ge I_{média}$, com igualdade apenas para corrente
+\item Deduza $P_{\text{média}}=R\,I_{rms}^{2}$ a partir da definição.
+\item Mostre que $I_{rms}\ge I_{\text{média}}$, com igualdade apenas para corrente
       constante.
 \item Aplique a uma onda quadrada de $\SI{0}{\ampere}$ e
       $\SI{4}{\ampere}$ com ciclo de $\SI{25}{\percent}$.
 \end{itensq}
-\resposta{$I_{rms}=\SI{2}{\ampere}$ contra $I_{média}=\SI{1}{\ampere}$;
+\resposta{$I_{rms}=\SI{2}{\ampere}$ contra $I_{\text{média}}=\SI{1}{\ampere}$;
 $P=R I_{rms}^{2}$}
 \resolucao{(a) Por definição, a potência média em um período $T$ é
 \[
-P_{média}=\frac{1}{T}\int_0^{T}R\,i^{2}(t)\,\mathrm{d}t
+P_{\text{média}}=\frac{1}{T}\int_0^{T}R\,i^{2}(t)\,\mathrm{d}t
 =R\left[\frac{1}{T}\int_0^{T}i^{2}\,\mathrm{d}t\right]
 =R\,I_{rms}^{2},
 \]
@@ -521,7 +521,7 @@ negativa):
 \left\langle i^{2}\right\rangle-\left\langle i\right\rangle^{2}
 =\operatorname{Var}(i)\ge0
 \;\Longrightarrow\;
-I_{rms}^{2}\ge I_{média}^{2}.
+I_{rms}^{2}\ge I_{\text{média}}^{2}.
 \]
 A igualdade vale se e somente se a variância é nula, isto é, se $i(t)$ é
 \textbf{constante}.\\
@@ -534,7 +534,7 @@ $\langle i^{2}\rangle=0{,}25(16)=\SI{4}{\ampere\squared}$, logo
 $I_{rms}=\SI{2}{\ampere}$.\\
 Com $R=\SI{10}{\ohm}$: $P=10(4)=\SI{40}{\watt}$, e não os
 $\SI{10}{\watt}$ que a corrente média sugeriria. Fator $4$ --- exatamente
-$(I_{rms}/I_{média})^{2}$.}
+$(I_{rms}/I_{\text{média}})^{2}$.}
 \end{questao}
 
 \begin{questao}[4]{}
@@ -559,7 +559,7 @@ $\tau/2$ porque é proporcional a $i^{2}$, e o quadrado de uma exponencial tem
 metade da constante de tempo.\\
 (b) Distribuindo $E$ por $5\tau$:
 \[
-P_{média}=\frac{RI_0^{2}\tau/2}{5\tau}=\frac{RI_0^{2}}{10}=\frac{P_0}{10}.
+P_{\text{média}}=\frac{RI_0^{2}\tau/2}{5\tau}=\frac{RI_0^{2}}{10}=\frac{P_0}{10}.
 \]
 Apenas um décimo da potência inicial --- confirmando que o transitório é curto
 diante da janela considerada.\\

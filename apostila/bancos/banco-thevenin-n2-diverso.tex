@@ -62,7 +62,7 @@ A porta está no nó B. Determine seu equivalente de Thévenin.
 \end{questao}
 
 \begin{questao}[2]{}
-Determine o equivalente de Thévenin da fonte de Norton com resistor série até a porta.
+Determine o equivalente de Thévenin da fonte de Norton com resistor em série até a porta.
 \circuitoq{\begin{circuitikz}[american,scale=.82,transform shape,line width=.8pt]
 \coordinate (g) at (3.0,0); \coordinate (a) at (3.0,4.0); \coordinate (b) at (7.8,4.0);
 \draw (0,0) to[isource,l^={$\SI{5}{\milli\ampere}$}] (0,4.0)--(a);
@@ -72,7 +72,7 @@ Determine o equivalente de Thévenin da fonte de Norton com resistor série até
 \fill (a) circle (1.1pt); \node[ground] at(g){};
 \end{circuitikz}}
 \resposta{$V_{Th}=\SI{15}{\volt}$; $R_{Th}=\SI{5}{\kilo\ohm}$}
-\resolucao{Em vazio o resistor série de 2 k$\Omega$ não conduz, então $V_{Th}=5$ mA$\times3$ k$\Omega=15$ V. Com a fonte aberta, $R_{Th}=3+2=5$ k$\Omega$.}
+\resolucao{Em vazio o resistor em série de 2 k$\Omega$ não conduz, então $V_{Th}=5$ mA$\times3$ k$\Omega=15$ V. Com a fonte aberta, $R_{Th}=3+2=5$ k$\Omega$.}
 \end{questao}
 
 \begin{questao}[2]{}

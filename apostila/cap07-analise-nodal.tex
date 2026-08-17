@@ -4,7 +4,7 @@
 \section{Análise Nodal}
 
 \begin{conceito}[Antes de começar]
-A análise nodal usa a \textbf{lei dos nós} de Kirchhoff para achar os potenciais
+A análise nodal usa a \textbf{lei dos nós} de Kirchhoff para determinar os potenciais
 dos nós. Roteiro:
 \begin{enumerate}[leftmargin=1.7em,itemsep=1pt,topsep=2pt]
 \item Escolha um nó como \textbf{referência} (terra, $V=0$).
@@ -96,7 +96,7 @@ V_1=\frac{108}{11}\approx\SI{9.82}{\volt},
 V_2=\frac{72}{11}\approx\SI{6.55}{\volt}.
 \]
 \textbf{Verificação:} corrente da fonte $= \dfrac{V_1}{2}+\dfrac{V_1-V_2}{3}
-= \dfrac{108}{22}+\dfrac{36}{33}\approx 4{,}91+1{,}09 = \SI{6}{\ampere}$. Confere.}
+= \dfrac{108}{22}+\dfrac{36}{33}\approx 4{,}91+1{,}09 = \SI{6}{\ampere}$. Resultado consistente.}
 \end{questao}
 
 \begin{questao}[2]{}
@@ -150,7 +150,7 @@ superior da fonte de tensão está fixo em \SI{12}{\volt}, a lei dos nós em $A$
 \]
 Multiplicando por 12: $3(V_A-12)+2V_A-24=0 \Rightarrow 5V_A = 60
 \Rightarrow V_A = \SI{12}{\volt}$.\\
-\textbf{Interpretação:} nesse ponto, a corrente que a fonte de tensão empurraria
+\textbf{Interpretação:} nesse ponto, a corrente que a fonte de tensão forneceria
 pelo resistor de \SI{4}{\ohm} é nula ($V_A = \SI{12}{\volt}$ iguala os dois lados),
 e toda a corrente de \SI{2}{\ampere} da fonte de corrente escoa pelo resistor de
 \SI{6}{\ohm}: $2 = 12/6$. Consistente.}

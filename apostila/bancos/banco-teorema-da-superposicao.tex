@@ -134,7 +134,7 @@ superposição.
 \resposta{$V_A=\SI{10}{\volt}$}
 \resolucao{A condutância total do nó é a mesma nas três análises:
 \[
-G=\frac1{12}+\frac16+\frac14=\SI{0.5}{\siemens}.
+G=\frac1{12}+\frac16+\frac14=\SI{0.5}{\ensuremath{\mathrm{S}}}.
 \]
 \textbf{Só a fonte de $\SI{24}{\volt}$} (as outras: curto e aberto):
 $V'=\dfrac{24/12}{0{,}5}=\SI{4}{\volt}$.\\
@@ -162,7 +162,7 @@ resultado. Se a fonte de corrente for a menos estável, seu erro afeta $V_A$
 com peso de apenas $20\%$; se o objetivo for estabilizar $V_A$, o esforço deve
 ir para as duas fontes de tensão.\\
 Essa leitura --- impossível pela análise nodal direta, que entrega só o total ---
-é a principal razão pela qual a superposição continua sendo usada mesmo quando
+é a principal razão pela qual é a superposição continua sendo usada mesmo quando
 não é o método mais rápido.}
 \end{questao}
 
@@ -272,7 +272,7 @@ $\SI{6}{\ohm}$. Determine a tensão na carga por superposição.
 \resolucao{\textbf{Ponto crítico:} desativar uma fonte real significa zerar sua
 \textbf{f.e.m.}, mantendo sua resistência interna no circuito.\\
 Condutância total (a mesma nas duas análises):
-$G=\frac12+\frac13+\frac16=\SI{1}{\siemens}$.
+$G=\frac12+\frac13+\frac16=\SI{1}{\ensuremath{\mathrm{S}}}$.
 \[
 U'=\frac{12/2}{1}=\SI{6}{\volt};
 \qquad
@@ -281,7 +281,7 @@ U''=\frac{6/3}{1}=\SI{2}{\volt};
 U=\SI{8}{\volt}.
 \]
 \textbf{Erro comum:} remover a fonte de $\SI{6}{\volt}$ \emph{junto} com seus
-$\SI{3}{\ohm}$. Isso daria $G=\frac12+\frac16=\SI{0.667}{\siemens}$ e
+$\SI{3}{\ohm}$. Isso daria $G=\frac12+\frac16=\SI{0.667}{\ensuremath{\mathrm{S}}}$ e
 $U'=\SI{9}{\volt}$ --- resultado inconsistente, pois a soma não fecharia com a
 análise nodal.}
 \end{questao}
@@ -312,7 +312,7 @@ Um circuito contém uma fonte independente de $\SI{12}{\volt}$ (através de
 $\SI{2}{\kilo\ohm}$ até o nó $A$), $\SI{2}{\kilo\ohm}$ de $A$ ao terra, uma
 fonte de corrente independente de $\SI{1}{\milli\ampere}$ injetando em $A$, e
 uma fonte \textbf{dependente} que injeta $gV_A$ em $A$, com
-$g=\SI{0.5}{\milli\siemens}$.
+$g=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$.
 \begin{itensq}
 \item Determine $V_A$ pela análise nodal.
 \item Determine-o por superposição, aplicando o procedimento correto.
@@ -324,12 +324,12 @@ $g=\SI{0.5}{\milli\siemens}$.
 \frac{V_A-12}{2000}+\frac{V_A}{2000}-\pot{0.5}{-3}V_A=\pot{1}{-3}.
 \]
 A condutância líquida é
-$\pot{1}{-3}-\pot{0.5}{-3}=\pot{0.5}{-3}\,\si{\siemens}$, e o lado direito vale
+$\pot{1}{-3}-\pot{0.5}{-3}=\pot{0.5}{-3}\,\si{\ensuremath{\mathrm{S}}}$, e o lado direito vale
 $\pot{6}{-3}+\pot{1}{-3}=\pot{7}{-3}$. Logo
 $V_A=\SI{14}{\volt}$.\\
 (b) \textbf{A fonte dependente permanece ativa nas duas análises parciais} ---
 ela não é excitação, é parte da rede. A condutância líquida é sempre
-$\pot{0.5}{-3}\,\si{\siemens}$:
+$\pot{0.5}{-3}\,\si{\ensuremath{\mathrm{S}}}$:
 \[
 V'=\frac{\pot{6}{-3}}{\pot{0.5}{-3}}=\SI{12}{\volt};
 \qquad
@@ -358,7 +358,7 @@ $V_A=a\,V_1+b\,V_2+c\,I_3$ e determine os coeficientes.
 \item Explique o significado físico de cada coeficiente.
 \end{itensq}
 \resposta{$a=1/6$, $b=1/3$ (adimensionais), $c=\SI{2}{\ohm}$}
-\resolucao{(a) Com $G=\SI{0.5}{\siemens}$, cada fonte de tensão $V_k$ contribui
+\resolucao{(a) Com $G=\SI{0.5}{\ensuremath{\mathrm{S}}}$, cada fonte de tensão $V_k$ contribui
 com $(V_k/R_k)/G$ e a fonte de corrente com $I_3/G$:
 \[
 a=\frac{1/12}{0{,}5}=\frac16;
@@ -475,12 +475,12 @@ obter-se-ia $\SI{9}{\volt}$ --- erro de $50\%$}
 a f.e.m.; o resistor $r$ é um componente físico da rede e permanece, exatamente
 como qualquer outro resistor.\\
 \textbf{Correto:} com $E_2=0$ e $r_2$ presente,
-$G=\frac12+\frac13+\frac16=\SI{1}{\siemens}$ e
+$G=\frac12+\frac13+\frac16=\SI{1}{\ensuremath{\mathrm{S}}}$ e
 \[
 U'=\frac{12/2}{1}=\SI{6}{\volt}.
 \]
 \textbf{Incorreto:} removendo o ramo inteiro,
-$G=\frac12+\frac16=\SI{0.667}{\siemens}$ e
+$G=\frac12+\frac16=\SI{0.667}{\ensuremath{\mathrm{S}}}$ e
 $U'=\dfrac{6}{0{,}667}=\SI{9}{\volt}$ --- $50\%$ acima.\\
 \textbf{Como o erro se denuncia:} a soma das parcelas incorretas não fecha com
 a análise nodal ($\SI{8}{\volt}$). Conferir a soma total contra um método
@@ -548,7 +548,7 @@ ganhos de $8$ e $0{,}05$ respectivamente.
 \resposta{(a) $\SI{400}{\milli\volt}$ e $\SI{10}{\milli\volt}$; (b) $40$, ou
 $\SI{32}{\decibel}$}
 \resolucao{(a) $V_{sinal}=8(50)=\SI{400}{\milli\volt}$;
-$V_{ruído}=0{,}05(200)=\SI{10}{\milli\volt}$.\\
+$V_{\text{ruído}}=0{,}05(200)=\SI{10}{\milli\volt}$.\\
 (b) Razão $=400/10=40$, ou
 $20\log_{10}40\approx\SI{32}{\decibel}$.\\
 Na entrada, a razão era $50/200=0{,}25$ --- o \emph{ruído era quatro vezes
@@ -564,7 +564,7 @@ em sinais, do termo cruzado de potência.}
 \end{questao}
 
 \begin{questao}[3]{}
-Um circuito linear tem três fontes. Sabe-se que $V_{saída}=\SI{15}{\volt}$ com
+Um circuito linear tem três fontes. Sabe-se que $V_{\text{saída}}=\SI{15}{\volt}$ com
 todas ativas, $\SI{9}{\volt}$ sem a terceira e $\SI{4}{\volt}$ apenas com a
 primeira. Determine a contribuição de cada fonte.
 \resposta{$\SI{4}{\volt}$, $\SI{5}{\volt}$ e $\SI{6}{\volt}$}

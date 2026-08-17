@@ -9,10 +9,10 @@
 %  Distribuicao mantida: 7 N1 + 11 N2 + 13 N3 + 9 N4 = 40
 % =====================================================================
 
-\subsubsection*{Banco complementar --- Circuitos paralelo}
+\subsubsection*{Banco complementar --- Circuitos em paralelo}
 
 \begin{atencao}[Organização do banco]
-No paralelo, a \textbf{tensão é comum} e as \textbf{correntes se somam}. Daí
+No circuito RLC em paralelo, a \textbf{tensão é comum} e as \textbf{correntes se somam}. Daí
 decorre que corrente e potência se distribuem \emph{inversamente} a $R$ ---
 exatamente o oposto da série. Trabalhe com \textbf{condutâncias}: elas somam
 diretamente e tornam quase toda conta trivial. O N3 explora falhas de ramo,
@@ -38,10 +38,10 @@ produto/soma vale \emph{apenas} para dois resistores.}
 \begin{questao}[1]{}
 Três resistores de $\SI{4}{\ohm}$, $\SI{8}{\ohm}$ e $\SI{8}{\ohm}$ estão em
 paralelo. Calcule a condutância total e $R_{eq}$.
-\resposta{$G=\SI{0.5}{\siemens}$; $R_{eq}=\SI{2}{\ohm}$}
+\resposta{$G=\SI{0.5}{\ensuremath{\mathrm{S}}}$; $R_{eq}=\SI{2}{\ohm}$}
 \resolucao{
 \[
-G=\frac14+\frac18+\frac18=0{,}25+0{,}125+0{,}125=\SI{0.5}{\siemens}
+G=\frac14+\frac18+\frac18=0{,}25+0{,}125+0{,}125=\SI{0.5}{\ensuremath{\mathrm{S}}}
 \;\Longrightarrow\;
 R_{eq}=\frac{1}{0{,}5}=\SI{2}{\ohm}.
 \]
@@ -87,7 +87,7 @@ $\SI{24}{\volt}$. Determine a corrente desse ramo.
 \[
 I=\frac{V}{R}=\frac{24}{48}=\SI{0.5}{\ampere}.
 \]
-No paralelo, a tensão é \emph{comum} a todos os ramos: a corrente de cada um
+No circuito RLC em paralelo, a tensão é \emph{comum} a todos os ramos: a corrente de cada um
 depende só do próprio resistor. Não é preciso conhecer os demais ramos nem
 $R_{eq}$.}
 \end{questao}
@@ -140,7 +140,7 @@ I_t=6+3+3=\SI{12}{\ampere}
 \;\Longrightarrow\;
 R_{eq}=\frac{60}{12}=\SI{5}{\ohm}.
 \]
-\textbf{Conferência:} $G=0{,}1+0{,}05+0{,}05=\SI{0.2}{\siemens}$ e
+\textbf{Conferência:} $G=0{,}1+0{,}05+0{,}05=\SI{0.2}{\ensuremath{\mathrm{S}}}$ e
 $1/0{,}2=\SI{5}{\ohm}$ \checkmark.}
 \end{questao}
 
@@ -184,12 +184,12 @@ terceiro.
 \resposta{$R_3=\SI{50}{\ohm}$}
 \resolucao{Trabalhe em condutâncias, onde a subtração é direta:
 \[
-G_{eq}=\frac{I_t}{V}=\frac{5}{100}=\SI{0.05}{\siemens},
+G_{eq}=\frac{I_t}{V}=\frac{5}{100}=\SI{0.05}{\ensuremath{\mathrm{S}}},
 \qquad
-G_1+G_2=0{,}02+0{,}01=\SI{0.03}{\siemens}.
+G_1+G_2=0{,}02+0{,}01=\SI{0.03}{\ensuremath{\mathrm{S}}}.
 \]
 \[
-G_3=0{,}05-0{,}03=\SI{0.02}{\siemens}
+G_3=0{,}05-0{,}03=\SI{0.02}{\ensuremath{\mathrm{S}}}
 \;\Longrightarrow\;
 R_3=\SI{50}{\ohm}.
 \]
@@ -278,7 +278,7 @@ $\SI{100}{\ohm}$. A resistência equivalente:
 \item vale exatamente $\SI{50}{\ohm}$
 \end{alternativas}
 \resposta{(a)}
-\resolucao{$G=0{,}01+10^{-6}\approx\SI{0.010001}{\siemens}$, logo
+\resolucao{$G=0{,}01+10^{-6}\approx\SI{0.010001}{\ensuremath{\mathrm{S}}}$, logo
 $R_{eq}\approx\SI{99.99}{\ohm}$ --- diferença de $0{,}01\%$.\\
 \textbf{Princípio geral:} no paralelo, quem manda é o \emph{menor} resistor;
 ramos muito maiores são praticamente circuitos abertos. É exatamente por isso
@@ -329,7 +329,7 @@ $\SI{20}{\ohm}$ e $\SI{20}{\ohm}$ em paralelo.
 \end{itensq}
 \resposta{$R_{eq}=\SI{3.33}{\ohm}$, $V=\SI{20}{\volt}$;
 $\SI{4}{\ampere}$, $\SI{1}{\ampere}$, $\SI{1}{\ampere}$}
-\resolucao{(a) $G=0{,}2+0{,}05+0{,}05=\SI{0.3}{\siemens}$,
+\resolucao{(a) $G=0{,}2+0{,}05+0{,}05=\SI{0.3}{\ensuremath{\mathrm{S}}}$,
 $R_{eq}=1/0{,}3=\SI{3.33}{\ohm}$ e $V=I_tR_{eq}=6\cdot3{,}33=\SI{20}{\volt}$.\\
 (b) Com três ou mais ramos, a forma correta do divisor usa condutâncias:
 \[
@@ -411,10 +411,10 @@ série--paralelo de $n\times n$ unidades.}
 Uma rede tem cinco ramos em paralelo: $\SI{10}{\ohm}$, $\SI{20}{\ohm}$,
 $\SI{20}{\ohm}$, $\SI{40}{\ohm}$ e $\SI{40}{\ohm}$. Calcule $R_{eq}$ e explique
 por que o cálculo em condutâncias é preferível.
-\resposta{$G=\SI{0.25}{\siemens}$; $R_{eq}=\SI{4}{\ohm}$}
+\resposta{$G=\SI{0.25}{\ensuremath{\mathrm{S}}}$; $R_{eq}=\SI{4}{\ohm}$}
 \resolucao{
 \[
-G=0{,}100+0{,}050+0{,}050+0{,}025+0{,}025=\SI{0.25}{\siemens}
+G=0{,}100+0{,}050+0{,}050+0{,}025+0{,}025=\SI{0.25}{\ensuremath{\mathrm{S}}}
 \;\Longrightarrow\;
 R_{eq}=\SI{4}{\ohm}.
 \]
@@ -424,7 +424,7 @@ regra produto/soma. \emph{(ii)} A distribuição de corrente sai de graça:
 $I_k/I_t=G_k/G_{eq}$, aqui $40\%$, $20\%$, $20\%$, $10\%$ e $10\%$.
 \emph{(iii)} Para incerteza, a propagação em $G$ é \emph{linear}, ao passo que
 em $R$ envolve derivadas de uma função racional.\\
-É também a razão pela qual a análise nodal --- construída sobre a LKC --- adota
+É também a razão pela qual é a análise nodal --- construída sobre a LKC --- adota
 condutâncias como grandeza natural.}
 \end{questao}
 
@@ -719,7 +719,7 @@ $\SI{0.01}{\ohm}$ devem dividir igualmente $\SI{30}{\ampere}$.
 $V=0{,}01\cdot10=\SI{0.1}{\volt}$.\\
 (b) Com $R_a=\SI{0.0098}{\ohm}$ e $R_b=R_c=\SI{0.0100}{\ohm}$:
 \[
-G=\frac{1}{0{,}0098}+\frac{2}{0{,}0100}=102{,}04+200{,}00=\SI{302.04}{\siemens},
+G=\frac{1}{0{,}0098}+\frac{2}{0{,}0100}=102{,}04+200{,}00=\SI{302.04}{\ensuremath{\mathrm{S}}},
 \]
 \[
 I_a=30\cdot\frac{102{,}04}{302{,}04}=\SI{10.13}{\ampere},

@@ -358,7 +358,7 @@ inútil para balanços energéticos internos.}
 \begin{questao}[3]{}
 Uma rede contém apenas uma fonte \textbf{dependente}: um nó $A$ ligado ao terra
 por $R=\SI{1}{\kilo\ohm}$, com uma fonte de corrente controlada por tensão
-injetando $g\,V_A$ no próprio nó, com $g=\SI{0.75}{\milli\siemens}$.
+injetando $g\,V_A$ no próprio nó, com $g=\SI{0.75}{\milli\ensuremath{\mathrm{S}}}$.
 \begin{itensq}
 \item Explique por que $V_{oc}$ e $I_{sc}$ são ambos nulos.
 \item Determine $R_{Th}$ pelo método da fonte de teste.
@@ -391,7 +391,7 @@ $R_{Th}$ muito diferente de qualquer resistor físico presente nelas.}
 Agora a rede tem \emph{também} uma fonte independente: $\SI{12}{\volt}$ através
 de $R_1=\SI{2}{\kilo\ohm}$ até o nó $A$, com $R_2=\SI{2}{\kilo\ohm}$ de $A$ ao
 terra e a mesma fonte dependente injetando $gV_A$ em $A$, com
-$g=\SI{0.5}{\milli\siemens}$.
+$g=\SI{0.5}{\milli\ensuremath{\mathrm{S}}}$.
 \begin{itensq}
 \item Determine $V_{oc}$.
 \item Determine $I_{sc}$.
@@ -415,7 +415,7 @@ I_{sc}=\frac{12}{2000}=\SI{6}{\milli\ampere}.
 \]
 (c) $R_{Th}=\dfrac{12}{\pot{6}{-3}}=\SI{2}{\kilo\ohm}$.\\
 \textbf{Confirmação:} zerando só a fonte independente e aplicando teste,
-$G=\pot{1}{-3}-\pot{0.5}{-3}=\pot{0.5}{-3}\,\si{\siemens}$, logo
+$G=\pot{1}{-3}-\pot{0.5}{-3}=\pot{0.5}{-3}\,\si{\ensuremath{\mathrm{S}}}$, logo
 $R_{Th}=\SI{2}{\kilo\ohm}$ \checkmark.\\
 \textbf{Nota:} $V_{oc}=\SI{12}{\volt}$ é igual à fonte --- a dependente
 compensou exatamente a queda em $R_1$. Coincidência numérica, mas ilustra que
@@ -1051,7 +1051,7 @@ razão entre os valores no ponto.\\
 São grandezas distintas e, em dispositivos não lineares, sempre diferentes. A
 estática governa o balanço de potência CC; a \textbf{dinâmica} governa a resposta
 a sinais pequenos, e é ela que entra em qualquer modelo de pequenos sinais ---
-razão pela qual o mesmo transistor tem "resistências" diferentes conforme a
+razão pela qual é o mesmo transistor tem "resistências" diferentes conforme a
 pergunta.}
 \end{questao}
 

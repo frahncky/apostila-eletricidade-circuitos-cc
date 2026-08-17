@@ -4,7 +4,7 @@
 %  8 questoes conceituais marcadas como N4).
 %  RESTRICAO FORTE: o projeto de SHUNT ja aparece DUAS vezes no cap04
 %  (miliamperimetro 1 mA/50 ohm e galvanometro 1 mA/50 ohm) e mais
-%  duas vezes no banco de circuitos paralelo revisado (shunt 99 ohm e
+%  duas vezes no banco de circuitos em paralelo revisado (shunt 99 ohm e
 %  shunt de Ayrton multiescala). Este banco NAO trata de shunt.
 %  O cap04 tambem cobre: maior corrente (MC), 10 A entre 2/3, 15 A
 %  entre 3/6, 30 A em tres paralelos, tres ramos com figura e 35 A
@@ -28,11 +28,11 @@ sensibilidade.
 \blocofixacao
 
 \begin{questao}[1]{}
-Três ramos com condutâncias $G_1=\SI{0.5}{\siemens}$,
-$G_2=\SI{0.3}{\siemens}$ e $G_3=\SI{0.2}{\siemens}$ recebem
+Três ramos com condutâncias $G_1=\SI{0.5}{\ensuremath{\mathrm{S}}}$,
+$G_2=\SI{0.3}{\ensuremath{\mathrm{S}}}$ e $G_3=\SI{0.2}{\ensuremath{\mathrm{S}}}$ recebem
 $I_T=\SI{10}{\ampere}$. Determine a corrente de cada ramo.
 \resposta{$\SI{5}{\ampere}$, $\SI{3}{\ampere}$ e $\SI{2}{\ampere}$}
-\resolucao{Com $\sum G=0{,}5+0{,}3+0{,}2=\SI{1}{\siemens}$:
+\resolucao{Com $\sum G=0{,}5+0{,}3+0{,}2=\SI{1}{\ensuremath{\mathrm{S}}}$:
 \[
 I_k=I_T\frac{G_k}{\sum G}
 \;\Longrightarrow\;
@@ -120,7 +120,7 @@ $\SI{5}{\ohm}$, $\SI{10}{\ohm}$, $\SI{20}{\ohm}$ e $\SI{20}{\ohm}$.
 \resposta{$U=\SI{30}{\volt}$; $6$, $3$, $1{,}5$ e $\SI{1.5}{\ampere}$}
 \resolucao{
 \[
-\sum G=0{,}20+0{,}10+0{,}05+0{,}05=\SI{0.40}{\siemens}
+\sum G=0{,}20+0{,}10+0{,}05+0{,}05=\SI{0.40}{\ensuremath{\mathrm{S}}}
 \;\Longrightarrow\;
 U=\frac{I_T}{\sum G}=\frac{12}{0{,}40}=\SI{30}{\volt}.
 \]
@@ -168,7 +168,7 @@ corrente dele --- a proporcionalidade inversa em ação.}
 \end{questao}
 
 \begin{questao}[2]{}
-Uma fonte de $\SI{60}{\volt}$ com resistência série $R_s=\SI{4}{\ohm}$ alimenta
+Uma fonte de $\SI{60}{\volt}$ com resistência em série $R_s=\SI{4}{\ohm}$ alimenta
 dois ramos em paralelo de $\SI{10}{\ohm}$ e $\SI{15}{\ohm}$.
 \begin{itensq}
 \item Determine a corrente total.
@@ -205,7 +205,7 @@ P_2=\frac{36^{2}}{15}=\SI{86.4}{\watt}.
 \]
 Total nos ramos: $\SI{216}{\watt}=36(6)$ \checkmark.\\
 \textbf{Observe:} o ramo de \emph{menor} resistência dissipa mais --- regra do
-paralelo ($P\propto1/R$ com $U$ comum). O resistor série dissipa ainda
+paralelo ($P\propto1/R$ com $U$ comum). O resistor em série dissipa ainda
 $4(36)=\SI{144}{\watt}$, e a fonte entrega $60(6)=\SI{360}{\watt}$
 \checkmark.}
 \end{questao}
@@ -241,9 +241,9 @@ $\SI{6}{\ohm}$, $\SI{12}{\ohm}$ e $\SI{12}{\ohm}$. O ramo de
 $\SI{6}{\ohm}$ é removido. Determine as novas correntes.
 \resposta{Antes: $6$, $3$, $\SI{3}{\ampere}$. Depois: $\SI{6}{\ampere}$ em cada}
 \resolucao{\textbf{Antes:} $\sum G=\frac16+\frac1{12}+\frac1{12}
-=\SI{0.3333}{\siemens}$, $U=12/0{,}3333=\SI{36}{\volt}$ e
+=\SI{0.3333}{\ensuremath{\mathrm{S}}}$, $U=12/0{,}3333=\SI{36}{\volt}$ e
 $I=6;\ 3;\ \SI{3}{\ampere}$.\\
-\textbf{Depois:} $\sum G=\SI{0.1667}{\siemens}$,
+\textbf{Depois:} $\sum G=\SI{0.1667}{\ensuremath{\mathrm{S}}}$,
 $U=12/0{,}1667=\SI{72}{\volt}$ e $I=\SI{6}{\ampere}$ em cada.\\
 \textbf{A tensão dobrou} e a corrente de cada ramo remanescente também. Note que
 os resistores não mudaram --- foi a \emph{fonte de corrente} que, obrigada a
@@ -284,7 +284,7 @@ $\SI{20}{\volt}$. Verifique a consistência e determine as resistências.
 \[
 \frac{20}{4}=5;\qquad \frac{20}{2}=10;\qquad \frac{20}{1{,}33}=\SI{15}{\ohm}.
 \]
-\textbf{Consistência:} $\sum G=0{,}2+0{,}1+0{,}0667=\SI{0.3667}{\siemens}$, logo
+\textbf{Consistência:} $\sum G=0{,}2+0{,}1+0{,}0667=\SI{0.3667}{\ensuremath{\mathrm{S}}}$, logo
 $I_T=20(0{,}3667)=\SI{7.33}{\ampere}$, que confere com
 $4+2+1{,}33$ \checkmark.\\
 \textbf{Dois testes independentes:} a tensão comum deve ser a mesma em todos os
@@ -324,7 +324,7 @@ $\SI{0.11}{\ohm}$ e $\SI{0.12}{\ohm}$, conduzem $\SI{300}{\ampere}$.
 \end{itensq}
 \resposta{$109{,}4$; $99{,}5$ e $\SI{91.2}{\ampere}$; desvios de
 $+9{,}4\%$, $-0{,}5\%$ e $-8{,}8\%$}
-\resolucao{(a) $\sum G=10+9{,}091+8{,}333=\SI{27.42}{\siemens}$ e
+\resolucao{(a) $\sum G=10+9{,}091+8{,}333=\SI{27.42}{\ensuremath{\mathrm{S}}}$ e
 $U=300/27{,}42=\SI{10.94}{\volt}$. As correntes valem
 \[
 109{,}4;\qquad 99{,}5;\qquad \SI{91.2}{\ampere}.
@@ -468,9 +468,9 @@ primeiro aberto. Compare o efeito sob dois tipos de alimentação:
 $\SI{6}{\ampere}$; (b) tensão e ramos inalterados, total cai de $12$ a
 $\SI{6}{\ampere}$}
 \resolucao{\textbf{(a) Fonte de corrente.} Antes:
-$\sum G=\SI{0.2}{\siemens}$, $U=\SI{60}{\volt}$,
+$\sum G=\SI{0.2}{\ensuremath{\mathrm{S}}}$, $U=\SI{60}{\volt}$,
 $I=6;3;\SI{3}{\ampere}$.\\
-Depois: $\sum G=\SI{0.1}{\siemens}$, e a fonte \emph{eleva a tensão} para
+Depois: $\sum G=\SI{0.1}{\ensuremath{\mathrm{S}}}$, e a fonte \emph{eleva a tensão} para
 manter $\SI{12}{\ampere}$:
 \[
 U=\frac{12}{0{,}1}=\SI{120}{\volt};
@@ -771,7 +771,7 @@ R_{med}=1000\times0{,}1\,\mathrm{m}=\SI{100}{\milli\ohm}.
 \]
 (b)
 \[
-G_{tot}=10^{4}+10=\SI{10010}{\siemens};
+G_{tot}=10^{4}+10=\SI{10010}{\ensuremath{\mathrm{S}}};
 \qquad
 I_{med}=100\cdot\frac{10}{10010}=\SI{99.9}{\milli\ampere}.
 \]
@@ -834,7 +834,7 @@ combina $\alpha$ pequeno \emph{e} positivo.
 \begin{questao}[4]{}
 \textbf{(Divisor com elemento ativo.)} Um dos ramos de um divisor contém uma
 fonte de corrente \textbf{dependente} que injeta $g\,U$, sendo $U$ a tensão
-comum e $g=\SI{0.05}{\siemens}$. O outro ramo é um resistor de
+comum e $g=\SI{0.05}{\ensuremath{\mathrm{S}}}$. O outro ramo é um resistor de
 $\SI{10}{\ohm}$, e a corrente total injetada é $\SI{6}{\ampere}$.
 \begin{itensq}
 \item Explique por que o divisor simples falha.
@@ -842,7 +842,7 @@ $\SI{10}{\ohm}$, e a corrente total injetada é $\SI{6}{\ampere}$.
 \item Determine o valor crítico de $g$.
 \end{itensq}
 \resposta{(b) $U=\SI{120}{\volt}$; $\SI{12}{\ampere}$ no resistor e
-$\SI{6}{\ampere}$ injetados pelo ramo ativo; (c) $g_c=\SI{0.1}{\siemens}$}
+$\SI{6}{\ampere}$ injetados pelo ramo ativo; (c) $g_c=\SI{0.1}{\ensuremath{\mathrm{S}}}$}
 \resolucao{(a) O divisor pressupõe que \emph{cada} ramo obedeça $I=UG$ com
 $G>0$ fixo. A fonte dependente também é proporcional a $U$, mas com sinal que
 pode \emph{retirar} corrente do nó --- ela funciona como condutância
@@ -869,7 +869,7 @@ resistor \checkmark.\\
 produziria isso, pois nele vale sempre $I_k\le I_T$.\\
 (c) A condutância líquida é $\dfrac1{10}-g$, que se anula em
 \[
-g_c=\SI{0.1}{\siemens}.
+g_c=\SI{0.1}{\ensuremath{\mathrm{S}}}.
 \]
 Nesse ponto o nó "flutua" e não há solução finita; acima dele, a resistência
 equivalente torna-se negativa e o circuito é instável.\\

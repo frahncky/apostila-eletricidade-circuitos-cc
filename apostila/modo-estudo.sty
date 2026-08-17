@@ -63,10 +63,10 @@
     \ifstrempty{\ResolLista}{}{%
       \par\addvspace{1.6em}
       \noindent{\color{verdeq}\rule{\linewidth}{1.2pt}}\par\vspace{2pt}
-      \noindent{\sffamily\bfseries\large\color{verdeq}Resolucoes comentadas
+      \noindent{\sffamily\bfseries\large\color{verdeq}Resoluções comentadas
         \ifstrempty{#1}{}{ \textmd{---} \textmd{#1}}}\par
       \noindent{\color{verdeq}\rule{\linewidth}{0.5pt}}\par\vspace{0.7em}
-      \addcontentsline{toc}{subsection}{Resolucoes\ifstrempty{#1}{}{ --- #1}}%
+      \addcontentsline{toc}{subsection}{Resoluções\ifstrempty{#1}{}{ --- #1}}%
       \ResolLista
       \par\addvspace{1em}}%
     \gdef\ChaveLista{}\gdef\ResolLista{}\global\haveresolfalse}
@@ -74,7 +74,7 @@
 
 \ifmodoquestoes\else
   \ifmodoresolucoes\else
-    \PackageError{modo-estudo}{Selecione questoes ou resolucoes}%
+    \PackageError{modo-estudo}{Selecione questões ou resoluções}%
       {Use \string\usepackage[questoes]{modo-estudo} ou
        \string\usepackage[resolucoes]{modo-estudo}.}
   \fi

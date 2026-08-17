@@ -7,15 +7,16 @@
 Em laboratório, um circuito RC com $R=\SI{5}{\kilo\ohm}$ e
 $C=\SI{10}{\micro\farad}$ deveria apresentar $\tau=\SI{50}{\milli\second}$.
 Entretanto, o ajuste exponencial do osciloscópio fornece
-$\tau_{\mathrm{med}}=\SI{80}{\milli\second}$. O capacitor foi medido e está
-próximo do nominal. Estime a resistência efetiva vista pelo capacitor e proponha
+$\tau_{\mathrm{med}}=\SI{80}{\milli\second}$. A capacitância medida está
+próxima do valor nominal. Estime a resistência efetiva vista pelo capacitor e proponha
 uma causa elétrica plausível para a discrepância.
 \resposta{$R_{\mathrm{eq}}\approx\SI{8}{\kilo\ohm}$; há cerca de \SI{3}{\kilo\ohm}
 adicionais na trajetória equivalente}
 \resolucao{$R_{\mathrm{eq}}=\tau/C=0{,}08/(\pot{10}{-6})=\SI{8}{\kilo\ohm}$.
-Como o resistor nominal é \SI{5}{\kilo\ohm}, existe aproximadamente
-\SI{3}{\kilo\ohm} adicional. Isso pode vir de resistência de saída da fonte,
-rede de polarização esquecida, resistor em série, chave/sensor ou uma topologia
+Como o resistor nominal é de \SI{5}{\kilo\ohm}, há uma resistência
+adicional de aproximadamente \SI{3}{\kilo\ohm}. Essa diferença pode decorrer da resistência de saída da fonte, de uma
+rede de polarização não considerada, de um resistor em série, de uma chave ou
+sensor, ou de uma topologia
 que não foi corretamente reduzida ao equivalente de Thévenin.}
 \end{questao}
 
@@ -23,7 +24,7 @@ que não foi corretamente reduzida ao equivalente de Thévenin.}
 Um capacitor de $\SI{470}{\micro\farad}$ será carregado por uma fonte de
 $\SI{24}{\volt}$. Deseja-se limitar a corrente inicial a
 $\SI{100}{\milli\ampere}$ e atingir pelo menos \SI{95}{\percent} da tensão final
-em menos de $\SI{0.5}{\second}$. Projete o resistor série mínimo, verifique o
+em menos de $\SI{0.5}{\second}$. Projete o resistor mínimo em série, verifique o
 tempo de carga e estime a energia total dissipada nele durante uma carga completa.
 \resposta{$R=\SI{240}{\ohm}$; $t_{95}\approx\SI{0.338}{\second}$; $E_R\approx\SI{0.135}{\joule}$}
 \resolucao{Pela corrente inicial, $R\ge24/0{,}1=\SI{240}{\ohm}$. Com esse valor,
@@ -45,8 +46,8 @@ clamp. Explique o compromisso de projeto.
 \resposta{$I_0=\SI{0.4}{\ampere}$; $E_L=\SI{9.6}{\milli\joule}$; $\tau_A\approx\SI{2}{\milli\second}$;
 $\tau_B\approx\SI{0.5}{\milli\second}$; $v_{R,\mathrm{clamp}}(0^+)\approx\SI{72}{\volt}$}
 \resolucao{Em regime, $I_0=24/60=\SI{0.4}{\ampere}$ e
-$E_L=\tfrac12LI_0^2=\SI{9.6}{\milli\joule}$. Com diodo ideal, a descarga vê
-aproximadamente o cobre da bobina: $\tau_A=L/60=\SI{2}{\milli\second}$. Com o
+$E_L=\tfrac12LI_0^2=\SI{9.6}{\milli\joule}$. Com o diodo ideal, a resistência no caminho de descarga é aproximadamente
+a resistência do enrolamento da bobina: $\tau_A=L/60=\SI{2}{\milli\second}$. Com o
 resistor adicional, $R_{\mathrm{tot}}=60+180=\SI{240}{\ohm}$ e
 $\tau_B=L/240=\SI{0.5}{\milli\second}$. A tensão inicial no resistor externo é
 $0{,}4\cdot180=\SI{72}{\volt}$. O clamp resistivo desliga o relé mais rápido,
@@ -57,7 +58,7 @@ mas produz tensão maior; o diodo reduz a sobretensão, porém prolonga a corren
 Uma oscilação amortecida medida em um circuito RLC apresenta período entre picos
 de aproximadamente $\SI{4}{\milli\second}$ e a envoltória cai à metade a cada
 $\SI{10}{\milli\second}$. O capacitor é $C=\SI{10}{\micro\farad}$. Estime
-$\alpha$, $\omega_d$, $\omega_0$, $\zeta$, $L$ e a resistência série equivalente.
+$\alpha$, $\omega_d$, $\omega_0$, $\zeta$, $L$ e a resistência equivalente em série.
 
 \begin{figure}[H]
 \centering
@@ -88,7 +89,7 @@ $R=2\alpha L\approx\SI{5.61}{\ohm}$.}
 \end{questao}
 
 \begin{questao}[4]{}
-Um estágio série RLC usa $L=\SI{20}{\milli\henry}$ e
+Um estágio RLC em série usa $L=\SI{20}{\milli\henry}$ e
 $C=\SI{10}{\micro\farad}$. O requisito é obter a resposta mais rápida possível
 sem oscilação. Determine o resistor ideal e compare qualitativamente o uso de
 $\SI{45}{\ohm}$ e $\SI{180}{\ohm}$.
@@ -96,7 +97,7 @@ $\SI{45}{\ohm}$ e $\SI{180}{\ohm}$.
 \SI{180}{\ohm} é superamortecido}
 \resolucao{$R_{\mathrm{crit}}=2\sqrt{L/C}=2\sqrt{0{,}02/\pot{10}{-6}}
 \approx\SI{89.4}{\ohm}$. Com \SI{45}{\ohm}, $R<R_{\mathrm{crit}}$ e haverá
-ringing/sobressinal. Com \SI{180}{\ohm}, $R>R_{\mathrm{crit}}$ e a resposta será
+oscilações amortecidas (ringing) e sobressinal. Com \SI{180}{\ohm}, $R>R_{\mathrm{crit}}$ e a resposta será
 monotônica, porém mais lenta. O amortecimento crítico é o limite de resposta
 monotônica mais rápida para o modelo ideal.}
 \end{questao}
@@ -127,7 +128,7 @@ $R=\tau/C=0{,}02/(\pot{4.7}{-6})\approx\SI{4.26}{\kilo\ohm}$.}
 \end{questao}
 
 \begin{questao}[4]{}
-Após uma comutação, um RLC série fica sem fonte independente e possui
+Após uma comutação, um RLC em série fica sem fonte independente e possui
 $R=\SI{20}{\ohm}$, $L=\SI{50}{\milli\henry}$ e
 $C=\SI{100}{\micro\farad}$. Adote $v_C(0^+)=\SI{5}{\volt}$ e
 $i(0^+)=\SI{0.1}{\ampere}$ entrando no terminal positivo do capacitor. Determine
@@ -178,7 +179,7 @@ C & \SI{180}{\ohm} & ?\\
 \end{table}
 
 \resposta{A: $\zeta\approx0{,}447$, subamortecido; B: crítico; C: $\zeta\approx2{,}01$, superamortecido; escolher B}
-\resolucao{Como $R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$, no RLC série vale
+\resolucao{Como $R_{\mathrm{crit}}\approx\SI{89.4}{\ohm}$, no RLC em série vale
 $\zeta=R/R_{\mathrm{crit}}$. Assim A fornece $\zeta\approx0{,}447$ e oscila; B
 fica praticamente em $\zeta=1$; C fornece $\zeta\approx2{,}01$ e é lento por
 superamortecimento. Para rapidez sem sobressinal, B é a escolha adequada.}
@@ -189,9 +190,9 @@ Um projeto prevê $R=\SI{20}{\ohm}$, $L=\SI{0.1}{\henry}$ e
 $C=\SI{100}{\micro\farad}$, portanto deveria ser subamortecido. Contudo, o ajuste
 da resposta medida indica dois polos reais em aproximadamente
 $-\SI{112.7}{\per\second}$ e $-\SI{887.3}{\per\second}$. Admitindo $L$ e $C$
-corretos, estime a resistência série efetiva e diagnostique a discrepância.
+corretos, estime a resistência efetiva em série e diagnostique a discrepância.
 \resposta{$R_{\mathrm{efetivo}}\approx\SI{100}{\ohm}$; há cerca de \SI{80}{\ohm}
-de resistência série não contabilizada}
+de resistência em série não contabilizada}
 \resolucao{Para $s^2+(R/L)s+1/(LC)=0$, a soma dos polos é $-R/L$. A soma medida é
 $-1000\ \si{\per\second}$; com $L=\SI{0.1}{\henry}$,
 $R=1000L=\SI{100}{\ohm}$. O produto dos polos é aproximadamente

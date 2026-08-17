@@ -109,14 +109,14 @@ A fonte de tensão controlada satisfaz $V_1-V_2=5i_x$, com $i_x=V_2/5$. Determin
 \end{questao}
 
 \begin{questao}[4]{}
-A fonte dependente injeta $gV$ no nó. Obtenha $V(g)$, determine o valor crítico de $g$ e calcule $V$ para $g=\SI{0.04}{\siemens}$.
+A fonte dependente injeta $gV$ no nó. Obtenha $V(g)$, determine o valor crítico de $g$ e calcule $V$ para $g=\SI{0.04}{\ensuremath{\mathrm{S}}}$.
 \circuitoq{\begin{circuitikz}[american,scale=.95,transform shape]
 \draw (0,0) to[isource,l_={$\SI{1}{\ampere}$}] (0,3)--(2,3) coordinate(n);
 \draw (n) to[R,l={$\SI{20}{\ohm}$}] (2,0)--(0,0);
 \draw (4.2,0) to[cisource,l_={$gV$}] (4.2,3)--(n); \draw (4.2,0)--(2,0);
 \node[ground] at(2,0){}; \node[above,Vcol] at(n){$V$};
 \end{circuitikz}}
-\resposta{$V(g)=1/(0{,}05-g)$; $g_c=\SI{0.05}{\siemens}$; para $g=\SI{0.04}{\siemens}$, $V=\SI{100}{\volt}$}
+\resposta{$V(g)=1/(0{,}05-g)$; $g_c=\SI{0.05}{\ensuremath{\mathrm{S}}}$; para $g=\SI{0.04}{\ensuremath{\mathrm{S}}}$, $V=\SI{100}{\volt}$}
 \resolucao{A LKC fornece $V/20=1+gV$, então
 \[
 V(g)=\frac{1}{0{,}05-g}.

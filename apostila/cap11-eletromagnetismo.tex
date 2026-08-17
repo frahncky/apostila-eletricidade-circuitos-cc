@@ -103,7 +103,7 @@ Um mesmo enrolamento é usado com dois núcleos diferentes: um de ar
 ($\mu_r \approx 1$) e outro de ferro-silício ($\mu_r = 4000$). Mantendo a mesma
 corrente:
 \begin{itensq}
-\item Qual a razão entre as induções magnéticas $B$ obtidas nos dois casos?
+\item Qual é a razão entre as induções magnéticas $B$ obtidas nos dois casos?
 \item Se o núcleo de ferro \emph{saturar} a partir de certo ponto, o que acontece
       com essa razão ao se aumentar muito a corrente?
 \item Por que a saturação impõe um limite de projeto às máquinas elétricas?
@@ -127,7 +127,7 @@ corrente produzem acréscimos de $B$ apenas na proporção do ar
 e o fluxo não pode crescer indefinidamente. Ultrapassado o joelho da curva de
 saturação:
 \begin{itemize}[leftmargin=1.6em,itemsep=1pt,topsep=2pt]
-\item a corrente de magnetização dispara (aquecendo o enrolamento) sem ganho
+\item a corrente de magnetização aumenta acentuadamente (aquecendo o enrolamento) sem ganho
       proporcional de fluxo;
 \item a forma de onda distorce, gerando harmônicos;
 \item as perdas aumentam desproporcionalmente.
@@ -168,8 +168,7 @@ pelo mesmo caminho.
 no material quando o campo externo é removido ($H = 0$). É o que faz um prego
 continuar magnetizado depois de encostar num ímã.\\
 $H_c$ é a \textbf{coercividade}: o campo externo, de sentido oposto, necessário
-para \emph{anular} a magnetização ($B = 0$). Mede a "teimosia" do material em
-manter seu estado magnético.
+para \emph{anular} a magnetização ($B = 0$). Quantifica a resistência do material à desmagnetização.
 
 \textbf{(b)} A área interna do ciclo representa a \textbf{energia dissipada por
 unidade de volume e por ciclo} --- as chamadas \emph{perdas por histerese}. Cada
@@ -187,7 +186,7 @@ materiais especiais.
 \toprule
  & \textbf{Núcleo de transformador} & \textbf{Ímã permanente}\\
 \midrule
-Ciclo desejado & \textbf{estreito} (fino) & \textbf{largo} (gordo)\\
+Ciclo desejado & \textbf{estreito} (fino) & \textbf{largo} (amplo)\\
 $H_c$ & baixa & alta\\
 $B_r$ & baixa & alta\\
 Objetivo & minimizar perdas & reter magnetização\\
@@ -199,7 +198,7 @@ Denominação & magneticamente \emph{mole} & magneticamente \emph{duro}\\
 \textbf{Raciocínio central:} o transformador inverte o campo 50 ou 60 vezes por
 segundo --- cada inversão custa a área do ciclo em calor, logo o ciclo deve ser o
 mais estreito possível. O ímã permanente, ao contrário, precisa \emph{resistir} à
-desmagnetização: quanto mais larga a área, mais estável ele é. \emph{O mesmo
+desmagnetização: quanto maior a área do ciclo, maior é sua resistência à desmagnetização. \emph{O mesmo
 gráfico, lido com objetivos opostos, leva a escolhas opostas de material.}}
 \end{questao}
 
@@ -207,7 +206,7 @@ gráfico, lido com objetivos opostos, leva a escolhas opostas de material.}}
 \input{bancos/banco-conceitos-iniciais-e-materiais-magneticos.tex}
 % END BANCO COMPLEMENTAR
 
-\gabarito[11.1 Conceitos iniciais e materiais magnéticos]
+\gabarito[12.1 Conceitos iniciais e materiais magnéticos]
 
 % =====================================================================
 \subsection{Campo magnético}
@@ -396,7 +395,7 @@ $I_2=I_1(R_2/R_1)=2(2{,}5/10)=\SI{0.5}{\ampere}$. Os sentidos devem ser opostos.
 \input{bancos/banco-campo-magnetico.tex}
 % END BANCO COMPLEMENTAR
 
-\gabarito[11.2 Campo magnético]
+\gabarito[12.2 Campo magnético]
 
 % =====================================================================
 \subsection{Fluxo magnético}
@@ -440,7 +439,7 @@ uniforme de $\SI{0.3}{\tesla}$, perpendicular ao seu plano.
 \begin{itensq}
 \item Calcule o fluxo magnético através da espira.
 \item Se o campo variar linearmente de $\SI{0.3}{}$ para $\SI{0.1}{\tesla}$ em
-      $\SI{0.5}{\second}$, qual a fem induzida?
+      $\SI{0.5}{\second}$, qual é a fem induzida?
 \end{itensq}
 \resposta{(a) $\Phi \approx \SI{6.03}{\milli\weber}$; (b) $\varepsilon \approx \SI{8.04}{\milli\volt}$}
 \resolucao{(a) A área é $A = \pi R^2 = \pi(0{,}08)^2 \approx \SI{0.0201}{\meter\squared}$:
@@ -557,7 +556,7 @@ projeto de uma máquina elétrica.}
 \input{bancos/banco-fluxo-magnetico.tex}
 % END BANCO COMPLEMENTAR
 
-\gabarito[11.3 Fluxo magnético]
+\gabarito[12.3 Fluxo magnético]
 
 % =====================================================================
 \subsection{Força magnética}
@@ -734,7 +733,7 @@ Nobel. Hoje é ferramenta padrão em química analítica, datação e antidoping
 \input{bancos/banco-forca-magnetica.tex}
 % END BANCO COMPLEMENTAR
 
-\gabarito[11.4 Força magnética]
+\gabarito[12.4 Força magnética]
 
 % =====================================================================
 \subsection{Lei de Lenz e indução eletromagnética}
@@ -838,7 +837,7 @@ da corrente induzida.}
 \begin{questao}[2]{}
 Um transformador ideal tem no primário uma bobina onde o fluxo magnético varia à
 taxa de $\SI{0.01}{\weber\per\second}$. Se o enrolamento tem $\SI{200}{}$ espiras,
-qual a fem induzida?
+qual é a fem induzida?
 \resposta{$\varepsilon = \SI{2}{\volt}$}
 \resolucao{$\varepsilon = N\dfrac{\mathrm{d}\Phi}{\mathrm{d}t}
 = 200\cdot0{,}01 = \SI{2}{\volt}$. É assim que o transformador transfere energia:
@@ -854,7 +853,7 @@ $\Phi(t) = \Phi_0\cos(\omega t)$, com $\Phi_0 = \SI{0.01}{\weber}$ e
 $\omega = \SI{100}{\radian\per\second}$.
 \begin{itensq}
 \item Obtenha a expressão da fem induzida.
-\item Qual o valor máximo da fem?
+\item Qual é o valor máximo da fem?
 \end{itensq}
 \resposta{(a) $\varepsilon(t) = \Phi_0\omega\sin(\omega t)$;
 (b) $\varepsilon_{\max} = \SI{1}{\volt}$}
@@ -972,4 +971,4 @@ mecânico nem desgaste.}
 \input{bancos/banco-lei-de-lenz-e-inducao-eletromagnetica.tex}
 % END BANCO COMPLEMENTAR
 
-\gabarito[11.5 Lei de Lenz e indução eletromagnética]
+\gabarito[12.5 Lei de Lenz e indução eletromagnética]
