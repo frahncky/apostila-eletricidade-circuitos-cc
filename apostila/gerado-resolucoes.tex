@@ -14407,6 +14407,81 @@ Logo $T_0=2\pi/\omega_0\approx\SI{6.28}{\milli\second}$.}
 
 \gabarito[Nível 2]
 \stepcounter{questao}
+\resposta{$v_C(0^+)=\SI{12}{\volt}$; $\tau=\SI{0.60}{\second}$;
+$v_C(0{,}30\,\mathrm{s})\approx\SI{7.28}{\volt}$}
+\resolucao{Para $t<0$, o capacitor está em regime permanente e equivale a um
+circuito aberto. Assim,
+\[
+v_C(0^-)=18\frac{6}{3+6}=\SI{12}{\volt}.
+\]
+Pela continuidade da tensão no capacitor, $v_C(0^+)=\SI{12}{\volt}$. Quando a
+chave abre, a fonte e $R_1$ ficam desconectados do capacitor; a descarga ocorre
+somente por $R_2$. Logo
+\[
+\tau=R_2C=(6\times10^3)(100\times10^{-6})=\SI{0.60}{\second}.
+\]
+Como $v_C(\infty)=0$,
+$v_C(t)=12e^{-t/0{,}60}$ e, em $t=\SI{0.30}{\second}$,
+$v_C\approx12e^{-0{,}5}=\SI{7.28}{\volt}$.}
+\stepcounter{questao}
+\resposta{$i_L(0^+)=\SI{4}{\ampere}$; $\tau\approx\SI{6.67}{\milli\second}$;
+$i_L(10\,\mathrm{ms})\approx\SI{0.893}{\ampere}$}
+\resolucao{Em regime permanente, o indutor equivale a um curto-circuito; portanto
+$R_2$ fica sem tensão e
+$i_L(0^-)=24/6=\SI{4}{\ampere}$. Pela continuidade da corrente,
+$i_L(0^+)=\SI{4}{\ampere}$. Após a abertura da chave, a fonte e $R_1$ ficam
+isolados e o indutor descarrega por $R_2$:
+\[
+\tau=\frac{L}{R_2}=\frac{0{,}12}{18}\approx\SI{6.67}{\milli\second}.
+\]
+Assim, $i_L(t)=4e^{-t/\tau}$ e
+$i_L(10\,\mathrm{ms})\approx4e^{-10/6{,}67}=\SI{0.893}{\ampere}$.}
+\stepcounter{questao}
+\resposta{$v_C(0^+)=\SI{8}{\volt}$; $v_C(\infty)=\SI{6}{\volt}$;
+$\tau=\SI{150}{\milli\second}$;
+$v_C(t)=6+2e^{-t/0{,}15}\ \si{\volt}$}
+\resolucao{Antes da comutação, o capacitor está aberto e $R_2$ desconectado. Logo
+$v_C(0^-)=I_SR_1=(2\,\mathrm{mA})(4\,\mathrm{k\Omega})=\SI{8}{\volt}$, portanto
+$v_C(0^+)=\SI{8}{\volt}$. Após o fechamento, em regime permanente o capacitor
+continua aberto e
+\[
+v_C(\infty)=I_S(R_1\parallel R_2)
+=2\,\mathrm{mA}\,(3\,\mathrm{k\Omega})=\SI{6}{\volt}.
+\]
+Para a constante de tempo, a fonte de corrente independente é aberta:
+$R_{\mathrm{eq}}=R_1\parallel R_2=\SI{3}{\kilo\ohm}$ e
+$\tau=R_{\mathrm{eq}}C=\SI{0.15}{\second}$. Assim,
+$v_C(t)=6+(8-6)e^{-t/0{,}15}$.}
+\stepcounter{questao}
+\resposta{$\alpha=\SI{150}{\per\second}$;
+$\omega_0\approx\SI{316.2}{\radian\per\second}$;
+$\omega_d\approx\SI{278.4}{\radian\per\second}$; resposta subamortecida}
+\resolucao{Para RLC em série,
+\[
+\alpha=\frac{R}{2L}=\frac{15}{0{,}10}=\SI{150}{\per\second},\qquad
+\omega_0=\frac{1}{\sqrt{LC}}
+=\frac{1}{\sqrt{0{,}05\cdot200\times10^{-6}}}
+\approx\SI{316.2}{\radian\per\second}.
+\]
+Como $\alpha<\omega_0$, a resposta é subamortecida e
+$\omega_d=\sqrt{\omega_0^2-\alpha^2}\approx\SI{278.4}{\radian\per\second}$.}
+\stepcounter{questao}
+\resposta{$v(0^+)=0$; $i_L(0^+)=0$;
+$\dot v(0^+)=\SI{6}{\volt\per\second}$;
+$v(\infty)=0$; $i_L(\infty)=\SI{3}{\ampere}$}
+\resolucao{Como o circuito parte sem energia, $v_C(0^-)=0$ e $i_L(0^-)=0$;
+logo $v(0^+)=0$ e $i_L(0^+)=0$. Aplicando KCL em $0^+$,
+\[
+3=\frac{v}{R}+C\dot v+i_L
+\quad\Rightarrow\quad
+3=0+0{,}5\dot v+0,
+\]
+portanto $\dot v(0^+)=\SI{6}{\volt\per\second}$. Em regime CC, o capacitor é
+aberto e o indutor é curto-circuito; assim $v(\infty)=0$ e toda a corrente da fonte
+flui pelo indutor: $i_L(\infty)=\SI{3}{\ampere}$.}
+
+\gabarito[Nível 2 --- circuitos e chaveamento]
+\stepcounter{questao}
 \resposta{$v_C\approx\SI{4.95}{\volt}$}
 \resolucao{Na primeira etapa, $\tau_1=\SI{20}{\milli\second}$ e
 $v_C(50\,\mathrm{ms})=12(1-e^{-2{,}5})\approx\SI{11.015}{\volt}$. Esse valor é a
@@ -14527,6 +14602,104 @@ $\ddot v_C(0^+)=\SI{1e6}{\volt\per\second\squared}$.}
 
 \gabarito[Nível 3]
 \stepcounter{questao}
+\resposta{$v_C(t)=-5+20e^{-t/0{,}4}\ \si{\volt}$;
+$t_{v=0}\approx\SI{0.555}{\second}$; $i_{R_2}(0^+)=\SI{2}{\milli\ampere}$}
+\resolucao{Em regime permanente no circuito (a), o capacitor está aberto e não há
+queda em $R_1$, de modo que $v_C(0^-)=\SI{15}{\volt}$. Logo
+$v_C(0^+)=\SI{15}{\volt}$. Para $t>0$, o valor final é $-\SI{5}{\volt}$ e
+\[
+\tau=R_2C=(10\,\mathrm{k\Omega})(40\,\mathrm{\mu F})=\SI{0.4}{\second}.
+\]
+Portanto
+\[
+v_C(t)=-5+(15+5)e^{-t/0{,}4}=-5+20e^{-t/0{,}4}.
+\]
+No cruzamento por zero, $e^{-t/0{,}4}=1/4$, logo
+$t=0{,}4\ln4\approx\SI{0.555}{\second}$. A corrente inicial em $R_2$ é
+$(15-(-5))/10\,\mathrm{k\Omega}=\SI{2}{\milli\ampere}$.}
+\stepcounter{questao}
+\resposta{$i_L(t)=6e^{-t/0{,}0333}\ \si{\ampere}$;
+$W_L(50\,\mathrm{ms})\approx\SI{0.179}{\joule}$}
+\resolucao{Antes da abertura, o indutor ideal está em curto e os resistores
+$R_2$ e $R_3$ ficam sem tensão. Assim $i_L(0^-)=30/5=\SI{6}{\ampere}$ e
+$i_L(0^+)=\SI{6}{\ampere}$. Para $t>0$,
+\[
+R_{\mathrm{eq}}=8\parallel24=\SI{6}{\ohm},\qquad
+\tau=\frac{0{,}2}{6}\approx\SI{33.3}{\milli\second}.
+\]
+Logo $i_L(t)=6e^{-t/\tau}$. Em $\SI{50}{\milli\second}$,
+$i_L=6e^{-1{,}5}\approx\SI{1.339}{\ampere}$. A energia remanescente é
+\[
+W_L=\frac12Li_L^2\approx\frac12(0{,}2)(1{,}339)^2
+\approx\SI{0.179}{\joule}.
+\]}
+\stepcounter{questao}
+\resposta{$R_{\mathrm{eq}}=\SI{4}{\kilo\ohm}$; $\tau=\SI{0.10}{\second}$;
+$v_C(t)=6+4e^{-10t}\ \si{\volt}$; $t_{1\%}\approx\SI{0.461}{\second}$}
+\resolucao{Em regime final não circula corrente em $R_3$, portanto o capacitor
+assume a tensão do divisor formado por $R_1$ e $R_2$:
+$V_f=18\cdot3/(6+3)=\SI{6}{\volt}$. Para obter a resistência vista pelo capacitor,
+a fonte ideal de tensão é curto-circuitada:
+\[
+R_{\mathrm{eq}}=R_3+(R_1\parallel R_2)=2\,\mathrm{k\Omega}+2\,\mathrm{k\Omega}
+=\SI{4}{\kilo\ohm}.
+\]
+Logo $\tau=R_{\mathrm{eq}}C=\SI{0.10}{\second}$ e
+$v_C(t)=6+(10-6)e^{-t/0{,}1}=6+4e^{-10t}$. O erro normalizado é
+$e^{-t/\tau}$. Para ficar abaixo de \SI{1}{\percent},
+$t>\tau\ln100\approx4{,}605\tau=\SI{0.461}{\second}$.}
+\stepcounter{questao}
+\resposta{Subamortecida;
+$v(t)\approx-51{,}64e^{-250t}\sin(193{,}65t)\ \si{\volt}$}
+\resolucao{Antes da abertura, em regime CC, o capacitor é aberto e o indutor é
+curto. Assim $v(0^-)=0$ e $i_L(0^-)=\SI{2}{\ampere}$; por continuidade,
+$v(0^+)=0$ e $i_L(0^+)=\SI{2}{\ampere}$. Para o RLC em paralelo,
+\[
+\alpha=\frac{1}{2RC}=\SI{250}{\per\second},\qquad
+\omega_0=\frac{1}{\sqrt{LC}}\approx\SI{316.23}{\radian\per\second},
+\]
+logo a resposta é subamortecida e
+$\omega_d\approx\SI{193.65}{\radian\per\second}$. Pela KCL em $0^+$,
+$C\dot v(0^+)+i_L(0^+)=0$, portanto
+$\dot v(0^+)=-2/(200\,\mathrm{\mu F})=-\SI{10000}{\volt\per\second}$.
+Como $v(0)=0$, a parcela cossenoidal é nula e
+$B=\dot v(0)/\omega_d\approx-51{,}64$, resultando na expressão indicada.}
+\stepcounter{questao}
+\resposta{$v_C(t)=10\left[1-e^{-100t}\left(\cos300t+\frac13\sin300t\right)\right]\,\si{\volt}$;
+$v_{C,\mathrm{pico}}\approx\SI{13.51}{\volt}$ em $t_p\approx\SI{10.47}{\milli\second}$}
+\resolucao{Temos
+$\alpha=R/(2L)=\SI{100}{\per\second}$,
+$\omega_0\approx\SI{316.23}{\radian\per\second}$ e
+$\omega_d=\SI{300}{\radian\per\second}$. Para entrada degrau e condições iniciais
+nulas, a resposta do capacitor é
+\[
+v_C(t)=V_s\left[1-e^{-\alpha t}\left(\cos\omega_dt+
+\frac{\alpha}{\omega_d}\sin\omega_dt\right)\right].
+\]
+Substituindo os valores, obtém-se a expressão indicada. O primeiro pico ocorre em
+$t_p=\pi/\omega_d\approx\SI{10.47}{\milli\second}$. Nesse instante,
+$\sin(\omega_dt_p)=0$ e $\cos(\omega_dt_p)=-1$, logo
+$v_C(t_p)=10[1+e^{-100t_p}]\approx\SI{13.51}{\volt}$.}
+\stepcounter{questao}
+\resposta{$\alpha\approx\SI{43.3}{\per\second}$;
+$\omega_d\approx\SI{785.4}{\radian\per\second}$;
+$L\approx\SI{92.3}{\milli\henry}$; $C\approx\SI{17.5}{\micro\farad}$}
+\resolucao{A envoltória obedece $e^{-\alpha t}$. Como ela cai à metade em
+$\SI{16}{\milli\second}$,
+\[
+\alpha=\frac{\ln2}{0{,}016}\approx\SI{43.3}{\per\second}.
+\]
+O período amortecido fornece
+$\omega_d=2\pi/T_d\approx\SI{785.4}{\radian\per\second}$. Para RLC em série,
+$\alpha=R/(2L)$, então
+$L=R/(2\alpha)\approx\SI{92.3}{\milli\henry}$. Além disso,
+$\omega_0=\sqrt{\omega_d^2+\alpha^2}\approx\SI{786.6}{\radian\per\second}$ e
+\[
+C=\frac{1}{L\omega_0^2}\approx\SI{17.5}{\micro\farad}.
+\]}
+
+\gabarito[Nível 3 --- análise integrada e formas de onda]
+\stepcounter{questao}
 \resposta{$R_{\mathrm{eq}}\approx\SI{8}{\kilo\ohm}$; há cerca de \SI{3}{\kilo\ohm}
 adicionais na trajetória equivalente}
 \resolucao{$R_{\mathrm{eq}}=\tau/C=0{,}08/(\pot{10}{-6})=\SI{8}{\kilo\ohm}$.
@@ -14623,6 +14796,117 @@ usar resistor com margem de potência e tensão. A energia inicialmente armazena
 e posteriormente dissipada, é $E=\tfrac12CV^2\approx\SI{37.6}{\joule}$.}
 
 \gabarito[Nível 4]
+\stepcounter{questao}
+\resposta{$V_f=\SI{4.5}{\volt}$; $R_{\mathrm{Th}}=\SI{900}{\ohm}$;
+$C_{\max}\approx\SI{20.2}{\micro\farad}$; escolha: \SI{18}{\micro\farad};
+$t_{3V}\approx\SI{17.8}{\milli\second}$;
+$i_s(0^+)=\SI{5}{\milli\ampere}$; $i_s(\infty)=\SI{0.5}{\milli\ampere}$}
+\resolucao{Em regime permanente o capacitor é aberto, então
+\[
+V_f=5\frac{9}{1+9}=\SI{4.5}{\volt}.
+\]
+Suprimindo a fonte, a resistência vista pelo capacitor é
+$R_{\mathrm{Th}}=R_s\parallel R_L=1\parallel9=\SI{0.9}{\kilo\ohm}$.
+Como o capacitor parte descarregado,
+$v_C(t)=4{,}5(1-e^{-t/(R_{\mathrm{Th}}C)})$. A condição limite é
+$3=4{,}5(1-e^{-0{,}02/(900C)})$, ou seja $e^{-0{,}02/(900C)}=1/3$. Logo
+\[
+C_{\max}=\frac{0{,}02}{900\ln3}\approx\SI{20.2}{\micro\farad}.
+\]
+O valor de \SI{22}{\micro\farad} viola a especificação; com
+$C=\SI{18}{\micro\farad}$, $\tau=\SI{16.2}{\milli\second}$ e
+$t_{3V}=\tau\ln3\approx\SI{17.8}{\milli\second}$. Em $0^+$ o capacitor se
+comporta como curto, logo $i_s=5/1\,\mathrm{k\Omega}=\SI{5}{\milli\ampere}$.
+Em regime, a corrente é $5/(1+9)\,\mathrm{k\Omega}=\SI{0.5}{\milli\ampere}$.}
+\stepcounter{questao}
+\resposta{$R_{b,\max}\approx\SI{68.2}{\kilo\ohm}$; com \SI{68}{\kilo\ohm},
+$t_{50V}\approx\SI{59.8}{\second}$; $p_R(0^+)\approx\SI{1.55}{\watt}$;
+$E\approx\SI{24.8}{\joule}$}
+\resolucao{Na descarga, $v_C(t)=V_0e^{-t/(R_bC)}$. Impor
+$50=325e^{-60/(R_bC)}$ fornece
+\[
+R_b=\frac{-60}{C\ln(50/325)}\approx\SI{68.2}{\kilo\ohm}.
+\]
+Assim, \SI{68}{\kilo\ohm} atende à especificação. Com esse valor,
+$t=R_bC\ln(325/50)\approx\SI{59.8}{\second}$. A potência inicial é
+$p_R(0^+)=V_0^2/R_b\approx\SI{1.55}{\watt}$. Toda a energia inicialmente
+armazenada no capacitor é dissipada no resistor:
+\[
+E=\frac12CV_0^2
+=\frac12(470\times10^{-6})(325)^2\approx\SI{24.8}{\joule}.
+\]
+O projeto real deve ainda considerar a tensão máxima do resistor e sua capacidade
+de suportar a energia do pulso de descarga.}
+\stepcounter{questao}
+\resposta{$\omega_0=\SI{200}{\radian\per\second}$;
+$L=\SI{0.25}{\henry}$; $R=\SI{50}{\ohm}$;
+$M_p\approx\SI{16.3}{\percent}$; $t_p\approx\SI{18.1}{\milli\second}$}
+\resolucao{Usando a especificação no limite,
+\[
+0{,}040=\frac{4}{0{,}5\omega_0}
+\quad\Rightarrow\quad
+\omega_0=\SI{200}{\radian\per\second}.
+\]
+Como $\omega_0=1/\sqrt{LC}$,
+$L=1/(C\omega_0^2)=1/(100\times10^{-6}\cdot200^2)=\SI{0.25}{\henry}$.
+Para RLC em série, $\zeta=R/(2L\omega_0)$; portanto
+$R=2\zeta L\omega_0=\SI{50}{\ohm}$. O sobressinal é
+\[
+M_p=e^{-\pi\zeta/\sqrt{1-\zeta^2}}\approx0{,}163,
+\]
+ou \SI{16.3}{\percent}. A frequência amortecida é
+$\omega_d=\omega_0\sqrt{1-\zeta^2}\approx\SI{173.2}{\radian\per\second}$ e
+$t_p=\pi/\omega_d\approx\SI{18.1}{\milli\second}$.}
+\stepcounter{questao}
+\resposta{$\dot v_1=100u(t)-15v_1+5v_2$;
+$\dot v_2=10v_1-10v_2$; polos $-5$ e $-20\ \si{\per\second}$;
+$v_2(t)=10-\frac{40}{3}e^{-5t}+\frac{10}{3}e^{-20t}\ \si{\volt}$}
+\resolucao{Aplicando KCL aos dois nós,
+\[
+C_1\dot v_1=\frac{v_s-v_1}{R_1}-\frac{v_1-v_2}{R_2},
+\qquad
+C_2\dot v_2=\frac{v_1-v_2}{R_2}.
+\]
+Substituindo os valores,
+\[
+\dot v_1=100u(t)-15v_1+5v_2,\qquad
+\dot v_2=10v_1-10v_2.
+\]
+A matriz natural é
+$A=\begin{bmatrix}-15&5\\10&-10\end{bmatrix}$, cuja equação característica é
+$s^2+25s+100=0$, fornecendo $s_1=-5$ e $s_2=-20$. Em regime final,
+$v_1(\infty)=v_2(\infty)=\SI{10}{\volt}$. Assim
+$v_2=10+Ae^{-5t}+Be^{-20t}$. Das condições $v_2(0)=0$ e
+$\dot v_2(0)=0$ resultam $A=-40/3$ e $B=10/3$.}
+\stepcounter{questao}
+\resposta{Subamortecida;
+$v(t)\approx-23{,}09e^{-50t}\sin(86{,}60t)\ \si{\volt}$;
+$t_p\approx\SI{12.1}{\milli\second}$;
+$v_{\min}\approx-\SI{10.93}{\volt}$}
+\resolucao{Antes da mudança, em regime CC, o indutor é curto e conduz toda a
+corrente da fonte: $i_L(0^-)=\SI{2}{\ampere}$ e $v(0^-)=0$. Logo
+$i_L(0^+)=\SI{2}{\ampere}$ e $v(0^+)=0$. Para $t>0$, o valor final é novamente
+$v(\infty)=0$, com $i_L(\infty)=\SI{1}{\ampere}$. Os parâmetros são
+\[
+\alpha=\frac{1}{2RC}=\SI{50}{\per\second},\qquad
+\omega_0=\frac{1}{\sqrt{LC}}=\SI{100}{\radian\per\second},
+\]
+portanto $\omega_d=\sqrt{100^2-50^2}\approx\SI{86.60}{\radian\per\second}$.
+Aplicando KCL em $0^+$,
+\[
+1=\frac{0}{20}+C\dot v(0^+)+2
+\Rightarrow
+\dot v(0^+)=-\frac{1}{500\,\mathrm{\mu F}}
+=-\SI{2000}{\volt\per\second}.
+\]
+Como $v(0)=0$, resulta
+$v(t)=B e^{-50t}\sin(86{,}60t)$, com
+$B=-2000/86{,}60\approx-23{,}09$. O primeiro extremo satisfaz
+$\tan(\omega_dt)=\omega_d/\alpha=\sqrt3$, logo
+$\omega_dt=\pi/3$ e $t_p\approx\SI{12.1}{\milli\second}$. Substituindo na
+resposta, $v_{\min}\approx-\SI{10.93}{\volt}$.}
+
+\gabarito[Nível 4 --- projeto, diagnóstico e síntese]
 
 \section{Eletromagnetismo}
 
