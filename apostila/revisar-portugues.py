@@ -25,6 +25,12 @@ SUBSTITUICOES = [
     ("estágio série RLC", "estágio RLC em série"),
     ("No série,", "No circuito RLC em série,"),
     ("No paralelo,", "No circuito RLC em paralelo,"),
+    ("Para achar ", "Para determinar "),
+    ("para achar ", "para determinar "),
+    ("uma vez achado", "uma vez obtido"),
+    ("refazer as contas", "refazer os cálculos"),
+    ("Confere.", "Resultado consistente."),
+    ("\\gabarito[11.", "\\gabarito[12."),
 ]
 
 # Correções contextuais. Mantidas como correspondências exatas para evitar
@@ -97,6 +103,34 @@ SUBSTITUICOES_EXATAS = [
     (
         "Selecione questoes ou resolucoes",
         "Selecione questões ou resoluções",
+    ),
+    (
+        "corrente que a fonte de tensão empurraria",
+        "corrente que a fonte de tensão forneceria",
+    ),
+    (
+        "a nodal resolveu com \\emph{uma} equação.",
+        "a análise nodal exigiu apenas \\emph{uma} equação.",
+    ),
+    (
+        "nao partir um ímã, cada pedaço volta a ter polos norte e sul.",
+        "ao partir um ímã, cada pedaço volta a ter polos norte e sul.",
+    ),
+    (
+        "a corrente de magnetização dispara (aquecendo o enrolamento)",
+        "a corrente de magnetização aumenta acentuadamente (aquecendo o enrolamento)",
+    ),
+    (
+        "Mede a \"teimosia\" do material em\nmanter seu estado magnético.",
+        "Quantifica a resistência do material à desmagnetização.",
+    ),
+    (
+        "Ciclo desejado & \\textbf{estreito} (fino) & \\textbf{largo} (gordo)",
+        "Ciclo desejado & \\textbf{estreito} (fino) & \\textbf{largo} (amplo)",
+    ),
+    (
+        "quanto mais larga a área, mais estável ele é.",
+        "quanto maior a área do ciclo, maior é sua resistência à desmagnetização.",
     ),
 ]
 
