@@ -2,10 +2,11 @@
 % ANALISE NODAL --- QUESTOES CRITICAS 735, 739, 742, 750, 751 e 752
 % Somente desenhos. Enunciados, respostas, resolucoes e niveis permanecem.
 % Revisao preventiva: maior espacamento entre ramos, componentes e rotulos.
+% IMPORTANTE: nomes de comandos TeX nao usam algarismos diretamente.
 % =====================================================================
 
 % Q735 --- N2/5: fonte real de tensao alimentando carga
-\def\fvNodalQ735Revisada{%
+\def\fvNodalQSevenThreeFiveRevisada{%
 \begin{circuitikz}[american,scale=.88,transform shape,line width=.8pt]
   \coordinate (g) at (6.2,0);
   \coordinate (a) at (6.2,4.4);
@@ -19,7 +20,7 @@
 \end{circuitikz}}
 
 % Q739 --- N2/9: escada resistiva de tres nos
-\def\fvNodalQ739Revisada{%
+\def\fvNodalQSevenThreeNineRevisada{%
 \begin{circuitikz}[american,scale=.72,transform shape,line width=.8pt]
   \coordinate (g) at (6.6,0);
   \coordinate (n1) at (2.1,4.9);
@@ -43,7 +44,7 @@
 % Q742 --- N2/12: fonte de tensao, dois nos e fonte horizontal de corrente
 % A fonte horizontal foi deslocada para um ramo inferior para separar
 % o seu rotulo dos identificadores V1 e V2.
-\def\fvNodalQ742Revisada{%
+\def\fvNodalQSevenFourTwoRevisada{%
 \begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
   \coordinate (g) at (4.2,0);
   \coordinate (n1) at (4.2,5.0);
@@ -63,7 +64,7 @@
 \end{circuitikz}}
 
 % Q750 --- N3/7: fonte de corrente dependente controlada por i_x
-\def\fvNodalQ750Revisada{%
+\def\fvNodalQSevenFiveZeroRevisada{%
 \begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
   \coordinate (g) at (2.5,0);
   \coordinate (n1) at (2.5,4.6);
@@ -84,7 +85,7 @@
 % Q751 --- N3/8: fonte de tensao controlada V2 = 2 V1
 % A fonte controlada foi afastada fisicamente do no V2; a ligacao horizontal
 % preserva a mesma topologia eletrica.
-\def\fvNodalQ751Revisada{%
+\def\fvNodalQSevenFiveOneRevisada{%
 \begin{circuitikz}[american,scale=.78,transform shape,line width=.8pt]
   \coordinate (g) at (2.3,0);
   \coordinate (n1) at (2.3,4.8);
@@ -103,7 +104,7 @@
 \end{circuitikz}}
 
 % Q752 --- N3/9: ponte equilibrada, com ramos e rotulos separados
-\def\fvNodalQ752Revisada{%
+\def\fvNodalQSevenFiveTwoRevisada{%
 \begin{circuitikz}[american,scale=.76,transform shape,line width=.8pt]
   \coordinate (g0) at (0,0);
   \coordinate (g)  at (6.0,0);
