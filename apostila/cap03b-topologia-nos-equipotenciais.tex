@@ -1,0 +1,129 @@
+% =====================================================================
+%  CAPITULO 3 - COMPLEMENTO: LEITURA TOPOLOGICA E NOS EQUIPOTENCIAIS
+% =====================================================================
+\subsection{Leitura topológica e nós equipotenciais}
+
+\begin{conceito}[Antes de calcular, identifique os nós]
+Em redes desenhadas de forma não convencional, a geometria pode enganar. Fios
+ideais contínuos pertencem ao mesmo nó, mesmo quando percorrem caminhos longos
+ou cruzam o desenho. Um cruzamento só representa conexão elétrica quando houver
+indicação explícita de junção; quando um fio ``salta'' sobre o outro, não há
+contato. Depois de identificar os nós equipotenciais, redes aparentemente
+complexas podem se reduzir a associações simples.
+\end{conceito}
+
+\blocoaprofundamento
+
+\begin{questao}[3]{}
+No circuito da figura, os dois fios diagonais \textbf{se cruzam sem contato
+elétrico} no ponto central. Determine a resistência equivalente vista entre os
+terminais $a$ e $b$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.92,transform shape,line width=0.8pt]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (5,0);
+  \coordinate (C) at (0,4);
+  \coordinate (D) at (5,4);
+
+  \draw (C) to[R,l_={$\SI{8}{\ohm}$}] (A);
+  \draw (C) to[R,l={$\SI{6}{\ohm}$}] (D);
+  \draw (D) to[R,l={$\SI{12}{\ohm}$}] (B);
+  \draw (A) to[R,l_={$\SI{4}{\ohm}$}] (B);
+
+  % Primeiro fio diagonal; o segundo e desenhado por cima com uma faixa branca,
+  % deixando claro que existe cruzamento, mas nao existe juncao eletrica.
+  \draw (C) -- (B);
+  \draw[preaction={draw=white,line width=4.2pt}] (A) -- (D);
+
+  \fill (A) circle (1.8pt);
+  \fill (B) circle (1.8pt);
+  \fill (C) circle (1.8pt);
+  \fill (D) circle (1.8pt);
+
+  \draw (A) -- ++(0,-0.75) node[below,font=\normalsize] {$a$};
+  \draw (B) -- ++(0,-0.75) node[below,font=\normalsize] {$b$};
+\end{circuitikz}}
+
+\resposta{$R_{eq}=\SI{1.6}{\ohm}$}
+\resolucao{O passo decisivo é reconhecer os nós. O fio diagonal que liga o
+canto superior esquerdo ao canto inferior direito torna esses dois pontos o
+\textbf{mesmo nó}, isto é, o nó de $b$. Da mesma forma, o outro fio diagonal
+liga o canto inferior esquerdo ao canto superior direito, tornando-os o
+\textbf{mesmo nó}, isto é, o nó de $a$.
+
+Como o cruzamento central não é uma junção, os dois nós permanecem distintos.
+Assim, os quatro resistores de $\SI{8}{\ohm}$, $\SI{6}{\ohm}$,
+$\SI{12}{\ohm}$ e $\SI{4}{\ohm}$ estão todos conectados entre o mesmo par de
+nós $a$--$b$: são quatro resistores em paralelo.
+\[
+\frac{1}{R_{eq}}
+ =\frac{1}{8}+\frac{1}{6}+\frac{1}{12}+\frac{1}{4}
+ =\frac{3+4+2+6}{24}
+ =\frac{15}{24}=\frac{5}{8}.
+\]
+Logo,
+\[
+R_{eq}=\frac{8}{5}=\SI{1.6}{\ohm}.
+\]
+O desenho parece conter uma rede cruzada, mas a leitura topológica transforma o
+problema em um paralelo simples.}
+\end{questao}
+
+\begin{questao}[3]{}
+No circuito da figura, o aro externo é um \textbf{fio ideal contínuo}. Os oito
+resistores radiais têm resistência de $\SI{4}{\ohm}$ cada. Determine a corrente
+$i$ fornecida pela fonte ideal de $\SI{30}{\volt}$.
+
+\circuitoq{%
+\begin{circuitikz}[scale=0.88,transform shape,line width=0.8pt]
+  \coordinate (O) at (0,0);
+  \coordinate (P) at ({2.35*cos(140)},{2.35*sin(140)});
+  \coordinate (N) at ({2.35*cos(220)},{2.35*sin(220)});
+
+  % Aro externo: um unico no eletrico.
+  \draw (O) circle (2.35);
+
+  % Oito resistores radiais iguais.
+  \foreach \ang in {0,45,90,135,180,225,270,315}{
+    \draw (O) to[R] ({2.35*cos(\ang)},{2.35*sin(\ang)});
+  }
+  \fill (O) circle (1.8pt);
+  \node[fill=white,inner sep=1.5pt,font=\footnotesize\sffamily] at (0,-2.85)
+       {8 resistores radiais: $\SI{4}{\ohm}$ cada};
+
+  % Fonte e resistor serie de 2 ohms.
+  \draw (-4.15,-1.15) to[battery1,l_={$\SI{30}{\volt}$}] (-4.15,1.15)
+        to[R,l={$\SI{2}{\ohm}$}] (P);
+  \draw (-4.15,-1.15) -- (N);
+  \draw[->,Icol,line width=1pt] (-4.55,-0.55) -- (-4.55,0.55)
+       node[midway,left,font=\footnotesize] {$i$};
+\end{circuitikz}}
+
+\resposta{$i=\SI{15}{\ampere}$}
+\resolucao{Todo o aro externo é feito de fio ideal, portanto todos os seus
+pontos pertencem ao \textbf{mesmo nó} e têm o mesmo potencial, que chamaremos
+de $V_A$. O centro da roda é um segundo nó, de potencial $V_C$.
+
+Os oito resistores de $\SI{4}{\ohm}$ ligam o nó central $C$ ao mesmo nó externo
+$A$. Entretanto, $C$ é um nó flutuante: ele não possui nenhuma outra conexão.
+Aplicando a LKC ao centro,
+\[
+8\,\frac{V_C-V_A}{4}=0
+\qquad\Longrightarrow\qquad
+V_C=V_A.
+\]
+Logo, a tensão em cada resistor radial é nula e nenhum deles conduz corrente.
+Eles não alteram a resistência vista pela fonte.
+
+O único elemento resistivo efetivamente no caminho fechado da fonte é o
+resistor de $\SI{2}{\ohm}$. Assim,
+\[
+i=\frac{30}{2}=\SI{15}{\ampere}.
+\]
+A chave do problema é perceber que o aro externo curto-circuita todos os pontos
+da circunferência em um único nó; calcular o paralelo dos oito resistores sem
+observar que o nó central está flutuante levaria a uma interpretação incorreta.}
+\end{questao}
+
+\gabarito[3.5 Leitura topológica e nós equipotenciais]
