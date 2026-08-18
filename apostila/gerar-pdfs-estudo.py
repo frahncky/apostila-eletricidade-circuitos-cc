@@ -2,7 +2,7 @@
 from pathlib import Path
 import re
 B=Path(__file__).resolve().parent
-CH=[('cap01-eletrostatica.tex',None),('cap02-conceitos-iniciais.tex',1),('cap03-associacao-resistores.tex',2),('cap04-divisores.tex',3),('cap05-potencia.tex',4),('cap06-superposicao-integrado.tex',5),('cap07-analise-nodal-integrado.tex',6),('cap08-thevenin-norton-integrado.tex',7),('cap09-maxwell.tex',8),('cap10-capacitores-indutores.tex',9),('cap11-circuitos-primeira-segunda-ordem.tex',10),('cap11-eletromagnetismo.tex',11)]
+CH=[('cap01-eletrostatica.tex',None),('cap02-conceitos-iniciais.tex',1),('cap03-associacao-resistores.tex',2),('cap03b-topologia-nos-equipotenciais.tex',None),('cap04-divisores.tex',3),('cap05-potencia.tex',4),('cap06-superposicao-integrado.tex',5),('cap07-analise-nodal-integrado.tex',6),('cap08-thevenin-norton-integrado.tex',7),('cap09-maxwell.tex',8),('cap10-capacitores-indutores.tex',9),('cap11-circuitos-primeira-segunda-ordem.tex',10),('cap11-eletromagnetismo.tex',11)]
 
 def comments(s):
     z=[]
