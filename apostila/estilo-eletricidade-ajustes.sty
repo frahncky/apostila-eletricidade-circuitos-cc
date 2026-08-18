@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{estilo-eletricidade-ajustes}[2026/08/15 v1.2 Ajustes visuais]
+\ProvidesPackage{estilo-eletricidade-ajustes}[2026/08/18 v1.3 Ajustes visuais]
 
 % Deve ser carregado depois de estilo-eletricidade.
 \RequirePackage{adjustbox}
@@ -31,6 +31,28 @@
   \end{adjustbox}%
   \caption{#2}\label{fig:q\thequestao}%
   \end{figure}}
+
+% Nas questoes 355 e 404 existem quatro subcircuitos (a)--(d).
+% Para dar maior destaque aos desenhos, cada subcircuito ocupa praticamente
+% meia largura util. Assim, cabem exatamente dois por linha: (a,b) e (c,d).
+% O resizebox faz o circuito preencher a sua meia pagina, em vez de permanecer
+% pequeno por causa do scale local do CircuitikZ.
+\renewcommand{\subcirc}[2]{%
+  \ifnum\value{questao}=355\relax
+    \begin{minipage}[t]{0.49\linewidth}\centering
+      \textbf{\sffamily #1)}\\[0.45em]
+      \resizebox{0.96\linewidth}{!}{#2}%
+    \end{minipage}%
+  \else\ifnum\value{questao}=404\relax
+    \begin{minipage}[t]{0.49\linewidth}\centering
+      \textbf{\sffamily #1)}\\[0.45em]
+      \resizebox{0.96\linewidth}{!}{#2}%
+    \end{minipage}%
+  \else
+    \begin{minipage}[t]{0.48\linewidth}\centering
+      \textbf{\sffamily #1)}\\[0.4em] #2
+    \end{minipage}%
+  \fi\fi}
 
 % Macros de desenhos que substituem apenas circuitos identificados na
 % auditoria visual como sobrepostos ou excessivamente comprimidos.
