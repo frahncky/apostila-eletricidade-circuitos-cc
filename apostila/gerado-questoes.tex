@@ -7995,6 +7995,83 @@ para $n=3$}
 
 \gabarito[3.4 Transformação estrela-triângulo]
 
+\subsection{Leitura topológica e nós equipotenciais}
+
+\blocoaprofundamento
+\begin{questao}[3]{}
+
+No circuito da figura, os dois fios diagonais \textbf{se cruzam sem contato
+elétrico} no ponto central. Determine a resistência equivalente vista entre os
+terminais $a$ e $b$.
+
+\circuitoq{
+\begin{circuitikz}[scale=0.92,transform shape,line width=0.8pt]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (5,0);
+  \coordinate (C) at (0,4);
+  \coordinate (D) at (5,4);
+
+  \draw (C) to[R,l_={$\SI{8}{\ohm}$}] (A);
+  \draw (C) to[R,l={$\SI{6}{\ohm}$}] (D);
+  \draw (D) to[R,l={$\SI{12}{\ohm}$}] (B);
+  \draw (A) to[R,l_={$\SI{4}{\ohm}$}] (B);
+
+  
+  
+  \draw (C) -- (B);
+  \draw[preaction={draw=white,line width=4.2pt}] (A) -- (D);
+
+  \fill (A) circle (1.8pt);
+  \fill (B) circle (1.8pt);
+  \fill (C) circle (1.8pt);
+  \fill (D) circle (1.8pt);
+
+  \draw (A) -- ++(0,-0.75) node[below,font=\normalsize] {$a$};
+  \draw (B) -- ++(0,-0.75) node[below,font=\normalsize] {$b$};
+\end{circuitikz}}
+
+\resposta{$R_{eq}=\SI{1.6}{\ohm}$}
+
+
+\end{questao}
+\begin{questao}[3]{}
+
+No circuito da figura, o aro externo é um \textbf{fio ideal contínuo}. Os oito
+resistores radiais têm resistência de $\SI{4}{\ohm}$ cada. Determine a corrente
+$i$ fornecida pela fonte ideal de $\SI{30}{\volt}$.
+
+\circuitoq{
+\begin{circuitikz}[scale=0.88,transform shape,line width=0.8pt]
+  \coordinate (O) at (0,0);
+  \coordinate (P) at ({2.35*cos(140)},{2.35*sin(140)});
+  \coordinate (N) at ({2.35*cos(220)},{2.35*sin(220)});
+
+  
+  \draw (O) circle (2.35);
+
+  
+  \foreach \ang in {0,45,90,135,180,225,270,315}{
+    \draw (O) to[R] ({2.35*cos(\ang)},{2.35*sin(\ang)});
+  }
+  \fill (O) circle (1.8pt);
+  \node[fill=white,inner sep=1.5pt,font=\footnotesize\sffamily] at (0,-2.85)
+       {8 resistores radiais: $\SI{4}{\ohm}$ cada};
+
+  
+  \draw (-4.15,-1.15) to[battery1,l_={$\SI{30}{\volt}$}] (-4.15,1.15)
+        to[R,l={$\SI{2}{\ohm}$}] (P);
+  \draw (-4.15,-1.15) -- (N);
+  \draw[->,Icol,line width=1pt] (-4.55,-0.55) -- (-4.55,0.55)
+       node[midway,left,font=\footnotesize] {$i$};
+\end{circuitikz}}
+
+\resposta{$i=\SI{15}{\ampere}$}
+
+
+\end{questao}
+
+\gabarito[3.5 Leitura topológica e nós equipotenciais]
+
 \section{Divisor de Tensão e de Corrente}
 
 \subsection{Divisor de tensão}

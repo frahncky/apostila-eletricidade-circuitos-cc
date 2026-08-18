@@ -9662,6 +9662,59 @@ depende de topologias especiais, é o método geral.}
 
 \gabarito[3.4 Transformação estrela-triângulo]
 
+\subsection{Leitura topológica e nós equipotenciais}
+\stepcounter{questao}
+\resposta{$R_{eq}=\SI{1.6}{\ohm}$}
+\resolucao{O passo decisivo é reconhecer os nós. O fio diagonal que liga o
+canto superior esquerdo ao canto inferior direito torna esses dois pontos o
+\textbf{mesmo nó}, isto é, o nó de $b$. Da mesma forma, o outro fio diagonal
+liga o canto inferior esquerdo ao canto superior direito, tornando-os o
+\textbf{mesmo nó}, isto é, o nó de $a$.
+
+Como o cruzamento central não é uma junção, os dois nós permanecem distintos.
+Assim, os quatro resistores de $\SI{8}{\ohm}$, $\SI{6}{\ohm}$,
+$\SI{12}{\ohm}$ e $\SI{4}{\ohm}$ estão todos conectados entre o mesmo par de
+nós $a$--$b$: são quatro resistores em paralelo.
+\[
+\frac{1}{R_{eq}}
+ =\frac{1}{8}+\frac{1}{6}+\frac{1}{12}+\frac{1}{4}
+ =\frac{3+4+2+6}{24}
+ =\frac{15}{24}=\frac{5}{8}.
+\]
+Logo,
+\[
+R_{eq}=\frac{8}{5}=\SI{1.6}{\ohm}.
+\]
+O desenho parece conter uma rede cruzada, mas a leitura topológica transforma o
+problema em um paralelo simples.}
+\stepcounter{questao}
+\resposta{$i=\SI{15}{\ampere}$}
+\resolucao{Todo o aro externo é feito de fio ideal, portanto todos os seus
+pontos pertencem ao \textbf{mesmo nó} e têm o mesmo potencial, que chamaremos
+de $V_A$. O centro da roda é um segundo nó, de potencial $V_C$.
+
+Os oito resistores de $\SI{4}{\ohm}$ ligam o nó central $C$ ao mesmo nó externo
+$A$. Entretanto, $C$ é um nó flutuante: ele não possui nenhuma outra conexão.
+Aplicando a LKC ao centro,
+\[
+8\,\frac{V_C-V_A}{4}=0
+\qquad\Longrightarrow\qquad
+V_C=V_A.
+\]
+Logo, a tensão em cada resistor radial é nula e nenhum deles conduz corrente.
+Eles não alteram a resistência vista pela fonte.
+
+O único elemento resistivo efetivamente no caminho fechado da fonte é o
+resistor de $\SI{2}{\ohm}$. Assim,
+\[
+i=\frac{30}{2}=\SI{15}{\ampere}.
+\]
+A chave do problema é perceber que o aro externo curto-circuita todos os pontos
+da circunferência em um único nó; calcular o paralelo dos oito resistores sem
+observar que o nó central está flutuante levaria a uma interpretação incorreta.}
+
+\gabarito[3.5 Leitura topológica e nós equipotenciais]
+
 \section{Divisor de Tensão e de Corrente}
 
 \subsection{Divisor de tensão}
